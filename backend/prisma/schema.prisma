@@ -1,11 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -14,15 +9,357 @@ datasource db {
 }
 
 model Mountain {
+  id                String   @id @default(uuid())
+  name              String   @unique
+  latitude          Float
+  longitude         Float
+  height            Int
+  hours             String
+  phoneNumber       String
+  address           String
+  city              String
+  state             String
+  zipcode           String
+  openingDate       DateTime?
+  closingDate       DateTime?
+  lifts             Lift[]
+  liftChecks        LiftCheck[]
+  trails            Trail[]
+  trailChecks       TrailCheck[]
+  employees         Employee[]
+  lodges            Lodge[]
+  huts              Hut[]
+  hutChecks         HutCheck[]
+  aidRooms          AidRoom[]
+  aidRoomChecks     AidRoomCheck[]
+  equipment         Equipment[]
+  equipmentChecks   EquipmentCheck[]
+  incidents         Incident[]
+  incidentLogs      IncidentLog[]
+  dispatcherAssignments   DispatcherAssignment[]
+  incidentLogEquipment    IncidentLogEquipment[]
+  weather           Weather[]
+}
+
+model Weather {
+  id            String    @id @default(uuid())
+  mountainId    String
+  mountain      Mountain  @relation(fields: [mountainId], references: [id])
+  date          DateTime  @default(now())
+
+  temperature   Float
+  windSpeed     Float
+  windDirection String?
+  visibility    Float?
+  conditions    String
+  snowfall24h   Float?
+  snowfall7d    Float?
+  updatedAt     DateTime  @updatedAt
+}
+
+enum Status {
+  OPEN
+  CLOSED
+  UNKNOWN
+}
+
+enum Department {
+  PATROL
+  LIFT_OPERATIONS @map("LIFT OPS")
+  DISPATCH
+  MAINTENANCE
+  ADMINISTRATION
+  OTHER
+}
+
+model Employee {
+  id          String     @id @default(uuid())
+  name        String
+  role        String
+  department  Department
+  mountainId  String
+  mountain    Mountain   @relation(fields: [mountainId], references: [id])
+  dispatcherAssignments DispatcherAssignment[]
+  logs        IncidentLog[]
+  liftChecks  LiftCheck[]
+  trailChecks TrailCheck[]
+  hutChecks   HutCheck[]
+  aidRoomChecks AidRoomCheck[]
+  equipmentChecks EquipmentCheck[]
+
+  @@index([mountainId])
+}
+
+model DispatcherAssignment {
+  id           String     @id @default(uuid())
+  employee     Employee   @relation(fields: [employeeId], references: [id])
+  employeeId   String
+  assignedAt   DateTime   @default(now())
+  mountain     Mountain   @relation(fields: [mountainId], references: [id])
+  mountainId   String
+
+  @@index([employeeId])
+  @@index([mountainId])
+}
+
+model Lift {
   id          String   @id @default(uuid())
-  name        String   @unique
-  latitude    Float
-  longitude   Float
-  height      Int
-  hours       String
-  phoneNumber String
-  address     String
-  city        String
-  state       String
-  zipcode     String
+  name        String
+  capacity    Int
+  status      Status   @default(UNKNOWN)
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[] @relation("LiftIncidentLog")
+  liftChecks  LiftCheck[]
+
+  @@index([mountainId])
+}
+
+enum TrailCondition {
+  MACHINE_GROOMED      @map("MACHINE GROOMED")
+  PACKED_POWDER        @map("PACKED POWDER")
+  POWDER
+  HARD_PACK            @map("HARD PACK")
+  GROOMED
+  MOGULS
+  CLOSED
+}
+
+enum TrailDifficulty {
+  GREEN_CIRCLE
+  BLUE_SQUARE
+  BLACK_DIAMOND
+  DOUBLE_BLACK_DIAMOND
+  TERRAIN_PARK
+  RACE_COURSE
+}
+
+model Trail {
+  id          String   @id @default(uuid())
+  name        String
+  status      Status   @default(UNKNOWN)
+  difficulty  TrailDifficulty
+  length      Float
+  condition   TrailCondition   @default(CLOSED)
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[] @relation("TrailIncidentLog")
+  trailChecks TrailCheck[]
+
+  @@index([mountainId])
+}
+
+model Lodge {
+  id          String   @id @default(uuid())
+  name        String
+  capacity    Int
+  status      Status   @default(UNKNOWN)
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[] @relation("LodgeIncidentLog")
+
+  @@index([mountainId])
+}
+
+model Hut {
+  id          String   @id @default(uuid())
+  name        String
+  status      Status   @default(UNKNOWN)
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[] @relation("HutIncidentLog")
+  hutChecks   HutCheck[]
+
+  @@index([mountainId])
+}
+
+model AidRoom {
+  id          String   @id @default(uuid())
+  name        String
+  location    String
+  status      Status   @default(UNKNOWN)
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[] @relation("AidRoomIncidentLog")
+  aidRoomChecks AidRoomCheck[]
+
+  @@index([mountainId])
+}
+
+enum EquipmentService {
+  IN_SERVICE
+  OUT_OF_SERVICE
+  NEEDS_INSPECTION
+  PENDING_REPAIR
+  UNDER_MAINTENANCE
+  CLEANING
+}
+
+enum EquipmentStatus {
+  AVAILABLE
+  STANDBY
+  IN_USE
+  RETIRED
+  LOST
+}
+
+model Equipment {
+  id          String   @id @default(uuid())
+  name        String
+  type        String
+  status      EquipmentStatus
+  service     EquipmentService
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  usedInLogs  IncidentLogEquipment[]
+  equipmentChecks EquipmentCheck[]
+
+  @@index([mountainId])
+}
+
+model Incident {
+  id          String   @id @default(uuid())
+  description String
+  status      Status   @default(UNKNOWN)
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  logs        IncidentLog[]
+
+  @@index([mountainId])
+}
+
+enum LocationType {
+  AID_ROOM @map("AID ROOM")
+  HUT
+  LODGE
+  TRAIL
+  LIFT
+  OTHER
+}
+
+model IncidentLog {
+  id             String       @id @default(uuid())
+  incidentId     String
+  incident       Incident     @relation(fields: [incidentId], references: [id])
+  employeeId     String
+  employee       Employee     @relation(fields: [employeeId], references: [id])
+  mountainId     String
+  mountain       Mountain     @relation(fields: [mountainId], references: [id])
+  locationType   LocationType
+  locationId     String
+  locationStatus String
+  startTime      DateTime
+  endTime        DateTime
+  onSceneTime    DateTime?
+  stableTime     DateTime?
+  transportTime  DateTime?
+  dryRun         Boolean      @default(false)
+  dryRunTime     DateTime?
+  equipmentUsed  IncidentLogEquipment[]
+  lift           Lift?        @relation("LiftIncidentLog", fields: [locationId], references: [id], map: "LiftIncidentLog_fk")
+  trail          Trail?       @relation("TrailIncidentLog", fields: [locationId], references: [id], map: "TrailIncidentLog_fk")
+  lodge          Lodge?       @relation("LodgeIncidentLog", fields: [locationId], references: [id], map: "LodgeIncidentLog_fk")
+  hut            Hut?         @relation("HutIncidentLog", fields: [locationId], references: [id], map: "HutIncidentLog_fk")
+  aidRoom        AidRoom?     @relation("AidRoomIncidentLog", fields: [locationId], references: [id], map: "AidRoomIncidentLog_fk")
+
+  @@index([incidentId])
+  @@index([employeeId])
+  @@index([mountainId])
+  @@index([locationId, locationType])
+}
+
+model IncidentLogEquipment {
+  id            String       @id @default(uuid())
+  incidentLogId String
+  equipmentId   String
+  mountainId    String
+  mountain      Mountain @relation(fields: [mountainId], references: [id])
+  usedAt        DateTime     @default(now())
+  notes         String?
+  incidentLog   IncidentLog  @relation(fields: [incidentLogId], references: [id])
+  equipment     Equipment    @relation(fields: [equipmentId], references: [id])
+
+  @@index([incidentLogId])
+  @@index([equipmentId])
+  @@index([mountainId])
+}
+
+model LiftCheck {
+  id          String   @id @default(uuid())
+  date        DateTime @default(now())
+  employeeId  String
+  employee    Employee @relation(fields: [employeeId], references: [id])
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  liftId      String
+  lift        Lift     @relation(fields: [liftId], references: [id])
+  notes       String?
+
+  @@index([employeeId])
+  @@index([mountainId])
+  @@index([liftId])
+}
+
+model TrailCheck {
+  id          String   @id @default(uuid())
+  date        DateTime @default(now())
+  employeeId  String
+  employee    Employee @relation(fields: [employeeId], references: [id])
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  trailId     String
+  trail       Trail    @relation(fields: [trailId], references: [id])
+  notes       String?
+
+  @@index([employeeId])
+  @@index([mountainId])
+  @@index([trailId])
+}
+
+model HutCheck {
+  id          String   @id @default(uuid())
+  date        DateTime @default(now())
+  employeeId  String
+  employee    Employee @relation(fields: [employeeId], references: [id])
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  hutId       String
+  hut         Hut      @relation(fields: [hutId], references: [id])
+  notes       String?
+
+  @@index([employeeId])
+  @@index([mountainId])
+  @@index([hutId])
+}
+
+model AidRoomCheck {
+  id          String   @id @default(uuid())
+  date        DateTime @default(now())
+  employeeId  String
+  employee    Employee @relation(fields: [employeeId], references: [id])
+  mountainId  String
+  mountain    Mountain @relation(fields: [mountainId], references: [id])
+  aidRoomId   String
+  aidRoom     AidRoom  @relation(fields: [aidRoomId], references: [id])
+  notes       String?
+
+  @@index([employeeId])
+  @@index([mountainId])
+  @@index([aidRoomId])
+}
+
+model EquipmentCheck {
+  id           String   @id @default(uuid())
+  date         DateTime @default(now())
+  employeeId   String
+  employee     Employee @relation(fields: [employeeId], references: [id])
+  mountainId   String
+  mountain     Mountain @relation(fields: [mountainId], references: [id])
+  equipmentId  String
+  equipment    Equipment @relation(fields: [equipmentId], references: [id])
+  notes        String?
+
+  @@index([employeeId])
+  @@index([mountainId])
+  @@index([equipmentId])
 }

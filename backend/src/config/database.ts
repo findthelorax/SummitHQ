@@ -1,5 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Status, Department, TrailCondition, TrailDifficulty, EquipmentStatus, EquipmentService, LocationType } from '../generated/prisma';
 
+console.log('Initializing Prisma Client...');
 const prisma = new PrismaClient();
 
 const connectDatabase = async () => {
@@ -8,8 +9,18 @@ const connectDatabase = async () => {
         console.log('Database connection has been established successfully.');
     } catch (error) {
         console.error('Unable to connect to the database:', error);
-        process.exit(1); // Exit the process if the database connection fails
+        process.exit(1);
     }
 };
 
-export { prisma, connectDatabase };
+export {
+    prisma,
+    connectDatabase,
+    Status,
+    Department,
+    TrailCondition,
+    TrailDifficulty,
+    EquipmentStatus,
+    EquipmentService,
+    LocationType
+};
