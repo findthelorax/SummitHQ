@@ -1,11 +1,7 @@
 import { prisma } from '../config/database';
-import { EquipmentStatus, EquipmentService } from '../types';
 
 class Equipment {
-    static async create(
-        mountainId: string,
-        data: { name: string; type: string; status: EquipmentStatus; service: EquipmentService; mountainId: string }
-    ) {
+    static async create(mountainId: string, data: any) {
         return await prisma.equipment.create({
             data: {
                 ...data,
@@ -26,7 +22,7 @@ class Equipment {
         });
     }
 
-    static async update(id: string, updatedData: Partial<{ name: string; type: string; status: EquipmentStatus; service: EquipmentService; mountainId: string }>) {
+    static async update(id: string, updatedData: any) {
         return await prisma.equipment.update({
             where: { id },
             data: updatedData,

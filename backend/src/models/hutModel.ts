@@ -1,11 +1,7 @@
 import { prisma } from '../config/database';
-import { Status } from '../types';
 
 class Hut {
-    static async create(
-        mountainId: string,
-        data: { name: string; status: Status }
-    ) {
+    static async create(mountainId: string, data: any) {
         return await prisma.hut.create({
             data: {
                 ...data,
@@ -26,7 +22,7 @@ class Hut {
         });
     }
 
-    static async update(id: string, updatedData: Partial<{ name: string; difficulty: string; length: number; status: Status }>) {
+    static async update(id: string, updatedData: any) {
         return await prisma.hut.update({
             where: { id },
             data: updatedData,

@@ -1,11 +1,7 @@
 import { prisma } from '../config/database';
-import { Status } from '../types';
 
 class Incident {
-    static async create(
-        mountainId: string,
-        data: { description: string; status: Status}
-    ) {
+    static async create(mountainId: string, data: any) {
         return await prisma.incident.create({
             data: {
                 ...data,
@@ -26,7 +22,7 @@ class Incident {
         });
     }
 
-    static async update(id: string, updatedData: Partial<{ name: string; description: string; status: Status }>) {
+    static async update(id: string, updatedData: any) {
         return await prisma.incident.update({
             where: { id },
             data: updatedData,

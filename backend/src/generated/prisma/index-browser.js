@@ -149,7 +149,11 @@ exports.Prisma.WeatherScalarFieldEnum = {
 
 exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
+  employeeIdNumber: 'employeeIdNumber',
+  email: 'email',
+  phoneNumber: 'phoneNumber',
   name: 'name',
+  title: 'title',
   role: 'role',
   department: 'department',
   mountainId: 'mountainId'
@@ -167,6 +171,8 @@ exports.Prisma.LiftScalarFieldEnum = {
   name: 'name',
   capacity: 'capacity',
   status: 'status',
+  latitude: 'latitude',
+  longitude: 'longitude',
   mountainId: 'mountainId'
 };
 
@@ -177,13 +183,18 @@ exports.Prisma.TrailScalarFieldEnum = {
   difficulty: 'difficulty',
   length: 'length',
   condition: 'condition',
+  latitude: 'latitude',
+  longitude: 'longitude',
   mountainId: 'mountainId'
 };
 
 exports.Prisma.LodgeScalarFieldEnum = {
   id: 'id',
+  latitude: 'latitude',
+  longitude: 'longitude',
   name: 'name',
   capacity: 'capacity',
+  hours: 'hours',
   status: 'status',
   mountainId: 'mountainId'
 };
@@ -192,6 +203,8 @@ exports.Prisma.HutScalarFieldEnum = {
   id: 'id',
   name: 'name',
   status: 'status',
+  latitude: 'latitude',
+  longitude: 'longitude',
   mountainId: 'mountainId'
 };
 
@@ -200,22 +213,42 @@ exports.Prisma.AidRoomScalarFieldEnum = {
   name: 'name',
   location: 'location',
   status: 'status',
+  latitude: 'latitude',
+  longitude: 'longitude',
   mountainId: 'mountainId'
+};
+
+exports.Prisma.EquipmentServiceLogScalarFieldEnum = {
+  id: 'id',
+  equipmentId: 'equipmentId',
+  serviceStatus: 'serviceStatus',
+  changedAt: 'changedAt',
+  notes: 'notes'
 };
 
 exports.Prisma.EquipmentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   type: 'type',
+  description: 'description',
   status: 'status',
   service: 'service',
-  mountainId: 'mountainId'
+  picture: 'picture',
+  cost: 'cost',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  mountainId: 'mountainId',
+  locationType: 'locationType',
+  locationId: 'locationId',
+  dateAdded: 'dateAdded'
 };
 
 exports.Prisma.IncidentScalarFieldEnum = {
   id: 'id',
   description: 'description',
   status: 'status',
+  latitude: 'latitude',
+  longitude: 'longitude',
   mountainId: 'mountainId'
 };
 
@@ -338,14 +371,6 @@ exports.TrailCondition = exports.$Enums.TrailCondition = {
   CLOSED: 'CLOSED'
 };
 
-exports.EquipmentStatus = exports.$Enums.EquipmentStatus = {
-  AVAILABLE: 'AVAILABLE',
-  STANDBY: 'STANDBY',
-  IN_USE: 'IN_USE',
-  RETIRED: 'RETIRED',
-  LOST: 'LOST'
-};
-
 exports.EquipmentService = exports.$Enums.EquipmentService = {
   IN_SERVICE: 'IN_SERVICE',
   OUT_OF_SERVICE: 'OUT_OF_SERVICE',
@@ -353,6 +378,14 @@ exports.EquipmentService = exports.$Enums.EquipmentService = {
   PENDING_REPAIR: 'PENDING_REPAIR',
   UNDER_MAINTENANCE: 'UNDER_MAINTENANCE',
   CLEANING: 'CLEANING'
+};
+
+exports.EquipmentStatus = exports.$Enums.EquipmentStatus = {
+  AVAILABLE: 'AVAILABLE',
+  STANDBY: 'STANDBY',
+  IN_USE: 'IN_USE',
+  RETIRED: 'RETIRED',
+  LOST: 'LOST'
 };
 
 exports.LocationType = exports.$Enums.LocationType = {
@@ -374,6 +407,7 @@ exports.Prisma.ModelName = {
   Lodge: 'Lodge',
   Hut: 'Hut',
   AidRoom: 'AidRoom',
+  EquipmentServiceLog: 'EquipmentServiceLog',
   Equipment: 'Equipment',
   Incident: 'Incident',
   IncidentLog: 'IncidentLog',

@@ -3,10 +3,11 @@ import MountainController from '../controllers/mountainController';
 
 const router = Router();
 
-router.post('/mountains', MountainController.createMountain);
-router.get('/mountains', MountainController.getAllMountains);
-router.get('/mountains/:id', MountainController.getMountain);
-router.put('/mountains/:id', MountainController.updateMountain);
-router.delete('/mountains/:id', MountainController.deleteMountain);
+router.post('/', MountainController.createMountain);
+router.get('/', MountainController.getAllMountains);
+router.get('/:id', MountainController.getMountain);
+router.put('/:id', MountainController.updateMountain);
+router.delete('/:id', MountainController.deleteMountain);
+router.delete('/', MountainController.deleteAllMountains);
 
 export default router;

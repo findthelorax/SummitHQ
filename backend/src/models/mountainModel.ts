@@ -1,20 +1,7 @@
 import { prisma } from '../config/database';
 
 class MountainModel {
-    static async create(data: {
-        name: string;
-        latitude: number;
-        longitude: number;
-        height: number;
-        hours: string;
-        phoneNumber: string;
-        address: string;
-        city: string;
-        state: string;
-        zipcode: string;
-        openingDate?: Date;
-        closingDate?: Date;
-    }) {
+    static async create(data: any) {
         return await prisma.mountain.create({
             data: {
                 ...data,
@@ -32,23 +19,7 @@ class MountainModel {
         });
     }
 
-    static async update(
-        id: string,
-        updatedData: Partial<{
-            name: string;
-            latitude: number;
-            longitude: number;
-            height: number;
-            hours: string;
-            phoneNumber: string;
-            address: string;
-            city: string;
-            state: string;
-            zipcode: string;
-            openingDate?: Date;
-            closingDate?: Date;
-        }>
-    ) {
+    static async update(id: string, updatedData: any) {
         return await prisma.mountain.update({
             where: { id },
             data: updatedData,
@@ -59,6 +30,10 @@ class MountainModel {
         return await prisma.mountain.delete({
             where: { id },
         });
+    }
+
+    static async deleteAll() {
+        return await prisma.mountain.deleteMany(); // Deletes all records in the Mountain table
     }
 }
 

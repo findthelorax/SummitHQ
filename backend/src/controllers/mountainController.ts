@@ -63,6 +63,15 @@ class MountainController {
             next(error);
         }
     }
+
+    async deleteAllMountains(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            await MountainModel.deleteAll();
+            res.status(204).send();
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default new MountainController();

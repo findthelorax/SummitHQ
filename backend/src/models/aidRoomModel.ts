@@ -1,11 +1,7 @@
 import { prisma } from '../config/database';
-import { Status } from '../types';
 
 class AidRoom {
-    static async create(
-		mountainId: string, 
-		data: { name: string; location: string; status: Status }
-	) {
+    static async create(mountainId: string, data: any) {
         return await prisma.aidRoom.create({
             data: {
                 ...data,
@@ -26,7 +22,7 @@ class AidRoom {
         });
     }
 
-    static async update(id: string, updatedData: Partial<{ name: string; location: string; status: Status }>) {
+    static async update(id: string, updatedData: any) {
         return await prisma.aidRoom.update({
             where: { id },
             data: updatedData,
