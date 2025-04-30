@@ -8,53 +8,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Mountain {
-  id                    String                 @id @default(uuid())
-  name                  String                 @unique
-  latitude              Float?
-  longitude             Float?
-  height                Int
-  hours                 String
-  phoneNumber           String
-  address               String
-  city                  String
-  state                 String
-  zipcode               String
-  openingDate           DateTime?
-  closingDate           DateTime?
-  lifts                 Lift[]
-  liftChecks            LiftCheck[]
-  trails                Trail[]
-  trailChecks           TrailCheck[]
-  employees             Employee[]
-  lodges                Lodge[]
-  huts                  Hut[]
-  hutChecks             HutCheck[]
-  aidRooms              AidRoom[]
-  aidRoomChecks         AidRoomCheck[]
-  equipment             Equipment[]
-  equipmentChecks       EquipmentCheck[]
-  incidents             Incident[]
-  incidentLogs          IncidentLog[]
-  dispatcherAssignments DispatcherAssignment[]
-  incidentLogEquipment  IncidentLogEquipment[]
-  weather               Weather[]
-}
-
-model Weather {
-  id         String   @id @default(uuid())
-  mountainId String
-  mountain   Mountain @relation(fields: [mountainId], references: [id])
-  date       DateTime @default(now())
-
-  temperature   Float
-  windSpeed     Float
-  windDirection String?
-  visibility    Float?
-  conditions    String
-  snowfall24h   Float?
-  snowfall7d    Float?
-  updatedAt     DateTime @updatedAt
+enum LocationType {
+  AID_ROOM @map("AID ROOM")
+  HUT
+  LODGE
+  TRAIL
+  LIFT
+  OTHER
 }
 
 enum Status {
@@ -70,56 +30,6 @@ enum Department {
   MAINTENANCE
   ADMINISTRATION
   OTHER
-}
-
-model Employee {
-  id                    String                 @id @default(uuid())
-  employeeIdNumber      String                 @unique
-  email                 String                 @unique
-  phoneNumber           String
-  name                  String
-  title                 String
-  role                  String
-  department            Department
-  mountainId            String
-  mountain              Mountain               @relation(fields: [mountainId], references: [id])
-  dispatcherAssignments DispatcherAssignment[]
-  logs                  IncidentLog[]
-  liftChecks            LiftCheck[]
-  trailChecks           TrailCheck[]
-  hutChecks             HutCheck[]
-  aidRoomChecks         AidRoomCheck[]
-  equipmentChecks       EquipmentCheck[]
-
-  @@index([mountainId])
-}
-
-model DispatcherAssignment {
-  id         String   @id @default(uuid())
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  employeeId String
-  assignedAt DateTime @default(now())
-  mountain   Mountain @relation(fields: [mountainId], references: [id])
-  mountainId String
-
-  @@index([employeeId])
-  @@index([mountainId])
-}
-
-model Lift {
-  id           String        @id @default(uuid())
-  name         String
-  capacity     Int
-  status       Status        @default(UNKNOWN)
-  latitude     Float?
-  longitude    Float?
-  mountainId   String
-  mountain     Mountain      @relation(fields: [mountainId], references: [id])
-  incidentLogs IncidentLog[] @relation("LiftIncidentLog")
-  equipment    Equipment[]   @relation("LiftEquipment")
-  liftChecks   LiftCheck[]
-
-  @@index([mountainId])
 }
 
 enum TrailCondition {
@@ -141,71 +51,6 @@ enum TrailDifficulty {
   RACE_COURSE
 }
 
-model Trail {
-  id           String          @id @default(uuid())
-  name         String
-  status       Status          @default(UNKNOWN)
-  difficulty   TrailDifficulty
-  length       Float
-  condition    TrailCondition  @default(CLOSED)
-  latitude     Float?
-  longitude    Float?
-  mountainId   String
-  mountain     Mountain        @relation(fields: [mountainId], references: [id])
-  incidentLogs IncidentLog[]   @relation("TrailIncidentLog")
-  equipment    Equipment[]     @relation("TrailEquipment")
-  trailChecks  TrailCheck[]
-
-  @@index([mountainId])
-}
-
-model Lodge {
-  id           String        @id @default(uuid())
-  latitude     Float?
-  longitude    Float?
-  name         String
-  capacity     Int
-  hours        String
-  status       Status        @default(UNKNOWN)
-  mountainId   String
-  mountain     Mountain      @relation(fields: [mountainId], references: [id])
-  incidentLogs IncidentLog[] @relation("LodgeIncidentLog")
-  equipment    Equipment[]   @relation("LodgeEquipment")
-
-  @@index([mountainId])
-}
-
-model Hut {
-  id           String        @id @default(uuid())
-  name         String
-  status       Status        @default(UNKNOWN)
-  latitude     Float?
-  longitude    Float?
-  mountainId   String
-  mountain     Mountain      @relation(fields: [mountainId], references: [id])
-  incidentLogs IncidentLog[] @relation("HutIncidentLog")
-  equipment    Equipment[]   @relation("HutEquipment")
-  hutChecks    HutCheck[]
-
-  @@index([mountainId])
-}
-
-model AidRoom {
-  id            String         @id @default(uuid())
-  name          String
-  location      String
-  status        Status         @default(UNKNOWN)
-  latitude      Float?
-  longitude     Float?
-  mountainId    String
-  mountain      Mountain       @relation(fields: [mountainId], references: [id])
-  incidentLogs  IncidentLog[]  @relation("AidRoomIncidentLog")
-  equipment     Equipment[]    @relation("AidRoomEquipment")
-  aidRoomChecks AidRoomCheck[]
-
-  @@index([mountainId])
-}
-
 enum EquipmentService {
   IN_SERVICE
   OUT_OF_SERVICE
@@ -223,14 +68,198 @@ enum EquipmentStatus {
   LOST
 }
 
+model Mountain {
+  id                    String                       @id @default(uuid())
+  name                  String                       @unique
+  latitude              Float?
+  longitude             Float?
+  height                Int
+  hours                 String
+  phoneNumber           String
+  address               String
+  city                  String
+  state                 String
+  zipcode               String
+  openingDate           DateTime?
+  closingDate           DateTime?
+  lifts                 Lift[]
+  liftChecks            LiftCheck[]
+  trails                Trail[]
+  trailChecks           TrailCheck[]
+  lodges                Lodge[]
+  huts                  Hut[]
+  hutChecks             HutCheck[]
+  aidRooms              AidRoom[]
+  aidRoomChecks         AidRoomCheck[]
+  equipment             Equipment[]
+  equipmentChecks       EquipmentCheck[]
+  incidents             Incident[]
+  incidentLogs          IncidentLog[]
+  employeeAssignments   EmployeeMountainAssignment[]
+  dispatcherAssignments DispatcherAssignment[]
+  incidentLogEquipment  IncidentLogEquipment[]
+  equipmentServiceLogs  EquipmentServiceLog[]
+  weather               Weather[]
+}
+
+model Weather {
+  id         String   @id @default(uuid())
+  mountainId String
+  mountain   Mountain @relation(fields: [mountainId], references: [id])
+  date       DateTime @default(now())
+
+  temperature   Float
+  windSpeed     Float
+  windDirection String?
+  visibility    Float?
+  conditions    String
+  snowfall24h   Float?
+  snowfall7d    Float?
+  updatedAt     DateTime @updatedAt
+}
+
+model EmployeeMountainAssignment {
+  id         String   @id @default(uuid())
+  employeeId String
+  mountainId String
+  assignedAt DateTime @default(now())
+
+  employee Employee @relation(fields: [employeeId], references: [id])
+  mountain Mountain @relation(fields: [mountainId], references: [id])
+
+  @@unique([employeeId, mountainId])
+  @@index([mountainId])
+  @@index([employeeId])
+}
+
+model DispatcherAssignment {
+  id         String   @id @default(uuid())
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId String
+  assignedAt DateTime @default(now())
+  mountain   Mountain @relation(fields: [mountainId], references: [id])
+  mountainId String
+
+  @@index([employeeId])
+  @@index([mountainId])
+}
+
+model Employee {
+  id                    String                       @id @default(uuid())
+  employeeIdNumber      String                       @unique
+  email                 String                       @unique
+  phoneNumber           String
+  name                  String
+  title                 String
+  role                  String
+  department            Department
+  assignments           EmployeeMountainAssignment[]
+  dispatcherAssignments DispatcherAssignment[]
+  logs                  IncidentLog[]
+  liftChecks            LiftCheck[]
+  trailChecks           TrailCheck[]
+  hutChecks             HutCheck[]
+  aidRoomChecks         AidRoomCheck[]
+  equipmentChecks       EquipmentCheck[]
+}
+
+model Lift {
+  id           String        @id @default(uuid())
+  name         String
+  capacity     Int
+  status       Status        @default(UNKNOWN)
+  latitude     Float?
+  longitude    Float?
+  mountainId   String
+  mountain     Mountain      @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[] @relation("LiftIncidentLog")
+  equipment    Equipment[]   @relation("LiftEquipment")
+  liftChecks   LiftCheck[]
+
+  @@unique([id, mountainId])
+  @@index([mountainId])
+}
+
+model Trail {
+  id           String          @id @default(uuid())
+  name         String
+  status       Status          @default(UNKNOWN)
+  difficulty   TrailDifficulty
+  length       Float
+  condition    TrailCondition  @default(CLOSED)
+  latitude     Float?
+  longitude    Float?
+  mountainId   String
+  mountain     Mountain        @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[]   @relation("TrailIncidentLog")
+  equipment    Equipment[]     @relation("TrailEquipment")
+  trailChecks  TrailCheck[]
+
+  @@unique([id, mountainId])
+  @@index([mountainId])
+}
+
+model Lodge {
+  id           String        @id @default(uuid())
+  latitude     Float?
+  longitude    Float?
+  name         String
+  capacity     Int
+  hours        String
+  status       Status        @default(UNKNOWN)
+  mountainId   String
+  mountain     Mountain      @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[] @relation("LodgeIncidentLog")
+  equipment    Equipment[]   @relation("LodgeEquipment")
+
+  @@unique([id, mountainId])
+  @@index([mountainId])
+}
+
+model Hut {
+  id           String        @id @default(uuid())
+  name         String
+  status       Status        @default(UNKNOWN)
+  latitude     Float?
+  longitude    Float?
+  mountainId   String
+  mountain     Mountain      @relation(fields: [mountainId], references: [id])
+  incidentLogs IncidentLog[] @relation("HutIncidentLog")
+  equipment    Equipment[]   @relation("HutEquipment")
+  hutChecks    HutCheck[]
+
+  @@unique([id, mountainId])
+  @@index([mountainId])
+}
+
+model AidRoom {
+  id            String         @id @default(uuid())
+  name          String
+  location      String
+  status        Status         @default(UNKNOWN)
+  latitude      Float?
+  longitude     Float?
+  mountainId    String
+  mountain      Mountain       @relation(fields: [mountainId], references: [id])
+  incidentLogs  IncidentLog[]  @relation("AidRoomIncidentLog")
+  equipment     Equipment[]    @relation("AidRoomEquipment")
+  aidRoomChecks AidRoomCheck[]
+
+  @@unique([id, mountainId])
+  @@index([mountainId])
+}
+
 model EquipmentServiceLog {
   id            String           @id @default(uuid())
   equipmentId   String
   equipment     Equipment        @relation(fields: [equipmentId], references: [id])
+  mountainId    String
+  mountain      Mountain         @relation(fields: [mountainId], references: [id])
   serviceStatus EquipmentService
   changedAt     DateTime         @default(now())
   notes         String?
 
+  @@unique([id, mountainId])
   @@index([equipmentId])
 }
 
@@ -262,6 +291,7 @@ model Equipment {
   equipmentChecks EquipmentCheck[]
   serviceLogs     EquipmentServiceLog[]
 
+  @@unique([id, mountainId])
   @@index([mountainId])
   @@index([locationId, locationType])
 }
@@ -276,16 +306,8 @@ model Incident {
   mountain    Mountain      @relation(fields: [mountainId], references: [id])
   logs        IncidentLog[]
 
+  @@unique([id, mountainId])
   @@index([mountainId])
-}
-
-enum LocationType {
-  AID_ROOM @map("AID ROOM")
-  HUT
-  LODGE
-  TRAIL
-  LIFT
-  OTHER
 }
 
 model IncidentLog {
@@ -313,6 +335,7 @@ model IncidentLog {
   hut            Hut?                   @relation("HutIncidentLog", fields: [locationId], references: [id], map: "HutIncidentLog_fk")
   aidRoom        AidRoom?               @relation("AidRoomIncidentLog", fields: [locationId], references: [id], map: "AidRoomIncidentLog_fk")
 
+  @@unique([id, mountainId])
   @@index([incidentId])
   @@index([employeeId])
   @@index([mountainId])
@@ -330,6 +353,7 @@ model IncidentLogEquipment {
   incidentLog   IncidentLog @relation(fields: [incidentLogId], references: [id])
   equipment     Equipment   @relation(fields: [equipmentId], references: [id])
 
+  @@unique([id, mountainId])
   @@index([incidentLogId])
   @@index([equipmentId])
   @@index([mountainId])
@@ -346,6 +370,7 @@ model LiftCheck {
   lift       Lift     @relation(fields: [liftId], references: [id])
   notes      String?
 
+  @@unique([id, mountainId])
   @@index([employeeId])
   @@index([mountainId])
   @@index([liftId])
@@ -362,6 +387,7 @@ model TrailCheck {
   trail      Trail    @relation(fields: [trailId], references: [id])
   notes      String?
 
+  @@unique([id, mountainId])
   @@index([employeeId])
   @@index([mountainId])
   @@index([trailId])
@@ -378,6 +404,7 @@ model HutCheck {
   hut        Hut      @relation(fields: [hutId], references: [id])
   notes      String?
 
+  @@unique([id, mountainId])
   @@index([employeeId])
   @@index([mountainId])
   @@index([hutId])
@@ -394,6 +421,7 @@ model AidRoomCheck {
   aidRoom    AidRoom  @relation(fields: [aidRoomId], references: [id])
   notes      String?
 
+  @@unique([id, mountainId])
   @@index([employeeId])
   @@index([mountainId])
   @@index([aidRoomId])
@@ -410,6 +438,7 @@ model EquipmentCheck {
   equipment   Equipment @relation(fields: [equipmentId], references: [id])
   notes       String?
 
+  @@unique([id, mountainId])
   @@index([employeeId])
   @@index([mountainId])
   @@index([equipmentId])

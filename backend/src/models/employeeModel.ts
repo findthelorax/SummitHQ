@@ -1,46 +1,45 @@
 import { prisma } from '../config/database';
 
 class Employee {
-    static async create(mountainId: string, data: any) {
-        return await prisma.employee.create({
-            data: {
-                ...data,
-                mountainId,
-            },
+    static async create(mountainId: string, employeeData: any) {
+        return await prisma.$transaction(async (tx) => {
+            // 1. Create the employee
+            const newEmployee = await tx.employee.create({
+                data: employeeData,
+            });
+
+            // 2. Create the assignment
+            await tx.employeeMountainAssignment.create({
+                data: {
+                    employeeId: newEmployee.id,
+                    mountainId,
+                },
+            });
+
+            return newEmployee;
         });
     }
 
-    static async findByIdAndMountain(id: string, mountainId: string) {
-        return await prisma.employee.findFirst({
-            where: {
-                id,
-                mountainId,
-            },
+    static async findById(id: string) {
+        return await prisma.employee.findUnique({
+            where: { id },
         });
     }
 
-    static async findAllByMountain(mountainId: string) {
-        return await prisma.employee.findMany({
-            where: { mountainId },
-        });
+    static async findAll() {
+        return await prisma.employee.findMany();
     }
 
-    static async updateByMountain(id: string, mountainId: string, updatedData: any) {
-        return await prisma.employee.updateMany({
-            where: {
-                id,
-                mountainId,
-            },
+    static async update(id: string, updatedData: any) {
+        return await prisma.employee.update({
+            where: { id },
             data: updatedData,
         });
     }
 
-    static async deleteByMountain(id: string, mountainId: string) {
-        return await prisma.employee.deleteMany({
-            where: {
-                id,
-                mountainId,
-            },
+    static async delete(id: string) {
+        return await prisma.employee.delete({
+            where: { id },
         });
     }
 }

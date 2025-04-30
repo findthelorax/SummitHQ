@@ -150,6 +150,20 @@ exports.Prisma.WeatherScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EmployeeMountainAssignmentScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  mountainId: 'mountainId',
+  assignedAt: 'assignedAt'
+};
+
+exports.Prisma.DispatcherAssignmentScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  assignedAt: 'assignedAt',
+  mountainId: 'mountainId'
+};
+
 exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
   employeeIdNumber: 'employeeIdNumber',
@@ -158,15 +172,7 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   name: 'name',
   title: 'title',
   role: 'role',
-  department: 'department',
-  mountainId: 'mountainId'
-};
-
-exports.Prisma.DispatcherAssignmentScalarFieldEnum = {
-  id: 'id',
-  employeeId: 'employeeId',
-  assignedAt: 'assignedAt',
-  mountainId: 'mountainId'
+  department: 'department'
 };
 
 exports.Prisma.LiftScalarFieldEnum = {
@@ -224,6 +230,7 @@ exports.Prisma.AidRoomScalarFieldEnum = {
 exports.Prisma.EquipmentServiceLogScalarFieldEnum = {
   id: 'id',
   equipmentId: 'equipmentId',
+  mountainId: 'mountainId',
   serviceStatus: 'serviceStatus',
   changedAt: 'changedAt',
   notes: 'notes'
@@ -403,8 +410,9 @@ exports.LocationType = exports.$Enums.LocationType = {
 exports.Prisma.ModelName = {
   Mountain: 'Mountain',
   Weather: 'Weather',
-  Employee: 'Employee',
+  EmployeeMountainAssignment: 'EmployeeMountainAssignment',
   DispatcherAssignment: 'DispatcherAssignment',
+  Employee: 'Employee',
   Lift: 'Lift',
   Trail: 'Trail',
   Lodge: 'Lodge',

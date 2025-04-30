@@ -24,15 +24,20 @@ export type Mountain = $Result.DefaultSelection<Prisma.$MountainPayload>
  */
 export type Weather = $Result.DefaultSelection<Prisma.$WeatherPayload>
 /**
- * Model Employee
+ * Model EmployeeMountainAssignment
  * 
  */
-export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
+export type EmployeeMountainAssignment = $Result.DefaultSelection<Prisma.$EmployeeMountainAssignmentPayload>
 /**
  * Model DispatcherAssignment
  * 
  */
 export type DispatcherAssignment = $Result.DefaultSelection<Prisma.$DispatcherAssignmentPayload>
+/**
+ * Model Employee
+ * 
+ */
+export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
 /**
  * Model Lift
  * 
@@ -113,7 +118,19 @@ export type EquipmentCheck = $Result.DefaultSelection<Prisma.$EquipmentCheckPayl
  * Enums
  */
 export namespace $Enums {
-  export const Status: {
+  export const LocationType: {
+  AID_ROOM: 'AID_ROOM',
+  HUT: 'HUT',
+  LODGE: 'LODGE',
+  TRAIL: 'TRAIL',
+  LIFT: 'LIFT',
+  OTHER: 'OTHER'
+};
+
+export type LocationType = (typeof LocationType)[keyof typeof LocationType]
+
+
+export const Status: {
   OPEN: 'OPEN',
   CLOSED: 'CLOSED',
   UNKNOWN: 'UNKNOWN'
@@ -181,19 +198,11 @@ export const EquipmentStatus: {
 
 export type EquipmentStatus = (typeof EquipmentStatus)[keyof typeof EquipmentStatus]
 
-
-export const LocationType: {
-  AID_ROOM: 'AID_ROOM',
-  HUT: 'HUT',
-  LODGE: 'LODGE',
-  TRAIL: 'TRAIL',
-  LIFT: 'LIFT',
-  OTHER: 'OTHER'
-};
-
-export type LocationType = (typeof LocationType)[keyof typeof LocationType]
-
 }
+
+export type LocationType = $Enums.LocationType
+
+export const LocationType: typeof $Enums.LocationType
 
 export type Status = $Enums.Status
 
@@ -218,10 +227,6 @@ export const EquipmentService: typeof $Enums.EquipmentService
 export type EquipmentStatus = $Enums.EquipmentStatus
 
 export const EquipmentStatus: typeof $Enums.EquipmentStatus
-
-export type LocationType = $Enums.LocationType
-
-export const LocationType: typeof $Enums.LocationType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -369,14 +374,14 @@ export class PrismaClient<
   get weather(): Prisma.WeatherDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.employee`: Exposes CRUD operations for the **Employee** model.
+   * `prisma.employeeMountainAssignment`: Exposes CRUD operations for the **EmployeeMountainAssignment** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Employees
-    * const employees = await prisma.employee.findMany()
+    * // Fetch zero or more EmployeeMountainAssignments
+    * const employeeMountainAssignments = await prisma.employeeMountainAssignment.findMany()
     * ```
     */
-  get employee(): Prisma.EmployeeDelegate<ExtArgs, ClientOptions>;
+  get employeeMountainAssignment(): Prisma.EmployeeMountainAssignmentDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.dispatcherAssignment`: Exposes CRUD operations for the **DispatcherAssignment** model.
@@ -387,6 +392,16 @@ export class PrismaClient<
     * ```
     */
   get dispatcherAssignment(): Prisma.DispatcherAssignmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employee`: Exposes CRUD operations for the **Employee** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Employees
+    * const employees = await prisma.employee.findMany()
+    * ```
+    */
+  get employee(): Prisma.EmployeeDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.lift`: Exposes CRUD operations for the **Lift** model.
@@ -979,8 +994,9 @@ export namespace Prisma {
   export const ModelName: {
     Mountain: 'Mountain',
     Weather: 'Weather',
-    Employee: 'Employee',
+    EmployeeMountainAssignment: 'EmployeeMountainAssignment',
     DispatcherAssignment: 'DispatcherAssignment',
+    Employee: 'Employee',
     Lift: 'Lift',
     Trail: 'Trail',
     Lodge: 'Lodge',
@@ -1014,7 +1030,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "mountain" | "weather" | "employee" | "dispatcherAssignment" | "lift" | "trail" | "lodge" | "hut" | "aidRoom" | "equipmentServiceLog" | "equipment" | "incident" | "incidentLog" | "incidentLogEquipment" | "liftCheck" | "trailCheck" | "hutCheck" | "aidRoomCheck" | "equipmentCheck"
+      modelProps: "mountain" | "weather" | "employeeMountainAssignment" | "dispatcherAssignment" | "employee" | "lift" | "trail" | "lodge" | "hut" | "aidRoom" | "equipmentServiceLog" | "equipment" | "incident" | "incidentLog" | "incidentLogEquipment" | "liftCheck" | "trailCheck" | "hutCheck" | "aidRoomCheck" | "equipmentCheck"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1166,77 +1182,77 @@ export namespace Prisma {
           }
         }
       }
-      Employee: {
-        payload: Prisma.$EmployeePayload<ExtArgs>
-        fields: Prisma.EmployeeFieldRefs
+      EmployeeMountainAssignment: {
+        payload: Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>
+        fields: Prisma.EmployeeMountainAssignmentFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.EmployeeFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload> | null
+            args: Prisma.EmployeeMountainAssignmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.EmployeeFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+            args: Prisma.EmployeeMountainAssignmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>
           }
           findFirst: {
-            args: Prisma.EmployeeFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload> | null
+            args: Prisma.EmployeeMountainAssignmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.EmployeeFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+            args: Prisma.EmployeeMountainAssignmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>
           }
           findMany: {
-            args: Prisma.EmployeeFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
+            args: Prisma.EmployeeMountainAssignmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>[]
           }
           create: {
-            args: Prisma.EmployeeCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+            args: Prisma.EmployeeMountainAssignmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>
           }
           createMany: {
-            args: Prisma.EmployeeCreateManyArgs<ExtArgs>
+            args: Prisma.EmployeeMountainAssignmentCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.EmployeeCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
+            args: Prisma.EmployeeMountainAssignmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>[]
           }
           delete: {
-            args: Prisma.EmployeeDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+            args: Prisma.EmployeeMountainAssignmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>
           }
           update: {
-            args: Prisma.EmployeeUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+            args: Prisma.EmployeeMountainAssignmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>
           }
           deleteMany: {
-            args: Prisma.EmployeeDeleteManyArgs<ExtArgs>
+            args: Prisma.EmployeeMountainAssignmentDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.EmployeeUpdateManyArgs<ExtArgs>
+            args: Prisma.EmployeeMountainAssignmentUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.EmployeeUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
+            args: Prisma.EmployeeMountainAssignmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>[]
           }
           upsert: {
-            args: Prisma.EmployeeUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+            args: Prisma.EmployeeMountainAssignmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMountainAssignmentPayload>
           }
           aggregate: {
-            args: Prisma.EmployeeAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateEmployee>
+            args: Prisma.EmployeeMountainAssignmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmployeeMountainAssignment>
           }
           groupBy: {
-            args: Prisma.EmployeeGroupByArgs<ExtArgs>
-            result: $Utils.Optional<EmployeeGroupByOutputType>[]
+            args: Prisma.EmployeeMountainAssignmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeMountainAssignmentGroupByOutputType>[]
           }
           count: {
-            args: Prisma.EmployeeCountArgs<ExtArgs>
-            result: $Utils.Optional<EmployeeCountAggregateOutputType> | number
+            args: Prisma.EmployeeMountainAssignmentCountArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeMountainAssignmentCountAggregateOutputType> | number
           }
         }
       }
@@ -1311,6 +1327,80 @@ export namespace Prisma {
           count: {
             args: Prisma.DispatcherAssignmentCountArgs<ExtArgs>
             result: $Utils.Optional<DispatcherAssignmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      Employee: {
+        payload: Prisma.$EmployeePayload<ExtArgs>
+        fields: Prisma.EmployeeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmployeeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmployeeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+          }
+          findFirst: {
+            args: Prisma.EmployeeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmployeeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+          }
+          findMany: {
+            args: Prisma.EmployeeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
+          }
+          create: {
+            args: Prisma.EmployeeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+          }
+          createMany: {
+            args: Prisma.EmployeeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmployeeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
+          }
+          delete: {
+            args: Prisma.EmployeeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+          }
+          update: {
+            args: Prisma.EmployeeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+          }
+          deleteMany: {
+            args: Prisma.EmployeeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmployeeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmployeeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>[]
+          }
+          upsert: {
+            args: Prisma.EmployeeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeePayload>
+          }
+          aggregate: {
+            args: Prisma.EmployeeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmployee>
+          }
+          groupBy: {
+            args: Prisma.EmployeeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmployeeCountArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeCountAggregateOutputType> | number
           }
         }
       }
@@ -2510,8 +2600,9 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     mountain?: MountainOmit
     weather?: WeatherOmit
-    employee?: EmployeeOmit
+    employeeMountainAssignment?: EmployeeMountainAssignmentOmit
     dispatcherAssignment?: DispatcherAssignmentOmit
+    employee?: EmployeeOmit
     lift?: LiftOmit
     trail?: TrailOmit
     lodge?: LodgeOmit
@@ -2625,7 +2716,6 @@ export namespace Prisma {
     liftChecks: number
     trails: number
     trailChecks: number
-    employees: number
     lodges: number
     huts: number
     hutChecks: number
@@ -2635,8 +2725,10 @@ export namespace Prisma {
     equipmentChecks: number
     incidents: number
     incidentLogs: number
+    employeeAssignments: number
     dispatcherAssignments: number
     incidentLogEquipment: number
+    equipmentServiceLogs: number
     weather: number
   }
 
@@ -2645,7 +2737,6 @@ export namespace Prisma {
     liftChecks?: boolean | MountainCountOutputTypeCountLiftChecksArgs
     trails?: boolean | MountainCountOutputTypeCountTrailsArgs
     trailChecks?: boolean | MountainCountOutputTypeCountTrailChecksArgs
-    employees?: boolean | MountainCountOutputTypeCountEmployeesArgs
     lodges?: boolean | MountainCountOutputTypeCountLodgesArgs
     huts?: boolean | MountainCountOutputTypeCountHutsArgs
     hutChecks?: boolean | MountainCountOutputTypeCountHutChecksArgs
@@ -2655,8 +2746,10 @@ export namespace Prisma {
     equipmentChecks?: boolean | MountainCountOutputTypeCountEquipmentChecksArgs
     incidents?: boolean | MountainCountOutputTypeCountIncidentsArgs
     incidentLogs?: boolean | MountainCountOutputTypeCountIncidentLogsArgs
+    employeeAssignments?: boolean | MountainCountOutputTypeCountEmployeeAssignmentsArgs
     dispatcherAssignments?: boolean | MountainCountOutputTypeCountDispatcherAssignmentsArgs
     incidentLogEquipment?: boolean | MountainCountOutputTypeCountIncidentLogEquipmentArgs
+    equipmentServiceLogs?: boolean | MountainCountOutputTypeCountEquipmentServiceLogsArgs
     weather?: boolean | MountainCountOutputTypeCountWeatherArgs
   }
 
@@ -2697,13 +2790,6 @@ export namespace Prisma {
    */
   export type MountainCountOutputTypeCountTrailChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TrailCheckWhereInput
-  }
-
-  /**
-   * MountainCountOutputType without action
-   */
-  export type MountainCountOutputTypeCountEmployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EmployeeWhereInput
   }
 
   /**
@@ -2772,6 +2858,13 @@ export namespace Prisma {
   /**
    * MountainCountOutputType without action
    */
+  export type MountainCountOutputTypeCountEmployeeAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeMountainAssignmentWhereInput
+  }
+
+  /**
+   * MountainCountOutputType without action
+   */
   export type MountainCountOutputTypeCountDispatcherAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DispatcherAssignmentWhereInput
   }
@@ -2781,6 +2874,13 @@ export namespace Prisma {
    */
   export type MountainCountOutputTypeCountIncidentLogEquipmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: IncidentLogEquipmentWhereInput
+  }
+
+  /**
+   * MountainCountOutputType without action
+   */
+  export type MountainCountOutputTypeCountEquipmentServiceLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EquipmentServiceLogWhereInput
   }
 
   /**
@@ -2796,6 +2896,7 @@ export namespace Prisma {
    */
 
   export type EmployeeCountOutputType = {
+    assignments: number
     dispatcherAssignments: number
     logs: number
     liftChecks: number
@@ -2806,6 +2907,7 @@ export namespace Prisma {
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignments?: boolean | EmployeeCountOutputTypeCountAssignmentsArgs
     dispatcherAssignments?: boolean | EmployeeCountOutputTypeCountDispatcherAssignmentsArgs
     logs?: boolean | EmployeeCountOutputTypeCountLogsArgs
     liftChecks?: boolean | EmployeeCountOutputTypeCountLiftChecksArgs
@@ -2824,6 +2926,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the EmployeeCountOutputType
      */
     select?: EmployeeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeMountainAssignmentWhereInput
   }
 
   /**
@@ -3501,7 +3610,6 @@ export namespace Prisma {
     liftChecks?: boolean | Mountain$liftChecksArgs<ExtArgs>
     trails?: boolean | Mountain$trailsArgs<ExtArgs>
     trailChecks?: boolean | Mountain$trailChecksArgs<ExtArgs>
-    employees?: boolean | Mountain$employeesArgs<ExtArgs>
     lodges?: boolean | Mountain$lodgesArgs<ExtArgs>
     huts?: boolean | Mountain$hutsArgs<ExtArgs>
     hutChecks?: boolean | Mountain$hutChecksArgs<ExtArgs>
@@ -3511,8 +3619,10 @@ export namespace Prisma {
     equipmentChecks?: boolean | Mountain$equipmentChecksArgs<ExtArgs>
     incidents?: boolean | Mountain$incidentsArgs<ExtArgs>
     incidentLogs?: boolean | Mountain$incidentLogsArgs<ExtArgs>
+    employeeAssignments?: boolean | Mountain$employeeAssignmentsArgs<ExtArgs>
     dispatcherAssignments?: boolean | Mountain$dispatcherAssignmentsArgs<ExtArgs>
     incidentLogEquipment?: boolean | Mountain$incidentLogEquipmentArgs<ExtArgs>
+    equipmentServiceLogs?: boolean | Mountain$equipmentServiceLogsArgs<ExtArgs>
     weather?: boolean | Mountain$weatherArgs<ExtArgs>
     _count?: boolean | MountainCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mountain"]>
@@ -3571,7 +3681,6 @@ export namespace Prisma {
     liftChecks?: boolean | Mountain$liftChecksArgs<ExtArgs>
     trails?: boolean | Mountain$trailsArgs<ExtArgs>
     trailChecks?: boolean | Mountain$trailChecksArgs<ExtArgs>
-    employees?: boolean | Mountain$employeesArgs<ExtArgs>
     lodges?: boolean | Mountain$lodgesArgs<ExtArgs>
     huts?: boolean | Mountain$hutsArgs<ExtArgs>
     hutChecks?: boolean | Mountain$hutChecksArgs<ExtArgs>
@@ -3581,8 +3690,10 @@ export namespace Prisma {
     equipmentChecks?: boolean | Mountain$equipmentChecksArgs<ExtArgs>
     incidents?: boolean | Mountain$incidentsArgs<ExtArgs>
     incidentLogs?: boolean | Mountain$incidentLogsArgs<ExtArgs>
+    employeeAssignments?: boolean | Mountain$employeeAssignmentsArgs<ExtArgs>
     dispatcherAssignments?: boolean | Mountain$dispatcherAssignmentsArgs<ExtArgs>
     incidentLogEquipment?: boolean | Mountain$incidentLogEquipmentArgs<ExtArgs>
+    equipmentServiceLogs?: boolean | Mountain$equipmentServiceLogsArgs<ExtArgs>
     weather?: boolean | Mountain$weatherArgs<ExtArgs>
     _count?: boolean | MountainCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -3596,7 +3707,6 @@ export namespace Prisma {
       liftChecks: Prisma.$LiftCheckPayload<ExtArgs>[]
       trails: Prisma.$TrailPayload<ExtArgs>[]
       trailChecks: Prisma.$TrailCheckPayload<ExtArgs>[]
-      employees: Prisma.$EmployeePayload<ExtArgs>[]
       lodges: Prisma.$LodgePayload<ExtArgs>[]
       huts: Prisma.$HutPayload<ExtArgs>[]
       hutChecks: Prisma.$HutCheckPayload<ExtArgs>[]
@@ -3606,8 +3716,10 @@ export namespace Prisma {
       equipmentChecks: Prisma.$EquipmentCheckPayload<ExtArgs>[]
       incidents: Prisma.$IncidentPayload<ExtArgs>[]
       incidentLogs: Prisma.$IncidentLogPayload<ExtArgs>[]
+      employeeAssignments: Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>[]
       dispatcherAssignments: Prisma.$DispatcherAssignmentPayload<ExtArgs>[]
       incidentLogEquipment: Prisma.$IncidentLogEquipmentPayload<ExtArgs>[]
+      equipmentServiceLogs: Prisma.$EquipmentServiceLogPayload<ExtArgs>[]
       weather: Prisma.$WeatherPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -4022,7 +4134,6 @@ export namespace Prisma {
     liftChecks<T extends Mountain$liftChecksArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$liftChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     trails<T extends Mountain$trailsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$trailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     trailChecks<T extends Mountain$trailChecksArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$trailChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    employees<T extends Mountain$employeesArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     lodges<T extends Mountain$lodgesArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$lodgesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LodgePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     huts<T extends Mountain$hutsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$hutsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     hutChecks<T extends Mountain$hutChecksArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$hutChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4032,8 +4143,10 @@ export namespace Prisma {
     equipmentChecks<T extends Mountain$equipmentChecksArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$equipmentChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     incidents<T extends Mountain$incidentsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$incidentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     incidentLogs<T extends Mountain$incidentLogsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$incidentLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    employeeAssignments<T extends Mountain$employeeAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$employeeAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dispatcherAssignments<T extends Mountain$dispatcherAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$dispatcherAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DispatcherAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     incidentLogEquipment<T extends Mountain$incidentLogEquipmentArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$incidentLogEquipmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentLogEquipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    equipmentServiceLogs<T extends Mountain$equipmentServiceLogsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$equipmentServiceLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentServiceLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     weather<T extends Mountain$weatherArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$weatherArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WeatherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4561,30 +4674,6 @@ export namespace Prisma {
   }
 
   /**
-   * Mountain.employees
-   */
-  export type Mountain$employeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Employee
-     */
-    select?: EmployeeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Employee
-     */
-    omit?: EmployeeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: EmployeeInclude<ExtArgs> | null
-    where?: EmployeeWhereInput
-    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
-    cursor?: EmployeeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
-  }
-
-  /**
    * Mountain.lodges
    */
   export type Mountain$lodgesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4801,6 +4890,30 @@ export namespace Prisma {
   }
 
   /**
+   * Mountain.employeeAssignments
+   */
+  export type Mountain$employeeAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMountainAssignment
+     */
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMountainAssignment
+     */
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
+    where?: EmployeeMountainAssignmentWhereInput
+    orderBy?: EmployeeMountainAssignmentOrderByWithRelationInput | EmployeeMountainAssignmentOrderByWithRelationInput[]
+    cursor?: EmployeeMountainAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeMountainAssignmentScalarFieldEnum | EmployeeMountainAssignmentScalarFieldEnum[]
+  }
+
+  /**
    * Mountain.dispatcherAssignments
    */
   export type Mountain$dispatcherAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4846,6 +4959,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: IncidentLogEquipmentScalarFieldEnum | IncidentLogEquipmentScalarFieldEnum[]
+  }
+
+  /**
+   * Mountain.equipmentServiceLogs
+   */
+  export type Mountain$equipmentServiceLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentServiceLog
+     */
+    select?: EquipmentServiceLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentServiceLog
+     */
+    omit?: EquipmentServiceLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentServiceLogInclude<ExtArgs> | null
+    where?: EquipmentServiceLogWhereInput
+    orderBy?: EquipmentServiceLogOrderByWithRelationInput | EquipmentServiceLogOrderByWithRelationInput[]
+    cursor?: EquipmentServiceLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EquipmentServiceLogScalarFieldEnum | EquipmentServiceLogScalarFieldEnum[]
   }
 
   /**
@@ -6078,421 +6215,345 @@ export namespace Prisma {
 
 
   /**
-   * Model Employee
+   * Model EmployeeMountainAssignment
    */
 
-  export type AggregateEmployee = {
-    _count: EmployeeCountAggregateOutputType | null
-    _min: EmployeeMinAggregateOutputType | null
-    _max: EmployeeMaxAggregateOutputType | null
+  export type AggregateEmployeeMountainAssignment = {
+    _count: EmployeeMountainAssignmentCountAggregateOutputType | null
+    _min: EmployeeMountainAssignmentMinAggregateOutputType | null
+    _max: EmployeeMountainAssignmentMaxAggregateOutputType | null
   }
 
-  export type EmployeeMinAggregateOutputType = {
+  export type EmployeeMountainAssignmentMinAggregateOutputType = {
     id: string | null
-    employeeIdNumber: string | null
-    email: string | null
-    phoneNumber: string | null
-    name: string | null
-    title: string | null
-    role: string | null
-    department: $Enums.Department | null
+    employeeId: string | null
     mountainId: string | null
+    assignedAt: Date | null
   }
 
-  export type EmployeeMaxAggregateOutputType = {
+  export type EmployeeMountainAssignmentMaxAggregateOutputType = {
     id: string | null
-    employeeIdNumber: string | null
-    email: string | null
-    phoneNumber: string | null
-    name: string | null
-    title: string | null
-    role: string | null
-    department: $Enums.Department | null
+    employeeId: string | null
     mountainId: string | null
+    assignedAt: Date | null
   }
 
-  export type EmployeeCountAggregateOutputType = {
+  export type EmployeeMountainAssignmentCountAggregateOutputType = {
     id: number
-    employeeIdNumber: number
-    email: number
-    phoneNumber: number
-    name: number
-    title: number
-    role: number
-    department: number
+    employeeId: number
     mountainId: number
+    assignedAt: number
     _all: number
   }
 
 
-  export type EmployeeMinAggregateInputType = {
+  export type EmployeeMountainAssignmentMinAggregateInputType = {
     id?: true
-    employeeIdNumber?: true
-    email?: true
-    phoneNumber?: true
-    name?: true
-    title?: true
-    role?: true
-    department?: true
+    employeeId?: true
     mountainId?: true
+    assignedAt?: true
   }
 
-  export type EmployeeMaxAggregateInputType = {
+  export type EmployeeMountainAssignmentMaxAggregateInputType = {
     id?: true
-    employeeIdNumber?: true
-    email?: true
-    phoneNumber?: true
-    name?: true
-    title?: true
-    role?: true
-    department?: true
+    employeeId?: true
     mountainId?: true
+    assignedAt?: true
   }
 
-  export type EmployeeCountAggregateInputType = {
+  export type EmployeeMountainAssignmentCountAggregateInputType = {
     id?: true
-    employeeIdNumber?: true
-    email?: true
-    phoneNumber?: true
-    name?: true
-    title?: true
-    role?: true
-    department?: true
+    employeeId?: true
     mountainId?: true
+    assignedAt?: true
     _all?: true
   }
 
-  export type EmployeeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Employee to aggregate.
+     * Filter which EmployeeMountainAssignment to aggregate.
      */
-    where?: EmployeeWhereInput
+    where?: EmployeeMountainAssignmentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Employees to fetch.
+     * Determine the order of EmployeeMountainAssignments to fetch.
      */
-    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    orderBy?: EmployeeMountainAssignmentOrderByWithRelationInput | EmployeeMountainAssignmentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: EmployeeWhereUniqueInput
+    cursor?: EmployeeMountainAssignmentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Employees from the position of the cursor.
+     * Take `±n` EmployeeMountainAssignments from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Employees.
+     * Skip the first `n` EmployeeMountainAssignments.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Employees
+     * Count returned EmployeeMountainAssignments
     **/
-    _count?: true | EmployeeCountAggregateInputType
+    _count?: true | EmployeeMountainAssignmentCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: EmployeeMinAggregateInputType
+    _min?: EmployeeMountainAssignmentMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: EmployeeMaxAggregateInputType
+    _max?: EmployeeMountainAssignmentMaxAggregateInputType
   }
 
-  export type GetEmployeeAggregateType<T extends EmployeeAggregateArgs> = {
-        [P in keyof T & keyof AggregateEmployee]: P extends '_count' | 'count'
+  export type GetEmployeeMountainAssignmentAggregateType<T extends EmployeeMountainAssignmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmployeeMountainAssignment]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateEmployee[P]>
-      : GetScalarType<T[P], AggregateEmployee[P]>
+        : GetScalarType<T[P], AggregateEmployeeMountainAssignment[P]>
+      : GetScalarType<T[P], AggregateEmployeeMountainAssignment[P]>
   }
 
 
 
 
-  export type EmployeeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EmployeeWhereInput
-    orderBy?: EmployeeOrderByWithAggregationInput | EmployeeOrderByWithAggregationInput[]
-    by: EmployeeScalarFieldEnum[] | EmployeeScalarFieldEnum
-    having?: EmployeeScalarWhereWithAggregatesInput
+  export type EmployeeMountainAssignmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeMountainAssignmentWhereInput
+    orderBy?: EmployeeMountainAssignmentOrderByWithAggregationInput | EmployeeMountainAssignmentOrderByWithAggregationInput[]
+    by: EmployeeMountainAssignmentScalarFieldEnum[] | EmployeeMountainAssignmentScalarFieldEnum
+    having?: EmployeeMountainAssignmentScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: EmployeeCountAggregateInputType | true
-    _min?: EmployeeMinAggregateInputType
-    _max?: EmployeeMaxAggregateInputType
+    _count?: EmployeeMountainAssignmentCountAggregateInputType | true
+    _min?: EmployeeMountainAssignmentMinAggregateInputType
+    _max?: EmployeeMountainAssignmentMaxAggregateInputType
   }
 
-  export type EmployeeGroupByOutputType = {
+  export type EmployeeMountainAssignmentGroupByOutputType = {
     id: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
+    employeeId: string
     mountainId: string
-    _count: EmployeeCountAggregateOutputType | null
-    _min: EmployeeMinAggregateOutputType | null
-    _max: EmployeeMaxAggregateOutputType | null
+    assignedAt: Date
+    _count: EmployeeMountainAssignmentCountAggregateOutputType | null
+    _min: EmployeeMountainAssignmentMinAggregateOutputType | null
+    _max: EmployeeMountainAssignmentMaxAggregateOutputType | null
   }
 
-  type GetEmployeeGroupByPayload<T extends EmployeeGroupByArgs> = Prisma.PrismaPromise<
+  type GetEmployeeMountainAssignmentGroupByPayload<T extends EmployeeMountainAssignmentGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<EmployeeGroupByOutputType, T['by']> &
+      PickEnumerable<EmployeeMountainAssignmentGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof EmployeeGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof EmployeeMountainAssignmentGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], EmployeeGroupByOutputType[P]>
-            : GetScalarType<T[P], EmployeeGroupByOutputType[P]>
+              : GetScalarType<T[P], EmployeeMountainAssignmentGroupByOutputType[P]>
+            : GetScalarType<T[P], EmployeeMountainAssignmentGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type EmployeeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type EmployeeMountainAssignmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeIdNumber?: boolean
-    email?: boolean
-    phoneNumber?: boolean
-    name?: boolean
-    title?: boolean
-    role?: boolean
-    department?: boolean
+    employeeId?: boolean
     mountainId?: boolean
+    assignedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    dispatcherAssignments?: boolean | Employee$dispatcherAssignmentsArgs<ExtArgs>
-    logs?: boolean | Employee$logsArgs<ExtArgs>
-    liftChecks?: boolean | Employee$liftChecksArgs<ExtArgs>
-    trailChecks?: boolean | Employee$trailChecksArgs<ExtArgs>
-    hutChecks?: boolean | Employee$hutChecksArgs<ExtArgs>
-    aidRoomChecks?: boolean | Employee$aidRoomChecksArgs<ExtArgs>
-    equipmentChecks?: boolean | Employee$equipmentChecksArgs<ExtArgs>
-    _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["employee"]>
+  }, ExtArgs["result"]["employeeMountainAssignment"]>
 
-  export type EmployeeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type EmployeeMountainAssignmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeIdNumber?: boolean
-    email?: boolean
-    phoneNumber?: boolean
-    name?: boolean
-    title?: boolean
-    role?: boolean
-    department?: boolean
+    employeeId?: boolean
     mountainId?: boolean
+    assignedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["employee"]>
+  }, ExtArgs["result"]["employeeMountainAssignment"]>
 
-  export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type EmployeeMountainAssignmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeIdNumber?: boolean
-    email?: boolean
-    phoneNumber?: boolean
-    name?: boolean
-    title?: boolean
-    role?: boolean
-    department?: boolean
+    employeeId?: boolean
     mountainId?: boolean
+    assignedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["employee"]>
+  }, ExtArgs["result"]["employeeMountainAssignment"]>
 
-  export type EmployeeSelectScalar = {
+  export type EmployeeMountainAssignmentSelectScalar = {
     id?: boolean
-    employeeIdNumber?: boolean
-    email?: boolean
-    phoneNumber?: boolean
-    name?: boolean
-    title?: boolean
-    role?: boolean
-    department?: boolean
+    employeeId?: boolean
     mountainId?: boolean
+    assignedAt?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeIdNumber" | "email" | "phoneNumber" | "name" | "title" | "role" | "department" | "mountainId", ExtArgs["result"]["employee"]>
-  export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    dispatcherAssignments?: boolean | Employee$dispatcherAssignmentsArgs<ExtArgs>
-    logs?: boolean | Employee$logsArgs<ExtArgs>
-    liftChecks?: boolean | Employee$liftChecksArgs<ExtArgs>
-    trailChecks?: boolean | Employee$trailChecksArgs<ExtArgs>
-    hutChecks?: boolean | Employee$hutChecksArgs<ExtArgs>
-    aidRoomChecks?: boolean | Employee$aidRoomChecksArgs<ExtArgs>
-    equipmentChecks?: boolean | Employee$equipmentChecksArgs<ExtArgs>
-    _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "assignedAt", ExtArgs["result"]["employeeMountainAssignment"]>
+  export type EmployeeMountainAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }
-  export type EmployeeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+  }
+  export type EmployeeMountainAssignmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }
 
-  export type $EmployeePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Employee"
+  export type $EmployeeMountainAssignmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmployeeMountainAssignment"
     objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
       mountain: Prisma.$MountainPayload<ExtArgs>
-      dispatcherAssignments: Prisma.$DispatcherAssignmentPayload<ExtArgs>[]
-      logs: Prisma.$IncidentLogPayload<ExtArgs>[]
-      liftChecks: Prisma.$LiftCheckPayload<ExtArgs>[]
-      trailChecks: Prisma.$TrailCheckPayload<ExtArgs>[]
-      hutChecks: Prisma.$HutCheckPayload<ExtArgs>[]
-      aidRoomChecks: Prisma.$AidRoomCheckPayload<ExtArgs>[]
-      equipmentChecks: Prisma.$EquipmentCheckPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      employeeIdNumber: string
-      email: string
-      phoneNumber: string
-      name: string
-      title: string
-      role: string
-      department: $Enums.Department
+      employeeId: string
       mountainId: string
-    }, ExtArgs["result"]["employee"]>
+      assignedAt: Date
+    }, ExtArgs["result"]["employeeMountainAssignment"]>
     composites: {}
   }
 
-  type EmployeeGetPayload<S extends boolean | null | undefined | EmployeeDefaultArgs> = $Result.GetResult<Prisma.$EmployeePayload, S>
+  type EmployeeMountainAssignmentGetPayload<S extends boolean | null | undefined | EmployeeMountainAssignmentDefaultArgs> = $Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload, S>
 
-  type EmployeeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<EmployeeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: EmployeeCountAggregateInputType | true
+  type EmployeeMountainAssignmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmployeeMountainAssignmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmployeeMountainAssignmentCountAggregateInputType | true
     }
 
-  export interface EmployeeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Employee'], meta: { name: 'Employee' } }
+  export interface EmployeeMountainAssignmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmployeeMountainAssignment'], meta: { name: 'EmployeeMountainAssignment' } }
     /**
-     * Find zero or one Employee that matches the filter.
-     * @param {EmployeeFindUniqueArgs} args - Arguments to find a Employee
+     * Find zero or one EmployeeMountainAssignment that matches the filter.
+     * @param {EmployeeMountainAssignmentFindUniqueArgs} args - Arguments to find a EmployeeMountainAssignment
      * @example
-     * // Get one Employee
-     * const employee = await prisma.employee.findUnique({
+     * // Get one EmployeeMountainAssignment
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends EmployeeFindUniqueArgs>(args: SelectSubset<T, EmployeeFindUniqueArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends EmployeeMountainAssignmentFindUniqueArgs>(args: SelectSubset<T, EmployeeMountainAssignmentFindUniqueArgs<ExtArgs>>): Prisma__EmployeeMountainAssignmentClient<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Employee that matches the filter or throw an error with `error.code='P2025'`
+     * Find one EmployeeMountainAssignment that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {EmployeeFindUniqueOrThrowArgs} args - Arguments to find a Employee
+     * @param {EmployeeMountainAssignmentFindUniqueOrThrowArgs} args - Arguments to find a EmployeeMountainAssignment
      * @example
-     * // Get one Employee
-     * const employee = await prisma.employee.findUniqueOrThrow({
+     * // Get one EmployeeMountainAssignment
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends EmployeeFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends EmployeeMountainAssignmentFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeMountainAssignmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeMountainAssignmentClient<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Employee that matches the filter.
+     * Find the first EmployeeMountainAssignment that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeeFindFirstArgs} args - Arguments to find a Employee
+     * @param {EmployeeMountainAssignmentFindFirstArgs} args - Arguments to find a EmployeeMountainAssignment
      * @example
-     * // Get one Employee
-     * const employee = await prisma.employee.findFirst({
+     * // Get one EmployeeMountainAssignment
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends EmployeeFindFirstArgs>(args?: SelectSubset<T, EmployeeFindFirstArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends EmployeeMountainAssignmentFindFirstArgs>(args?: SelectSubset<T, EmployeeMountainAssignmentFindFirstArgs<ExtArgs>>): Prisma__EmployeeMountainAssignmentClient<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Employee that matches the filter or
+     * Find the first EmployeeMountainAssignment that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeeFindFirstOrThrowArgs} args - Arguments to find a Employee
+     * @param {EmployeeMountainAssignmentFindFirstOrThrowArgs} args - Arguments to find a EmployeeMountainAssignment
      * @example
-     * // Get one Employee
-     * const employee = await prisma.employee.findFirstOrThrow({
+     * // Get one EmployeeMountainAssignment
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends EmployeeFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends EmployeeMountainAssignmentFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeMountainAssignmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeMountainAssignmentClient<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Employees that matches the filter.
+     * Find zero or more EmployeeMountainAssignments that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {EmployeeMountainAssignmentFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Employees
-     * const employees = await prisma.employee.findMany()
+     * // Get all EmployeeMountainAssignments
+     * const employeeMountainAssignments = await prisma.employeeMountainAssignment.findMany()
      * 
-     * // Get first 10 Employees
-     * const employees = await prisma.employee.findMany({ take: 10 })
+     * // Get first 10 EmployeeMountainAssignments
+     * const employeeMountainAssignments = await prisma.employeeMountainAssignment.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const employeeWithIdOnly = await prisma.employee.findMany({ select: { id: true } })
+     * const employeeMountainAssignmentWithIdOnly = await prisma.employeeMountainAssignment.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends EmployeeFindManyArgs>(args?: SelectSubset<T, EmployeeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends EmployeeMountainAssignmentFindManyArgs>(args?: SelectSubset<T, EmployeeMountainAssignmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Employee.
-     * @param {EmployeeCreateArgs} args - Arguments to create a Employee.
+     * Create a EmployeeMountainAssignment.
+     * @param {EmployeeMountainAssignmentCreateArgs} args - Arguments to create a EmployeeMountainAssignment.
      * @example
-     * // Create one Employee
-     * const Employee = await prisma.employee.create({
+     * // Create one EmployeeMountainAssignment
+     * const EmployeeMountainAssignment = await prisma.employeeMountainAssignment.create({
      *   data: {
-     *     // ... data to create a Employee
+     *     // ... data to create a EmployeeMountainAssignment
      *   }
      * })
      * 
      */
-    create<T extends EmployeeCreateArgs>(args: SelectSubset<T, EmployeeCreateArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends EmployeeMountainAssignmentCreateArgs>(args: SelectSubset<T, EmployeeMountainAssignmentCreateArgs<ExtArgs>>): Prisma__EmployeeMountainAssignmentClient<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Employees.
-     * @param {EmployeeCreateManyArgs} args - Arguments to create many Employees.
+     * Create many EmployeeMountainAssignments.
+     * @param {EmployeeMountainAssignmentCreateManyArgs} args - Arguments to create many EmployeeMountainAssignments.
      * @example
-     * // Create many Employees
-     * const employee = await prisma.employee.createMany({
+     * // Create many EmployeeMountainAssignments
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends EmployeeCreateManyArgs>(args?: SelectSubset<T, EmployeeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends EmployeeMountainAssignmentCreateManyArgs>(args?: SelectSubset<T, EmployeeMountainAssignmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Employees and returns the data saved in the database.
-     * @param {EmployeeCreateManyAndReturnArgs} args - Arguments to create many Employees.
+     * Create many EmployeeMountainAssignments and returns the data saved in the database.
+     * @param {EmployeeMountainAssignmentCreateManyAndReturnArgs} args - Arguments to create many EmployeeMountainAssignments.
      * @example
-     * // Create many Employees
-     * const employee = await prisma.employee.createManyAndReturn({
+     * // Create many EmployeeMountainAssignments
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Employees and only return the `id`
-     * const employeeWithIdOnly = await prisma.employee.createManyAndReturn({
+     * // Create many EmployeeMountainAssignments and only return the `id`
+     * const employeeMountainAssignmentWithIdOnly = await prisma.employeeMountainAssignment.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -6502,28 +6563,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends EmployeeCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends EmployeeMountainAssignmentCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeMountainAssignmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Employee.
-     * @param {EmployeeDeleteArgs} args - Arguments to delete one Employee.
+     * Delete a EmployeeMountainAssignment.
+     * @param {EmployeeMountainAssignmentDeleteArgs} args - Arguments to delete one EmployeeMountainAssignment.
      * @example
-     * // Delete one Employee
-     * const Employee = await prisma.employee.delete({
+     * // Delete one EmployeeMountainAssignment
+     * const EmployeeMountainAssignment = await prisma.employeeMountainAssignment.delete({
      *   where: {
-     *     // ... filter to delete one Employee
+     *     // ... filter to delete one EmployeeMountainAssignment
      *   }
      * })
      * 
      */
-    delete<T extends EmployeeDeleteArgs>(args: SelectSubset<T, EmployeeDeleteArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends EmployeeMountainAssignmentDeleteArgs>(args: SelectSubset<T, EmployeeMountainAssignmentDeleteArgs<ExtArgs>>): Prisma__EmployeeMountainAssignmentClient<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Employee.
-     * @param {EmployeeUpdateArgs} args - Arguments to update one Employee.
+     * Update one EmployeeMountainAssignment.
+     * @param {EmployeeMountainAssignmentUpdateArgs} args - Arguments to update one EmployeeMountainAssignment.
      * @example
-     * // Update one Employee
-     * const employee = await prisma.employee.update({
+     * // Update one EmployeeMountainAssignment
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6533,30 +6594,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends EmployeeUpdateArgs>(args: SelectSubset<T, EmployeeUpdateArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends EmployeeMountainAssignmentUpdateArgs>(args: SelectSubset<T, EmployeeMountainAssignmentUpdateArgs<ExtArgs>>): Prisma__EmployeeMountainAssignmentClient<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Employees.
-     * @param {EmployeeDeleteManyArgs} args - Arguments to filter Employees to delete.
+     * Delete zero or more EmployeeMountainAssignments.
+     * @param {EmployeeMountainAssignmentDeleteManyArgs} args - Arguments to filter EmployeeMountainAssignments to delete.
      * @example
-     * // Delete a few Employees
-     * const { count } = await prisma.employee.deleteMany({
+     * // Delete a few EmployeeMountainAssignments
+     * const { count } = await prisma.employeeMountainAssignment.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends EmployeeDeleteManyArgs>(args?: SelectSubset<T, EmployeeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends EmployeeMountainAssignmentDeleteManyArgs>(args?: SelectSubset<T, EmployeeMountainAssignmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Employees.
+     * Update zero or more EmployeeMountainAssignments.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {EmployeeMountainAssignmentUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Employees
-     * const employee = await prisma.employee.updateMany({
+     * // Update many EmployeeMountainAssignments
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6566,14 +6627,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends EmployeeUpdateManyArgs>(args: SelectSubset<T, EmployeeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends EmployeeMountainAssignmentUpdateManyArgs>(args: SelectSubset<T, EmployeeMountainAssignmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Employees and returns the data updated in the database.
-     * @param {EmployeeUpdateManyAndReturnArgs} args - Arguments to update many Employees.
+     * Update zero or more EmployeeMountainAssignments and returns the data updated in the database.
+     * @param {EmployeeMountainAssignmentUpdateManyAndReturnArgs} args - Arguments to update many EmployeeMountainAssignments.
      * @example
-     * // Update many Employees
-     * const employee = await prisma.employee.updateManyAndReturn({
+     * // Update many EmployeeMountainAssignments
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6582,8 +6643,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Employees and only return the `id`
-     * const employeeWithIdOnly = await prisma.employee.updateManyAndReturn({
+     * // Update zero or more EmployeeMountainAssignments and only return the `id`
+     * const employeeMountainAssignmentWithIdOnly = await prisma.employeeMountainAssignment.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -6596,56 +6657,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends EmployeeUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends EmployeeMountainAssignmentUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeMountainAssignmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Employee.
-     * @param {EmployeeUpsertArgs} args - Arguments to update or create a Employee.
+     * Create or update one EmployeeMountainAssignment.
+     * @param {EmployeeMountainAssignmentUpsertArgs} args - Arguments to update or create a EmployeeMountainAssignment.
      * @example
-     * // Update or create a Employee
-     * const employee = await prisma.employee.upsert({
+     * // Update or create a EmployeeMountainAssignment
+     * const employeeMountainAssignment = await prisma.employeeMountainAssignment.upsert({
      *   create: {
-     *     // ... data to create a Employee
+     *     // ... data to create a EmployeeMountainAssignment
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Employee we want to update
+     *     // ... the filter for the EmployeeMountainAssignment we want to update
      *   }
      * })
      */
-    upsert<T extends EmployeeUpsertArgs>(args: SelectSubset<T, EmployeeUpsertArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends EmployeeMountainAssignmentUpsertArgs>(args: SelectSubset<T, EmployeeMountainAssignmentUpsertArgs<ExtArgs>>): Prisma__EmployeeMountainAssignmentClient<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Employees.
+     * Count the number of EmployeeMountainAssignments.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeeCountArgs} args - Arguments to filter Employees to count.
+     * @param {EmployeeMountainAssignmentCountArgs} args - Arguments to filter EmployeeMountainAssignments to count.
      * @example
-     * // Count the number of Employees
-     * const count = await prisma.employee.count({
+     * // Count the number of EmployeeMountainAssignments
+     * const count = await prisma.employeeMountainAssignment.count({
      *   where: {
-     *     // ... the filter for the Employees we want to count
+     *     // ... the filter for the EmployeeMountainAssignments we want to count
      *   }
      * })
     **/
-    count<T extends EmployeeCountArgs>(
-      args?: Subset<T, EmployeeCountArgs>,
+    count<T extends EmployeeMountainAssignmentCountArgs>(
+      args?: Subset<T, EmployeeMountainAssignmentCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], EmployeeCountAggregateOutputType>
+          : GetScalarType<T['select'], EmployeeMountainAssignmentCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Employee.
+     * Allows you to perform aggregations operations on a EmployeeMountainAssignment.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {EmployeeMountainAssignmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -6665,13 +6726,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends EmployeeAggregateArgs>(args: Subset<T, EmployeeAggregateArgs>): Prisma.PrismaPromise<GetEmployeeAggregateType<T>>
+    aggregate<T extends EmployeeMountainAssignmentAggregateArgs>(args: Subset<T, EmployeeMountainAssignmentAggregateArgs>): Prisma.PrismaPromise<GetEmployeeMountainAssignmentAggregateType<T>>
 
     /**
-     * Group by Employee.
+     * Group by EmployeeMountainAssignment.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {EmployeeGroupByArgs} args - Group by arguments.
+     * @param {EmployeeMountainAssignmentGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -6686,14 +6747,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends EmployeeGroupByArgs,
+      T extends EmployeeMountainAssignmentGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: EmployeeGroupByArgs['orderBy'] }
-        : { orderBy?: EmployeeGroupByArgs['orderBy'] },
+        ? { orderBy: EmployeeMountainAssignmentGroupByArgs['orderBy'] }
+        : { orderBy?: EmployeeMountainAssignmentGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -6742,29 +6803,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, EmployeeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, EmployeeMountainAssignmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeMountainAssignmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Employee model
+   * Fields of the EmployeeMountainAssignment model
    */
-  readonly fields: EmployeeFieldRefs;
+  readonly fields: EmployeeMountainAssignmentFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Employee.
+   * The delegate class that acts as a "Promise-like" for EmployeeMountainAssignment.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__EmployeeMountainAssignmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    dispatcherAssignments<T extends Employee$dispatcherAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$dispatcherAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DispatcherAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    logs<T extends Employee$logsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    liftChecks<T extends Employee$liftChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$liftChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    trailChecks<T extends Employee$trailChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$trailChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hutChecks<T extends Employee$hutChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$hutChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    aidRoomChecks<T extends Employee$aidRoomChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$aidRoomChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AidRoomCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    equipmentChecks<T extends Employee$equipmentChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$equipmentChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6791,597 +6846,424 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Employee model
+   * Fields of the EmployeeMountainAssignment model
    */
-  interface EmployeeFieldRefs {
-    readonly id: FieldRef<"Employee", 'String'>
-    readonly employeeIdNumber: FieldRef<"Employee", 'String'>
-    readonly email: FieldRef<"Employee", 'String'>
-    readonly phoneNumber: FieldRef<"Employee", 'String'>
-    readonly name: FieldRef<"Employee", 'String'>
-    readonly title: FieldRef<"Employee", 'String'>
-    readonly role: FieldRef<"Employee", 'String'>
-    readonly department: FieldRef<"Employee", 'Department'>
-    readonly mountainId: FieldRef<"Employee", 'String'>
+  interface EmployeeMountainAssignmentFieldRefs {
+    readonly id: FieldRef<"EmployeeMountainAssignment", 'String'>
+    readonly employeeId: FieldRef<"EmployeeMountainAssignment", 'String'>
+    readonly mountainId: FieldRef<"EmployeeMountainAssignment", 'String'>
+    readonly assignedAt: FieldRef<"EmployeeMountainAssignment", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Employee findUnique
+   * EmployeeMountainAssignment findUnique
    */
-  export type EmployeeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * Filter, which Employee to fetch.
+     * Filter, which EmployeeMountainAssignment to fetch.
      */
-    where: EmployeeWhereUniqueInput
+    where: EmployeeMountainAssignmentWhereUniqueInput
   }
 
   /**
-   * Employee findUniqueOrThrow
+   * EmployeeMountainAssignment findUniqueOrThrow
    */
-  export type EmployeeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * Filter, which Employee to fetch.
+     * Filter, which EmployeeMountainAssignment to fetch.
      */
-    where: EmployeeWhereUniqueInput
+    where: EmployeeMountainAssignmentWhereUniqueInput
   }
 
   /**
-   * Employee findFirst
+   * EmployeeMountainAssignment findFirst
    */
-  export type EmployeeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * Filter, which Employee to fetch.
+     * Filter, which EmployeeMountainAssignment to fetch.
      */
-    where?: EmployeeWhereInput
+    where?: EmployeeMountainAssignmentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Employees to fetch.
+     * Determine the order of EmployeeMountainAssignments to fetch.
      */
-    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    orderBy?: EmployeeMountainAssignmentOrderByWithRelationInput | EmployeeMountainAssignmentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Employees.
+     * Sets the position for searching for EmployeeMountainAssignments.
      */
-    cursor?: EmployeeWhereUniqueInput
+    cursor?: EmployeeMountainAssignmentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Employees from the position of the cursor.
+     * Take `±n` EmployeeMountainAssignments from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Employees.
+     * Skip the first `n` EmployeeMountainAssignments.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Employees.
+     * Filter by unique combinations of EmployeeMountainAssignments.
      */
-    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
+    distinct?: EmployeeMountainAssignmentScalarFieldEnum | EmployeeMountainAssignmentScalarFieldEnum[]
   }
 
   /**
-   * Employee findFirstOrThrow
+   * EmployeeMountainAssignment findFirstOrThrow
    */
-  export type EmployeeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * Filter, which Employee to fetch.
+     * Filter, which EmployeeMountainAssignment to fetch.
      */
-    where?: EmployeeWhereInput
+    where?: EmployeeMountainAssignmentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Employees to fetch.
+     * Determine the order of EmployeeMountainAssignments to fetch.
      */
-    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    orderBy?: EmployeeMountainAssignmentOrderByWithRelationInput | EmployeeMountainAssignmentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Employees.
+     * Sets the position for searching for EmployeeMountainAssignments.
      */
-    cursor?: EmployeeWhereUniqueInput
+    cursor?: EmployeeMountainAssignmentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Employees from the position of the cursor.
+     * Take `±n` EmployeeMountainAssignments from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Employees.
+     * Skip the first `n` EmployeeMountainAssignments.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Employees.
+     * Filter by unique combinations of EmployeeMountainAssignments.
      */
-    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
+    distinct?: EmployeeMountainAssignmentScalarFieldEnum | EmployeeMountainAssignmentScalarFieldEnum[]
   }
 
   /**
-   * Employee findMany
+   * EmployeeMountainAssignment findMany
    */
-  export type EmployeeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * Filter, which Employees to fetch.
+     * Filter, which EmployeeMountainAssignments to fetch.
      */
-    where?: EmployeeWhereInput
+    where?: EmployeeMountainAssignmentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Employees to fetch.
+     * Determine the order of EmployeeMountainAssignments to fetch.
      */
-    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    orderBy?: EmployeeMountainAssignmentOrderByWithRelationInput | EmployeeMountainAssignmentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Employees.
+     * Sets the position for listing EmployeeMountainAssignments.
      */
-    cursor?: EmployeeWhereUniqueInput
+    cursor?: EmployeeMountainAssignmentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Employees from the position of the cursor.
+     * Take `±n` EmployeeMountainAssignments from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Employees.
+     * Skip the first `n` EmployeeMountainAssignments.
      */
     skip?: number
-    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
+    distinct?: EmployeeMountainAssignmentScalarFieldEnum | EmployeeMountainAssignmentScalarFieldEnum[]
   }
 
   /**
-   * Employee create
+   * EmployeeMountainAssignment create
    */
-  export type EmployeeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * The data needed to create a Employee.
+     * The data needed to create a EmployeeMountainAssignment.
      */
-    data: XOR<EmployeeCreateInput, EmployeeUncheckedCreateInput>
+    data: XOR<EmployeeMountainAssignmentCreateInput, EmployeeMountainAssignmentUncheckedCreateInput>
   }
 
   /**
-   * Employee createMany
+   * EmployeeMountainAssignment createMany
    */
-  export type EmployeeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Employees.
+     * The data used to create many EmployeeMountainAssignments.
      */
-    data: EmployeeCreateManyInput | EmployeeCreateManyInput[]
+    data: EmployeeMountainAssignmentCreateManyInput | EmployeeMountainAssignmentCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Employee createManyAndReturn
+   * EmployeeMountainAssignment createManyAndReturn
    */
-  export type EmployeeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelectCreateManyAndReturn<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
-     * The data used to create many Employees.
+     * The data used to create many EmployeeMountainAssignments.
      */
-    data: EmployeeCreateManyInput | EmployeeCreateManyInput[]
+    data: EmployeeMountainAssignmentCreateManyInput | EmployeeMountainAssignmentCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: EmployeeMountainAssignmentIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Employee update
+   * EmployeeMountainAssignment update
    */
-  export type EmployeeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * The data needed to update a Employee.
+     * The data needed to update a EmployeeMountainAssignment.
      */
-    data: XOR<EmployeeUpdateInput, EmployeeUncheckedUpdateInput>
+    data: XOR<EmployeeMountainAssignmentUpdateInput, EmployeeMountainAssignmentUncheckedUpdateInput>
     /**
-     * Choose, which Employee to update.
+     * Choose, which EmployeeMountainAssignment to update.
      */
-    where: EmployeeWhereUniqueInput
+    where: EmployeeMountainAssignmentWhereUniqueInput
   }
 
   /**
-   * Employee updateMany
+   * EmployeeMountainAssignment updateMany
    */
-  export type EmployeeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Employees.
+     * The data used to update EmployeeMountainAssignments.
      */
-    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyInput>
+    data: XOR<EmployeeMountainAssignmentUpdateManyMutationInput, EmployeeMountainAssignmentUncheckedUpdateManyInput>
     /**
-     * Filter which Employees to update
+     * Filter which EmployeeMountainAssignments to update
      */
-    where?: EmployeeWhereInput
+    where?: EmployeeMountainAssignmentWhereInput
     /**
-     * Limit how many Employees to update.
+     * Limit how many EmployeeMountainAssignments to update.
      */
     limit?: number
   }
 
   /**
-   * Employee updateManyAndReturn
+   * EmployeeMountainAssignment updateManyAndReturn
    */
-  export type EmployeeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
-     * The data used to update Employees.
+     * The data used to update EmployeeMountainAssignments.
      */
-    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyInput>
+    data: XOR<EmployeeMountainAssignmentUpdateManyMutationInput, EmployeeMountainAssignmentUncheckedUpdateManyInput>
     /**
-     * Filter which Employees to update
+     * Filter which EmployeeMountainAssignments to update
      */
-    where?: EmployeeWhereInput
+    where?: EmployeeMountainAssignmentWhereInput
     /**
-     * Limit how many Employees to update.
+     * Limit how many EmployeeMountainAssignments to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: EmployeeMountainAssignmentIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Employee upsert
+   * EmployeeMountainAssignment upsert
    */
-  export type EmployeeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * The filter to search for the Employee to update in case it exists.
+     * The filter to search for the EmployeeMountainAssignment to update in case it exists.
      */
-    where: EmployeeWhereUniqueInput
+    where: EmployeeMountainAssignmentWhereUniqueInput
     /**
-     * In case the Employee found by the `where` argument doesn't exist, create a new Employee with this data.
+     * In case the EmployeeMountainAssignment found by the `where` argument doesn't exist, create a new EmployeeMountainAssignment with this data.
      */
-    create: XOR<EmployeeCreateInput, EmployeeUncheckedCreateInput>
+    create: XOR<EmployeeMountainAssignmentCreateInput, EmployeeMountainAssignmentUncheckedCreateInput>
     /**
-     * In case the Employee was found with the provided `where` argument, update it with this data.
+     * In case the EmployeeMountainAssignment was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<EmployeeUpdateInput, EmployeeUncheckedUpdateInput>
+    update: XOR<EmployeeMountainAssignmentUpdateInput, EmployeeMountainAssignmentUncheckedUpdateInput>
   }
 
   /**
-   * Employee delete
+   * EmployeeMountainAssignment delete
    */
-  export type EmployeeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Employee
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: EmployeeSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Employee
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: EmployeeOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
     /**
-     * Filter which Employee to delete.
+     * Filter which EmployeeMountainAssignment to delete.
      */
-    where: EmployeeWhereUniqueInput
+    where: EmployeeMountainAssignmentWhereUniqueInput
   }
 
   /**
-   * Employee deleteMany
+   * EmployeeMountainAssignment deleteMany
    */
-  export type EmployeeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Employees to delete
+     * Filter which EmployeeMountainAssignments to delete
      */
-    where?: EmployeeWhereInput
+    where?: EmployeeMountainAssignmentWhereInput
     /**
-     * Limit how many Employees to delete.
+     * Limit how many EmployeeMountainAssignments to delete.
      */
     limit?: number
   }
 
   /**
-   * Employee.dispatcherAssignments
+   * EmployeeMountainAssignment without action
    */
-  export type Employee$dispatcherAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type EmployeeMountainAssignmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the DispatcherAssignment
+     * Select specific fields to fetch from the EmployeeMountainAssignment
      */
-    select?: DispatcherAssignmentSelect<ExtArgs> | null
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the DispatcherAssignment
+     * Omit specific fields from the EmployeeMountainAssignment
      */
-    omit?: DispatcherAssignmentOmit<ExtArgs> | null
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: DispatcherAssignmentInclude<ExtArgs> | null
-    where?: DispatcherAssignmentWhereInput
-    orderBy?: DispatcherAssignmentOrderByWithRelationInput | DispatcherAssignmentOrderByWithRelationInput[]
-    cursor?: DispatcherAssignmentWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DispatcherAssignmentScalarFieldEnum | DispatcherAssignmentScalarFieldEnum[]
-  }
-
-  /**
-   * Employee.logs
-   */
-  export type Employee$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IncidentLog
-     */
-    select?: IncidentLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IncidentLog
-     */
-    omit?: IncidentLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: IncidentLogInclude<ExtArgs> | null
-    where?: IncidentLogWhereInput
-    orderBy?: IncidentLogOrderByWithRelationInput | IncidentLogOrderByWithRelationInput[]
-    cursor?: IncidentLogWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: IncidentLogScalarFieldEnum | IncidentLogScalarFieldEnum[]
-  }
-
-  /**
-   * Employee.liftChecks
-   */
-  export type Employee$liftChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    where?: LiftCheckWhereInput
-    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
-    cursor?: LiftCheckWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LiftCheckScalarFieldEnum | LiftCheckScalarFieldEnum[]
-  }
-
-  /**
-   * Employee.trailChecks
-   */
-  export type Employee$trailChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    where?: TrailCheckWhereInput
-    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
-    cursor?: TrailCheckWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TrailCheckScalarFieldEnum | TrailCheckScalarFieldEnum[]
-  }
-
-  /**
-   * Employee.hutChecks
-   */
-  export type Employee$hutChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    where?: HutCheckWhereInput
-    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
-    cursor?: HutCheckWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HutCheckScalarFieldEnum | HutCheckScalarFieldEnum[]
-  }
-
-  /**
-   * Employee.aidRoomChecks
-   */
-  export type Employee$aidRoomChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the AidRoomCheck
-     */
-    select?: AidRoomCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the AidRoomCheck
-     */
-    omit?: AidRoomCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AidRoomCheckInclude<ExtArgs> | null
-    where?: AidRoomCheckWhereInput
-    orderBy?: AidRoomCheckOrderByWithRelationInput | AidRoomCheckOrderByWithRelationInput[]
-    cursor?: AidRoomCheckWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AidRoomCheckScalarFieldEnum | AidRoomCheckScalarFieldEnum[]
-  }
-
-  /**
-   * Employee.equipmentChecks
-   */
-  export type Employee$equipmentChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the EquipmentCheck
-     */
-    select?: EquipmentCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the EquipmentCheck
-     */
-    omit?: EquipmentCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: EquipmentCheckInclude<ExtArgs> | null
-    where?: EquipmentCheckWhereInput
-    orderBy?: EquipmentCheckOrderByWithRelationInput | EquipmentCheckOrderByWithRelationInput[]
-    cursor?: EquipmentCheckWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: EquipmentCheckScalarFieldEnum | EquipmentCheckScalarFieldEnum[]
-  }
-
-  /**
-   * Employee without action
-   */
-  export type EmployeeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Employee
-     */
-    select?: EmployeeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Employee
-     */
-    omit?: EmployeeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: EmployeeInclude<ExtArgs> | null
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
   }
 
 
@@ -8435,6 +8317,1311 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: DispatcherAssignmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Employee
+   */
+
+  export type AggregateEmployee = {
+    _count: EmployeeCountAggregateOutputType | null
+    _min: EmployeeMinAggregateOutputType | null
+    _max: EmployeeMaxAggregateOutputType | null
+  }
+
+  export type EmployeeMinAggregateOutputType = {
+    id: string | null
+    employeeIdNumber: string | null
+    email: string | null
+    phoneNumber: string | null
+    name: string | null
+    title: string | null
+    role: string | null
+    department: $Enums.Department | null
+  }
+
+  export type EmployeeMaxAggregateOutputType = {
+    id: string | null
+    employeeIdNumber: string | null
+    email: string | null
+    phoneNumber: string | null
+    name: string | null
+    title: string | null
+    role: string | null
+    department: $Enums.Department | null
+  }
+
+  export type EmployeeCountAggregateOutputType = {
+    id: number
+    employeeIdNumber: number
+    email: number
+    phoneNumber: number
+    name: number
+    title: number
+    role: number
+    department: number
+    _all: number
+  }
+
+
+  export type EmployeeMinAggregateInputType = {
+    id?: true
+    employeeIdNumber?: true
+    email?: true
+    phoneNumber?: true
+    name?: true
+    title?: true
+    role?: true
+    department?: true
+  }
+
+  export type EmployeeMaxAggregateInputType = {
+    id?: true
+    employeeIdNumber?: true
+    email?: true
+    phoneNumber?: true
+    name?: true
+    title?: true
+    role?: true
+    department?: true
+  }
+
+  export type EmployeeCountAggregateInputType = {
+    id?: true
+    employeeIdNumber?: true
+    email?: true
+    phoneNumber?: true
+    name?: true
+    title?: true
+    role?: true
+    department?: true
+    _all?: true
+  }
+
+  export type EmployeeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Employee to aggregate.
+     */
+    where?: EmployeeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Employees to fetch.
+     */
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmployeeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Employees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Employees.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Employees
+    **/
+    _count?: true | EmployeeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmployeeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmployeeMaxAggregateInputType
+  }
+
+  export type GetEmployeeAggregateType<T extends EmployeeAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmployee]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmployee[P]>
+      : GetScalarType<T[P], AggregateEmployee[P]>
+  }
+
+
+
+
+  export type EmployeeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeWhereInput
+    orderBy?: EmployeeOrderByWithAggregationInput | EmployeeOrderByWithAggregationInput[]
+    by: EmployeeScalarFieldEnum[] | EmployeeScalarFieldEnum
+    having?: EmployeeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmployeeCountAggregateInputType | true
+    _min?: EmployeeMinAggregateInputType
+    _max?: EmployeeMaxAggregateInputType
+  }
+
+  export type EmployeeGroupByOutputType = {
+    id: string
+    employeeIdNumber: string
+    email: string
+    phoneNumber: string
+    name: string
+    title: string
+    role: string
+    department: $Enums.Department
+    _count: EmployeeCountAggregateOutputType | null
+    _min: EmployeeMinAggregateOutputType | null
+    _max: EmployeeMaxAggregateOutputType | null
+  }
+
+  type GetEmployeeGroupByPayload<T extends EmployeeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmployeeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmployeeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmployeeGroupByOutputType[P]>
+            : GetScalarType<T[P], EmployeeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmployeeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeIdNumber?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    name?: boolean
+    title?: boolean
+    role?: boolean
+    department?: boolean
+    assignments?: boolean | Employee$assignmentsArgs<ExtArgs>
+    dispatcherAssignments?: boolean | Employee$dispatcherAssignmentsArgs<ExtArgs>
+    logs?: boolean | Employee$logsArgs<ExtArgs>
+    liftChecks?: boolean | Employee$liftChecksArgs<ExtArgs>
+    trailChecks?: boolean | Employee$trailChecksArgs<ExtArgs>
+    hutChecks?: boolean | Employee$hutChecksArgs<ExtArgs>
+    aidRoomChecks?: boolean | Employee$aidRoomChecksArgs<ExtArgs>
+    equipmentChecks?: boolean | Employee$equipmentChecksArgs<ExtArgs>
+    _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employee"]>
+
+  export type EmployeeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeIdNumber?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    name?: boolean
+    title?: boolean
+    role?: boolean
+    department?: boolean
+  }, ExtArgs["result"]["employee"]>
+
+  export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeIdNumber?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    name?: boolean
+    title?: boolean
+    role?: boolean
+    department?: boolean
+  }, ExtArgs["result"]["employee"]>
+
+  export type EmployeeSelectScalar = {
+    id?: boolean
+    employeeIdNumber?: boolean
+    email?: boolean
+    phoneNumber?: boolean
+    name?: boolean
+    title?: boolean
+    role?: boolean
+    department?: boolean
+  }
+
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeIdNumber" | "email" | "phoneNumber" | "name" | "title" | "role" | "department", ExtArgs["result"]["employee"]>
+  export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignments?: boolean | Employee$assignmentsArgs<ExtArgs>
+    dispatcherAssignments?: boolean | Employee$dispatcherAssignmentsArgs<ExtArgs>
+    logs?: boolean | Employee$logsArgs<ExtArgs>
+    liftChecks?: boolean | Employee$liftChecksArgs<ExtArgs>
+    trailChecks?: boolean | Employee$trailChecksArgs<ExtArgs>
+    hutChecks?: boolean | Employee$hutChecksArgs<ExtArgs>
+    aidRoomChecks?: boolean | Employee$aidRoomChecksArgs<ExtArgs>
+    equipmentChecks?: boolean | Employee$equipmentChecksArgs<ExtArgs>
+    _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type EmployeeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $EmployeePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Employee"
+    objects: {
+      assignments: Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>[]
+      dispatcherAssignments: Prisma.$DispatcherAssignmentPayload<ExtArgs>[]
+      logs: Prisma.$IncidentLogPayload<ExtArgs>[]
+      liftChecks: Prisma.$LiftCheckPayload<ExtArgs>[]
+      trailChecks: Prisma.$TrailCheckPayload<ExtArgs>[]
+      hutChecks: Prisma.$HutCheckPayload<ExtArgs>[]
+      aidRoomChecks: Prisma.$AidRoomCheckPayload<ExtArgs>[]
+      equipmentChecks: Prisma.$EquipmentCheckPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeIdNumber: string
+      email: string
+      phoneNumber: string
+      name: string
+      title: string
+      role: string
+      department: $Enums.Department
+    }, ExtArgs["result"]["employee"]>
+    composites: {}
+  }
+
+  type EmployeeGetPayload<S extends boolean | null | undefined | EmployeeDefaultArgs> = $Result.GetResult<Prisma.$EmployeePayload, S>
+
+  type EmployeeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmployeeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmployeeCountAggregateInputType | true
+    }
+
+  export interface EmployeeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Employee'], meta: { name: 'Employee' } }
+    /**
+     * Find zero or one Employee that matches the filter.
+     * @param {EmployeeFindUniqueArgs} args - Arguments to find a Employee
+     * @example
+     * // Get one Employee
+     * const employee = await prisma.employee.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmployeeFindUniqueArgs>(args: SelectSubset<T, EmployeeFindUniqueArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Employee that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmployeeFindUniqueOrThrowArgs} args - Arguments to find a Employee
+     * @example
+     * // Get one Employee
+     * const employee = await prisma.employee.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmployeeFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Employee that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeFindFirstArgs} args - Arguments to find a Employee
+     * @example
+     * // Get one Employee
+     * const employee = await prisma.employee.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmployeeFindFirstArgs>(args?: SelectSubset<T, EmployeeFindFirstArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Employee that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeFindFirstOrThrowArgs} args - Arguments to find a Employee
+     * @example
+     * // Get one Employee
+     * const employee = await prisma.employee.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmployeeFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Employees that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Employees
+     * const employees = await prisma.employee.findMany()
+     * 
+     * // Get first 10 Employees
+     * const employees = await prisma.employee.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employeeWithIdOnly = await prisma.employee.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmployeeFindManyArgs>(args?: SelectSubset<T, EmployeeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Employee.
+     * @param {EmployeeCreateArgs} args - Arguments to create a Employee.
+     * @example
+     * // Create one Employee
+     * const Employee = await prisma.employee.create({
+     *   data: {
+     *     // ... data to create a Employee
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmployeeCreateArgs>(args: SelectSubset<T, EmployeeCreateArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Employees.
+     * @param {EmployeeCreateManyArgs} args - Arguments to create many Employees.
+     * @example
+     * // Create many Employees
+     * const employee = await prisma.employee.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmployeeCreateManyArgs>(args?: SelectSubset<T, EmployeeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Employees and returns the data saved in the database.
+     * @param {EmployeeCreateManyAndReturnArgs} args - Arguments to create many Employees.
+     * @example
+     * // Create many Employees
+     * const employee = await prisma.employee.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Employees and only return the `id`
+     * const employeeWithIdOnly = await prisma.employee.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmployeeCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Employee.
+     * @param {EmployeeDeleteArgs} args - Arguments to delete one Employee.
+     * @example
+     * // Delete one Employee
+     * const Employee = await prisma.employee.delete({
+     *   where: {
+     *     // ... filter to delete one Employee
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmployeeDeleteArgs>(args: SelectSubset<T, EmployeeDeleteArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Employee.
+     * @param {EmployeeUpdateArgs} args - Arguments to update one Employee.
+     * @example
+     * // Update one Employee
+     * const employee = await prisma.employee.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmployeeUpdateArgs>(args: SelectSubset<T, EmployeeUpdateArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Employees.
+     * @param {EmployeeDeleteManyArgs} args - Arguments to filter Employees to delete.
+     * @example
+     * // Delete a few Employees
+     * const { count } = await prisma.employee.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmployeeDeleteManyArgs>(args?: SelectSubset<T, EmployeeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Employees.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Employees
+     * const employee = await prisma.employee.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmployeeUpdateManyArgs>(args: SelectSubset<T, EmployeeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Employees and returns the data updated in the database.
+     * @param {EmployeeUpdateManyAndReturnArgs} args - Arguments to update many Employees.
+     * @example
+     * // Update many Employees
+     * const employee = await prisma.employee.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Employees and only return the `id`
+     * const employeeWithIdOnly = await prisma.employee.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmployeeUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Employee.
+     * @param {EmployeeUpsertArgs} args - Arguments to update or create a Employee.
+     * @example
+     * // Update or create a Employee
+     * const employee = await prisma.employee.upsert({
+     *   create: {
+     *     // ... data to create a Employee
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Employee we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmployeeUpsertArgs>(args: SelectSubset<T, EmployeeUpsertArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Employees.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCountArgs} args - Arguments to filter Employees to count.
+     * @example
+     * // Count the number of Employees
+     * const count = await prisma.employee.count({
+     *   where: {
+     *     // ... the filter for the Employees we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmployeeCountArgs>(
+      args?: Subset<T, EmployeeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmployeeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Employee.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmployeeAggregateArgs>(args: Subset<T, EmployeeAggregateArgs>): Prisma.PrismaPromise<GetEmployeeAggregateType<T>>
+
+    /**
+     * Group by Employee.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmployeeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmployeeGroupByArgs['orderBy'] }
+        : { orderBy?: EmployeeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmployeeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Employee model
+   */
+  readonly fields: EmployeeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Employee.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    assignments<T extends Employee$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dispatcherAssignments<T extends Employee$dispatcherAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$dispatcherAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DispatcherAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    logs<T extends Employee$logsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    liftChecks<T extends Employee$liftChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$liftChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    trailChecks<T extends Employee$trailChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$trailChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hutChecks<T extends Employee$hutChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$hutChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    aidRoomChecks<T extends Employee$aidRoomChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$aidRoomChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AidRoomCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    equipmentChecks<T extends Employee$equipmentChecksArgs<ExtArgs> = {}>(args?: Subset<T, Employee$equipmentChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Employee model
+   */
+  interface EmployeeFieldRefs {
+    readonly id: FieldRef<"Employee", 'String'>
+    readonly employeeIdNumber: FieldRef<"Employee", 'String'>
+    readonly email: FieldRef<"Employee", 'String'>
+    readonly phoneNumber: FieldRef<"Employee", 'String'>
+    readonly name: FieldRef<"Employee", 'String'>
+    readonly title: FieldRef<"Employee", 'String'>
+    readonly role: FieldRef<"Employee", 'String'>
+    readonly department: FieldRef<"Employee", 'Department'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Employee findUnique
+   */
+  export type EmployeeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * Filter, which Employee to fetch.
+     */
+    where: EmployeeWhereUniqueInput
+  }
+
+  /**
+   * Employee findUniqueOrThrow
+   */
+  export type EmployeeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * Filter, which Employee to fetch.
+     */
+    where: EmployeeWhereUniqueInput
+  }
+
+  /**
+   * Employee findFirst
+   */
+  export type EmployeeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * Filter, which Employee to fetch.
+     */
+    where?: EmployeeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Employees to fetch.
+     */
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Employees.
+     */
+    cursor?: EmployeeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Employees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Employees.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Employees.
+     */
+    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
+  }
+
+  /**
+   * Employee findFirstOrThrow
+   */
+  export type EmployeeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * Filter, which Employee to fetch.
+     */
+    where?: EmployeeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Employees to fetch.
+     */
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Employees.
+     */
+    cursor?: EmployeeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Employees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Employees.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Employees.
+     */
+    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
+  }
+
+  /**
+   * Employee findMany
+   */
+  export type EmployeeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * Filter, which Employees to fetch.
+     */
+    where?: EmployeeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Employees to fetch.
+     */
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Employees.
+     */
+    cursor?: EmployeeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Employees from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Employees.
+     */
+    skip?: number
+    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
+  }
+
+  /**
+   * Employee create
+   */
+  export type EmployeeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Employee.
+     */
+    data: XOR<EmployeeCreateInput, EmployeeUncheckedCreateInput>
+  }
+
+  /**
+   * Employee createMany
+   */
+  export type EmployeeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Employees.
+     */
+    data: EmployeeCreateManyInput | EmployeeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Employee createManyAndReturn
+   */
+  export type EmployeeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * The data used to create many Employees.
+     */
+    data: EmployeeCreateManyInput | EmployeeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Employee update
+   */
+  export type EmployeeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Employee.
+     */
+    data: XOR<EmployeeUpdateInput, EmployeeUncheckedUpdateInput>
+    /**
+     * Choose, which Employee to update.
+     */
+    where: EmployeeWhereUniqueInput
+  }
+
+  /**
+   * Employee updateMany
+   */
+  export type EmployeeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Employees.
+     */
+    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyInput>
+    /**
+     * Filter which Employees to update
+     */
+    where?: EmployeeWhereInput
+    /**
+     * Limit how many Employees to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Employee updateManyAndReturn
+   */
+  export type EmployeeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * The data used to update Employees.
+     */
+    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyInput>
+    /**
+     * Filter which Employees to update
+     */
+    where?: EmployeeWhereInput
+    /**
+     * Limit how many Employees to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Employee upsert
+   */
+  export type EmployeeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Employee to update in case it exists.
+     */
+    where: EmployeeWhereUniqueInput
+    /**
+     * In case the Employee found by the `where` argument doesn't exist, create a new Employee with this data.
+     */
+    create: XOR<EmployeeCreateInput, EmployeeUncheckedCreateInput>
+    /**
+     * In case the Employee was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmployeeUpdateInput, EmployeeUncheckedUpdateInput>
+  }
+
+  /**
+   * Employee delete
+   */
+  export type EmployeeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    /**
+     * Filter which Employee to delete.
+     */
+    where: EmployeeWhereUniqueInput
+  }
+
+  /**
+   * Employee deleteMany
+   */
+  export type EmployeeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Employees to delete
+     */
+    where?: EmployeeWhereInput
+    /**
+     * Limit how many Employees to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Employee.assignments
+   */
+  export type Employee$assignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMountainAssignment
+     */
+    select?: EmployeeMountainAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMountainAssignment
+     */
+    omit?: EmployeeMountainAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMountainAssignmentInclude<ExtArgs> | null
+    where?: EmployeeMountainAssignmentWhereInput
+    orderBy?: EmployeeMountainAssignmentOrderByWithRelationInput | EmployeeMountainAssignmentOrderByWithRelationInput[]
+    cursor?: EmployeeMountainAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeMountainAssignmentScalarFieldEnum | EmployeeMountainAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.dispatcherAssignments
+   */
+  export type Employee$dispatcherAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DispatcherAssignment
+     */
+    select?: DispatcherAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DispatcherAssignment
+     */
+    omit?: DispatcherAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DispatcherAssignmentInclude<ExtArgs> | null
+    where?: DispatcherAssignmentWhereInput
+    orderBy?: DispatcherAssignmentOrderByWithRelationInput | DispatcherAssignmentOrderByWithRelationInput[]
+    cursor?: DispatcherAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DispatcherAssignmentScalarFieldEnum | DispatcherAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.logs
+   */
+  export type Employee$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IncidentLog
+     */
+    select?: IncidentLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IncidentLog
+     */
+    omit?: IncidentLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IncidentLogInclude<ExtArgs> | null
+    where?: IncidentLogWhereInput
+    orderBy?: IncidentLogOrderByWithRelationInput | IncidentLogOrderByWithRelationInput[]
+    cursor?: IncidentLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IncidentLogScalarFieldEnum | IncidentLogScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.liftChecks
+   */
+  export type Employee$liftChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    where?: LiftCheckWhereInput
+    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
+    cursor?: LiftCheckWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LiftCheckScalarFieldEnum | LiftCheckScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.trailChecks
+   */
+  export type Employee$trailChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    where?: TrailCheckWhereInput
+    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
+    cursor?: TrailCheckWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TrailCheckScalarFieldEnum | TrailCheckScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.hutChecks
+   */
+  export type Employee$hutChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    where?: HutCheckWhereInput
+    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
+    cursor?: HutCheckWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HutCheckScalarFieldEnum | HutCheckScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.aidRoomChecks
+   */
+  export type Employee$aidRoomChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AidRoomCheck
+     */
+    select?: AidRoomCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AidRoomCheck
+     */
+    omit?: AidRoomCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AidRoomCheckInclude<ExtArgs> | null
+    where?: AidRoomCheckWhereInput
+    orderBy?: AidRoomCheckOrderByWithRelationInput | AidRoomCheckOrderByWithRelationInput[]
+    cursor?: AidRoomCheckWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AidRoomCheckScalarFieldEnum | AidRoomCheckScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.equipmentChecks
+   */
+  export type Employee$equipmentChecksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EquipmentCheck
+     */
+    select?: EquipmentCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EquipmentCheck
+     */
+    omit?: EquipmentCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EquipmentCheckInclude<ExtArgs> | null
+    where?: EquipmentCheckWhereInput
+    orderBy?: EquipmentCheckOrderByWithRelationInput | EquipmentCheckOrderByWithRelationInput[]
+    cursor?: EquipmentCheckWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EquipmentCheckScalarFieldEnum | EquipmentCheckScalarFieldEnum[]
+  }
+
+  /**
+   * Employee without action
+   */
+  export type EmployeeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
   }
 
 
@@ -14501,6 +15688,7 @@ export namespace Prisma {
   export type EquipmentServiceLogMinAggregateOutputType = {
     id: string | null
     equipmentId: string | null
+    mountainId: string | null
     serviceStatus: $Enums.EquipmentService | null
     changedAt: Date | null
     notes: string | null
@@ -14509,6 +15697,7 @@ export namespace Prisma {
   export type EquipmentServiceLogMaxAggregateOutputType = {
     id: string | null
     equipmentId: string | null
+    mountainId: string | null
     serviceStatus: $Enums.EquipmentService | null
     changedAt: Date | null
     notes: string | null
@@ -14517,6 +15706,7 @@ export namespace Prisma {
   export type EquipmentServiceLogCountAggregateOutputType = {
     id: number
     equipmentId: number
+    mountainId: number
     serviceStatus: number
     changedAt: number
     notes: number
@@ -14527,6 +15717,7 @@ export namespace Prisma {
   export type EquipmentServiceLogMinAggregateInputType = {
     id?: true
     equipmentId?: true
+    mountainId?: true
     serviceStatus?: true
     changedAt?: true
     notes?: true
@@ -14535,6 +15726,7 @@ export namespace Prisma {
   export type EquipmentServiceLogMaxAggregateInputType = {
     id?: true
     equipmentId?: true
+    mountainId?: true
     serviceStatus?: true
     changedAt?: true
     notes?: true
@@ -14543,6 +15735,7 @@ export namespace Prisma {
   export type EquipmentServiceLogCountAggregateInputType = {
     id?: true
     equipmentId?: true
+    mountainId?: true
     serviceStatus?: true
     changedAt?: true
     notes?: true
@@ -14624,6 +15817,7 @@ export namespace Prisma {
   export type EquipmentServiceLogGroupByOutputType = {
     id: string
     equipmentId: string
+    mountainId: string
     serviceStatus: $Enums.EquipmentService
     changedAt: Date
     notes: string | null
@@ -14649,57 +15843,69 @@ export namespace Prisma {
   export type EquipmentServiceLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     equipmentId?: boolean
+    mountainId?: boolean
     serviceStatus?: boolean
     changedAt?: boolean
     notes?: boolean
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["equipmentServiceLog"]>
 
   export type EquipmentServiceLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     equipmentId?: boolean
+    mountainId?: boolean
     serviceStatus?: boolean
     changedAt?: boolean
     notes?: boolean
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["equipmentServiceLog"]>
 
   export type EquipmentServiceLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     equipmentId?: boolean
+    mountainId?: boolean
     serviceStatus?: boolean
     changedAt?: boolean
     notes?: boolean
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["equipmentServiceLog"]>
 
   export type EquipmentServiceLogSelectScalar = {
     id?: boolean
     equipmentId?: boolean
+    mountainId?: boolean
     serviceStatus?: boolean
     changedAt?: boolean
     notes?: boolean
   }
 
-  export type EquipmentServiceLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "equipmentId" | "serviceStatus" | "changedAt" | "notes", ExtArgs["result"]["equipmentServiceLog"]>
+  export type EquipmentServiceLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "equipmentId" | "mountainId" | "serviceStatus" | "changedAt" | "notes", ExtArgs["result"]["equipmentServiceLog"]>
   export type EquipmentServiceLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }
   export type EquipmentServiceLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }
   export type EquipmentServiceLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }
 
   export type $EquipmentServiceLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "EquipmentServiceLog"
     objects: {
       equipment: Prisma.$EquipmentPayload<ExtArgs>
+      mountain: Prisma.$MountainPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       equipmentId: string
+      mountainId: string
       serviceStatus: $Enums.EquipmentService
       changedAt: Date
       notes: string | null
@@ -15098,6 +16304,7 @@ export namespace Prisma {
   export interface Prisma__EquipmentServiceLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     equipment<T extends EquipmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EquipmentDefaultArgs<ExtArgs>>): Prisma__EquipmentClient<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15129,6 +16336,7 @@ export namespace Prisma {
   interface EquipmentServiceLogFieldRefs {
     readonly id: FieldRef<"EquipmentServiceLog", 'String'>
     readonly equipmentId: FieldRef<"EquipmentServiceLog", 'String'>
+    readonly mountainId: FieldRef<"EquipmentServiceLog", 'String'>
     readonly serviceStatus: FieldRef<"EquipmentServiceLog", 'EquipmentService'>
     readonly changedAt: FieldRef<"EquipmentServiceLog", 'DateTime'>
     readonly notes: FieldRef<"EquipmentServiceLog", 'String'>
@@ -26051,19 +27259,14 @@ export namespace Prisma {
   export type WeatherScalarFieldEnum = (typeof WeatherScalarFieldEnum)[keyof typeof WeatherScalarFieldEnum]
 
 
-  export const EmployeeScalarFieldEnum: {
+  export const EmployeeMountainAssignmentScalarFieldEnum: {
     id: 'id',
-    employeeIdNumber: 'employeeIdNumber',
-    email: 'email',
-    phoneNumber: 'phoneNumber',
-    name: 'name',
-    title: 'title',
-    role: 'role',
-    department: 'department',
-    mountainId: 'mountainId'
+    employeeId: 'employeeId',
+    mountainId: 'mountainId',
+    assignedAt: 'assignedAt'
   };
 
-  export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
+  export type EmployeeMountainAssignmentScalarFieldEnum = (typeof EmployeeMountainAssignmentScalarFieldEnum)[keyof typeof EmployeeMountainAssignmentScalarFieldEnum]
 
 
   export const DispatcherAssignmentScalarFieldEnum: {
@@ -26074,6 +27277,20 @@ export namespace Prisma {
   };
 
   export type DispatcherAssignmentScalarFieldEnum = (typeof DispatcherAssignmentScalarFieldEnum)[keyof typeof DispatcherAssignmentScalarFieldEnum]
+
+
+  export const EmployeeScalarFieldEnum: {
+    id: 'id',
+    employeeIdNumber: 'employeeIdNumber',
+    email: 'email',
+    phoneNumber: 'phoneNumber',
+    name: 'name',
+    title: 'title',
+    role: 'role',
+    department: 'department'
+  };
+
+  export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
 
 
   export const LiftScalarFieldEnum: {
@@ -26146,6 +27363,7 @@ export namespace Prisma {
   export const EquipmentServiceLogScalarFieldEnum: {
     id: 'id',
     equipmentId: 'equipmentId',
+    mountainId: 'mountainId',
     serviceStatus: 'serviceStatus',
     changedAt: 'changedAt',
     notes: 'notes'
@@ -26492,7 +27710,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckListRelationFilter
     trails?: TrailListRelationFilter
     trailChecks?: TrailCheckListRelationFilter
-    employees?: EmployeeListRelationFilter
     lodges?: LodgeListRelationFilter
     huts?: HutListRelationFilter
     hutChecks?: HutCheckListRelationFilter
@@ -26502,8 +27719,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckListRelationFilter
     incidents?: IncidentListRelationFilter
     incidentLogs?: IncidentLogListRelationFilter
+    employeeAssignments?: EmployeeMountainAssignmentListRelationFilter
     dispatcherAssignments?: DispatcherAssignmentListRelationFilter
     incidentLogEquipment?: IncidentLogEquipmentListRelationFilter
+    equipmentServiceLogs?: EquipmentServiceLogListRelationFilter
     weather?: WeatherListRelationFilter
   }
 
@@ -26525,7 +27744,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckOrderByRelationAggregateInput
     trails?: TrailOrderByRelationAggregateInput
     trailChecks?: TrailCheckOrderByRelationAggregateInput
-    employees?: EmployeeOrderByRelationAggregateInput
     lodges?: LodgeOrderByRelationAggregateInput
     huts?: HutOrderByRelationAggregateInput
     hutChecks?: HutCheckOrderByRelationAggregateInput
@@ -26535,8 +27753,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckOrderByRelationAggregateInput
     incidents?: IncidentOrderByRelationAggregateInput
     incidentLogs?: IncidentLogOrderByRelationAggregateInput
+    employeeAssignments?: EmployeeMountainAssignmentOrderByRelationAggregateInput
     dispatcherAssignments?: DispatcherAssignmentOrderByRelationAggregateInput
     incidentLogEquipment?: IncidentLogEquipmentOrderByRelationAggregateInput
+    equipmentServiceLogs?: EquipmentServiceLogOrderByRelationAggregateInput
     weather?: WeatherOrderByRelationAggregateInput
   }
 
@@ -26561,7 +27781,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckListRelationFilter
     trails?: TrailListRelationFilter
     trailChecks?: TrailCheckListRelationFilter
-    employees?: EmployeeListRelationFilter
     lodges?: LodgeListRelationFilter
     huts?: HutListRelationFilter
     hutChecks?: HutCheckListRelationFilter
@@ -26571,8 +27790,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckListRelationFilter
     incidents?: IncidentListRelationFilter
     incidentLogs?: IncidentLogListRelationFilter
+    employeeAssignments?: EmployeeMountainAssignmentListRelationFilter
     dispatcherAssignments?: DispatcherAssignmentListRelationFilter
     incidentLogEquipment?: IncidentLogEquipmentListRelationFilter
+    equipmentServiceLogs?: EquipmentServiceLogListRelationFilter
     weather?: WeatherListRelationFilter
   }, "id" | "name">
 
@@ -26703,100 +27924,58 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Weather"> | Date | string
   }
 
-  export type EmployeeWhereInput = {
-    AND?: EmployeeWhereInput | EmployeeWhereInput[]
-    OR?: EmployeeWhereInput[]
-    NOT?: EmployeeWhereInput | EmployeeWhereInput[]
-    id?: StringFilter<"Employee"> | string
-    employeeIdNumber?: StringFilter<"Employee"> | string
-    email?: StringFilter<"Employee"> | string
-    phoneNumber?: StringFilter<"Employee"> | string
-    name?: StringFilter<"Employee"> | string
-    title?: StringFilter<"Employee"> | string
-    role?: StringFilter<"Employee"> | string
-    department?: EnumDepartmentFilter<"Employee"> | $Enums.Department
-    mountainId?: StringFilter<"Employee"> | string
+  export type EmployeeMountainAssignmentWhereInput = {
+    AND?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
+    OR?: EmployeeMountainAssignmentWhereInput[]
+    NOT?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
+    id?: StringFilter<"EmployeeMountainAssignment"> | string
+    employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
+    mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    dispatcherAssignments?: DispatcherAssignmentListRelationFilter
-    logs?: IncidentLogListRelationFilter
-    liftChecks?: LiftCheckListRelationFilter
-    trailChecks?: TrailCheckListRelationFilter
-    hutChecks?: HutCheckListRelationFilter
-    aidRoomChecks?: AidRoomCheckListRelationFilter
-    equipmentChecks?: EquipmentCheckListRelationFilter
   }
 
-  export type EmployeeOrderByWithRelationInput = {
+  export type EmployeeMountainAssignmentOrderByWithRelationInput = {
     id?: SortOrder
-    employeeIdNumber?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    name?: SortOrder
-    title?: SortOrder
-    role?: SortOrder
-    department?: SortOrder
+    employeeId?: SortOrder
     mountainId?: SortOrder
+    assignedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
     mountain?: MountainOrderByWithRelationInput
-    dispatcherAssignments?: DispatcherAssignmentOrderByRelationAggregateInput
-    logs?: IncidentLogOrderByRelationAggregateInput
-    liftChecks?: LiftCheckOrderByRelationAggregateInput
-    trailChecks?: TrailCheckOrderByRelationAggregateInput
-    hutChecks?: HutCheckOrderByRelationAggregateInput
-    aidRoomChecks?: AidRoomCheckOrderByRelationAggregateInput
-    equipmentChecks?: EquipmentCheckOrderByRelationAggregateInput
   }
 
-  export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
+  export type EmployeeMountainAssignmentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    employeeIdNumber?: string
-    email?: string
-    AND?: EmployeeWhereInput | EmployeeWhereInput[]
-    OR?: EmployeeWhereInput[]
-    NOT?: EmployeeWhereInput | EmployeeWhereInput[]
-    phoneNumber?: StringFilter<"Employee"> | string
-    name?: StringFilter<"Employee"> | string
-    title?: StringFilter<"Employee"> | string
-    role?: StringFilter<"Employee"> | string
-    department?: EnumDepartmentFilter<"Employee"> | $Enums.Department
-    mountainId?: StringFilter<"Employee"> | string
+    employeeId_mountainId?: EmployeeMountainAssignmentEmployeeIdMountainIdCompoundUniqueInput
+    AND?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
+    OR?: EmployeeMountainAssignmentWhereInput[]
+    NOT?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
+    employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
+    mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    dispatcherAssignments?: DispatcherAssignmentListRelationFilter
-    logs?: IncidentLogListRelationFilter
-    liftChecks?: LiftCheckListRelationFilter
-    trailChecks?: TrailCheckListRelationFilter
-    hutChecks?: HutCheckListRelationFilter
-    aidRoomChecks?: AidRoomCheckListRelationFilter
-    equipmentChecks?: EquipmentCheckListRelationFilter
-  }, "id" | "employeeIdNumber" | "email">
+  }, "id" | "employeeId_mountainId">
 
-  export type EmployeeOrderByWithAggregationInput = {
+  export type EmployeeMountainAssignmentOrderByWithAggregationInput = {
     id?: SortOrder
-    employeeIdNumber?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    name?: SortOrder
-    title?: SortOrder
-    role?: SortOrder
-    department?: SortOrder
+    employeeId?: SortOrder
     mountainId?: SortOrder
-    _count?: EmployeeCountOrderByAggregateInput
-    _max?: EmployeeMaxOrderByAggregateInput
-    _min?: EmployeeMinOrderByAggregateInput
+    assignedAt?: SortOrder
+    _count?: EmployeeMountainAssignmentCountOrderByAggregateInput
+    _max?: EmployeeMountainAssignmentMaxOrderByAggregateInput
+    _min?: EmployeeMountainAssignmentMinOrderByAggregateInput
   }
 
-  export type EmployeeScalarWhereWithAggregatesInput = {
-    AND?: EmployeeScalarWhereWithAggregatesInput | EmployeeScalarWhereWithAggregatesInput[]
-    OR?: EmployeeScalarWhereWithAggregatesInput[]
-    NOT?: EmployeeScalarWhereWithAggregatesInput | EmployeeScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Employee"> | string
-    employeeIdNumber?: StringWithAggregatesFilter<"Employee"> | string
-    email?: StringWithAggregatesFilter<"Employee"> | string
-    phoneNumber?: StringWithAggregatesFilter<"Employee"> | string
-    name?: StringWithAggregatesFilter<"Employee"> | string
-    title?: StringWithAggregatesFilter<"Employee"> | string
-    role?: StringWithAggregatesFilter<"Employee"> | string
-    department?: EnumDepartmentWithAggregatesFilter<"Employee"> | $Enums.Department
-    mountainId?: StringWithAggregatesFilter<"Employee"> | string
+  export type EmployeeMountainAssignmentScalarWhereWithAggregatesInput = {
+    AND?: EmployeeMountainAssignmentScalarWhereWithAggregatesInput | EmployeeMountainAssignmentScalarWhereWithAggregatesInput[]
+    OR?: EmployeeMountainAssignmentScalarWhereWithAggregatesInput[]
+    NOT?: EmployeeMountainAssignmentScalarWhereWithAggregatesInput | EmployeeMountainAssignmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
+    employeeId?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
+    mountainId?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
+    assignedAt?: DateTimeWithAggregatesFilter<"EmployeeMountainAssignment"> | Date | string
   }
 
   export type DispatcherAssignmentWhereInput = {
@@ -26852,6 +28031,97 @@ export namespace Prisma {
     mountainId?: StringWithAggregatesFilter<"DispatcherAssignment"> | string
   }
 
+  export type EmployeeWhereInput = {
+    AND?: EmployeeWhereInput | EmployeeWhereInput[]
+    OR?: EmployeeWhereInput[]
+    NOT?: EmployeeWhereInput | EmployeeWhereInput[]
+    id?: StringFilter<"Employee"> | string
+    employeeIdNumber?: StringFilter<"Employee"> | string
+    email?: StringFilter<"Employee"> | string
+    phoneNumber?: StringFilter<"Employee"> | string
+    name?: StringFilter<"Employee"> | string
+    title?: StringFilter<"Employee"> | string
+    role?: StringFilter<"Employee"> | string
+    department?: EnumDepartmentFilter<"Employee"> | $Enums.Department
+    assignments?: EmployeeMountainAssignmentListRelationFilter
+    dispatcherAssignments?: DispatcherAssignmentListRelationFilter
+    logs?: IncidentLogListRelationFilter
+    liftChecks?: LiftCheckListRelationFilter
+    trailChecks?: TrailCheckListRelationFilter
+    hutChecks?: HutCheckListRelationFilter
+    aidRoomChecks?: AidRoomCheckListRelationFilter
+    equipmentChecks?: EquipmentCheckListRelationFilter
+  }
+
+  export type EmployeeOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeIdNumber?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    role?: SortOrder
+    department?: SortOrder
+    assignments?: EmployeeMountainAssignmentOrderByRelationAggregateInput
+    dispatcherAssignments?: DispatcherAssignmentOrderByRelationAggregateInput
+    logs?: IncidentLogOrderByRelationAggregateInput
+    liftChecks?: LiftCheckOrderByRelationAggregateInput
+    trailChecks?: TrailCheckOrderByRelationAggregateInput
+    hutChecks?: HutCheckOrderByRelationAggregateInput
+    aidRoomChecks?: AidRoomCheckOrderByRelationAggregateInput
+    equipmentChecks?: EquipmentCheckOrderByRelationAggregateInput
+  }
+
+  export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    employeeIdNumber?: string
+    email?: string
+    AND?: EmployeeWhereInput | EmployeeWhereInput[]
+    OR?: EmployeeWhereInput[]
+    NOT?: EmployeeWhereInput | EmployeeWhereInput[]
+    phoneNumber?: StringFilter<"Employee"> | string
+    name?: StringFilter<"Employee"> | string
+    title?: StringFilter<"Employee"> | string
+    role?: StringFilter<"Employee"> | string
+    department?: EnumDepartmentFilter<"Employee"> | $Enums.Department
+    assignments?: EmployeeMountainAssignmentListRelationFilter
+    dispatcherAssignments?: DispatcherAssignmentListRelationFilter
+    logs?: IncidentLogListRelationFilter
+    liftChecks?: LiftCheckListRelationFilter
+    trailChecks?: TrailCheckListRelationFilter
+    hutChecks?: HutCheckListRelationFilter
+    aidRoomChecks?: AidRoomCheckListRelationFilter
+    equipmentChecks?: EquipmentCheckListRelationFilter
+  }, "id" | "employeeIdNumber" | "email">
+
+  export type EmployeeOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeIdNumber?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    role?: SortOrder
+    department?: SortOrder
+    _count?: EmployeeCountOrderByAggregateInput
+    _max?: EmployeeMaxOrderByAggregateInput
+    _min?: EmployeeMinOrderByAggregateInput
+  }
+
+  export type EmployeeScalarWhereWithAggregatesInput = {
+    AND?: EmployeeScalarWhereWithAggregatesInput | EmployeeScalarWhereWithAggregatesInput[]
+    OR?: EmployeeScalarWhereWithAggregatesInput[]
+    NOT?: EmployeeScalarWhereWithAggregatesInput | EmployeeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Employee"> | string
+    employeeIdNumber?: StringWithAggregatesFilter<"Employee"> | string
+    email?: StringWithAggregatesFilter<"Employee"> | string
+    phoneNumber?: StringWithAggregatesFilter<"Employee"> | string
+    name?: StringWithAggregatesFilter<"Employee"> | string
+    title?: StringWithAggregatesFilter<"Employee"> | string
+    role?: StringWithAggregatesFilter<"Employee"> | string
+    department?: EnumDepartmentWithAggregatesFilter<"Employee"> | $Enums.Department
+  }
+
   export type LiftWhereInput = {
     AND?: LiftWhereInput | LiftWhereInput[]
     OR?: LiftWhereInput[]
@@ -26885,6 +28155,7 @@ export namespace Prisma {
 
   export type LiftWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: LiftIdMountainIdCompoundUniqueInput
     AND?: LiftWhereInput | LiftWhereInput[]
     OR?: LiftWhereInput[]
     NOT?: LiftWhereInput | LiftWhereInput[]
@@ -26898,7 +28169,7 @@ export namespace Prisma {
     incidentLogs?: IncidentLogListRelationFilter
     equipment?: EquipmentListRelationFilter
     liftChecks?: LiftCheckListRelationFilter
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type LiftOrderByWithAggregationInput = {
     id?: SortOrder
@@ -26965,6 +28236,7 @@ export namespace Prisma {
 
   export type TrailWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: TrailIdMountainIdCompoundUniqueInput
     AND?: TrailWhereInput | TrailWhereInput[]
     OR?: TrailWhereInput[]
     NOT?: TrailWhereInput | TrailWhereInput[]
@@ -26980,7 +28252,7 @@ export namespace Prisma {
     incidentLogs?: IncidentLogListRelationFilter
     equipment?: EquipmentListRelationFilter
     trailChecks?: TrailCheckListRelationFilter
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type TrailOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27047,6 +28319,7 @@ export namespace Prisma {
 
   export type LodgeWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: LodgeIdMountainIdCompoundUniqueInput
     AND?: LodgeWhereInput | LodgeWhereInput[]
     OR?: LodgeWhereInput[]
     NOT?: LodgeWhereInput | LodgeWhereInput[]
@@ -27060,7 +28333,7 @@ export namespace Prisma {
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     incidentLogs?: IncidentLogListRelationFilter
     equipment?: EquipmentListRelationFilter
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type LodgeOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27123,6 +28396,7 @@ export namespace Prisma {
 
   export type HutWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: HutIdMountainIdCompoundUniqueInput
     AND?: HutWhereInput | HutWhereInput[]
     OR?: HutWhereInput[]
     NOT?: HutWhereInput | HutWhereInput[]
@@ -27135,7 +28409,7 @@ export namespace Prisma {
     incidentLogs?: IncidentLogListRelationFilter
     equipment?: EquipmentListRelationFilter
     hutChecks?: HutCheckListRelationFilter
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type HutOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27196,6 +28470,7 @@ export namespace Prisma {
 
   export type AidRoomWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: AidRoomIdMountainIdCompoundUniqueInput
     AND?: AidRoomWhereInput | AidRoomWhereInput[]
     OR?: AidRoomWhereInput[]
     NOT?: AidRoomWhereInput | AidRoomWhereInput[]
@@ -27209,7 +28484,7 @@ export namespace Prisma {
     incidentLogs?: IncidentLogListRelationFilter
     equipment?: EquipmentListRelationFilter
     aidRoomChecks?: AidRoomCheckListRelationFilter
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type AidRoomOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27245,36 +28520,44 @@ export namespace Prisma {
     NOT?: EquipmentServiceLogWhereInput | EquipmentServiceLogWhereInput[]
     id?: StringFilter<"EquipmentServiceLog"> | string
     equipmentId?: StringFilter<"EquipmentServiceLog"> | string
+    mountainId?: StringFilter<"EquipmentServiceLog"> | string
     serviceStatus?: EnumEquipmentServiceFilter<"EquipmentServiceLog"> | $Enums.EquipmentService
     changedAt?: DateTimeFilter<"EquipmentServiceLog"> | Date | string
     notes?: StringNullableFilter<"EquipmentServiceLog"> | string | null
     equipment?: XOR<EquipmentScalarRelationFilter, EquipmentWhereInput>
+    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
   }
 
   export type EquipmentServiceLogOrderByWithRelationInput = {
     id?: SortOrder
     equipmentId?: SortOrder
+    mountainId?: SortOrder
     serviceStatus?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
     equipment?: EquipmentOrderByWithRelationInput
+    mountain?: MountainOrderByWithRelationInput
   }
 
   export type EquipmentServiceLogWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: EquipmentServiceLogIdMountainIdCompoundUniqueInput
     AND?: EquipmentServiceLogWhereInput | EquipmentServiceLogWhereInput[]
     OR?: EquipmentServiceLogWhereInput[]
     NOT?: EquipmentServiceLogWhereInput | EquipmentServiceLogWhereInput[]
     equipmentId?: StringFilter<"EquipmentServiceLog"> | string
+    mountainId?: StringFilter<"EquipmentServiceLog"> | string
     serviceStatus?: EnumEquipmentServiceFilter<"EquipmentServiceLog"> | $Enums.EquipmentService
     changedAt?: DateTimeFilter<"EquipmentServiceLog"> | Date | string
     notes?: StringNullableFilter<"EquipmentServiceLog"> | string | null
     equipment?: XOR<EquipmentScalarRelationFilter, EquipmentWhereInput>
-  }, "id">
+    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+  }, "id" | "id_mountainId">
 
   export type EquipmentServiceLogOrderByWithAggregationInput = {
     id?: SortOrder
     equipmentId?: SortOrder
+    mountainId?: SortOrder
     serviceStatus?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -27289,6 +28572,7 @@ export namespace Prisma {
     NOT?: EquipmentServiceLogScalarWhereWithAggregatesInput | EquipmentServiceLogScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EquipmentServiceLog"> | string
     equipmentId?: StringWithAggregatesFilter<"EquipmentServiceLog"> | string
+    mountainId?: StringWithAggregatesFilter<"EquipmentServiceLog"> | string
     serviceStatus?: EnumEquipmentServiceWithAggregatesFilter<"EquipmentServiceLog"> | $Enums.EquipmentService
     changedAt?: DateTimeWithAggregatesFilter<"EquipmentServiceLog"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"EquipmentServiceLog"> | string | null
@@ -27351,6 +28635,7 @@ export namespace Prisma {
 
   export type EquipmentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: EquipmentIdMountainIdCompoundUniqueInput
     AND?: EquipmentWhereInput | EquipmentWhereInput[]
     OR?: EquipmentWhereInput[]
     NOT?: EquipmentWhereInput | EquipmentWhereInput[]
@@ -27376,7 +28661,7 @@ export namespace Prisma {
     usedInLogs?: IncidentLogEquipmentListRelationFilter
     equipmentChecks?: EquipmentCheckListRelationFilter
     serviceLogs?: EquipmentServiceLogListRelationFilter
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type EquipmentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27447,6 +28732,7 @@ export namespace Prisma {
 
   export type IncidentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: IncidentIdMountainIdCompoundUniqueInput
     AND?: IncidentWhereInput | IncidentWhereInput[]
     OR?: IncidentWhereInput[]
     NOT?: IncidentWhereInput | IncidentWhereInput[]
@@ -27457,7 +28743,7 @@ export namespace Prisma {
     mountainId?: StringFilter<"Incident"> | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     logs?: IncidentLogListRelationFilter
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type IncidentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27542,6 +28828,7 @@ export namespace Prisma {
 
   export type IncidentLogWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: IncidentLogIdMountainIdCompoundUniqueInput
     AND?: IncidentLogWhereInput | IncidentLogWhereInput[]
     OR?: IncidentLogWhereInput[]
     NOT?: IncidentLogWhereInput | IncidentLogWhereInput[]
@@ -27567,7 +28854,7 @@ export namespace Prisma {
     lodge?: XOR<LodgeNullableScalarRelationFilter, LodgeWhereInput> | null
     hut?: XOR<HutNullableScalarRelationFilter, HutWhereInput> | null
     aidRoom?: XOR<AidRoomNullableScalarRelationFilter, AidRoomWhereInput> | null
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type IncidentLogOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27638,6 +28925,7 @@ export namespace Prisma {
 
   export type IncidentLogEquipmentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: IncidentLogEquipmentIdMountainIdCompoundUniqueInput
     AND?: IncidentLogEquipmentWhereInput | IncidentLogEquipmentWhereInput[]
     OR?: IncidentLogEquipmentWhereInput[]
     NOT?: IncidentLogEquipmentWhereInput | IncidentLogEquipmentWhereInput[]
@@ -27649,7 +28937,7 @@ export namespace Prisma {
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     incidentLog?: XOR<IncidentLogScalarRelationFilter, IncidentLogWhereInput>
     equipment?: XOR<EquipmentScalarRelationFilter, EquipmentWhereInput>
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type IncidentLogEquipmentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27704,6 +28992,7 @@ export namespace Prisma {
 
   export type LiftCheckWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: LiftCheckIdMountainIdCompoundUniqueInput
     AND?: LiftCheckWhereInput | LiftCheckWhereInput[]
     OR?: LiftCheckWhereInput[]
     NOT?: LiftCheckWhereInput | LiftCheckWhereInput[]
@@ -27715,7 +29004,7 @@ export namespace Prisma {
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     lift?: XOR<LiftScalarRelationFilter, LiftWhereInput>
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type LiftCheckOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27770,6 +29059,7 @@ export namespace Prisma {
 
   export type TrailCheckWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: TrailCheckIdMountainIdCompoundUniqueInput
     AND?: TrailCheckWhereInput | TrailCheckWhereInput[]
     OR?: TrailCheckWhereInput[]
     NOT?: TrailCheckWhereInput | TrailCheckWhereInput[]
@@ -27781,7 +29071,7 @@ export namespace Prisma {
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     trail?: XOR<TrailScalarRelationFilter, TrailWhereInput>
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type TrailCheckOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27836,6 +29126,7 @@ export namespace Prisma {
 
   export type HutCheckWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: HutCheckIdMountainIdCompoundUniqueInput
     AND?: HutCheckWhereInput | HutCheckWhereInput[]
     OR?: HutCheckWhereInput[]
     NOT?: HutCheckWhereInput | HutCheckWhereInput[]
@@ -27847,7 +29138,7 @@ export namespace Prisma {
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     hut?: XOR<HutScalarRelationFilter, HutWhereInput>
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type HutCheckOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27902,6 +29193,7 @@ export namespace Prisma {
 
   export type AidRoomCheckWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: AidRoomCheckIdMountainIdCompoundUniqueInput
     AND?: AidRoomCheckWhereInput | AidRoomCheckWhereInput[]
     OR?: AidRoomCheckWhereInput[]
     NOT?: AidRoomCheckWhereInput | AidRoomCheckWhereInput[]
@@ -27913,7 +29205,7 @@ export namespace Prisma {
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     aidRoom?: XOR<AidRoomScalarRelationFilter, AidRoomWhereInput>
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type AidRoomCheckOrderByWithAggregationInput = {
     id?: SortOrder
@@ -27968,6 +29260,7 @@ export namespace Prisma {
 
   export type EquipmentCheckWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    id_mountainId?: EquipmentCheckIdMountainIdCompoundUniqueInput
     AND?: EquipmentCheckWhereInput | EquipmentCheckWhereInput[]
     OR?: EquipmentCheckWhereInput[]
     NOT?: EquipmentCheckWhereInput | EquipmentCheckWhereInput[]
@@ -27979,7 +29272,7 @@ export namespace Prisma {
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     equipment?: XOR<EquipmentScalarRelationFilter, EquipmentWhereInput>
-  }, "id">
+  }, "id" | "id_mountainId">
 
   export type EquipmentCheckOrderByWithAggregationInput = {
     id?: SortOrder
@@ -28023,7 +29316,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -28033,8 +29325,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -28056,7 +29350,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -28066,8 +29359,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -28089,7 +29384,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -28099,8 +29393,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -28122,7 +29418,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -28132,8 +29427,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -28282,115 +29579,51 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeeCreateInput = {
+  export type EmployeeMountainAssignmentCreateInput = {
     id?: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
-    mountain: MountainCreateNestedOneWithoutEmployeesInput
-    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
-    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
-    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
+    assignedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutAssignmentsInput
+    mountain: MountainCreateNestedOneWithoutEmployeeAssignmentsInput
   }
 
-  export type EmployeeUncheckedCreateInput = {
+  export type EmployeeMountainAssignmentUncheckedCreateInput = {
     id?: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
+    employeeId: string
     mountainId: string
-    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    assignedAt?: Date | string
   }
 
-  export type EmployeeUpdateInput = {
+  export type EmployeeMountainAssignmentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountain?: MountainUpdateOneRequiredWithoutEmployeesNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
-    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
-    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutAssignmentsNestedInput
+    mountain?: MountainUpdateOneRequiredWithoutEmployeeAssignmentsNestedInput
   }
 
-  export type EmployeeUncheckedUpdateInput = {
+  export type EmployeeMountainAssignmentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
-    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeeCreateManyInput = {
+  export type EmployeeMountainAssignmentCreateManyInput = {
     id?: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
+    employeeId: string
     mountainId: string
+    assignedAt?: Date | string
   }
 
-  export type EmployeeUpdateManyMutationInput = {
+  export type EmployeeMountainAssignmentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeeUncheckedUpdateManyInput = {
+  export type EmployeeMountainAssignmentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DispatcherAssignmentCreateInput = {
@@ -28438,6 +29671,115 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EmployeeCreateInput = {
+    id?: string
+    employeeIdNumber: string
+    email: string
+    phoneNumber: string
+    name: string
+    title: string
+    role: string
+    department: $Enums.Department
+    assignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
+    logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateInput = {
+    id?: string
+    employeeIdNumber: string
+    email: string
+    phoneNumber: string
+    name: string
+    title: string
+    role: string
+    department: $Enums.Department
+    assignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    assignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
+    logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    assignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateManyInput = {
+    id?: string
+    employeeIdNumber: string
+    email: string
+    phoneNumber: string
+    name: string
+    title: string
+    role: string
+    department: $Enums.Department
+  }
+
+  export type EmployeeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+  }
+
+  export type EmployeeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
   }
 
   export type LiftCreateInput = {
@@ -28861,11 +30203,13 @@ export namespace Prisma {
     changedAt?: Date | string
     notes?: string | null
     equipment: EquipmentCreateNestedOneWithoutServiceLogsInput
+    mountain: MountainCreateNestedOneWithoutEquipmentServiceLogsInput
   }
 
   export type EquipmentServiceLogUncheckedCreateInput = {
     id?: string
     equipmentId: string
+    mountainId: string
     serviceStatus: $Enums.EquipmentService
     changedAt?: Date | string
     notes?: string | null
@@ -28877,11 +30221,13 @@ export namespace Prisma {
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     equipment?: EquipmentUpdateOneRequiredWithoutServiceLogsNestedInput
+    mountain?: MountainUpdateOneRequiredWithoutEquipmentServiceLogsNestedInput
   }
 
   export type EquipmentServiceLogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
     serviceStatus?: EnumEquipmentServiceFieldUpdateOperationsInput | $Enums.EquipmentService
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28890,6 +30236,7 @@ export namespace Prisma {
   export type EquipmentServiceLogCreateManyInput = {
     id?: string
     equipmentId: string
+    mountainId: string
     serviceStatus: $Enums.EquipmentService
     changedAt?: Date | string
     notes?: string | null
@@ -28905,6 +30252,7 @@ export namespace Prisma {
   export type EquipmentServiceLogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
     serviceStatus?: EnumEquipmentServiceFieldUpdateOperationsInput | $Enums.EquipmentService
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29672,12 +31020,6 @@ export namespace Prisma {
     none?: TrailCheckWhereInput
   }
 
-  export type EmployeeListRelationFilter = {
-    every?: EmployeeWhereInput
-    some?: EmployeeWhereInput
-    none?: EmployeeWhereInput
-  }
-
   export type LodgeListRelationFilter = {
     every?: LodgeWhereInput
     some?: LodgeWhereInput
@@ -29732,6 +31074,12 @@ export namespace Prisma {
     none?: IncidentLogWhereInput
   }
 
+  export type EmployeeMountainAssignmentListRelationFilter = {
+    every?: EmployeeMountainAssignmentWhereInput
+    some?: EmployeeMountainAssignmentWhereInput
+    none?: EmployeeMountainAssignmentWhereInput
+  }
+
   export type DispatcherAssignmentListRelationFilter = {
     every?: DispatcherAssignmentWhereInput
     some?: DispatcherAssignmentWhereInput
@@ -29742,6 +31090,12 @@ export namespace Prisma {
     every?: IncidentLogEquipmentWhereInput
     some?: IncidentLogEquipmentWhereInput
     none?: IncidentLogEquipmentWhereInput
+  }
+
+  export type EquipmentServiceLogListRelationFilter = {
+    every?: EquipmentServiceLogWhereInput
+    some?: EquipmentServiceLogWhereInput
+    none?: EquipmentServiceLogWhereInput
   }
 
   export type WeatherListRelationFilter = {
@@ -29768,10 +31122,6 @@ export namespace Prisma {
   }
 
   export type TrailCheckOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type EmployeeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -29811,11 +31161,19 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type EmployeeMountainAssignmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type DispatcherAssignmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type IncidentLogEquipmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EquipmentServiceLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -30095,62 +31453,35 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type EnumDepartmentFilter<$PrismaModel = never> = {
-    equals?: $Enums.Department | EnumDepartmentFieldRefInput<$PrismaModel>
-    in?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
-    not?: NestedEnumDepartmentFilter<$PrismaModel> | $Enums.Department
-  }
-
-  export type EmployeeCountOrderByAggregateInput = {
-    id?: SortOrder
-    employeeIdNumber?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    name?: SortOrder
-    title?: SortOrder
-    role?: SortOrder
-    department?: SortOrder
-    mountainId?: SortOrder
-  }
-
-  export type EmployeeMaxOrderByAggregateInput = {
-    id?: SortOrder
-    employeeIdNumber?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    name?: SortOrder
-    title?: SortOrder
-    role?: SortOrder
-    department?: SortOrder
-    mountainId?: SortOrder
-  }
-
-  export type EmployeeMinOrderByAggregateInput = {
-    id?: SortOrder
-    employeeIdNumber?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    name?: SortOrder
-    title?: SortOrder
-    role?: SortOrder
-    department?: SortOrder
-    mountainId?: SortOrder
-  }
-
-  export type EnumDepartmentWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Department | EnumDepartmentFieldRefInput<$PrismaModel>
-    in?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
-    not?: NestedEnumDepartmentWithAggregatesFilter<$PrismaModel> | $Enums.Department
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumDepartmentFilter<$PrismaModel>
-    _max?: NestedEnumDepartmentFilter<$PrismaModel>
-  }
-
   export type EmployeeScalarRelationFilter = {
     is?: EmployeeWhereInput
     isNot?: EmployeeWhereInput
+  }
+
+  export type EmployeeMountainAssignmentEmployeeIdMountainIdCompoundUniqueInput = {
+    employeeId: string
+    mountainId: string
+  }
+
+  export type EmployeeMountainAssignmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    assignedAt?: SortOrder
+  }
+
+  export type EmployeeMountainAssignmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    assignedAt?: SortOrder
+  }
+
+  export type EmployeeMountainAssignmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    assignedAt?: SortOrder
   }
 
   export type DispatcherAssignmentCountOrderByAggregateInput = {
@@ -30174,11 +31505,66 @@ export namespace Prisma {
     mountainId?: SortOrder
   }
 
+  export type EnumDepartmentFilter<$PrismaModel = never> = {
+    equals?: $Enums.Department | EnumDepartmentFieldRefInput<$PrismaModel>
+    in?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
+    not?: NestedEnumDepartmentFilter<$PrismaModel> | $Enums.Department
+  }
+
+  export type EmployeeCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeIdNumber?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    role?: SortOrder
+    department?: SortOrder
+  }
+
+  export type EmployeeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeIdNumber?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    role?: SortOrder
+    department?: SortOrder
+  }
+
+  export type EmployeeMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeIdNumber?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    role?: SortOrder
+    department?: SortOrder
+  }
+
+  export type EnumDepartmentWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Department | EnumDepartmentFieldRefInput<$PrismaModel>
+    in?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
+    not?: NestedEnumDepartmentWithAggregatesFilter<$PrismaModel> | $Enums.Department
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDepartmentFilter<$PrismaModel>
+    _max?: NestedEnumDepartmentFilter<$PrismaModel>
+  }
+
   export type EnumStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
     in?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.Status[] | ListEnumStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
+  export type LiftIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
   }
 
   export type LiftCountOrderByAggregateInput = {
@@ -30245,6 +31631,11 @@ export namespace Prisma {
     in?: $Enums.TrailCondition[] | ListEnumTrailConditionFieldRefInput<$PrismaModel>
     notIn?: $Enums.TrailCondition[] | ListEnumTrailConditionFieldRefInput<$PrismaModel>
     not?: NestedEnumTrailConditionFilter<$PrismaModel> | $Enums.TrailCondition
+  }
+
+  export type TrailIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
   }
 
   export type TrailCountOrderByAggregateInput = {
@@ -30315,6 +31706,11 @@ export namespace Prisma {
     _max?: NestedEnumTrailConditionFilter<$PrismaModel>
   }
 
+  export type LodgeIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
+  }
+
   export type LodgeCountOrderByAggregateInput = {
     id?: SortOrder
     latitude?: SortOrder
@@ -30360,6 +31756,11 @@ export namespace Prisma {
     capacity?: SortOrder
   }
 
+  export type HutIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
+  }
+
   export type HutCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -30395,6 +31796,11 @@ export namespace Prisma {
   export type HutSumOrderByAggregateInput = {
     latitude?: SortOrder
     longitude?: SortOrder
+  }
+
+  export type AidRoomIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
   }
 
   export type AidRoomCountOrderByAggregateInput = {
@@ -30449,9 +31855,15 @@ export namespace Prisma {
     isNot?: EquipmentWhereInput
   }
 
+  export type EquipmentServiceLogIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
+  }
+
   export type EquipmentServiceLogCountOrderByAggregateInput = {
     id?: SortOrder
     equipmentId?: SortOrder
+    mountainId?: SortOrder
     serviceStatus?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrder
@@ -30460,6 +31872,7 @@ export namespace Prisma {
   export type EquipmentServiceLogMaxOrderByAggregateInput = {
     id?: SortOrder
     equipmentId?: SortOrder
+    mountainId?: SortOrder
     serviceStatus?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrder
@@ -30468,6 +31881,7 @@ export namespace Prisma {
   export type EquipmentServiceLogMinOrderByAggregateInput = {
     id?: SortOrder
     equipmentId?: SortOrder
+    mountainId?: SortOrder
     serviceStatus?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrder
@@ -30522,14 +31936,9 @@ export namespace Prisma {
     isNot?: AidRoomWhereInput | null
   }
 
-  export type EquipmentServiceLogListRelationFilter = {
-    every?: EquipmentServiceLogWhereInput
-    some?: EquipmentServiceLogWhereInput
-    none?: EquipmentServiceLogWhereInput
-  }
-
-  export type EquipmentServiceLogOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type EquipmentIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
   }
 
   export type EquipmentCountOrderByAggregateInput = {
@@ -30615,6 +32024,11 @@ export namespace Prisma {
     _max?: NestedEnumLocationTypeNullableFilter<$PrismaModel>
   }
 
+  export type IncidentIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
+  }
+
   export type IncidentCountOrderByAggregateInput = {
     id?: SortOrder
     description?: SortOrder
@@ -30667,6 +32081,11 @@ export namespace Prisma {
   export type IncidentScalarRelationFilter = {
     is?: IncidentWhereInput
     isNot?: IncidentWhereInput
+  }
+
+  export type IncidentLogIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
   }
 
   export type IncidentLogCountOrderByAggregateInput = {
@@ -30743,6 +32162,11 @@ export namespace Prisma {
     isNot?: IncidentLogWhereInput
   }
 
+  export type IncidentLogEquipmentIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
+  }
+
   export type IncidentLogEquipmentCountOrderByAggregateInput = {
     id?: SortOrder
     incidentLogId?: SortOrder
@@ -30773,6 +32197,11 @@ export namespace Prisma {
   export type LiftScalarRelationFilter = {
     is?: LiftWhereInput
     isNot?: LiftWhereInput
+  }
+
+  export type LiftCheckIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
   }
 
   export type LiftCheckCountOrderByAggregateInput = {
@@ -30807,6 +32236,11 @@ export namespace Prisma {
     isNot?: TrailWhereInput
   }
 
+  export type TrailCheckIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
+  }
+
   export type TrailCheckCountOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
@@ -30837,6 +32271,11 @@ export namespace Prisma {
   export type HutScalarRelationFilter = {
     is?: HutWhereInput
     isNot?: HutWhereInput
+  }
+
+  export type HutCheckIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
   }
 
   export type HutCheckCountOrderByAggregateInput = {
@@ -30871,6 +32310,11 @@ export namespace Prisma {
     isNot?: AidRoomWhereInput
   }
 
+  export type AidRoomCheckIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
+  }
+
   export type AidRoomCheckCountOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
@@ -30896,6 +32340,11 @@ export namespace Prisma {
     mountainId?: SortOrder
     aidRoomId?: SortOrder
     notes?: SortOrder
+  }
+
+  export type EquipmentCheckIdMountainIdCompoundUniqueInput = {
+    id: string
+    mountainId: string
   }
 
   export type EquipmentCheckCountOrderByAggregateInput = {
@@ -30951,13 +32400,6 @@ export namespace Prisma {
     connectOrCreate?: TrailCheckCreateOrConnectWithoutMountainInput | TrailCheckCreateOrConnectWithoutMountainInput[]
     createMany?: TrailCheckCreateManyMountainInputEnvelope
     connect?: TrailCheckWhereUniqueInput | TrailCheckWhereUniqueInput[]
-  }
-
-  export type EmployeeCreateNestedManyWithoutMountainInput = {
-    create?: XOR<EmployeeCreateWithoutMountainInput, EmployeeUncheckedCreateWithoutMountainInput> | EmployeeCreateWithoutMountainInput[] | EmployeeUncheckedCreateWithoutMountainInput[]
-    connectOrCreate?: EmployeeCreateOrConnectWithoutMountainInput | EmployeeCreateOrConnectWithoutMountainInput[]
-    createMany?: EmployeeCreateManyMountainInputEnvelope
-    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
   }
 
   export type LodgeCreateNestedManyWithoutMountainInput = {
@@ -31023,6 +32465,13 @@ export namespace Prisma {
     connect?: IncidentLogWhereUniqueInput | IncidentLogWhereUniqueInput[]
   }
 
+  export type EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput = {
+    create?: XOR<EmployeeMountainAssignmentCreateWithoutMountainInput, EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput> | EmployeeMountainAssignmentCreateWithoutMountainInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput | EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput[]
+    createMany?: EmployeeMountainAssignmentCreateManyMountainInputEnvelope
+    connect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+  }
+
   export type DispatcherAssignmentCreateNestedManyWithoutMountainInput = {
     create?: XOR<DispatcherAssignmentCreateWithoutMountainInput, DispatcherAssignmentUncheckedCreateWithoutMountainInput> | DispatcherAssignmentCreateWithoutMountainInput[] | DispatcherAssignmentUncheckedCreateWithoutMountainInput[]
     connectOrCreate?: DispatcherAssignmentCreateOrConnectWithoutMountainInput | DispatcherAssignmentCreateOrConnectWithoutMountainInput[]
@@ -31035,6 +32484,13 @@ export namespace Prisma {
     connectOrCreate?: IncidentLogEquipmentCreateOrConnectWithoutMountainInput | IncidentLogEquipmentCreateOrConnectWithoutMountainInput[]
     createMany?: IncidentLogEquipmentCreateManyMountainInputEnvelope
     connect?: IncidentLogEquipmentWhereUniqueInput | IncidentLogEquipmentWhereUniqueInput[]
+  }
+
+  export type EquipmentServiceLogCreateNestedManyWithoutMountainInput = {
+    create?: XOR<EquipmentServiceLogCreateWithoutMountainInput, EquipmentServiceLogUncheckedCreateWithoutMountainInput> | EquipmentServiceLogCreateWithoutMountainInput[] | EquipmentServiceLogUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: EquipmentServiceLogCreateOrConnectWithoutMountainInput | EquipmentServiceLogCreateOrConnectWithoutMountainInput[]
+    createMany?: EquipmentServiceLogCreateManyMountainInputEnvelope
+    connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
   }
 
   export type WeatherCreateNestedManyWithoutMountainInput = {
@@ -31070,13 +32526,6 @@ export namespace Prisma {
     connectOrCreate?: TrailCheckCreateOrConnectWithoutMountainInput | TrailCheckCreateOrConnectWithoutMountainInput[]
     createMany?: TrailCheckCreateManyMountainInputEnvelope
     connect?: TrailCheckWhereUniqueInput | TrailCheckWhereUniqueInput[]
-  }
-
-  export type EmployeeUncheckedCreateNestedManyWithoutMountainInput = {
-    create?: XOR<EmployeeCreateWithoutMountainInput, EmployeeUncheckedCreateWithoutMountainInput> | EmployeeCreateWithoutMountainInput[] | EmployeeUncheckedCreateWithoutMountainInput[]
-    connectOrCreate?: EmployeeCreateOrConnectWithoutMountainInput | EmployeeCreateOrConnectWithoutMountainInput[]
-    createMany?: EmployeeCreateManyMountainInputEnvelope
-    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
   }
 
   export type LodgeUncheckedCreateNestedManyWithoutMountainInput = {
@@ -31142,6 +32591,13 @@ export namespace Prisma {
     connect?: IncidentLogWhereUniqueInput | IncidentLogWhereUniqueInput[]
   }
 
+  export type EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput = {
+    create?: XOR<EmployeeMountainAssignmentCreateWithoutMountainInput, EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput> | EmployeeMountainAssignmentCreateWithoutMountainInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput | EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput[]
+    createMany?: EmployeeMountainAssignmentCreateManyMountainInputEnvelope
+    connect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+  }
+
   export type DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput = {
     create?: XOR<DispatcherAssignmentCreateWithoutMountainInput, DispatcherAssignmentUncheckedCreateWithoutMountainInput> | DispatcherAssignmentCreateWithoutMountainInput[] | DispatcherAssignmentUncheckedCreateWithoutMountainInput[]
     connectOrCreate?: DispatcherAssignmentCreateOrConnectWithoutMountainInput | DispatcherAssignmentCreateOrConnectWithoutMountainInput[]
@@ -31154,6 +32610,13 @@ export namespace Prisma {
     connectOrCreate?: IncidentLogEquipmentCreateOrConnectWithoutMountainInput | IncidentLogEquipmentCreateOrConnectWithoutMountainInput[]
     createMany?: IncidentLogEquipmentCreateManyMountainInputEnvelope
     connect?: IncidentLogEquipmentWhereUniqueInput | IncidentLogEquipmentWhereUniqueInput[]
+  }
+
+  export type EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput = {
+    create?: XOR<EquipmentServiceLogCreateWithoutMountainInput, EquipmentServiceLogUncheckedCreateWithoutMountainInput> | EquipmentServiceLogCreateWithoutMountainInput[] | EquipmentServiceLogUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: EquipmentServiceLogCreateOrConnectWithoutMountainInput | EquipmentServiceLogCreateOrConnectWithoutMountainInput[]
+    createMany?: EquipmentServiceLogCreateManyMountainInputEnvelope
+    connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
   }
 
   export type WeatherUncheckedCreateNestedManyWithoutMountainInput = {
@@ -31241,20 +32704,6 @@ export namespace Prisma {
     update?: TrailCheckUpdateWithWhereUniqueWithoutMountainInput | TrailCheckUpdateWithWhereUniqueWithoutMountainInput[]
     updateMany?: TrailCheckUpdateManyWithWhereWithoutMountainInput | TrailCheckUpdateManyWithWhereWithoutMountainInput[]
     deleteMany?: TrailCheckScalarWhereInput | TrailCheckScalarWhereInput[]
-  }
-
-  export type EmployeeUpdateManyWithoutMountainNestedInput = {
-    create?: XOR<EmployeeCreateWithoutMountainInput, EmployeeUncheckedCreateWithoutMountainInput> | EmployeeCreateWithoutMountainInput[] | EmployeeUncheckedCreateWithoutMountainInput[]
-    connectOrCreate?: EmployeeCreateOrConnectWithoutMountainInput | EmployeeCreateOrConnectWithoutMountainInput[]
-    upsert?: EmployeeUpsertWithWhereUniqueWithoutMountainInput | EmployeeUpsertWithWhereUniqueWithoutMountainInput[]
-    createMany?: EmployeeCreateManyMountainInputEnvelope
-    set?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
-    disconnect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
-    delete?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
-    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
-    update?: EmployeeUpdateWithWhereUniqueWithoutMountainInput | EmployeeUpdateWithWhereUniqueWithoutMountainInput[]
-    updateMany?: EmployeeUpdateManyWithWhereWithoutMountainInput | EmployeeUpdateManyWithWhereWithoutMountainInput[]
-    deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
   }
 
   export type LodgeUpdateManyWithoutMountainNestedInput = {
@@ -31383,6 +32832,20 @@ export namespace Prisma {
     deleteMany?: IncidentLogScalarWhereInput | IncidentLogScalarWhereInput[]
   }
 
+  export type EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput = {
+    create?: XOR<EmployeeMountainAssignmentCreateWithoutMountainInput, EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput> | EmployeeMountainAssignmentCreateWithoutMountainInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput | EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput[]
+    upsert?: EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutMountainInput | EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutMountainInput[]
+    createMany?: EmployeeMountainAssignmentCreateManyMountainInputEnvelope
+    set?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    disconnect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    delete?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    connect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    update?: EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutMountainInput | EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutMountainInput[]
+    updateMany?: EmployeeMountainAssignmentUpdateManyWithWhereWithoutMountainInput | EmployeeMountainAssignmentUpdateManyWithWhereWithoutMountainInput[]
+    deleteMany?: EmployeeMountainAssignmentScalarWhereInput | EmployeeMountainAssignmentScalarWhereInput[]
+  }
+
   export type DispatcherAssignmentUpdateManyWithoutMountainNestedInput = {
     create?: XOR<DispatcherAssignmentCreateWithoutMountainInput, DispatcherAssignmentUncheckedCreateWithoutMountainInput> | DispatcherAssignmentCreateWithoutMountainInput[] | DispatcherAssignmentUncheckedCreateWithoutMountainInput[]
     connectOrCreate?: DispatcherAssignmentCreateOrConnectWithoutMountainInput | DispatcherAssignmentCreateOrConnectWithoutMountainInput[]
@@ -31409,6 +32872,20 @@ export namespace Prisma {
     update?: IncidentLogEquipmentUpdateWithWhereUniqueWithoutMountainInput | IncidentLogEquipmentUpdateWithWhereUniqueWithoutMountainInput[]
     updateMany?: IncidentLogEquipmentUpdateManyWithWhereWithoutMountainInput | IncidentLogEquipmentUpdateManyWithWhereWithoutMountainInput[]
     deleteMany?: IncidentLogEquipmentScalarWhereInput | IncidentLogEquipmentScalarWhereInput[]
+  }
+
+  export type EquipmentServiceLogUpdateManyWithoutMountainNestedInput = {
+    create?: XOR<EquipmentServiceLogCreateWithoutMountainInput, EquipmentServiceLogUncheckedCreateWithoutMountainInput> | EquipmentServiceLogCreateWithoutMountainInput[] | EquipmentServiceLogUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: EquipmentServiceLogCreateOrConnectWithoutMountainInput | EquipmentServiceLogCreateOrConnectWithoutMountainInput[]
+    upsert?: EquipmentServiceLogUpsertWithWhereUniqueWithoutMountainInput | EquipmentServiceLogUpsertWithWhereUniqueWithoutMountainInput[]
+    createMany?: EquipmentServiceLogCreateManyMountainInputEnvelope
+    set?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+    disconnect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+    delete?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+    connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+    update?: EquipmentServiceLogUpdateWithWhereUniqueWithoutMountainInput | EquipmentServiceLogUpdateWithWhereUniqueWithoutMountainInput[]
+    updateMany?: EquipmentServiceLogUpdateManyWithWhereWithoutMountainInput | EquipmentServiceLogUpdateManyWithWhereWithoutMountainInput[]
+    deleteMany?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
   }
 
   export type WeatherUpdateManyWithoutMountainNestedInput = {
@@ -31479,20 +32956,6 @@ export namespace Prisma {
     update?: TrailCheckUpdateWithWhereUniqueWithoutMountainInput | TrailCheckUpdateWithWhereUniqueWithoutMountainInput[]
     updateMany?: TrailCheckUpdateManyWithWhereWithoutMountainInput | TrailCheckUpdateManyWithWhereWithoutMountainInput[]
     deleteMany?: TrailCheckScalarWhereInput | TrailCheckScalarWhereInput[]
-  }
-
-  export type EmployeeUncheckedUpdateManyWithoutMountainNestedInput = {
-    create?: XOR<EmployeeCreateWithoutMountainInput, EmployeeUncheckedCreateWithoutMountainInput> | EmployeeCreateWithoutMountainInput[] | EmployeeUncheckedCreateWithoutMountainInput[]
-    connectOrCreate?: EmployeeCreateOrConnectWithoutMountainInput | EmployeeCreateOrConnectWithoutMountainInput[]
-    upsert?: EmployeeUpsertWithWhereUniqueWithoutMountainInput | EmployeeUpsertWithWhereUniqueWithoutMountainInput[]
-    createMany?: EmployeeCreateManyMountainInputEnvelope
-    set?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
-    disconnect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
-    delete?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
-    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
-    update?: EmployeeUpdateWithWhereUniqueWithoutMountainInput | EmployeeUpdateWithWhereUniqueWithoutMountainInput[]
-    updateMany?: EmployeeUpdateManyWithWhereWithoutMountainInput | EmployeeUpdateManyWithWhereWithoutMountainInput[]
-    deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
   }
 
   export type LodgeUncheckedUpdateManyWithoutMountainNestedInput = {
@@ -31621,6 +33084,20 @@ export namespace Prisma {
     deleteMany?: IncidentLogScalarWhereInput | IncidentLogScalarWhereInput[]
   }
 
+  export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput = {
+    create?: XOR<EmployeeMountainAssignmentCreateWithoutMountainInput, EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput> | EmployeeMountainAssignmentCreateWithoutMountainInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput | EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput[]
+    upsert?: EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutMountainInput | EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutMountainInput[]
+    createMany?: EmployeeMountainAssignmentCreateManyMountainInputEnvelope
+    set?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    disconnect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    delete?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    connect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    update?: EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutMountainInput | EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutMountainInput[]
+    updateMany?: EmployeeMountainAssignmentUpdateManyWithWhereWithoutMountainInput | EmployeeMountainAssignmentUpdateManyWithWhereWithoutMountainInput[]
+    deleteMany?: EmployeeMountainAssignmentScalarWhereInput | EmployeeMountainAssignmentScalarWhereInput[]
+  }
+
   export type DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput = {
     create?: XOR<DispatcherAssignmentCreateWithoutMountainInput, DispatcherAssignmentUncheckedCreateWithoutMountainInput> | DispatcherAssignmentCreateWithoutMountainInput[] | DispatcherAssignmentUncheckedCreateWithoutMountainInput[]
     connectOrCreate?: DispatcherAssignmentCreateOrConnectWithoutMountainInput | DispatcherAssignmentCreateOrConnectWithoutMountainInput[]
@@ -31647,6 +33124,20 @@ export namespace Prisma {
     update?: IncidentLogEquipmentUpdateWithWhereUniqueWithoutMountainInput | IncidentLogEquipmentUpdateWithWhereUniqueWithoutMountainInput[]
     updateMany?: IncidentLogEquipmentUpdateManyWithWhereWithoutMountainInput | IncidentLogEquipmentUpdateManyWithWhereWithoutMountainInput[]
     deleteMany?: IncidentLogEquipmentScalarWhereInput | IncidentLogEquipmentScalarWhereInput[]
+  }
+
+  export type EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput = {
+    create?: XOR<EquipmentServiceLogCreateWithoutMountainInput, EquipmentServiceLogUncheckedCreateWithoutMountainInput> | EquipmentServiceLogCreateWithoutMountainInput[] | EquipmentServiceLogUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: EquipmentServiceLogCreateOrConnectWithoutMountainInput | EquipmentServiceLogCreateOrConnectWithoutMountainInput[]
+    upsert?: EquipmentServiceLogUpsertWithWhereUniqueWithoutMountainInput | EquipmentServiceLogUpsertWithWhereUniqueWithoutMountainInput[]
+    createMany?: EquipmentServiceLogCreateManyMountainInputEnvelope
+    set?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+    disconnect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+    delete?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+    connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+    update?: EquipmentServiceLogUpdateWithWhereUniqueWithoutMountainInput | EquipmentServiceLogUpdateWithWhereUniqueWithoutMountainInput[]
+    updateMany?: EquipmentServiceLogUpdateManyWithWhereWithoutMountainInput | EquipmentServiceLogUpdateManyWithWhereWithoutMountainInput[]
+    deleteMany?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
   }
 
   export type WeatherUncheckedUpdateManyWithoutMountainNestedInput = {
@@ -31693,10 +33184,67 @@ export namespace Prisma {
     update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutWeatherInput, MountainUpdateWithoutWeatherInput>, MountainUncheckedUpdateWithoutWeatherInput>
   }
 
-  export type MountainCreateNestedOneWithoutEmployeesInput = {
-    create?: XOR<MountainCreateWithoutEmployeesInput, MountainUncheckedCreateWithoutEmployeesInput>
-    connectOrCreate?: MountainCreateOrConnectWithoutEmployeesInput
+  export type EmployeeCreateNestedOneWithoutAssignmentsInput = {
+    create?: XOR<EmployeeCreateWithoutAssignmentsInput, EmployeeUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAssignmentsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type MountainCreateNestedOneWithoutEmployeeAssignmentsInput = {
+    create?: XOR<MountainCreateWithoutEmployeeAssignmentsInput, MountainUncheckedCreateWithoutEmployeeAssignmentsInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutEmployeeAssignmentsInput
     connect?: MountainWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutAssignmentsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutAssignmentsInput, EmployeeUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAssignmentsInput
+    upsert?: EmployeeUpsertWithoutAssignmentsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutAssignmentsInput, EmployeeUpdateWithoutAssignmentsInput>, EmployeeUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type MountainUpdateOneRequiredWithoutEmployeeAssignmentsNestedInput = {
+    create?: XOR<MountainCreateWithoutEmployeeAssignmentsInput, MountainUncheckedCreateWithoutEmployeeAssignmentsInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutEmployeeAssignmentsInput
+    upsert?: MountainUpsertWithoutEmployeeAssignmentsInput
+    connect?: MountainWhereUniqueInput
+    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutEmployeeAssignmentsInput, MountainUpdateWithoutEmployeeAssignmentsInput>, MountainUncheckedUpdateWithoutEmployeeAssignmentsInput>
+  }
+
+  export type EmployeeCreateNestedOneWithoutDispatcherAssignmentsInput = {
+    create?: XOR<EmployeeCreateWithoutDispatcherAssignmentsInput, EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutDispatcherAssignmentsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type MountainCreateNestedOneWithoutDispatcherAssignmentsInput = {
+    create?: XOR<MountainCreateWithoutDispatcherAssignmentsInput, MountainUncheckedCreateWithoutDispatcherAssignmentsInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutDispatcherAssignmentsInput
+    connect?: MountainWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutDispatcherAssignmentsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutDispatcherAssignmentsInput, EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutDispatcherAssignmentsInput
+    upsert?: EmployeeUpsertWithoutDispatcherAssignmentsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutDispatcherAssignmentsInput, EmployeeUpdateWithoutDispatcherAssignmentsInput>, EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput>
+  }
+
+  export type MountainUpdateOneRequiredWithoutDispatcherAssignmentsNestedInput = {
+    create?: XOR<MountainCreateWithoutDispatcherAssignmentsInput, MountainUncheckedCreateWithoutDispatcherAssignmentsInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutDispatcherAssignmentsInput
+    upsert?: MountainUpsertWithoutDispatcherAssignmentsInput
+    connect?: MountainWhereUniqueInput
+    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutDispatcherAssignmentsInput, MountainUpdateWithoutDispatcherAssignmentsInput>, MountainUncheckedUpdateWithoutDispatcherAssignmentsInput>
+  }
+
+  export type EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmployeeMountainAssignmentCreateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput> | EmployeeMountainAssignmentCreateWithoutEmployeeInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput | EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmployeeMountainAssignmentCreateManyEmployeeInputEnvelope
+    connect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
   }
 
   export type DispatcherAssignmentCreateNestedManyWithoutEmployeeInput = {
@@ -31746,6 +33294,13 @@ export namespace Prisma {
     connectOrCreate?: EquipmentCheckCreateOrConnectWithoutEmployeeInput | EquipmentCheckCreateOrConnectWithoutEmployeeInput[]
     createMany?: EquipmentCheckCreateManyEmployeeInputEnvelope
     connect?: EquipmentCheckWhereUniqueInput | EquipmentCheckWhereUniqueInput[]
+  }
+
+  export type EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmployeeMountainAssignmentCreateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput> | EmployeeMountainAssignmentCreateWithoutEmployeeInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput | EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmployeeMountainAssignmentCreateManyEmployeeInputEnvelope
+    connect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
   }
 
   export type DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput = {
@@ -31801,12 +33356,18 @@ export namespace Prisma {
     set?: $Enums.Department
   }
 
-  export type MountainUpdateOneRequiredWithoutEmployeesNestedInput = {
-    create?: XOR<MountainCreateWithoutEmployeesInput, MountainUncheckedCreateWithoutEmployeesInput>
-    connectOrCreate?: MountainCreateOrConnectWithoutEmployeesInput
-    upsert?: MountainUpsertWithoutEmployeesInput
-    connect?: MountainWhereUniqueInput
-    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutEmployeesInput, MountainUpdateWithoutEmployeesInput>, MountainUncheckedUpdateWithoutEmployeesInput>
+  export type EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeMountainAssignmentCreateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput> | EmployeeMountainAssignmentCreateWithoutEmployeeInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput | EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutEmployeeInput | EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmployeeMountainAssignmentCreateManyEmployeeInputEnvelope
+    set?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    disconnect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    delete?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    connect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    update?: EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmployeeMountainAssignmentUpdateManyWithWhereWithoutEmployeeInput | EmployeeMountainAssignmentUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmployeeMountainAssignmentScalarWhereInput | EmployeeMountainAssignmentScalarWhereInput[]
   }
 
   export type DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput = {
@@ -31907,6 +33468,20 @@ export namespace Prisma {
     deleteMany?: EquipmentCheckScalarWhereInput | EquipmentCheckScalarWhereInput[]
   }
 
+  export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeMountainAssignmentCreateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput> | EmployeeMountainAssignmentCreateWithoutEmployeeInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput | EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutEmployeeInput | EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmployeeMountainAssignmentCreateManyEmployeeInputEnvelope
+    set?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    disconnect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    delete?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    connect?: EmployeeMountainAssignmentWhereUniqueInput | EmployeeMountainAssignmentWhereUniqueInput[]
+    update?: EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmployeeMountainAssignmentUpdateManyWithWhereWithoutEmployeeInput | EmployeeMountainAssignmentUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmployeeMountainAssignmentScalarWhereInput | EmployeeMountainAssignmentScalarWhereInput[]
+  }
+
   export type DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<DispatcherAssignmentCreateWithoutEmployeeInput, DispatcherAssignmentUncheckedCreateWithoutEmployeeInput> | DispatcherAssignmentCreateWithoutEmployeeInput[] | DispatcherAssignmentUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: DispatcherAssignmentCreateOrConnectWithoutEmployeeInput | DispatcherAssignmentCreateOrConnectWithoutEmployeeInput[]
@@ -32003,34 +33578,6 @@ export namespace Prisma {
     update?: EquipmentCheckUpdateWithWhereUniqueWithoutEmployeeInput | EquipmentCheckUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: EquipmentCheckUpdateManyWithWhereWithoutEmployeeInput | EquipmentCheckUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: EquipmentCheckScalarWhereInput | EquipmentCheckScalarWhereInput[]
-  }
-
-  export type EmployeeCreateNestedOneWithoutDispatcherAssignmentsInput = {
-    create?: XOR<EmployeeCreateWithoutDispatcherAssignmentsInput, EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput>
-    connectOrCreate?: EmployeeCreateOrConnectWithoutDispatcherAssignmentsInput
-    connect?: EmployeeWhereUniqueInput
-  }
-
-  export type MountainCreateNestedOneWithoutDispatcherAssignmentsInput = {
-    create?: XOR<MountainCreateWithoutDispatcherAssignmentsInput, MountainUncheckedCreateWithoutDispatcherAssignmentsInput>
-    connectOrCreate?: MountainCreateOrConnectWithoutDispatcherAssignmentsInput
-    connect?: MountainWhereUniqueInput
-  }
-
-  export type EmployeeUpdateOneRequiredWithoutDispatcherAssignmentsNestedInput = {
-    create?: XOR<EmployeeCreateWithoutDispatcherAssignmentsInput, EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput>
-    connectOrCreate?: EmployeeCreateOrConnectWithoutDispatcherAssignmentsInput
-    upsert?: EmployeeUpsertWithoutDispatcherAssignmentsInput
-    connect?: EmployeeWhereUniqueInput
-    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutDispatcherAssignmentsInput, EmployeeUpdateWithoutDispatcherAssignmentsInput>, EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput>
-  }
-
-  export type MountainUpdateOneRequiredWithoutDispatcherAssignmentsNestedInput = {
-    create?: XOR<MountainCreateWithoutDispatcherAssignmentsInput, MountainUncheckedCreateWithoutDispatcherAssignmentsInput>
-    connectOrCreate?: MountainCreateOrConnectWithoutDispatcherAssignmentsInput
-    upsert?: MountainUpsertWithoutDispatcherAssignmentsInput
-    connect?: MountainWhereUniqueInput
-    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutDispatcherAssignmentsInput, MountainUpdateWithoutDispatcherAssignmentsInput>, MountainUncheckedUpdateWithoutDispatcherAssignmentsInput>
   }
 
   export type MountainCreateNestedOneWithoutLiftsInput = {
@@ -32709,6 +34256,12 @@ export namespace Prisma {
     connect?: EquipmentWhereUniqueInput
   }
 
+  export type MountainCreateNestedOneWithoutEquipmentServiceLogsInput = {
+    create?: XOR<MountainCreateWithoutEquipmentServiceLogsInput, MountainUncheckedCreateWithoutEquipmentServiceLogsInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutEquipmentServiceLogsInput
+    connect?: MountainWhereUniqueInput
+  }
+
   export type EnumEquipmentServiceFieldUpdateOperationsInput = {
     set?: $Enums.EquipmentService
   }
@@ -32719,6 +34272,14 @@ export namespace Prisma {
     upsert?: EquipmentUpsertWithoutServiceLogsInput
     connect?: EquipmentWhereUniqueInput
     update?: XOR<XOR<EquipmentUpdateToOneWithWhereWithoutServiceLogsInput, EquipmentUpdateWithoutServiceLogsInput>, EquipmentUncheckedUpdateWithoutServiceLogsInput>
+  }
+
+  export type MountainUpdateOneRequiredWithoutEquipmentServiceLogsNestedInput = {
+    create?: XOR<MountainCreateWithoutEquipmentServiceLogsInput, MountainUncheckedCreateWithoutEquipmentServiceLogsInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutEquipmentServiceLogsInput
+    upsert?: MountainUpsertWithoutEquipmentServiceLogsInput
+    connect?: MountainWhereUniqueInput
+    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutEquipmentServiceLogsInput, MountainUpdateWithoutEquipmentServiceLogsInput>, MountainUncheckedUpdateWithoutEquipmentServiceLogsInput>
   }
 
   export type MountainCreateNestedOneWithoutEquipmentInput = {
@@ -33906,52 +35467,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type EmployeeCreateWithoutMountainInput = {
-    id?: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
-    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
-    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
-    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeUncheckedCreateWithoutMountainInput = {
-    id?: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
-    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeCreateOrConnectWithoutMountainInput = {
-    where: EmployeeWhereUniqueInput
-    create: XOR<EmployeeCreateWithoutMountainInput, EmployeeUncheckedCreateWithoutMountainInput>
-  }
-
-  export type EmployeeCreateManyMountainInputEnvelope = {
-    data: EmployeeCreateManyMountainInput | EmployeeCreateManyMountainInput[]
-    skipDuplicates?: boolean
-  }
-
   export type LodgeCreateWithoutMountainInput = {
     id?: string
     latitude?: number | null
@@ -34258,6 +35773,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EmployeeMountainAssignmentCreateWithoutMountainInput = {
+    id?: string
+    assignedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutAssignmentsInput
+  }
+
+  export type EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput = {
+    id?: string
+    employeeId: string
+    assignedAt?: Date | string
+  }
+
+  export type EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput = {
+    where: EmployeeMountainAssignmentWhereUniqueInput
+    create: XOR<EmployeeMountainAssignmentCreateWithoutMountainInput, EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput>
+  }
+
+  export type EmployeeMountainAssignmentCreateManyMountainInputEnvelope = {
+    data: EmployeeMountainAssignmentCreateManyMountainInput | EmployeeMountainAssignmentCreateManyMountainInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DispatcherAssignmentCreateWithoutMountainInput = {
     id?: string
     assignedAt?: Date | string
@@ -34303,6 +35840,32 @@ export namespace Prisma {
 
   export type IncidentLogEquipmentCreateManyMountainInputEnvelope = {
     data: IncidentLogEquipmentCreateManyMountainInput | IncidentLogEquipmentCreateManyMountainInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EquipmentServiceLogCreateWithoutMountainInput = {
+    id?: string
+    serviceStatus: $Enums.EquipmentService
+    changedAt?: Date | string
+    notes?: string | null
+    equipment: EquipmentCreateNestedOneWithoutServiceLogsInput
+  }
+
+  export type EquipmentServiceLogUncheckedCreateWithoutMountainInput = {
+    id?: string
+    equipmentId: string
+    serviceStatus: $Enums.EquipmentService
+    changedAt?: Date | string
+    notes?: string | null
+  }
+
+  export type EquipmentServiceLogCreateOrConnectWithoutMountainInput = {
+    where: EquipmentServiceLogWhereUniqueInput
+    create: XOR<EquipmentServiceLogCreateWithoutMountainInput, EquipmentServiceLogUncheckedCreateWithoutMountainInput>
+  }
+
+  export type EquipmentServiceLogCreateManyMountainInputEnvelope = {
+    data: EquipmentServiceLogCreateManyMountainInput | EquipmentServiceLogCreateManyMountainInput[]
     skipDuplicates?: boolean
   }
 
@@ -34456,37 +36019,6 @@ export namespace Prisma {
     mountainId?: StringFilter<"TrailCheck"> | string
     trailId?: StringFilter<"TrailCheck"> | string
     notes?: StringNullableFilter<"TrailCheck"> | string | null
-  }
-
-  export type EmployeeUpsertWithWhereUniqueWithoutMountainInput = {
-    where: EmployeeWhereUniqueInput
-    update: XOR<EmployeeUpdateWithoutMountainInput, EmployeeUncheckedUpdateWithoutMountainInput>
-    create: XOR<EmployeeCreateWithoutMountainInput, EmployeeUncheckedCreateWithoutMountainInput>
-  }
-
-  export type EmployeeUpdateWithWhereUniqueWithoutMountainInput = {
-    where: EmployeeWhereUniqueInput
-    data: XOR<EmployeeUpdateWithoutMountainInput, EmployeeUncheckedUpdateWithoutMountainInput>
-  }
-
-  export type EmployeeUpdateManyWithWhereWithoutMountainInput = {
-    where: EmployeeScalarWhereInput
-    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyWithoutMountainInput>
-  }
-
-  export type EmployeeScalarWhereInput = {
-    AND?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
-    OR?: EmployeeScalarWhereInput[]
-    NOT?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
-    id?: StringFilter<"Employee"> | string
-    employeeIdNumber?: StringFilter<"Employee"> | string
-    email?: StringFilter<"Employee"> | string
-    phoneNumber?: StringFilter<"Employee"> | string
-    name?: StringFilter<"Employee"> | string
-    title?: StringFilter<"Employee"> | string
-    role?: StringFilter<"Employee"> | string
-    department?: EnumDepartmentFilter<"Employee"> | $Enums.Department
-    mountainId?: StringFilter<"Employee"> | string
   }
 
   export type LodgeUpsertWithWhereUniqueWithoutMountainInput = {
@@ -34760,6 +36292,32 @@ export namespace Prisma {
     dryRunTime?: DateTimeNullableFilter<"IncidentLog"> | Date | string | null
   }
 
+  export type EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutMountainInput = {
+    where: EmployeeMountainAssignmentWhereUniqueInput
+    update: XOR<EmployeeMountainAssignmentUpdateWithoutMountainInput, EmployeeMountainAssignmentUncheckedUpdateWithoutMountainInput>
+    create: XOR<EmployeeMountainAssignmentCreateWithoutMountainInput, EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput>
+  }
+
+  export type EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutMountainInput = {
+    where: EmployeeMountainAssignmentWhereUniqueInput
+    data: XOR<EmployeeMountainAssignmentUpdateWithoutMountainInput, EmployeeMountainAssignmentUncheckedUpdateWithoutMountainInput>
+  }
+
+  export type EmployeeMountainAssignmentUpdateManyWithWhereWithoutMountainInput = {
+    where: EmployeeMountainAssignmentScalarWhereInput
+    data: XOR<EmployeeMountainAssignmentUpdateManyMutationInput, EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainInput>
+  }
+
+  export type EmployeeMountainAssignmentScalarWhereInput = {
+    AND?: EmployeeMountainAssignmentScalarWhereInput | EmployeeMountainAssignmentScalarWhereInput[]
+    OR?: EmployeeMountainAssignmentScalarWhereInput[]
+    NOT?: EmployeeMountainAssignmentScalarWhereInput | EmployeeMountainAssignmentScalarWhereInput[]
+    id?: StringFilter<"EmployeeMountainAssignment"> | string
+    employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
+    mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+  }
+
   export type DispatcherAssignmentUpsertWithWhereUniqueWithoutMountainInput = {
     where: DispatcherAssignmentWhereUniqueInput
     update: XOR<DispatcherAssignmentUpdateWithoutMountainInput, DispatcherAssignmentUncheckedUpdateWithoutMountainInput>
@@ -34814,6 +36372,34 @@ export namespace Prisma {
     notes?: StringNullableFilter<"IncidentLogEquipment"> | string | null
   }
 
+  export type EquipmentServiceLogUpsertWithWhereUniqueWithoutMountainInput = {
+    where: EquipmentServiceLogWhereUniqueInput
+    update: XOR<EquipmentServiceLogUpdateWithoutMountainInput, EquipmentServiceLogUncheckedUpdateWithoutMountainInput>
+    create: XOR<EquipmentServiceLogCreateWithoutMountainInput, EquipmentServiceLogUncheckedCreateWithoutMountainInput>
+  }
+
+  export type EquipmentServiceLogUpdateWithWhereUniqueWithoutMountainInput = {
+    where: EquipmentServiceLogWhereUniqueInput
+    data: XOR<EquipmentServiceLogUpdateWithoutMountainInput, EquipmentServiceLogUncheckedUpdateWithoutMountainInput>
+  }
+
+  export type EquipmentServiceLogUpdateManyWithWhereWithoutMountainInput = {
+    where: EquipmentServiceLogScalarWhereInput
+    data: XOR<EquipmentServiceLogUpdateManyMutationInput, EquipmentServiceLogUncheckedUpdateManyWithoutMountainInput>
+  }
+
+  export type EquipmentServiceLogScalarWhereInput = {
+    AND?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
+    OR?: EquipmentServiceLogScalarWhereInput[]
+    NOT?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
+    id?: StringFilter<"EquipmentServiceLog"> | string
+    equipmentId?: StringFilter<"EquipmentServiceLog"> | string
+    mountainId?: StringFilter<"EquipmentServiceLog"> | string
+    serviceStatus?: EnumEquipmentServiceFilter<"EquipmentServiceLog"> | $Enums.EquipmentService
+    changedAt?: DateTimeFilter<"EquipmentServiceLog"> | Date | string
+    notes?: StringNullableFilter<"EquipmentServiceLog"> | string | null
+  }
+
   export type WeatherUpsertWithWhereUniqueWithoutMountainInput = {
     where: WeatherWhereUniqueInput
     update: XOR<WeatherUpdateWithoutMountainInput, WeatherUncheckedUpdateWithoutMountainInput>
@@ -34865,7 +36451,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -34875,8 +36460,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
   export type MountainUncheckedCreateWithoutWeatherInput = {
@@ -34897,7 +36484,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -34907,8 +36493,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
   export type MountainCreateOrConnectWithoutWeatherInput = {
@@ -34945,7 +36533,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -34955,8 +36542,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
   export type MountainUncheckedUpdateWithoutWeatherInput = {
@@ -34977,7 +36566,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -34987,11 +36575,54 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
-  export type MountainCreateWithoutEmployeesInput = {
+  export type EmployeeCreateWithoutAssignmentsInput = {
+    id?: string
+    employeeIdNumber: string
+    email: string
+    phoneNumber: string
+    name: string
+    title: string
+    role: string
+    department: $Enums.Department
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
+    logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutAssignmentsInput = {
+    id?: string
+    employeeIdNumber: string
+    email: string
+    phoneNumber: string
+    name: string
+    title: string
+    role: string
+    department: $Enums.Department
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutAssignmentsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutAssignmentsInput, EmployeeUncheckedCreateWithoutAssignmentsInput>
+  }
+
+  export type MountainCreateWithoutEmployeeAssignmentsInput = {
     id?: string
     name: string
     latitude?: number | null
@@ -35020,10 +36651,11 @@ export namespace Prisma {
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
-  export type MountainUncheckedCreateWithoutEmployeesInput = {
+  export type MountainUncheckedCreateWithoutEmployeeAssignmentsInput = {
     id?: string
     name: string
     latitude?: number | null
@@ -35052,12 +36684,395 @@ export namespace Prisma {
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
-  export type MountainCreateOrConnectWithoutEmployeesInput = {
+  export type MountainCreateOrConnectWithoutEmployeeAssignmentsInput = {
     where: MountainWhereUniqueInput
-    create: XOR<MountainCreateWithoutEmployeesInput, MountainUncheckedCreateWithoutEmployeesInput>
+    create: XOR<MountainCreateWithoutEmployeeAssignmentsInput, MountainUncheckedCreateWithoutEmployeeAssignmentsInput>
+  }
+
+  export type EmployeeUpsertWithoutAssignmentsInput = {
+    update: XOR<EmployeeUpdateWithoutAssignmentsInput, EmployeeUncheckedUpdateWithoutAssignmentsInput>
+    create: XOR<EmployeeCreateWithoutAssignmentsInput, EmployeeUncheckedCreateWithoutAssignmentsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutAssignmentsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutAssignmentsInput, EmployeeUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type EmployeeUpdateWithoutAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
+    logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type MountainUpsertWithoutEmployeeAssignmentsInput = {
+    update: XOR<MountainUpdateWithoutEmployeeAssignmentsInput, MountainUncheckedUpdateWithoutEmployeeAssignmentsInput>
+    create: XOR<MountainCreateWithoutEmployeeAssignmentsInput, MountainUncheckedCreateWithoutEmployeeAssignmentsInput>
+    where?: MountainWhereInput
+  }
+
+  export type MountainUpdateToOneWithWhereWithoutEmployeeAssignmentsInput = {
+    where?: MountainWhereInput
+    data: XOR<MountainUpdateWithoutEmployeeAssignmentsInput, MountainUncheckedUpdateWithoutEmployeeAssignmentsInput>
+  }
+
+  export type MountainUpdateWithoutEmployeeAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    height?: IntFieldUpdateOperationsInput | number
+    hours?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lifts?: LiftUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
+    trails?: TrailUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUpdateManyWithoutMountainNestedInput
+    huts?: HutUpdateManyWithoutMountainNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUpdateManyWithoutMountainNestedInput
+    incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
+    incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
+    weather?: WeatherUpdateManyWithoutMountainNestedInput
+  }
+
+  export type MountainUncheckedUpdateWithoutEmployeeAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    height?: IntFieldUpdateOperationsInput | number
+    hours?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
+    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
+    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
+    incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
+    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
+  }
+
+  export type EmployeeCreateWithoutDispatcherAssignmentsInput = {
+    id?: string
+    employeeIdNumber: string
+    email: string
+    phoneNumber: string
+    name: string
+    title: string
+    role: string
+    department: $Enums.Department
+    assignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
+    logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput = {
+    id?: string
+    employeeIdNumber: string
+    email: string
+    phoneNumber: string
+    name: string
+    title: string
+    role: string
+    department: $Enums.Department
+    assignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutDispatcherAssignmentsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutDispatcherAssignmentsInput, EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput>
+  }
+
+  export type MountainCreateWithoutDispatcherAssignmentsInput = {
+    id?: string
+    name: string
+    latitude?: number | null
+    longitude?: number | null
+    height: number
+    hours: string
+    phoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipcode: string
+    openingDate?: Date | string | null
+    closingDate?: Date | string | null
+    lifts?: LiftCreateNestedManyWithoutMountainInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
+    trails?: TrailCreateNestedManyWithoutMountainInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
+    lodges?: LodgeCreateNestedManyWithoutMountainInput
+    huts?: HutCreateNestedManyWithoutMountainInput
+    hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
+    aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutMountainInput
+    equipment?: EquipmentCreateNestedManyWithoutMountainInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
+    incidents?: IncidentCreateNestedManyWithoutMountainInput
+    incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
+    incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
+    weather?: WeatherCreateNestedManyWithoutMountainInput
+  }
+
+  export type MountainUncheckedCreateWithoutDispatcherAssignmentsInput = {
+    id?: string
+    name: string
+    latitude?: number | null
+    longitude?: number | null
+    height: number
+    hours: string
+    phoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipcode: string
+    openingDate?: Date | string | null
+    closingDate?: Date | string | null
+    lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
+    trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
+    lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
+    huts?: HutUncheckedCreateNestedManyWithoutMountainInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
+    aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutMountainInput
+    equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
+    incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
+    incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
+    weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
+  }
+
+  export type MountainCreateOrConnectWithoutDispatcherAssignmentsInput = {
+    where: MountainWhereUniqueInput
+    create: XOR<MountainCreateWithoutDispatcherAssignmentsInput, MountainUncheckedCreateWithoutDispatcherAssignmentsInput>
+  }
+
+  export type EmployeeUpsertWithoutDispatcherAssignmentsInput = {
+    update: XOR<EmployeeUpdateWithoutDispatcherAssignmentsInput, EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput>
+    create: XOR<EmployeeCreateWithoutDispatcherAssignmentsInput, EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutDispatcherAssignmentsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutDispatcherAssignmentsInput, EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput>
+  }
+
+  export type EmployeeUpdateWithoutDispatcherAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    assignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
+    logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    assignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type MountainUpsertWithoutDispatcherAssignmentsInput = {
+    update: XOR<MountainUpdateWithoutDispatcherAssignmentsInput, MountainUncheckedUpdateWithoutDispatcherAssignmentsInput>
+    create: XOR<MountainCreateWithoutDispatcherAssignmentsInput, MountainUncheckedCreateWithoutDispatcherAssignmentsInput>
+    where?: MountainWhereInput
+  }
+
+  export type MountainUpdateToOneWithWhereWithoutDispatcherAssignmentsInput = {
+    where?: MountainWhereInput
+    data: XOR<MountainUpdateWithoutDispatcherAssignmentsInput, MountainUncheckedUpdateWithoutDispatcherAssignmentsInput>
+  }
+
+  export type MountainUpdateWithoutDispatcherAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    height?: IntFieldUpdateOperationsInput | number
+    hours?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lifts?: LiftUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
+    trails?: TrailUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUpdateManyWithoutMountainNestedInput
+    huts?: HutUpdateManyWithoutMountainNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUpdateManyWithoutMountainNestedInput
+    incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
+    incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
+    weather?: WeatherUpdateManyWithoutMountainNestedInput
+  }
+
+  export type MountainUncheckedUpdateWithoutDispatcherAssignmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    height?: IntFieldUpdateOperationsInput | number
+    hours?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
+    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
+    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
+    incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
+    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
+  }
+
+  export type EmployeeMountainAssignmentCreateWithoutEmployeeInput = {
+    id?: string
+    assignedAt?: Date | string
+    mountain: MountainCreateNestedOneWithoutEmployeeAssignmentsInput
+  }
+
+  export type EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    mountainId: string
+    assignedAt?: Date | string
+  }
+
+  export type EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput = {
+    where: EmployeeMountainAssignmentWhereUniqueInput
+    create: XOR<EmployeeMountainAssignmentCreateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmployeeMountainAssignmentCreateManyEmployeeInputEnvelope = {
+    data: EmployeeMountainAssignmentCreateManyEmployeeInput | EmployeeMountainAssignmentCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
   }
 
   export type DispatcherAssignmentCreateWithoutEmployeeInput = {
@@ -35260,79 +37275,20 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type MountainUpsertWithoutEmployeesInput = {
-    update: XOR<MountainUpdateWithoutEmployeesInput, MountainUncheckedUpdateWithoutEmployeesInput>
-    create: XOR<MountainCreateWithoutEmployeesInput, MountainUncheckedCreateWithoutEmployeesInput>
-    where?: MountainWhereInput
+  export type EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: EmployeeMountainAssignmentWhereUniqueInput
+    update: XOR<EmployeeMountainAssignmentUpdateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<EmployeeMountainAssignmentCreateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput>
   }
 
-  export type MountainUpdateToOneWithWhereWithoutEmployeesInput = {
-    where?: MountainWhereInput
-    data: XOR<MountainUpdateWithoutEmployeesInput, MountainUncheckedUpdateWithoutEmployeesInput>
+  export type EmployeeMountainAssignmentUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: EmployeeMountainAssignmentWhereUniqueInput
+    data: XOR<EmployeeMountainAssignmentUpdateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedUpdateWithoutEmployeeInput>
   }
 
-  export type MountainUpdateWithoutEmployeesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    height?: IntFieldUpdateOperationsInput | number
-    hours?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    zipcode?: StringFieldUpdateOperationsInput | string
-    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    lifts?: LiftUpdateManyWithoutMountainNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
-    trails?: TrailUpdateManyWithoutMountainNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    lodges?: LodgeUpdateManyWithoutMountainNestedInput
-    huts?: HutUpdateManyWithoutMountainNestedInput
-    hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
-    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
-    aidRoomChecks?: AidRoomCheckUpdateManyWithoutMountainNestedInput
-    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
-    incidents?: IncidentUpdateManyWithoutMountainNestedInput
-    incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
-    weather?: WeatherUpdateManyWithoutMountainNestedInput
-  }
-
-  export type MountainUncheckedUpdateWithoutEmployeesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    height?: IntFieldUpdateOperationsInput | number
-    hours?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    zipcode?: StringFieldUpdateOperationsInput | string
-    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
-    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
-    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
-    hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
-    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
-    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutMountainNestedInput
-    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
-    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
+  export type EmployeeMountainAssignmentUpdateManyWithWhereWithoutEmployeeInput = {
+    where: EmployeeMountainAssignmentScalarWhereInput
+    data: XOR<EmployeeMountainAssignmentUpdateManyMutationInput, EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeInput>
   }
 
   export type DispatcherAssignmentUpsertWithWhereUniqueWithoutEmployeeInput = {
@@ -35447,238 +37403,6 @@ export namespace Prisma {
     data: XOR<EquipmentCheckUpdateManyMutationInput, EquipmentCheckUncheckedUpdateManyWithoutEmployeeInput>
   }
 
-  export type EmployeeCreateWithoutDispatcherAssignmentsInput = {
-    id?: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
-    mountain: MountainCreateNestedOneWithoutEmployeesInput
-    logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
-    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
-    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput = {
-    id?: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
-    mountainId: string
-    logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeCreateOrConnectWithoutDispatcherAssignmentsInput = {
-    where: EmployeeWhereUniqueInput
-    create: XOR<EmployeeCreateWithoutDispatcherAssignmentsInput, EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput>
-  }
-
-  export type MountainCreateWithoutDispatcherAssignmentsInput = {
-    id?: string
-    name: string
-    latitude?: number | null
-    longitude?: number | null
-    height: number
-    hours: string
-    phoneNumber: string
-    address: string
-    city: string
-    state: string
-    zipcode: string
-    openingDate?: Date | string | null
-    closingDate?: Date | string | null
-    lifts?: LiftCreateNestedManyWithoutMountainInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
-    trails?: TrailCreateNestedManyWithoutMountainInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
-    lodges?: LodgeCreateNestedManyWithoutMountainInput
-    huts?: HutCreateNestedManyWithoutMountainInput
-    hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
-    aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
-    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutMountainInput
-    equipment?: EquipmentCreateNestedManyWithoutMountainInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
-    incidents?: IncidentCreateNestedManyWithoutMountainInput
-    incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
-    incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
-    weather?: WeatherCreateNestedManyWithoutMountainInput
-  }
-
-  export type MountainUncheckedCreateWithoutDispatcherAssignmentsInput = {
-    id?: string
-    name: string
-    latitude?: number | null
-    longitude?: number | null
-    height: number
-    hours: string
-    phoneNumber: string
-    address: string
-    city: string
-    state: string
-    zipcode: string
-    openingDate?: Date | string | null
-    closingDate?: Date | string | null
-    lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
-    trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
-    lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
-    huts?: HutUncheckedCreateNestedManyWithoutMountainInput
-    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
-    aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
-    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutMountainInput
-    equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
-    incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
-    incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
-    weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
-  }
-
-  export type MountainCreateOrConnectWithoutDispatcherAssignmentsInput = {
-    where: MountainWhereUniqueInput
-    create: XOR<MountainCreateWithoutDispatcherAssignmentsInput, MountainUncheckedCreateWithoutDispatcherAssignmentsInput>
-  }
-
-  export type EmployeeUpsertWithoutDispatcherAssignmentsInput = {
-    update: XOR<EmployeeUpdateWithoutDispatcherAssignmentsInput, EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput>
-    create: XOR<EmployeeCreateWithoutDispatcherAssignmentsInput, EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput>
-    where?: EmployeeWhereInput
-  }
-
-  export type EmployeeUpdateToOneWithWhereWithoutDispatcherAssignmentsInput = {
-    where?: EmployeeWhereInput
-    data: XOR<EmployeeUpdateWithoutDispatcherAssignmentsInput, EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput>
-  }
-
-  export type EmployeeUpdateWithoutDispatcherAssignmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountain?: MountainUpdateOneRequiredWithoutEmployeesNestedInput
-    logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
-    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
-    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountainId?: StringFieldUpdateOperationsInput | string
-    logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type MountainUpsertWithoutDispatcherAssignmentsInput = {
-    update: XOR<MountainUpdateWithoutDispatcherAssignmentsInput, MountainUncheckedUpdateWithoutDispatcherAssignmentsInput>
-    create: XOR<MountainCreateWithoutDispatcherAssignmentsInput, MountainUncheckedCreateWithoutDispatcherAssignmentsInput>
-    where?: MountainWhereInput
-  }
-
-  export type MountainUpdateToOneWithWhereWithoutDispatcherAssignmentsInput = {
-    where?: MountainWhereInput
-    data: XOR<MountainUpdateWithoutDispatcherAssignmentsInput, MountainUncheckedUpdateWithoutDispatcherAssignmentsInput>
-  }
-
-  export type MountainUpdateWithoutDispatcherAssignmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    height?: IntFieldUpdateOperationsInput | number
-    hours?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    zipcode?: StringFieldUpdateOperationsInput | string
-    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    lifts?: LiftUpdateManyWithoutMountainNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
-    trails?: TrailUpdateManyWithoutMountainNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
-    lodges?: LodgeUpdateManyWithoutMountainNestedInput
-    huts?: HutUpdateManyWithoutMountainNestedInput
-    hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
-    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
-    aidRoomChecks?: AidRoomCheckUpdateManyWithoutMountainNestedInput
-    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
-    incidents?: IncidentUpdateManyWithoutMountainNestedInput
-    incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
-    incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
-    weather?: WeatherUpdateManyWithoutMountainNestedInput
-  }
-
-  export type MountainUncheckedUpdateWithoutDispatcherAssignmentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
-    height?: IntFieldUpdateOperationsInput | number
-    hours?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    zipcode?: StringFieldUpdateOperationsInput | string
-    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
-    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
-    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
-    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
-    hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
-    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
-    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutMountainNestedInput
-    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
-    incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
-    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
-  }
-
   export type MountainCreateWithoutLiftsInput = {
     id?: string
     name: string
@@ -35696,7 +37420,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -35706,8 +37429,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -35728,7 +37453,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -35738,8 +37462,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -35902,7 +37628,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -35912,8 +37637,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -35934,7 +37661,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -35944,8 +37670,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -36014,7 +37742,6 @@ export namespace Prisma {
     lifts?: LiftCreateNestedManyWithoutMountainInput
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -36024,8 +37751,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -36046,7 +37775,6 @@ export namespace Prisma {
     lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -36056,8 +37784,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -36220,7 +37950,6 @@ export namespace Prisma {
     lifts?: LiftUpdateManyWithoutMountainNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -36230,8 +37959,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -36252,7 +37983,6 @@ export namespace Prisma {
     lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -36262,8 +37992,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -36333,7 +38065,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
     aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
@@ -36342,8 +38073,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -36365,7 +38098,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
     aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
@@ -36374,8 +38106,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -36513,7 +38247,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
     aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
@@ -36522,8 +38255,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -36545,7 +38280,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
     aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
@@ -36554,8 +38288,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -36609,7 +38345,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
     aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
@@ -36618,8 +38353,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -36641,7 +38378,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
     aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
@@ -36650,8 +38386,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -36815,7 +38553,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
     aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
@@ -36824,8 +38561,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -36847,7 +38586,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
     aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
@@ -36856,8 +38594,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -36927,7 +38667,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -36936,8 +38675,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -36959,7 +38700,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -36968,8 +38708,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -37133,7 +38875,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -37142,8 +38883,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -37165,7 +38908,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -37174,8 +38916,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -37274,6 +39018,77 @@ export namespace Prisma {
     create: XOR<EquipmentCreateWithoutServiceLogsInput, EquipmentUncheckedCreateWithoutServiceLogsInput>
   }
 
+  export type MountainCreateWithoutEquipmentServiceLogsInput = {
+    id?: string
+    name: string
+    latitude?: number | null
+    longitude?: number | null
+    height: number
+    hours: string
+    phoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipcode: string
+    openingDate?: Date | string | null
+    closingDate?: Date | string | null
+    lifts?: LiftCreateNestedManyWithoutMountainInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
+    trails?: TrailCreateNestedManyWithoutMountainInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
+    lodges?: LodgeCreateNestedManyWithoutMountainInput
+    huts?: HutCreateNestedManyWithoutMountainInput
+    hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
+    aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutMountainInput
+    equipment?: EquipmentCreateNestedManyWithoutMountainInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
+    incidents?: IncidentCreateNestedManyWithoutMountainInput
+    incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
+    incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    weather?: WeatherCreateNestedManyWithoutMountainInput
+  }
+
+  export type MountainUncheckedCreateWithoutEquipmentServiceLogsInput = {
+    id?: string
+    name: string
+    latitude?: number | null
+    longitude?: number | null
+    height: number
+    hours: string
+    phoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipcode: string
+    openingDate?: Date | string | null
+    closingDate?: Date | string | null
+    lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
+    trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
+    lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
+    huts?: HutUncheckedCreateNestedManyWithoutMountainInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
+    aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutMountainInput
+    equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
+    incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
+    incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
+  }
+
+  export type MountainCreateOrConnectWithoutEquipmentServiceLogsInput = {
+    where: MountainWhereUniqueInput
+    create: XOR<MountainCreateWithoutEquipmentServiceLogsInput, MountainUncheckedCreateWithoutEquipmentServiceLogsInput>
+  }
+
   export type EquipmentUpsertWithoutServiceLogsInput = {
     update: XOR<EquipmentUpdateWithoutServiceLogsInput, EquipmentUncheckedUpdateWithoutServiceLogsInput>
     create: XOR<EquipmentCreateWithoutServiceLogsInput, EquipmentUncheckedCreateWithoutServiceLogsInput>
@@ -37327,6 +39142,83 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
+  export type MountainUpsertWithoutEquipmentServiceLogsInput = {
+    update: XOR<MountainUpdateWithoutEquipmentServiceLogsInput, MountainUncheckedUpdateWithoutEquipmentServiceLogsInput>
+    create: XOR<MountainCreateWithoutEquipmentServiceLogsInput, MountainUncheckedCreateWithoutEquipmentServiceLogsInput>
+    where?: MountainWhereInput
+  }
+
+  export type MountainUpdateToOneWithWhereWithoutEquipmentServiceLogsInput = {
+    where?: MountainWhereInput
+    data: XOR<MountainUpdateWithoutEquipmentServiceLogsInput, MountainUncheckedUpdateWithoutEquipmentServiceLogsInput>
+  }
+
+  export type MountainUpdateWithoutEquipmentServiceLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    height?: IntFieldUpdateOperationsInput | number
+    hours?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lifts?: LiftUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
+    trails?: TrailUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUpdateManyWithoutMountainNestedInput
+    huts?: HutUpdateManyWithoutMountainNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUpdateManyWithoutMountainNestedInput
+    incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
+    incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    weather?: WeatherUpdateManyWithoutMountainNestedInput
+  }
+
+  export type MountainUncheckedUpdateWithoutEquipmentServiceLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    height?: IntFieldUpdateOperationsInput | number
+    hours?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
+    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
+    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
+    incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
+  }
+
   export type MountainCreateWithoutEquipmentInput = {
     id?: string
     name: string
@@ -37345,7 +39237,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -37354,8 +39245,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -37377,7 +39270,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -37386,8 +39278,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -37600,10 +39494,12 @@ export namespace Prisma {
     serviceStatus: $Enums.EquipmentService
     changedAt?: Date | string
     notes?: string | null
+    mountain: MountainCreateNestedOneWithoutEquipmentServiceLogsInput
   }
 
   export type EquipmentServiceLogUncheckedCreateWithoutEquipmentInput = {
     id?: string
+    mountainId: string
     serviceStatus: $Enums.EquipmentService
     changedAt?: Date | string
     notes?: string | null
@@ -37648,7 +39544,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -37657,8 +39552,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -37680,7 +39577,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -37689,8 +39585,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -37919,17 +39817,6 @@ export namespace Prisma {
     data: XOR<EquipmentServiceLogUpdateManyMutationInput, EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentInput>
   }
 
-  export type EquipmentServiceLogScalarWhereInput = {
-    AND?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
-    OR?: EquipmentServiceLogScalarWhereInput[]
-    NOT?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
-    id?: StringFilter<"EquipmentServiceLog"> | string
-    equipmentId?: StringFilter<"EquipmentServiceLog"> | string
-    serviceStatus?: EnumEquipmentServiceFilter<"EquipmentServiceLog"> | $Enums.EquipmentService
-    changedAt?: DateTimeFilter<"EquipmentServiceLog"> | Date | string
-    notes?: StringNullableFilter<"EquipmentServiceLog"> | string | null
-  }
-
   export type MountainCreateWithoutIncidentsInput = {
     id?: string
     name: string
@@ -37948,7 +39835,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -37957,8 +39843,10 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -37980,7 +39868,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -37989,8 +39876,10 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -38076,7 +39965,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -38085,8 +39973,10 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -38108,7 +39998,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -38117,8 +40006,10 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -38170,7 +40061,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountain: MountainCreateNestedOneWithoutEmployeesInput
+    assignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
@@ -38188,7 +40079,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountainId: string
+    assignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -38220,7 +40111,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -38229,8 +40119,10 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -38252,7 +40144,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -38261,8 +40152,10 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -38493,7 +40386,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountain?: MountainUpdateOneRequiredWithoutEmployeesNestedInput
+    assignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
@@ -38511,7 +40404,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountainId?: StringFieldUpdateOperationsInput | string
+    assignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -38549,7 +40442,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -38558,8 +40450,10 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -38581,7 +40475,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -38590,8 +40483,10 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -38806,7 +40701,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -38816,7 +40710,9 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -38838,7 +40734,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -38848,7 +40743,9 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -38976,7 +40873,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -38986,7 +40882,9 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -39008,7 +40906,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -39018,7 +40915,9 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -39133,7 +41032,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountain: MountainCreateNestedOneWithoutEmployeesInput
+    assignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
@@ -39151,7 +41050,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountainId: string
+    assignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -39182,7 +41081,6 @@ export namespace Prisma {
     lifts?: LiftCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -39192,8 +41090,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -39214,7 +41114,6 @@ export namespace Prisma {
     lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -39224,8 +41123,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -39283,7 +41184,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountain?: MountainUpdateOneRequiredWithoutEmployeesNestedInput
+    assignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
@@ -39301,7 +41202,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountainId?: StringFieldUpdateOperationsInput | string
+    assignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -39338,7 +41239,6 @@ export namespace Prisma {
     lifts?: LiftUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -39348,8 +41248,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -39370,7 +41272,6 @@ export namespace Prisma {
     lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -39380,8 +41281,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -39429,7 +41332,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountain: MountainCreateNestedOneWithoutEmployeesInput
+    assignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -39447,7 +41350,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountainId: string
+    assignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -39478,7 +41381,6 @@ export namespace Prisma {
     lifts?: LiftCreateNestedManyWithoutMountainInput
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -39488,8 +41390,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -39510,7 +41414,6 @@ export namespace Prisma {
     lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -39520,8 +41423,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -39583,7 +41488,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountain?: MountainUpdateOneRequiredWithoutEmployeesNestedInput
+    assignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -39601,7 +41506,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountainId?: StringFieldUpdateOperationsInput | string
+    assignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -39638,7 +41543,6 @@ export namespace Prisma {
     lifts?: LiftUpdateManyWithoutMountainNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -39648,8 +41552,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -39670,7 +41576,6 @@ export namespace Prisma {
     lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -39680,8 +41585,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -39733,7 +41640,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountain: MountainCreateNestedOneWithoutEmployeesInput
+    assignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -39751,7 +41658,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountainId: string
+    assignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -39783,7 +41690,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
@@ -39792,8 +41698,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -39815,7 +41723,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
@@ -39824,8 +41731,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -39881,7 +41790,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountain?: MountainUpdateOneRequiredWithoutEmployeesNestedInput
+    assignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -39899,7 +41808,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountainId?: StringFieldUpdateOperationsInput | string
+    assignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -39937,7 +41846,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
@@ -39946,8 +41854,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -39969,7 +41879,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
@@ -39978,8 +41887,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -40025,7 +41936,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountain: MountainCreateNestedOneWithoutEmployeesInput
+    assignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -40043,7 +41954,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountainId: string
+    assignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -40075,7 +41986,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -40084,8 +41994,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -40107,7 +42019,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -40116,8 +42027,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -40175,7 +42088,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountain?: MountainUpdateOneRequiredWithoutEmployeesNestedInput
+    assignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -40193,7 +42106,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountainId?: StringFieldUpdateOperationsInput | string
+    assignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -40231,7 +42144,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -40240,8 +42152,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -40263,7 +42177,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -40272,8 +42185,10 @@ export namespace Prisma {
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -40321,7 +42236,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountain: MountainCreateNestedOneWithoutEmployeesInput
+    assignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -40339,7 +42254,7 @@ export namespace Prisma {
     title: string
     role: string
     department: $Enums.Department
-    mountainId: string
+    assignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     logs?: IncidentLogUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -40371,7 +42286,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
     trails?: TrailCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    employees?: EmployeeCreateNestedManyWithoutMountainInput
     lodges?: LodgeCreateNestedManyWithoutMountainInput
     huts?: HutCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
@@ -40380,8 +42294,10 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
     weather?: WeatherCreateNestedManyWithoutMountainInput
   }
 
@@ -40403,7 +42319,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
     trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    employees?: EmployeeUncheckedCreateNestedManyWithoutMountainInput
     lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
     huts?: HutUncheckedCreateNestedManyWithoutMountainInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
@@ -40412,8 +42327,10 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogs?: IncidentLogUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
     weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -40489,7 +42406,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountain?: MountainUpdateOneRequiredWithoutEmployeesNestedInput
+    assignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -40507,7 +42424,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    mountainId?: StringFieldUpdateOperationsInput | string
+    assignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -40545,7 +42462,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
     trails?: TrailUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUpdateManyWithoutMountainNestedInput
     huts?: HutUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
@@ -40554,8 +42470,10 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
     weather?: WeatherUpdateManyWithoutMountainNestedInput
   }
 
@@ -40577,7 +42495,6 @@ export namespace Prisma {
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
     trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    employees?: EmployeeUncheckedUpdateManyWithoutMountainNestedInput
     lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
     huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
@@ -40586,8 +42503,10 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogs?: IncidentLogUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     incidentLogEquipment?: IncidentLogEquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
     weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -40678,17 +42597,6 @@ export namespace Prisma {
     employeeId: string
     trailId: string
     notes?: string | null
-  }
-
-  export type EmployeeCreateManyMountainInput = {
-    id?: string
-    employeeIdNumber: string
-    email: string
-    phoneNumber: string
-    name: string
-    title: string
-    role: string
-    department: $Enums.Department
   }
 
   export type LodgeCreateManyMountainInput = {
@@ -40782,6 +42690,12 @@ export namespace Prisma {
     dryRunTime?: Date | string | null
   }
 
+  export type EmployeeMountainAssignmentCreateManyMountainInput = {
+    id?: string
+    employeeId: string
+    assignedAt?: Date | string
+  }
+
   export type DispatcherAssignmentCreateManyMountainInput = {
     id?: string
     employeeId: string
@@ -40793,6 +42707,14 @@ export namespace Prisma {
     incidentLogId: string
     equipmentId: string
     usedAt?: Date | string
+    notes?: string | null
+  }
+
+  export type EquipmentServiceLogCreateManyMountainInput = {
+    id?: string
+    equipmentId: string
+    serviceStatus: $Enums.EquipmentService
+    changedAt?: Date | string
     notes?: string | null
   }
 
@@ -40927,53 +42849,6 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     trailId?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type EmployeeUpdateWithoutMountainInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    logs?: IncidentLogUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
-    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
-    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type EmployeeUncheckedUpdateWithoutMountainInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    logs?: IncidentLogUncheckedUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type EmployeeUncheckedUpdateManyWithoutMountainInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    role?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
   }
 
   export type LodgeUpdateWithoutMountainInput = {
@@ -41283,6 +43158,24 @@ export namespace Prisma {
     dryRunTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type EmployeeMountainAssignmentUpdateWithoutMountainInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutAssignmentsNestedInput
+  }
+
+  export type EmployeeMountainAssignmentUncheckedUpdateWithoutMountainInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type DispatcherAssignmentUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -41325,6 +43218,30 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type EquipmentServiceLogUpdateWithoutMountainInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceStatus?: EnumEquipmentServiceFieldUpdateOperationsInput | $Enums.EquipmentService
+    changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    equipment?: EquipmentUpdateOneRequiredWithoutServiceLogsNestedInput
+  }
+
+  export type EquipmentServiceLogUncheckedUpdateWithoutMountainInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    equipmentId?: StringFieldUpdateOperationsInput | string
+    serviceStatus?: EnumEquipmentServiceFieldUpdateOperationsInput | $Enums.EquipmentService
+    changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EquipmentServiceLogUncheckedUpdateManyWithoutMountainInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    equipmentId?: StringFieldUpdateOperationsInput | string
+    serviceStatus?: EnumEquipmentServiceFieldUpdateOperationsInput | $Enums.EquipmentService
+    changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type WeatherUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -41362,6 +43279,12 @@ export namespace Prisma {
     snowfall24h?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall7d?: NullableFloatFieldUpdateOperationsInput | number | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeMountainAssignmentCreateManyEmployeeInput = {
+    id?: string
+    mountainId: string
+    assignedAt?: Date | string
   }
 
   export type DispatcherAssignmentCreateManyEmployeeInput = {
@@ -41424,6 +43347,24 @@ export namespace Prisma {
     mountainId: string
     equipmentId: string
     notes?: string | null
+  }
+
+  export type EmployeeMountainAssignmentUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mountain?: MountainUpdateOneRequiredWithoutEmployeeAssignmentsNestedInput
+  }
+
+  export type EmployeeMountainAssignmentUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DispatcherAssignmentUpdateWithoutEmployeeInput = {
@@ -42484,6 +44425,7 @@ export namespace Prisma {
 
   export type EquipmentServiceLogCreateManyEquipmentInput = {
     id?: string
+    mountainId: string
     serviceStatus: $Enums.EquipmentService
     changedAt?: Date | string
     notes?: string | null
@@ -42542,10 +44484,12 @@ export namespace Prisma {
     serviceStatus?: EnumEquipmentServiceFieldUpdateOperationsInput | $Enums.EquipmentService
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    mountain?: MountainUpdateOneRequiredWithoutEquipmentServiceLogsNestedInput
   }
 
   export type EquipmentServiceLogUncheckedUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
     serviceStatus?: EnumEquipmentServiceFieldUpdateOperationsInput | $Enums.EquipmentService
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -42553,6 +44497,7 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
     serviceStatus?: EnumEquipmentServiceFieldUpdateOperationsInput | $Enums.EquipmentService
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null

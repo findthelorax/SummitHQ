@@ -8,6 +8,7 @@ import hutRoutes from './routes/hutRoutes';
 import lodgeRoutes from './routes/lodgeRoutes';
 import incidentRoutes from './routes/incidentRoutes';
 import equipmentRoutes from './routes/equipmentRoutes';
+import employeeRoutes from './routes/employeeRoutes';
 import aidRoomRoutes from './routes/aidRoomRoutes';
 
 // import liftLineChecksRoutes from './routes/liftLineChecksRoutes';
@@ -40,6 +41,7 @@ app.use('/api/mountains', trailRoutes);
 app.use('/api/mountains', lodgeRoutes);
 app.use('/api/mountains', hutRoutes);
 app.use('/api/mountains', aidRoomRoutes);
+app.use('/api', employeeRoutes);
 app.use('/api/mountains', equipmentRoutes);
 app.use('/api/mountains', incidentRoutes);
 

@@ -3,10 +3,10 @@ import EmployeeController from '../controllers/employeeController';
 
 const router = Router();
 
-router.post('/:mountainId/employees', EmployeeController.create);
-router.get('/:mountainId/employees', EmployeeController.findAllByMountainId);
-router.get('/:mountainId/employees/:id', EmployeeController.findById);
-router.put('/:mountainId/employees/:id', EmployeeController.update);
-router.delete('/:mountainId/emoployees/:id', EmployeeController.delete);
+router.post('/employees', EmployeeController.create);
+router.get('/employees', EmployeeController.findAllByMountainId);
+router.get('/employees/:id', EmployeeController.findById);
+router.put('/employees/:id', EmployeeController.update);
+router.delete('/emoployees/:id', EmployeeController.delete);
 
 export default router;
