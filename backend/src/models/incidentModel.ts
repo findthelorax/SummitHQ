@@ -28,10 +28,8 @@ class IncidentModel {
     static async updateByMountain(id: string, mountainId: string, updatedData: any) {
         return await prisma.incident.update({
             where: {
-                id_mountainId: {
-                    id,
-                    mountainId,
-                },
+                id,
+                mountainId,
             },
             data: updatedData,
         });
@@ -40,10 +38,8 @@ class IncidentModel {
     static async deleteByMountain(id: string, mountainId: string) {
         return await prisma.incident.delete({
             where: {
-                id_mountainId: {
-                    id,
-                    mountainId,
-                },
+                id,
+                mountainId,
             },
         });
     }
