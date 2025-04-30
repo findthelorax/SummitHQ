@@ -3,10 +3,10 @@ import IncidentController from '../controllers/incidentController';
 
 const router = Router();
 
-router.post('/incidents', IncidentController.createIncident);
-router.get('/incidents', IncidentController.getIncidents);
-router.get('/incidents/:id', IncidentController.getIncident);
-router.put('/incidents/:id', IncidentController.updateIncident);
-router.delete('/incidents/:id', IncidentController.deleteIncident);
+router.post('/:mountainId/incidents', IncidentController.createIncident);
+router.get('/:mountainId/incidents', IncidentController.getIncidents);
+router.get('/:mountainId/incidents/:id', IncidentController.getIncident);
+router.put('/:mountainId/incidents/:id', IncidentController.updateIncident);
+router.delete('/:mountainId/incidents/:id', IncidentController.deleteIncident);
 
 export default router;

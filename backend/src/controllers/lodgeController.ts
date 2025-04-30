@@ -15,8 +15,8 @@ class LodgeController {
 
     async getLodge(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const result = await LodgeModel.findById(id);
+            const { mountainId, id } = req.params;
+            const result = await LodgeModel.findByIdAndMountain(id, mountainId);
             if (!result) {
                 res.status(404).json({ message: 'Lodge not found' });
                 return;
@@ -39,9 +39,13 @@ class LodgeController {
 
     async updateLodge(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, id } = req.params;
             const data = req.body;
-            const result = await LodgeModel.update(id, data);
+            const result = await LodgeModel.updateByMountain(id, mountainId, data);
+            if (!result) {
+                res.status(404).json({ message: 'Lodge not found' });
+                return;
+            }
             res.status(200).json(result);
         } catch (error) {
             next(error);
@@ -50,8 +54,12 @@ class LodgeController {
 
     async deleteLodge(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            await LodgeModel.delete(id);
+            const { mountainId, id } = req.params;
+            const deleted = await LodgeModel.deleteByMountain(id, mountainId);
+            if (!deleted) {
+                res.status(404).json({ message: 'Lodge not found' });
+                return;
+            }
             res.status(204).send();
         } catch (error) {
             next(error);

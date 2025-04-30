@@ -1,6 +1,6 @@
 import { prisma } from '../config/database';
 
-class Lift {
+class LiftModel {
     static async create(mountainId: string, data: any) {
         return await prisma.lift.create({
             data: {
@@ -10,9 +10,12 @@ class Lift {
         });
     }
 
-    static async findById(id: string) {
-        return await prisma.lift.findUnique({
-            where: { id },
+    static async findByIdAndMountain(id: string, mountainId: string) {
+        return await prisma.lift.findFirst({
+            where: {
+                id,
+                mountainId,
+            },
         });
     }
 
@@ -22,18 +25,24 @@ class Lift {
         });
     }
 
-    static async update(id: string, updatedData: any) {
-        return await prisma.lift.update({
-            where: { id },
+    static async updateByMountain(id: string, mountainId: string, updatedData: any) {
+        return await prisma.lift.updateMany({
+            where: {
+                id,
+                mountainId,
+            },
             data: updatedData,
         });
     }
 
-    static async delete(id: string) {
-        return await prisma.lift.delete({
-            where: { id },
+    static async deleteByMountain(id: string, mountainId: string) {
+        return await prisma.lift.deleteMany({
+            where: {
+                id,
+                mountainId,
+            },
         });
     }
 }
 
-export default Lift;
+export default LiftModel;

@@ -1,6 +1,6 @@
 import { prisma } from '../config/database';
 
-class Incident {
+class IncidentModel {
     static async create(mountainId: string, data: any) {
         return await prisma.incident.create({
             data: {
@@ -10,9 +10,12 @@ class Incident {
         });
     }
 
-    static async findById(id: string) {
-        return await prisma.incident.findUnique({
-            where: { id },
+    static async findByIdAndMountain(id: string, mountainId: string) {
+        return await prisma.incident.findFirst({
+            where: {
+                id,
+                mountainId,
+            },
         });
     }
 
@@ -22,18 +25,28 @@ class Incident {
         });
     }
 
-    static async update(id: string, updatedData: any) {
+    static async updateByMountain(id: string, mountainId: string, updatedData: any) {
         return await prisma.incident.update({
-            where: { id },
+            where: {
+                id_mountainId: {
+                    id,
+                    mountainId,
+                },
+            },
             data: updatedData,
         });
     }
 
-    static async delete(id: string) {
+    static async deleteByMountain(id: string, mountainId: string) {
         return await prisma.incident.delete({
-            where: { id },
+            where: {
+                id_mountainId: {
+                    id,
+                    mountainId,
+                },
+            },
         });
     }
 }
 
-export default Incident;
+export default IncidentModel;

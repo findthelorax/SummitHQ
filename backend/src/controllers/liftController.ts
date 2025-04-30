@@ -15,8 +15,8 @@ class LiftController {
 
     async getLift(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const lift = await LiftModel.findById(id);
+            const { mountainId, id } = req.params;
+            const lift = await LiftModel.findByIdAndMountain(id, mountainId);
             if (!lift) {
                 res.status(404).json({ message: 'Lift not found' });
                 return;
@@ -39,9 +39,9 @@ class LiftController {
 
     async updateLift(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, id } = req.params;
             const data = req.body;
-            const updatedLift = await LiftModel.update(id, data);
+            const updatedLift = await LiftModel.updateByMountain(id, mountainId, data);
             if (!updatedLift) {
                 res.status(404).json({ message: 'Lift not found' });
                 return;
@@ -54,8 +54,8 @@ class LiftController {
 
     async deleteLift(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const deletedLift = await LiftModel.delete(id);
+            const { mountainId, id } = req.params;
+            const deletedLift = await LiftModel.deleteByMountain(id, mountainId);
             if (!deletedLift) {
                 res.status(404).json({ message: 'Lift not found' });
                 return;

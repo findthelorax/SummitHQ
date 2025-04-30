@@ -15,8 +15,8 @@ class IncidentController {
 
     async getIncident(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const result = await IncidentModel.findById(id);
+            const { mountainId, id } = req.params;
+            const result = await IncidentModel.findByIdAndMountain(id, mountainId);
             if (!result) {
                 res.status(404).json({ message: 'Incident not found' });
                 return;
@@ -39,9 +39,13 @@ class IncidentController {
 
     async updateIncident(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, id } = req.params;
             const updatedData = req.body;
-            const result = await IncidentModel.update(id, updatedData);
+            const result = await IncidentModel.updateByMountain(id, mountainId, updatedData);
+            if (!result) {
+                res.status(404).json({ message: 'Incident not found' });
+                return;
+            }
             res.status(200).json(result);
         } catch (error) {
             next(error);
@@ -50,8 +54,12 @@ class IncidentController {
 
     async deleteIncident(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            await IncidentModel.delete(id);
+            const { mountainId, id } = req.params;
+            const deleted = await IncidentModel.deleteByMountain(id, mountainId);
+            if (!deleted) {
+                res.status(404).json({ message: 'Incident not found' });
+                return;
+            }
             res.status(204).send();
         } catch (error) {
             next(error);

@@ -15,8 +15,8 @@ class EmployeeController {
 
     async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const employee = await Employee.findById(id);
+            const { mountainId, id } = req.params;
+            const employee = await Employee.findByIdAndMountain(id, mountainId);
             if (!employee) {
                 res.status(404).json({ message: 'Employee not found' });
                 return;
@@ -39,9 +39,13 @@ class EmployeeController {
 
     async update(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, id } = req.params;
             const updatedData = req.body;
-            const employee = await Employee.update(id, updatedData);
+            const employee = await Employee.updateByMountain(id, mountainId, updatedData);
+            if (!employee) {
+                res.status(404).json({ message: 'Employee not found' });
+                return;
+            }
             res.status(200).json(employee);
         } catch (error) {
             next(error);
@@ -50,8 +54,12 @@ class EmployeeController {
 
     async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            await Employee.delete(id);
+            const { mountainId, id } = req.params;
+            const deleted = await Employee.deleteByMountain(id, mountainId);
+            if (!deleted) {
+                res.status(404).json({ message: 'Employee not found' });
+                return;
+            }
             res.status(204).send();
         } catch (error) {
             next(error);

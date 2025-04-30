@@ -15,8 +15,8 @@ class AidRoomController {
 
     async getAidRoom(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const result = await AidRoomModel.findById(id);
+            const { mountainId, id } = req.params;
+            const result = await AidRoomModel.findByIdAndMountain(id, mountainId);
             if (!result) {
                 res.status(404).json({ message: 'AidRoom not found' });
                 return;
@@ -39,9 +39,13 @@ class AidRoomController {
 
     async updateAidRoom(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, id } = req.params;
             const updatedData = req.body;
-            const result = await AidRoomModel.update(id, updatedData);
+            const result = await AidRoomModel.updateByMountain(id, mountainId, updatedData);
+            if (!result) {
+                res.status(404).json({ message: 'AidRoom not found' });
+                return;
+            }
             res.status(200).json(result);
         } catch (error) {
             next(error);
@@ -50,8 +54,12 @@ class AidRoomController {
 
     async deleteAidRoom(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            await AidRoomModel.delete(id);
+            const { mountainId, id } = req.params;
+            const deleted = await AidRoomModel.deleteByMountain(id, mountainId);
+            if (!deleted) {
+                res.status(404).json({ message: 'AidRoom not found' });
+                return;
+            }
             res.status(204).send();
         } catch (error) {
             next(error);

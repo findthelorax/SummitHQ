@@ -1,6 +1,6 @@
 import { prisma } from '../config/database';
 
-class Hut {
+class HutModel {
     static async create(mountainId: string, data: any) {
         return await prisma.hut.create({
             data: {
@@ -10,9 +10,12 @@ class Hut {
         });
     }
 
-    static async findById(id: string) {
-        return await prisma.hut.findUnique({
-            where: { id },
+    static async findByIdAndMountain(id: string, mountainId: string) {
+        return await prisma.hut.findFirst({
+            where: {
+                id,
+                mountainId,
+            },
         });
     }
 
@@ -22,18 +25,24 @@ class Hut {
         });
     }
 
-    static async update(id: string, updatedData: any) {
+    static async updateByMountain(id: string, mountainId: string, updatedData: any) {
         return await prisma.hut.update({
-            where: { id },
+            where: {
+                id,
+                mountainId,
+            },
             data: updatedData,
         });
     }
 
-    static async delete(id: string) {
+    static async deleteByMountain(id: string, mountainId: string) {
         return await prisma.hut.delete({
-            where: { id },
+            where: {
+                id,
+                mountainId,
+            },
         });
     }
 }
 
-export default Hut;
+export default HutModel;

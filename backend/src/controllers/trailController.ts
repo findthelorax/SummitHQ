@@ -15,8 +15,8 @@ class TrailController {
 
     async getTrail(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const trail = await TrailModel.findById(id);
+            const { mountainId, id } = req.params;
+            const trail = await TrailModel.findByIdAndMountain(id, mountainId);
             if (!trail) {
                 res.status(404).json({ message: 'Trail not found' });
                 return;
@@ -39,9 +39,9 @@ class TrailController {
 
     async updateTrail(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, id } = req.params;
             const trailData = req.body;
-            const updatedTrail = await TrailModel.update(id, trailData);
+            const updatedTrail = await TrailModel.updateByMountain(id, mountainId, trailData);
             if (!updatedTrail) {
                 res.status(404).json({ message: 'Trail not found' });
                 return;
@@ -54,8 +54,8 @@ class TrailController {
 
     async deleteTrail(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const deletedTrail = await TrailModel.delete(id);
+            const { mountainId, id } = req.params;
+            const deletedTrail = await TrailModel.deleteByMountain(id, mountainId);
             if (!deletedTrail) {
                 res.status(404).json({ message: 'Trail not found' });
                 return;

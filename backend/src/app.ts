@@ -35,23 +35,23 @@ connectDatabase();
 // Routes
 app.use('/api/mountains', mountainRoutes);
 
-app.use('/api/mountains/:mountainId', liftRoutes);
-app.use('/api/mountains/:mountainId', trailRoutes);
-app.use('/api/mountains/:mountainId', lodgeRoutes);
-app.use('/api/mountains/:mountainId', hutRoutes);
-app.use('/api/mountains/:mountainId', aidRoomRoutes);
-app.use('/api/mountains/:mountainId', equipmentRoutes);
-app.use('/api/mountains/:mountainId', incidentRoutes);
+app.use('/api/mountains', liftRoutes);
+app.use('/api/mountains', trailRoutes);
+app.use('/api/mountains', lodgeRoutes);
+app.use('/api/mountains', hutRoutes);
+app.use('/api/mountains', aidRoomRoutes);
+app.use('/api/mountains', equipmentRoutes);
+app.use('/api/mountains', incidentRoutes);
 
 // Log Routes
 
-// app.use('/api/mountains/:mountainId', liftLineChecksRoutes);
-// app.use('/api/mountains/:mountainId', trailChecksRoutes);
-// app.use('/api/mountains/:mountainId', hutCheckLogsRoutes);
-// app.use('/api/mountains/:mountainId', aidRoomCheckLogsRoutes);
-// app.use('/api/mountains/:mountainId', equipmentCheckLogsRoutes);
-// app.use('/api/mountains/:mountainId', incidentLogRoutes);
-// app.use('/api/mountains/:mountainId', incidentEquipmentLogRoutes);
+// app.use('/api/mountains', liftLineChecksRoutes);
+// app.use('/api/mountains', trailChecksRoutes);
+// app.use('/api/mountains', hutCheckLogsRoutes);
+// app.use('/api/mountains', aidRoomCheckLogsRoutes);
+// app.use('/api/mountains', equipmentCheckLogsRoutes);
+// app.use('/api/mountains', incidentLogRoutes);
+// app.use('/api/mountains', incidentEquipmentLogRoutes);
 
 
 // Error handling middleware

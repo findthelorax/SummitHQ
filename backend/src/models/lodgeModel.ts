@@ -10,8 +10,13 @@ class LodgeModel {
         });
     }
 
-    static async findById(id: string) {
-        return await prisma.lodge.findUnique({ where: { id } });
+    static async findByIdAndMountain(id: string, mountainId: string) {
+        return await prisma.lodge.findFirst({
+            where: {
+                id,
+                mountainId,
+            },
+        });
     }
 
     static async findAllByMountain(mountainId: string) {
@@ -20,15 +25,23 @@ class LodgeModel {
         });
     }
 
-    static async update(id: string, updatedData: any) {
+    static async updateByMountain(id: string, mountainId: string, updatedData: any) {
         return await prisma.lodge.update({
-            where: { id },
+            where: {
+                id,
+                mountainId,
+            },
             data: updatedData,
         });
     }
 
-    static async delete(id: string) {
-        return await prisma.lodge.delete({ where: { id } });
+    static async deleteByMountain(id: string, mountainId: string) {
+        return await prisma.lodge.delete({
+            where: {
+                id,
+                mountainId,
+            },
+        });
     }
 }
 

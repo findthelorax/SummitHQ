@@ -10,23 +10,38 @@ class Employee {
         });
     }
 
-    static async findById(id: string) {
-        return await prisma.employee.findUnique({ where: { id } });
+    static async findByIdAndMountain(id: string, mountainId: string) {
+        return await prisma.employee.findFirst({
+            where: {
+                id,
+                mountainId,
+            },
+        });
     }
 
     static async findAllByMountain(mountainId: string) {
-        return await prisma.employee.findMany({ where: { mountainId } });
+        return await prisma.employee.findMany({
+            where: { mountainId },
+        });
     }
 
-    static async update(id: string, updatedData: any) {
-        return await prisma.employee.update({
-            where: { id },
+    static async updateByMountain(id: string, mountainId: string, updatedData: any) {
+        return await prisma.employee.updateMany({
+            where: {
+                id,
+                mountainId,
+            },
             data: updatedData,
         });
     }
 
-    static async delete(id: string) {
-        return await prisma.employee.delete({ where: { id } });
+    static async deleteByMountain(id: string, mountainId: string) {
+        return await prisma.employee.deleteMany({
+            where: {
+                id,
+                mountainId,
+            },
+        });
     }
 }
 

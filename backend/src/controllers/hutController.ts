@@ -15,8 +15,8 @@ class HutController {
 
     async getHut(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const hut = await HutModel.findById(id);
+            const { mountainId, id } = req.params;
+            const hut = await HutModel.findByIdAndMountain(id, mountainId);
             if (!hut) {
                 res.status(404).json({ message: 'Hut not found' });
                 return;
@@ -39,9 +39,9 @@ class HutController {
 
     async updateHut(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, id } = req.params;
             const data = req.body;
-            const updatedHut = await HutModel.update(id, data);
+            const updatedHut = await HutModel.updateByMountain(id, mountainId, data);
             if (!updatedHut) {
                 res.status(404).json({ message: 'Hut not found' });
                 return;
@@ -54,8 +54,8 @@ class HutController {
 
     async deleteHut(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const deletedHut = await HutModel.delete(id);
+            const { mountainId, id } = req.params;
+            const deletedHut = await HutModel.deleteByMountain(id, mountainId);
             if (!deletedHut) {
                 res.status(404).json({ message: 'Hut not found' });
                 return;
