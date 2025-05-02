@@ -1,4 +1,4 @@
-import { PrismaClient, Status, Department, TrailCondition, TrailDifficulty, EquipmentStatus, EquipmentService, LocationType } from '../generated/prisma';
+import { PrismaClient, Status, Department, TrailCondition, TrailDifficulty, LiftType, IncidentStatus, EquipmentStatus, LocationType } from '../generated/prisma';
 
 console.log('Initializing Prisma Client...');
 const prisma = new PrismaClient();
@@ -20,7 +20,8 @@ export {
     Department,
     TrailCondition,
     TrailDifficulty,
+    LiftType,
+    IncidentStatus,
     EquipmentStatus,
-    EquipmentService,
     LocationType
 };

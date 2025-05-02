@@ -1,13 +1,9 @@
 import { prisma } from '../config/database';
+import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class LodgeModel {
     static async create(mountainId: string, data: any) {
-        return await prisma.lodge.create({
-            data: {
-                ...data,
-                mountainId,
-            },
-        });
+        return await createEntityWithLocation(prisma, 'lodge', mountainId, data);
     }
 
     static async findByIdAndMountain(id: string, mountainId: string) {

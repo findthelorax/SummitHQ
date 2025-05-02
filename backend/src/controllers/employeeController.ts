@@ -4,10 +4,19 @@ import Employee from '../models/employeeModel';
 class EmployeeController {
     async create(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainId } = req.params;
             const data = req.body;
-            const employee = await Employee.create(mountainId, data);
+            const employee = await Employee.create(data);
             res.status(201).json(employee);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async assignToMountain(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { employeeId, mountainId } = req.body;
+            const assignment = await Employee.assignToMountain(employeeId, mountainId);
+            res.status(200).json(assignment);
         } catch (error) {
             next(error);
         }

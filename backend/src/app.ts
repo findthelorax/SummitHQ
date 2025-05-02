@@ -10,6 +10,10 @@ import incidentRoutes from './routes/incidentRoutes';
 import equipmentRoutes from './routes/equipmentRoutes';
 import employeeRoutes from './routes/employeeRoutes';
 import aidRoomRoutes from './routes/aidRoomRoutes';
+import dispatchAssignmentRoutes from './routes/dispatchAssignmentRoutes';
+import employeeMountainAssignmentRoutes from './routes/employeeMountainAssignmentRoutes';
+import hoursRoutes from './routes/hoursRoutes';
+import locationRoutes from './routes/locationRoutes';
 
 // import liftLineChecksRoutes from './routes/liftLineChecksRoutes';
 // import trailChecksRoutes from './routes/trailChecksRoutes';
@@ -35,6 +39,8 @@ connectDatabase();
 
 // Routes
 app.use('/api/mountains', mountainRoutes);
+// app.use('/api/mountains', hoursRoutes);
+app.use('/api/mountains', locationRoutes);
 
 app.use('/api/mountains', liftRoutes);
 app.use('/api/mountains', trailRoutes);
@@ -42,6 +48,8 @@ app.use('/api/mountains', lodgeRoutes);
 app.use('/api/mountains', hutRoutes);
 app.use('/api/mountains', aidRoomRoutes);
 app.use('/api', employeeRoutes);
+app.use('/api/employees', employeeMountainAssignmentRoutes);
+app.use('/api/employees', dispatchAssignmentRoutes);
 app.use('/api/mountains', equipmentRoutes);
 app.use('/api/mountains', incidentRoutes);
 

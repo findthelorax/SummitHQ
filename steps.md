@@ -248,3 +248,74 @@ Add unit and integration tests using a framework like `jest` or `mocha`. Organiz
 By implementing these changes, your app will be more modular, maintainable, and scalable.
 
 Similar code found with 1 license type -->
+
+
+5. Batch Loading for Polymorphic Relations
+When resolving Equipment or IncidentLog location targets:
+
+Consider using your own resolver layer or Prisma middleware to batch load types based on locationType.
+
+Example:
+
+ts
+Copy
+Edit
+const trails = prisma.trail.findMany({ where: { id: { in: ids } } });
+const huts = prisma.hut.findMany({ where: { id: { in: ids } } });
+This avoids N+1 queries when dereferencing polymorphic relationships.
+
+
+
+Show me the best way to ensure they are always in sync with the Location. I am using them to quickly find equipment and incidents per the specific lift, trail etc.
+
+
+ChatGPT said:
+To ensure that derived fields (like liftId, trailId, etc.) are always in sync with the associated Location in your Prisma schema, the best practice is to treat them as redundant, query-optimized denormalizations that are populated automatically at the application layer or through database triggers.
+
+Below are three viable approaches, with a recommendation for your use case (large-scale ski resort management app, Prisma + PostgreSQL):
+
+✅ Recommended Approach: Prisma Middleware or Hooks (Application Layer Enforcement)
+Use Prisma middleware or business logic in your app (e.g., service layer) to automatically populate the derived fields like liftId, trailId, etc., whenever an IncidentLog or Equipment is created or updated.
+
+Example:
+When creating an IncidentLog, look up the Location by locationId and locationType, and populate the appropriate field:
+
+ts
+Copy
+Edit
+const location = await prisma.location.findUnique({
+  where: { id: locationId },
+  include: {
+    lift: true,
+    trail: true,
+    hut: true,
+    lodge: true,
+    aidRoom: true,
+  },
+});
+
+await prisma.incidentLog.create({
+  data: {
+    locationId,
+    locationType,
+    // denormalized fields based on what Location points to:
+    liftId: location.lift?.id ?? null,
+    trailId: location.trail?.id ?? null,
+    hutId: location.hut?.id ?? null,
+    lodgeId: location.lodge?.id ?? null,
+    aidRoomId: location.aidRoom?.id ?? null,
+    ...
+  }
+});
+✅ Benefits:
+Prisma-native
+
+Easy to maintain in TypeScript
+
+Clear logic at the data access layer
+
+Prevents ORM-level inconsistencies
+
+
+
+

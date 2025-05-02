@@ -2,11 +2,21 @@ import { prisma } from '../config/database';
 
 class MountainModel {
     static async create(data: any) {
-        return await prisma.mountain.create({
+        const mountain = await prisma.mountain.create({
             data: {
                 ...data,
             },
         });
+
+        await prisma.location.create({
+            data: {
+                mountainId: mountain.id,
+                type: 'Mountain',
+                name: mountain.name,
+            },
+        });
+
+        return mountain;
     }
 
     static async findAll() {
@@ -16,6 +26,15 @@ class MountainModel {
     static async findById(id: string) {
         return await prisma.mountain.findUnique({
             where: { id },
+            include: {
+                locations: {
+                    include: {
+                        hours: true,
+                        equipment: true,
+                        incidents: true,
+                    },
+                },
+            },
         });
     }
 
@@ -33,7 +52,7 @@ class MountainModel {
     }
 
     static async deleteAll() {
-        return await prisma.mountain.deleteMany(); // Deletes all records in the Mountain table
+        return await prisma.mountain.deleteMany();
     }
 }
 

@@ -1,13 +1,9 @@
 import { prisma } from '../config/database';
+import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class LiftModel {
     static async create(mountainId: string, data: any) {
-        return await prisma.lift.create({
-            data: {
-                ...data,
-                mountainId,
-            },
-        });
+        return await createEntityWithLocation(prisma, 'lift', mountainId, data);
     }
 
     static async findByIdAndMountain(id: string, mountainId: string) {
@@ -26,7 +22,7 @@ class LiftModel {
     }
 
     static async updateByMountain(id: string, mountainId: string, updatedData: any) {
-        return await prisma.lift.updateMany({
+        return await prisma.lift.update({
             where: {
                 id,
                 mountainId,
@@ -36,7 +32,7 @@ class LiftModel {
     }
 
     static async deleteByMountain(id: string, mountainId: string) {
-        return await prisma.lift.deleteMany({
+        return await prisma.lift.delete({
             where: {
                 id,
                 mountainId,

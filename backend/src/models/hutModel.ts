@@ -1,13 +1,9 @@
 import { prisma } from '../config/database';
+import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class HutModel {
     static async create(mountainId: string, data: any) {
-        return await prisma.hut.create({
-            data: {
-                ...data,
-                mountainId,
-            },
-        });
+        return await createEntityWithLocation(prisma, 'hut', mountainId, data);
     }
 
     static async findByIdAndMountain(id: string, mountainId: string) {

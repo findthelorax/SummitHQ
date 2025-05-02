@@ -1,22 +1,24 @@
 import { prisma } from '../config/database';
 
 class Employee {
-    static async create(mountainId: string, employeeData: any) {
-        return await prisma.$transaction(async (tx) => {
-            // 1. Create the employee
-            const newEmployee = await tx.employee.create({
-                data: employeeData,
-            });
+    static async create(employeeData: any) {
+        // Create the employee without assigning them to a mountain
+        return await prisma.employee.create({
+            data: employeeData,
+        });
+    }
 
-            // 2. Create the assignment
-            await tx.employeeMountainAssignment.create({
-                data: {
-                    employeeId: newEmployee.id,
-                    mountainId,
-                },
-            });
+    static async assignToMountain(employeeId: string, mountainId: string) {
+        if (!employeeId || !mountainId) {
+            throw new Error("Both employeeId and mountainId are required to create an assignment.");
+        }
 
-            return newEmployee;
+        // Create the assignment
+        return await prisma.employeeMountainAssignment.create({
+            data: {
+                employeeId,
+                mountainId,
+            },
         });
     }
 

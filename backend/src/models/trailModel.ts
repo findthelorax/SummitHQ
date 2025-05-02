@@ -1,16 +1,9 @@
 import { prisma } from '../config/database';
+import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class Trail {
     static async create(mountainId: string, data: any) {
-        if (!mountainId) {
-            throw new Error("mountainId is required");
-        }
-        return await prisma.trail.create({
-            data: {
-                ...data,
-                mountainId,
-            },
-        });
+        return await createEntityWithLocation(prisma, 'trail', mountainId, data);
     }
 
     static async findByIdAndMountain(id: string, mountainId: string) {

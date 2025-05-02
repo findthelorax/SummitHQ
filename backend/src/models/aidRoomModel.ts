@@ -1,13 +1,9 @@
 import { prisma } from '../config/database';
+import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class AidRoom {
     static async create(mountainId: string, data: any) {
-        return await prisma.aidRoom.create({
-            data: {
-                ...data,
-                mountainId,
-            },
-        });
+        return await createEntityWithLocation(prisma, 'aidRoom', mountainId, data);
     }
 
     static async findByIdAndMountain(id: string, mountainId: string) {
