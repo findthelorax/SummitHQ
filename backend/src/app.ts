@@ -1,19 +1,22 @@
 import express from 'express';
 import { connectDatabase } from './config/database';
 
-import mountainRoutes from './routes/mountainRoutes';
-import liftRoutes from './routes/liftRoutes';
-import trailRoutes from './routes/trailRoutes';
-import hutRoutes from './routes/hutRoutes';
-import lodgeRoutes from './routes/lodgeRoutes';
-import incidentRoutes from './routes/incidentRoutes';
-import equipmentRoutes from './routes/equipmentRoutes';
 import employeeRoutes from './routes/employeeRoutes';
-import aidRoomRoutes from './routes/aidRoomRoutes';
 import dispatchAssignmentRoutes from './routes/dispatchAssignmentRoutes';
 import employeeMountainAssignmentRoutes from './routes/employeeMountainAssignmentRoutes';
-import hoursRoutes from './routes/hoursRoutes';
+
+import mountainRoutes from './routes/mountainRoutes';
 import locationRoutes from './routes/locationRoutes';
+import areaRoutes from './routes/areaRoutes';
+
+import aidRoomRoutes from './routes/aidRoomRoutes';
+import hutRoutes from './routes/hutRoutes';
+import liftRoutes from './routes/liftRoutes';
+import lodgeRoutes from './routes/lodgeRoutes';
+import trailRoutes from './routes/trailRoutes';
+
+import incidentRoutes from './routes/incidentRoutes';
+import equipmentRoutes from './routes/equipmentRoutes';
 
 // import liftLineChecksRoutes from './routes/liftLineChecksRoutes';
 // import trailChecksRoutes from './routes/trailChecksRoutes';
@@ -31,25 +34,24 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
 
-// Database connection
 connectDatabase();
 
 // Routes
-app.use('/api/mountains', mountainRoutes);
-// app.use('/api/mountains', hoursRoutes);
-app.use('/api/mountains', locationRoutes);
-
-app.use('/api/mountains', liftRoutes);
-app.use('/api/mountains', trailRoutes);
-app.use('/api/mountains', lodgeRoutes);
-app.use('/api/mountains', hutRoutes);
-app.use('/api/mountains', aidRoomRoutes);
-app.use('/api', employeeRoutes);
+app.use('/api/employees', employeeRoutes);
 app.use('/api/employees', employeeMountainAssignmentRoutes);
 app.use('/api/employees', dispatchAssignmentRoutes);
+
+app.use('/api/mountains', mountainRoutes);
+app.use('/api/mountains', locationRoutes);
+app.use('/api/mountains', areaRoutes);
+
+app.use('/api/mountains', aidRoomRoutes);
+app.use('/api/mountains', hutRoutes);
+app.use('/api/mountains', liftRoutes);
+app.use('/api/mountains', lodgeRoutes);
+app.use('/api/mountains', trailRoutes);
 app.use('/api/mountains', equipmentRoutes);
 app.use('/api/mountains', incidentRoutes);
 
@@ -63,8 +65,6 @@ app.use('/api/mountains', incidentRoutes);
 // app.use('/api/mountains', incidentLogRoutes);
 // app.use('/api/mountains', incidentEquipmentLogRoutes);
 
-
-// Error handling middleware
 app.use(errorHandler);
 
 app.listen(PORT, () => {

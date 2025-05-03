@@ -120,16 +120,21 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.AreaScalarFieldEnum = {
+  id: 'id',
+  mountainId: 'mountainId',
+  name: 'name',
+  type: 'type',
+  description: 'description'
+};
+
 exports.Prisma.LocationScalarFieldEnum = {
   id: 'id',
   mountainId: 'mountainId',
-  type: 'type',
   name: 'name',
-  aidRoomId: 'aidRoomId',
-  hutId: 'hutId',
-  lodgeId: 'lodgeId',
-  liftId: 'liftId',
-  trailId: 'trailId'
+  areaId: 'areaId',
+  entityId: 'entityId',
+  entityType: 'entityType'
 };
 
 exports.Prisma.HoursScalarFieldEnum = {
@@ -189,6 +194,13 @@ exports.Prisma.DispatcherAssignmentScalarFieldEnum = {
   assignedAt: 'assignedAt'
 };
 
+exports.Prisma.RoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  permissions: 'permissions',
+  employeeId: 'employeeId'
+};
+
 exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
   employeeIdNumber: 'employeeIdNumber',
@@ -196,7 +208,7 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   phoneNumber: 'phoneNumber',
   name: 'name',
   title: 'title',
-  role: 'role',
+  roleId: 'roleId',
   department: 'department'
 };
 
@@ -267,6 +279,7 @@ exports.Prisma.EquipmentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   type: 'type',
+  number: 'number',
   description: 'description',
   status: 'status',
   picture: 'picture',
@@ -296,7 +309,7 @@ exports.Prisma.IncidentScalarFieldEnum = {
   locationId: 'locationId'
 };
 
-exports.Prisma.IncidentEquipmentLogScalarFieldEnum = {
+exports.Prisma.IncidentEquipmentUseageLogScalarFieldEnum = {
   id: 'id',
   equipmentId: 'equipmentId',
   mountainId: 'mountainId',
@@ -376,6 +389,13 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.AreaType = exports.$Enums.AreaType = {
+  BaseArea: 'BaseArea',
+  MountainArea: 'MountainArea',
+  Summit: 'Summit',
+  Other: 'Other'
+};
+
 exports.LocationType = exports.$Enums.LocationType = {
   AidRoom: 'AidRoom',
   Hut: 'Hut',
@@ -455,12 +475,14 @@ exports.IncidentStatus = exports.$Enums.IncidentStatus = {
 };
 
 exports.Prisma.ModelName = {
+  Area: 'Area',
   Location: 'Location',
   Hours: 'Hours',
   Mountain: 'Mountain',
   Weather: 'Weather',
   EmployeeMountainAssignment: 'EmployeeMountainAssignment',
   DispatcherAssignment: 'DispatcherAssignment',
+  Role: 'Role',
   Employee: 'Employee',
   Lift: 'Lift',
   Trail: 'Trail',
@@ -470,7 +492,7 @@ exports.Prisma.ModelName = {
   EquipmentServiceLog: 'EquipmentServiceLog',
   Equipment: 'Equipment',
   Incident: 'Incident',
-  IncidentEquipmentLog: 'IncidentEquipmentLog',
+  IncidentEquipmentUseageLog: 'IncidentEquipmentUseageLog',
   LiftCheck: 'LiftCheck',
   TrailCheck: 'TrailCheck',
   HutCheck: 'HutCheck',

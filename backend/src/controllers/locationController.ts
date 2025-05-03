@@ -175,51 +175,144 @@ class LocationController {
         }
     }
 
-    async getLocationEquipment(req: Request, res: Response, next: NextFunction): Promise<void> {
+    async getEquipmentByLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const equipment = await LocationModel.getEquipment(id);
+            const { mountainId, locationId } = req.params;
+
+            if (!locationId) {
+                res.status(400).json({ message: 'Location ID is required' });
+                return;
+            }
+
+            const equipment = await LocationModel.findEquipmentByLocation(mountainId, locationId);
+
             res.status(200).json(equipment);
         } catch (error) {
             next(error);
         }
     }
 
-    async addLocationEquipment(req: Request, res: Response, next: NextFunction): Promise<void> {
+    async moveEquipmentToLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const equipmentData = req.body;
-            const equipment = await LocationModel.addEquipment(id, equipmentData);
-            res.status(201).json(equipment);
-        } catch (error) {
-            next(error);
-        }
-    }
+            const { equipmentId } = req.params;
+            const { newLocationId } = req.body;
 
-    async updateLocationEquipment(req: Request, res: Response, next: NextFunction): Promise<void> {
-        try {
-            const { id, equipmentId } = req.params;
-            const equipmentData = req.body;
-            const updatedEquipment = await LocationModel.updateEquipment(id, equipmentId, equipmentData);
-            if (!updatedEquipment) {
-                res.status(404).json({ message: 'Equipment not found for this location' });
+            if (!newLocationId) {
+                res.status(400).json({ message: 'New Location ID is required' });
                 return;
             }
+
+            const updatedEquipment = await LocationModel.moveEquipment(equipmentId, newLocationId);
+
+            if (!updatedEquipment) {
+                res.status(404).json({ message: 'Equipment or location not found' });
+                return;
+            }
+
             res.status(200).json(updatedEquipment);
         } catch (error) {
             next(error);
         }
     }
 
-    async deleteLocationEquipment(req: Request, res: Response, next: NextFunction): Promise<void> {
+    async updateEquipmentInLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id, equipmentId } = req.params;
-            const deletedEquipment = await LocationModel.deleteEquipment(id, equipmentId);
-            if (!deletedEquipment) {
-                res.status(404).json({ message: 'Equipment not found for this location' });
+            const { mountainId, locationId, equipmentId } = req.params;
+            const updatedData = req.body;
+
+            const updatedEquipment = await LocationModel.updateEquipmentInLocation(
+                mountainId,
+                locationId,
+                equipmentId,
+                updatedData
+            );
+
+            if (!updatedEquipment) {
+                res.status(404).json({ message: 'Equipment not found in this location' });
                 return;
             }
+
+            res.status(200).json(updatedEquipment);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async deleteEquipmentFromLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { mountainId, locationId, equipmentId } = req.params;
+
+            const deleted = await LocationModel.deleteEquipmentFromLocation(
+                mountainId,
+                locationId,
+                equipmentId
+            );
+
+            if (!deleted) {
+                res.status(404).json({ message: 'Equipment not found in this location' });
+                return;
+            }
+
             res.status(204).send();
+        } catch (error) {
+            next(error);
+        }
+    }
+
+        async addAreaToLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { mountainId, locationId, areaId } = req.params;
+    
+            const result = await LocationModel.addAreaToLocation(mountainId, locationId, areaId);
+    
+            if (!result) {
+                res.status(404).json({ message: 'Area or Location not found' });
+                return;
+            }
+    
+            res.status(201).json(result);
+        } catch (error) {
+            next(error);
+        }
+    }
+    
+    async updateAreaInLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { mountainId, locationId, areaId } = req.params;
+            const updatedData = req.body;
+    
+            const result = await LocationModel.updateAreaInLocation(mountainId, locationId, areaId, updatedData);
+    
+            if (!result) {
+                res.status(404).json({ message: 'Area or Location not found' });
+                return;
+            }
+    
+            res.status(200).json(result);
+        } catch (error) {
+            next(error);
+        }
+    }
+    
+    async removeAreaFromLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { mountainId, locationId, areaId } = req.params;
+    
+            const result = await LocationModel.removeAreaFromLocation(mountainId, locationId, areaId);
+    
+            if (!result) {
+                res.status(404).json({ message: 'Area or Location not found' });
+                return;
+            }
+    
+            const updatedLocation = await LocationModel.findByIdAndMountain(locationId, mountainId);
+    
+            if (!updatedLocation) {
+                res.status(404).json({ message: 'Updated location not found' });
+                return;
+            }
+    
+            res.status(200).json(updatedLocation);
         } catch (error) {
             next(error);
         }

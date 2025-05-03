@@ -144,36 +144,95 @@ class LocationModel {
         });
     }
 
-    static async getEquipment(locationId: string) {
+    static async findEquipmentByLocation(mountainId: string, locationId: string) {
         return await prisma.equipment.findMany({
-            where: { locationId },
-        });
-    }
-
-    static async addEquipment(locationId: string, equipmentData: any) {
-        return await prisma.equipment.create({
-            data: {
-                ...equipmentData,
-                locationId,
-            },
-        });
-    }
-
-    static async updateEquipment(locationId: string, equipmentId: string, equipmentData: any) {
-        return await prisma.equipment.updateMany({
             where: {
-                id: equipmentId,
+                mountainId,
                 locationId,
             },
-            data: equipmentData,
         });
     }
 
-    static async deleteEquipment(locationId: string, equipmentId: string) {
+    static async moveEquipment(equipmentId: string, newLocationId: string) {
+        return await prisma.equipment.update({
+            where: { id: equipmentId },
+            data: {
+                locationId: newLocationId,
+            },
+        });
+    }
+
+    static async updateEquipmentInLocation(
+        mountainId: string,
+        locationId: string,
+        equipmentId: string,
+        updatedData: any
+    ) {
+        return await prisma.equipment.update({
+            where: { id: equipmentId },
+            data: {
+                ...updatedData,
+                mountainId,
+                locationId,
+            },
+        });
+    }
+
+    static async deleteEquipmentFromLocation(
+        mountainId: string,
+        locationId: string,
+        equipmentId: string
+    ) {
         return await prisma.equipment.deleteMany({
             where: {
                 id: equipmentId,
+                mountainId,
                 locationId,
+            },
+        });
+    }
+
+    static async addAreaToLocation(mountainId: string, locationId: string, areaId: string) {
+        return await prisma.location.update({
+            where: { id: locationId },
+            data: {
+                area: {
+                    connect: { id: areaId },
+                },
+                mountain: {
+                    connect: { id: mountainId },
+                },
+            },
+        });
+    }
+
+    static async updateAreaInLocation(
+        mountainId: string,
+        locationId: string,
+        areaId: string,
+        updatedData: any
+    ) {
+        return await prisma.location.update({
+            where: { id: locationId },
+            data: {
+                ...updatedData,
+                area: {
+                    connect: { id: areaId },
+                },
+                mountain: {
+                    connect: { id: mountainId },
+                },
+            },
+        });
+    }
+
+    static async removeAreaFromLocation(mountainId: string, locationId: string, areaId: string) {
+        return await prisma.location.update({
+            where: { id: locationId },
+            data: {
+                area: {
+                    disconnect: { id: areaId },
+                },
             },
         });
     }

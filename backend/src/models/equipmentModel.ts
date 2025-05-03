@@ -5,30 +5,40 @@ class EquipmentModel {
         if (typeof data !== 'object' || data === null) {
             throw new Error('Invalid data format: expected an object');
         }
-    
+
         const { locationId, ...rest } = data;
-    
+
         if (!rest.name || !rest.type || !rest.status) {
             throw new Error('Missing required fields');
         }
-    
+
         return await prisma.equipment.create({
             data: {
                 ...rest,
                 mountain: {
                     connect: { id: mountainId },
                 },
+                location: locationId ? { connect: { id: locationId } } : undefined,
             },
         });
     }
 
-    static async associateLocation(equipmentId: string, locationId: string) {
+    static async findAllByLocation(mountainId: string, locationId: string) {
+        console.log("🚀 ~ EquipmentModel ~ findAllByLocation ~ locationId:", locationId)
+        console.log("🚀 ~ EquipmentModel ~ findAllByLocation ~ mountainId:", mountainId)
+        return await prisma.equipment.findMany({
+            where: {
+                mountainId,
+                locationId: locationId,
+            },
+        });
+    }
+    
+    static async moveToLocation(equipmentId: string, newLocationId: string) {
         return await prisma.equipment.update({
             where: { id: equipmentId },
             data: {
-                location: {
-                    connect: { id: locationId },
-                },
+                locationId: newLocationId,
             },
         });
     }
@@ -49,10 +59,9 @@ class EquipmentModel {
     }
 
     static async updateByMountain(id: string, mountainId: string, updatedData: any) {
-        return await prisma.equipment.updateMany({
+        return await prisma.equipment.update({
             where: {
                 id,
-                mountainId,
             },
             data: updatedData,
         });
