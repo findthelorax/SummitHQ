@@ -54,6 +54,11 @@ export type DispatcherAssignment = $Result.DefaultSelection<Prisma.$DispatcherAs
  */
 export type Role = $Result.DefaultSelection<Prisma.$RolePayload>
 /**
+ * Model EmployeeRole
+ * 
+ */
+export type EmployeeRole = $Result.DefaultSelection<Prisma.$EmployeeRolePayload>
+/**
  * Model Employee
  * 
  */
@@ -244,6 +249,18 @@ export const AreaType: {
 
 export type AreaType = (typeof AreaType)[keyof typeof AreaType]
 
+
+export const EmployeeRoles: {
+  Supervisor: 'Supervisor',
+  AdvancedPatroller: 'AdvancedPatroller',
+  HillChief: 'HillChief',
+  Specialist: 'Specialist',
+  Trainer: 'Trainer',
+  Director: 'Director'
+};
+
+export type EmployeeRoles = (typeof EmployeeRoles)[keyof typeof EmployeeRoles]
+
 }
 
 export type LocationType = $Enums.LocationType
@@ -281,6 +298,10 @@ export const Department: typeof $Enums.Department
 export type AreaType = $Enums.AreaType
 
 export const AreaType: typeof $Enums.AreaType
+
+export type EmployeeRoles = $Enums.EmployeeRoles
+
+export const EmployeeRoles: typeof $Enums.EmployeeRoles
 
 /**
  * ##  Prisma Client ʲˢ
@@ -486,6 +507,16 @@ export class PrismaClient<
     * ```
     */
   get role(): Prisma.RoleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employeeRole`: Exposes CRUD operations for the **EmployeeRole** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmployeeRoles
+    * const employeeRoles = await prisma.employeeRole.findMany()
+    * ```
+    */
+  get employeeRole(): Prisma.EmployeeRoleDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.employee`: Exposes CRUD operations for the **Employee** model.
@@ -1084,6 +1115,7 @@ export namespace Prisma {
     EmployeeMountainAssignment: 'EmployeeMountainAssignment',
     DispatcherAssignment: 'DispatcherAssignment',
     Role: 'Role',
+    EmployeeRole: 'EmployeeRole',
     Employee: 'Employee',
     Lift: 'Lift',
     Trail: 'Trail',
@@ -1117,7 +1149,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "area" | "location" | "hours" | "mountain" | "weather" | "employeeMountainAssignment" | "dispatcherAssignment" | "role" | "employee" | "lift" | "trail" | "lodge" | "hut" | "aidRoom" | "equipmentServiceLog" | "equipment" | "incident" | "incidentEquipmentUseageLog" | "liftCheck" | "trailCheck" | "hutCheck" | "aidRoomCheck" | "equipmentCheck"
+      modelProps: "area" | "location" | "hours" | "mountain" | "weather" | "employeeMountainAssignment" | "dispatcherAssignment" | "role" | "employeeRole" | "employee" | "lift" | "trail" | "lodge" | "hut" | "aidRoom" | "equipmentServiceLog" | "equipment" | "incident" | "incidentEquipmentUseageLog" | "liftCheck" | "trailCheck" | "hutCheck" | "aidRoomCheck" | "equipmentCheck"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1710,6 +1742,80 @@ export namespace Prisma {
           count: {
             args: Prisma.RoleCountArgs<ExtArgs>
             result: $Utils.Optional<RoleCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmployeeRole: {
+        payload: Prisma.$EmployeeRolePayload<ExtArgs>
+        fields: Prisma.EmployeeRoleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmployeeRoleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmployeeRoleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>
+          }
+          findFirst: {
+            args: Prisma.EmployeeRoleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmployeeRoleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>
+          }
+          findMany: {
+            args: Prisma.EmployeeRoleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>[]
+          }
+          create: {
+            args: Prisma.EmployeeRoleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>
+          }
+          createMany: {
+            args: Prisma.EmployeeRoleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmployeeRoleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>[]
+          }
+          delete: {
+            args: Prisma.EmployeeRoleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>
+          }
+          update: {
+            args: Prisma.EmployeeRoleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>
+          }
+          deleteMany: {
+            args: Prisma.EmployeeRoleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmployeeRoleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmployeeRoleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>[]
+          }
+          upsert: {
+            args: Prisma.EmployeeRoleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeRolePayload>
+          }
+          aggregate: {
+            args: Prisma.EmployeeRoleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmployeeRole>
+          }
+          groupBy: {
+            args: Prisma.EmployeeRoleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeRoleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmployeeRoleCountArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeRoleCountAggregateOutputType> | number
           }
         }
       }
@@ -2915,6 +3021,7 @@ export namespace Prisma {
     employeeMountainAssignment?: EmployeeMountainAssignmentOmit
     dispatcherAssignment?: DispatcherAssignmentOmit
     role?: RoleOmit
+    employeeRole?: EmployeeRoleOmit
     employee?: EmployeeOmit
     lift?: LiftOmit
     trail?: TrailOmit
@@ -3297,11 +3404,13 @@ export namespace Prisma {
    */
 
   export type RoleCountOutputType = {
-    employee: number
+    employees: number
+    employeeRole: number
   }
 
   export type RoleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | RoleCountOutputTypeCountEmployeeArgs
+    employees?: boolean | RoleCountOutputTypeCountEmployeesArgs
+    employeeRole?: boolean | RoleCountOutputTypeCountEmployeeRoleArgs
   }
 
   // Custom InputTypes
@@ -3318,8 +3427,15 @@ export namespace Prisma {
   /**
    * RoleCountOutputType without action
    */
-  export type RoleCountOutputTypeCountEmployeeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type RoleCountOutputTypeCountEmployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmployeeWhereInput
+  }
+
+  /**
+   * RoleCountOutputType without action
+   */
+  export type RoleCountOutputTypeCountEmployeeRoleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeRoleWhereInput
   }
 
 
@@ -3328,6 +3444,7 @@ export namespace Prisma {
    */
 
   export type EmployeeCountOutputType = {
+    additionalRoles: number
     mountainAssignments: number
     dispatcherAssignments: number
     incidents: number
@@ -3340,6 +3457,7 @@ export namespace Prisma {
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    additionalRoles?: boolean | EmployeeCountOutputTypeCountAdditionalRolesArgs
     mountainAssignments?: boolean | EmployeeCountOutputTypeCountMountainAssignmentsArgs
     dispatcherAssignments?: boolean | EmployeeCountOutputTypeCountDispatcherAssignmentsArgs
     incidents?: boolean | EmployeeCountOutputTypeCountIncidentsArgs
@@ -3360,6 +3478,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the EmployeeCountOutputType
      */
     select?: EmployeeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountAdditionalRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeRoleWhereInput
   }
 
   /**
@@ -3646,7 +3771,7 @@ export namespace Prisma {
 
   export type AreaMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     type: $Enums.AreaType | null
     description: string | null
@@ -3654,7 +3779,7 @@ export namespace Prisma {
 
   export type AreaMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     type: $Enums.AreaType | null
     description: string | null
@@ -3662,7 +3787,7 @@ export namespace Prisma {
 
   export type AreaCountAggregateOutputType = {
     id: number
-    mountainId: number
+    mountainID: number
     name: number
     type: number
     description: number
@@ -3672,7 +3797,7 @@ export namespace Prisma {
 
   export type AreaMinAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     type?: true
     description?: true
@@ -3680,7 +3805,7 @@ export namespace Prisma {
 
   export type AreaMaxAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     type?: true
     description?: true
@@ -3688,7 +3813,7 @@ export namespace Prisma {
 
   export type AreaCountAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     type?: true
     description?: true
@@ -3769,7 +3894,7 @@ export namespace Prisma {
 
   export type AreaGroupByOutputType = {
     id: string
-    mountainId: string
+    mountainID: string
     name: string
     type: $Enums.AreaType
     description: string | null
@@ -3794,7 +3919,7 @@ export namespace Prisma {
 
   export type AreaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     type?: boolean
     description?: boolean
@@ -3805,7 +3930,7 @@ export namespace Prisma {
 
   export type AreaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     type?: boolean
     description?: boolean
@@ -3814,7 +3939,7 @@ export namespace Prisma {
 
   export type AreaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     type?: boolean
     description?: boolean
@@ -3823,13 +3948,13 @@ export namespace Prisma {
 
   export type AreaSelectScalar = {
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     type?: boolean
     description?: boolean
   }
 
-  export type AreaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "name" | "type" | "description", ExtArgs["result"]["area"]>
+  export type AreaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "name" | "type" | "description", ExtArgs["result"]["area"]>
   export type AreaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     locations?: boolean | Area$locationsArgs<ExtArgs>
@@ -3850,7 +3975,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
+      mountainID: string
       name: string
       type: $Enums.AreaType
       description: string | null
@@ -4280,7 +4405,7 @@ export namespace Prisma {
    */
   interface AreaFieldRefs {
     readonly id: FieldRef<"Area", 'String'>
-    readonly mountainId: FieldRef<"Area", 'String'>
+    readonly mountainID: FieldRef<"Area", 'String'>
     readonly name: FieldRef<"Area", 'String'>
     readonly type: FieldRef<"Area", 'AreaType'>
     readonly description: FieldRef<"Area", 'String'>
@@ -4734,28 +4859,28 @@ export namespace Prisma {
 
   export type LocationMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
-    areaId: string | null
-    entityId: string | null
+    areaID: string | null
+    entityID: string | null
     entityType: $Enums.LocationType | null
   }
 
   export type LocationMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
-    areaId: string | null
-    entityId: string | null
+    areaID: string | null
+    entityID: string | null
     entityType: $Enums.LocationType | null
   }
 
   export type LocationCountAggregateOutputType = {
     id: number
-    mountainId: number
+    mountainID: number
     name: number
-    areaId: number
-    entityId: number
+    areaID: number
+    entityID: number
     entityType: number
     _all: number
   }
@@ -4763,28 +4888,28 @@ export namespace Prisma {
 
   export type LocationMinAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
-    areaId?: true
-    entityId?: true
+    areaID?: true
+    entityID?: true
     entityType?: true
   }
 
   export type LocationMaxAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
-    areaId?: true
-    entityId?: true
+    areaID?: true
+    entityID?: true
     entityType?: true
   }
 
   export type LocationCountAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
-    areaId?: true
-    entityId?: true
+    areaID?: true
+    entityID?: true
     entityType?: true
     _all?: true
   }
@@ -4863,10 +4988,10 @@ export namespace Prisma {
 
   export type LocationGroupByOutputType = {
     id: string
-    mountainId: string
+    mountainID: string
     name: string
-    areaId: string | null
-    entityId: string | null
+    areaID: string | null
+    entityID: string | null
     entityType: $Enums.LocationType
     _count: LocationCountAggregateOutputType | null
     _min: LocationMinAggregateOutputType | null
@@ -4889,10 +5014,10 @@ export namespace Prisma {
 
   export type LocationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
-    areaId?: boolean
-    entityId?: boolean
+    areaID?: boolean
+    entityID?: boolean
     entityType?: boolean
     area?: boolean | Location$areaArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -4904,10 +5029,10 @@ export namespace Prisma {
 
   export type LocationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
-    areaId?: boolean
-    entityId?: boolean
+    areaID?: boolean
+    entityID?: boolean
     entityType?: boolean
     area?: boolean | Location$areaArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -4915,10 +5040,10 @@ export namespace Prisma {
 
   export type LocationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
-    areaId?: boolean
-    entityId?: boolean
+    areaID?: boolean
+    entityID?: boolean
     entityType?: boolean
     area?: boolean | Location$areaArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -4926,14 +5051,14 @@ export namespace Prisma {
 
   export type LocationSelectScalar = {
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
-    areaId?: boolean
-    entityId?: boolean
+    areaID?: boolean
+    entityID?: boolean
     entityType?: boolean
   }
 
-  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "name" | "areaId" | "entityId" | "entityType", ExtArgs["result"]["location"]>
+  export type LocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "name" | "areaID" | "entityID" | "entityType", ExtArgs["result"]["location"]>
   export type LocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     area?: boolean | Location$areaArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -4962,10 +5087,10 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
+      mountainID: string
       name: string
-      areaId: string | null
-      entityId: string | null
+      areaID: string | null
+      entityID: string | null
       entityType: $Enums.LocationType
     }, ExtArgs["result"]["location"]>
     composites: {}
@@ -5396,10 +5521,10 @@ export namespace Prisma {
    */
   interface LocationFieldRefs {
     readonly id: FieldRef<"Location", 'String'>
-    readonly mountainId: FieldRef<"Location", 'String'>
+    readonly mountainID: FieldRef<"Location", 'String'>
     readonly name: FieldRef<"Location", 'String'>
-    readonly areaId: FieldRef<"Location", 'String'>
-    readonly entityId: FieldRef<"Location", 'String'>
+    readonly areaID: FieldRef<"Location", 'String'>
+    readonly entityID: FieldRef<"Location", 'String'>
     readonly entityType: FieldRef<"Location", 'LocationType'>
   }
     
@@ -5928,7 +6053,7 @@ export namespace Prisma {
 
   export type HoursMinAggregateOutputType = {
     id: string | null
-    locationId: string | null
+    locationID: string | null
     dayOfWeek: number | null
     date: Date | null
     openTime: Date | null
@@ -5940,7 +6065,7 @@ export namespace Prisma {
 
   export type HoursMaxAggregateOutputType = {
     id: string | null
-    locationId: string | null
+    locationID: string | null
     dayOfWeek: number | null
     date: Date | null
     openTime: Date | null
@@ -5952,7 +6077,7 @@ export namespace Prisma {
 
   export type HoursCountAggregateOutputType = {
     id: number
-    locationId: number
+    locationID: number
     dayOfWeek: number
     date: number
     openTime: number
@@ -5974,7 +6099,7 @@ export namespace Prisma {
 
   export type HoursMinAggregateInputType = {
     id?: true
-    locationId?: true
+    locationID?: true
     dayOfWeek?: true
     date?: true
     openTime?: true
@@ -5986,7 +6111,7 @@ export namespace Prisma {
 
   export type HoursMaxAggregateInputType = {
     id?: true
-    locationId?: true
+    locationID?: true
     dayOfWeek?: true
     date?: true
     openTime?: true
@@ -5998,7 +6123,7 @@ export namespace Prisma {
 
   export type HoursCountAggregateInputType = {
     id?: true
-    locationId?: true
+    locationID?: true
     dayOfWeek?: true
     date?: true
     openTime?: true
@@ -6097,7 +6222,7 @@ export namespace Prisma {
 
   export type HoursGroupByOutputType = {
     id: string
-    locationId: string
+    locationID: string
     dayOfWeek: number | null
     date: Date | null
     openTime: Date | null
@@ -6128,7 +6253,7 @@ export namespace Prisma {
 
   export type HoursSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    locationId?: boolean
+    locationID?: boolean
     dayOfWeek?: boolean
     date?: boolean
     openTime?: boolean
@@ -6141,7 +6266,7 @@ export namespace Prisma {
 
   export type HoursSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    locationId?: boolean
+    locationID?: boolean
     dayOfWeek?: boolean
     date?: boolean
     openTime?: boolean
@@ -6154,7 +6279,7 @@ export namespace Prisma {
 
   export type HoursSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    locationId?: boolean
+    locationID?: boolean
     dayOfWeek?: boolean
     date?: boolean
     openTime?: boolean
@@ -6167,7 +6292,7 @@ export namespace Prisma {
 
   export type HoursSelectScalar = {
     id?: boolean
-    locationId?: boolean
+    locationID?: boolean
     dayOfWeek?: boolean
     date?: boolean
     openTime?: boolean
@@ -6177,7 +6302,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type HoursOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationId" | "dayOfWeek" | "date" | "openTime" | "closeTime" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["hours"]>
+  export type HoursOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "locationID" | "dayOfWeek" | "date" | "openTime" | "closeTime" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["hours"]>
   export type HoursInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }
@@ -6195,7 +6320,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      locationId: string
+      locationID: string
       dayOfWeek: number | null
       date: Date | null
       openTime: Date | null
@@ -6628,7 +6753,7 @@ export namespace Prisma {
    */
   interface HoursFieldRefs {
     readonly id: FieldRef<"Hours", 'String'>
-    readonly locationId: FieldRef<"Hours", 'String'>
+    readonly locationID: FieldRef<"Hours", 'String'>
     readonly dayOfWeek: FieldRef<"Hours", 'Int'>
     readonly date: FieldRef<"Hours", 'DateTime'>
     readonly openTime: FieldRef<"Hours", 'DateTime'>
@@ -8789,7 +8914,7 @@ export namespace Prisma {
 
   export type WeatherMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     date: Date | null
     temperature: number | null
     windSpeed: number | null
@@ -8805,7 +8930,7 @@ export namespace Prisma {
 
   export type WeatherMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     date: Date | null
     temperature: number | null
     windSpeed: number | null
@@ -8821,7 +8946,7 @@ export namespace Prisma {
 
   export type WeatherCountAggregateOutputType = {
     id: number
-    mountainId: number
+    mountainID: number
     date: number
     temperature: number
     windSpeed: number
@@ -8857,7 +8982,7 @@ export namespace Prisma {
 
   export type WeatherMinAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     date?: true
     temperature?: true
     windSpeed?: true
@@ -8873,7 +8998,7 @@ export namespace Prisma {
 
   export type WeatherMaxAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     date?: true
     temperature?: true
     windSpeed?: true
@@ -8889,7 +9014,7 @@ export namespace Prisma {
 
   export type WeatherCountAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     date?: true
     temperature?: true
     windSpeed?: true
@@ -8992,7 +9117,7 @@ export namespace Prisma {
 
   export type WeatherGroupByOutputType = {
     id: string
-    mountainId: string
+    mountainID: string
     date: Date
     temperature: number
     windSpeed: number
@@ -9027,7 +9152,7 @@ export namespace Prisma {
 
   export type WeatherSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     date?: boolean
     temperature?: boolean
     windSpeed?: boolean
@@ -9044,7 +9169,7 @@ export namespace Prisma {
 
   export type WeatherSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     date?: boolean
     temperature?: boolean
     windSpeed?: boolean
@@ -9061,7 +9186,7 @@ export namespace Prisma {
 
   export type WeatherSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     date?: boolean
     temperature?: boolean
     windSpeed?: boolean
@@ -9078,7 +9203,7 @@ export namespace Prisma {
 
   export type WeatherSelectScalar = {
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     date?: boolean
     temperature?: boolean
     windSpeed?: boolean
@@ -9092,7 +9217,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type WeatherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "date" | "temperature" | "windSpeed" | "windDirection" | "visibility" | "conditions" | "snowfallRecent" | "snowfall24h" | "snowfall7d" | "createdAt" | "updatedAt", ExtArgs["result"]["weather"]>
+  export type WeatherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "date" | "temperature" | "windSpeed" | "windDirection" | "visibility" | "conditions" | "snowfallRecent" | "snowfall24h" | "snowfall7d" | "createdAt" | "updatedAt", ExtArgs["result"]["weather"]>
   export type WeatherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }
@@ -9110,7 +9235,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
+      mountainID: string
       date: Date
       temperature: number
       windSpeed: number
@@ -9547,7 +9672,7 @@ export namespace Prisma {
    */
   interface WeatherFieldRefs {
     readonly id: FieldRef<"Weather", 'String'>
-    readonly mountainId: FieldRef<"Weather", 'String'>
+    readonly mountainID: FieldRef<"Weather", 'String'>
     readonly date: FieldRef<"Weather", 'DateTime'>
     readonly temperature: FieldRef<"Weather", 'Float'>
     readonly windSpeed: FieldRef<"Weather", 'Float'>
@@ -9985,22 +10110,22 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentMinAggregateOutputType = {
     id: string | null
-    employeeId: string | null
-    mountainId: string | null
+    employeeID: string | null
+    mountainID: string | null
     assignedAt: Date | null
   }
 
   export type EmployeeMountainAssignmentMaxAggregateOutputType = {
     id: string | null
-    employeeId: string | null
-    mountainId: string | null
+    employeeID: string | null
+    mountainID: string | null
     assignedAt: Date | null
   }
 
   export type EmployeeMountainAssignmentCountAggregateOutputType = {
     id: number
-    employeeId: number
-    mountainId: number
+    employeeID: number
+    mountainID: number
     assignedAt: number
     _all: number
   }
@@ -10008,22 +10133,22 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentMinAggregateInputType = {
     id?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     assignedAt?: true
   }
 
   export type EmployeeMountainAssignmentMaxAggregateInputType = {
     id?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     assignedAt?: true
   }
 
   export type EmployeeMountainAssignmentCountAggregateInputType = {
     id?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     assignedAt?: true
     _all?: true
   }
@@ -10102,8 +10227,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentGroupByOutputType = {
     id: string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     assignedAt: Date
     _count: EmployeeMountainAssignmentCountAggregateOutputType | null
     _min: EmployeeMountainAssignmentMinAggregateOutputType | null
@@ -10126,8 +10251,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     assignedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -10135,8 +10260,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     assignedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -10144,8 +10269,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     assignedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -10153,12 +10278,12 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentSelectScalar = {
     id?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     assignedAt?: boolean
   }
 
-  export type EmployeeMountainAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "assignedAt", ExtArgs["result"]["employeeMountainAssignment"]>
+  export type EmployeeMountainAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeID" | "mountainID" | "assignedAt", ExtArgs["result"]["employeeMountainAssignment"]>
   export type EmployeeMountainAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -10180,8 +10305,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      employeeId: string
-      mountainId: string
+      employeeID: string
+      mountainID: string
       assignedAt: Date
     }, ExtArgs["result"]["employeeMountainAssignment"]>
     composites: {}
@@ -10609,8 +10734,8 @@ export namespace Prisma {
    */
   interface EmployeeMountainAssignmentFieldRefs {
     readonly id: FieldRef<"EmployeeMountainAssignment", 'String'>
-    readonly employeeId: FieldRef<"EmployeeMountainAssignment", 'String'>
-    readonly mountainId: FieldRef<"EmployeeMountainAssignment", 'String'>
+    readonly employeeID: FieldRef<"EmployeeMountainAssignment", 'String'>
+    readonly mountainID: FieldRef<"EmployeeMountainAssignment", 'String'>
     readonly assignedAt: FieldRef<"EmployeeMountainAssignment", 'DateTime'>
   }
     
@@ -11038,22 +11163,22 @@ export namespace Prisma {
 
   export type DispatcherAssignmentMinAggregateOutputType = {
     id: string | null
-    employeeId: string | null
-    mountainId: string | null
+    employeeID: string | null
+    mountainID: string | null
     assignedAt: Date | null
   }
 
   export type DispatcherAssignmentMaxAggregateOutputType = {
     id: string | null
-    employeeId: string | null
-    mountainId: string | null
+    employeeID: string | null
+    mountainID: string | null
     assignedAt: Date | null
   }
 
   export type DispatcherAssignmentCountAggregateOutputType = {
     id: number
-    employeeId: number
-    mountainId: number
+    employeeID: number
+    mountainID: number
     assignedAt: number
     _all: number
   }
@@ -11061,22 +11186,22 @@ export namespace Prisma {
 
   export type DispatcherAssignmentMinAggregateInputType = {
     id?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     assignedAt?: true
   }
 
   export type DispatcherAssignmentMaxAggregateInputType = {
     id?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     assignedAt?: true
   }
 
   export type DispatcherAssignmentCountAggregateInputType = {
     id?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     assignedAt?: true
     _all?: true
   }
@@ -11155,8 +11280,8 @@ export namespace Prisma {
 
   export type DispatcherAssignmentGroupByOutputType = {
     id: string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     assignedAt: Date
     _count: DispatcherAssignmentCountAggregateOutputType | null
     _min: DispatcherAssignmentMinAggregateOutputType | null
@@ -11179,8 +11304,8 @@ export namespace Prisma {
 
   export type DispatcherAssignmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     assignedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -11188,8 +11313,8 @@ export namespace Prisma {
 
   export type DispatcherAssignmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     assignedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -11197,8 +11322,8 @@ export namespace Prisma {
 
   export type DispatcherAssignmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     assignedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -11206,12 +11331,12 @@ export namespace Prisma {
 
   export type DispatcherAssignmentSelectScalar = {
     id?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     assignedAt?: boolean
   }
 
-  export type DispatcherAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "assignedAt", ExtArgs["result"]["dispatcherAssignment"]>
+  export type DispatcherAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeID" | "mountainID" | "assignedAt", ExtArgs["result"]["dispatcherAssignment"]>
   export type DispatcherAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -11233,8 +11358,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      employeeId: string
-      mountainId: string
+      employeeID: string
+      mountainID: string
       assignedAt: Date
     }, ExtArgs["result"]["dispatcherAssignment"]>
     composites: {}
@@ -11662,8 +11787,8 @@ export namespace Prisma {
    */
   interface DispatcherAssignmentFieldRefs {
     readonly id: FieldRef<"DispatcherAssignment", 'String'>
-    readonly employeeId: FieldRef<"DispatcherAssignment", 'String'>
-    readonly mountainId: FieldRef<"DispatcherAssignment", 'String'>
+    readonly employeeID: FieldRef<"DispatcherAssignment", 'String'>
+    readonly mountainID: FieldRef<"DispatcherAssignment", 'String'>
     readonly assignedAt: FieldRef<"DispatcherAssignment", 'DateTime'>
   }
     
@@ -12085,48 +12210,84 @@ export namespace Prisma {
 
   export type AggregateRole = {
     _count: RoleCountAggregateOutputType | null
+    _avg: RoleAvgAggregateOutputType | null
+    _sum: RoleSumAggregateOutputType | null
     _min: RoleMinAggregateOutputType | null
     _max: RoleMaxAggregateOutputType | null
   }
 
+  export type RoleAvgAggregateOutputType = {
+    level: number | null
+  }
+
+  export type RoleSumAggregateOutputType = {
+    level: number | null
+  }
+
   export type RoleMinAggregateOutputType = {
     id: string | null
+    department: $Enums.Department | null
     name: string | null
-    employeeId: string | null
+    title: string | null
+    position: string | null
+    level: number | null
   }
 
   export type RoleMaxAggregateOutputType = {
     id: string | null
+    department: $Enums.Department | null
     name: string | null
-    employeeId: string | null
+    title: string | null
+    position: string | null
+    level: number | null
   }
 
   export type RoleCountAggregateOutputType = {
     id: number
+    department: number
     name: number
+    title: number
+    position: number
+    level: number
     permissions: number
-    employeeId: number
     _all: number
   }
 
 
+  export type RoleAvgAggregateInputType = {
+    level?: true
+  }
+
+  export type RoleSumAggregateInputType = {
+    level?: true
+  }
+
   export type RoleMinAggregateInputType = {
     id?: true
+    department?: true
     name?: true
-    employeeId?: true
+    title?: true
+    position?: true
+    level?: true
   }
 
   export type RoleMaxAggregateInputType = {
     id?: true
+    department?: true
     name?: true
-    employeeId?: true
+    title?: true
+    position?: true
+    level?: true
   }
 
   export type RoleCountAggregateInputType = {
     id?: true
+    department?: true
     name?: true
+    title?: true
+    position?: true
+    level?: true
     permissions?: true
-    employeeId?: true
     _all?: true
   }
 
@@ -12168,6 +12329,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: RoleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RoleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: RoleMinAggregateInputType
@@ -12198,16 +12371,23 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: RoleCountAggregateInputType | true
+    _avg?: RoleAvgAggregateInputType
+    _sum?: RoleSumAggregateInputType
     _min?: RoleMinAggregateInputType
     _max?: RoleMaxAggregateInputType
   }
 
   export type RoleGroupByOutputType = {
     id: string
+    department: $Enums.Department
     name: string
+    title: string
+    position: string
+    level: number | null
     permissions: string[]
-    employeeId: string
     _count: RoleCountAggregateOutputType | null
+    _avg: RoleAvgAggregateOutputType | null
+    _sum: RoleSumAggregateOutputType | null
     _min: RoleMinAggregateOutputType | null
     _max: RoleMaxAggregateOutputType | null
   }
@@ -12228,37 +12408,51 @@ export namespace Prisma {
 
   export type RoleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    department?: boolean
     name?: boolean
+    title?: boolean
+    position?: boolean
+    level?: boolean
     permissions?: boolean
-    employeeId?: boolean
-    employee?: boolean | Role$employeeArgs<ExtArgs>
+    employees?: boolean | Role$employeesArgs<ExtArgs>
+    employeeRole?: boolean | Role$employeeRoleArgs<ExtArgs>
     _count?: boolean | RoleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["role"]>
 
   export type RoleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    department?: boolean
     name?: boolean
+    title?: boolean
+    position?: boolean
+    level?: boolean
     permissions?: boolean
-    employeeId?: boolean
   }, ExtArgs["result"]["role"]>
 
   export type RoleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    department?: boolean
     name?: boolean
+    title?: boolean
+    position?: boolean
+    level?: boolean
     permissions?: boolean
-    employeeId?: boolean
   }, ExtArgs["result"]["role"]>
 
   export type RoleSelectScalar = {
     id?: boolean
+    department?: boolean
     name?: boolean
+    title?: boolean
+    position?: boolean
+    level?: boolean
     permissions?: boolean
-    employeeId?: boolean
   }
 
-  export type RoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "permissions" | "employeeId", ExtArgs["result"]["role"]>
+  export type RoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "department" | "name" | "title" | "position" | "level" | "permissions", ExtArgs["result"]["role"]>
   export type RoleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | Role$employeeArgs<ExtArgs>
+    employees?: boolean | Role$employeesArgs<ExtArgs>
+    employeeRole?: boolean | Role$employeeRoleArgs<ExtArgs>
     _count?: boolean | RoleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RoleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -12267,13 +12461,17 @@ export namespace Prisma {
   export type $RolePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Role"
     objects: {
-      employee: Prisma.$EmployeePayload<ExtArgs>[]
+      employees: Prisma.$EmployeePayload<ExtArgs>[]
+      employeeRole: Prisma.$EmployeeRolePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      department: $Enums.Department
       name: string
+      title: string
+      position: string
+      level: number | null
       permissions: string[]
-      employeeId: string
     }, ExtArgs["result"]["role"]>
     composites: {}
   }
@@ -12668,7 +12866,8 @@ export namespace Prisma {
    */
   export interface Prisma__RoleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    employee<T extends Role$employeeArgs<ExtArgs> = {}>(args?: Subset<T, Role$employeeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    employees<T extends Role$employeesArgs<ExtArgs> = {}>(args?: Subset<T, Role$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    employeeRole<T extends Role$employeeRoleArgs<ExtArgs> = {}>(args?: Subset<T, Role$employeeRoleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12699,9 +12898,12 @@ export namespace Prisma {
    */
   interface RoleFieldRefs {
     readonly id: FieldRef<"Role", 'String'>
+    readonly department: FieldRef<"Role", 'Department'>
     readonly name: FieldRef<"Role", 'String'>
+    readonly title: FieldRef<"Role", 'String'>
+    readonly position: FieldRef<"Role", 'String'>
+    readonly level: FieldRef<"Role", 'Int'>
     readonly permissions: FieldRef<"Role", 'String[]'>
-    readonly employeeId: FieldRef<"Role", 'String'>
   }
     
 
@@ -13090,9 +13292,9 @@ export namespace Prisma {
   }
 
   /**
-   * Role.employee
+   * Role.employees
    */
-  export type Role$employeeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Role$employeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Employee
      */
@@ -13111,6 +13313,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
+  }
+
+  /**
+   * Role.employeeRole
+   */
+  export type Role$employeeRoleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    where?: EmployeeRoleWhereInput
+    orderBy?: EmployeeRoleOrderByWithRelationInput | EmployeeRoleOrderByWithRelationInput[]
+    cursor?: EmployeeRoleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeRoleScalarFieldEnum | EmployeeRoleScalarFieldEnum[]
   }
 
   /**
@@ -13133,81 +13359,1127 @@ export namespace Prisma {
 
 
   /**
+   * Model EmployeeRole
+   */
+
+  export type AggregateEmployeeRole = {
+    _count: EmployeeRoleCountAggregateOutputType | null
+    _min: EmployeeRoleMinAggregateOutputType | null
+    _max: EmployeeRoleMaxAggregateOutputType | null
+  }
+
+  export type EmployeeRoleMinAggregateOutputType = {
+    id: string | null
+    employeeID: string | null
+    roleID: string | null
+  }
+
+  export type EmployeeRoleMaxAggregateOutputType = {
+    id: string | null
+    employeeID: string | null
+    roleID: string | null
+  }
+
+  export type EmployeeRoleCountAggregateOutputType = {
+    id: number
+    employeeID: number
+    roleID: number
+    _all: number
+  }
+
+
+  export type EmployeeRoleMinAggregateInputType = {
+    id?: true
+    employeeID?: true
+    roleID?: true
+  }
+
+  export type EmployeeRoleMaxAggregateInputType = {
+    id?: true
+    employeeID?: true
+    roleID?: true
+  }
+
+  export type EmployeeRoleCountAggregateInputType = {
+    id?: true
+    employeeID?: true
+    roleID?: true
+    _all?: true
+  }
+
+  export type EmployeeRoleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeRole to aggregate.
+     */
+    where?: EmployeeRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeRoles to fetch.
+     */
+    orderBy?: EmployeeRoleOrderByWithRelationInput | EmployeeRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmployeeRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmployeeRoles
+    **/
+    _count?: true | EmployeeRoleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmployeeRoleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmployeeRoleMaxAggregateInputType
+  }
+
+  export type GetEmployeeRoleAggregateType<T extends EmployeeRoleAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmployeeRole]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmployeeRole[P]>
+      : GetScalarType<T[P], AggregateEmployeeRole[P]>
+  }
+
+
+
+
+  export type EmployeeRoleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeRoleWhereInput
+    orderBy?: EmployeeRoleOrderByWithAggregationInput | EmployeeRoleOrderByWithAggregationInput[]
+    by: EmployeeRoleScalarFieldEnum[] | EmployeeRoleScalarFieldEnum
+    having?: EmployeeRoleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmployeeRoleCountAggregateInputType | true
+    _min?: EmployeeRoleMinAggregateInputType
+    _max?: EmployeeRoleMaxAggregateInputType
+  }
+
+  export type EmployeeRoleGroupByOutputType = {
+    id: string
+    employeeID: string
+    roleID: string
+    _count: EmployeeRoleCountAggregateOutputType | null
+    _min: EmployeeRoleMinAggregateOutputType | null
+    _max: EmployeeRoleMaxAggregateOutputType | null
+  }
+
+  type GetEmployeeRoleGroupByPayload<T extends EmployeeRoleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmployeeRoleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmployeeRoleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmployeeRoleGroupByOutputType[P]>
+            : GetScalarType<T[P], EmployeeRoleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmployeeRoleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeID?: boolean
+    roleID?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeRole"]>
+
+  export type EmployeeRoleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeID?: boolean
+    roleID?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeRole"]>
+
+  export type EmployeeRoleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeID?: boolean
+    roleID?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeRole"]>
+
+  export type EmployeeRoleSelectScalar = {
+    id?: boolean
+    employeeID?: boolean
+    roleID?: boolean
+  }
+
+  export type EmployeeRoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeID" | "roleID", ExtArgs["result"]["employeeRole"]>
+  export type EmployeeRoleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+  }
+  export type EmployeeRoleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+  }
+  export type EmployeeRoleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    role?: boolean | RoleDefaultArgs<ExtArgs>
+  }
+
+  export type $EmployeeRolePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmployeeRole"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      role: Prisma.$RolePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeID: string
+      roleID: string
+    }, ExtArgs["result"]["employeeRole"]>
+    composites: {}
+  }
+
+  type EmployeeRoleGetPayload<S extends boolean | null | undefined | EmployeeRoleDefaultArgs> = $Result.GetResult<Prisma.$EmployeeRolePayload, S>
+
+  type EmployeeRoleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmployeeRoleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmployeeRoleCountAggregateInputType | true
+    }
+
+  export interface EmployeeRoleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmployeeRole'], meta: { name: 'EmployeeRole' } }
+    /**
+     * Find zero or one EmployeeRole that matches the filter.
+     * @param {EmployeeRoleFindUniqueArgs} args - Arguments to find a EmployeeRole
+     * @example
+     * // Get one EmployeeRole
+     * const employeeRole = await prisma.employeeRole.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmployeeRoleFindUniqueArgs>(args: SelectSubset<T, EmployeeRoleFindUniqueArgs<ExtArgs>>): Prisma__EmployeeRoleClient<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmployeeRole that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmployeeRoleFindUniqueOrThrowArgs} args - Arguments to find a EmployeeRole
+     * @example
+     * // Get one EmployeeRole
+     * const employeeRole = await prisma.employeeRole.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmployeeRoleFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeRoleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeRoleClient<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeRole that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeRoleFindFirstArgs} args - Arguments to find a EmployeeRole
+     * @example
+     * // Get one EmployeeRole
+     * const employeeRole = await prisma.employeeRole.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmployeeRoleFindFirstArgs>(args?: SelectSubset<T, EmployeeRoleFindFirstArgs<ExtArgs>>): Prisma__EmployeeRoleClient<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeRole that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeRoleFindFirstOrThrowArgs} args - Arguments to find a EmployeeRole
+     * @example
+     * // Get one EmployeeRole
+     * const employeeRole = await prisma.employeeRole.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmployeeRoleFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeRoleFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeRoleClient<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmployeeRoles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeRoleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmployeeRoles
+     * const employeeRoles = await prisma.employeeRole.findMany()
+     * 
+     * // Get first 10 EmployeeRoles
+     * const employeeRoles = await prisma.employeeRole.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employeeRoleWithIdOnly = await prisma.employeeRole.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmployeeRoleFindManyArgs>(args?: SelectSubset<T, EmployeeRoleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmployeeRole.
+     * @param {EmployeeRoleCreateArgs} args - Arguments to create a EmployeeRole.
+     * @example
+     * // Create one EmployeeRole
+     * const EmployeeRole = await prisma.employeeRole.create({
+     *   data: {
+     *     // ... data to create a EmployeeRole
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmployeeRoleCreateArgs>(args: SelectSubset<T, EmployeeRoleCreateArgs<ExtArgs>>): Prisma__EmployeeRoleClient<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmployeeRoles.
+     * @param {EmployeeRoleCreateManyArgs} args - Arguments to create many EmployeeRoles.
+     * @example
+     * // Create many EmployeeRoles
+     * const employeeRole = await prisma.employeeRole.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmployeeRoleCreateManyArgs>(args?: SelectSubset<T, EmployeeRoleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmployeeRoles and returns the data saved in the database.
+     * @param {EmployeeRoleCreateManyAndReturnArgs} args - Arguments to create many EmployeeRoles.
+     * @example
+     * // Create many EmployeeRoles
+     * const employeeRole = await prisma.employeeRole.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmployeeRoles and only return the `id`
+     * const employeeRoleWithIdOnly = await prisma.employeeRole.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmployeeRoleCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeRoleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmployeeRole.
+     * @param {EmployeeRoleDeleteArgs} args - Arguments to delete one EmployeeRole.
+     * @example
+     * // Delete one EmployeeRole
+     * const EmployeeRole = await prisma.employeeRole.delete({
+     *   where: {
+     *     // ... filter to delete one EmployeeRole
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmployeeRoleDeleteArgs>(args: SelectSubset<T, EmployeeRoleDeleteArgs<ExtArgs>>): Prisma__EmployeeRoleClient<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmployeeRole.
+     * @param {EmployeeRoleUpdateArgs} args - Arguments to update one EmployeeRole.
+     * @example
+     * // Update one EmployeeRole
+     * const employeeRole = await prisma.employeeRole.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmployeeRoleUpdateArgs>(args: SelectSubset<T, EmployeeRoleUpdateArgs<ExtArgs>>): Prisma__EmployeeRoleClient<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmployeeRoles.
+     * @param {EmployeeRoleDeleteManyArgs} args - Arguments to filter EmployeeRoles to delete.
+     * @example
+     * // Delete a few EmployeeRoles
+     * const { count } = await prisma.employeeRole.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmployeeRoleDeleteManyArgs>(args?: SelectSubset<T, EmployeeRoleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeRoleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmployeeRoles
+     * const employeeRole = await prisma.employeeRole.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmployeeRoleUpdateManyArgs>(args: SelectSubset<T, EmployeeRoleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeRoles and returns the data updated in the database.
+     * @param {EmployeeRoleUpdateManyAndReturnArgs} args - Arguments to update many EmployeeRoles.
+     * @example
+     * // Update many EmployeeRoles
+     * const employeeRole = await prisma.employeeRole.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmployeeRoles and only return the `id`
+     * const employeeRoleWithIdOnly = await prisma.employeeRole.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmployeeRoleUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeRoleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmployeeRole.
+     * @param {EmployeeRoleUpsertArgs} args - Arguments to update or create a EmployeeRole.
+     * @example
+     * // Update or create a EmployeeRole
+     * const employeeRole = await prisma.employeeRole.upsert({
+     *   create: {
+     *     // ... data to create a EmployeeRole
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmployeeRole we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmployeeRoleUpsertArgs>(args: SelectSubset<T, EmployeeRoleUpsertArgs<ExtArgs>>): Prisma__EmployeeRoleClient<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmployeeRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeRoleCountArgs} args - Arguments to filter EmployeeRoles to count.
+     * @example
+     * // Count the number of EmployeeRoles
+     * const count = await prisma.employeeRole.count({
+     *   where: {
+     *     // ... the filter for the EmployeeRoles we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmployeeRoleCountArgs>(
+      args?: Subset<T, EmployeeRoleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmployeeRoleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmployeeRole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeRoleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmployeeRoleAggregateArgs>(args: Subset<T, EmployeeRoleAggregateArgs>): Prisma.PrismaPromise<GetEmployeeRoleAggregateType<T>>
+
+    /**
+     * Group by EmployeeRole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeRoleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmployeeRoleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmployeeRoleGroupByArgs['orderBy'] }
+        : { orderBy?: EmployeeRoleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmployeeRoleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeRoleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmployeeRole model
+   */
+  readonly fields: EmployeeRoleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmployeeRole.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmployeeRoleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    role<T extends RoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoleDefaultArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmployeeRole model
+   */
+  interface EmployeeRoleFieldRefs {
+    readonly id: FieldRef<"EmployeeRole", 'String'>
+    readonly employeeID: FieldRef<"EmployeeRole", 'String'>
+    readonly roleID: FieldRef<"EmployeeRole", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmployeeRole findUnique
+   */
+  export type EmployeeRoleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeRole to fetch.
+     */
+    where: EmployeeRoleWhereUniqueInput
+  }
+
+  /**
+   * EmployeeRole findUniqueOrThrow
+   */
+  export type EmployeeRoleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeRole to fetch.
+     */
+    where: EmployeeRoleWhereUniqueInput
+  }
+
+  /**
+   * EmployeeRole findFirst
+   */
+  export type EmployeeRoleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeRole to fetch.
+     */
+    where?: EmployeeRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeRoles to fetch.
+     */
+    orderBy?: EmployeeRoleOrderByWithRelationInput | EmployeeRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeRoles.
+     */
+    cursor?: EmployeeRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeRoles.
+     */
+    distinct?: EmployeeRoleScalarFieldEnum | EmployeeRoleScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeRole findFirstOrThrow
+   */
+  export type EmployeeRoleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeRole to fetch.
+     */
+    where?: EmployeeRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeRoles to fetch.
+     */
+    orderBy?: EmployeeRoleOrderByWithRelationInput | EmployeeRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeRoles.
+     */
+    cursor?: EmployeeRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeRoles.
+     */
+    distinct?: EmployeeRoleScalarFieldEnum | EmployeeRoleScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeRole findMany
+   */
+  export type EmployeeRoleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeRoles to fetch.
+     */
+    where?: EmployeeRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeRoles to fetch.
+     */
+    orderBy?: EmployeeRoleOrderByWithRelationInput | EmployeeRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmployeeRoles.
+     */
+    cursor?: EmployeeRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeRoles.
+     */
+    skip?: number
+    distinct?: EmployeeRoleScalarFieldEnum | EmployeeRoleScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeRole create
+   */
+  export type EmployeeRoleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmployeeRole.
+     */
+    data: XOR<EmployeeRoleCreateInput, EmployeeRoleUncheckedCreateInput>
+  }
+
+  /**
+   * EmployeeRole createMany
+   */
+  export type EmployeeRoleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmployeeRoles.
+     */
+    data: EmployeeRoleCreateManyInput | EmployeeRoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmployeeRole createManyAndReturn
+   */
+  export type EmployeeRoleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmployeeRoles.
+     */
+    data: EmployeeRoleCreateManyInput | EmployeeRoleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeRole update
+   */
+  export type EmployeeRoleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmployeeRole.
+     */
+    data: XOR<EmployeeRoleUpdateInput, EmployeeRoleUncheckedUpdateInput>
+    /**
+     * Choose, which EmployeeRole to update.
+     */
+    where: EmployeeRoleWhereUniqueInput
+  }
+
+  /**
+   * EmployeeRole updateMany
+   */
+  export type EmployeeRoleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmployeeRoles.
+     */
+    data: XOR<EmployeeRoleUpdateManyMutationInput, EmployeeRoleUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeRoles to update
+     */
+    where?: EmployeeRoleWhereInput
+    /**
+     * Limit how many EmployeeRoles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeRole updateManyAndReturn
+   */
+  export type EmployeeRoleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * The data used to update EmployeeRoles.
+     */
+    data: XOR<EmployeeRoleUpdateManyMutationInput, EmployeeRoleUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeRoles to update
+     */
+    where?: EmployeeRoleWhereInput
+    /**
+     * Limit how many EmployeeRoles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeRole upsert
+   */
+  export type EmployeeRoleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmployeeRole to update in case it exists.
+     */
+    where: EmployeeRoleWhereUniqueInput
+    /**
+     * In case the EmployeeRole found by the `where` argument doesn't exist, create a new EmployeeRole with this data.
+     */
+    create: XOR<EmployeeRoleCreateInput, EmployeeRoleUncheckedCreateInput>
+    /**
+     * In case the EmployeeRole was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmployeeRoleUpdateInput, EmployeeRoleUncheckedUpdateInput>
+  }
+
+  /**
+   * EmployeeRole delete
+   */
+  export type EmployeeRoleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    /**
+     * Filter which EmployeeRole to delete.
+     */
+    where: EmployeeRoleWhereUniqueInput
+  }
+
+  /**
+   * EmployeeRole deleteMany
+   */
+  export type EmployeeRoleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeRoles to delete
+     */
+    where?: EmployeeRoleWhereInput
+    /**
+     * Limit how many EmployeeRoles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeRole without action
+   */
+  export type EmployeeRoleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Employee
    */
 
   export type AggregateEmployee = {
     _count: EmployeeCountAggregateOutputType | null
+    _avg: EmployeeAvgAggregateOutputType | null
+    _sum: EmployeeSumAggregateOutputType | null
     _min: EmployeeMinAggregateOutputType | null
     _max: EmployeeMaxAggregateOutputType | null
   }
 
+  export type EmployeeAvgAggregateOutputType = {
+    employeeIDNumber: number | null
+  }
+
+  export type EmployeeSumAggregateOutputType = {
+    employeeIDNumber: number | null
+  }
+
   export type EmployeeMinAggregateOutputType = {
     id: string | null
-    employeeIdNumber: string | null
+    employeeIDNumber: number | null
     email: string | null
     phoneNumber: string | null
     name: string | null
-    title: string | null
-    roleId: string | null
-    department: $Enums.Department | null
+    roleID: string | null
   }
 
   export type EmployeeMaxAggregateOutputType = {
     id: string | null
-    employeeIdNumber: string | null
+    employeeIDNumber: number | null
     email: string | null
     phoneNumber: string | null
     name: string | null
-    title: string | null
-    roleId: string | null
-    department: $Enums.Department | null
+    roleID: string | null
   }
 
   export type EmployeeCountAggregateOutputType = {
     id: number
-    employeeIdNumber: number
+    employeeIDNumber: number
     email: number
     phoneNumber: number
     name: number
-    title: number
-    roleId: number
-    department: number
+    roleID: number
     _all: number
   }
 
 
+  export type EmployeeAvgAggregateInputType = {
+    employeeIDNumber?: true
+  }
+
+  export type EmployeeSumAggregateInputType = {
+    employeeIDNumber?: true
+  }
+
   export type EmployeeMinAggregateInputType = {
     id?: true
-    employeeIdNumber?: true
+    employeeIDNumber?: true
     email?: true
     phoneNumber?: true
     name?: true
-    title?: true
-    roleId?: true
-    department?: true
+    roleID?: true
   }
 
   export type EmployeeMaxAggregateInputType = {
     id?: true
-    employeeIdNumber?: true
+    employeeIDNumber?: true
     email?: true
     phoneNumber?: true
     name?: true
-    title?: true
-    roleId?: true
-    department?: true
+    roleID?: true
   }
 
   export type EmployeeCountAggregateInputType = {
     id?: true
-    employeeIdNumber?: true
+    employeeIDNumber?: true
     email?: true
     phoneNumber?: true
     name?: true
-    title?: true
-    roleId?: true
-    department?: true
+    roleID?: true
     _all?: true
   }
 
@@ -13249,6 +14521,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: EmployeeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EmployeeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: EmployeeMinAggregateInputType
@@ -13279,20 +14563,22 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: EmployeeCountAggregateInputType | true
+    _avg?: EmployeeAvgAggregateInputType
+    _sum?: EmployeeSumAggregateInputType
     _min?: EmployeeMinAggregateInputType
     _max?: EmployeeMaxAggregateInputType
   }
 
   export type EmployeeGroupByOutputType = {
     id: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID: string | null
     _count: EmployeeCountAggregateOutputType | null
+    _avg: EmployeeAvgAggregateOutputType | null
+    _sum: EmployeeSumAggregateOutputType | null
     _min: EmployeeMinAggregateOutputType | null
     _max: EmployeeMaxAggregateOutputType | null
   }
@@ -13313,14 +14599,13 @@ export namespace Prisma {
 
   export type EmployeeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeIdNumber?: boolean
+    employeeIDNumber?: boolean
     email?: boolean
     phoneNumber?: boolean
     name?: boolean
-    title?: boolean
-    roleId?: boolean
-    department?: boolean
-    role?: boolean | RoleDefaultArgs<ExtArgs>
+    roleID?: boolean
+    role?: boolean | Employee$roleArgs<ExtArgs>
+    additionalRoles?: boolean | Employee$additionalRolesArgs<ExtArgs>
     mountainAssignments?: boolean | Employee$mountainAssignmentsArgs<ExtArgs>
     dispatcherAssignments?: boolean | Employee$dispatcherAssignmentsArgs<ExtArgs>
     incidents?: boolean | Employee$incidentsArgs<ExtArgs>
@@ -13335,42 +14620,37 @@ export namespace Prisma {
 
   export type EmployeeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeIdNumber?: boolean
+    employeeIDNumber?: boolean
     email?: boolean
     phoneNumber?: boolean
     name?: boolean
-    title?: boolean
-    roleId?: boolean
-    department?: boolean
-    role?: boolean | RoleDefaultArgs<ExtArgs>
+    roleID?: boolean
+    role?: boolean | Employee$roleArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
   export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    employeeIdNumber?: boolean
+    employeeIDNumber?: boolean
     email?: boolean
     phoneNumber?: boolean
     name?: boolean
-    title?: boolean
-    roleId?: boolean
-    department?: boolean
-    role?: boolean | RoleDefaultArgs<ExtArgs>
+    roleID?: boolean
+    role?: boolean | Employee$roleArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
   export type EmployeeSelectScalar = {
     id?: boolean
-    employeeIdNumber?: boolean
+    employeeIDNumber?: boolean
     email?: boolean
     phoneNumber?: boolean
     name?: boolean
-    title?: boolean
-    roleId?: boolean
-    department?: boolean
+    roleID?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeIdNumber" | "email" | "phoneNumber" | "name" | "title" | "roleId" | "department", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeIDNumber" | "email" | "phoneNumber" | "name" | "roleID", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    role?: boolean | RoleDefaultArgs<ExtArgs>
+    role?: boolean | Employee$roleArgs<ExtArgs>
+    additionalRoles?: boolean | Employee$additionalRolesArgs<ExtArgs>
     mountainAssignments?: boolean | Employee$mountainAssignmentsArgs<ExtArgs>
     dispatcherAssignments?: boolean | Employee$dispatcherAssignmentsArgs<ExtArgs>
     incidents?: boolean | Employee$incidentsArgs<ExtArgs>
@@ -13383,16 +14663,17 @@ export namespace Prisma {
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    role?: boolean | RoleDefaultArgs<ExtArgs>
+    role?: boolean | Employee$roleArgs<ExtArgs>
   }
   export type EmployeeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    role?: boolean | RoleDefaultArgs<ExtArgs>
+    role?: boolean | Employee$roleArgs<ExtArgs>
   }
 
   export type $EmployeePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Employee"
     objects: {
-      role: Prisma.$RolePayload<ExtArgs>
+      role: Prisma.$RolePayload<ExtArgs> | null
+      additionalRoles: Prisma.$EmployeeRolePayload<ExtArgs>[]
       mountainAssignments: Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>[]
       dispatcherAssignments: Prisma.$DispatcherAssignmentPayload<ExtArgs>[]
       incidents: Prisma.$IncidentPayload<ExtArgs>[]
@@ -13405,13 +14686,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      employeeIdNumber: string
+      employeeIDNumber: number
       email: string
       phoneNumber: string
       name: string
-      title: string
-      roleId: string
-      department: $Enums.Department
+      roleID: string | null
     }, ExtArgs["result"]["employee"]>
     composites: {}
   }
@@ -13806,7 +15085,8 @@ export namespace Prisma {
    */
   export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    role<T extends RoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoleDefaultArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    role<T extends Employee$roleArgs<ExtArgs> = {}>(args?: Subset<T, Employee$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    additionalRoles<T extends Employee$additionalRolesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$additionalRolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mountainAssignments<T extends Employee$mountainAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$mountainAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dispatcherAssignments<T extends Employee$dispatcherAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$dispatcherAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DispatcherAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     incidents<T extends Employee$incidentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$incidentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -13846,13 +15126,11 @@ export namespace Prisma {
    */
   interface EmployeeFieldRefs {
     readonly id: FieldRef<"Employee", 'String'>
-    readonly employeeIdNumber: FieldRef<"Employee", 'String'>
+    readonly employeeIDNumber: FieldRef<"Employee", 'Int'>
     readonly email: FieldRef<"Employee", 'String'>
     readonly phoneNumber: FieldRef<"Employee", 'String'>
     readonly name: FieldRef<"Employee", 'String'>
-    readonly title: FieldRef<"Employee", 'String'>
-    readonly roleId: FieldRef<"Employee", 'String'>
-    readonly department: FieldRef<"Employee", 'Department'>
+    readonly roleID: FieldRef<"Employee", 'String'>
   }
     
 
@@ -14249,6 +15527,49 @@ export namespace Prisma {
   }
 
   /**
+   * Employee.role
+   */
+  export type Employee$roleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Role
+     */
+    select?: RoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Role
+     */
+    omit?: RoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoleInclude<ExtArgs> | null
+    where?: RoleWhereInput
+  }
+
+  /**
+   * Employee.additionalRoles
+   */
+  export type Employee$additionalRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRole
+     */
+    select?: EmployeeRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRole
+     */
+    omit?: EmployeeRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRoleInclude<ExtArgs> | null
+    where?: EmployeeRoleWhereInput
+    orderBy?: EmployeeRoleOrderByWithRelationInput | EmployeeRoleOrderByWithRelationInput[]
+    cursor?: EmployeeRoleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeRoleScalarFieldEnum | EmployeeRoleScalarFieldEnum[]
+  }
+
+  /**
    * Employee.mountainAssignments
    */
   export type Employee$mountainAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14509,7 +15830,7 @@ export namespace Prisma {
 
   export type LiftMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     type: $Enums.LiftType | null
     status: $Enums.Status | null
@@ -14520,7 +15841,7 @@ export namespace Prisma {
 
   export type LiftMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     type: $Enums.LiftType | null
     status: $Enums.Status | null
@@ -14531,7 +15852,7 @@ export namespace Prisma {
 
   export type LiftCountAggregateOutputType = {
     id: number
-    mountainId: number
+    mountainID: number
     name: number
     type: number
     status: number
@@ -14556,7 +15877,7 @@ export namespace Prisma {
 
   export type LiftMinAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     type?: true
     status?: true
@@ -14567,7 +15888,7 @@ export namespace Prisma {
 
   export type LiftMaxAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     type?: true
     status?: true
@@ -14578,7 +15899,7 @@ export namespace Prisma {
 
   export type LiftCountAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     type?: true
     status?: true
@@ -14676,7 +15997,7 @@ export namespace Prisma {
 
   export type LiftGroupByOutputType = {
     id: string
-    mountainId: string
+    mountainID: string
     name: string
     type: $Enums.LiftType
     status: $Enums.Status
@@ -14706,7 +16027,7 @@ export namespace Prisma {
 
   export type LiftSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     type?: boolean
     status?: boolean
@@ -14720,7 +16041,7 @@ export namespace Prisma {
 
   export type LiftSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     type?: boolean
     status?: boolean
@@ -14732,7 +16053,7 @@ export namespace Prisma {
 
   export type LiftSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     type?: boolean
     status?: boolean
@@ -14744,7 +16065,7 @@ export namespace Prisma {
 
   export type LiftSelectScalar = {
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     type?: boolean
     status?: boolean
@@ -14753,7 +16074,7 @@ export namespace Prisma {
     longitude?: boolean
   }
 
-  export type LiftOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "name" | "type" | "status" | "capacity" | "latitude" | "longitude", ExtArgs["result"]["lift"]>
+  export type LiftOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "name" | "type" | "status" | "capacity" | "latitude" | "longitude", ExtArgs["result"]["lift"]>
   export type LiftInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     liftChecks?: boolean | Lift$liftChecksArgs<ExtArgs>
@@ -14774,7 +16095,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
+      mountainID: string
       name: string
       type: $Enums.LiftType
       status: $Enums.Status
@@ -15207,7 +16528,7 @@ export namespace Prisma {
    */
   interface LiftFieldRefs {
     readonly id: FieldRef<"Lift", 'String'>
-    readonly mountainId: FieldRef<"Lift", 'String'>
+    readonly mountainID: FieldRef<"Lift", 'String'>
     readonly name: FieldRef<"Lift", 'String'>
     readonly type: FieldRef<"Lift", 'LiftType'>
     readonly status: FieldRef<"Lift", 'Status'>
@@ -15678,7 +16999,7 @@ export namespace Prisma {
 
   export type TrailMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     difficulty: $Enums.TrailDifficulty | null
     status: $Enums.Status | null
@@ -15690,7 +17011,7 @@ export namespace Prisma {
 
   export type TrailMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     difficulty: $Enums.TrailDifficulty | null
     status: $Enums.Status | null
@@ -15702,7 +17023,7 @@ export namespace Prisma {
 
   export type TrailCountAggregateOutputType = {
     id: number
-    mountainId: number
+    mountainID: number
     name: number
     difficulty: number
     status: number
@@ -15728,7 +17049,7 @@ export namespace Prisma {
 
   export type TrailMinAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     difficulty?: true
     status?: true
@@ -15740,7 +17061,7 @@ export namespace Prisma {
 
   export type TrailMaxAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     difficulty?: true
     status?: true
@@ -15752,7 +17073,7 @@ export namespace Prisma {
 
   export type TrailCountAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     difficulty?: true
     status?: true
@@ -15851,7 +17172,7 @@ export namespace Prisma {
 
   export type TrailGroupByOutputType = {
     id: string
-    mountainId: string
+    mountainID: string
     name: string
     difficulty: $Enums.TrailDifficulty
     status: $Enums.Status
@@ -15882,7 +17203,7 @@ export namespace Prisma {
 
   export type TrailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     difficulty?: boolean
     status?: boolean
@@ -15897,7 +17218,7 @@ export namespace Prisma {
 
   export type TrailSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     difficulty?: boolean
     status?: boolean
@@ -15910,7 +17231,7 @@ export namespace Prisma {
 
   export type TrailSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     difficulty?: boolean
     status?: boolean
@@ -15923,7 +17244,7 @@ export namespace Prisma {
 
   export type TrailSelectScalar = {
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     difficulty?: boolean
     status?: boolean
@@ -15933,7 +17254,7 @@ export namespace Prisma {
     condition?: boolean
   }
 
-  export type TrailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "name" | "difficulty" | "status" | "length" | "latitude" | "longitude" | "condition", ExtArgs["result"]["trail"]>
+  export type TrailOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "name" | "difficulty" | "status" | "length" | "latitude" | "longitude" | "condition", ExtArgs["result"]["trail"]>
   export type TrailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     trailChecks?: boolean | Trail$trailChecksArgs<ExtArgs>
@@ -15954,7 +17275,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
+      mountainID: string
       name: string
       difficulty: $Enums.TrailDifficulty
       status: $Enums.Status
@@ -16388,7 +17709,7 @@ export namespace Prisma {
    */
   interface TrailFieldRefs {
     readonly id: FieldRef<"Trail", 'String'>
-    readonly mountainId: FieldRef<"Trail", 'String'>
+    readonly mountainID: FieldRef<"Trail", 'String'>
     readonly name: FieldRef<"Trail", 'String'>
     readonly difficulty: FieldRef<"Trail", 'TrailDifficulty'>
     readonly status: FieldRef<"Trail", 'Status'>
@@ -16860,7 +18181,7 @@ export namespace Prisma {
 
   export type LodgeMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     capacity: number | null
     latitude: Decimal | null
@@ -16870,7 +18191,7 @@ export namespace Prisma {
 
   export type LodgeMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     capacity: number | null
     latitude: Decimal | null
@@ -16880,7 +18201,7 @@ export namespace Prisma {
 
   export type LodgeCountAggregateOutputType = {
     id: number
-    mountainId: number
+    mountainID: number
     name: number
     capacity: number
     latitude: number
@@ -16904,7 +18225,7 @@ export namespace Prisma {
 
   export type LodgeMinAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     capacity?: true
     latitude?: true
@@ -16914,7 +18235,7 @@ export namespace Prisma {
 
   export type LodgeMaxAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     capacity?: true
     latitude?: true
@@ -16924,7 +18245,7 @@ export namespace Prisma {
 
   export type LodgeCountAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     capacity?: true
     latitude?: true
@@ -17021,7 +18342,7 @@ export namespace Prisma {
 
   export type LodgeGroupByOutputType = {
     id: string
-    mountainId: string
+    mountainID: string
     name: string
     capacity: number
     latitude: Decimal | null
@@ -17050,7 +18371,7 @@ export namespace Prisma {
 
   export type LodgeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     capacity?: boolean
     latitude?: boolean
@@ -17061,7 +18382,7 @@ export namespace Prisma {
 
   export type LodgeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     capacity?: boolean
     latitude?: boolean
@@ -17072,7 +18393,7 @@ export namespace Prisma {
 
   export type LodgeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     capacity?: boolean
     latitude?: boolean
@@ -17083,7 +18404,7 @@ export namespace Prisma {
 
   export type LodgeSelectScalar = {
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     capacity?: boolean
     latitude?: boolean
@@ -17091,7 +18412,7 @@ export namespace Prisma {
     status?: boolean
   }
 
-  export type LodgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "name" | "capacity" | "latitude" | "longitude" | "status", ExtArgs["result"]["lodge"]>
+  export type LodgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "name" | "capacity" | "latitude" | "longitude" | "status", ExtArgs["result"]["lodge"]>
   export type LodgeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }
@@ -17109,7 +18430,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
+      mountainID: string
       name: string
       capacity: number
       latitude: Prisma.Decimal | null
@@ -17540,7 +18861,7 @@ export namespace Prisma {
    */
   interface LodgeFieldRefs {
     readonly id: FieldRef<"Lodge", 'String'>
-    readonly mountainId: FieldRef<"Lodge", 'String'>
+    readonly mountainID: FieldRef<"Lodge", 'String'>
     readonly name: FieldRef<"Lodge", 'String'>
     readonly capacity: FieldRef<"Lodge", 'Int'>
     readonly latitude: FieldRef<"Lodge", 'Decimal'>
@@ -17984,7 +19305,7 @@ export namespace Prisma {
 
   export type HutMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     status: $Enums.Status | null
     latitude: Decimal | null
@@ -17993,7 +19314,7 @@ export namespace Prisma {
 
   export type HutMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     status: $Enums.Status | null
     latitude: Decimal | null
@@ -18002,7 +19323,7 @@ export namespace Prisma {
 
   export type HutCountAggregateOutputType = {
     id: number
-    mountainId: number
+    mountainID: number
     name: number
     status: number
     latitude: number
@@ -18023,7 +19344,7 @@ export namespace Prisma {
 
   export type HutMinAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     status?: true
     latitude?: true
@@ -18032,7 +19353,7 @@ export namespace Prisma {
 
   export type HutMaxAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     status?: true
     latitude?: true
@@ -18041,7 +19362,7 @@ export namespace Prisma {
 
   export type HutCountAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     status?: true
     latitude?: true
@@ -18137,7 +19458,7 @@ export namespace Prisma {
 
   export type HutGroupByOutputType = {
     id: string
-    mountainId: string
+    mountainID: string
     name: string
     status: $Enums.Status
     latitude: Decimal | null
@@ -18165,7 +19486,7 @@ export namespace Prisma {
 
   export type HutSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     status?: boolean
     latitude?: boolean
@@ -18177,7 +19498,7 @@ export namespace Prisma {
 
   export type HutSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     status?: boolean
     latitude?: boolean
@@ -18187,7 +19508,7 @@ export namespace Prisma {
 
   export type HutSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     status?: boolean
     latitude?: boolean
@@ -18197,14 +19518,14 @@ export namespace Prisma {
 
   export type HutSelectScalar = {
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     status?: boolean
     latitude?: boolean
     longitude?: boolean
   }
 
-  export type HutOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "name" | "status" | "latitude" | "longitude", ExtArgs["result"]["hut"]>
+  export type HutOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "name" | "status" | "latitude" | "longitude", ExtArgs["result"]["hut"]>
   export type HutInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     hutChecks?: boolean | Hut$hutChecksArgs<ExtArgs>
@@ -18225,7 +19546,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
+      mountainID: string
       name: string
       status: $Enums.Status
       latitude: Prisma.Decimal | null
@@ -18656,7 +19977,7 @@ export namespace Prisma {
    */
   interface HutFieldRefs {
     readonly id: FieldRef<"Hut", 'String'>
-    readonly mountainId: FieldRef<"Hut", 'String'>
+    readonly mountainID: FieldRef<"Hut", 'String'>
     readonly name: FieldRef<"Hut", 'String'>
     readonly status: FieldRef<"Hut", 'Status'>
     readonly latitude: FieldRef<"Hut", 'Decimal'>
@@ -19123,7 +20444,7 @@ export namespace Prisma {
 
   export type AidRoomMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     status: $Enums.Status | null
     latitude: Decimal | null
@@ -19132,7 +20453,7 @@ export namespace Prisma {
 
   export type AidRoomMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
+    mountainID: string | null
     name: string | null
     status: $Enums.Status | null
     latitude: Decimal | null
@@ -19141,7 +20462,7 @@ export namespace Prisma {
 
   export type AidRoomCountAggregateOutputType = {
     id: number
-    mountainId: number
+    mountainID: number
     name: number
     status: number
     latitude: number
@@ -19162,7 +20483,7 @@ export namespace Prisma {
 
   export type AidRoomMinAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     status?: true
     latitude?: true
@@ -19171,7 +20492,7 @@ export namespace Prisma {
 
   export type AidRoomMaxAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     status?: true
     latitude?: true
@@ -19180,7 +20501,7 @@ export namespace Prisma {
 
   export type AidRoomCountAggregateInputType = {
     id?: true
-    mountainId?: true
+    mountainID?: true
     name?: true
     status?: true
     latitude?: true
@@ -19276,7 +20597,7 @@ export namespace Prisma {
 
   export type AidRoomGroupByOutputType = {
     id: string
-    mountainId: string
+    mountainID: string
     name: string
     status: $Enums.Status
     latitude: Decimal | null
@@ -19304,7 +20625,7 @@ export namespace Prisma {
 
   export type AidRoomSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     status?: boolean
     latitude?: boolean
@@ -19316,7 +20637,7 @@ export namespace Prisma {
 
   export type AidRoomSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     status?: boolean
     latitude?: boolean
@@ -19326,7 +20647,7 @@ export namespace Prisma {
 
   export type AidRoomSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     status?: boolean
     latitude?: boolean
@@ -19336,14 +20657,14 @@ export namespace Prisma {
 
   export type AidRoomSelectScalar = {
     id?: boolean
-    mountainId?: boolean
+    mountainID?: boolean
     name?: boolean
     status?: boolean
     latitude?: boolean
     longitude?: boolean
   }
 
-  export type AidRoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "name" | "status" | "latitude" | "longitude", ExtArgs["result"]["aidRoom"]>
+  export type AidRoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "name" | "status" | "latitude" | "longitude", ExtArgs["result"]["aidRoom"]>
   export type AidRoomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     aidRoomChecks?: boolean | AidRoom$aidRoomChecksArgs<ExtArgs>
@@ -19364,7 +20685,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
+      mountainID: string
       name: string
       status: $Enums.Status
       latitude: Prisma.Decimal | null
@@ -19795,7 +21116,7 @@ export namespace Prisma {
    */
   interface AidRoomFieldRefs {
     readonly id: FieldRef<"AidRoom", 'String'>
-    readonly mountainId: FieldRef<"AidRoom", 'String'>
+    readonly mountainID: FieldRef<"AidRoom", 'String'>
     readonly name: FieldRef<"AidRoom", 'String'>
     readonly status: FieldRef<"AidRoom", 'Status'>
     readonly latitude: FieldRef<"AidRoom", 'Decimal'>
@@ -20250,9 +21571,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogMinAggregateOutputType = {
     id: string | null
-    mountainId: string | null
-    equipmentId: string | null
-    employeeId: string | null
+    mountainID: string | null
+    equipmentID: string | null
+    employeeID: string | null
     status: $Enums.EquipmentStatus | null
     changedAt: Date | null
     notes: string | null
@@ -20262,9 +21583,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogMaxAggregateOutputType = {
     id: string | null
-    mountainId: string | null
-    equipmentId: string | null
-    employeeId: string | null
+    mountainID: string | null
+    equipmentID: string | null
+    employeeID: string | null
     status: $Enums.EquipmentStatus | null
     changedAt: Date | null
     notes: string | null
@@ -20274,9 +21595,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogCountAggregateOutputType = {
     id: number
-    mountainId: number
-    equipmentId: number
-    employeeId: number
+    mountainID: number
+    equipmentID: number
+    employeeID: number
     status: number
     changedAt: number
     notes: number
@@ -20288,9 +21609,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogMinAggregateInputType = {
     id?: true
-    mountainId?: true
-    equipmentId?: true
-    employeeId?: true
+    mountainID?: true
+    equipmentID?: true
+    employeeID?: true
     status?: true
     changedAt?: true
     notes?: true
@@ -20300,9 +21621,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogMaxAggregateInputType = {
     id?: true
-    mountainId?: true
-    equipmentId?: true
-    employeeId?: true
+    mountainID?: true
+    equipmentID?: true
+    employeeID?: true
     status?: true
     changedAt?: true
     notes?: true
@@ -20312,9 +21633,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogCountAggregateInputType = {
     id?: true
-    mountainId?: true
-    equipmentId?: true
-    employeeId?: true
+    mountainID?: true
+    equipmentID?: true
+    employeeID?: true
     status?: true
     changedAt?: true
     notes?: true
@@ -20397,9 +21718,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogGroupByOutputType = {
     id: string
-    mountainId: string
-    equipmentId: string
-    employeeId: string | null
+    mountainID: string
+    equipmentID: string
+    employeeID: string | null
     status: $Enums.EquipmentStatus
     changedAt: Date
     notes: string | null
@@ -20426,9 +21747,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
-    equipmentId?: boolean
-    employeeId?: boolean
+    mountainID?: boolean
+    equipmentID?: boolean
+    employeeID?: boolean
     status?: boolean
     changedAt?: boolean
     notes?: boolean
@@ -20441,9 +21762,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
-    equipmentId?: boolean
-    employeeId?: boolean
+    mountainID?: boolean
+    equipmentID?: boolean
+    employeeID?: boolean
     status?: boolean
     changedAt?: boolean
     notes?: boolean
@@ -20456,9 +21777,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    mountainId?: boolean
-    equipmentId?: boolean
-    employeeId?: boolean
+    mountainID?: boolean
+    equipmentID?: boolean
+    employeeID?: boolean
     status?: boolean
     changedAt?: boolean
     notes?: boolean
@@ -20471,9 +21792,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogSelectScalar = {
     id?: boolean
-    mountainId?: boolean
-    equipmentId?: boolean
-    employeeId?: boolean
+    mountainID?: boolean
+    equipmentID?: boolean
+    employeeID?: boolean
     status?: boolean
     changedAt?: boolean
     notes?: boolean
@@ -20481,7 +21802,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type EquipmentServiceLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "equipmentId" | "employeeId" | "status" | "changedAt" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["equipmentServiceLog"]>
+  export type EquipmentServiceLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainID" | "equipmentID" | "employeeID" | "status" | "changedAt" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["equipmentServiceLog"]>
   export type EquipmentServiceLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     employee?: boolean | EquipmentServiceLog$employeeArgs<ExtArgs>
@@ -20507,9 +21828,9 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      mountainId: string
-      equipmentId: string
-      employeeId: string | null
+      mountainID: string
+      equipmentID: string
+      employeeID: string | null
       status: $Enums.EquipmentStatus
       changedAt: Date
       notes: string | null
@@ -20942,9 +22263,9 @@ export namespace Prisma {
    */
   interface EquipmentServiceLogFieldRefs {
     readonly id: FieldRef<"EquipmentServiceLog", 'String'>
-    readonly mountainId: FieldRef<"EquipmentServiceLog", 'String'>
-    readonly equipmentId: FieldRef<"EquipmentServiceLog", 'String'>
-    readonly employeeId: FieldRef<"EquipmentServiceLog", 'String'>
+    readonly mountainID: FieldRef<"EquipmentServiceLog", 'String'>
+    readonly equipmentID: FieldRef<"EquipmentServiceLog", 'String'>
+    readonly employeeID: FieldRef<"EquipmentServiceLog", 'String'>
     readonly status: FieldRef<"EquipmentServiceLog", 'EquipmentStatus'>
     readonly changedAt: FieldRef<"EquipmentServiceLog", 'DateTime'>
     readonly notes: FieldRef<"EquipmentServiceLog", 'String'>
@@ -21420,8 +22741,8 @@ export namespace Prisma {
     cost: number | null
     latitude: Decimal | null
     longitude: Decimal | null
-    mountainId: string | null
-    locationId: string | null
+    mountainID: string | null
+    locationID: string | null
     dateAdded: Date | null
   }
 
@@ -21436,8 +22757,8 @@ export namespace Prisma {
     cost: number | null
     latitude: Decimal | null
     longitude: Decimal | null
-    mountainId: string | null
-    locationId: string | null
+    mountainID: string | null
+    locationID: string | null
     dateAdded: Date | null
   }
 
@@ -21452,8 +22773,8 @@ export namespace Prisma {
     cost: number
     latitude: number
     longitude: number
-    mountainId: number
-    locationId: number
+    mountainID: number
+    locationID: number
     dateAdded: number
     _all: number
   }
@@ -21484,8 +22805,8 @@ export namespace Prisma {
     cost?: true
     latitude?: true
     longitude?: true
-    mountainId?: true
-    locationId?: true
+    mountainID?: true
+    locationID?: true
     dateAdded?: true
   }
 
@@ -21500,8 +22821,8 @@ export namespace Prisma {
     cost?: true
     latitude?: true
     longitude?: true
-    mountainId?: true
-    locationId?: true
+    mountainID?: true
+    locationID?: true
     dateAdded?: true
   }
 
@@ -21516,8 +22837,8 @@ export namespace Prisma {
     cost?: true
     latitude?: true
     longitude?: true
-    mountainId?: true
-    locationId?: true
+    mountainID?: true
+    locationID?: true
     dateAdded?: true
     _all?: true
   }
@@ -21619,8 +22940,8 @@ export namespace Prisma {
     cost: number | null
     latitude: Decimal | null
     longitude: Decimal | null
-    mountainId: string
-    locationId: string | null
+    mountainID: string
+    locationID: string | null
     dateAdded: Date
     _count: EquipmentCountAggregateOutputType | null
     _avg: EquipmentAvgAggregateOutputType | null
@@ -21654,8 +22975,8 @@ export namespace Prisma {
     cost?: boolean
     latitude?: boolean
     longitude?: boolean
-    mountainId?: boolean
-    locationId?: boolean
+    mountainID?: boolean
+    locationID?: boolean
     dateAdded?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
@@ -21676,8 +22997,8 @@ export namespace Prisma {
     cost?: boolean
     latitude?: boolean
     longitude?: boolean
-    mountainId?: boolean
-    locationId?: boolean
+    mountainID?: boolean
+    locationID?: boolean
     dateAdded?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
@@ -21694,8 +23015,8 @@ export namespace Prisma {
     cost?: boolean
     latitude?: boolean
     longitude?: boolean
-    mountainId?: boolean
-    locationId?: boolean
+    mountainID?: boolean
+    locationID?: boolean
     dateAdded?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
@@ -21712,12 +23033,12 @@ export namespace Prisma {
     cost?: boolean
     latitude?: boolean
     longitude?: boolean
-    mountainId?: boolean
-    locationId?: boolean
+    mountainID?: boolean
+    locationID?: boolean
     dateAdded?: boolean
   }
 
-  export type EquipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type" | "number" | "description" | "status" | "picture" | "cost" | "latitude" | "longitude" | "mountainId" | "locationId" | "dateAdded", ExtArgs["result"]["equipment"]>
+  export type EquipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type" | "number" | "description" | "status" | "picture" | "cost" | "latitude" | "longitude" | "mountainID" | "locationID" | "dateAdded", ExtArgs["result"]["equipment"]>
   export type EquipmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
@@ -21755,8 +23076,8 @@ export namespace Prisma {
       cost: number | null
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
-      mountainId: string
-      locationId: string | null
+      mountainID: string
+      locationID: string | null
       dateAdded: Date
     }, ExtArgs["result"]["equipment"]>
     composites: {}
@@ -22196,8 +23517,8 @@ export namespace Prisma {
     readonly cost: FieldRef<"Equipment", 'Float'>
     readonly latitude: FieldRef<"Equipment", 'Decimal'>
     readonly longitude: FieldRef<"Equipment", 'Decimal'>
-    readonly mountainId: FieldRef<"Equipment", 'String'>
-    readonly locationId: FieldRef<"Equipment", 'String'>
+    readonly mountainID: FieldRef<"Equipment", 'String'>
+    readonly locationID: FieldRef<"Equipment", 'String'>
     readonly dateAdded: FieldRef<"Equipment", 'DateTime'>
   }
     
@@ -22732,8 +24053,8 @@ export namespace Prisma {
     status: $Enums.IncidentStatus | null
     latitude: Decimal | null
     longitude: Decimal | null
-    employeeId: string | null
-    mountainId: string | null
+    employeeID: string | null
+    mountainID: string | null
     startTime: Date | null
     endTime: Date | null
     onSceneTime: Date | null
@@ -22741,7 +24062,7 @@ export namespace Prisma {
     transportTime: Date | null
     emptyRun: boolean | null
     emptyRunAt: Date | null
-    locationId: string | null
+    locationID: string | null
   }
 
   export type IncidentMaxAggregateOutputType = {
@@ -22750,8 +24071,8 @@ export namespace Prisma {
     status: $Enums.IncidentStatus | null
     latitude: Decimal | null
     longitude: Decimal | null
-    employeeId: string | null
-    mountainId: string | null
+    employeeID: string | null
+    mountainID: string | null
     startTime: Date | null
     endTime: Date | null
     onSceneTime: Date | null
@@ -22759,7 +24080,7 @@ export namespace Prisma {
     transportTime: Date | null
     emptyRun: boolean | null
     emptyRunAt: Date | null
-    locationId: string | null
+    locationID: string | null
   }
 
   export type IncidentCountAggregateOutputType = {
@@ -22768,8 +24089,8 @@ export namespace Prisma {
     status: number
     latitude: number
     longitude: number
-    employeeId: number
-    mountainId: number
+    employeeID: number
+    mountainID: number
     startTime: number
     endTime: number
     onSceneTime: number
@@ -22777,7 +24098,7 @@ export namespace Prisma {
     transportTime: number
     emptyRun: number
     emptyRunAt: number
-    locationId: number
+    locationID: number
     _all: number
   }
 
@@ -22798,8 +24119,8 @@ export namespace Prisma {
     status?: true
     latitude?: true
     longitude?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     startTime?: true
     endTime?: true
     onSceneTime?: true
@@ -22807,7 +24128,7 @@ export namespace Prisma {
     transportTime?: true
     emptyRun?: true
     emptyRunAt?: true
-    locationId?: true
+    locationID?: true
   }
 
   export type IncidentMaxAggregateInputType = {
@@ -22816,8 +24137,8 @@ export namespace Prisma {
     status?: true
     latitude?: true
     longitude?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     startTime?: true
     endTime?: true
     onSceneTime?: true
@@ -22825,7 +24146,7 @@ export namespace Prisma {
     transportTime?: true
     emptyRun?: true
     emptyRunAt?: true
-    locationId?: true
+    locationID?: true
   }
 
   export type IncidentCountAggregateInputType = {
@@ -22834,8 +24155,8 @@ export namespace Prisma {
     status?: true
     latitude?: true
     longitude?: true
-    employeeId?: true
-    mountainId?: true
+    employeeID?: true
+    mountainID?: true
     startTime?: true
     endTime?: true
     onSceneTime?: true
@@ -22843,7 +24164,7 @@ export namespace Prisma {
     transportTime?: true
     emptyRun?: true
     emptyRunAt?: true
-    locationId?: true
+    locationID?: true
     _all?: true
   }
 
@@ -22939,8 +24260,8 @@ export namespace Prisma {
     status: $Enums.IncidentStatus
     latitude: Decimal | null
     longitude: Decimal | null
-    employeeId: string | null
-    mountainId: string
+    employeeID: string | null
+    mountainID: string
     startTime: Date
     endTime: Date | null
     onSceneTime: Date | null
@@ -22948,7 +24269,7 @@ export namespace Prisma {
     transportTime: Date | null
     emptyRun: boolean
     emptyRunAt: Date | null
-    locationId: string
+    locationID: string
     _count: IncidentCountAggregateOutputType | null
     _avg: IncidentAvgAggregateOutputType | null
     _sum: IncidentSumAggregateOutputType | null
@@ -22976,8 +24297,8 @@ export namespace Prisma {
     status?: boolean
     latitude?: boolean
     longitude?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     startTime?: boolean
     endTime?: boolean
     onSceneTime?: boolean
@@ -22985,7 +24306,7 @@ export namespace Prisma {
     transportTime?: boolean
     emptyRun?: boolean
     emptyRunAt?: boolean
-    locationId?: boolean
+    locationID?: boolean
     employee?: boolean | Incident$employeeArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incidentEquipmentUsageLog?: boolean | Incident$incidentEquipmentUsageLogArgs<ExtArgs>
@@ -22999,8 +24320,8 @@ export namespace Prisma {
     status?: boolean
     latitude?: boolean
     longitude?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     startTime?: boolean
     endTime?: boolean
     onSceneTime?: boolean
@@ -23008,7 +24329,7 @@ export namespace Prisma {
     transportTime?: boolean
     emptyRun?: boolean
     emptyRunAt?: boolean
-    locationId?: boolean
+    locationID?: boolean
     employee?: boolean | Incident$employeeArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
@@ -23020,8 +24341,8 @@ export namespace Prisma {
     status?: boolean
     latitude?: boolean
     longitude?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     startTime?: boolean
     endTime?: boolean
     onSceneTime?: boolean
@@ -23029,7 +24350,7 @@ export namespace Prisma {
     transportTime?: boolean
     emptyRun?: boolean
     emptyRunAt?: boolean
-    locationId?: boolean
+    locationID?: boolean
     employee?: boolean | Incident$employeeArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
@@ -23041,8 +24362,8 @@ export namespace Prisma {
     status?: boolean
     latitude?: boolean
     longitude?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
     startTime?: boolean
     endTime?: boolean
     onSceneTime?: boolean
@@ -23050,10 +24371,10 @@ export namespace Prisma {
     transportTime?: boolean
     emptyRun?: boolean
     emptyRunAt?: boolean
-    locationId?: boolean
+    locationID?: boolean
   }
 
-  export type IncidentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "status" | "latitude" | "longitude" | "employeeId" | "mountainId" | "startTime" | "endTime" | "onSceneTime" | "stableTime" | "transportTime" | "emptyRun" | "emptyRunAt" | "locationId", ExtArgs["result"]["incident"]>
+  export type IncidentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "status" | "latitude" | "longitude" | "employeeID" | "mountainID" | "startTime" | "endTime" | "onSceneTime" | "stableTime" | "transportTime" | "emptyRun" | "emptyRunAt" | "locationID", ExtArgs["result"]["incident"]>
   export type IncidentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | Incident$employeeArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -23086,8 +24407,8 @@ export namespace Prisma {
       status: $Enums.IncidentStatus
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
-      employeeId: string | null
-      mountainId: string
+      employeeID: string | null
+      mountainID: string
       startTime: Date
       endTime: Date | null
       onSceneTime: Date | null
@@ -23095,7 +24416,7 @@ export namespace Prisma {
       transportTime: Date | null
       emptyRun: boolean
       emptyRunAt: Date | null
-      locationId: string
+      locationID: string
     }, ExtArgs["result"]["incident"]>
     composites: {}
   }
@@ -23528,8 +24849,8 @@ export namespace Prisma {
     readonly status: FieldRef<"Incident", 'IncidentStatus'>
     readonly latitude: FieldRef<"Incident", 'Decimal'>
     readonly longitude: FieldRef<"Incident", 'Decimal'>
-    readonly employeeId: FieldRef<"Incident", 'String'>
-    readonly mountainId: FieldRef<"Incident", 'String'>
+    readonly employeeID: FieldRef<"Incident", 'String'>
+    readonly mountainID: FieldRef<"Incident", 'String'>
     readonly startTime: FieldRef<"Incident", 'DateTime'>
     readonly endTime: FieldRef<"Incident", 'DateTime'>
     readonly onSceneTime: FieldRef<"Incident", 'DateTime'>
@@ -23537,7 +24858,7 @@ export namespace Prisma {
     readonly transportTime: FieldRef<"Incident", 'DateTime'>
     readonly emptyRun: FieldRef<"Incident", 'Boolean'>
     readonly emptyRunAt: FieldRef<"Incident", 'DateTime'>
-    readonly locationId: FieldRef<"Incident", 'String'>
+    readonly locationID: FieldRef<"Incident", 'String'>
   }
     
 
@@ -24007,33 +25328,33 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogMinAggregateOutputType = {
     id: string | null
-    equipmentId: string | null
-    mountainId: string | null
+    equipmentID: string | null
+    mountainID: string | null
     usedAt: Date | null
     notes: string | null
-    incidentId: string | null
+    incidentID: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type IncidentEquipmentUseageLogMaxAggregateOutputType = {
     id: string | null
-    equipmentId: string | null
-    mountainId: string | null
+    equipmentID: string | null
+    mountainID: string | null
     usedAt: Date | null
     notes: string | null
-    incidentId: string | null
+    incidentID: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type IncidentEquipmentUseageLogCountAggregateOutputType = {
     id: number
-    equipmentId: number
-    mountainId: number
+    equipmentID: number
+    mountainID: number
     usedAt: number
     notes: number
-    incidentId: number
+    incidentID: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -24042,33 +25363,33 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogMinAggregateInputType = {
     id?: true
-    equipmentId?: true
-    mountainId?: true
+    equipmentID?: true
+    mountainID?: true
     usedAt?: true
     notes?: true
-    incidentId?: true
+    incidentID?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type IncidentEquipmentUseageLogMaxAggregateInputType = {
     id?: true
-    equipmentId?: true
-    mountainId?: true
+    equipmentID?: true
+    mountainID?: true
     usedAt?: true
     notes?: true
-    incidentId?: true
+    incidentID?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type IncidentEquipmentUseageLogCountAggregateInputType = {
     id?: true
-    equipmentId?: true
-    mountainId?: true
+    equipmentID?: true
+    mountainID?: true
     usedAt?: true
     notes?: true
-    incidentId?: true
+    incidentID?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -24148,11 +25469,11 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogGroupByOutputType = {
     id: string
-    equipmentId: string
-    mountainId: string
+    equipmentID: string
+    mountainID: string
     usedAt: Date
     notes: string | null
-    incidentId: string
+    incidentID: string
     createdAt: Date
     updatedAt: Date
     _count: IncidentEquipmentUseageLogCountAggregateOutputType | null
@@ -24176,11 +25497,11 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    equipmentId?: boolean
-    mountainId?: boolean
+    equipmentID?: boolean
+    mountainID?: boolean
     usedAt?: boolean
     notes?: boolean
-    incidentId?: boolean
+    incidentID?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -24190,11 +25511,11 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    equipmentId?: boolean
-    mountainId?: boolean
+    equipmentID?: boolean
+    mountainID?: boolean
     usedAt?: boolean
     notes?: boolean
-    incidentId?: boolean
+    incidentID?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -24204,11 +25525,11 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    equipmentId?: boolean
-    mountainId?: boolean
+    equipmentID?: boolean
+    mountainID?: boolean
     usedAt?: boolean
     notes?: boolean
-    incidentId?: boolean
+    incidentID?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -24218,16 +25539,16 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogSelectScalar = {
     id?: boolean
-    equipmentId?: boolean
-    mountainId?: boolean
+    equipmentID?: boolean
+    mountainID?: boolean
     usedAt?: boolean
     notes?: boolean
-    incidentId?: boolean
+    incidentID?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type IncidentEquipmentUseageLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "equipmentId" | "mountainId" | "usedAt" | "notes" | "incidentId" | "createdAt" | "updatedAt", ExtArgs["result"]["incidentEquipmentUseageLog"]>
+  export type IncidentEquipmentUseageLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "equipmentID" | "mountainID" | "usedAt" | "notes" | "incidentID" | "createdAt" | "updatedAt", ExtArgs["result"]["incidentEquipmentUseageLog"]>
   export type IncidentEquipmentUseageLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incident?: boolean | IncidentDefaultArgs<ExtArgs>
@@ -24253,11 +25574,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      equipmentId: string
-      mountainId: string
+      equipmentID: string
+      mountainID: string
       usedAt: Date
       notes: string | null
-      incidentId: string
+      incidentID: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["incidentEquipmentUseageLog"]>
@@ -24687,11 +26008,11 @@ export namespace Prisma {
    */
   interface IncidentEquipmentUseageLogFieldRefs {
     readonly id: FieldRef<"IncidentEquipmentUseageLog", 'String'>
-    readonly equipmentId: FieldRef<"IncidentEquipmentUseageLog", 'String'>
-    readonly mountainId: FieldRef<"IncidentEquipmentUseageLog", 'String'>
+    readonly equipmentID: FieldRef<"IncidentEquipmentUseageLog", 'String'>
+    readonly mountainID: FieldRef<"IncidentEquipmentUseageLog", 'String'>
     readonly usedAt: FieldRef<"IncidentEquipmentUseageLog", 'DateTime'>
     readonly notes: FieldRef<"IncidentEquipmentUseageLog", 'String'>
-    readonly incidentId: FieldRef<"IncidentEquipmentUseageLog", 'String'>
+    readonly incidentID: FieldRef<"IncidentEquipmentUseageLog", 'String'>
     readonly createdAt: FieldRef<"IncidentEquipmentUseageLog", 'DateTime'>
     readonly updatedAt: FieldRef<"IncidentEquipmentUseageLog", 'DateTime'>
   }
@@ -25121,9 +26442,9 @@ export namespace Prisma {
   export type LiftCheckMinAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    liftId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    liftID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -25132,9 +26453,9 @@ export namespace Prisma {
   export type LiftCheckMaxAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    liftId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    liftID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -25143,9 +26464,9 @@ export namespace Prisma {
   export type LiftCheckCountAggregateOutputType = {
     id: number
     recordedAt: number
-    employeeId: number
-    mountainId: number
-    liftId: number
+    employeeID: number
+    mountainID: number
+    liftID: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -25156,9 +26477,9 @@ export namespace Prisma {
   export type LiftCheckMinAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    liftId?: true
+    employeeID?: true
+    mountainID?: true
+    liftID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -25167,9 +26488,9 @@ export namespace Prisma {
   export type LiftCheckMaxAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    liftId?: true
+    employeeID?: true
+    mountainID?: true
+    liftID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -25178,9 +26499,9 @@ export namespace Prisma {
   export type LiftCheckCountAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    liftId?: true
+    employeeID?: true
+    mountainID?: true
+    liftID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -25262,9 +26583,9 @@ export namespace Prisma {
   export type LiftCheckGroupByOutputType = {
     id: string
     recordedAt: Date
-    employeeId: string
-    mountainId: string
-    liftId: string
+    employeeID: string
+    mountainID: string
+    liftID: string
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -25290,9 +26611,9 @@ export namespace Prisma {
   export type LiftCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    liftId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    liftID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -25304,9 +26625,9 @@ export namespace Prisma {
   export type LiftCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    liftId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    liftID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -25318,9 +26639,9 @@ export namespace Prisma {
   export type LiftCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    liftId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    liftID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -25332,15 +26653,15 @@ export namespace Prisma {
   export type LiftCheckSelectScalar = {
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    liftId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    liftID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LiftCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "liftId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["liftCheck"]>
+  export type LiftCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeID" | "mountainID" | "liftID" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["liftCheck"]>
   export type LiftCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -25367,9 +26688,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       recordedAt: Date
-      employeeId: string
-      mountainId: string
-      liftId: string
+      employeeID: string
+      mountainID: string
+      liftID: string
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -25801,9 +27122,9 @@ export namespace Prisma {
   interface LiftCheckFieldRefs {
     readonly id: FieldRef<"LiftCheck", 'String'>
     readonly recordedAt: FieldRef<"LiftCheck", 'DateTime'>
-    readonly employeeId: FieldRef<"LiftCheck", 'String'>
-    readonly mountainId: FieldRef<"LiftCheck", 'String'>
-    readonly liftId: FieldRef<"LiftCheck", 'String'>
+    readonly employeeID: FieldRef<"LiftCheck", 'String'>
+    readonly mountainID: FieldRef<"LiftCheck", 'String'>
+    readonly liftID: FieldRef<"LiftCheck", 'String'>
     readonly notes: FieldRef<"LiftCheck", 'String'>
     readonly createdAt: FieldRef<"LiftCheck", 'DateTime'>
     readonly updatedAt: FieldRef<"LiftCheck", 'DateTime'>
@@ -26234,9 +27555,9 @@ export namespace Prisma {
   export type TrailCheckMinAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    trailId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    trailID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -26245,9 +27566,9 @@ export namespace Prisma {
   export type TrailCheckMaxAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    trailId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    trailID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -26256,9 +27577,9 @@ export namespace Prisma {
   export type TrailCheckCountAggregateOutputType = {
     id: number
     recordedAt: number
-    employeeId: number
-    mountainId: number
-    trailId: number
+    employeeID: number
+    mountainID: number
+    trailID: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -26269,9 +27590,9 @@ export namespace Prisma {
   export type TrailCheckMinAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    trailId?: true
+    employeeID?: true
+    mountainID?: true
+    trailID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -26280,9 +27601,9 @@ export namespace Prisma {
   export type TrailCheckMaxAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    trailId?: true
+    employeeID?: true
+    mountainID?: true
+    trailID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -26291,9 +27612,9 @@ export namespace Prisma {
   export type TrailCheckCountAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    trailId?: true
+    employeeID?: true
+    mountainID?: true
+    trailID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -26375,9 +27696,9 @@ export namespace Prisma {
   export type TrailCheckGroupByOutputType = {
     id: string
     recordedAt: Date
-    employeeId: string
-    mountainId: string
-    trailId: string
+    employeeID: string
+    mountainID: string
+    trailID: string
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -26403,9 +27724,9 @@ export namespace Prisma {
   export type TrailCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    trailId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    trailID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -26417,9 +27738,9 @@ export namespace Prisma {
   export type TrailCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    trailId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    trailID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -26431,9 +27752,9 @@ export namespace Prisma {
   export type TrailCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    trailId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    trailID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -26445,15 +27766,15 @@ export namespace Prisma {
   export type TrailCheckSelectScalar = {
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    trailId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    trailID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TrailCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "trailId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["trailCheck"]>
+  export type TrailCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeID" | "mountainID" | "trailID" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["trailCheck"]>
   export type TrailCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -26480,9 +27801,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       recordedAt: Date
-      employeeId: string
-      mountainId: string
-      trailId: string
+      employeeID: string
+      mountainID: string
+      trailID: string
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -26914,9 +28235,9 @@ export namespace Prisma {
   interface TrailCheckFieldRefs {
     readonly id: FieldRef<"TrailCheck", 'String'>
     readonly recordedAt: FieldRef<"TrailCheck", 'DateTime'>
-    readonly employeeId: FieldRef<"TrailCheck", 'String'>
-    readonly mountainId: FieldRef<"TrailCheck", 'String'>
-    readonly trailId: FieldRef<"TrailCheck", 'String'>
+    readonly employeeID: FieldRef<"TrailCheck", 'String'>
+    readonly mountainID: FieldRef<"TrailCheck", 'String'>
+    readonly trailID: FieldRef<"TrailCheck", 'String'>
     readonly notes: FieldRef<"TrailCheck", 'String'>
     readonly createdAt: FieldRef<"TrailCheck", 'DateTime'>
     readonly updatedAt: FieldRef<"TrailCheck", 'DateTime'>
@@ -27347,9 +28668,9 @@ export namespace Prisma {
   export type HutCheckMinAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    hutId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    hutID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -27358,9 +28679,9 @@ export namespace Prisma {
   export type HutCheckMaxAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    hutId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    hutID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -27369,9 +28690,9 @@ export namespace Prisma {
   export type HutCheckCountAggregateOutputType = {
     id: number
     recordedAt: number
-    employeeId: number
-    mountainId: number
-    hutId: number
+    employeeID: number
+    mountainID: number
+    hutID: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -27382,9 +28703,9 @@ export namespace Prisma {
   export type HutCheckMinAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    hutId?: true
+    employeeID?: true
+    mountainID?: true
+    hutID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -27393,9 +28714,9 @@ export namespace Prisma {
   export type HutCheckMaxAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    hutId?: true
+    employeeID?: true
+    mountainID?: true
+    hutID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -27404,9 +28725,9 @@ export namespace Prisma {
   export type HutCheckCountAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    hutId?: true
+    employeeID?: true
+    mountainID?: true
+    hutID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -27488,9 +28809,9 @@ export namespace Prisma {
   export type HutCheckGroupByOutputType = {
     id: string
     recordedAt: Date
-    employeeId: string
-    mountainId: string
-    hutId: string
+    employeeID: string
+    mountainID: string
+    hutID: string
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -27516,9 +28837,9 @@ export namespace Prisma {
   export type HutCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    hutId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    hutID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -27530,9 +28851,9 @@ export namespace Prisma {
   export type HutCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    hutId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    hutID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -27544,9 +28865,9 @@ export namespace Prisma {
   export type HutCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    hutId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    hutID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -27558,15 +28879,15 @@ export namespace Prisma {
   export type HutCheckSelectScalar = {
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    hutId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    hutID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type HutCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "hutId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["hutCheck"]>
+  export type HutCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeID" | "mountainID" | "hutID" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["hutCheck"]>
   export type HutCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -27593,9 +28914,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       recordedAt: Date
-      employeeId: string
-      mountainId: string
-      hutId: string
+      employeeID: string
+      mountainID: string
+      hutID: string
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -28027,9 +29348,9 @@ export namespace Prisma {
   interface HutCheckFieldRefs {
     readonly id: FieldRef<"HutCheck", 'String'>
     readonly recordedAt: FieldRef<"HutCheck", 'DateTime'>
-    readonly employeeId: FieldRef<"HutCheck", 'String'>
-    readonly mountainId: FieldRef<"HutCheck", 'String'>
-    readonly hutId: FieldRef<"HutCheck", 'String'>
+    readonly employeeID: FieldRef<"HutCheck", 'String'>
+    readonly mountainID: FieldRef<"HutCheck", 'String'>
+    readonly hutID: FieldRef<"HutCheck", 'String'>
     readonly notes: FieldRef<"HutCheck", 'String'>
     readonly createdAt: FieldRef<"HutCheck", 'DateTime'>
     readonly updatedAt: FieldRef<"HutCheck", 'DateTime'>
@@ -28460,9 +29781,9 @@ export namespace Prisma {
   export type AidRoomCheckMinAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    aidRoomId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    aidRoomID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -28471,9 +29792,9 @@ export namespace Prisma {
   export type AidRoomCheckMaxAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    aidRoomId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    aidRoomID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -28482,9 +29803,9 @@ export namespace Prisma {
   export type AidRoomCheckCountAggregateOutputType = {
     id: number
     recordedAt: number
-    employeeId: number
-    mountainId: number
-    aidRoomId: number
+    employeeID: number
+    mountainID: number
+    aidRoomID: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -28495,9 +29816,9 @@ export namespace Prisma {
   export type AidRoomCheckMinAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    aidRoomId?: true
+    employeeID?: true
+    mountainID?: true
+    aidRoomID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -28506,9 +29827,9 @@ export namespace Prisma {
   export type AidRoomCheckMaxAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    aidRoomId?: true
+    employeeID?: true
+    mountainID?: true
+    aidRoomID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -28517,9 +29838,9 @@ export namespace Prisma {
   export type AidRoomCheckCountAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    aidRoomId?: true
+    employeeID?: true
+    mountainID?: true
+    aidRoomID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -28601,9 +29922,9 @@ export namespace Prisma {
   export type AidRoomCheckGroupByOutputType = {
     id: string
     recordedAt: Date
-    employeeId: string
-    mountainId: string
-    aidRoomId: string
+    employeeID: string
+    mountainID: string
+    aidRoomID: string
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -28629,9 +29950,9 @@ export namespace Prisma {
   export type AidRoomCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    aidRoomId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    aidRoomID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -28643,9 +29964,9 @@ export namespace Prisma {
   export type AidRoomCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    aidRoomId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    aidRoomID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -28657,9 +29978,9 @@ export namespace Prisma {
   export type AidRoomCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    aidRoomId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    aidRoomID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -28671,15 +29992,15 @@ export namespace Prisma {
   export type AidRoomCheckSelectScalar = {
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    aidRoomId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    aidRoomID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AidRoomCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "aidRoomId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["aidRoomCheck"]>
+  export type AidRoomCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeID" | "mountainID" | "aidRoomID" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["aidRoomCheck"]>
   export type AidRoomCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -28706,9 +30027,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       recordedAt: Date
-      employeeId: string
-      mountainId: string
-      aidRoomId: string
+      employeeID: string
+      mountainID: string
+      aidRoomID: string
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -29140,9 +30461,9 @@ export namespace Prisma {
   interface AidRoomCheckFieldRefs {
     readonly id: FieldRef<"AidRoomCheck", 'String'>
     readonly recordedAt: FieldRef<"AidRoomCheck", 'DateTime'>
-    readonly employeeId: FieldRef<"AidRoomCheck", 'String'>
-    readonly mountainId: FieldRef<"AidRoomCheck", 'String'>
-    readonly aidRoomId: FieldRef<"AidRoomCheck", 'String'>
+    readonly employeeID: FieldRef<"AidRoomCheck", 'String'>
+    readonly mountainID: FieldRef<"AidRoomCheck", 'String'>
+    readonly aidRoomID: FieldRef<"AidRoomCheck", 'String'>
     readonly notes: FieldRef<"AidRoomCheck", 'String'>
     readonly createdAt: FieldRef<"AidRoomCheck", 'DateTime'>
     readonly updatedAt: FieldRef<"AidRoomCheck", 'DateTime'>
@@ -29573,9 +30894,9 @@ export namespace Prisma {
   export type EquipmentCheckMinAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    equipmentId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    equipmentID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -29584,9 +30905,9 @@ export namespace Prisma {
   export type EquipmentCheckMaxAggregateOutputType = {
     id: string | null
     recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    equipmentId: string | null
+    employeeID: string | null
+    mountainID: string | null
+    equipmentID: string | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -29595,9 +30916,9 @@ export namespace Prisma {
   export type EquipmentCheckCountAggregateOutputType = {
     id: number
     recordedAt: number
-    employeeId: number
-    mountainId: number
-    equipmentId: number
+    employeeID: number
+    mountainID: number
+    equipmentID: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -29608,9 +30929,9 @@ export namespace Prisma {
   export type EquipmentCheckMinAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    equipmentId?: true
+    employeeID?: true
+    mountainID?: true
+    equipmentID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -29619,9 +30940,9 @@ export namespace Prisma {
   export type EquipmentCheckMaxAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    equipmentId?: true
+    employeeID?: true
+    mountainID?: true
+    equipmentID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -29630,9 +30951,9 @@ export namespace Prisma {
   export type EquipmentCheckCountAggregateInputType = {
     id?: true
     recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    equipmentId?: true
+    employeeID?: true
+    mountainID?: true
+    equipmentID?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -29714,9 +31035,9 @@ export namespace Prisma {
   export type EquipmentCheckGroupByOutputType = {
     id: string
     recordedAt: Date
-    employeeId: string
-    mountainId: string
-    equipmentId: string
+    employeeID: string
+    mountainID: string
+    equipmentID: string
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -29742,9 +31063,9 @@ export namespace Prisma {
   export type EquipmentCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    equipmentId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    equipmentID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -29756,9 +31077,9 @@ export namespace Prisma {
   export type EquipmentCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    equipmentId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    equipmentID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -29770,9 +31091,9 @@ export namespace Prisma {
   export type EquipmentCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    equipmentId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    equipmentID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -29784,15 +31105,15 @@ export namespace Prisma {
   export type EquipmentCheckSelectScalar = {
     id?: boolean
     recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    equipmentId?: boolean
+    employeeID?: boolean
+    mountainID?: boolean
+    equipmentID?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type EquipmentCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "equipmentId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["equipmentCheck"]>
+  export type EquipmentCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeID" | "mountainID" | "equipmentID" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["equipmentCheck"]>
   export type EquipmentCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -29819,9 +31140,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       recordedAt: Date
-      employeeId: string
-      mountainId: string
-      equipmentId: string
+      employeeID: string
+      mountainID: string
+      equipmentID: string
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -30253,9 +31574,9 @@ export namespace Prisma {
   interface EquipmentCheckFieldRefs {
     readonly id: FieldRef<"EquipmentCheck", 'String'>
     readonly recordedAt: FieldRef<"EquipmentCheck", 'DateTime'>
-    readonly employeeId: FieldRef<"EquipmentCheck", 'String'>
-    readonly mountainId: FieldRef<"EquipmentCheck", 'String'>
-    readonly equipmentId: FieldRef<"EquipmentCheck", 'String'>
+    readonly employeeID: FieldRef<"EquipmentCheck", 'String'>
+    readonly mountainID: FieldRef<"EquipmentCheck", 'String'>
+    readonly equipmentID: FieldRef<"EquipmentCheck", 'String'>
     readonly notes: FieldRef<"EquipmentCheck", 'String'>
     readonly createdAt: FieldRef<"EquipmentCheck", 'DateTime'>
     readonly updatedAt: FieldRef<"EquipmentCheck", 'DateTime'>
@@ -30689,7 +32010,7 @@ export namespace Prisma {
 
   export const AreaScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
+    mountainID: 'mountainID',
     name: 'name',
     type: 'type',
     description: 'description'
@@ -30700,10 +32021,10 @@ export namespace Prisma {
 
   export const LocationScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
+    mountainID: 'mountainID',
     name: 'name',
-    areaId: 'areaId',
-    entityId: 'entityId',
+    areaID: 'areaID',
+    entityID: 'entityID',
     entityType: 'entityType'
   };
 
@@ -30712,7 +32033,7 @@ export namespace Prisma {
 
   export const HoursScalarFieldEnum: {
     id: 'id',
-    locationId: 'locationId',
+    locationID: 'locationID',
     dayOfWeek: 'dayOfWeek',
     date: 'date',
     openTime: 'openTime',
@@ -30745,7 +32066,7 @@ export namespace Prisma {
 
   export const WeatherScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
+    mountainID: 'mountainID',
     date: 'date',
     temperature: 'temperature',
     windSpeed: 'windSpeed',
@@ -30764,8 +32085,8 @@ export namespace Prisma {
 
   export const EmployeeMountainAssignmentScalarFieldEnum: {
     id: 'id',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
+    employeeID: 'employeeID',
+    mountainID: 'mountainID',
     assignedAt: 'assignedAt'
   };
 
@@ -30774,8 +32095,8 @@ export namespace Prisma {
 
   export const DispatcherAssignmentScalarFieldEnum: {
     id: 'id',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
+    employeeID: 'employeeID',
+    mountainID: 'mountainID',
     assignedAt: 'assignedAt'
   };
 
@@ -30784,23 +32105,33 @@ export namespace Prisma {
 
   export const RoleScalarFieldEnum: {
     id: 'id',
+    department: 'department',
     name: 'name',
-    permissions: 'permissions',
-    employeeId: 'employeeId'
+    title: 'title',
+    position: 'position',
+    level: 'level',
+    permissions: 'permissions'
   };
 
   export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
 
 
+  export const EmployeeRoleScalarFieldEnum: {
+    id: 'id',
+    employeeID: 'employeeID',
+    roleID: 'roleID'
+  };
+
+  export type EmployeeRoleScalarFieldEnum = (typeof EmployeeRoleScalarFieldEnum)[keyof typeof EmployeeRoleScalarFieldEnum]
+
+
   export const EmployeeScalarFieldEnum: {
     id: 'id',
-    employeeIdNumber: 'employeeIdNumber',
+    employeeIDNumber: 'employeeIDNumber',
     email: 'email',
     phoneNumber: 'phoneNumber',
     name: 'name',
-    title: 'title',
-    roleId: 'roleId',
-    department: 'department'
+    roleID: 'roleID'
   };
 
   export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
@@ -30808,7 +32139,7 @@ export namespace Prisma {
 
   export const LiftScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
+    mountainID: 'mountainID',
     name: 'name',
     type: 'type',
     status: 'status',
@@ -30822,7 +32153,7 @@ export namespace Prisma {
 
   export const TrailScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
+    mountainID: 'mountainID',
     name: 'name',
     difficulty: 'difficulty',
     status: 'status',
@@ -30837,7 +32168,7 @@ export namespace Prisma {
 
   export const LodgeScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
+    mountainID: 'mountainID',
     name: 'name',
     capacity: 'capacity',
     latitude: 'latitude',
@@ -30850,7 +32181,7 @@ export namespace Prisma {
 
   export const HutScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
+    mountainID: 'mountainID',
     name: 'name',
     status: 'status',
     latitude: 'latitude',
@@ -30862,7 +32193,7 @@ export namespace Prisma {
 
   export const AidRoomScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
+    mountainID: 'mountainID',
     name: 'name',
     status: 'status',
     latitude: 'latitude',
@@ -30874,9 +32205,9 @@ export namespace Prisma {
 
   export const EquipmentServiceLogScalarFieldEnum: {
     id: 'id',
-    mountainId: 'mountainId',
-    equipmentId: 'equipmentId',
-    employeeId: 'employeeId',
+    mountainID: 'mountainID',
+    equipmentID: 'equipmentID',
+    employeeID: 'employeeID',
     status: 'status',
     changedAt: 'changedAt',
     notes: 'notes',
@@ -30898,8 +32229,8 @@ export namespace Prisma {
     cost: 'cost',
     latitude: 'latitude',
     longitude: 'longitude',
-    mountainId: 'mountainId',
-    locationId: 'locationId',
+    mountainID: 'mountainID',
+    locationID: 'locationID',
     dateAdded: 'dateAdded'
   };
 
@@ -30912,8 +32243,8 @@ export namespace Prisma {
     status: 'status',
     latitude: 'latitude',
     longitude: 'longitude',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
+    employeeID: 'employeeID',
+    mountainID: 'mountainID',
     startTime: 'startTime',
     endTime: 'endTime',
     onSceneTime: 'onSceneTime',
@@ -30921,7 +32252,7 @@ export namespace Prisma {
     transportTime: 'transportTime',
     emptyRun: 'emptyRun',
     emptyRunAt: 'emptyRunAt',
-    locationId: 'locationId'
+    locationID: 'locationID'
   };
 
   export type IncidentScalarFieldEnum = (typeof IncidentScalarFieldEnum)[keyof typeof IncidentScalarFieldEnum]
@@ -30929,11 +32260,11 @@ export namespace Prisma {
 
   export const IncidentEquipmentUseageLogScalarFieldEnum: {
     id: 'id',
-    equipmentId: 'equipmentId',
-    mountainId: 'mountainId',
+    equipmentID: 'equipmentID',
+    mountainID: 'mountainID',
     usedAt: 'usedAt',
     notes: 'notes',
-    incidentId: 'incidentId',
+    incidentID: 'incidentID',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -30944,9 +32275,9 @@ export namespace Prisma {
   export const LiftCheckScalarFieldEnum: {
     id: 'id',
     recordedAt: 'recordedAt',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
-    liftId: 'liftId',
+    employeeID: 'employeeID',
+    mountainID: 'mountainID',
+    liftID: 'liftID',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -30958,9 +32289,9 @@ export namespace Prisma {
   export const TrailCheckScalarFieldEnum: {
     id: 'id',
     recordedAt: 'recordedAt',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
-    trailId: 'trailId',
+    employeeID: 'employeeID',
+    mountainID: 'mountainID',
+    trailID: 'trailID',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -30972,9 +32303,9 @@ export namespace Prisma {
   export const HutCheckScalarFieldEnum: {
     id: 'id',
     recordedAt: 'recordedAt',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
-    hutId: 'hutId',
+    employeeID: 'employeeID',
+    mountainID: 'mountainID',
+    hutID: 'hutID',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -30986,9 +32317,9 @@ export namespace Prisma {
   export const AidRoomCheckScalarFieldEnum: {
     id: 'id',
     recordedAt: 'recordedAt',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
-    aidRoomId: 'aidRoomId',
+    employeeID: 'employeeID',
+    mountainID: 'mountainID',
+    aidRoomID: 'aidRoomID',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -31000,9 +32331,9 @@ export namespace Prisma {
   export const EquipmentCheckScalarFieldEnum: {
     id: 'id',
     recordedAt: 'recordedAt',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
-    equipmentId: 'equipmentId',
+    employeeID: 'employeeID',
+    mountainID: 'mountainID',
+    equipmentID: 'equipmentID',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -31251,7 +32582,7 @@ export namespace Prisma {
     OR?: AreaWhereInput[]
     NOT?: AreaWhereInput | AreaWhereInput[]
     id?: StringFilter<"Area"> | string
-    mountainId?: StringFilter<"Area"> | string
+    mountainID?: StringFilter<"Area"> | string
     name?: StringFilter<"Area"> | string
     type?: EnumAreaTypeFilter<"Area"> | $Enums.AreaType
     description?: StringNullableFilter<"Area"> | string | null
@@ -31261,7 +32592,7 @@ export namespace Prisma {
 
   export type AreaOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     description?: SortOrderInput | SortOrder
@@ -31274,7 +32605,7 @@ export namespace Prisma {
     AND?: AreaWhereInput | AreaWhereInput[]
     OR?: AreaWhereInput[]
     NOT?: AreaWhereInput | AreaWhereInput[]
-    mountainId?: StringFilter<"Area"> | string
+    mountainID?: StringFilter<"Area"> | string
     name?: StringFilter<"Area"> | string
     type?: EnumAreaTypeFilter<"Area"> | $Enums.AreaType
     description?: StringNullableFilter<"Area"> | string | null
@@ -31284,7 +32615,7 @@ export namespace Prisma {
 
   export type AreaOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     description?: SortOrderInput | SortOrder
@@ -31298,7 +32629,7 @@ export namespace Prisma {
     OR?: AreaScalarWhereWithAggregatesInput[]
     NOT?: AreaScalarWhereWithAggregatesInput | AreaScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Area"> | string
-    mountainId?: StringWithAggregatesFilter<"Area"> | string
+    mountainID?: StringWithAggregatesFilter<"Area"> | string
     name?: StringWithAggregatesFilter<"Area"> | string
     type?: EnumAreaTypeWithAggregatesFilter<"Area"> | $Enums.AreaType
     description?: StringNullableWithAggregatesFilter<"Area"> | string | null
@@ -31309,10 +32640,10 @@ export namespace Prisma {
     OR?: LocationWhereInput[]
     NOT?: LocationWhereInput | LocationWhereInput[]
     id?: StringFilter<"Location"> | string
-    mountainId?: StringFilter<"Location"> | string
+    mountainID?: StringFilter<"Location"> | string
     name?: StringFilter<"Location"> | string
-    areaId?: StringNullableFilter<"Location"> | string | null
-    entityId?: StringNullableFilter<"Location"> | string | null
+    areaID?: StringNullableFilter<"Location"> | string | null
+    entityID?: StringNullableFilter<"Location"> | string | null
     entityType?: EnumLocationTypeFilter<"Location"> | $Enums.LocationType
     area?: XOR<AreaNullableScalarRelationFilter, AreaWhereInput> | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -31323,10 +32654,10 @@ export namespace Prisma {
 
   export type LocationOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
-    areaId?: SortOrderInput | SortOrder
-    entityId?: SortOrderInput | SortOrder
+    areaID?: SortOrderInput | SortOrder
+    entityID?: SortOrderInput | SortOrder
     entityType?: SortOrder
     area?: AreaOrderByWithRelationInput
     mountain?: MountainOrderByWithRelationInput
@@ -31340,10 +32671,10 @@ export namespace Prisma {
     AND?: LocationWhereInput | LocationWhereInput[]
     OR?: LocationWhereInput[]
     NOT?: LocationWhereInput | LocationWhereInput[]
-    mountainId?: StringFilter<"Location"> | string
+    mountainID?: StringFilter<"Location"> | string
     name?: StringFilter<"Location"> | string
-    areaId?: StringNullableFilter<"Location"> | string | null
-    entityId?: StringNullableFilter<"Location"> | string | null
+    areaID?: StringNullableFilter<"Location"> | string | null
+    entityID?: StringNullableFilter<"Location"> | string | null
     entityType?: EnumLocationTypeFilter<"Location"> | $Enums.LocationType
     area?: XOR<AreaNullableScalarRelationFilter, AreaWhereInput> | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -31354,10 +32685,10 @@ export namespace Prisma {
 
   export type LocationOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
-    areaId?: SortOrderInput | SortOrder
-    entityId?: SortOrderInput | SortOrder
+    areaID?: SortOrderInput | SortOrder
+    entityID?: SortOrderInput | SortOrder
     entityType?: SortOrder
     _count?: LocationCountOrderByAggregateInput
     _max?: LocationMaxOrderByAggregateInput
@@ -31369,10 +32700,10 @@ export namespace Prisma {
     OR?: LocationScalarWhereWithAggregatesInput[]
     NOT?: LocationScalarWhereWithAggregatesInput | LocationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Location"> | string
-    mountainId?: StringWithAggregatesFilter<"Location"> | string
+    mountainID?: StringWithAggregatesFilter<"Location"> | string
     name?: StringWithAggregatesFilter<"Location"> | string
-    areaId?: StringNullableWithAggregatesFilter<"Location"> | string | null
-    entityId?: StringNullableWithAggregatesFilter<"Location"> | string | null
+    areaID?: StringNullableWithAggregatesFilter<"Location"> | string | null
+    entityID?: StringNullableWithAggregatesFilter<"Location"> | string | null
     entityType?: EnumLocationTypeWithAggregatesFilter<"Location"> | $Enums.LocationType
   }
 
@@ -31381,7 +32712,7 @@ export namespace Prisma {
     OR?: HoursWhereInput[]
     NOT?: HoursWhereInput | HoursWhereInput[]
     id?: StringFilter<"Hours"> | string
-    locationId?: StringFilter<"Hours"> | string
+    locationID?: StringFilter<"Hours"> | string
     dayOfWeek?: IntNullableFilter<"Hours"> | number | null
     date?: DateTimeNullableFilter<"Hours"> | Date | string | null
     openTime?: DateTimeNullableFilter<"Hours"> | Date | string | null
@@ -31394,7 +32725,7 @@ export namespace Prisma {
 
   export type HoursOrderByWithRelationInput = {
     id?: SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
     dayOfWeek?: SortOrderInput | SortOrder
     date?: SortOrderInput | SortOrder
     openTime?: SortOrderInput | SortOrder
@@ -31407,11 +32738,11 @@ export namespace Prisma {
 
   export type HoursWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    locationId_dayOfWeek_date?: HoursLocationIdDayOfWeekDateCompoundUniqueInput
+    locationID_dayOfWeek_date?: HoursLocationIDDayOfWeekDateCompoundUniqueInput
     AND?: HoursWhereInput | HoursWhereInput[]
     OR?: HoursWhereInput[]
     NOT?: HoursWhereInput | HoursWhereInput[]
-    locationId?: StringFilter<"Hours"> | string
+    locationID?: StringFilter<"Hours"> | string
     dayOfWeek?: IntNullableFilter<"Hours"> | number | null
     date?: DateTimeNullableFilter<"Hours"> | Date | string | null
     openTime?: DateTimeNullableFilter<"Hours"> | Date | string | null
@@ -31420,11 +32751,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Hours"> | Date | string
     updatedAt?: DateTimeFilter<"Hours"> | Date | string
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
-  }, "id" | "locationId_dayOfWeek_date">
+  }, "id" | "locationID_dayOfWeek_date">
 
   export type HoursOrderByWithAggregationInput = {
     id?: SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
     dayOfWeek?: SortOrderInput | SortOrder
     date?: SortOrderInput | SortOrder
     openTime?: SortOrderInput | SortOrder
@@ -31444,7 +32775,7 @@ export namespace Prisma {
     OR?: HoursScalarWhereWithAggregatesInput[]
     NOT?: HoursScalarWhereWithAggregatesInput | HoursScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Hours"> | string
-    locationId?: StringWithAggregatesFilter<"Hours"> | string
+    locationID?: StringWithAggregatesFilter<"Hours"> | string
     dayOfWeek?: IntNullableWithAggregatesFilter<"Hours"> | number | null
     date?: DateTimeNullableWithAggregatesFilter<"Hours"> | Date | string | null
     openTime?: DateTimeNullableWithAggregatesFilter<"Hours"> | Date | string | null
@@ -31605,7 +32936,7 @@ export namespace Prisma {
     OR?: WeatherWhereInput[]
     NOT?: WeatherWhereInput | WeatherWhereInput[]
     id?: StringFilter<"Weather"> | string
-    mountainId?: StringFilter<"Weather"> | string
+    mountainID?: StringFilter<"Weather"> | string
     date?: DateTimeFilter<"Weather"> | Date | string
     temperature?: FloatFilter<"Weather"> | number
     windSpeed?: FloatFilter<"Weather"> | number
@@ -31622,7 +32953,7 @@ export namespace Prisma {
 
   export type WeatherOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
     windSpeed?: SortOrder
@@ -31642,7 +32973,7 @@ export namespace Prisma {
     AND?: WeatherWhereInput | WeatherWhereInput[]
     OR?: WeatherWhereInput[]
     NOT?: WeatherWhereInput | WeatherWhereInput[]
-    mountainId?: StringFilter<"Weather"> | string
+    mountainID?: StringFilter<"Weather"> | string
     date?: DateTimeFilter<"Weather"> | Date | string
     temperature?: FloatFilter<"Weather"> | number
     windSpeed?: FloatFilter<"Weather"> | number
@@ -31659,7 +32990,7 @@ export namespace Prisma {
 
   export type WeatherOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
     windSpeed?: SortOrder
@@ -31683,7 +33014,7 @@ export namespace Prisma {
     OR?: WeatherScalarWhereWithAggregatesInput[]
     NOT?: WeatherScalarWhereWithAggregatesInput | WeatherScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Weather"> | string
-    mountainId?: StringWithAggregatesFilter<"Weather"> | string
+    mountainID?: StringWithAggregatesFilter<"Weather"> | string
     date?: DateTimeWithAggregatesFilter<"Weather"> | Date | string
     temperature?: FloatWithAggregatesFilter<"Weather"> | number
     windSpeed?: FloatWithAggregatesFilter<"Weather"> | number
@@ -31702,8 +33033,8 @@ export namespace Prisma {
     OR?: EmployeeMountainAssignmentWhereInput[]
     NOT?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
     id?: StringFilter<"EmployeeMountainAssignment"> | string
-    employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
-    mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    employeeID?: StringFilter<"EmployeeMountainAssignment"> | string
+    mountainID?: StringFilter<"EmployeeMountainAssignment"> | string
     assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -31711,8 +33042,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentOrderByWithRelationInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
     employee?: EmployeeOrderByWithRelationInput
     mountain?: MountainOrderByWithRelationInput
@@ -31723,8 +33054,8 @@ export namespace Prisma {
     AND?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
     OR?: EmployeeMountainAssignmentWhereInput[]
     NOT?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
-    employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
-    mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    employeeID?: StringFilter<"EmployeeMountainAssignment"> | string
+    mountainID?: StringFilter<"EmployeeMountainAssignment"> | string
     assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -31732,8 +33063,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentOrderByWithAggregationInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
     _count?: EmployeeMountainAssignmentCountOrderByAggregateInput
     _max?: EmployeeMountainAssignmentMaxOrderByAggregateInput
@@ -31745,8 +33076,8 @@ export namespace Prisma {
     OR?: EmployeeMountainAssignmentScalarWhereWithAggregatesInput[]
     NOT?: EmployeeMountainAssignmentScalarWhereWithAggregatesInput | EmployeeMountainAssignmentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
-    employeeId?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
-    mountainId?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
+    employeeID?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
+    mountainID?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
     assignedAt?: DateTimeWithAggregatesFilter<"EmployeeMountainAssignment"> | Date | string
   }
 
@@ -31755,8 +33086,8 @@ export namespace Prisma {
     OR?: DispatcherAssignmentWhereInput[]
     NOT?: DispatcherAssignmentWhereInput | DispatcherAssignmentWhereInput[]
     id?: StringFilter<"DispatcherAssignment"> | string
-    employeeId?: StringFilter<"DispatcherAssignment"> | string
-    mountainId?: StringFilter<"DispatcherAssignment"> | string
+    employeeID?: StringFilter<"DispatcherAssignment"> | string
+    mountainID?: StringFilter<"DispatcherAssignment"> | string
     assignedAt?: DateTimeFilter<"DispatcherAssignment"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -31764,8 +33095,8 @@ export namespace Prisma {
 
   export type DispatcherAssignmentOrderByWithRelationInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
     employee?: EmployeeOrderByWithRelationInput
     mountain?: MountainOrderByWithRelationInput
@@ -31776,8 +33107,8 @@ export namespace Prisma {
     AND?: DispatcherAssignmentWhereInput | DispatcherAssignmentWhereInput[]
     OR?: DispatcherAssignmentWhereInput[]
     NOT?: DispatcherAssignmentWhereInput | DispatcherAssignmentWhereInput[]
-    employeeId?: StringFilter<"DispatcherAssignment"> | string
-    mountainId?: StringFilter<"DispatcherAssignment"> | string
+    employeeID?: StringFilter<"DispatcherAssignment"> | string
+    mountainID?: StringFilter<"DispatcherAssignment"> | string
     assignedAt?: DateTimeFilter<"DispatcherAssignment"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -31785,8 +33116,8 @@ export namespace Prisma {
 
   export type DispatcherAssignmentOrderByWithAggregationInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
     _count?: DispatcherAssignmentCountOrderByAggregateInput
     _max?: DispatcherAssignmentMaxOrderByAggregateInput
@@ -31798,8 +33129,8 @@ export namespace Prisma {
     OR?: DispatcherAssignmentScalarWhereWithAggregatesInput[]
     NOT?: DispatcherAssignmentScalarWhereWithAggregatesInput | DispatcherAssignmentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"DispatcherAssignment"> | string
-    employeeId?: StringWithAggregatesFilter<"DispatcherAssignment"> | string
-    mountainId?: StringWithAggregatesFilter<"DispatcherAssignment"> | string
+    employeeID?: StringWithAggregatesFilter<"DispatcherAssignment"> | string
+    mountainID?: StringWithAggregatesFilter<"DispatcherAssignment"> | string
     assignedAt?: DateTimeWithAggregatesFilter<"DispatcherAssignment"> | Date | string
   }
 
@@ -31808,39 +33139,57 @@ export namespace Prisma {
     OR?: RoleWhereInput[]
     NOT?: RoleWhereInput | RoleWhereInput[]
     id?: StringFilter<"Role"> | string
+    department?: EnumDepartmentFilter<"Role"> | $Enums.Department
     name?: StringFilter<"Role"> | string
+    title?: StringFilter<"Role"> | string
+    position?: StringFilter<"Role"> | string
+    level?: IntNullableFilter<"Role"> | number | null
     permissions?: StringNullableListFilter<"Role">
-    employeeId?: StringFilter<"Role"> | string
-    employee?: EmployeeListRelationFilter
+    employees?: EmployeeListRelationFilter
+    employeeRole?: EmployeeRoleListRelationFilter
   }
 
   export type RoleOrderByWithRelationInput = {
     id?: SortOrder
+    department?: SortOrder
     name?: SortOrder
+    title?: SortOrder
+    position?: SortOrder
+    level?: SortOrderInput | SortOrder
     permissions?: SortOrder
-    employeeId?: SortOrder
-    employee?: EmployeeOrderByRelationAggregateInput
+    employees?: EmployeeOrderByRelationAggregateInput
+    employeeRole?: EmployeeRoleOrderByRelationAggregateInput
   }
 
   export type RoleWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    name?: string
+    department_name?: RoleDepartmentNameCompoundUniqueInput
     AND?: RoleWhereInput | RoleWhereInput[]
     OR?: RoleWhereInput[]
     NOT?: RoleWhereInput | RoleWhereInput[]
+    department?: EnumDepartmentFilter<"Role"> | $Enums.Department
+    name?: StringFilter<"Role"> | string
+    title?: StringFilter<"Role"> | string
+    position?: StringFilter<"Role"> | string
+    level?: IntNullableFilter<"Role"> | number | null
     permissions?: StringNullableListFilter<"Role">
-    employeeId?: StringFilter<"Role"> | string
-    employee?: EmployeeListRelationFilter
-  }, "id" | "name">
+    employees?: EmployeeListRelationFilter
+    employeeRole?: EmployeeRoleListRelationFilter
+  }, "id" | "department_name">
 
   export type RoleOrderByWithAggregationInput = {
     id?: SortOrder
+    department?: SortOrder
     name?: SortOrder
+    title?: SortOrder
+    position?: SortOrder
+    level?: SortOrderInput | SortOrder
     permissions?: SortOrder
-    employeeId?: SortOrder
     _count?: RoleCountOrderByAggregateInput
+    _avg?: RoleAvgOrderByAggregateInput
     _max?: RoleMaxOrderByAggregateInput
     _min?: RoleMinOrderByAggregateInput
+    _sum?: RoleSumOrderByAggregateInput
   }
 
   export type RoleScalarWhereWithAggregatesInput = {
@@ -31848,9 +33197,61 @@ export namespace Prisma {
     OR?: RoleScalarWhereWithAggregatesInput[]
     NOT?: RoleScalarWhereWithAggregatesInput | RoleScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Role"> | string
+    department?: EnumDepartmentWithAggregatesFilter<"Role"> | $Enums.Department
     name?: StringWithAggregatesFilter<"Role"> | string
+    title?: StringWithAggregatesFilter<"Role"> | string
+    position?: StringWithAggregatesFilter<"Role"> | string
+    level?: IntNullableWithAggregatesFilter<"Role"> | number | null
     permissions?: StringNullableListFilter<"Role">
-    employeeId?: StringWithAggregatesFilter<"Role"> | string
+  }
+
+  export type EmployeeRoleWhereInput = {
+    AND?: EmployeeRoleWhereInput | EmployeeRoleWhereInput[]
+    OR?: EmployeeRoleWhereInput[]
+    NOT?: EmployeeRoleWhereInput | EmployeeRoleWhereInput[]
+    id?: StringFilter<"EmployeeRole"> | string
+    employeeID?: StringFilter<"EmployeeRole"> | string
+    roleID?: StringFilter<"EmployeeRole"> | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
+  }
+
+  export type EmployeeRoleOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeID?: SortOrder
+    roleID?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    role?: RoleOrderByWithRelationInput
+  }
+
+  export type EmployeeRoleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    employeeID_roleID?: EmployeeRoleEmployeeIDRoleIDCompoundUniqueInput
+    AND?: EmployeeRoleWhereInput | EmployeeRoleWhereInput[]
+    OR?: EmployeeRoleWhereInput[]
+    NOT?: EmployeeRoleWhereInput | EmployeeRoleWhereInput[]
+    employeeID?: StringFilter<"EmployeeRole"> | string
+    roleID?: StringFilter<"EmployeeRole"> | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
+  }, "id" | "employeeID_roleID">
+
+  export type EmployeeRoleOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeID?: SortOrder
+    roleID?: SortOrder
+    _count?: EmployeeRoleCountOrderByAggregateInput
+    _max?: EmployeeRoleMaxOrderByAggregateInput
+    _min?: EmployeeRoleMinOrderByAggregateInput
+  }
+
+  export type EmployeeRoleScalarWhereWithAggregatesInput = {
+    AND?: EmployeeRoleScalarWhereWithAggregatesInput | EmployeeRoleScalarWhereWithAggregatesInput[]
+    OR?: EmployeeRoleScalarWhereWithAggregatesInput[]
+    NOT?: EmployeeRoleScalarWhereWithAggregatesInput | EmployeeRoleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmployeeRole"> | string
+    employeeID?: StringWithAggregatesFilter<"EmployeeRole"> | string
+    roleID?: StringWithAggregatesFilter<"EmployeeRole"> | string
   }
 
   export type EmployeeWhereInput = {
@@ -31858,14 +33259,13 @@ export namespace Prisma {
     OR?: EmployeeWhereInput[]
     NOT?: EmployeeWhereInput | EmployeeWhereInput[]
     id?: StringFilter<"Employee"> | string
-    employeeIdNumber?: StringFilter<"Employee"> | string
+    employeeIDNumber?: IntFilter<"Employee"> | number
     email?: StringFilter<"Employee"> | string
     phoneNumber?: StringFilter<"Employee"> | string
     name?: StringFilter<"Employee"> | string
-    title?: StringFilter<"Employee"> | string
-    roleId?: StringFilter<"Employee"> | string
-    department?: EnumDepartmentFilter<"Employee"> | $Enums.Department
-    role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
+    roleID?: StringNullableFilter<"Employee"> | string | null
+    role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
+    additionalRoles?: EmployeeRoleListRelationFilter
     mountainAssignments?: EmployeeMountainAssignmentListRelationFilter
     dispatcherAssignments?: DispatcherAssignmentListRelationFilter
     incidents?: IncidentListRelationFilter
@@ -31879,14 +33279,13 @@ export namespace Prisma {
 
   export type EmployeeOrderByWithRelationInput = {
     id?: SortOrder
-    employeeIdNumber?: SortOrder
+    employeeIDNumber?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
     name?: SortOrder
-    title?: SortOrder
-    roleId?: SortOrder
-    department?: SortOrder
+    roleID?: SortOrderInput | SortOrder
     role?: RoleOrderByWithRelationInput
+    additionalRoles?: EmployeeRoleOrderByRelationAggregateInput
     mountainAssignments?: EmployeeMountainAssignmentOrderByRelationAggregateInput
     dispatcherAssignments?: DispatcherAssignmentOrderByRelationAggregateInput
     incidents?: IncidentOrderByRelationAggregateInput
@@ -31900,17 +33299,16 @@ export namespace Prisma {
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    employeeIdNumber?: string
+    employeeIDNumber?: number
     email?: string
     AND?: EmployeeWhereInput | EmployeeWhereInput[]
     OR?: EmployeeWhereInput[]
     NOT?: EmployeeWhereInput | EmployeeWhereInput[]
     phoneNumber?: StringFilter<"Employee"> | string
     name?: StringFilter<"Employee"> | string
-    title?: StringFilter<"Employee"> | string
-    roleId?: StringFilter<"Employee"> | string
-    department?: EnumDepartmentFilter<"Employee"> | $Enums.Department
-    role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
+    roleID?: StringNullableFilter<"Employee"> | string | null
+    role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
+    additionalRoles?: EmployeeRoleListRelationFilter
     mountainAssignments?: EmployeeMountainAssignmentListRelationFilter
     dispatcherAssignments?: DispatcherAssignmentListRelationFilter
     incidents?: IncidentListRelationFilter
@@ -31920,20 +33318,20 @@ export namespace Prisma {
     trailChecks?: TrailCheckListRelationFilter
     equipmentChecks?: EquipmentCheckListRelationFilter
     equipmentServiceLogs?: EquipmentServiceLogListRelationFilter
-  }, "id" | "employeeIdNumber" | "email">
+  }, "id" | "employeeIDNumber" | "email">
 
   export type EmployeeOrderByWithAggregationInput = {
     id?: SortOrder
-    employeeIdNumber?: SortOrder
+    employeeIDNumber?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
     name?: SortOrder
-    title?: SortOrder
-    roleId?: SortOrder
-    department?: SortOrder
+    roleID?: SortOrderInput | SortOrder
     _count?: EmployeeCountOrderByAggregateInput
+    _avg?: EmployeeAvgOrderByAggregateInput
     _max?: EmployeeMaxOrderByAggregateInput
     _min?: EmployeeMinOrderByAggregateInput
+    _sum?: EmployeeSumOrderByAggregateInput
   }
 
   export type EmployeeScalarWhereWithAggregatesInput = {
@@ -31941,13 +33339,11 @@ export namespace Prisma {
     OR?: EmployeeScalarWhereWithAggregatesInput[]
     NOT?: EmployeeScalarWhereWithAggregatesInput | EmployeeScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Employee"> | string
-    employeeIdNumber?: StringWithAggregatesFilter<"Employee"> | string
+    employeeIDNumber?: IntWithAggregatesFilter<"Employee"> | number
     email?: StringWithAggregatesFilter<"Employee"> | string
     phoneNumber?: StringWithAggregatesFilter<"Employee"> | string
     name?: StringWithAggregatesFilter<"Employee"> | string
-    title?: StringWithAggregatesFilter<"Employee"> | string
-    roleId?: StringWithAggregatesFilter<"Employee"> | string
-    department?: EnumDepartmentWithAggregatesFilter<"Employee"> | $Enums.Department
+    roleID?: StringNullableWithAggregatesFilter<"Employee"> | string | null
   }
 
   export type LiftWhereInput = {
@@ -31955,7 +33351,7 @@ export namespace Prisma {
     OR?: LiftWhereInput[]
     NOT?: LiftWhereInput | LiftWhereInput[]
     id?: StringFilter<"Lift"> | string
-    mountainId?: StringFilter<"Lift"> | string
+    mountainID?: StringFilter<"Lift"> | string
     name?: StringFilter<"Lift"> | string
     type?: EnumLiftTypeFilter<"Lift"> | $Enums.LiftType
     status?: EnumStatusFilter<"Lift"> | $Enums.Status
@@ -31968,7 +33364,7 @@ export namespace Prisma {
 
   export type LiftOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -31982,11 +33378,11 @@ export namespace Prisma {
   export type LiftWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     name_type?: LiftNameTypeCompoundUniqueInput
-    mountainId_name?: LiftMountainIdNameCompoundUniqueInput
+    mountainID_name?: LiftMountainIDNameCompoundUniqueInput
     AND?: LiftWhereInput | LiftWhereInput[]
     OR?: LiftWhereInput[]
     NOT?: LiftWhereInput | LiftWhereInput[]
-    mountainId?: StringFilter<"Lift"> | string
+    mountainID?: StringFilter<"Lift"> | string
     name?: StringFilter<"Lift"> | string
     type?: EnumLiftTypeFilter<"Lift"> | $Enums.LiftType
     status?: EnumStatusFilter<"Lift"> | $Enums.Status
@@ -31995,11 +33391,11 @@ export namespace Prisma {
     longitude?: DecimalNullableFilter<"Lift"> | Decimal | DecimalJsLike | number | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     liftChecks?: LiftCheckListRelationFilter
-  }, "id" | "name_type" | "mountainId_name">
+  }, "id" | "name_type" | "mountainID_name">
 
   export type LiftOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -32018,7 +33414,7 @@ export namespace Prisma {
     OR?: LiftScalarWhereWithAggregatesInput[]
     NOT?: LiftScalarWhereWithAggregatesInput | LiftScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Lift"> | string
-    mountainId?: StringWithAggregatesFilter<"Lift"> | string
+    mountainID?: StringWithAggregatesFilter<"Lift"> | string
     name?: StringWithAggregatesFilter<"Lift"> | string
     type?: EnumLiftTypeWithAggregatesFilter<"Lift"> | $Enums.LiftType
     status?: EnumStatusWithAggregatesFilter<"Lift"> | $Enums.Status
@@ -32032,7 +33428,7 @@ export namespace Prisma {
     OR?: TrailWhereInput[]
     NOT?: TrailWhereInput | TrailWhereInput[]
     id?: StringFilter<"Trail"> | string
-    mountainId?: StringFilter<"Trail"> | string
+    mountainID?: StringFilter<"Trail"> | string
     name?: StringFilter<"Trail"> | string
     difficulty?: EnumTrailDifficultyFilter<"Trail"> | $Enums.TrailDifficulty
     status?: EnumStatusFilter<"Trail"> | $Enums.Status
@@ -32046,7 +33442,7 @@ export namespace Prisma {
 
   export type TrailOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     difficulty?: SortOrder
     status?: SortOrder
@@ -32060,11 +33456,11 @@ export namespace Prisma {
 
   export type TrailWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    mountainId_name?: TrailMountainIdNameCompoundUniqueInput
+    mountainID_name?: TrailMountainIDNameCompoundUniqueInput
     AND?: TrailWhereInput | TrailWhereInput[]
     OR?: TrailWhereInput[]
     NOT?: TrailWhereInput | TrailWhereInput[]
-    mountainId?: StringFilter<"Trail"> | string
+    mountainID?: StringFilter<"Trail"> | string
     name?: StringFilter<"Trail"> | string
     difficulty?: EnumTrailDifficultyFilter<"Trail"> | $Enums.TrailDifficulty
     status?: EnumStatusFilter<"Trail"> | $Enums.Status
@@ -32074,11 +33470,11 @@ export namespace Prisma {
     condition?: EnumTrailConditionFilter<"Trail"> | $Enums.TrailCondition
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     trailChecks?: TrailCheckListRelationFilter
-  }, "id" | "mountainId_name">
+  }, "id" | "mountainID_name">
 
   export type TrailOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     difficulty?: SortOrder
     status?: SortOrder
@@ -32098,7 +33494,7 @@ export namespace Prisma {
     OR?: TrailScalarWhereWithAggregatesInput[]
     NOT?: TrailScalarWhereWithAggregatesInput | TrailScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Trail"> | string
-    mountainId?: StringWithAggregatesFilter<"Trail"> | string
+    mountainID?: StringWithAggregatesFilter<"Trail"> | string
     name?: StringWithAggregatesFilter<"Trail"> | string
     difficulty?: EnumTrailDifficultyWithAggregatesFilter<"Trail"> | $Enums.TrailDifficulty
     status?: EnumStatusWithAggregatesFilter<"Trail"> | $Enums.Status
@@ -32113,7 +33509,7 @@ export namespace Prisma {
     OR?: LodgeWhereInput[]
     NOT?: LodgeWhereInput | LodgeWhereInput[]
     id?: StringFilter<"Lodge"> | string
-    mountainId?: StringFilter<"Lodge"> | string
+    mountainID?: StringFilter<"Lodge"> | string
     name?: StringFilter<"Lodge"> | string
     capacity?: IntFilter<"Lodge"> | number
     latitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
@@ -32124,7 +33520,7 @@ export namespace Prisma {
 
   export type LodgeOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     capacity?: SortOrder
     latitude?: SortOrderInput | SortOrder
@@ -32135,22 +33531,22 @@ export namespace Prisma {
 
   export type LodgeWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    mountainId_name?: LodgeMountainIdNameCompoundUniqueInput
+    mountainID_name?: LodgeMountainIDNameCompoundUniqueInput
     AND?: LodgeWhereInput | LodgeWhereInput[]
     OR?: LodgeWhereInput[]
     NOT?: LodgeWhereInput | LodgeWhereInput[]
-    mountainId?: StringFilter<"Lodge"> | string
+    mountainID?: StringFilter<"Lodge"> | string
     name?: StringFilter<"Lodge"> | string
     capacity?: IntFilter<"Lodge"> | number
     latitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumStatusFilter<"Lodge"> | $Enums.Status
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-  }, "id" | "mountainId_name">
+  }, "id" | "mountainID_name">
 
   export type LodgeOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     capacity?: SortOrder
     latitude?: SortOrderInput | SortOrder
@@ -32168,7 +33564,7 @@ export namespace Prisma {
     OR?: LodgeScalarWhereWithAggregatesInput[]
     NOT?: LodgeScalarWhereWithAggregatesInput | LodgeScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Lodge"> | string
-    mountainId?: StringWithAggregatesFilter<"Lodge"> | string
+    mountainID?: StringWithAggregatesFilter<"Lodge"> | string
     name?: StringWithAggregatesFilter<"Lodge"> | string
     capacity?: IntWithAggregatesFilter<"Lodge"> | number
     latitude?: DecimalNullableWithAggregatesFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
@@ -32181,7 +33577,7 @@ export namespace Prisma {
     OR?: HutWhereInput[]
     NOT?: HutWhereInput | HutWhereInput[]
     id?: StringFilter<"Hut"> | string
-    mountainId?: StringFilter<"Hut"> | string
+    mountainID?: StringFilter<"Hut"> | string
     name?: StringFilter<"Hut"> | string
     status?: EnumStatusFilter<"Hut"> | $Enums.Status
     latitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
@@ -32192,7 +33588,7 @@ export namespace Prisma {
 
   export type HutOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
@@ -32203,22 +33599,22 @@ export namespace Prisma {
 
   export type HutWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    mountainId_name?: HutMountainIdNameCompoundUniqueInput
+    mountainID_name?: HutMountainIDNameCompoundUniqueInput
     AND?: HutWhereInput | HutWhereInput[]
     OR?: HutWhereInput[]
     NOT?: HutWhereInput | HutWhereInput[]
-    mountainId?: StringFilter<"Hut"> | string
+    mountainID?: StringFilter<"Hut"> | string
     name?: StringFilter<"Hut"> | string
     status?: EnumStatusFilter<"Hut"> | $Enums.Status
     latitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     hutChecks?: HutCheckListRelationFilter
-  }, "id" | "mountainId_name">
+  }, "id" | "mountainID_name">
 
   export type HutOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
@@ -32235,7 +33631,7 @@ export namespace Prisma {
     OR?: HutScalarWhereWithAggregatesInput[]
     NOT?: HutScalarWhereWithAggregatesInput | HutScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Hut"> | string
-    mountainId?: StringWithAggregatesFilter<"Hut"> | string
+    mountainID?: StringWithAggregatesFilter<"Hut"> | string
     name?: StringWithAggregatesFilter<"Hut"> | string
     status?: EnumStatusWithAggregatesFilter<"Hut"> | $Enums.Status
     latitude?: DecimalNullableWithAggregatesFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
@@ -32247,7 +33643,7 @@ export namespace Prisma {
     OR?: AidRoomWhereInput[]
     NOT?: AidRoomWhereInput | AidRoomWhereInput[]
     id?: StringFilter<"AidRoom"> | string
-    mountainId?: StringFilter<"AidRoom"> | string
+    mountainID?: StringFilter<"AidRoom"> | string
     name?: StringFilter<"AidRoom"> | string
     status?: EnumStatusFilter<"AidRoom"> | $Enums.Status
     latitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
@@ -32258,7 +33654,7 @@ export namespace Prisma {
 
   export type AidRoomOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
@@ -32269,22 +33665,22 @@ export namespace Prisma {
 
   export type AidRoomWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    mountainId_name?: AidRoomMountainIdNameCompoundUniqueInput
+    mountainID_name?: AidRoomMountainIDNameCompoundUniqueInput
     AND?: AidRoomWhereInput | AidRoomWhereInput[]
     OR?: AidRoomWhereInput[]
     NOT?: AidRoomWhereInput | AidRoomWhereInput[]
-    mountainId?: StringFilter<"AidRoom"> | string
+    mountainID?: StringFilter<"AidRoom"> | string
     name?: StringFilter<"AidRoom"> | string
     status?: EnumStatusFilter<"AidRoom"> | $Enums.Status
     latitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     aidRoomChecks?: AidRoomCheckListRelationFilter
-  }, "id" | "mountainId_name">
+  }, "id" | "mountainID_name">
 
   export type AidRoomOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
@@ -32301,7 +33697,7 @@ export namespace Prisma {
     OR?: AidRoomScalarWhereWithAggregatesInput[]
     NOT?: AidRoomScalarWhereWithAggregatesInput | AidRoomScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"AidRoom"> | string
-    mountainId?: StringWithAggregatesFilter<"AidRoom"> | string
+    mountainID?: StringWithAggregatesFilter<"AidRoom"> | string
     name?: StringWithAggregatesFilter<"AidRoom"> | string
     status?: EnumStatusWithAggregatesFilter<"AidRoom"> | $Enums.Status
     latitude?: DecimalNullableWithAggregatesFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
@@ -32313,9 +33709,9 @@ export namespace Prisma {
     OR?: EquipmentServiceLogWhereInput[]
     NOT?: EquipmentServiceLogWhereInput | EquipmentServiceLogWhereInput[]
     id?: StringFilter<"EquipmentServiceLog"> | string
-    mountainId?: StringFilter<"EquipmentServiceLog"> | string
-    equipmentId?: StringFilter<"EquipmentServiceLog"> | string
-    employeeId?: StringNullableFilter<"EquipmentServiceLog"> | string | null
+    mountainID?: StringFilter<"EquipmentServiceLog"> | string
+    equipmentID?: StringFilter<"EquipmentServiceLog"> | string
+    employeeID?: StringNullableFilter<"EquipmentServiceLog"> | string | null
     status?: EnumEquipmentStatusFilter<"EquipmentServiceLog"> | $Enums.EquipmentStatus
     changedAt?: DateTimeFilter<"EquipmentServiceLog"> | Date | string
     notes?: StringNullableFilter<"EquipmentServiceLog"> | string | null
@@ -32328,9 +33724,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogOrderByWithRelationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
-    employeeId?: SortOrderInput | SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
+    employeeID?: SortOrderInput | SortOrder
     status?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -32346,9 +33742,9 @@ export namespace Prisma {
     AND?: EquipmentServiceLogWhereInput | EquipmentServiceLogWhereInput[]
     OR?: EquipmentServiceLogWhereInput[]
     NOT?: EquipmentServiceLogWhereInput | EquipmentServiceLogWhereInput[]
-    mountainId?: StringFilter<"EquipmentServiceLog"> | string
-    equipmentId?: StringFilter<"EquipmentServiceLog"> | string
-    employeeId?: StringNullableFilter<"EquipmentServiceLog"> | string | null
+    mountainID?: StringFilter<"EquipmentServiceLog"> | string
+    equipmentID?: StringFilter<"EquipmentServiceLog"> | string
+    employeeID?: StringNullableFilter<"EquipmentServiceLog"> | string | null
     status?: EnumEquipmentStatusFilter<"EquipmentServiceLog"> | $Enums.EquipmentStatus
     changedAt?: DateTimeFilter<"EquipmentServiceLog"> | Date | string
     notes?: StringNullableFilter<"EquipmentServiceLog"> | string | null
@@ -32361,9 +33757,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogOrderByWithAggregationInput = {
     id?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
-    employeeId?: SortOrderInput | SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
+    employeeID?: SortOrderInput | SortOrder
     status?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -32379,9 +33775,9 @@ export namespace Prisma {
     OR?: EquipmentServiceLogScalarWhereWithAggregatesInput[]
     NOT?: EquipmentServiceLogScalarWhereWithAggregatesInput | EquipmentServiceLogScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EquipmentServiceLog"> | string
-    mountainId?: StringWithAggregatesFilter<"EquipmentServiceLog"> | string
-    equipmentId?: StringWithAggregatesFilter<"EquipmentServiceLog"> | string
-    employeeId?: StringNullableWithAggregatesFilter<"EquipmentServiceLog"> | string | null
+    mountainID?: StringWithAggregatesFilter<"EquipmentServiceLog"> | string
+    equipmentID?: StringWithAggregatesFilter<"EquipmentServiceLog"> | string
+    employeeID?: StringNullableWithAggregatesFilter<"EquipmentServiceLog"> | string | null
     status?: EnumEquipmentStatusWithAggregatesFilter<"EquipmentServiceLog"> | $Enums.EquipmentStatus
     changedAt?: DateTimeWithAggregatesFilter<"EquipmentServiceLog"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"EquipmentServiceLog"> | string | null
@@ -32403,8 +33799,8 @@ export namespace Prisma {
     cost?: FloatNullableFilter<"Equipment"> | number | null
     latitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFilter<"Equipment"> | string
-    locationId?: StringNullableFilter<"Equipment"> | string | null
+    mountainID?: StringFilter<"Equipment"> | string
+    locationID?: StringNullableFilter<"Equipment"> | string | null
     dateAdded?: DateTimeFilter<"Equipment"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
@@ -32424,8 +33820,8 @@ export namespace Prisma {
     cost?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    mountainId?: SortOrder
-    locationId?: SortOrderInput | SortOrder
+    mountainID?: SortOrder
+    locationID?: SortOrderInput | SortOrder
     dateAdded?: SortOrder
     mountain?: MountainOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
@@ -32436,7 +33832,7 @@ export namespace Prisma {
 
   export type EquipmentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    mountainId_number?: EquipmentMountainIdNumberCompoundUniqueInput
+    mountainID_number?: EquipmentMountainIDNumberCompoundUniqueInput
     AND?: EquipmentWhereInput | EquipmentWhereInput[]
     OR?: EquipmentWhereInput[]
     NOT?: EquipmentWhereInput | EquipmentWhereInput[]
@@ -32449,15 +33845,15 @@ export namespace Prisma {
     cost?: FloatNullableFilter<"Equipment"> | number | null
     latitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFilter<"Equipment"> | string
-    locationId?: StringNullableFilter<"Equipment"> | string | null
+    mountainID?: StringFilter<"Equipment"> | string
+    locationID?: StringNullableFilter<"Equipment"> | string | null
     dateAdded?: DateTimeFilter<"Equipment"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogListRelationFilter
     equipmentChecks?: EquipmentCheckListRelationFilter
     equipmentServiceLogs?: EquipmentServiceLogListRelationFilter
-  }, "id" | "mountainId_number">
+  }, "id" | "mountainID_number">
 
   export type EquipmentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -32470,8 +33866,8 @@ export namespace Prisma {
     cost?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    mountainId?: SortOrder
-    locationId?: SortOrderInput | SortOrder
+    mountainID?: SortOrder
+    locationID?: SortOrderInput | SortOrder
     dateAdded?: SortOrder
     _count?: EquipmentCountOrderByAggregateInput
     _avg?: EquipmentAvgOrderByAggregateInput
@@ -32494,8 +33890,8 @@ export namespace Prisma {
     cost?: FloatNullableWithAggregatesFilter<"Equipment"> | number | null
     latitude?: DecimalNullableWithAggregatesFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringWithAggregatesFilter<"Equipment"> | string
-    locationId?: StringNullableWithAggregatesFilter<"Equipment"> | string | null
+    mountainID?: StringWithAggregatesFilter<"Equipment"> | string
+    locationID?: StringNullableWithAggregatesFilter<"Equipment"> | string | null
     dateAdded?: DateTimeWithAggregatesFilter<"Equipment"> | Date | string
   }
 
@@ -32508,8 +33904,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusFilter<"Incident"> | $Enums.IncidentStatus
     latitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
-    employeeId?: StringNullableFilter<"Incident"> | string | null
-    mountainId?: StringFilter<"Incident"> | string
+    employeeID?: StringNullableFilter<"Incident"> | string | null
+    mountainID?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     onSceneTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -32517,7 +33913,7 @@ export namespace Prisma {
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     emptyRun?: BoolFilter<"Incident"> | boolean
     emptyRunAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
-    locationId?: StringFilter<"Incident"> | string
+    locationID?: StringFilter<"Incident"> | string
     employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogListRelationFilter
@@ -32530,8 +33926,8 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    employeeId?: SortOrderInput | SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrderInput | SortOrder
+    mountainID?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrderInput | SortOrder
     onSceneTime?: SortOrderInput | SortOrder
@@ -32539,7 +33935,7 @@ export namespace Prisma {
     transportTime?: SortOrderInput | SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrderInput | SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
     employee?: EmployeeOrderByWithRelationInput
     mountain?: MountainOrderByWithRelationInput
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogOrderByRelationAggregateInput
@@ -32555,8 +33951,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusFilter<"Incident"> | $Enums.IncidentStatus
     latitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
-    employeeId?: StringNullableFilter<"Incident"> | string | null
-    mountainId?: StringFilter<"Incident"> | string
+    employeeID?: StringNullableFilter<"Incident"> | string | null
+    mountainID?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     onSceneTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -32564,7 +33960,7 @@ export namespace Prisma {
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     emptyRun?: BoolFilter<"Incident"> | boolean
     emptyRunAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
-    locationId?: StringFilter<"Incident"> | string
+    locationID?: StringFilter<"Incident"> | string
     employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogListRelationFilter
@@ -32577,8 +33973,8 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    employeeId?: SortOrderInput | SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrderInput | SortOrder
+    mountainID?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrderInput | SortOrder
     onSceneTime?: SortOrderInput | SortOrder
@@ -32586,7 +33982,7 @@ export namespace Prisma {
     transportTime?: SortOrderInput | SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrderInput | SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
     _count?: IncidentCountOrderByAggregateInput
     _avg?: IncidentAvgOrderByAggregateInput
     _max?: IncidentMaxOrderByAggregateInput
@@ -32603,8 +33999,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusWithAggregatesFilter<"Incident"> | $Enums.IncidentStatus
     latitude?: DecimalNullableWithAggregatesFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
-    employeeId?: StringNullableWithAggregatesFilter<"Incident"> | string | null
-    mountainId?: StringWithAggregatesFilter<"Incident"> | string
+    employeeID?: StringNullableWithAggregatesFilter<"Incident"> | string | null
+    mountainID?: StringWithAggregatesFilter<"Incident"> | string
     startTime?: DateTimeWithAggregatesFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
     onSceneTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
@@ -32612,7 +34008,7 @@ export namespace Prisma {
     transportTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
     emptyRun?: BoolWithAggregatesFilter<"Incident"> | boolean
     emptyRunAt?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
-    locationId?: StringWithAggregatesFilter<"Incident"> | string
+    locationID?: StringWithAggregatesFilter<"Incident"> | string
   }
 
   export type IncidentEquipmentUseageLogWhereInput = {
@@ -32620,11 +34016,11 @@ export namespace Prisma {
     OR?: IncidentEquipmentUseageLogWhereInput[]
     NOT?: IncidentEquipmentUseageLogWhereInput | IncidentEquipmentUseageLogWhereInput[]
     id?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    equipmentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    mountainId?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    equipmentID?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    mountainID?: StringFilter<"IncidentEquipmentUseageLog"> | string
     usedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
     notes?: StringNullableFilter<"IncidentEquipmentUseageLog"> | string | null
-    incidentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    incidentID?: StringFilter<"IncidentEquipmentUseageLog"> | string
     createdAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
     updatedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -32634,11 +34030,11 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogOrderByWithRelationInput = {
     id?: SortOrder
-    equipmentId?: SortOrder
-    mountainId?: SortOrder
+    equipmentID?: SortOrder
+    mountainID?: SortOrder
     usedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
-    incidentId?: SortOrder
+    incidentID?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     mountain?: MountainOrderByWithRelationInput
@@ -32651,11 +34047,11 @@ export namespace Prisma {
     AND?: IncidentEquipmentUseageLogWhereInput | IncidentEquipmentUseageLogWhereInput[]
     OR?: IncidentEquipmentUseageLogWhereInput[]
     NOT?: IncidentEquipmentUseageLogWhereInput | IncidentEquipmentUseageLogWhereInput[]
-    equipmentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    mountainId?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    equipmentID?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    mountainID?: StringFilter<"IncidentEquipmentUseageLog"> | string
     usedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
     notes?: StringNullableFilter<"IncidentEquipmentUseageLog"> | string | null
-    incidentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    incidentID?: StringFilter<"IncidentEquipmentUseageLog"> | string
     createdAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
     updatedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -32665,11 +34061,11 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogOrderByWithAggregationInput = {
     id?: SortOrder
-    equipmentId?: SortOrder
-    mountainId?: SortOrder
+    equipmentID?: SortOrder
+    mountainID?: SortOrder
     usedAt?: SortOrder
     notes?: SortOrderInput | SortOrder
-    incidentId?: SortOrder
+    incidentID?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: IncidentEquipmentUseageLogCountOrderByAggregateInput
@@ -32682,11 +34078,11 @@ export namespace Prisma {
     OR?: IncidentEquipmentUseageLogScalarWhereWithAggregatesInput[]
     NOT?: IncidentEquipmentUseageLogScalarWhereWithAggregatesInput | IncidentEquipmentUseageLogScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
-    equipmentId?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
-    mountainId?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
+    equipmentID?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
+    mountainID?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
     usedAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUseageLog"> | Date | string
     notes?: StringNullableWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string | null
-    incidentId?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
+    incidentID?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
     createdAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUseageLog"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUseageLog"> | Date | string
   }
@@ -32697,9 +34093,9 @@ export namespace Prisma {
     NOT?: LiftCheckWhereInput | LiftCheckWhereInput[]
     id?: StringFilter<"LiftCheck"> | string
     recordedAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    employeeId?: StringFilter<"LiftCheck"> | string
-    mountainId?: StringFilter<"LiftCheck"> | string
-    liftId?: StringFilter<"LiftCheck"> | string
+    employeeID?: StringFilter<"LiftCheck"> | string
+    mountainID?: StringFilter<"LiftCheck"> | string
+    liftID?: StringFilter<"LiftCheck"> | string
     notes?: StringNullableFilter<"LiftCheck"> | string | null
     createdAt?: DateTimeFilter<"LiftCheck"> | Date | string
     updatedAt?: DateTimeFilter<"LiftCheck"> | Date | string
@@ -32711,9 +34107,9 @@ export namespace Prisma {
   export type LiftCheckOrderByWithRelationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    liftId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    liftID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32728,9 +34124,9 @@ export namespace Prisma {
     OR?: LiftCheckWhereInput[]
     NOT?: LiftCheckWhereInput | LiftCheckWhereInput[]
     recordedAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    employeeId?: StringFilter<"LiftCheck"> | string
-    mountainId?: StringFilter<"LiftCheck"> | string
-    liftId?: StringFilter<"LiftCheck"> | string
+    employeeID?: StringFilter<"LiftCheck"> | string
+    mountainID?: StringFilter<"LiftCheck"> | string
+    liftID?: StringFilter<"LiftCheck"> | string
     notes?: StringNullableFilter<"LiftCheck"> | string | null
     createdAt?: DateTimeFilter<"LiftCheck"> | Date | string
     updatedAt?: DateTimeFilter<"LiftCheck"> | Date | string
@@ -32742,9 +34138,9 @@ export namespace Prisma {
   export type LiftCheckOrderByWithAggregationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    liftId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    liftID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32759,9 +34155,9 @@ export namespace Prisma {
     NOT?: LiftCheckScalarWhereWithAggregatesInput | LiftCheckScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"LiftCheck"> | string
     recordedAt?: DateTimeWithAggregatesFilter<"LiftCheck"> | Date | string
-    employeeId?: StringWithAggregatesFilter<"LiftCheck"> | string
-    mountainId?: StringWithAggregatesFilter<"LiftCheck"> | string
-    liftId?: StringWithAggregatesFilter<"LiftCheck"> | string
+    employeeID?: StringWithAggregatesFilter<"LiftCheck"> | string
+    mountainID?: StringWithAggregatesFilter<"LiftCheck"> | string
+    liftID?: StringWithAggregatesFilter<"LiftCheck"> | string
     notes?: StringNullableWithAggregatesFilter<"LiftCheck"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"LiftCheck"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"LiftCheck"> | Date | string
@@ -32773,9 +34169,9 @@ export namespace Prisma {
     NOT?: TrailCheckWhereInput | TrailCheckWhereInput[]
     id?: StringFilter<"TrailCheck"> | string
     recordedAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    employeeId?: StringFilter<"TrailCheck"> | string
-    mountainId?: StringFilter<"TrailCheck"> | string
-    trailId?: StringFilter<"TrailCheck"> | string
+    employeeID?: StringFilter<"TrailCheck"> | string
+    mountainID?: StringFilter<"TrailCheck"> | string
+    trailID?: StringFilter<"TrailCheck"> | string
     notes?: StringNullableFilter<"TrailCheck"> | string | null
     createdAt?: DateTimeFilter<"TrailCheck"> | Date | string
     updatedAt?: DateTimeFilter<"TrailCheck"> | Date | string
@@ -32787,9 +34183,9 @@ export namespace Prisma {
   export type TrailCheckOrderByWithRelationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    trailID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32804,9 +34200,9 @@ export namespace Prisma {
     OR?: TrailCheckWhereInput[]
     NOT?: TrailCheckWhereInput | TrailCheckWhereInput[]
     recordedAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    employeeId?: StringFilter<"TrailCheck"> | string
-    mountainId?: StringFilter<"TrailCheck"> | string
-    trailId?: StringFilter<"TrailCheck"> | string
+    employeeID?: StringFilter<"TrailCheck"> | string
+    mountainID?: StringFilter<"TrailCheck"> | string
+    trailID?: StringFilter<"TrailCheck"> | string
     notes?: StringNullableFilter<"TrailCheck"> | string | null
     createdAt?: DateTimeFilter<"TrailCheck"> | Date | string
     updatedAt?: DateTimeFilter<"TrailCheck"> | Date | string
@@ -32818,9 +34214,9 @@ export namespace Prisma {
   export type TrailCheckOrderByWithAggregationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    trailID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32835,9 +34231,9 @@ export namespace Prisma {
     NOT?: TrailCheckScalarWhereWithAggregatesInput | TrailCheckScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TrailCheck"> | string
     recordedAt?: DateTimeWithAggregatesFilter<"TrailCheck"> | Date | string
-    employeeId?: StringWithAggregatesFilter<"TrailCheck"> | string
-    mountainId?: StringWithAggregatesFilter<"TrailCheck"> | string
-    trailId?: StringWithAggregatesFilter<"TrailCheck"> | string
+    employeeID?: StringWithAggregatesFilter<"TrailCheck"> | string
+    mountainID?: StringWithAggregatesFilter<"TrailCheck"> | string
+    trailID?: StringWithAggregatesFilter<"TrailCheck"> | string
     notes?: StringNullableWithAggregatesFilter<"TrailCheck"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"TrailCheck"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TrailCheck"> | Date | string
@@ -32849,9 +34245,9 @@ export namespace Prisma {
     NOT?: HutCheckWhereInput | HutCheckWhereInput[]
     id?: StringFilter<"HutCheck"> | string
     recordedAt?: DateTimeFilter<"HutCheck"> | Date | string
-    employeeId?: StringFilter<"HutCheck"> | string
-    mountainId?: StringFilter<"HutCheck"> | string
-    hutId?: StringFilter<"HutCheck"> | string
+    employeeID?: StringFilter<"HutCheck"> | string
+    mountainID?: StringFilter<"HutCheck"> | string
+    hutID?: StringFilter<"HutCheck"> | string
     notes?: StringNullableFilter<"HutCheck"> | string | null
     createdAt?: DateTimeFilter<"HutCheck"> | Date | string
     updatedAt?: DateTimeFilter<"HutCheck"> | Date | string
@@ -32863,9 +34259,9 @@ export namespace Prisma {
   export type HutCheckOrderByWithRelationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    hutId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    hutID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32880,9 +34276,9 @@ export namespace Prisma {
     OR?: HutCheckWhereInput[]
     NOT?: HutCheckWhereInput | HutCheckWhereInput[]
     recordedAt?: DateTimeFilter<"HutCheck"> | Date | string
-    employeeId?: StringFilter<"HutCheck"> | string
-    mountainId?: StringFilter<"HutCheck"> | string
-    hutId?: StringFilter<"HutCheck"> | string
+    employeeID?: StringFilter<"HutCheck"> | string
+    mountainID?: StringFilter<"HutCheck"> | string
+    hutID?: StringFilter<"HutCheck"> | string
     notes?: StringNullableFilter<"HutCheck"> | string | null
     createdAt?: DateTimeFilter<"HutCheck"> | Date | string
     updatedAt?: DateTimeFilter<"HutCheck"> | Date | string
@@ -32894,9 +34290,9 @@ export namespace Prisma {
   export type HutCheckOrderByWithAggregationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    hutId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    hutID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32911,9 +34307,9 @@ export namespace Prisma {
     NOT?: HutCheckScalarWhereWithAggregatesInput | HutCheckScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"HutCheck"> | string
     recordedAt?: DateTimeWithAggregatesFilter<"HutCheck"> | Date | string
-    employeeId?: StringWithAggregatesFilter<"HutCheck"> | string
-    mountainId?: StringWithAggregatesFilter<"HutCheck"> | string
-    hutId?: StringWithAggregatesFilter<"HutCheck"> | string
+    employeeID?: StringWithAggregatesFilter<"HutCheck"> | string
+    mountainID?: StringWithAggregatesFilter<"HutCheck"> | string
+    hutID?: StringWithAggregatesFilter<"HutCheck"> | string
     notes?: StringNullableWithAggregatesFilter<"HutCheck"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"HutCheck"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"HutCheck"> | Date | string
@@ -32925,9 +34321,9 @@ export namespace Prisma {
     NOT?: AidRoomCheckWhereInput | AidRoomCheckWhereInput[]
     id?: StringFilter<"AidRoomCheck"> | string
     recordedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
-    employeeId?: StringFilter<"AidRoomCheck"> | string
-    mountainId?: StringFilter<"AidRoomCheck"> | string
-    aidRoomId?: StringFilter<"AidRoomCheck"> | string
+    employeeID?: StringFilter<"AidRoomCheck"> | string
+    mountainID?: StringFilter<"AidRoomCheck"> | string
+    aidRoomID?: StringFilter<"AidRoomCheck"> | string
     notes?: StringNullableFilter<"AidRoomCheck"> | string | null
     createdAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     updatedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
@@ -32939,9 +34335,9 @@ export namespace Prisma {
   export type AidRoomCheckOrderByWithRelationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    aidRoomId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    aidRoomID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32956,9 +34352,9 @@ export namespace Prisma {
     OR?: AidRoomCheckWhereInput[]
     NOT?: AidRoomCheckWhereInput | AidRoomCheckWhereInput[]
     recordedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
-    employeeId?: StringFilter<"AidRoomCheck"> | string
-    mountainId?: StringFilter<"AidRoomCheck"> | string
-    aidRoomId?: StringFilter<"AidRoomCheck"> | string
+    employeeID?: StringFilter<"AidRoomCheck"> | string
+    mountainID?: StringFilter<"AidRoomCheck"> | string
+    aidRoomID?: StringFilter<"AidRoomCheck"> | string
     notes?: StringNullableFilter<"AidRoomCheck"> | string | null
     createdAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     updatedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
@@ -32970,9 +34366,9 @@ export namespace Prisma {
   export type AidRoomCheckOrderByWithAggregationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    aidRoomId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    aidRoomID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32987,9 +34383,9 @@ export namespace Prisma {
     NOT?: AidRoomCheckScalarWhereWithAggregatesInput | AidRoomCheckScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"AidRoomCheck"> | string
     recordedAt?: DateTimeWithAggregatesFilter<"AidRoomCheck"> | Date | string
-    employeeId?: StringWithAggregatesFilter<"AidRoomCheck"> | string
-    mountainId?: StringWithAggregatesFilter<"AidRoomCheck"> | string
-    aidRoomId?: StringWithAggregatesFilter<"AidRoomCheck"> | string
+    employeeID?: StringWithAggregatesFilter<"AidRoomCheck"> | string
+    mountainID?: StringWithAggregatesFilter<"AidRoomCheck"> | string
+    aidRoomID?: StringWithAggregatesFilter<"AidRoomCheck"> | string
     notes?: StringNullableWithAggregatesFilter<"AidRoomCheck"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"AidRoomCheck"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AidRoomCheck"> | Date | string
@@ -33001,9 +34397,9 @@ export namespace Prisma {
     NOT?: EquipmentCheckWhereInput | EquipmentCheckWhereInput[]
     id?: StringFilter<"EquipmentCheck"> | string
     recordedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
-    employeeId?: StringFilter<"EquipmentCheck"> | string
-    mountainId?: StringFilter<"EquipmentCheck"> | string
-    equipmentId?: StringFilter<"EquipmentCheck"> | string
+    employeeID?: StringFilter<"EquipmentCheck"> | string
+    mountainID?: StringFilter<"EquipmentCheck"> | string
+    equipmentID?: StringFilter<"EquipmentCheck"> | string
     notes?: StringNullableFilter<"EquipmentCheck"> | string | null
     createdAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
     updatedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
@@ -33015,9 +34411,9 @@ export namespace Prisma {
   export type EquipmentCheckOrderByWithRelationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -33032,9 +34428,9 @@ export namespace Prisma {
     OR?: EquipmentCheckWhereInput[]
     NOT?: EquipmentCheckWhereInput | EquipmentCheckWhereInput[]
     recordedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
-    employeeId?: StringFilter<"EquipmentCheck"> | string
-    mountainId?: StringFilter<"EquipmentCheck"> | string
-    equipmentId?: StringFilter<"EquipmentCheck"> | string
+    employeeID?: StringFilter<"EquipmentCheck"> | string
+    mountainID?: StringFilter<"EquipmentCheck"> | string
+    equipmentID?: StringFilter<"EquipmentCheck"> | string
     notes?: StringNullableFilter<"EquipmentCheck"> | string | null
     createdAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
     updatedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
@@ -33046,9 +34442,9 @@ export namespace Prisma {
   export type EquipmentCheckOrderByWithAggregationInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -33063,9 +34459,9 @@ export namespace Prisma {
     NOT?: EquipmentCheckScalarWhereWithAggregatesInput | EquipmentCheckScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EquipmentCheck"> | string
     recordedAt?: DateTimeWithAggregatesFilter<"EquipmentCheck"> | Date | string
-    employeeId?: StringWithAggregatesFilter<"EquipmentCheck"> | string
-    mountainId?: StringWithAggregatesFilter<"EquipmentCheck"> | string
-    equipmentId?: StringWithAggregatesFilter<"EquipmentCheck"> | string
+    employeeID?: StringWithAggregatesFilter<"EquipmentCheck"> | string
+    mountainID?: StringWithAggregatesFilter<"EquipmentCheck"> | string
+    equipmentID?: StringWithAggregatesFilter<"EquipmentCheck"> | string
     notes?: StringNullableWithAggregatesFilter<"EquipmentCheck"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"EquipmentCheck"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EquipmentCheck"> | Date | string
@@ -33082,7 +34478,7 @@ export namespace Prisma {
 
   export type AreaUncheckedCreateInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     type: $Enums.AreaType
     description?: string | null
@@ -33100,7 +34496,7 @@ export namespace Prisma {
 
   export type AreaUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaTypeFieldUpdateOperationsInput | $Enums.AreaType
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33109,7 +34505,7 @@ export namespace Prisma {
 
   export type AreaCreateManyInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     type: $Enums.AreaType
     description?: string | null
@@ -33124,7 +34520,7 @@ export namespace Prisma {
 
   export type AreaUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaTypeFieldUpdateOperationsInput | $Enums.AreaType
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33133,7 +34529,7 @@ export namespace Prisma {
   export type LocationCreateInput = {
     id?: string
     name: string
-    entityId?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     area?: AreaCreateNestedOneWithoutLocationsInput
     mountain: MountainCreateNestedOneWithoutLocationsInput
@@ -33144,10 +34540,10 @@ export namespace Prisma {
 
   export type LocationUncheckedCreateInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
-    areaId?: string | null
-    entityId?: string | null
+    areaID?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     hours?: HoursUncheckedCreateNestedManyWithoutLocationInput
     equipment?: EquipmentUncheckedCreateNestedManyWithoutLocationInput
@@ -33157,7 +34553,7 @@ export namespace Prisma {
   export type LocationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     area?: AreaUpdateOneWithoutLocationsNestedInput
     mountain?: MountainUpdateOneRequiredWithoutLocationsNestedInput
@@ -33168,10 +34564,10 @@ export namespace Prisma {
 
   export type LocationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    areaId?: NullableStringFieldUpdateOperationsInput | string | null
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaID?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     hours?: HoursUncheckedUpdateManyWithoutLocationNestedInput
     equipment?: EquipmentUncheckedUpdateManyWithoutLocationNestedInput
@@ -33180,26 +34576,26 @@ export namespace Prisma {
 
   export type LocationCreateManyInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
-    areaId?: string | null
-    entityId?: string | null
+    areaID?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
   }
 
   export type LocationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
   }
 
   export type LocationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    areaId?: NullableStringFieldUpdateOperationsInput | string | null
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaID?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
   }
 
@@ -33217,7 +34613,7 @@ export namespace Prisma {
 
   export type HoursUncheckedCreateInput = {
     id?: string
-    locationId: string
+    locationID: string
     dayOfWeek?: number | null
     date?: Date | string | null
     openTime?: Date | string | null
@@ -33241,7 +34637,7 @@ export namespace Prisma {
 
   export type HoursUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
     date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     openTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -33253,7 +34649,7 @@ export namespace Prisma {
 
   export type HoursCreateManyInput = {
     id?: string
-    locationId: string
+    locationID: string
     dayOfWeek?: number | null
     date?: Date | string | null
     openTime?: Date | string | null
@@ -33276,7 +34672,7 @@ export namespace Prisma {
 
   export type HoursUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: NullableIntFieldUpdateOperationsInput | number | null
     date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     openTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -33485,7 +34881,7 @@ export namespace Prisma {
 
   export type WeatherUncheckedCreateInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     date?: Date | string
     temperature: number
     windSpeed: number
@@ -33517,7 +34913,7 @@ export namespace Prisma {
 
   export type WeatherUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
     windSpeed?: FloatFieldUpdateOperationsInput | number
@@ -33533,7 +34929,7 @@ export namespace Prisma {
 
   export type WeatherCreateManyInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     date?: Date | string
     temperature: number
     windSpeed: number
@@ -33564,7 +34960,7 @@ export namespace Prisma {
 
   export type WeatherUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
     windSpeed?: FloatFieldUpdateOperationsInput | number
@@ -33587,8 +34983,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUncheckedCreateInput = {
     id?: string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     assignedAt?: Date | string
   }
 
@@ -33601,15 +34997,15 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeMountainAssignmentCreateManyInput = {
     id?: string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     assignedAt?: Date | string
   }
 
@@ -33620,8 +35016,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -33634,8 +35030,8 @@ export namespace Prisma {
 
   export type DispatcherAssignmentUncheckedCreateInput = {
     id?: string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     assignedAt?: Date | string
   }
 
@@ -33648,15 +35044,15 @@ export namespace Prisma {
 
   export type DispatcherAssignmentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DispatcherAssignmentCreateManyInput = {
     id?: string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     assignedAt?: Date | string
   }
 
@@ -33667,73 +35063,137 @@ export namespace Prisma {
 
   export type DispatcherAssignmentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RoleCreateInput = {
     id?: string
+    department: $Enums.Department
     name: string
+    title: string
+    position: string
+    level?: number | null
     permissions?: RoleCreatepermissionsInput | string[]
-    employeeId: string
-    employee?: EmployeeCreateNestedManyWithoutRoleInput
+    employees?: EmployeeCreateNestedManyWithoutRoleInput
+    employeeRole?: EmployeeRoleCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUncheckedCreateInput = {
     id?: string
+    department: $Enums.Department
     name: string
+    title: string
+    position: string
+    level?: number | null
     permissions?: RoleCreatepermissionsInput | string[]
-    employeeId: string
-    employee?: EmployeeUncheckedCreateNestedManyWithoutRoleInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutRoleInput
+    employeeRole?: EmployeeRoleUncheckedCreateNestedManyWithoutRoleInput
   }
 
   export type RoleUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
     name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    level?: NullableIntFieldUpdateOperationsInput | number | null
     permissions?: RoleUpdatepermissionsInput | string[]
-    employeeId?: StringFieldUpdateOperationsInput | string
-    employee?: EmployeeUpdateManyWithoutRoleNestedInput
+    employees?: EmployeeUpdateManyWithoutRoleNestedInput
+    employeeRole?: EmployeeRoleUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
     name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    level?: NullableIntFieldUpdateOperationsInput | number | null
     permissions?: RoleUpdatepermissionsInput | string[]
-    employeeId?: StringFieldUpdateOperationsInput | string
-    employee?: EmployeeUncheckedUpdateManyWithoutRoleNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutRoleNestedInput
+    employeeRole?: EmployeeRoleUncheckedUpdateManyWithoutRoleNestedInput
   }
 
   export type RoleCreateManyInput = {
     id?: string
+    department: $Enums.Department
     name: string
+    title: string
+    position: string
+    level?: number | null
     permissions?: RoleCreatepermissionsInput | string[]
-    employeeId: string
   }
 
   export type RoleUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
     name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    level?: NullableIntFieldUpdateOperationsInput | number | null
     permissions?: RoleUpdatepermissionsInput | string[]
-    employeeId?: StringFieldUpdateOperationsInput | string
   }
 
   export type RoleUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
     name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    level?: NullableIntFieldUpdateOperationsInput | number | null
     permissions?: RoleUpdatepermissionsInput | string[]
-    employeeId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EmployeeRoleCreateInput = {
+    id?: string
+    employee: EmployeeCreateNestedOneWithoutAdditionalRolesInput
+    role: RoleCreateNestedOneWithoutEmployeeRoleInput
+  }
+
+  export type EmployeeRoleUncheckedCreateInput = {
+    id?: string
+    employeeID: string
+    roleID: string
+  }
+
+  export type EmployeeRoleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employee?: EmployeeUpdateOneRequiredWithoutAdditionalRolesNestedInput
+    role?: RoleUpdateOneRequiredWithoutEmployeeRoleNestedInput
+  }
+
+  export type EmployeeRoleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    roleID?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EmployeeRoleCreateManyInput = {
+    id?: string
+    employeeID: string
+    roleID: string
+  }
+
+  export type EmployeeRoleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EmployeeRoleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    roleID?: StringFieldUpdateOperationsInput | string
   }
 
   export type EmployeeCreateInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
@@ -33747,13 +35207,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -33767,13 +35226,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
@@ -33787,13 +35245,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -33807,34 +35264,28 @@ export namespace Prisma {
 
   export type EmployeeCreateManyInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
   }
 
   export type EmployeeUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
   }
 
   export type EmployeeUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LiftCreateInput = {
@@ -33851,7 +35302,7 @@ export namespace Prisma {
 
   export type LiftUncheckedCreateInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     type: $Enums.LiftType
     status?: $Enums.Status
@@ -33875,7 +35326,7 @@ export namespace Prisma {
 
   export type LiftUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: EnumLiftTypeFieldUpdateOperationsInput | $Enums.LiftType
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
@@ -33887,7 +35338,7 @@ export namespace Prisma {
 
   export type LiftCreateManyInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     type: $Enums.LiftType
     status?: $Enums.Status
@@ -33908,7 +35359,7 @@ export namespace Prisma {
 
   export type LiftUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: EnumLiftTypeFieldUpdateOperationsInput | $Enums.LiftType
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
@@ -33932,7 +35383,7 @@ export namespace Prisma {
 
   export type TrailUncheckedCreateInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     difficulty: $Enums.TrailDifficulty
     status?: $Enums.Status
@@ -33958,7 +35409,7 @@ export namespace Prisma {
 
   export type TrailUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTrailDifficultyFieldUpdateOperationsInput | $Enums.TrailDifficulty
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
@@ -33971,7 +35422,7 @@ export namespace Prisma {
 
   export type TrailCreateManyInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     difficulty: $Enums.TrailDifficulty
     status?: $Enums.Status
@@ -33994,7 +35445,7 @@ export namespace Prisma {
 
   export type TrailUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTrailDifficultyFieldUpdateOperationsInput | $Enums.TrailDifficulty
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
@@ -34016,7 +35467,7 @@ export namespace Prisma {
 
   export type LodgeUncheckedCreateInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     capacity: number
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -34036,7 +35487,7 @@ export namespace Prisma {
 
   export type LodgeUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -34046,7 +35497,7 @@ export namespace Prisma {
 
   export type LodgeCreateManyInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     capacity: number
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -34065,7 +35516,7 @@ export namespace Prisma {
 
   export type LodgeUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -34085,7 +35536,7 @@ export namespace Prisma {
 
   export type HutUncheckedCreateInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     status?: $Enums.Status
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -34105,7 +35556,7 @@ export namespace Prisma {
 
   export type HutUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -34115,7 +35566,7 @@ export namespace Prisma {
 
   export type HutCreateManyInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     status?: $Enums.Status
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -34132,7 +35583,7 @@ export namespace Prisma {
 
   export type HutUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -34151,7 +35602,7 @@ export namespace Prisma {
 
   export type AidRoomUncheckedCreateInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     status?: $Enums.Status
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -34171,7 +35622,7 @@ export namespace Prisma {
 
   export type AidRoomUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -34181,7 +35632,7 @@ export namespace Prisma {
 
   export type AidRoomCreateManyInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     status?: $Enums.Status
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -34198,7 +35649,7 @@ export namespace Prisma {
 
   export type AidRoomUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -34219,9 +35670,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedCreateInput = {
     id?: string
-    mountainId: string
-    equipmentId: string
-    employeeId?: string | null
+    mountainID: string
+    equipmentID: string
+    employeeID?: string | null
     status?: $Enums.EquipmentStatus
     changedAt?: Date | string
     notes?: string | null
@@ -34243,9 +35694,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumEquipmentStatusFieldUpdateOperationsInput | $Enums.EquipmentStatus
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34255,9 +35706,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogCreateManyInput = {
     id?: string
-    mountainId: string
-    equipmentId: string
-    employeeId?: string | null
+    mountainID: string
+    equipmentID: string
+    employeeID?: string | null
     status?: $Enums.EquipmentStatus
     changedAt?: Date | string
     notes?: string | null
@@ -34276,9 +35727,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumEquipmentStatusFieldUpdateOperationsInput | $Enums.EquipmentStatus
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -34316,8 +35767,8 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
-    locationId?: string | null
+    mountainID: string
+    locationID?: string | null
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
@@ -34354,8 +35805,8 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    locationID?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -34373,8 +35824,8 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
-    locationId?: string | null
+    mountainID: string
+    locationID?: string | null
     dateAdded?: Date | string
   }
 
@@ -34403,8 +35854,8 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    locationID?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -34433,8 +35884,8 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
-    mountainId: string
+    employeeID?: string | null
+    mountainID: string
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -34442,7 +35893,7 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    locationId: string
+    locationID: string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
   }
 
@@ -34471,8 +35922,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -34480,7 +35931,7 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
   }
 
@@ -34490,8 +35941,8 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
-    mountainId: string
+    employeeID?: string | null
+    mountainID: string
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -34499,7 +35950,7 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    locationId: string
+    locationID: string
   }
 
   export type IncidentUpdateManyMutationInput = {
@@ -34523,8 +35974,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -34532,7 +35983,7 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
   }
 
   export type IncidentEquipmentUseageLogCreateInput = {
@@ -34548,11 +35999,11 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedCreateInput = {
     id?: string
-    equipmentId: string
-    mountainId: string
+    equipmentID: string
+    mountainID: string
     usedAt?: Date | string
     notes?: string | null
-    incidentId: string
+    incidentID: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34570,22 +36021,22 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    incidentId?: StringFieldUpdateOperationsInput | string
+    incidentID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IncidentEquipmentUseageLogCreateManyInput = {
     id?: string
-    equipmentId: string
-    mountainId: string
+    equipmentID: string
+    mountainID: string
     usedAt?: Date | string
     notes?: string | null
-    incidentId: string
+    incidentID: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34600,11 +36051,11 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    incidentId?: StringFieldUpdateOperationsInput | string
+    incidentID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34623,9 +36074,9 @@ export namespace Prisma {
   export type LiftCheckUncheckedCreateInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    liftId: string
+    employeeID: string
+    mountainID: string
+    liftID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34645,9 +36096,9 @@ export namespace Prisma {
   export type LiftCheckUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    liftId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    liftID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34656,9 +36107,9 @@ export namespace Prisma {
   export type LiftCheckCreateManyInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    liftId: string
+    employeeID: string
+    mountainID: string
+    liftID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34675,9 +36126,9 @@ export namespace Prisma {
   export type LiftCheckUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    liftId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    liftID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34697,9 +36148,9 @@ export namespace Prisma {
   export type TrailCheckUncheckedCreateInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    trailId: string
+    employeeID: string
+    mountainID: string
+    trailID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34719,9 +36170,9 @@ export namespace Prisma {
   export type TrailCheckUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    trailId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    trailID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34730,9 +36181,9 @@ export namespace Prisma {
   export type TrailCheckCreateManyInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    trailId: string
+    employeeID: string
+    mountainID: string
+    trailID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34749,9 +36200,9 @@ export namespace Prisma {
   export type TrailCheckUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    trailId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    trailID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34771,9 +36222,9 @@ export namespace Prisma {
   export type HutCheckUncheckedCreateInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    hutId: string
+    employeeID: string
+    mountainID: string
+    hutID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34793,9 +36244,9 @@ export namespace Prisma {
   export type HutCheckUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    hutId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    hutID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34804,9 +36255,9 @@ export namespace Prisma {
   export type HutCheckCreateManyInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    hutId: string
+    employeeID: string
+    mountainID: string
+    hutID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34823,9 +36274,9 @@ export namespace Prisma {
   export type HutCheckUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    hutId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    hutID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34845,9 +36296,9 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedCreateInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    aidRoomId: string
+    employeeID: string
+    mountainID: string
+    aidRoomID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34867,9 +36318,9 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    aidRoomId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    aidRoomID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34878,9 +36329,9 @@ export namespace Prisma {
   export type AidRoomCheckCreateManyInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    aidRoomId: string
+    employeeID: string
+    mountainID: string
+    aidRoomID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34897,9 +36348,9 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    aidRoomId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    aidRoomID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34919,9 +36370,9 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedCreateInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    equipmentId: string
+    employeeID: string
+    mountainID: string
+    equipmentID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34941,9 +36392,9 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34952,9 +36403,9 @@ export namespace Prisma {
   export type EquipmentCheckCreateManyInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    equipmentId: string
+    employeeID: string
+    mountainID: string
+    equipmentID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34971,9 +36422,9 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35038,7 +36489,7 @@ export namespace Prisma {
 
   export type AreaCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     description?: SortOrder
@@ -35046,7 +36497,7 @@ export namespace Prisma {
 
   export type AreaMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     description?: SortOrder
@@ -35054,7 +36505,7 @@ export namespace Prisma {
 
   export type AreaMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     description?: SortOrder
@@ -35150,28 +36601,28 @@ export namespace Prisma {
 
   export type LocationCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
-    areaId?: SortOrder
-    entityId?: SortOrder
+    areaID?: SortOrder
+    entityID?: SortOrder
     entityType?: SortOrder
   }
 
   export type LocationMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
-    areaId?: SortOrder
-    entityId?: SortOrder
+    areaID?: SortOrder
+    entityID?: SortOrder
     entityType?: SortOrder
   }
 
   export type LocationMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
-    areaId?: SortOrder
-    entityId?: SortOrder
+    areaID?: SortOrder
+    entityID?: SortOrder
     entityType?: SortOrder
   }
 
@@ -35230,15 +36681,15 @@ export namespace Prisma {
     isNot?: LocationWhereInput
   }
 
-  export type HoursLocationIdDayOfWeekDateCompoundUniqueInput = {
-    locationId: string
+  export type HoursLocationIDDayOfWeekDateCompoundUniqueInput = {
+    locationID: string
     dayOfWeek: number
     date: Date | string
   }
 
   export type HoursCountOrderByAggregateInput = {
     id?: SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
     dayOfWeek?: SortOrder
     date?: SortOrder
     openTime?: SortOrder
@@ -35254,7 +36705,7 @@ export namespace Prisma {
 
   export type HoursMaxOrderByAggregateInput = {
     id?: SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
     dayOfWeek?: SortOrder
     date?: SortOrder
     openTime?: SortOrder
@@ -35266,7 +36717,7 @@ export namespace Prisma {
 
   export type HoursMinOrderByAggregateInput = {
     id?: SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
     dayOfWeek?: SortOrder
     date?: SortOrder
     openTime?: SortOrder
@@ -35629,7 +37080,7 @@ export namespace Prisma {
 
   export type WeatherCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
     windSpeed?: SortOrder
@@ -35654,7 +37105,7 @@ export namespace Prisma {
 
   export type WeatherMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
     windSpeed?: SortOrder
@@ -35670,7 +37121,7 @@ export namespace Prisma {
 
   export type WeatherMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
     windSpeed?: SortOrder
@@ -35732,44 +37183,51 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentCountOrderByAggregateInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
   }
 
   export type EmployeeMountainAssignmentMaxOrderByAggregateInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
   }
 
   export type EmployeeMountainAssignmentMinOrderByAggregateInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
   }
 
   export type DispatcherAssignmentCountOrderByAggregateInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
   }
 
   export type DispatcherAssignmentMaxOrderByAggregateInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
   }
 
   export type DispatcherAssignmentMinOrderByAggregateInput = {
     id?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     assignedAt?: SortOrder
+  }
+
+  export type EnumDepartmentFilter<$PrismaModel = never> = {
+    equals?: $Enums.Department | EnumDepartmentFieldRefInput<$PrismaModel>
+    in?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
+    not?: NestedEnumDepartmentFilter<$PrismaModel> | $Enums.Department
   }
 
   export type StringNullableListFilter<$PrismaModel = never> = {
@@ -35786,72 +37244,59 @@ export namespace Prisma {
     none?: EmployeeWhereInput
   }
 
+  export type EmployeeRoleListRelationFilter = {
+    every?: EmployeeRoleWhereInput
+    some?: EmployeeRoleWhereInput
+    none?: EmployeeRoleWhereInput
+  }
+
   export type EmployeeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
+  export type EmployeeRoleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RoleDepartmentNameCompoundUniqueInput = {
+    department: $Enums.Department
+    name: string
+  }
+
   export type RoleCountOrderByAggregateInput = {
     id?: SortOrder
+    department?: SortOrder
     name?: SortOrder
+    title?: SortOrder
+    position?: SortOrder
+    level?: SortOrder
     permissions?: SortOrder
-    employeeId?: SortOrder
+  }
+
+  export type RoleAvgOrderByAggregateInput = {
+    level?: SortOrder
   }
 
   export type RoleMaxOrderByAggregateInput = {
     id?: SortOrder
+    department?: SortOrder
     name?: SortOrder
-    employeeId?: SortOrder
+    title?: SortOrder
+    position?: SortOrder
+    level?: SortOrder
   }
 
   export type RoleMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    employeeId?: SortOrder
-  }
-
-  export type EnumDepartmentFilter<$PrismaModel = never> = {
-    equals?: $Enums.Department | EnumDepartmentFieldRefInput<$PrismaModel>
-    in?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Department[] | ListEnumDepartmentFieldRefInput<$PrismaModel>
-    not?: NestedEnumDepartmentFilter<$PrismaModel> | $Enums.Department
-  }
-
-  export type RoleScalarRelationFilter = {
-    is?: RoleWhereInput
-    isNot?: RoleWhereInput
-  }
-
-  export type EmployeeCountOrderByAggregateInput = {
-    id?: SortOrder
-    employeeIdNumber?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
+    department?: SortOrder
     name?: SortOrder
     title?: SortOrder
-    roleId?: SortOrder
-    department?: SortOrder
+    position?: SortOrder
+    level?: SortOrder
   }
 
-  export type EmployeeMaxOrderByAggregateInput = {
-    id?: SortOrder
-    employeeIdNumber?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    name?: SortOrder
-    title?: SortOrder
-    roleId?: SortOrder
-    department?: SortOrder
-  }
-
-  export type EmployeeMinOrderByAggregateInput = {
-    id?: SortOrder
-    employeeIdNumber?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    name?: SortOrder
-    title?: SortOrder
-    roleId?: SortOrder
-    department?: SortOrder
+  export type RoleSumOrderByAggregateInput = {
+    level?: SortOrder
   }
 
   export type EnumDepartmentWithAggregatesFilter<$PrismaModel = never> = {
@@ -35862,6 +37307,74 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDepartmentFilter<$PrismaModel>
     _max?: NestedEnumDepartmentFilter<$PrismaModel>
+  }
+
+  export type RoleScalarRelationFilter = {
+    is?: RoleWhereInput
+    isNot?: RoleWhereInput
+  }
+
+  export type EmployeeRoleEmployeeIDRoleIDCompoundUniqueInput = {
+    employeeID: string
+    roleID: string
+  }
+
+  export type EmployeeRoleCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeID?: SortOrder
+    roleID?: SortOrder
+  }
+
+  export type EmployeeRoleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeID?: SortOrder
+    roleID?: SortOrder
+  }
+
+  export type EmployeeRoleMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeID?: SortOrder
+    roleID?: SortOrder
+  }
+
+  export type RoleNullableScalarRelationFilter = {
+    is?: RoleWhereInput | null
+    isNot?: RoleWhereInput | null
+  }
+
+  export type EmployeeCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeIDNumber?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    name?: SortOrder
+    roleID?: SortOrder
+  }
+
+  export type EmployeeAvgOrderByAggregateInput = {
+    employeeIDNumber?: SortOrder
+  }
+
+  export type EmployeeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeIDNumber?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    name?: SortOrder
+    roleID?: SortOrder
+  }
+
+  export type EmployeeMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeIDNumber?: SortOrder
+    email?: SortOrder
+    phoneNumber?: SortOrder
+    name?: SortOrder
+    roleID?: SortOrder
+  }
+
+  export type EmployeeSumOrderByAggregateInput = {
+    employeeIDNumber?: SortOrder
   }
 
   export type EnumLiftTypeFilter<$PrismaModel = never> = {
@@ -35876,14 +37389,14 @@ export namespace Prisma {
     type: $Enums.LiftType
   }
 
-  export type LiftMountainIdNameCompoundUniqueInput = {
-    mountainId: string
+  export type LiftMountainIDNameCompoundUniqueInput = {
+    mountainID: string
     name: string
   }
 
   export type LiftCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -35900,7 +37413,7 @@ export namespace Prisma {
 
   export type LiftMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -35911,7 +37424,7 @@ export namespace Prisma {
 
   export type LiftMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     type?: SortOrder
     status?: SortOrder
@@ -35950,14 +37463,14 @@ export namespace Prisma {
     not?: NestedEnumTrailConditionFilter<$PrismaModel> | $Enums.TrailCondition
   }
 
-  export type TrailMountainIdNameCompoundUniqueInput = {
-    mountainId: string
+  export type TrailMountainIDNameCompoundUniqueInput = {
+    mountainID: string
     name: string
   }
 
   export type TrailCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     difficulty?: SortOrder
     status?: SortOrder
@@ -35975,7 +37488,7 @@ export namespace Prisma {
 
   export type TrailMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     difficulty?: SortOrder
     status?: SortOrder
@@ -35987,7 +37500,7 @@ export namespace Prisma {
 
   export type TrailMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     difficulty?: SortOrder
     status?: SortOrder
@@ -36023,14 +37536,14 @@ export namespace Prisma {
     _max?: NestedEnumTrailConditionFilter<$PrismaModel>
   }
 
-  export type LodgeMountainIdNameCompoundUniqueInput = {
-    mountainId: string
+  export type LodgeMountainIDNameCompoundUniqueInput = {
+    mountainID: string
     name: string
   }
 
   export type LodgeCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     capacity?: SortOrder
     latitude?: SortOrder
@@ -36046,7 +37559,7 @@ export namespace Prisma {
 
   export type LodgeMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     capacity?: SortOrder
     latitude?: SortOrder
@@ -36056,7 +37569,7 @@ export namespace Prisma {
 
   export type LodgeMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     capacity?: SortOrder
     latitude?: SortOrder
@@ -36070,14 +37583,14 @@ export namespace Prisma {
     longitude?: SortOrder
   }
 
-  export type HutMountainIdNameCompoundUniqueInput = {
-    mountainId: string
+  export type HutMountainIDNameCompoundUniqueInput = {
+    mountainID: string
     name: string
   }
 
   export type HutCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrder
@@ -36091,7 +37604,7 @@ export namespace Prisma {
 
   export type HutMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrder
@@ -36100,7 +37613,7 @@ export namespace Prisma {
 
   export type HutMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrder
@@ -36112,14 +37625,14 @@ export namespace Prisma {
     longitude?: SortOrder
   }
 
-  export type AidRoomMountainIdNameCompoundUniqueInput = {
-    mountainId: string
+  export type AidRoomMountainIDNameCompoundUniqueInput = {
+    mountainID: string
     name: string
   }
 
   export type AidRoomCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrder
@@ -36133,7 +37646,7 @@ export namespace Prisma {
 
   export type AidRoomMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrder
@@ -36142,7 +37655,7 @@ export namespace Prisma {
 
   export type AidRoomMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
+    mountainID?: SortOrder
     name?: SortOrder
     status?: SortOrder
     latitude?: SortOrder
@@ -36173,9 +37686,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogCountOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
-    employeeId?: SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
+    employeeID?: SortOrder
     status?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrder
@@ -36185,9 +37698,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogMaxOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
-    employeeId?: SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
+    employeeID?: SortOrder
     status?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrder
@@ -36197,9 +37710,9 @@ export namespace Prisma {
 
   export type EquipmentServiceLogMinOrderByAggregateInput = {
     id?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
-    employeeId?: SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
+    employeeID?: SortOrder
     status?: SortOrder
     changedAt?: SortOrder
     notes?: SortOrder
@@ -36222,8 +37735,8 @@ export namespace Prisma {
     isNot?: LocationWhereInput | null
   }
 
-  export type EquipmentMountainIdNumberCompoundUniqueInput = {
-    mountainId: string
+  export type EquipmentMountainIDNumberCompoundUniqueInput = {
+    mountainID: string
     number: number
   }
 
@@ -36238,8 +37751,8 @@ export namespace Prisma {
     cost?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    mountainId?: SortOrder
-    locationId?: SortOrder
+    mountainID?: SortOrder
+    locationID?: SortOrder
     dateAdded?: SortOrder
   }
 
@@ -36261,8 +37774,8 @@ export namespace Prisma {
     cost?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    mountainId?: SortOrder
-    locationId?: SortOrder
+    mountainID?: SortOrder
+    locationID?: SortOrder
     dateAdded?: SortOrder
   }
 
@@ -36277,8 +37790,8 @@ export namespace Prisma {
     cost?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    mountainId?: SortOrder
-    locationId?: SortOrder
+    mountainID?: SortOrder
+    locationID?: SortOrder
     dateAdded?: SortOrder
   }
 
@@ -36307,8 +37820,8 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     onSceneTime?: SortOrder
@@ -36316,7 +37829,7 @@ export namespace Prisma {
     transportTime?: SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
   }
 
   export type IncidentAvgOrderByAggregateInput = {
@@ -36330,8 +37843,8 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     onSceneTime?: SortOrder
@@ -36339,7 +37852,7 @@ export namespace Prisma {
     transportTime?: SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
   }
 
   export type IncidentMinOrderByAggregateInput = {
@@ -36348,8 +37861,8 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     onSceneTime?: SortOrder
@@ -36357,7 +37870,7 @@ export namespace Prisma {
     transportTime?: SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrder
-    locationId?: SortOrder
+    locationID?: SortOrder
   }
 
   export type IncidentSumOrderByAggregateInput = {
@@ -36390,33 +37903,33 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogCountOrderByAggregateInput = {
     id?: SortOrder
-    equipmentId?: SortOrder
-    mountainId?: SortOrder
+    equipmentID?: SortOrder
+    mountainID?: SortOrder
     usedAt?: SortOrder
     notes?: SortOrder
-    incidentId?: SortOrder
+    incidentID?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type IncidentEquipmentUseageLogMaxOrderByAggregateInput = {
     id?: SortOrder
-    equipmentId?: SortOrder
-    mountainId?: SortOrder
+    equipmentID?: SortOrder
+    mountainID?: SortOrder
     usedAt?: SortOrder
     notes?: SortOrder
-    incidentId?: SortOrder
+    incidentID?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type IncidentEquipmentUseageLogMinOrderByAggregateInput = {
     id?: SortOrder
-    equipmentId?: SortOrder
-    mountainId?: SortOrder
+    equipmentID?: SortOrder
+    mountainID?: SortOrder
     usedAt?: SortOrder
     notes?: SortOrder
-    incidentId?: SortOrder
+    incidentID?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -36429,9 +37942,9 @@ export namespace Prisma {
   export type LiftCheckCountOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    liftId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    liftID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36440,9 +37953,9 @@ export namespace Prisma {
   export type LiftCheckMaxOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    liftId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    liftID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36451,9 +37964,9 @@ export namespace Prisma {
   export type LiftCheckMinOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    liftId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    liftID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36467,9 +37980,9 @@ export namespace Prisma {
   export type TrailCheckCountOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    trailID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36478,9 +37991,9 @@ export namespace Prisma {
   export type TrailCheckMaxOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    trailID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36489,9 +38002,9 @@ export namespace Prisma {
   export type TrailCheckMinOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    trailID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36505,9 +38018,9 @@ export namespace Prisma {
   export type HutCheckCountOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    hutId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    hutID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36516,9 +38029,9 @@ export namespace Prisma {
   export type HutCheckMaxOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    hutId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    hutID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36527,9 +38040,9 @@ export namespace Prisma {
   export type HutCheckMinOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    hutId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    hutID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36543,9 +38056,9 @@ export namespace Prisma {
   export type AidRoomCheckCountOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    aidRoomId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    aidRoomID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36554,9 +38067,9 @@ export namespace Prisma {
   export type AidRoomCheckMaxOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    aidRoomId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    aidRoomID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36565,9 +38078,9 @@ export namespace Prisma {
   export type AidRoomCheckMinOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    aidRoomId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    aidRoomID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36576,9 +38089,9 @@ export namespace Prisma {
   export type EquipmentCheckCountOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36587,9 +38100,9 @@ export namespace Prisma {
   export type EquipmentCheckMaxOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36598,9 +38111,9 @@ export namespace Prisma {
   export type EquipmentCheckMinOrderByAggregateInput = {
     id?: SortOrder
     recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    equipmentId?: SortOrder
+    employeeID?: SortOrder
+    mountainID?: SortOrder
+    equipmentID?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -37779,11 +39292,29 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
   }
 
+  export type EmployeeRoleCreateNestedManyWithoutRoleInput = {
+    create?: XOR<EmployeeRoleCreateWithoutRoleInput, EmployeeRoleUncheckedCreateWithoutRoleInput> | EmployeeRoleCreateWithoutRoleInput[] | EmployeeRoleUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: EmployeeRoleCreateOrConnectWithoutRoleInput | EmployeeRoleCreateOrConnectWithoutRoleInput[]
+    createMany?: EmployeeRoleCreateManyRoleInputEnvelope
+    connect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+  }
+
   export type EmployeeUncheckedCreateNestedManyWithoutRoleInput = {
     create?: XOR<EmployeeCreateWithoutRoleInput, EmployeeUncheckedCreateWithoutRoleInput> | EmployeeCreateWithoutRoleInput[] | EmployeeUncheckedCreateWithoutRoleInput[]
     connectOrCreate?: EmployeeCreateOrConnectWithoutRoleInput | EmployeeCreateOrConnectWithoutRoleInput[]
     createMany?: EmployeeCreateManyRoleInputEnvelope
     connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+  }
+
+  export type EmployeeRoleUncheckedCreateNestedManyWithoutRoleInput = {
+    create?: XOR<EmployeeRoleCreateWithoutRoleInput, EmployeeRoleUncheckedCreateWithoutRoleInput> | EmployeeRoleCreateWithoutRoleInput[] | EmployeeRoleUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: EmployeeRoleCreateOrConnectWithoutRoleInput | EmployeeRoleCreateOrConnectWithoutRoleInput[]
+    createMany?: EmployeeRoleCreateManyRoleInputEnvelope
+    connect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+  }
+
+  export type EnumDepartmentFieldUpdateOperationsInput = {
+    set?: $Enums.Department
   }
 
   export type RoleUpdatepermissionsInput = {
@@ -37805,6 +39336,20 @@ export namespace Prisma {
     deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
   }
 
+  export type EmployeeRoleUpdateManyWithoutRoleNestedInput = {
+    create?: XOR<EmployeeRoleCreateWithoutRoleInput, EmployeeRoleUncheckedCreateWithoutRoleInput> | EmployeeRoleCreateWithoutRoleInput[] | EmployeeRoleUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: EmployeeRoleCreateOrConnectWithoutRoleInput | EmployeeRoleCreateOrConnectWithoutRoleInput[]
+    upsert?: EmployeeRoleUpsertWithWhereUniqueWithoutRoleInput | EmployeeRoleUpsertWithWhereUniqueWithoutRoleInput[]
+    createMany?: EmployeeRoleCreateManyRoleInputEnvelope
+    set?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    disconnect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    delete?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    connect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    update?: EmployeeRoleUpdateWithWhereUniqueWithoutRoleInput | EmployeeRoleUpdateWithWhereUniqueWithoutRoleInput[]
+    updateMany?: EmployeeRoleUpdateManyWithWhereWithoutRoleInput | EmployeeRoleUpdateManyWithWhereWithoutRoleInput[]
+    deleteMany?: EmployeeRoleScalarWhereInput | EmployeeRoleScalarWhereInput[]
+  }
+
   export type EmployeeUncheckedUpdateManyWithoutRoleNestedInput = {
     create?: XOR<EmployeeCreateWithoutRoleInput, EmployeeUncheckedCreateWithoutRoleInput> | EmployeeCreateWithoutRoleInput[] | EmployeeUncheckedCreateWithoutRoleInput[]
     connectOrCreate?: EmployeeCreateOrConnectWithoutRoleInput | EmployeeCreateOrConnectWithoutRoleInput[]
@@ -37819,10 +39364,59 @@ export namespace Prisma {
     deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
   }
 
-  export type RoleCreateNestedOneWithoutEmployeeInput = {
-    create?: XOR<RoleCreateWithoutEmployeeInput, RoleUncheckedCreateWithoutEmployeeInput>
-    connectOrCreate?: RoleCreateOrConnectWithoutEmployeeInput
+  export type EmployeeRoleUncheckedUpdateManyWithoutRoleNestedInput = {
+    create?: XOR<EmployeeRoleCreateWithoutRoleInput, EmployeeRoleUncheckedCreateWithoutRoleInput> | EmployeeRoleCreateWithoutRoleInput[] | EmployeeRoleUncheckedCreateWithoutRoleInput[]
+    connectOrCreate?: EmployeeRoleCreateOrConnectWithoutRoleInput | EmployeeRoleCreateOrConnectWithoutRoleInput[]
+    upsert?: EmployeeRoleUpsertWithWhereUniqueWithoutRoleInput | EmployeeRoleUpsertWithWhereUniqueWithoutRoleInput[]
+    createMany?: EmployeeRoleCreateManyRoleInputEnvelope
+    set?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    disconnect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    delete?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    connect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    update?: EmployeeRoleUpdateWithWhereUniqueWithoutRoleInput | EmployeeRoleUpdateWithWhereUniqueWithoutRoleInput[]
+    updateMany?: EmployeeRoleUpdateManyWithWhereWithoutRoleInput | EmployeeRoleUpdateManyWithWhereWithoutRoleInput[]
+    deleteMany?: EmployeeRoleScalarWhereInput | EmployeeRoleScalarWhereInput[]
+  }
+
+  export type EmployeeCreateNestedOneWithoutAdditionalRolesInput = {
+    create?: XOR<EmployeeCreateWithoutAdditionalRolesInput, EmployeeUncheckedCreateWithoutAdditionalRolesInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAdditionalRolesInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type RoleCreateNestedOneWithoutEmployeeRoleInput = {
+    create?: XOR<RoleCreateWithoutEmployeeRoleInput, RoleUncheckedCreateWithoutEmployeeRoleInput>
+    connectOrCreate?: RoleCreateOrConnectWithoutEmployeeRoleInput
     connect?: RoleWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutAdditionalRolesNestedInput = {
+    create?: XOR<EmployeeCreateWithoutAdditionalRolesInput, EmployeeUncheckedCreateWithoutAdditionalRolesInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAdditionalRolesInput
+    upsert?: EmployeeUpsertWithoutAdditionalRolesInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutAdditionalRolesInput, EmployeeUpdateWithoutAdditionalRolesInput>, EmployeeUncheckedUpdateWithoutAdditionalRolesInput>
+  }
+
+  export type RoleUpdateOneRequiredWithoutEmployeeRoleNestedInput = {
+    create?: XOR<RoleCreateWithoutEmployeeRoleInput, RoleUncheckedCreateWithoutEmployeeRoleInput>
+    connectOrCreate?: RoleCreateOrConnectWithoutEmployeeRoleInput
+    upsert?: RoleUpsertWithoutEmployeeRoleInput
+    connect?: RoleWhereUniqueInput
+    update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutEmployeeRoleInput, RoleUpdateWithoutEmployeeRoleInput>, RoleUncheckedUpdateWithoutEmployeeRoleInput>
+  }
+
+  export type RoleCreateNestedOneWithoutEmployeesInput = {
+    create?: XOR<RoleCreateWithoutEmployeesInput, RoleUncheckedCreateWithoutEmployeesInput>
+    connectOrCreate?: RoleCreateOrConnectWithoutEmployeesInput
+    connect?: RoleWhereUniqueInput
+  }
+
+  export type EmployeeRoleCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmployeeRoleCreateWithoutEmployeeInput, EmployeeRoleUncheckedCreateWithoutEmployeeInput> | EmployeeRoleCreateWithoutEmployeeInput[] | EmployeeRoleUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeRoleCreateOrConnectWithoutEmployeeInput | EmployeeRoleCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmployeeRoleCreateManyEmployeeInputEnvelope
+    connect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
   }
 
   export type EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput = {
@@ -37888,6 +39482,13 @@ export namespace Prisma {
     connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
   }
 
+  export type EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmployeeRoleCreateWithoutEmployeeInput, EmployeeRoleUncheckedCreateWithoutEmployeeInput> | EmployeeRoleCreateWithoutEmployeeInput[] | EmployeeRoleUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeRoleCreateOrConnectWithoutEmployeeInput | EmployeeRoleCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmployeeRoleCreateManyEmployeeInputEnvelope
+    connect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+  }
+
   export type EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeMountainAssignmentCreateWithoutEmployeeInput, EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput> | EmployeeMountainAssignmentCreateWithoutEmployeeInput[] | EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput | EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput[]
@@ -37951,16 +39552,28 @@ export namespace Prisma {
     connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
   }
 
-  export type EnumDepartmentFieldUpdateOperationsInput = {
-    set?: $Enums.Department
+  export type RoleUpdateOneWithoutEmployeesNestedInput = {
+    create?: XOR<RoleCreateWithoutEmployeesInput, RoleUncheckedCreateWithoutEmployeesInput>
+    connectOrCreate?: RoleCreateOrConnectWithoutEmployeesInput
+    upsert?: RoleUpsertWithoutEmployeesInput
+    disconnect?: RoleWhereInput | boolean
+    delete?: RoleWhereInput | boolean
+    connect?: RoleWhereUniqueInput
+    update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutEmployeesInput, RoleUpdateWithoutEmployeesInput>, RoleUncheckedUpdateWithoutEmployeesInput>
   }
 
-  export type RoleUpdateOneRequiredWithoutEmployeeNestedInput = {
-    create?: XOR<RoleCreateWithoutEmployeeInput, RoleUncheckedCreateWithoutEmployeeInput>
-    connectOrCreate?: RoleCreateOrConnectWithoutEmployeeInput
-    upsert?: RoleUpsertWithoutEmployeeInput
-    connect?: RoleWhereUniqueInput
-    update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutEmployeeInput, RoleUpdateWithoutEmployeeInput>, RoleUncheckedUpdateWithoutEmployeeInput>
+  export type EmployeeRoleUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeRoleCreateWithoutEmployeeInput, EmployeeRoleUncheckedCreateWithoutEmployeeInput> | EmployeeRoleCreateWithoutEmployeeInput[] | EmployeeRoleUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeRoleCreateOrConnectWithoutEmployeeInput | EmployeeRoleCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmployeeRoleUpsertWithWhereUniqueWithoutEmployeeInput | EmployeeRoleUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmployeeRoleCreateManyEmployeeInputEnvelope
+    set?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    disconnect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    delete?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    connect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    update?: EmployeeRoleUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeRoleUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmployeeRoleUpdateManyWithWhereWithoutEmployeeInput | EmployeeRoleUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmployeeRoleScalarWhereInput | EmployeeRoleScalarWhereInput[]
   }
 
   export type EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput = {
@@ -38087,6 +39700,20 @@ export namespace Prisma {
     update?: EquipmentServiceLogUpdateWithWhereUniqueWithoutEmployeeInput | EquipmentServiceLogUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: EquipmentServiceLogUpdateManyWithWhereWithoutEmployeeInput | EquipmentServiceLogUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
+  }
+
+  export type EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeRoleCreateWithoutEmployeeInput, EmployeeRoleUncheckedCreateWithoutEmployeeInput> | EmployeeRoleCreateWithoutEmployeeInput[] | EmployeeRoleUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeRoleCreateOrConnectWithoutEmployeeInput | EmployeeRoleCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmployeeRoleUpsertWithWhereUniqueWithoutEmployeeInput | EmployeeRoleUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmployeeRoleCreateManyEmployeeInputEnvelope
+    set?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    disconnect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    delete?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    connect?: EmployeeRoleWhereUniqueInput | EmployeeRoleWhereUniqueInput[]
+    update?: EmployeeRoleUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeRoleUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmployeeRoleUpdateManyWithWhereWithoutEmployeeInput | EmployeeRoleUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmployeeRoleScalarWhereInput | EmployeeRoleScalarWhereInput[]
   }
 
   export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput = {
@@ -39502,7 +41129,7 @@ export namespace Prisma {
   export type LocationCreateWithoutAreaInput = {
     id?: string
     name: string
-    entityId?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     mountain: MountainCreateNestedOneWithoutLocationsInput
     hours?: HoursCreateNestedManyWithoutLocationInput
@@ -39512,9 +41139,9 @@ export namespace Prisma {
 
   export type LocationUncheckedCreateWithoutAreaInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
-    entityId?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     hours?: HoursUncheckedCreateNestedManyWithoutLocationInput
     equipment?: EquipmentUncheckedCreateNestedManyWithoutLocationInput
@@ -39629,10 +41256,10 @@ export namespace Prisma {
     OR?: LocationScalarWhereInput[]
     NOT?: LocationScalarWhereInput | LocationScalarWhereInput[]
     id?: StringFilter<"Location"> | string
-    mountainId?: StringFilter<"Location"> | string
+    mountainID?: StringFilter<"Location"> | string
     name?: StringFilter<"Location"> | string
-    areaId?: StringNullableFilter<"Location"> | string | null
-    entityId?: StringNullableFilter<"Location"> | string | null
+    areaID?: StringNullableFilter<"Location"> | string | null
+    entityID?: StringNullableFilter<"Location"> | string | null
     entityType?: EnumLocationTypeFilter<"Location"> | $Enums.LocationType
   }
 
@@ -39646,7 +41273,7 @@ export namespace Prisma {
 
   export type AreaUncheckedCreateWithoutLocationsInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     type: $Enums.AreaType
     description?: string | null
@@ -39789,7 +41416,7 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainID: string
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
@@ -39830,8 +41457,8 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
-    mountainId: string
+    employeeID?: string | null
+    mountainID: string
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -39873,7 +41500,7 @@ export namespace Prisma {
 
   export type AreaUncheckedUpdateWithoutLocationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: EnumAreaTypeFieldUpdateOperationsInput | $Enums.AreaType
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -39977,7 +41604,7 @@ export namespace Prisma {
     OR?: HoursScalarWhereInput[]
     NOT?: HoursScalarWhereInput | HoursScalarWhereInput[]
     id?: StringFilter<"Hours"> | string
-    locationId?: StringFilter<"Hours"> | string
+    locationID?: StringFilter<"Hours"> | string
     dayOfWeek?: IntNullableFilter<"Hours"> | number | null
     date?: DateTimeNullableFilter<"Hours"> | Date | string | null
     openTime?: DateTimeNullableFilter<"Hours"> | Date | string | null
@@ -40017,8 +41644,8 @@ export namespace Prisma {
     cost?: FloatNullableFilter<"Equipment"> | number | null
     latitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFilter<"Equipment"> | string
-    locationId?: StringNullableFilter<"Equipment"> | string | null
+    mountainID?: StringFilter<"Equipment"> | string
+    locationID?: StringNullableFilter<"Equipment"> | string | null
     dateAdded?: DateTimeFilter<"Equipment"> | Date | string
   }
 
@@ -40047,8 +41674,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusFilter<"Incident"> | $Enums.IncidentStatus
     latitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
-    employeeId?: StringNullableFilter<"Incident"> | string | null
-    mountainId?: StringFilter<"Incident"> | string
+    employeeID?: StringNullableFilter<"Incident"> | string | null
+    mountainID?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     onSceneTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -40056,13 +41683,13 @@ export namespace Prisma {
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     emptyRun?: BoolFilter<"Incident"> | boolean
     emptyRunAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
-    locationId?: StringFilter<"Incident"> | string
+    locationID?: StringFilter<"Incident"> | string
   }
 
   export type LocationCreateWithoutHoursInput = {
     id?: string
     name: string
-    entityId?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     area?: AreaCreateNestedOneWithoutLocationsInput
     mountain: MountainCreateNestedOneWithoutLocationsInput
@@ -40072,10 +41699,10 @@ export namespace Prisma {
 
   export type LocationUncheckedCreateWithoutHoursInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
-    areaId?: string | null
-    entityId?: string | null
+    areaID?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     equipment?: EquipmentUncheckedCreateNestedManyWithoutLocationInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutLocationInput
@@ -40100,7 +41727,7 @@ export namespace Prisma {
   export type LocationUpdateWithoutHoursInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     area?: AreaUpdateOneWithoutLocationsNestedInput
     mountain?: MountainUpdateOneRequiredWithoutLocationsNestedInput
@@ -40110,10 +41737,10 @@ export namespace Prisma {
 
   export type LocationUncheckedUpdateWithoutHoursInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    areaId?: NullableStringFieldUpdateOperationsInput | string | null
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaID?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     equipment?: EquipmentUncheckedUpdateManyWithoutLocationNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutLocationNestedInput
@@ -40162,7 +41789,7 @@ export namespace Prisma {
   export type LocationCreateWithoutMountainInput = {
     id?: string
     name: string
-    entityId?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     area?: AreaCreateNestedOneWithoutLocationsInput
     hours?: HoursCreateNestedManyWithoutLocationInput
@@ -40173,8 +41800,8 @@ export namespace Prisma {
   export type LocationUncheckedCreateWithoutMountainInput = {
     id?: string
     name: string
-    areaId?: string | null
-    entityId?: string | null
+    areaID?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     hours?: HoursUncheckedCreateNestedManyWithoutLocationInput
     equipment?: EquipmentUncheckedCreateNestedManyWithoutLocationInput
@@ -40258,8 +41885,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedCreateWithoutMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    aidRoomId: string
+    employeeID: string
+    aidRoomID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -40316,8 +41943,8 @@ export namespace Prisma {
   export type HutCheckUncheckedCreateWithoutMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    hutId: string
+    employeeID: string
+    hutID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -40406,8 +42033,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedCreateWithoutMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    liftId: string
+    employeeID: string
+    liftID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -40470,8 +42097,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedCreateWithoutMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    trailId: string
+    employeeID: string
+    trailID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -40500,8 +42127,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedCreateWithoutMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    equipmentId: string
+    employeeID: string
+    equipmentID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -40541,7 +42168,7 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
+    employeeID?: string | null
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -40549,7 +42176,7 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    locationId: string
+    locationID: string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
   }
 
@@ -40592,7 +42219,7 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId?: string | null
+    locationID?: string | null
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
@@ -40617,7 +42244,7 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput = {
     id?: string
-    employeeId: string
+    employeeID: string
     assignedAt?: Date | string
   }
 
@@ -40639,7 +42266,7 @@ export namespace Prisma {
 
   export type DispatcherAssignmentUncheckedCreateWithoutMountainInput = {
     id?: string
-    employeeId: string
+    employeeID: string
     assignedAt?: Date | string
   }
 
@@ -40665,10 +42292,10 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput = {
     id?: string
-    equipmentId: string
+    equipmentID: string
     usedAt?: Date | string
     notes?: string | null
-    incidentId: string
+    incidentID: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -40696,8 +42323,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedCreateWithoutMountainInput = {
     id?: string
-    equipmentId: string
-    employeeId?: string | null
+    equipmentID: string
+    employeeID?: string | null
     status?: $Enums.EquipmentStatus
     changedAt?: Date | string
     notes?: string | null
@@ -40736,7 +42363,7 @@ export namespace Prisma {
     OR?: WeatherScalarWhereInput[]
     NOT?: WeatherScalarWhereInput | WeatherScalarWhereInput[]
     id?: StringFilter<"Weather"> | string
-    mountainId?: StringFilter<"Weather"> | string
+    mountainID?: StringFilter<"Weather"> | string
     date?: DateTimeFilter<"Weather"> | Date | string
     temperature?: FloatFilter<"Weather"> | number
     windSpeed?: FloatFilter<"Weather"> | number
@@ -40787,7 +42414,7 @@ export namespace Prisma {
     OR?: AreaScalarWhereInput[]
     NOT?: AreaScalarWhereInput | AreaScalarWhereInput[]
     id?: StringFilter<"Area"> | string
-    mountainId?: StringFilter<"Area"> | string
+    mountainID?: StringFilter<"Area"> | string
     name?: StringFilter<"Area"> | string
     type?: EnumAreaTypeFilter<"Area"> | $Enums.AreaType
     description?: StringNullableFilter<"Area"> | string | null
@@ -40814,7 +42441,7 @@ export namespace Prisma {
     OR?: AidRoomScalarWhereInput[]
     NOT?: AidRoomScalarWhereInput | AidRoomScalarWhereInput[]
     id?: StringFilter<"AidRoom"> | string
-    mountainId?: StringFilter<"AidRoom"> | string
+    mountainID?: StringFilter<"AidRoom"> | string
     name?: StringFilter<"AidRoom"> | string
     status?: EnumStatusFilter<"AidRoom"> | $Enums.Status
     latitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
@@ -40843,9 +42470,9 @@ export namespace Prisma {
     NOT?: AidRoomCheckScalarWhereInput | AidRoomCheckScalarWhereInput[]
     id?: StringFilter<"AidRoomCheck"> | string
     recordedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
-    employeeId?: StringFilter<"AidRoomCheck"> | string
-    mountainId?: StringFilter<"AidRoomCheck"> | string
-    aidRoomId?: StringFilter<"AidRoomCheck"> | string
+    employeeID?: StringFilter<"AidRoomCheck"> | string
+    mountainID?: StringFilter<"AidRoomCheck"> | string
+    aidRoomID?: StringFilter<"AidRoomCheck"> | string
     notes?: StringNullableFilter<"AidRoomCheck"> | string | null
     createdAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     updatedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
@@ -40872,7 +42499,7 @@ export namespace Prisma {
     OR?: HutScalarWhereInput[]
     NOT?: HutScalarWhereInput | HutScalarWhereInput[]
     id?: StringFilter<"Hut"> | string
-    mountainId?: StringFilter<"Hut"> | string
+    mountainID?: StringFilter<"Hut"> | string
     name?: StringFilter<"Hut"> | string
     status?: EnumStatusFilter<"Hut"> | $Enums.Status
     latitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
@@ -40901,9 +42528,9 @@ export namespace Prisma {
     NOT?: HutCheckScalarWhereInput | HutCheckScalarWhereInput[]
     id?: StringFilter<"HutCheck"> | string
     recordedAt?: DateTimeFilter<"HutCheck"> | Date | string
-    employeeId?: StringFilter<"HutCheck"> | string
-    mountainId?: StringFilter<"HutCheck"> | string
-    hutId?: StringFilter<"HutCheck"> | string
+    employeeID?: StringFilter<"HutCheck"> | string
+    mountainID?: StringFilter<"HutCheck"> | string
+    hutID?: StringFilter<"HutCheck"> | string
     notes?: StringNullableFilter<"HutCheck"> | string | null
     createdAt?: DateTimeFilter<"HutCheck"> | Date | string
     updatedAt?: DateTimeFilter<"HutCheck"> | Date | string
@@ -40930,7 +42557,7 @@ export namespace Prisma {
     OR?: LodgeScalarWhereInput[]
     NOT?: LodgeScalarWhereInput | LodgeScalarWhereInput[]
     id?: StringFilter<"Lodge"> | string
-    mountainId?: StringFilter<"Lodge"> | string
+    mountainID?: StringFilter<"Lodge"> | string
     name?: StringFilter<"Lodge"> | string
     capacity?: IntFilter<"Lodge"> | number
     latitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
@@ -40959,7 +42586,7 @@ export namespace Prisma {
     OR?: LiftScalarWhereInput[]
     NOT?: LiftScalarWhereInput | LiftScalarWhereInput[]
     id?: StringFilter<"Lift"> | string
-    mountainId?: StringFilter<"Lift"> | string
+    mountainID?: StringFilter<"Lift"> | string
     name?: StringFilter<"Lift"> | string
     type?: EnumLiftTypeFilter<"Lift"> | $Enums.LiftType
     status?: EnumStatusFilter<"Lift"> | $Enums.Status
@@ -40990,9 +42617,9 @@ export namespace Prisma {
     NOT?: LiftCheckScalarWhereInput | LiftCheckScalarWhereInput[]
     id?: StringFilter<"LiftCheck"> | string
     recordedAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    employeeId?: StringFilter<"LiftCheck"> | string
-    mountainId?: StringFilter<"LiftCheck"> | string
-    liftId?: StringFilter<"LiftCheck"> | string
+    employeeID?: StringFilter<"LiftCheck"> | string
+    mountainID?: StringFilter<"LiftCheck"> | string
+    liftID?: StringFilter<"LiftCheck"> | string
     notes?: StringNullableFilter<"LiftCheck"> | string | null
     createdAt?: DateTimeFilter<"LiftCheck"> | Date | string
     updatedAt?: DateTimeFilter<"LiftCheck"> | Date | string
@@ -41019,7 +42646,7 @@ export namespace Prisma {
     OR?: TrailScalarWhereInput[]
     NOT?: TrailScalarWhereInput | TrailScalarWhereInput[]
     id?: StringFilter<"Trail"> | string
-    mountainId?: StringFilter<"Trail"> | string
+    mountainID?: StringFilter<"Trail"> | string
     name?: StringFilter<"Trail"> | string
     difficulty?: EnumTrailDifficultyFilter<"Trail"> | $Enums.TrailDifficulty
     status?: EnumStatusFilter<"Trail"> | $Enums.Status
@@ -41051,9 +42678,9 @@ export namespace Prisma {
     NOT?: TrailCheckScalarWhereInput | TrailCheckScalarWhereInput[]
     id?: StringFilter<"TrailCheck"> | string
     recordedAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    employeeId?: StringFilter<"TrailCheck"> | string
-    mountainId?: StringFilter<"TrailCheck"> | string
-    trailId?: StringFilter<"TrailCheck"> | string
+    employeeID?: StringFilter<"TrailCheck"> | string
+    mountainID?: StringFilter<"TrailCheck"> | string
+    trailID?: StringFilter<"TrailCheck"> | string
     notes?: StringNullableFilter<"TrailCheck"> | string | null
     createdAt?: DateTimeFilter<"TrailCheck"> | Date | string
     updatedAt?: DateTimeFilter<"TrailCheck"> | Date | string
@@ -41081,9 +42708,9 @@ export namespace Prisma {
     NOT?: EquipmentCheckScalarWhereInput | EquipmentCheckScalarWhereInput[]
     id?: StringFilter<"EquipmentCheck"> | string
     recordedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
-    employeeId?: StringFilter<"EquipmentCheck"> | string
-    mountainId?: StringFilter<"EquipmentCheck"> | string
-    equipmentId?: StringFilter<"EquipmentCheck"> | string
+    employeeID?: StringFilter<"EquipmentCheck"> | string
+    mountainID?: StringFilter<"EquipmentCheck"> | string
+    equipmentID?: StringFilter<"EquipmentCheck"> | string
     notes?: StringNullableFilter<"EquipmentCheck"> | string | null
     createdAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
     updatedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
@@ -41142,8 +42769,8 @@ export namespace Prisma {
     OR?: EmployeeMountainAssignmentScalarWhereInput[]
     NOT?: EmployeeMountainAssignmentScalarWhereInput | EmployeeMountainAssignmentScalarWhereInput[]
     id?: StringFilter<"EmployeeMountainAssignment"> | string
-    employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
-    mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    employeeID?: StringFilter<"EmployeeMountainAssignment"> | string
+    mountainID?: StringFilter<"EmployeeMountainAssignment"> | string
     assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
   }
 
@@ -41168,8 +42795,8 @@ export namespace Prisma {
     OR?: DispatcherAssignmentScalarWhereInput[]
     NOT?: DispatcherAssignmentScalarWhereInput | DispatcherAssignmentScalarWhereInput[]
     id?: StringFilter<"DispatcherAssignment"> | string
-    employeeId?: StringFilter<"DispatcherAssignment"> | string
-    mountainId?: StringFilter<"DispatcherAssignment"> | string
+    employeeID?: StringFilter<"DispatcherAssignment"> | string
+    mountainID?: StringFilter<"DispatcherAssignment"> | string
     assignedAt?: DateTimeFilter<"DispatcherAssignment"> | Date | string
   }
 
@@ -41194,11 +42821,11 @@ export namespace Prisma {
     OR?: IncidentEquipmentUseageLogScalarWhereInput[]
     NOT?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
     id?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    equipmentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    mountainId?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    equipmentID?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    mountainID?: StringFilter<"IncidentEquipmentUseageLog"> | string
     usedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
     notes?: StringNullableFilter<"IncidentEquipmentUseageLog"> | string | null
-    incidentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
+    incidentID?: StringFilter<"IncidentEquipmentUseageLog"> | string
     createdAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
     updatedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
   }
@@ -41224,9 +42851,9 @@ export namespace Prisma {
     OR?: EquipmentServiceLogScalarWhereInput[]
     NOT?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
     id?: StringFilter<"EquipmentServiceLog"> | string
-    mountainId?: StringFilter<"EquipmentServiceLog"> | string
-    equipmentId?: StringFilter<"EquipmentServiceLog"> | string
-    employeeId?: StringNullableFilter<"EquipmentServiceLog"> | string | null
+    mountainID?: StringFilter<"EquipmentServiceLog"> | string
+    equipmentID?: StringFilter<"EquipmentServiceLog"> | string
+    employeeID?: StringNullableFilter<"EquipmentServiceLog"> | string | null
     status?: EnumEquipmentStatusFilter<"EquipmentServiceLog"> | $Enums.EquipmentStatus
     changedAt?: DateTimeFilter<"EquipmentServiceLog"> | Date | string
     notes?: StringNullableFilter<"EquipmentServiceLog"> | string | null
@@ -41384,13 +43011,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutMountainAssignmentsInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
@@ -41403,13 +43029,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutMountainAssignmentsInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -41509,13 +43134,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutMountainAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
@@ -41528,13 +43152,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutMountainAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -41624,13 +43247,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutDispatcherAssignmentsInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
@@ -41643,13 +43265,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -41749,13 +43370,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutDispatcherAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
@@ -41768,13 +43388,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -41864,12 +43483,11 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutRoleInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
@@ -41883,12 +43501,11 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutRoleInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -41907,6 +43524,26 @@ export namespace Prisma {
 
   export type EmployeeCreateManyRoleInputEnvelope = {
     data: EmployeeCreateManyRoleInput | EmployeeCreateManyRoleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeRoleCreateWithoutRoleInput = {
+    id?: string
+    employee: EmployeeCreateNestedOneWithoutAdditionalRolesInput
+  }
+
+  export type EmployeeRoleUncheckedCreateWithoutRoleInput = {
+    id?: string
+    employeeID: string
+  }
+
+  export type EmployeeRoleCreateOrConnectWithoutRoleInput = {
+    where: EmployeeRoleWhereUniqueInput
+    create: XOR<EmployeeRoleCreateWithoutRoleInput, EmployeeRoleUncheckedCreateWithoutRoleInput>
+  }
+
+  export type EmployeeRoleCreateManyRoleInputEnvelope = {
+    data: EmployeeRoleCreateManyRoleInput | EmployeeRoleCreateManyRoleInput[]
     skipDuplicates?: boolean
   }
 
@@ -41931,32 +43568,231 @@ export namespace Prisma {
     OR?: EmployeeScalarWhereInput[]
     NOT?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
     id?: StringFilter<"Employee"> | string
-    employeeIdNumber?: StringFilter<"Employee"> | string
+    employeeIDNumber?: IntFilter<"Employee"> | number
     email?: StringFilter<"Employee"> | string
     phoneNumber?: StringFilter<"Employee"> | string
     name?: StringFilter<"Employee"> | string
-    title?: StringFilter<"Employee"> | string
-    roleId?: StringFilter<"Employee"> | string
-    department?: EnumDepartmentFilter<"Employee"> | $Enums.Department
+    roleID?: StringNullableFilter<"Employee"> | string | null
   }
 
-  export type RoleCreateWithoutEmployeeInput = {
+  export type EmployeeRoleUpsertWithWhereUniqueWithoutRoleInput = {
+    where: EmployeeRoleWhereUniqueInput
+    update: XOR<EmployeeRoleUpdateWithoutRoleInput, EmployeeRoleUncheckedUpdateWithoutRoleInput>
+    create: XOR<EmployeeRoleCreateWithoutRoleInput, EmployeeRoleUncheckedCreateWithoutRoleInput>
+  }
+
+  export type EmployeeRoleUpdateWithWhereUniqueWithoutRoleInput = {
+    where: EmployeeRoleWhereUniqueInput
+    data: XOR<EmployeeRoleUpdateWithoutRoleInput, EmployeeRoleUncheckedUpdateWithoutRoleInput>
+  }
+
+  export type EmployeeRoleUpdateManyWithWhereWithoutRoleInput = {
+    where: EmployeeRoleScalarWhereInput
+    data: XOR<EmployeeRoleUpdateManyMutationInput, EmployeeRoleUncheckedUpdateManyWithoutRoleInput>
+  }
+
+  export type EmployeeRoleScalarWhereInput = {
+    AND?: EmployeeRoleScalarWhereInput | EmployeeRoleScalarWhereInput[]
+    OR?: EmployeeRoleScalarWhereInput[]
+    NOT?: EmployeeRoleScalarWhereInput | EmployeeRoleScalarWhereInput[]
+    id?: StringFilter<"EmployeeRole"> | string
+    employeeID?: StringFilter<"EmployeeRole"> | string
+    roleID?: StringFilter<"EmployeeRole"> | string
+  }
+
+  export type EmployeeCreateWithoutAdditionalRolesInput = {
     id?: string
+    employeeIDNumber: number
+    email: string
+    phoneNumber: string
     name: string
-    permissions?: RoleCreatepermissionsInput | string[]
-    employeeId: string
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEmployeeInput
   }
 
-  export type RoleUncheckedCreateWithoutEmployeeInput = {
+  export type EmployeeUncheckedCreateWithoutAdditionalRolesInput = {
     id?: string
+    employeeIDNumber: number
+    email: string
+    phoneNumber: string
     name: string
-    permissions?: RoleCreatepermissionsInput | string[]
-    employeeId: string
+    roleID?: string | null
+    mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
-  export type RoleCreateOrConnectWithoutEmployeeInput = {
+  export type EmployeeCreateOrConnectWithoutAdditionalRolesInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutAdditionalRolesInput, EmployeeUncheckedCreateWithoutAdditionalRolesInput>
+  }
+
+  export type RoleCreateWithoutEmployeeRoleInput = {
+    id?: string
+    department: $Enums.Department
+    name: string
+    title: string
+    position: string
+    level?: number | null
+    permissions?: RoleCreatepermissionsInput | string[]
+    employees?: EmployeeCreateNestedManyWithoutRoleInput
+  }
+
+  export type RoleUncheckedCreateWithoutEmployeeRoleInput = {
+    id?: string
+    department: $Enums.Department
+    name: string
+    title: string
+    position: string
+    level?: number | null
+    permissions?: RoleCreatepermissionsInput | string[]
+    employees?: EmployeeUncheckedCreateNestedManyWithoutRoleInput
+  }
+
+  export type RoleCreateOrConnectWithoutEmployeeRoleInput = {
     where: RoleWhereUniqueInput
-    create: XOR<RoleCreateWithoutEmployeeInput, RoleUncheckedCreateWithoutEmployeeInput>
+    create: XOR<RoleCreateWithoutEmployeeRoleInput, RoleUncheckedCreateWithoutEmployeeRoleInput>
+  }
+
+  export type EmployeeUpsertWithoutAdditionalRolesInput = {
+    update: XOR<EmployeeUpdateWithoutAdditionalRolesInput, EmployeeUncheckedUpdateWithoutAdditionalRolesInput>
+    create: XOR<EmployeeCreateWithoutAdditionalRolesInput, EmployeeUncheckedCreateWithoutAdditionalRolesInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutAdditionalRolesInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutAdditionalRolesInput, EmployeeUncheckedUpdateWithoutAdditionalRolesInput>
+  }
+
+  export type EmployeeUpdateWithoutAdditionalRolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutAdditionalRolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type RoleUpsertWithoutEmployeeRoleInput = {
+    update: XOR<RoleUpdateWithoutEmployeeRoleInput, RoleUncheckedUpdateWithoutEmployeeRoleInput>
+    create: XOR<RoleCreateWithoutEmployeeRoleInput, RoleUncheckedCreateWithoutEmployeeRoleInput>
+    where?: RoleWhereInput
+  }
+
+  export type RoleUpdateToOneWithWhereWithoutEmployeeRoleInput = {
+    where?: RoleWhereInput
+    data: XOR<RoleUpdateWithoutEmployeeRoleInput, RoleUncheckedUpdateWithoutEmployeeRoleInput>
+  }
+
+  export type RoleUpdateWithoutEmployeeRoleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    level?: NullableIntFieldUpdateOperationsInput | number | null
+    permissions?: RoleUpdatepermissionsInput | string[]
+    employees?: EmployeeUpdateManyWithoutRoleNestedInput
+  }
+
+  export type RoleUncheckedUpdateWithoutEmployeeRoleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    level?: NullableIntFieldUpdateOperationsInput | number | null
+    permissions?: RoleUpdatepermissionsInput | string[]
+    employees?: EmployeeUncheckedUpdateManyWithoutRoleNestedInput
+  }
+
+  export type RoleCreateWithoutEmployeesInput = {
+    id?: string
+    department: $Enums.Department
+    name: string
+    title: string
+    position: string
+    level?: number | null
+    permissions?: RoleCreatepermissionsInput | string[]
+    employeeRole?: EmployeeRoleCreateNestedManyWithoutRoleInput
+  }
+
+  export type RoleUncheckedCreateWithoutEmployeesInput = {
+    id?: string
+    department: $Enums.Department
+    name: string
+    title: string
+    position: string
+    level?: number | null
+    permissions?: RoleCreatepermissionsInput | string[]
+    employeeRole?: EmployeeRoleUncheckedCreateNestedManyWithoutRoleInput
+  }
+
+  export type RoleCreateOrConnectWithoutEmployeesInput = {
+    where: RoleWhereUniqueInput
+    create: XOR<RoleCreateWithoutEmployeesInput, RoleUncheckedCreateWithoutEmployeesInput>
+  }
+
+  export type EmployeeRoleCreateWithoutEmployeeInput = {
+    id?: string
+    role: RoleCreateNestedOneWithoutEmployeeRoleInput
+  }
+
+  export type EmployeeRoleUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    roleID: string
+  }
+
+  export type EmployeeRoleCreateOrConnectWithoutEmployeeInput = {
+    where: EmployeeRoleWhereUniqueInput
+    create: XOR<EmployeeRoleCreateWithoutEmployeeInput, EmployeeRoleUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmployeeRoleCreateManyEmployeeInputEnvelope = {
+    data: EmployeeRoleCreateManyEmployeeInput | EmployeeRoleCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
   }
 
   export type EmployeeMountainAssignmentCreateWithoutEmployeeInput = {
@@ -41967,7 +43803,7 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     assignedAt?: Date | string
   }
 
@@ -41989,7 +43825,7 @@ export namespace Prisma {
 
   export type DispatcherAssignmentUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     assignedAt?: Date | string
   }
 
@@ -42027,7 +43863,7 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainID: string
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -42035,7 +43871,7 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    locationId: string
+    locationID: string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
   }
 
@@ -42062,8 +43898,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    aidRoomId: string
+    mountainID: string
+    aidRoomID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -42092,8 +43928,8 @@ export namespace Prisma {
   export type HutCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    hutId: string
+    mountainID: string
+    hutID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -42122,8 +43958,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    liftId: string
+    mountainID: string
+    liftID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -42152,8 +43988,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    trailId: string
+    mountainID: string
+    trailID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -42182,8 +44018,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    equipmentId: string
+    mountainID: string
+    equipmentID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -42212,8 +44048,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    mountainId: string
-    equipmentId: string
+    mountainID: string
+    equipmentID: string
     status?: $Enums.EquipmentStatus
     changedAt?: Date | string
     notes?: string | null
@@ -42231,29 +44067,53 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type RoleUpsertWithoutEmployeeInput = {
-    update: XOR<RoleUpdateWithoutEmployeeInput, RoleUncheckedUpdateWithoutEmployeeInput>
-    create: XOR<RoleCreateWithoutEmployeeInput, RoleUncheckedCreateWithoutEmployeeInput>
+  export type RoleUpsertWithoutEmployeesInput = {
+    update: XOR<RoleUpdateWithoutEmployeesInput, RoleUncheckedUpdateWithoutEmployeesInput>
+    create: XOR<RoleCreateWithoutEmployeesInput, RoleUncheckedCreateWithoutEmployeesInput>
     where?: RoleWhereInput
   }
 
-  export type RoleUpdateToOneWithWhereWithoutEmployeeInput = {
+  export type RoleUpdateToOneWithWhereWithoutEmployeesInput = {
     where?: RoleWhereInput
-    data: XOR<RoleUpdateWithoutEmployeeInput, RoleUncheckedUpdateWithoutEmployeeInput>
+    data: XOR<RoleUpdateWithoutEmployeesInput, RoleUncheckedUpdateWithoutEmployeesInput>
   }
 
-  export type RoleUpdateWithoutEmployeeInput = {
+  export type RoleUpdateWithoutEmployeesInput = {
     id?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
     name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    level?: NullableIntFieldUpdateOperationsInput | number | null
     permissions?: RoleUpdatepermissionsInput | string[]
-    employeeId?: StringFieldUpdateOperationsInput | string
+    employeeRole?: EmployeeRoleUpdateManyWithoutRoleNestedInput
   }
 
-  export type RoleUncheckedUpdateWithoutEmployeeInput = {
+  export type RoleUncheckedUpdateWithoutEmployeesInput = {
     id?: StringFieldUpdateOperationsInput | string
+    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
     name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    level?: NullableIntFieldUpdateOperationsInput | number | null
     permissions?: RoleUpdatepermissionsInput | string[]
-    employeeId?: StringFieldUpdateOperationsInput | string
+    employeeRole?: EmployeeRoleUncheckedUpdateManyWithoutRoleNestedInput
+  }
+
+  export type EmployeeRoleUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: EmployeeRoleWhereUniqueInput
+    update: XOR<EmployeeRoleUpdateWithoutEmployeeInput, EmployeeRoleUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<EmployeeRoleCreateWithoutEmployeeInput, EmployeeRoleUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmployeeRoleUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: EmployeeRoleWhereUniqueInput
+    data: XOR<EmployeeRoleUpdateWithoutEmployeeInput, EmployeeRoleUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EmployeeRoleUpdateManyWithWhereWithoutEmployeeInput = {
+    where: EmployeeRoleScalarWhereInput
+    data: XOR<EmployeeRoleUpdateManyMutationInput, EmployeeRoleUncheckedUpdateManyWithoutEmployeeInput>
   }
 
   export type EmployeeMountainAssignmentUpsertWithWhereUniqueWithoutEmployeeInput = {
@@ -42484,8 +44344,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedCreateWithoutLiftInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -42678,8 +44538,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedCreateWithoutTrailInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -43020,8 +44880,8 @@ export namespace Prisma {
   export type HutCheckUncheckedCreateWithoutHutInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -43214,8 +45074,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedCreateWithoutAidRoomInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -43397,13 +45257,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutEquipmentServiceLogsInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
@@ -43416,13 +45275,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutEquipmentServiceLogsInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -43467,8 +45325,8 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
-    locationId?: string | null
+    mountainID: string
+    locationID?: string | null
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
@@ -43569,13 +45427,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutEquipmentServiceLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
@@ -43588,13 +45445,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutEquipmentServiceLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -43645,8 +45501,8 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    locationID?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -43726,7 +45582,7 @@ export namespace Prisma {
   export type LocationCreateWithoutEquipmentInput = {
     id?: string
     name: string
-    entityId?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     area?: AreaCreateNestedOneWithoutLocationsInput
     mountain: MountainCreateNestedOneWithoutLocationsInput
@@ -43736,10 +45592,10 @@ export namespace Prisma {
 
   export type LocationUncheckedCreateWithoutEquipmentInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
-    areaId?: string | null
-    entityId?: string | null
+    areaID?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     hours?: HoursUncheckedCreateNestedManyWithoutLocationInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutLocationInput
@@ -43762,10 +45618,10 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     usedAt?: Date | string
     notes?: string | null
-    incidentId: string
+    incidentID: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -43793,8 +45649,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedCreateWithoutEquipmentInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -43823,8 +45679,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedCreateWithoutEquipmentInput = {
     id?: string
-    mountainId: string
-    employeeId?: string | null
+    mountainID: string
+    employeeID?: string | null
     status?: $Enums.EquipmentStatus
     changedAt?: Date | string
     notes?: string | null
@@ -43933,7 +45789,7 @@ export namespace Prisma {
   export type LocationUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     area?: AreaUpdateOneWithoutLocationsNestedInput
     mountain?: MountainUpdateOneRequiredWithoutLocationsNestedInput
@@ -43943,10 +45799,10 @@ export namespace Prisma {
 
   export type LocationUncheckedUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    areaId?: NullableStringFieldUpdateOperationsInput | string | null
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaID?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     hours?: HoursUncheckedUpdateManyWithoutLocationNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutLocationNestedInput
@@ -44002,13 +45858,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutIncidentsInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
@@ -44021,13 +45876,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutIncidentsInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -44126,8 +45980,8 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput = {
     id?: string
-    equipmentId: string
-    mountainId: string
+    equipmentID: string
+    mountainID: string
     usedAt?: Date | string
     notes?: string | null
     createdAt?: Date | string
@@ -44147,7 +46001,7 @@ export namespace Prisma {
   export type LocationCreateWithoutIncidentsInput = {
     id?: string
     name: string
-    entityId?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     area?: AreaCreateNestedOneWithoutLocationsInput
     mountain: MountainCreateNestedOneWithoutLocationsInput
@@ -44157,10 +46011,10 @@ export namespace Prisma {
 
   export type LocationUncheckedCreateWithoutIncidentsInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
-    areaId?: string | null
-    entityId?: string | null
+    areaID?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
     hours?: HoursUncheckedCreateNestedManyWithoutLocationInput
     equipment?: EquipmentUncheckedCreateNestedManyWithoutLocationInput
@@ -44184,13 +46038,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutIncidentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
@@ -44203,13 +46056,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutIncidentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -44327,7 +46179,7 @@ export namespace Prisma {
   export type LocationUpdateWithoutIncidentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     area?: AreaUpdateOneWithoutLocationsNestedInput
     mountain?: MountainUpdateOneRequiredWithoutLocationsNestedInput
@@ -44337,10 +46189,10 @@ export namespace Prisma {
 
   export type LocationUncheckedUpdateWithoutIncidentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    areaId?: NullableStringFieldUpdateOperationsInput | string | null
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaID?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     hours?: HoursUncheckedUpdateManyWithoutLocationNestedInput
     equipment?: EquipmentUncheckedUpdateManyWithoutLocationNestedInput
@@ -44441,8 +46293,8 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
-    mountainId: string
+    employeeID?: string | null
+    mountainID: string
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -44450,7 +46302,7 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    locationId: string
+    locationID: string
   }
 
   export type IncidentCreateOrConnectWithoutIncidentEquipmentUsageLogInput = {
@@ -44487,8 +46339,8 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
-    locationId?: string | null
+    mountainID: string
+    locationID?: string | null
     dateAdded?: Date | string
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEquipmentInput
@@ -44611,8 +46463,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -44620,7 +46472,7 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
   }
 
   export type EquipmentUpsertWithoutIncidentEquipmentUsageLogsInput = {
@@ -44663,8 +46515,8 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    locationID?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -44672,13 +46524,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutLiftChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
@@ -44691,13 +46542,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutLiftChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -44797,7 +46647,7 @@ export namespace Prisma {
 
   export type LiftUncheckedCreateWithoutLiftChecksInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     type: $Enums.LiftType
     status?: $Enums.Status
@@ -44824,13 +46674,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutLiftChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
@@ -44843,13 +46692,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutLiftChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -44961,7 +46809,7 @@ export namespace Prisma {
 
   export type LiftUncheckedUpdateWithoutLiftChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: EnumLiftTypeFieldUpdateOperationsInput | $Enums.LiftType
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
@@ -44972,13 +46820,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutTrailChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
@@ -44991,13 +46838,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutTrailChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -45098,7 +46944,7 @@ export namespace Prisma {
 
   export type TrailUncheckedCreateWithoutTrailChecksInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     difficulty: $Enums.TrailDifficulty
     status?: $Enums.Status
@@ -45126,13 +46972,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutTrailChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
@@ -45145,13 +46990,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutTrailChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -45264,7 +47108,7 @@ export namespace Prisma {
 
   export type TrailUncheckedUpdateWithoutTrailChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTrailDifficultyFieldUpdateOperationsInput | $Enums.TrailDifficulty
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
@@ -45276,13 +47120,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutHutChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
@@ -45295,13 +47138,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutHutChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -45399,7 +47241,7 @@ export namespace Prisma {
 
   export type HutUncheckedCreateWithoutHutChecksInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     status?: $Enums.Status
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -45424,13 +47266,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutHutChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
@@ -45443,13 +47284,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutHutChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -45559,7 +47399,7 @@ export namespace Prisma {
 
   export type HutUncheckedUpdateWithoutHutChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -45568,13 +47408,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutAidRoomChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
@@ -45587,13 +47426,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutAidRoomChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -45691,7 +47529,7 @@ export namespace Prisma {
 
   export type AidRoomUncheckedCreateWithoutAidRoomChecksInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
     status?: $Enums.Status
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -45716,13 +47554,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutAidRoomChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
@@ -45735,13 +47572,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutAidRoomChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -45851,7 +47687,7 @@ export namespace Prisma {
 
   export type AidRoomUncheckedUpdateWithoutAidRoomChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -45860,13 +47696,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutEquipmentChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
-    role: RoleCreateNestedOneWithoutEmployeeInput
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentCreateNestedManyWithoutEmployeeInput
@@ -45879,13 +47714,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutEquipmentChecksInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    roleId: string
-    department: $Enums.Department
+    roleID?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -46001,8 +47835,8 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
-    locationId?: string | null
+    mountainID: string
+    locationID?: string | null
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEquipmentInput
@@ -46026,13 +47860,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutEquipmentChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
-    role?: RoleUpdateOneRequiredWithoutEmployeeNestedInput
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
@@ -46045,13 +47878,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutEquipmentChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    roleID?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -46179,8 +48011,8 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    locationID?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -46188,16 +48020,16 @@ export namespace Prisma {
 
   export type LocationCreateManyAreaInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     name: string
-    entityId?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
   }
 
   export type LocationUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     mountain?: MountainUpdateOneRequiredWithoutLocationsNestedInput
     hours?: HoursUpdateManyWithoutLocationNestedInput
@@ -46207,9 +48039,9 @@ export namespace Prisma {
 
   export type LocationUncheckedUpdateWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     hours?: HoursUncheckedUpdateManyWithoutLocationNestedInput
     equipment?: EquipmentUncheckedUpdateManyWithoutLocationNestedInput
@@ -46218,9 +48050,9 @@ export namespace Prisma {
 
   export type LocationUncheckedUpdateManyWithoutAreaInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
   }
 
@@ -46246,7 +48078,7 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainID: string
     dateAdded?: Date | string
   }
 
@@ -46256,8 +48088,8 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
-    mountainId: string
+    employeeID?: string | null
+    mountainID: string
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -46329,7 +48161,7 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -46347,7 +48179,7 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -46375,8 +48207,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -46393,8 +48225,8 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -46422,8 +48254,8 @@ export namespace Prisma {
   export type LocationCreateManyMountainInput = {
     id?: string
     name: string
-    areaId?: string | null
-    entityId?: string | null
+    areaID?: string | null
+    entityID?: string | null
     entityType: $Enums.LocationType
   }
 
@@ -46445,8 +48277,8 @@ export namespace Prisma {
   export type AidRoomCheckCreateManyMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    aidRoomId: string
+    employeeID: string
+    aidRoomID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -46463,8 +48295,8 @@ export namespace Prisma {
   export type HutCheckCreateManyMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    hutId: string
+    employeeID: string
+    hutID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -46492,8 +48324,8 @@ export namespace Prisma {
   export type LiftCheckCreateManyMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    liftId: string
+    employeeID: string
+    liftID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -46513,8 +48345,8 @@ export namespace Prisma {
   export type TrailCheckCreateManyMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    trailId: string
+    employeeID: string
+    trailID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -46523,8 +48355,8 @@ export namespace Prisma {
   export type EquipmentCheckCreateManyMountainInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    equipmentId: string
+    employeeID: string
+    equipmentID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -46536,7 +48368,7 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
+    employeeID?: string | null
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -46544,7 +48376,7 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    locationId: string
+    locationID: string
   }
 
   export type EquipmentCreateManyMountainInput = {
@@ -46558,36 +48390,36 @@ export namespace Prisma {
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId?: string | null
+    locationID?: string | null
     dateAdded?: Date | string
   }
 
   export type EmployeeMountainAssignmentCreateManyMountainInput = {
     id?: string
-    employeeId: string
+    employeeID: string
     assignedAt?: Date | string
   }
 
   export type DispatcherAssignmentCreateManyMountainInput = {
     id?: string
-    employeeId: string
+    employeeID: string
     assignedAt?: Date | string
   }
 
   export type IncidentEquipmentUseageLogCreateManyMountainInput = {
     id?: string
-    equipmentId: string
+    equipmentID: string
     usedAt?: Date | string
     notes?: string | null
-    incidentId: string
+    incidentID: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type EquipmentServiceLogCreateManyMountainInput = {
     id?: string
-    equipmentId: string
-    employeeId?: string | null
+    equipmentID: string
+    employeeID?: string | null
     status?: $Enums.EquipmentStatus
     changedAt?: Date | string
     notes?: string | null
@@ -46643,7 +48475,7 @@ export namespace Prisma {
   export type LocationUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     area?: AreaUpdateOneWithoutLocationsNestedInput
     hours?: HoursUpdateManyWithoutLocationNestedInput
@@ -46654,8 +48486,8 @@ export namespace Prisma {
   export type LocationUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    areaId?: NullableStringFieldUpdateOperationsInput | string | null
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaID?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
     hours?: HoursUncheckedUpdateManyWithoutLocationNestedInput
     equipment?: EquipmentUncheckedUpdateManyWithoutLocationNestedInput
@@ -46665,8 +48497,8 @@ export namespace Prisma {
   export type LocationUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    areaId?: NullableStringFieldUpdateOperationsInput | string | null
-    entityId?: NullableStringFieldUpdateOperationsInput | string | null
+    areaID?: NullableStringFieldUpdateOperationsInput | string | null
+    entityID?: NullableStringFieldUpdateOperationsInput | string | null
     entityType?: EnumLocationTypeFieldUpdateOperationsInput | $Enums.LocationType
   }
 
@@ -46732,8 +48564,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    aidRoomId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    aidRoomID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46742,8 +48574,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    aidRoomId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    aidRoomID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46788,8 +48620,8 @@ export namespace Prisma {
   export type HutCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    hutId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    hutID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46798,8 +48630,8 @@ export namespace Prisma {
   export type HutCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    hutId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    hutID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46877,8 +48709,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    liftId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    liftID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46887,8 +48719,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    liftId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    liftID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46942,8 +48774,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    trailId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    trailID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46952,8 +48784,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    trailId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    trailID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46972,8 +48804,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -46982,8 +48814,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47013,7 +48845,7 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -47021,7 +48853,7 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
   }
 
@@ -47031,7 +48863,7 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -47039,7 +48871,7 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
   }
 
   export type EquipmentUpdateWithoutMountainInput = {
@@ -47071,7 +48903,7 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    locationID?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -47089,7 +48921,7 @@ export namespace Prisma {
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+    locationID?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -47101,13 +48933,13 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -47119,13 +48951,13 @@ export namespace Prisma {
 
   export type DispatcherAssignmentUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DispatcherAssignmentUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -47141,20 +48973,20 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    incidentId?: StringFieldUpdateOperationsInput | string
+    incidentID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    incidentId?: StringFieldUpdateOperationsInput | string
+    incidentID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -47172,8 +49004,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    equipmentID?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumEquipmentStatusFieldUpdateOperationsInput | $Enums.EquipmentStatus
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -47183,8 +49015,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    equipmentID?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumEquipmentStatusFieldUpdateOperationsInput | $Enums.EquipmentStatus
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -47194,22 +49026,24 @@ export namespace Prisma {
 
   export type EmployeeCreateManyRoleInput = {
     id?: string
-    employeeIdNumber: string
+    employeeIDNumber: number
     email: string
     phoneNumber: string
     name: string
-    title: string
-    department: $Enums.Department
+  }
+
+  export type EmployeeRoleCreateManyRoleInput = {
+    id?: string
+    employeeID: string
   }
 
   export type EmployeeUpdateWithoutRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
@@ -47223,12 +49057,11 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -47242,23 +49075,41 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateManyWithoutRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: StringFieldUpdateOperationsInput | string
+    employeeIDNumber?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    department?: EnumDepartmentFieldUpdateOperationsInput | $Enums.Department
+  }
+
+  export type EmployeeRoleUpdateWithoutRoleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employee?: EmployeeUpdateOneRequiredWithoutAdditionalRolesNestedInput
+  }
+
+  export type EmployeeRoleUncheckedUpdateWithoutRoleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EmployeeRoleUncheckedUpdateManyWithoutRoleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EmployeeRoleCreateManyEmployeeInput = {
+    id?: string
+    roleID: string
   }
 
   export type EmployeeMountainAssignmentCreateManyEmployeeInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     assignedAt?: Date | string
   }
 
   export type DispatcherAssignmentCreateManyEmployeeInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     assignedAt?: Date | string
   }
 
@@ -47268,7 +49119,7 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainID: string
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -47276,14 +49127,14 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    locationId: string
+    locationID: string
   }
 
   export type AidRoomCheckCreateManyEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    aidRoomId: string
+    mountainID: string
+    aidRoomID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47292,8 +49143,8 @@ export namespace Prisma {
   export type HutCheckCreateManyEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    hutId: string
+    mountainID: string
+    hutID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47302,8 +49153,8 @@ export namespace Prisma {
   export type LiftCheckCreateManyEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    liftId: string
+    mountainID: string
+    liftID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47312,8 +49163,8 @@ export namespace Prisma {
   export type TrailCheckCreateManyEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    trailId: string
+    mountainID: string
+    trailID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47322,8 +49173,8 @@ export namespace Prisma {
   export type EquipmentCheckCreateManyEmployeeInput = {
     id?: string
     recordedAt?: Date | string
-    mountainId: string
-    equipmentId: string
+    mountainID: string
+    equipmentID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47331,13 +49182,28 @@ export namespace Prisma {
 
   export type EquipmentServiceLogCreateManyEmployeeInput = {
     id?: string
-    mountainId: string
-    equipmentId: string
+    mountainID: string
+    equipmentID: string
     status?: $Enums.EquipmentStatus
     changedAt?: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type EmployeeRoleUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: RoleUpdateOneRequiredWithoutEmployeeRoleNestedInput
+  }
+
+  export type EmployeeRoleUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    roleID?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type EmployeeRoleUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    roleID?: StringFieldUpdateOperationsInput | string
   }
 
   export type EmployeeMountainAssignmentUpdateWithoutEmployeeInput = {
@@ -47348,13 +49214,13 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -47366,13 +49232,13 @@ export namespace Prisma {
 
   export type DispatcherAssignmentUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -47400,7 +49266,7 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -47408,7 +49274,7 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
   }
 
@@ -47418,7 +49284,7 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -47426,7 +49292,7 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationID?: StringFieldUpdateOperationsInput | string
   }
 
   export type AidRoomCheckUpdateWithoutEmployeeInput = {
@@ -47442,8 +49308,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    aidRoomId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    aidRoomID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47452,8 +49318,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    aidRoomId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    aidRoomID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47472,8 +49338,8 @@ export namespace Prisma {
   export type HutCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    hutId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    hutID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47482,8 +49348,8 @@ export namespace Prisma {
   export type HutCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    hutId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    hutID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47502,8 +49368,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    liftId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    liftID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47512,8 +49378,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    liftId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    liftID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47532,8 +49398,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    trailId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    trailID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47542,8 +49408,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    trailId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    trailID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47562,8 +49428,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47572,8 +49438,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47592,8 +49458,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     status?: EnumEquipmentStatusFieldUpdateOperationsInput | $Enums.EquipmentStatus
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -47603,8 +49469,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
     status?: EnumEquipmentStatusFieldUpdateOperationsInput | $Enums.EquipmentStatus
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -47615,8 +49481,8 @@ export namespace Prisma {
   export type LiftCheckCreateManyLiftInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47635,8 +49501,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedUpdateWithoutLiftInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47645,8 +49511,8 @@ export namespace Prisma {
   export type LiftCheckUncheckedUpdateManyWithoutLiftInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47655,8 +49521,8 @@ export namespace Prisma {
   export type TrailCheckCreateManyTrailInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47675,8 +49541,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedUpdateWithoutTrailInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47685,8 +49551,8 @@ export namespace Prisma {
   export type TrailCheckUncheckedUpdateManyWithoutTrailInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47695,8 +49561,8 @@ export namespace Prisma {
   export type HutCheckCreateManyHutInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47715,8 +49581,8 @@ export namespace Prisma {
   export type HutCheckUncheckedUpdateWithoutHutInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47725,8 +49591,8 @@ export namespace Prisma {
   export type HutCheckUncheckedUpdateManyWithoutHutInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47735,8 +49601,8 @@ export namespace Prisma {
   export type AidRoomCheckCreateManyAidRoomInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47755,8 +49621,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedUpdateWithoutAidRoomInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47765,8 +49631,8 @@ export namespace Prisma {
   export type AidRoomCheckUncheckedUpdateManyWithoutAidRoomInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47774,10 +49640,10 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogCreateManyEquipmentInput = {
     id?: string
-    mountainId: string
+    mountainID: string
     usedAt?: Date | string
     notes?: string | null
-    incidentId: string
+    incidentID: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -47785,8 +49651,8 @@ export namespace Prisma {
   export type EquipmentCheckCreateManyEquipmentInput = {
     id?: string
     recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
+    employeeID: string
+    mountainID: string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47794,8 +49660,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogCreateManyEquipmentInput = {
     id?: string
-    mountainId: string
-    employeeId?: string | null
+    mountainID: string
+    employeeID?: string | null
     status?: $Enums.EquipmentStatus
     changedAt?: Date | string
     notes?: string | null
@@ -47815,20 +49681,20 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    incidentId?: StringFieldUpdateOperationsInput | string
+    incidentID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
-    incidentId?: StringFieldUpdateOperationsInput | string
+    incidentID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -47846,8 +49712,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47856,8 +49722,8 @@ export namespace Prisma {
   export type EquipmentCheckUncheckedUpdateManyWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    employeeID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47876,8 +49742,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumEquipmentStatusFieldUpdateOperationsInput | $Enums.EquipmentStatus
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -47887,8 +49753,8 @@ export namespace Prisma {
 
   export type EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    mountainID?: StringFieldUpdateOperationsInput | string
+    employeeID?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumEquipmentStatusFieldUpdateOperationsInput | $Enums.EquipmentStatus
     changedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -47898,8 +49764,8 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogCreateManyIncidentInput = {
     id?: string
-    equipmentId: string
-    mountainId: string
+    equipmentID: string
+    mountainID: string
     usedAt?: Date | string
     notes?: string | null
     createdAt?: Date | string
@@ -47918,8 +49784,8 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedUpdateWithoutIncidentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47928,8 +49794,8 @@ export namespace Prisma {
 
   export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    equipmentId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
+    equipmentID?: StringFieldUpdateOperationsInput | string
+    mountainID?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

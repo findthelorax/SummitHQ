@@ -3,10 +3,10 @@ import LiftController from '../controllers/liftController';
 
 const router = Router();
 
-router.post('/:mountainId/lifts', LiftController.createLift);
-router.get('/:mountainId/lifts', LiftController.getLifts);
-router.get('/:mountainId/lifts/:id', LiftController.getLift);
-router.put('/:mountainId/lifts/:id', LiftController.updateLift);
-router.delete('/:mountainId/lifts/:id', LiftController.deleteLift);
+router.post('/:mountainID/lifts', LiftController.createLift);
+router.get('/:mountainID/lifts', LiftController.getLifts);
+router.get('/:mountainID/lifts/:liftID', LiftController.getLift);
+router.put('/:mountainID/lifts/:liftID', LiftController.updateLift);
+router.delete('/:mountainID/lifts/:liftID', LiftController.deleteLift);
 
 export default router;

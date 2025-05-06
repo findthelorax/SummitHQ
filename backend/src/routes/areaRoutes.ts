@@ -3,10 +3,10 @@ import AreaController from '../controllers/areaController';
 
 const router = Router();
 
-router.post('/:mountainId/areas', AreaController.createArea);
-router.get('/:mountainId/areas', AreaController.getAreas);
-router.get('/:mountainId/areas/:id', AreaController.getArea);
-router.put('/:mountainId/areas/:id', AreaController.updateArea);
-router.delete('/:mountainId/areas/:id', AreaController.deleteArea);
+router.post('/:mountainID/areas', AreaController.createArea);
+router.get('/:mountainID/areas', AreaController.getAreas);
+router.get('/:mountainID/areas/:areaID', AreaController.getArea);
+router.put('/:mountainID/areas/:areaID', AreaController.updateArea);
+router.delete('/:mountainID/areas/:areaID', AreaController.deleteArea);
 
 export default router;

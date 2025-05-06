@@ -5,9 +5,9 @@ const router = Router();
 
 router.post('/', MountainController.createMountain);
 router.get('/', MountainController.getAllMountains);
-router.get('/:id', MountainController.getMountain);
-router.put('/:id', MountainController.updateMountain);
-router.delete('/:id', MountainController.deleteMountain);
+router.get('/:mountainID', MountainController.getMountain);
+router.put('/:mountainID', MountainController.updateMountain);
+router.delete('/:mountainID', MountainController.deleteMountain);
 router.delete('/', MountainController.deleteAllMountains);
 
 export default router;

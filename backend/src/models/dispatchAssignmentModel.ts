@@ -1,11 +1,11 @@
 import { prisma } from '../config/database';
 
 class AssignModel {
-    static async create(employeeId: string, mountainId: string) {
+    static async create(employeeID: string, mountainID: string) {
         return await prisma.dispatcherAssignment.create({
             data: {
-                employeeId,
-                mountainId,
+                employeeID,
+                mountainID,
             },
         });
     }

@@ -1,12 +1,12 @@
 import { prisma } from '../config/database';
 
 class EquipmentModel {
-    static async create(data: any, mountainId: string) {
+    static async create(data: any, mountainID: string) {
         if (typeof data !== 'object' || data === null) {
             throw new Error('Invalid data format: expected an object');
         }
 
-        const { locationId, ...rest } = data;
+        const { locationID, ...rest } = data;
 
         if (!rest.name || !rest.type || !rest.status) {
             throw new Error('Missing required fields');
@@ -16,49 +16,49 @@ class EquipmentModel {
             data: {
                 ...rest,
                 mountain: {
-                    connect: { id: mountainId },
+                    connect: { id: mountainID },
                 },
-                location: locationId ? { connect: { id: locationId } } : undefined,
+                location: locationID ? { connect: { id: locationID } } : undefined,
             },
         });
     }
 
-    static async findAllByLocation(mountainId: string, locationId: string) {
-        console.log("🚀 ~ EquipmentModel ~ findAllByLocation ~ locationId:", locationId)
-        console.log("🚀 ~ EquipmentModel ~ findAllByLocation ~ mountainId:", mountainId)
+    static async findAllByLocation(mountainID: string, locationID: string) {
+        console.log("🚀 ~ EquipmentModel ~ findAllByLocation ~ locationID:", locationID)
+        console.log("🚀 ~ EquipmentModel ~ findAllByLocation ~ mountainID:", mountainID)
         return await prisma.equipment.findMany({
             where: {
-                mountainId,
-                locationId: locationId,
+                mountainID,
+                locationID: locationID,
             },
         });
     }
     
-    static async moveToLocation(equipmentId: string, newLocationId: string) {
+    static async moveToLocation(equipmentID: string, newLocationID: string) {
         return await prisma.equipment.update({
-            where: { id: equipmentId },
+            where: { id: equipmentID },
             data: {
-                locationId: newLocationId,
+                locationID: newLocationID,
             },
         });
     }
 
-    static async findByIdAndMountain(id: string, mountainId: string) {
+    static async findByIdAndMountain(id: string, mountainID: string) {
         return await prisma.equipment.findFirst({
             where: {
                 id,
-                mountainId,
+                mountainID,
             },
         });
     }
 
-    static async findAllByMountain(mountainId: string) {
+    static async findAllByMountain(mountainID: string) {
         return await prisma.equipment.findMany({
-            where: { mountainId },
+            where: { mountainID },
         });
     }
 
-    static async updateByMountain(id: string, mountainId: string, updatedData: any) {
+    static async updateByMountain(id: string, mountainID: string, updatedData: any) {
         return await prisma.equipment.update({
             where: {
                 id,
@@ -67,11 +67,11 @@ class EquipmentModel {
         });
     }
 
-    static async deleteByMountain(id: string, mountainId: string) {
+    static async deleteByMountain(id: string, mountainID: string) {
         return await prisma.equipment.deleteMany({
             where: {
                 id,
-                mountainId,
+                mountainID,
             },
         });
     }

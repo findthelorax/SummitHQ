@@ -2,31 +2,31 @@ import { prisma } from '../config/database';
 import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class IncidentModel {
-    static async createIncident(mountainId: string, locationId: string, data: any) {
+    static async createIncident(mountainID: string, locationID: string, data: any) {
         return await prisma.$transaction(async (prisma) => {
             const incident = await prisma.incident.create({
                 data: {
                     ...data,
-                    mountainId,
-                    locationId,
+                    mountainID,
+                    locationID,
                 },
             });
             return incident;
         });
     }
 
-    static async assignEmployee(incidentId: string, employeeId: string) {
+    static async assignEmployee(incidentID: string, employeeID: string) {
         return await prisma.incident.update({
-            where: { id: incidentId },
-            data: { employeeId },
+            where: { id: incidentID },
+            data: { employeeID },
         });
     }
 
-    static async findByIdAndMountain(id: string, mountainId: string) {
+    static async findByIdAndMountain(id: string, mountainID: string) {
         return await prisma.incident.findFirst({
             where: {
                 id,
-                mountainId,
+                mountainID,
             },
             include: {
                 location: true,
@@ -35,30 +35,30 @@ class IncidentModel {
         });
     }
 
-    static async findAllByMountain(mountainId: string) {
+    static async findAllByMountain(mountainID: string) {
         return await prisma.incident.findMany({
-            where: { mountainId },
+            where: { mountainID },
             include: {
                 location: true,
             },
         });
     }
 
-    static async updateByMountain(id: string, mountainId: string, updatedData: any) {
+    static async updateByMountain(id: string, mountainID: string, updatedData: any) {
         return await prisma.incident.update({
             where: {
                 id,
-                mountainId,
+                mountainID,
             },
             data: updatedData,
         });
     }
 
-    static async deleteByMountain(id: string, mountainId: string) {
+    static async deleteByMountain(id: string, mountainID: string) {
         return await prisma.incident.delete({
             where: {
                 id,
-                mountainId,
+                mountainID,
             },
         });
     }

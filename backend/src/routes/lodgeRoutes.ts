@@ -3,10 +3,10 @@ import LodgeController from '../controllers/lodgeController';
 
 const router = Router();
 
-router.post('/:mountainId/lodges', LodgeController.createLodge);
-router.get('/:mountainId/lodges', LodgeController.getLodges);
-router.get('/:mountainId/lodges/:id', LodgeController.getLodge);
-router.put('/:mountainId/lodges/:id', LodgeController.updateLodge);
-router.delete('/:mountainId/lodges/:id', LodgeController.deleteLodge);
+router.post('/:mountainID/lodges', LodgeController.createLodge);
+router.get('/:mountainID/lodges', LodgeController.getLodges);
+router.get('/:mountainID/lodges/:lodgeID', LodgeController.getLodge);
+router.put('/:mountainID/lodges/:lodgeID', LodgeController.updateLodge);
+router.delete('/:mountainID/lodges/:lodgeID', LodgeController.deleteLodge);
 
 export default router;

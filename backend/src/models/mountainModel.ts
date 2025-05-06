@@ -3,7 +3,7 @@ import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class MountainModel {
     static async create(data: any) {
-        // Pass undefined for mountainId since it will be set to the created mountain's ID
+        // Pass undefined for mountainID since it will be set to the created mountain's ID
         return await createEntityWithLocation(prisma, 'mountain', undefined, data);
     }
 
@@ -36,7 +36,7 @@ class MountainModel {
     static async delete(id: string) {
         // Delete associated locations first to avoid foreign key constraint errors
         await prisma.location.deleteMany({
-            where: { mountainId: id },
+            where: { mountainID: id },
         });
 
         return await prisma.mountain.delete({

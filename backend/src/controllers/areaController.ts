@@ -4,10 +4,10 @@ import AreaModel from '../models/areaModel';
 class AreaController {
     async createArea(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainId } = req.params;
+            const { mountainID } = req.params;
             const data = req.body;
 
-            const result = await AreaModel.create(mountainId, data);
+            const result = await AreaModel.create(mountainID, data);
             res.status(201).json(result);
         } catch (error) {
             next(error);
@@ -16,9 +16,9 @@ class AreaController {
 
     async getArea(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainId, id } = req.params;
+            const { mountainID, areaID } = req.params;
 
-            const result = await AreaModel.findByIdAndMountain(id, mountainId);
+            const result = await AreaModel.findByIdAndMountain(areaID, mountainID);
             if (!result) {
                 res.status(404).json({ message: 'Area not found' });
                 return;
@@ -32,9 +32,9 @@ class AreaController {
 
     async getAreas(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainId } = req.params;
+            const { mountainID } = req.params;
 
-            const result = await AreaModel.findAllByMountain(mountainId);
+            const result = await AreaModel.findAllByMountain(mountainID);
             res.status(200).json(result);
         } catch (error) {
             next(error);
@@ -91,7 +91,7 @@ class AreaController {
             const { locationId } = req.params;
             const updatedData = req.body;
 
-            const result = await AreaModel.updateAreaInLocation(locationId, updatedData.mountainId, updatedData);
+            const result = await AreaModel.updateAreaInLocation(locationId, updatedData.mountainID, updatedData);
             res.status(200).json(result);
         } catch (error) {
             next(error);
