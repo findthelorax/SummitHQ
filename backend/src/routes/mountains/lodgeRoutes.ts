@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import LodgeController from '../controllers/lodgeController';
+import LodgeController from '../../controllers/lodgeController';
 
 const router = Router();
 

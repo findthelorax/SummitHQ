@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import HutController from '../controllers/hutController';
+import HutController from '../../controllers/hutController';
 
 const router = Router();
 

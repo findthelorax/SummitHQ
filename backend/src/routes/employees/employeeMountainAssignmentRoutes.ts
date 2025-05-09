@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import EmployeeMountainAssignmentController from '../controllers/employeeMountainAssignmentController';
+import EmployeeMountainAssignmentController from '../../controllers/employeeMountainAssignmentController';
 
 const router = Router();
 

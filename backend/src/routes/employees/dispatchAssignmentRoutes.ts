@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import AssignController from '../controllers/dispatchAssignmentController';
+import AssignController from '../../controllers/dispatchAssignmentController';
 
 const router = Router();
 
