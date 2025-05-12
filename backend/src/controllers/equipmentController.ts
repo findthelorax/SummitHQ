@@ -75,8 +75,6 @@ class EquipmentController {
     async getEquipmentByLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const { mountainId, locationId } = req.params;
-            console.log("🚀 ~ EquipmentController ~ getEquipmentByLocation ~ mountainId:", mountainId)
-            console.log("🚀 ~ EquipmentController ~ getEquipmentByLocation ~ locationId:", locationId)
     
             if (!locationId) {
                 res.status(400).json({ message: 'Location ID is required' });

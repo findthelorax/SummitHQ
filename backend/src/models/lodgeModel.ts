@@ -2,41 +2,54 @@ import { prisma } from '../config/database';
 import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class LodgeModel {
-    static async create(mountainID: string, data: any) {
-        return await createEntityWithLocation(prisma, 'lodge', mountainID, data);
+    static async create(mountainId: string, data: any) {
+        return await createEntityWithLocation(prisma, 'lodge', mountainId, data);
     }
 
-    static async findByIdAndMountain(id: string, mountainID: string) {
+    static async findByIdAndMountain(lodgeId: string, mountainId: string) {
         return await prisma.lodge.findFirst({
             where: {
-                id,
-                mountainID,
+                id: lodgeId,
+                mountainId,
             },
         });
     }
 
-    static async findAllByMountain(mountainID: string) {
+    static async findAll() {
+        return await prisma.lodge.findMany();
+    }
+
+    static async findAllByMountain(mountainId: string) {
         return await prisma.lodge.findMany({
-            where: { mountainID },
+            where: { mountainId },
         });
     }
 
-    static async updateByMountain(id: string, mountainID: string, updatedData: any) {
+    static async updateById(lodgeId: string, updatedData: any) {
         return await prisma.lodge.update({
             where: {
-                id,
-                mountainID,
+                id: lodgeId,
             },
             data: updatedData,
         });
     }
 
-    static async deleteByMountain(id: string, mountainID: string) {
-        return await prisma.lodge.delete({
-            where: {
-                id,
-                mountainID,
-            },
+    static async deleteById(lodgeId: string) {
+        return await prisma.$transaction(async (prisma) => {
+            const deletedLodge = await prisma.lodge.delete({
+                where: {
+                    id: lodgeId,
+                },
+            });
+
+            await prisma.location.deleteMany({
+                where: {
+                    entityId: lodgeId,
+                    entityType: 'Lodge',
+                },
+            });
+
+            return deletedLodge;
         });
     }
 }

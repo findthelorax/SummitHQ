@@ -3,7 +3,6 @@ import {
 	TrailCondition,
 	TrailDifficulty,
 	EquipmentStatus,
-	EquipmentService,
 	Department,
 	LocationType,
 } from '../types';
@@ -27,6 +26,5 @@ export const statusOptions = enumToSelectOptions(Status);
 export const trailConditionOptions = enumToSelectOptions(TrailCondition);
 export const trailDifficultyOptions = enumToSelectOptions(TrailDifficulty);
 export const equipmentStatusOptions = enumToSelectOptions(EquipmentStatus);
-export const equipmentServiceOptions = enumToSelectOptions(EquipmentService);
 export const departmentOptions = enumToSelectOptions(Department);
 export const locationTypeOptions = enumToSelectOptions(LocationType);

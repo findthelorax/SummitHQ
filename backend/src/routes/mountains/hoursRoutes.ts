@@ -3,10 +3,10 @@ import HoursController from '../../controllers/hoursController';
 
 const router = Router();
 
-router.post('/:mountainID/hours', HoursController.createHours);
-router.get('/:mountainID/hours', HoursController.getHours);
-router.get('/:mountainID/hours/:hoursID', HoursController.getHour);
-router.put('/:mountainID/hours/:hoursID', HoursController.updateHours);
-router.delete('/:mountainID/hours/:hoursID', HoursController.deleteHours);
+router.post('/:mountainId/hours', HoursController.createHours);
+router.get('/:mountainId/hours', HoursController.getHours);
+router.get('/:mountainId/hours/:hoursId', HoursController.getHour);
+router.put('/:mountainId/hours/:hoursId', HoursController.updateHours);
+router.delete('/:mountainId/hours/:hoursId', HoursController.deleteHours);
 
 export default router;

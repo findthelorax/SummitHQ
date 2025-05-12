@@ -2,41 +2,54 @@ import { prisma } from '../config/database';
 import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class LiftModel {
-    static async create(mountainID: string, data: any) {
-        return await createEntityWithLocation(prisma, 'lift', mountainID, data);
+    static async create(mountainId: string, data: any) {
+        return await createEntityWithLocation(prisma, 'lift', mountainId, data);
     }
 
-    static async findByIdAndMountain(id: string, mountainID: string) {
+    static async findByIdAndMountain(liftId: string, mountainId: string) {
         return await prisma.lift.findFirst({
             where: {
-                id,
-                mountainID,
+                id: liftId,
+                mountainId,
             },
         });
     }
 
-    static async findAllByMountain(mountainID: string) {
+    static async findAll() {
+        return await prisma.lift.findMany();
+    }
+
+    static async findAllByMountain(mountainId: string) {
         return await prisma.lift.findMany({
-            where: { mountainID },
+            where: { mountainId },
         });
     }
 
-    static async updateByMountain(id: string, mountainID: string, updatedData: any) {
+    static async updateById(liftId: string, updatedData: any) {
         return await prisma.lift.update({
             where: {
-                id,
-                mountainID,
+                id: liftId,
             },
             data: updatedData,
         });
     }
 
-    static async deleteByMountain(id: string, mountainID: string) {
-        return await prisma.lift.delete({
-            where: {
-                id,
-                mountainID,
-            },
+    static async deleteById(liftId: string) {
+        return await prisma.$transaction(async (prisma) => {
+            const deletedLift = await prisma.lift.delete({
+                where: {
+                    id: liftId,
+                },
+            });
+
+            await prisma.location.deleteMany({
+                where: {
+                    entityId: liftId,
+                    entityType: 'Lift',
+                },
+            });
+
+            return deletedLift;
         });
     }
 }

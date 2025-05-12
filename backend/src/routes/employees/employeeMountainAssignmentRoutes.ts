@@ -3,10 +3,10 @@ import EmployeeMountainAssignmentController from '../../controllers/employeeMoun
 
 const router = Router();
 
-router.post('/mountainAssignments', EmployeeMountainAssignmentController.createAssignment);
-router.get('/mountainAssignments', EmployeeMountainAssignmentController.getAssignments);
-router.get('/mountainAssignments/:mountainAssignmentID', EmployeeMountainAssignmentController.getAssignment);
-router.put('/mountainAssignments/:mountainAssignmentID', EmployeeMountainAssignmentController.updateAssignment);
-router.delete('/mountainAssignments/:mountainAssignmentID', EmployeeMountainAssignmentController.deleteAssignment);
+router.post('/:employeeId/mountainAssignments', EmployeeMountainAssignmentController.createAssignment);
+router.get('/:employeeId/mountainAssignments', EmployeeMountainAssignmentController.getAssignments);
+router.get('/:employeeId/mountainAssignments/:mountainAssignmentId', EmployeeMountainAssignmentController.getAssignment);
+router.put('/:employeeId/mountainAssignments/:mountainAssignmentId', EmployeeMountainAssignmentController.updateAssignment);
+router.delete('/:employeeId/mountainAssignments/:mountainAssignmentId', EmployeeMountainAssignmentController.deleteAssignment);
 
 export default router;

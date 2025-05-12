@@ -1,32 +1,31 @@
 import { prisma } from '../config/database';
-import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class IncidentModel {
-    static async createIncident(mountainID: string, locationID: string, data: any) {
+    static async createIncident(mountainId: string, locationId: string, data: any) {
         return await prisma.$transaction(async (prisma) => {
             const incident = await prisma.incident.create({
                 data: {
                     ...data,
-                    mountainID,
-                    locationID,
+                    mountainId,
+                    locationId,
                 },
             });
             return incident;
         });
     }
 
-    static async assignEmployee(incidentID: string, employeeID: string) {
+    static async assignEmployee(incidentId: string, employeeId: string) {
         return await prisma.incident.update({
-            where: { id: incidentID },
-            data: { employeeID },
+            where: { id: incidentId },
+            data: { employeeId },
         });
     }
 
-    static async findByIdAndMountain(id: string, mountainID: string) {
+    static async findByIdAndMountain(incidentId: string, mountainId: string) {
         return await prisma.incident.findFirst({
             where: {
-                id,
-                mountainID,
+                id: incidentId,
+                mountainId,
             },
             include: {
                 location: true,
@@ -35,30 +34,34 @@ class IncidentModel {
         });
     }
 
-    static async findAllByMountain(mountainID: string) {
+    static async findAllByMountain(mountainId: string) {
         return await prisma.incident.findMany({
-            where: { mountainID },
+            where: { mountainId },
             include: {
                 location: true,
             },
         });
     }
 
-    static async updateByMountain(id: string, mountainID: string, updatedData: any) {
+    static async findAll() {
+        return await prisma.incident.findMany();
+    }
+
+    static async updateByMountain(incidentId: string, mountainId: string, updatedData: any) {
         return await prisma.incident.update({
             where: {
-                id,
-                mountainID,
+                id: incidentId,
+                mountainId,
             },
             data: updatedData,
         });
     }
 
-    static async deleteByMountain(id: string, mountainID: string) {
+    static async deleteByMountain(incidentId: string, mountainId: string) {
         return await prisma.incident.delete({
             where: {
-                id,
-                mountainID,
+                id: incidentId,
+                mountainId,
             },
         });
     }

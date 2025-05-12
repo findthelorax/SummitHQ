@@ -3,36 +3,57 @@ import { PrismaClient } from '@prisma/client';
 export async function createEntityWithLocation(
     prisma: PrismaClient,
     entityType: string,
-    mountainID: string | undefined, // Allow undefined for Mountain creation
+    mountainId: string | undefined,
     data: any
 ) {
-    if (mountainID) {
+    const isCreatingMountain = entityType === 'mountain';
+
+    if (!isCreatingMountain) {
+        if (!mountainId) {
+            throw new Error(`mountainId is required when creating a ${entityType}`);
+        }
+
         const mountainExists = await prisma.mountain.findUnique({
-            where: { id: mountainID },
+            where: { id: mountainId },
         });
 
         if (!mountainExists) {
-            throw new Error(`Mountain with ID ${mountainID} does not exist.`);
+            throw new Error(`Mountain with ID ${mountainId} does not exist.`);
         }
     }
 
     return await prisma.$transaction(async (prisma: PrismaClient) => {
+        const entityData: any = {
+            ...data,
+        };
+
+        if (!isCreatingMountain && mountainId) {
+            entityData.mountainId = mountainId;
+        }
+
         const entity = await prisma[entityType].create({
-            data: {
-                ...data,
-                mountainID: mountainID || undefined, // Allow undefined for Mountain creation
-            },
+            data: entityData,
         });
 
-        // Create the associated location
-        await prisma.location.create({
-            data: {
-                mountainID: mountainID || entity.id, // Use entity.id for Mountain creation
-                name: data.name,
-                entityID: entity.id,
-                entityType: entityType.charAt(0).toUpperCase() + entityType.slice(1), // Capitalize entityType
-            },
-        });
+        if (!isCreatingMountain) {
+            const existingLocation = await prisma.location.findFirst({
+                where: {
+                    entityId: entity.id,
+                    entityType: entityType.charAt(0).toUpperCase() + entityType.slice(1),
+                },
+            });
+
+            if (!existingLocation) {
+                await prisma.location.create({
+                    data: {
+                        mountainId,
+                        name: data.name,
+                        entityId: entity.id,
+                        entityType: entityType.charAt(0).toUpperCase() + entityType.slice(1),
+                    },
+                });
+            }
+        }
 
         return entity;
     });

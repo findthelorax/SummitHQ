@@ -33,8 +33,8 @@ class IncidentController {
 
     static async findByIdAndMountain(req: Request, res: Response, next: NextFunction) {
         try {
-            const { id, mountainId } = req.params;
-            const incident = await IncidentModel.findByIdAndMountain(id, mountainId);
+            const { incidentId, mountainId } = req.params;
+            const incident = await IncidentModel.findByIdAndMountain(incidentId, mountainId);
             if (!incident) {
                 const error = new Error('Incident not found') as any;
                 error.status = 404;
@@ -58,9 +58,9 @@ class IncidentController {
 
     static async updateByMountain(req: Request, res: Response, next: NextFunction) {
         try {
-            const { id, mountainId } = req.params;
+            const { incidentId, mountainId } = req.params;
             const updatedData = req.body;
-            const updatedIncident = await IncidentModel.updateByMountain(id, mountainId, updatedData);
+            const updatedIncident = await IncidentModel.updateByMountain(incidentId, mountainId, updatedData);
             res.status(200).json(updatedIncident);
         } catch (error) {
             next(error);
@@ -69,8 +69,8 @@ class IncidentController {
 
     static async deleteByMountain(req: Request, res: Response, next: NextFunction) {
         try {
-            const { id, mountainId } = req.params;
-            await IncidentModel.deleteByMountain(id, mountainId);
+            const { incidentId, mountainId } = req.params;
+            await IncidentModel.deleteByMountain(incidentId, mountainId);
             res.status(204).send();
         } catch (error) {
             next(error);

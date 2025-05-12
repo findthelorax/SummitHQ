@@ -2,61 +2,47 @@ import { prisma } from '../config/database';
 
 class Employee {
     static async create(employeeData: any) {
-        try {
             const lastEmployee = await prisma.employee.findFirst({
-                orderBy: { employeeIDNumber: 'desc' },
+                orderBy: { employeeIdNumber: 'desc' },
             });
 
-            const newEmployeeIDNumber = lastEmployee
-                ? lastEmployee.employeeIDNumber + 1
+            const newEmployeeIdNumber = lastEmployee
+                ? lastEmployee.employeeIdNumber + 1
                 : 30000;
 
             return await prisma.employee.create({
                 data: {
                     ...employeeData,
-                    employeeIDNumber: newEmployeeIDNumber,
+                    employeeIdNumber: newEmployeeIdNumber,
                 },
             });
-        } catch (error) {
-            const err = new Error('Failed to create employee') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async assignToMountain(employeeID: string, mountainID: string) {
-        try {
-            if (!employeeID || !mountainID) {
-                const err = new Error('Both employeeID and mountainID are required') as any;
+    static async assignToMountain(employeeId: string, mountainId: string) {
+            if (!employeeId || !mountainId) {
+                const err = new Error('Both employeeId and mountainId are required') as any;
                 err.status = 400;
                 throw err;
             }
 
             return await prisma.employeeMountainAssignment.create({
                 data: {
-                    employeeID,
-                    mountainID,
+                    employeeId,
+                    mountainId,
+                    assignedAt: new Date(),
                 },
             });
-        } catch (error) {
-            const err = new Error('Failed to assign employee to mountain') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async findById(id: string) {
-        try {
-            if (!id) {
-                const err = new Error('Employee ID is required') as any;
+    static async findById(employeeId: string) {
+            if (!employeeId) {
+                const err = new Error('Employee Id is required') as any;
                 err.status = 400;
                 throw err;
             }
 
             const employee = await prisma.employee.findUnique({
-                where: { id },
+                where: { id: employeeId },
             });
 
             if (!employee) {
@@ -66,80 +52,38 @@ class Employee {
             }
 
             return employee;
-        } catch (error) {
-            const err = new Error('Failed to find employee') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
     static async findAll() {
-        try {
             return await prisma.employee.findMany();
-        } catch (error) {
-            const err = new Error('Failed to fetch employees') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async update(id: string, updatedData: any) {
-        try {
+    static async update(employeeId: string, updatedData: any) {
             return await prisma.employee.update({
-                where: { id },
+                where: { id: employeeId },
                 data: updatedData,
             });
-        } catch (error) {
-            const err = new Error('Failed to update employee') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async delete(id: string) {
-        try {
+    static async delete(employeeId: string) {
             return await prisma.employee.delete({
-                where: { id },
+                where: { id: employeeId },
             });
-        } catch (error) {
-            const err = new Error('Failed to delete employee') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
     static async createRole(roleData: any) {
-        try {
             return await prisma.role.create({
                 data: roleData,
             });
-        } catch (error) {
-            const err = new Error('Failed to create role') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
     static async getAllRoles() {
-        try {
             return await prisma.role.findMany();
-        } catch (error) {
-            const err = new Error('Failed to fetch roles') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async getRoleById(roleID: string) {
-        try {
+    static async getRoleById(roleId: string) {
             const role = await prisma.role.findUnique({
-                where: { id: roleID },
+                where: { id: roleId },
             });
 
             if (!role) {
@@ -149,18 +93,11 @@ class Employee {
             }
 
             return role;
-        } catch (error) {
-            const err = new Error('Failed to fetch role') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async updateRole(roleID: string, updatedData: any) {
-        try {
+    static async updateRole(roleId: string, updatedData: any) {
             const role = await prisma.role.update({
-                where: { id: roleID },
+                where: { id: roleId },
                 data: updatedData,
             });
 
@@ -171,18 +108,11 @@ class Employee {
             }
 
             return role;
-        } catch (error) {
-            const err = new Error('Failed to update role') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async deleteRole(roleID: string) {
-        try {
+    static async deleteRole(roleId: string) {
             const role = await prisma.role.delete({
-                where: { id: roleID },
+                where: { id: roleId },
             });
 
             if (!role) {
@@ -192,18 +122,11 @@ class Employee {
             }
 
             return role;
-        } catch (error) {
-            const err = new Error('Failed to delete role') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async addRoleToEmployee(employeeID: string, roleID: string) {
-        try {
+    static async addRoleToEmployee(employeeId: string, roleId: string) {
             const employeeExists = await prisma.employee.findUnique({
-                where: { id: employeeID },
+                where: { id: employeeId },
             });
     
             if (!employeeExists) {
@@ -213,7 +136,7 @@ class Employee {
             }
     
             const roleExists = await prisma.role.findUnique({
-                where: { id: roleID },
+                where: { id: roleId },
             });
     
             if (!roleExists) {
@@ -223,47 +146,33 @@ class Employee {
             }
     
             const updatedEmployee = await prisma.employee.update({
-                where: { id: employeeID },
-                data: { roleID },
+                where: { id: employeeId },
+                data: { roleId },
                 include: { role: true },
             });
     
             await prisma.employeeRole.create({
                 data: {
-                    employeeID,
-                    roleID,
+                    employeeId,
+                    roleId,
                 },
             });
     
             return updatedEmployee;
-        } catch (error) {
-            const err = new Error('Failed to add role to employee') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async getEmployeeRoles(employeeID: string) {
-        try {
+    static async getEmployeeRoles(employeeId: string) {
             return await prisma.employeeRole.findMany({
-                where: { employeeID },
+                where: { employeeId },
                 include: {
                     role: true,
                 },
             });
-        } catch (error) {
-            const err = new Error('Failed to fetch employee roles') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async updateEmployeeRoles(employeeID: string, roleID: string, newRoleID: string) {
-        try {
+    static async updateEmployeeRoles(employeeId: string, roleId: string, newRoleId: string) {
             const existingRole = await prisma.employeeRole.findFirst({
-                where: { employeeID, roleID },
+                where: { employeeId, roleId },
             });
     
             if (!existingRole) {
@@ -274,27 +183,20 @@ class Employee {
     
             return await prisma.employeeRole.update({
                 where: {
-                    id: existingRole.id,
+                    id: existingRole.employeeId,
                 },
                 data: {
-                    roleID: newRoleID,
+                    roleId: newRoleId,
                 },
                 include: {
                     role: true,
                 },
             });
-        } catch (error) {
-            const err = new Error('Failed to update employee role') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 
-    static async removeRoleFromEmployee(employeeID: string, roleID: string) {
-        try {
+    static async removeRoleFromEmployee(employeeId: string, roleId: string) {
             const deleted = await prisma.employeeRole.deleteMany({
-                where: { employeeID, roleID },
+                where: { employeeId, roleId },
             });
 
             if (deleted.count === 0) {
@@ -304,12 +206,6 @@ class Employee {
             }
 
             return true;
-        } catch (error) {
-            const err = new Error('Failed to remove role from employee') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
-        }
     }
 }
 

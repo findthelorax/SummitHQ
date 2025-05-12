@@ -1,10 +1,10 @@
 import { prisma } from '../config/database';
 
 class HoursModel {
-    static async create(locationID: string, data: any[]) {
+    static async create(locationId: string, data: any[]) {
         const hoursData = data.map(hour => ({
             ...hour,
-            locationID,
+            locationId,
         }));
 
         return await prisma.hours.createMany({
@@ -12,41 +12,45 @@ class HoursModel {
         });
     }
 
-    static async findAllByLocation(locationID: string) {
+    static async findAllByLocation(locationId: string) {
         return await prisma.hours.findMany({
             where: {
-                locationID,
+                locationId,
             },
         });
     }
 
-    static async findByIdAndLocation(id: string, locationID: string) {
+    static async findAll() {
+        return await prisma.hours.findMany();
+    }
+
+    static async findByIdAndLocation(hourId: string, locationId: string) {
         return await prisma.hours.findFirst({
             where: {
-                id,
-                locationID,
+                id: hourId,
+                locationId,
             },
         });
     }
 
-    static async updateByLocation(id: string, locationID: string, updatedData: any) {
+    static async updateByLocation(hourId: string, locationId: string, updatedData: any) {
         return await prisma.hours.update({
             where: {
-                id,
+                id: hourId,
             },
             data: {
                 ...updatedData,
                 location: {
-                    connect: { id: locationID },
+                    connect: { hourId: locationId },
                 },
             },
         });
     }
 
-    static async deleteByLocation(id: string) {
+    static async deleteByLocation(hourId: string) {
         return await prisma.hours.delete({
             where: {
-                id,
+                id: hourId,
             },
         });
     }

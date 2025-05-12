@@ -1,44 +1,57 @@
 import { prisma } from '../config/database';
 import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
-class Trail {
-    static async create(mountainID: string, data: any) {
-        return await createEntityWithLocation(prisma, 'trail', mountainID, data);
+class TrailModel {
+    static async create(mountainId: string, data: any) {
+        return await createEntityWithLocation(prisma, 'trail', mountainId, data);
     }
 
-    static async findByIdAndMountain(id: string, mountainID: string) {
+    static async findByIdAndMountain(trailId: string, mountainId: string) {
         return await prisma.trail.findFirst({
             where: {
-                id,
-                mountainID,
+                id: trailId,
+                mountainId,
             },
         });
     }
 
-    static async findAllByMountain(mountainID: string) {
+    static async findAll() {
+        return await prisma.trail.findMany();
+    }
+
+    static async findAllByMountain(mountainId: string) {
         return await prisma.trail.findMany({
-            where: { mountainID },
+            where: { mountainId },
         });
     }
 
-    static async updateByMountain(id: string, mountainID: string, updatedData: any) {
+    static async updateById(trailId: string, updatedData: any) {
         return await prisma.trail.update({
             where: {
-                id,
-                mountainID,
+                id: trailId,
             },
             data: updatedData,
         });
     }
 
-    static async deleteByMountain(id: string, mountainID: string) {
-        return await prisma.trail.delete({
-            where: {
-                id,
-                mountainID,
-            },
+    static async deleteById(trailId: string) {
+        return await prisma.$transaction(async (prisma) => {
+            const deletedTrail = await prisma.trail.delete({
+                where: {
+                    id: trailId,
+                },
+            });
+
+            await prisma.location.deleteMany({
+                where: {
+                    entityId: trailId,
+                    entityType: 'Trail',
+                },
+            });
+
+            return deletedTrail;
         });
     }
 }
 
-export default Trail;
+export default TrailModel;

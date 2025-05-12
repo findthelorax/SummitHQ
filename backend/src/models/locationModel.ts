@@ -1,241 +1,368 @@
 import { prisma } from '../config/database';
 
 class LocationModel {
-    static async create(mountainID: string, data: any) {
-        return await prisma.location.create({
-            data: {
-                ...data,
-                mountainID,
-            },
-        });
-    }
+	static async create(mountainId: string, data: any) {
+		return await prisma.location.create({
+			data: {
+				...data,
+				mountainId,
+			},
+		});
+	}
 
-    static async findByIdAndMountain(id: string, mountainID: string) {
-        return await prisma.location.findFirst({
-            where: {
-                id,
-                mountainID,
-            },
-        });
-    }
+	static async findByIdAndMountain(locationId: string, mountainId: string) {
+		return await prisma.location.findFirst({
+			where: {
+				id: locationId,
+				mountainId,
+			},
+			include: {
+				hours: true,
+				equipment: true,
+				area: true,
+				incidents: true,
+				mountain: true,
+			},
+		});
+	}
 
-    static async findAllByMountain(mountainID: string) {
-        return await prisma.location.findMany({
-            where: { mountainID },
-        });
-    }
+	static async findAllByMountain(mountainId: string) {
+		return await prisma.location.findMany({
+			where: { mountainId },
+		});
+	}
 
-    static async updateByMountain(id: string, mountainID: string, updatedData: any) {
-        return await prisma.location.updateMany({
-            where: {
-                id,
-                mountainID,
-            },
-            data: updatedData,
-        });
-    }
+	static async findAll() {
+		return await prisma.location.findMany();
+	}
 
-    static async deleteByMountain(id: string, mountainID: string) {
-        return await prisma.location.deleteMany({
-            where: {
-                id,
-                mountainID,
-            },
-        });
-    }
+	static async updateByMountain(locationId: string, mountainId: string, updatedData: any) {
+		return await prisma.location.updateMany({
+			where: {
+				id: locationId,
+				mountainId,
+			},
+			data: updatedData,
+		});
+	}
 
-    static async getHours(locationID: string) {
-        return await prisma.hours.findMany({
-            where: { locationID },
-        });
-    }
+	static async deleteByMountain(locationId: string, mountainId: string) {
+		return await prisma.location.deleteMany({
+			where: {
+				id: locationId,
+				mountainId,
+			},
+		});
+	}
 
-    static async addHours(locationID: string, hoursData: any[]) {
-        if (!locationID) {
-            throw new Error('Location ID is required.');
-        }
-    
-        const locationExists = await prisma.location.findUnique({
-            where: { id: locationID },
-        });
-    
-        if (!locationExists) {
-            throw new Error(`Location with ID ${locationID} does not exist.`);
-        }
-    
-        const createdHours = [];
-        for (const hour of hoursData) {
-            const createdHour = await prisma.hours.create({
-                data: {
-                    ...hour,
-                    locationID,
-                },
-            });
-            createdHours.push(createdHour);
-        }
-    
-        return createdHours;
-    }
+	static async getHours(locationId: string) {
+		return await prisma.hours.findMany({
+			where: { locationId },
+		});
+	}
 
-    static async updateHour(locationID: string, hourID: string, hourData: any) {
-        if (!locationID || !hourID) {
-            throw new Error('Location ID and Hour ID are required.');
-        }
-    
-        const existingHour = await prisma.hours.findFirst({
-            where: {
-                id: hourID,
-                locationID,
-            },
-        });
-    
-        if (!existingHour) {
-            throw new Error(`Hour with ID ${hourID} for Location ID ${locationID} not found.`);
-        }
-    
-        return await prisma.hours.update({
-            where: {
-                id: hourID,
-            },
-            data: hourData,
-        });
-    }
+	static async addHours(locationId: string, hoursData: any[]) {
+		if (!locationId) {
+			throw new Error('Location Id is required.');
+		}
 
-    static async deleteHour(locationID: string, hourID: string) {
-        return await prisma.hours.deleteMany({
-            where: {
-                id: hourID,
-                locationID,
-            },
-        });
-    }
+		const locationExists = await prisma.location.findUnique({
+			where: { id: locationId },
+		});
 
-    static async getIncidents(locationID: string) {
-        return await prisma.incident.findMany({
-            where: { locationID },
-        });
-    }
+		if (!locationExists) {
+			throw new Error(`Location with Id ${locationId} does not exist.`);
+		}
 
-    static async addIncident(locationID: string, incidentData: any) {
-        return await prisma.incident.create({
-            data: {
-                ...incidentData,
-                locationID,
-            },
-        });
-    }
+		const createdHours = [];
+		for (const hour of hoursData) {
+			const createdHour = await prisma.hours.create({
+				data: {
+					...hour,
+					locationId,
+				},
+			});
+			createdHours.push(createdHour);
+		}
 
-    static async updateIncident(locationID: string, incidentID: string, incidentData: any) {
-        return await prisma.incident.updateMany({
-            where: {
-                id: incidentID,
-                locationID,
-            },
-            data: incidentData,
-        });
-    }
+		return createdHours;
+	}
 
-    static async deleteIncident(locationID: string, incidentID: string) {
-        return await prisma.incident.deleteMany({
-            where: {
-                id: incidentID,
-                locationID,
-            },
-        });
-    }
+	static async updateHour(locationId: string, hourId: string, hourData: any) {
+		if (!locationId || !hourId) {
+			throw new Error('Location Id and Hour Id are required.');
+		}
 
-    static async findEquipmentByLocation(mountainID: string, locationID: string) {
-        return await prisma.equipment.findMany({
-            where: {
-                mountainID,
-                locationID,
-            },
-        });
-    }
+		const existingHour = await prisma.hours.findFirst({
+			where: {
+				id: hourId,
+				locationId,
+			},
+		});
 
-    static async moveEquipment(equipmentID: string, newLocationID: string) {
-        return await prisma.equipment.update({
-            where: { id: equipmentID },
-            data: {
-                locationID: newLocationID,
-            },
-        });
-    }
+		if (!existingHour) {
+			throw new Error(`Hour with Id ${hourId} for Location Id ${locationId} not found.`);
+		}
 
-    static async updateEquipmentInLocation(
-        mountainID: string,
-        locationID: string,
-        equipmentID: string,
-        updatedData: any
-    ) {
-        return await prisma.equipment.update({
-            where: { id: equipmentID },
-            data: {
-                ...updatedData,
-                mountainID,
-                locationID,
-            },
-        });
-    }
+		return await prisma.hours.update({
+			where: {
+				id: hourId,
+			},
+			data: hourData,
+		});
+	}
 
-    static async deleteEquipmentFromLocation(
-        mountainID: string,
-        locationID: string,
-        equipmentID: string
-    ) {
-        return await prisma.equipment.deleteMany({
-            where: {
-                id: equipmentID,
-                mountainID,
-                locationID,
-            },
-        });
-    }
+	static async deleteHour(locationId: string, hourId: string) {
+		return await prisma.hours.deleteMany({
+			where: {
+				id: hourId,
+				locationId,
+			},
+		});
+	}
 
-    static async addAreaToLocation(mountainID: string, locationID: string, areaID: string) {
-        return await prisma.location.update({
-            where: { id: locationID },
-            data: {
-                area: {
-                    connect: { id: areaID },
-                },
-                mountain: {
-                    connect: { id: mountainID },
-                },
-            },
-        });
-    }
+	static async getIncidents(locationId: string) {
+		return await prisma.incident.findMany({
+			where: { locationId },
+		});
+	}
 
-    static async updateAreaInLocation(
-        mountainID: string,
-        locationID: string,
-        areaID: string,
-        updatedData: any
-    ) {
-        return await prisma.location.update({
-            where: { id: locationID },
-            data: {
-                ...updatedData,
-                area: {
-                    connect: { id: areaID },
-                },
-                mountain: {
-                    connect: { id: mountainID },
-                },
-            },
-        });
-    }
+	static async addIncident(locationId: string, incidentData: any) {
+		return await prisma.incident.create({
+			data: {
+				...incidentData,
+				locationId,
+			},
+		});
+	}
 
-    static async removeAreaFromLocation(mountainID: string, locationID: string, areaID: string) {
-        return await prisma.location.update({
-            where: { id: locationID },
-            data: {
-                area: {
-                    disconnect: { id: areaID },
-                },
-            },
-        });
-    }
+	static async updateIncident(locationId: string, incidentId: string, incidentData: any) {
+		return await prisma.incident.updateMany({
+			where: {
+				id: incidentId,
+				locationId,
+			},
+			data: incidentData,
+		});
+	}
+
+	static async deleteIncident(locationId: string, incidentId: string) {
+		return await prisma.incident.deleteMany({
+			where: {
+				id: incidentId,
+				locationId,
+			},
+		});
+	}
+
+	static async addEquipmentToLocation(mountainId: string, locationId: string, equipmentId: string) {
+		const mountainExists = await prisma.mountain.findUnique({
+			where: { id: mountainId },
+		});
+
+		if (!mountainExists) {
+			throw new Error(`Mountain with ID ${mountainId} does not exist.`);
+		}
+
+		const locationExists = await prisma.location.findFirst({
+			where: { id: locationId, mountainId },
+		});
+
+		if (!locationExists) {
+			throw new Error(`Location with ID ${locationId} and Mountain ID ${mountainId} does not exist.`);
+		}
+
+		const equipmentExists = await prisma.equipment.findUnique({
+			where: { id: equipmentId },
+		});
+
+		if (!equipmentExists) {
+			throw new Error(`Equipment with ID ${equipmentId} does not exist.`);
+		}
+
+		return await prisma.equipment.update({
+			where: { id: equipmentId },
+			data: {
+				locationId,
+				mountainId,
+			},
+		});
+	}
+
+	static async findEquipmentByLocation(mountainId: string, locationId: string) {
+		return await prisma.equipment.findMany({
+			where: {
+				mountainId,
+				locationId,
+			},
+		});
+	}
+
+	static async moveEquipmentToLocation(mountainId: string, currentLocationId: string, newLocationId: string, equipmentId: string) {
+		const mountainExists = await prisma.mountain.findUnique({
+			where: { id: mountainId },
+		});
+	
+		if (!mountainExists) {
+			throw new Error(`Mountain with ID ${mountainId} does not exist.`);
+		}
+	
+		const currentLocationExists = await prisma.location.findFirst({
+			where: { id: currentLocationId, mountainId },
+		});
+	
+		if (!currentLocationExists) {
+			throw new Error(`Current location with ID ${currentLocationId} and Mountain ID ${mountainId} does not exist.`);
+		}
+	
+		const newLocationExists = await prisma.location.findFirst({
+			where: { id: newLocationId, mountainId },
+		});
+	
+		if (!newLocationExists) {
+			throw new Error(`New location with ID ${newLocationId} and Mountain ID ${mountainId} does not exist.`);
+		}
+	
+		const equipmentExists = await prisma.equipment.findFirst({
+			where: {
+				id: equipmentId,
+				locationId: currentLocationId,
+				mountainId,
+			},
+		});
+	
+		if (!equipmentExists) {
+			throw new Error(`Equipment with ID ${equipmentId} is not associated with location ID ${currentLocationId} and mountain ID ${mountainId}.`);
+		}
+	
+		return await prisma.equipment.update({
+			where: { id: equipmentId },
+			data: {
+				locationId: newLocationId,
+			},
+		});
+	}
+
+	static async updateEquipmentInLocation(
+		mountainId: string,
+		locationId: string,
+		equipmentId: string,
+		updatedData: any
+	) {
+		return await prisma.equipment.update({
+			where: { id: equipmentId },
+			data: {
+				...updatedData,
+				mountainId,
+				locationId,
+			},
+		});
+	}
+
+	static async deleteEquipmentFromLocation(mountainId: string, locationId: string, equipmentId: string) {
+		const equipment = await prisma.equipment.findFirst({
+			where: {
+				id: equipmentId,
+				mountainId,
+				locationId,
+			},
+		});
+
+		if (!equipment) {
+			throw new Error(
+				`Equipment with ID ${equipmentId} is not associated with location ID ${locationId} and mountain ID ${mountainId}.`
+			);
+		}
+
+		return await prisma.equipment.update({
+			where: { id: equipmentId },
+			data: {
+				locationId: null,
+			},
+		});
+	}
+
+	static async addAreaToLocation(mountainId: string, locationId: string, areaId: string) {
+		const area = await prisma.area.findUnique({
+			where: { id: areaId },
+		});
+		if (!area) {
+			throw new Error(`Area with ID ${areaId} does not exist.`);
+		}
+
+		const mountain = await prisma.mountain.findUnique({
+			where: { id: mountainId },
+		});
+		if (!mountain) {
+			throw new Error(`Mountain with ID ${mountainId} does not exist.`);
+		}
+
+		const location = await prisma.location.findUnique({
+			where: { id: locationId },
+		});
+		if (!location) {
+			throw new Error(`Location with ID ${locationId} does not exist.`);
+		}
+
+		return await prisma.location.update({
+			where: { id: locationId },
+			data: {
+				area: {
+					connect: { id: areaId },
+				},
+				mountain: {
+					connect: { id: mountainId },
+				},
+			},
+		});
+	}
+
+	static async updateAreaInLocation(mountainId: string, locationId: string, areaId: string, updatedData: any) {
+		const areaExists = await prisma.area.findUnique({
+			where: { id: areaId },
+		});
+		if (!areaExists) {
+			throw new Error(`Area with ID ${areaId} does not exist.`);
+		}
+
+		const mountainExists = await prisma.mountain.findUnique({
+			where: { id: mountainId },
+		});
+		if (!mountainExists) {
+			throw new Error(`Mountain with ID ${mountainId} does not exist.`);
+		}
+
+		const locationExists = await prisma.location.findUnique({
+			where: { id: locationId },
+		});
+		if (!locationExists) {
+			throw new Error(`Location with ID ${locationId} does not exist.`);
+		}
+
+		return await prisma.location.update({
+			where: { id: locationId },
+			data: {
+				...updatedData,
+				area: {
+					connect: { id: areaId },
+				},
+				mountain: {
+					connect: { id: mountainId },
+				},
+			},
+		});
+	}
+
+	static async removeAreaFromLocation(mountainId: string, locationId: string, areaId: string) {
+		return await prisma.location.update({
+			where: { id: locationId },
+			data: {
+				area: {
+					disconnect: { id: areaId },
+				},
+			},
+		});
+	}
 }
 
 export default LocationModel;

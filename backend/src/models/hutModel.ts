@@ -2,41 +2,54 @@ import { prisma } from '../config/database';
 import { createEntityWithLocation } from '../utils/createEntityWithLocation';
 
 class HutModel {
-    static async create(mountainID: string, data: any) {
-        return await createEntityWithLocation(prisma, 'hut', mountainID, data);
+    static async create(mountainId: string, data: any) {
+        return await createEntityWithLocation(prisma, 'hut', mountainId, data);
     }
 
-    static async findByIdAndMountain(id: string, mountainID: string) {
+    static async findByIdAndMountain(hutId: string, mountainId: string) {
         return await prisma.hut.findFirst({
             where: {
-                id,
-                mountainID,
+                id: hutId,
+                mountainId,
             },
         });
     }
 
-    static async findAllByMountain(mountainID: string) {
+    static async findAll() {
+        return await prisma.hut.findMany();
+    }
+
+    static async findAllByMountain(mountainId: string) {
         return await prisma.hut.findMany({
-            where: { mountainID },
+            where: { mountainId },
         });
     }
 
-    static async updateByMountain(id: string, mountainID: string, updatedData: any) {
+    static async updateById(hutId: string, updatedData: any) {
         return await prisma.hut.update({
             where: {
-                id,
-                mountainID,
+                id: hutId,
             },
             data: updatedData,
         });
     }
 
-    static async deleteByMountain(id: string, mountainID: string) {
-        return await prisma.hut.delete({
-            where: {
-                id,
-                mountainID,
-            },
+    static async deleteById(hutId: string) {
+        return await prisma.$transaction(async (prisma) => {
+            const deletedHut = await prisma.hut.delete({
+                where: {
+                    id: hutId,
+                },
+            });
+
+            await prisma.location.deleteMany({
+                where: {
+                    entityId: hutId,
+                    entityType: 'Hut',
+                },
+            });
+
+            return deletedHut;
         });
     }
 }

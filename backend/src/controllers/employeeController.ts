@@ -24,8 +24,8 @@ class EmployeeController {
 
     async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const employee = await Employee.findById(id);
+            const { employeeId } = req.params;
+            const employee = await Employee.findById(employeeId);
             res.status(200).json(employee);
         } catch (error) {
             next(error);
@@ -43,9 +43,9 @@ class EmployeeController {
 
     async update(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { employeeId } = req.params;
             const updatedData = req.body;
-            const employee = await Employee.update(id, updatedData);
+            const employee = await Employee.update(employeeId, updatedData);
             res.status(200).json(employee);
         } catch (error) {
             next(error);
@@ -54,8 +54,8 @@ class EmployeeController {
 
     async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            await Employee.delete(id);
+            const { employeeId } = req.params;
+            await Employee.delete(employeeId);
             res.status(204).send();
         } catch (error) {
             next(error);
@@ -83,8 +83,8 @@ class EmployeeController {
 
     async getRoleById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { roleID } = req.params;
-            const role = await Employee.getRoleById(roleID);
+            const { roleId } = req.params;
+            const role = await Employee.getRoleById(roleId);
             res.status(200).json(role);
         } catch (error) {
             next(error);
@@ -93,9 +93,9 @@ class EmployeeController {
 
     async updateRole(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { roleID } = req.params;
+            const { roleId } = req.params;
             const updatedData = req.body;
-            const role = await Employee.updateRole(roleID, updatedData);
+            const role = await Employee.updateRole(roleId, updatedData);
             res.status(200).json(role);
         } catch (error) {
             next(error);
@@ -104,8 +104,8 @@ class EmployeeController {
 
     async deleteRole(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { roleID } = req.params;
-            await Employee.deleteRole(roleID);
+            const { roleId } = req.params;
+            await Employee.deleteRole(roleId);
             res.status(204).send();
         } catch (error) {
             next(error);
@@ -114,9 +114,9 @@ class EmployeeController {
 
     async addRoleToEmployee(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { employeeID } = req.params;
+            const { employeeId } = req.params;
             const { roleId } = req.body;
-            const role = await Employee.addRoleToEmployee(employeeID, roleId);
+            const role = await Employee.addRoleToEmployee(employeeId, roleId);
             res.status(200).json(role);
         } catch (error) {
             next(error);
@@ -125,8 +125,8 @@ class EmployeeController {
 
     async getEmployeeRoles(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { employeeID } = req.params;
-            const roles = await Employee.getEmployeeRoles(employeeID);
+            const { employeeId } = req.params;
+            const roles = await Employee.getEmployeeRoles(employeeId);
             res.status(200).json(roles);
         } catch (error) {
             next(error);
@@ -135,9 +135,9 @@ class EmployeeController {
 
     async updateEmployeeRoles(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { employeeID, roleID } = req.params;
+            const { employeeId, roleId } = req.params;
             const newRoleID = req.body;
-            const role = await Employee.updateEmployeeRoles(employeeID, roleID, newRoleID);
+            const role = await Employee.updateEmployeeRoles(employeeId, roleId, newRoleID);
             res.status(200).json(role);
         } catch (error) {
             next(error);
@@ -146,8 +146,8 @@ class EmployeeController {
 
     async removeRoleFromEmployee(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { employeeID, roleID } = req.params;
-            const deleted = await Employee.removeRoleFromEmployee(employeeID, roleID);
+            const { employeeId, roleId } = req.params;
+            const deleted = await Employee.removeRoleFromEmployee(employeeId, roleId);
             res.status(204).send();
         } catch (error) {
             next(error);

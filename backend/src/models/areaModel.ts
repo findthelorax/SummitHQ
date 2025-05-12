@@ -2,83 +2,82 @@ import { prisma } from '../config/database';
 
 class AreaModel {
 
-    static async create(mountainID: string, data: any) {
-        try {
-            // Validate that the mountainID exists
-            const mountainExists = await prisma.mountain.findUnique({
-                where: { id: mountainID },
-            });
-
-            if (!mountainExists) {
-                const err = new Error('Mountain not found') as any;
-                err.status = 404;
-                throw err;
-            }
-
-            // Create the area
-            return await prisma.area.create({
-                data: {
-                    ...data,
-                    mountainID: mountainID, // Use the correct field name
-                },
-            });
-        } catch (error) {
-            const err = new Error('Failed to create area') as any;
-            err.status = 500;
-            err.message = error instanceof Error ? error.message : 'Unknown error occurred';
-            throw err;
+    static async create(mountainId: string, data: any) {
+        const mountainExists = await prisma.mountain.findUnique({
+            where: { id: mountainId },
+        });
+    
+        if (!mountainExists) {
+            throw new Error('Mountain not found');
         }
+    
+        return await prisma.area.create({
+            data: {
+                ...data,
+                mountainId: mountainId,
+            },
+        });
     }
 
-    static async findByIdAndMountain(areaID: string, mountainID: string) {
+    static async findAll() {
+        return await prisma.area.findMany();
+    }
+
+    static async findByIdAndMountain(areaId: string, mountainId: string) {
         return await prisma.area.findFirst({
             where: {
-                id: areaID,
-                mountainID,
+                id: areaId,
+                mountainId,
             },
         });
     }
 
-    static async findAllByMountain(mountainID: string) {
+    static async findAllByMountain(mountainId: string) {
         return await prisma.area.findMany({
-            where: { mountainID },
+            where: { mountainId },
         });
     }
 
-    static async updateById(id: string, updatedData: any) {
+    static async updateById(areaId: string, updatedData: any) {
         return await prisma.area.update({
-            where: { id },
+            where: { id: areaId },
             data: updatedData,
         });
     }
 
-    static async deleteById(id: string) {
+    static async deleteById(areaId: string) {
+        if (!areaId) {
+            const err = new Error('Invalid Id provided for deletion') as any;
+            err.status = 400;
+            throw err;
+        }
+    
         return await prisma.area.delete({
-            where: { id },
+            where: { id: areaId },
         });
     }
 
-    static async addAreaToLocation(locationID: string, areaID: string) {
+    static async addAreaToLocation(locationId: string, areaId: string) {
         return await prisma.location.update({
-            where: { id: locationID },
-            data: { areaID },
+            where: { id: locationId },
+            data: { areaId },
         });
     }
 
-    static async updateAreaInLocation(locationID: string, mountainID: string, updatedData: any) {
+    static async updateAreaInLocation(locationId: string, mountainId: string, updatedData: any) {
         return await prisma.location.update({
             where: {
-                id: locationID,
-                mountainID,
+                id: locationId,
+                mountainId,
             },
             data: updatedData,
         });
     }
 
-    static async removeAreaFromLocation(locationID: string) {
+    static async removeAreaFromLocation(locationId: string) {
         return await prisma.location.update({
-            where: { id: locationID },
-            data: { areaID: null },
+            where: { id: locationId },
+            data: { areaId: null },
         });
     }
 }

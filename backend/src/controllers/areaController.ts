@@ -4,10 +4,10 @@ import AreaModel from '../models/areaModel';
 class AreaController {
     async createArea(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainID } = req.params;
+            const { mountainId } = req.params;
             const data = req.body;
 
-            const result = await AreaModel.create(mountainID, data);
+            const result = await AreaModel.create(mountainId, data);
             res.status(201).json(result);
         } catch (error) {
             next(error);
@@ -16,9 +16,9 @@ class AreaController {
 
     async getArea(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainID, areaID } = req.params;
+            const { mountainId, areaId } = req.params;
 
-            const result = await AreaModel.findByIdAndMountain(areaID, mountainID);
+            const result = await AreaModel.findByIdAndMountain(areaId, mountainId);
             if (!result) {
                 res.status(404).json({ message: 'Area not found' });
                 return;
@@ -32,9 +32,9 @@ class AreaController {
 
     async getAreas(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainID } = req.params;
+            const { mountainId } = req.params;
 
-            const result = await AreaModel.findAllByMountain(mountainID);
+            const result = await AreaModel.findAllByMountain(mountainId);
             res.status(200).json(result);
         } catch (error) {
             next(error);
@@ -43,10 +43,10 @@ class AreaController {
 
     async updateArea(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { areaId } = req.params;
             const updatedData = req.body;
 
-            const result = await AreaModel.updateById(id, updatedData);
+            const result = await AreaModel.updateById(areaId, updatedData);
             if (!result) {
                 res.status(404).json({ message: 'Area not found' });
                 return;
@@ -60,9 +60,9 @@ class AreaController {
 
     async deleteArea(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { areaId } = req.params;
 
-            const result = await AreaModel.deleteById(id);
+            const result = await AreaModel.deleteById(areaId);
             if (!result) {
                 res.status(404).json({ message: 'Area not found' });
                 return;
@@ -91,7 +91,7 @@ class AreaController {
             const { locationId } = req.params;
             const updatedData = req.body;
 
-            const result = await AreaModel.updateAreaInLocation(locationId, updatedData.mountainID, updatedData);
+            const result = await AreaModel.updateAreaInLocation(locationId, updatedData.mountainId, updatedData);
             res.status(200).json(result);
         } catch (error) {
             next(error);

@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { prisma } from '../config/database';
 import LocationModel from '../models/locationModel';
 
 class LocationController {
@@ -9,14 +10,14 @@ class LocationController {
             const location = await LocationModel.create(mountainId, data);
             res.status(201).json(location);
         } catch (error) {
-            next(error);
+            throw error;
         }
     }
 
     async getLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainId, id } = req.params;
-            const location = await LocationModel.findByIdAndMountain(id, mountainId);
+            const { mountainId, locationId } = req.params;
+            const location = await LocationModel.findByIdAndMountain(locationId, mountainId);
             if (!location) {
                 res.status(404).json({ message: 'Location not found' });
                 return;
@@ -39,9 +40,9 @@ class LocationController {
 
     async updateLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainId, id } = req.params;
+            const { mountainId, locationId } = req.params;
             const data = req.body;
-            const updatedLocation = await LocationModel.updateByMountain(id, mountainId, data);
+            const updatedLocation = await LocationModel.updateByMountain(locationId, mountainId, data);
             if (!updatedLocation) {
                 res.status(404).json({ message: 'Location not found' });
                 return;
@@ -54,8 +55,8 @@ class LocationController {
 
     async deleteLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { mountainId, id } = req.params;
-            const deletedLocation = await LocationModel.deleteByMountain(id, mountainId);
+            const { mountainId, locationId } = req.params;
+            const deletedLocation = await LocationModel.deleteByMountain(locationId, mountainId);
             if (!deletedLocation) {
                 res.status(404).json({ message: 'Location not found' });
                 return;
@@ -68,8 +69,8 @@ class LocationController {
 
     async getLocationHours(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const hours = await LocationModel.getHours(id);
+            const { locationId } = req.params;
+            const hours = await LocationModel.getHours(locationId);
             res.status(200).json(hours);
         } catch (error) {
             next(error);
@@ -113,8 +114,8 @@ class LocationController {
 
     async deleteLocationHour(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id, hourId } = req.params;
-            const deletedHour = await LocationModel.deleteHour(id, hourId);
+            const { locationId, hourId } = req.params;
+            const deletedHour = await LocationModel.deleteHour(locationId, hourId);
             if (!deletedHour) {
                 res.status(404).json({ message: 'Hour not found for this location' });
                 return;
@@ -127,8 +128,8 @@ class LocationController {
 
     async getLocationIncidents(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const incidents = await LocationModel.getIncidents(id);
+            const { locationId } = req.params;
+            const incidents = await LocationModel.getIncidents(locationId);
             res.status(200).json(incidents);
         } catch (error) {
             next(error);
@@ -137,9 +138,9 @@ class LocationController {
 
     async addLocationIncident(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { locationId } = req.params;
             const incidentData = req.body;
-            const incident = await LocationModel.addIncident(id, incidentData);
+            const incident = await LocationModel.addIncident(locationId, incidentData);
             res.status(201).json(incident);
         } catch (error) {
             next(error);
@@ -148,9 +149,9 @@ class LocationController {
 
     async updateLocationIncident(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id, incidentId } = req.params;
+            const { locationId, incidentId } = req.params;
             const incidentData = req.body;
-            const updatedIncident = await LocationModel.updateIncident(id, incidentId, incidentData);
+            const updatedIncident = await LocationModel.updateIncident(locationId, incidentId, incidentData);
             if (!updatedIncident) {
                 res.status(404).json({ message: 'Incident not found for this location' });
                 return;
@@ -163,13 +164,35 @@ class LocationController {
 
     async deleteLocationIncident(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id, incidentId } = req.params;
-            const deletedIncident = await LocationModel.deleteIncident(id, incidentId);
+            const { locationId, incidentId } = req.params;
+            const deletedIncident = await LocationModel.deleteIncident(locationId, incidentId);
             if (!deletedIncident) {
                 res.status(404).json({ message: 'Incident not found for this location' });
                 return;
             }
             res.status(204).send();
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    async addEquipmentToLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { mountainId, locationId, equipmentId } = req.params;
+    
+            if (!mountainId || !locationId || !equipmentId) {
+                res.status(400).json({ message: 'Mountain ID, Location ID, and Equipment ID are required.' });
+                return;
+            }
+    
+            const updatedEquipment = await LocationModel.addEquipmentToLocation(mountainId, locationId, equipmentId);
+    
+            if (!updatedEquipment) {
+                res.status(404).json({ message: 'Equipment, Location, or Mountain not found.' });
+                return;
+            }
+    
+            res.status(200).json(updatedEquipment);
         } catch (error) {
             next(error);
         }
@@ -194,21 +217,21 @@ class LocationController {
 
     async moveEquipmentToLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { equipmentId } = req.params;
-            const { newLocationId } = req.body;
-
+            const { mountainId, locationId: currentLocationId, equipmentId } = req.params;
+            const { newLocationId: newLocationId } = req.body;
+    
             if (!newLocationId) {
-                res.status(400).json({ message: 'New Location ID is required' });
+                res.status(400).json({ message: 'New Location ID is required in the body.' });
                 return;
             }
-
-            const updatedEquipment = await LocationModel.moveEquipment(equipmentId, newLocationId);
-
-            if (!updatedEquipment) {
-                res.status(404).json({ message: 'Equipment or location not found' });
-                return;
-            }
-
+    
+            const updatedEquipment = await LocationModel.moveEquipmentToLocation(
+                mountainId,
+                currentLocationId,
+                newLocationId,
+                equipmentId
+            );
+    
             res.status(200).json(updatedEquipment);
         } catch (error) {
             next(error);
@@ -259,18 +282,13 @@ class LocationController {
         }
     }
 
-        async addAreaToLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
+    async addAreaToLocation(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const { mountainId, locationId, areaId } = req.params;
-    
-            const result = await LocationModel.addAreaToLocation(mountainId, locationId, areaId);
-    
-            if (!result) {
-                res.status(404).json({ message: 'Area or Location not found' });
-                return;
-            }
-    
-            res.status(201).json(result);
+
+            const updatedLocation = await LocationModel.addAreaToLocation(mountainId, locationId, areaId);
+
+            res.status(200).json(updatedLocation);
         } catch (error) {
             next(error);
         }

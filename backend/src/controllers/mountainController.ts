@@ -23,7 +23,7 @@ class MountainController {
     
     async getMountain(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const mountainId = req.params.id;
+            const mountainId = req.params.mountainId;
             const mountain = await MountainModel.findById(mountainId);
             if (!mountain) {
                 res.status(404).json({ message: 'Mountain not found' });
@@ -37,7 +37,7 @@ class MountainController {
 
     async updateMountain(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const mountainId = req.params.id;
+            const mountainId = req.params.mountainId;
             const mountainData = req.body;
             const updatedMountain = await MountainModel.update(mountainId, mountainData);
             if (!updatedMountain) {
@@ -52,7 +52,7 @@ class MountainController {
 
     async deleteMountain(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const mountainId = req.params.id;
+            const mountainId = req.params.mountainId;
             const deletedMountain = await MountainModel.delete(mountainId);
             if (!deletedMountain) {
                 res.status(404).json({ message: 'Mountain not found' });

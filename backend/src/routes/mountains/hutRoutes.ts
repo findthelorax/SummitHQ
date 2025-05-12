@@ -3,10 +3,10 @@ import HutController from '../../controllers/hutController';
 
 const router = Router();
 
-router.post('/:mountainID/huts', HutController.createHut);
-router.get('/:mountainID/huts', HutController.getHuts);
-router.get('/:mountainID/huts/:hutID', HutController.getHut);
-router.put('/:mountainID/huts/:hutID', HutController.updateHut);
-router.delete('/:mountainID/huts/:hutID', HutController.deleteHut);
+router.post('/:mountainId/huts', HutController.createHut);
+router.get('/:mountainId/huts', HutController.getHuts);
+router.get('/:mountainId/huts/:hutId', HutController.getHut);
+router.put('/:mountainId/huts/:hutId', HutController.updateHut);
+router.delete('/:mountainId/huts/:hutId', HutController.deleteHut);
 
 export default router;
