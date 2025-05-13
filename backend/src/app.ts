@@ -2,7 +2,8 @@ import express from 'express';
 import { connectDatabase } from './config/database';
 import employeeRoutes from './routes/employees';
 import mountainRoutes from './routes/mountains';
-import debugRoutes from './routes/debugRoutes'; // Import debug routes
+import checkRoutes from './routes/logs';
+import debugRoutes from './routes/debugRoutes';
 import errorHandler from './middleware/errorHandler';
 import dotenv from 'dotenv';
 
@@ -17,8 +18,8 @@ connectDatabase();
 
 app.use('/api/employees', employeeRoutes);
 app.use('/api/mountains', mountainRoutes);
+app.use('/api/mountains', checkRoutes);
 
-// Debug Route (only for non-production environments)
 if (process.env.NODE_ENV !== 'production') {
     app.use('/api/debug', debugRoutes);
 }

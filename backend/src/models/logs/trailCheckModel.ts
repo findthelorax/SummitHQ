@@ -5,27 +5,44 @@ class TrailCheckModel {
         return await prisma.trailCheck.create({ data });
     }
 
-    static async findById(id: string) {
-        return await prisma.trailCheck.findUnique({ where: { id } });
+    static async findByIdAndMountainAndTrail(id: string, mountainId: string, trailId: string) {
+        return await prisma.trailCheck.findFirst({
+            where: {
+                id,
+                mountainId,
+                trailId,
+            },
+        });
     }
 
-    static async findAll() {
-        return await prisma.trailCheck.findMany();
+    static async findAllByMountainAndTrail(mountainId: string, trailId: string) {
+        return await prisma.trailCheck.findMany({
+            where: {
+                mountainId,
+                trailId,
+            },
+        });
     }
 
-    static async findAllByMountain(mountainId: string) {
-        return await prisma.trailCheck.findMany({ where: { mountainId } });
-    }
-
-    static async updateById(id: string, updatedData: any) {
-        return await prisma.trailCheck.update({
-            where: { id },
+    static async updateByIdAndMountainAndTrail(id: string, mountainId: string, trailId: string, updatedData: any) {
+        return await prisma.trailCheck.updateMany({
+            where: {
+                id,
+                mountainId,
+                trailId,
+            },
             data: updatedData,
         });
     }
 
-    static async deleteById(id: string) {
-        return await prisma.trailCheck.delete({ where: { id } });
+    static async deleteByIdAndMountainAndTrail(id: string, mountainId: string, trailId: string) {
+        return await prisma.trailCheck.deleteMany({
+            where: {
+                id,
+                mountainId,
+                trailId,
+            },
+        });
     }
 }
 

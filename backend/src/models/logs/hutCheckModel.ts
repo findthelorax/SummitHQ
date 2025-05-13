@@ -5,27 +5,44 @@ class HutCheckModel {
         return await prisma.hutCheck.create({ data });
     }
 
-    static async findById(id: string) {
-        return await prisma.hutCheck.findUnique({ where: { id } });
+    static async findByIdAndMountainAndHut(id: string, mountainId: string, hutId: string) {
+        return await prisma.hutCheck.findFirst({
+            where: {
+                id,
+                mountainId,
+                hutId,
+            },
+        });
     }
 
-    static async findAll() {
-        return await prisma.hutCheck.findMany();
+    static async findAllByMountainAndHut(mountainId: string, hutId: string) {
+        return await prisma.hutCheck.findMany({
+            where: {
+                mountainId,
+                hutId,
+            },
+        });
     }
 
-    static async findAllByMountain(mountainId: string) {
-        return await prisma.hutCheck.findMany({ where: { mountainId } });
-    }
-
-    static async updateById(id: string, updatedData: any) {
-        return await prisma.hutCheck.update({
-            where: { id },
+    static async updateByIdAndMountainAndHut(id: string, mountainId: string, hutId: string, updatedData: any) {
+        return await prisma.hutCheck.updateMany({
+            where: {
+                id,
+                mountainId,
+                hutId,
+            },
             data: updatedData,
         });
     }
 
-    static async deleteById(id: string) {
-        return await prisma.hutCheck.delete({ where: { id } });
+    static async deleteByIdAndMountainAndHut(id: string, mountainId: string, hutId: string) {
+        return await prisma.hutCheck.deleteMany({
+            where: {
+                id,
+                mountainId,
+                hutId,
+            },
+        });
     }
 }
 

@@ -180,7 +180,7 @@ model Mountain {
 
   employeeAssignments     EmployeeMountainAssignment[]
   dispatcherAssignments   DispatcherAssignment[]
-  incidentEquipmentUsageLog    IncidentEquipmentUseageLog[]
+  incidentEquipmentUsageLog    IncidentEquipmentUsageLog[]
   equipmentServiceLogs    EquipmentServiceLog[]
 }
 
@@ -408,7 +408,7 @@ model Equipment {
   location        Location? @relation(fields: [locationId], references: [id])
 
   dateAdded               DateTime @default(now())
-  incidentEquipmentUsageLogs   IncidentEquipmentUseageLog[]    
+  incidentEquipmentUsageLogs   IncidentEquipmentUsageLog[]    
   equipmentChecks         EquipmentCheck[]
   equipmentServiceLogs    EquipmentServiceLog[]
 
@@ -431,7 +431,7 @@ model Incident {
   transportTime  DateTime?
   emptyRun       Boolean      @default(false)
   emptyRunAt     DateTime?
-  incidentEquipmentUsageLog  IncidentEquipmentUseageLog[]
+  incidentEquipmentUsageLog  IncidentEquipmentUsageLog[]
 
   locationType  String
   locationId    String
@@ -446,14 +446,15 @@ model Incident {
   @@index([locationId, startTime])
 }
 
-model IncidentEquipmentUseageLog {
+model IncidentEquipmentUsageLog {
   id            String       @id @default(uuid())
-  equipmentId   String
-  mountainId    String
-  mountain      Mountain     @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   usedAt        DateTime     @default(now())
   notes         String?
-  incidentId String
+  mountainId    String
+  equipmentId   String
+  incidentId    String
+
+  mountain      Mountain     @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   incident      Incident     @relation(fields: [incidentId], references: [id], onDelete: Cascade)
   equipment     Equipment    @relation(fields: [equipmentId], references: [id])
 

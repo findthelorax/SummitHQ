@@ -4,7 +4,8 @@ import LiftCheckModel from '../../models/logs/liftCheckModel';
 class LiftCheckController {
     async create(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const data = req.body;
+            const { mountainId, liftId } = req.params;
+            const data = { ...req.body, mountainId, liftId };
             const result = await LiftCheckModel.create(data);
             res.status(201).json(result);
         } catch (error) {
@@ -14,7 +15,8 @@ class LiftCheckController {
 
     async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const result = await LiftCheckModel.findAll();
+            const { mountainId, liftId } = req.params;
+            const result = await LiftCheckModel.findAllByMountainAndLift(mountainId, liftId);
             res.status(200).json(result);
         } catch (error) {
             next(error);
@@ -23,8 +25,8 @@ class LiftCheckController {
 
     async getById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const result = await LiftCheckModel.findById(id);
+            const { mountainId, liftId, liftCheckId } = req.params;
+            const result = await LiftCheckModel.findByIdAndMountainAndLift(liftCheckId, mountainId, liftId);
             if (!result) {
                 res.status(404).json({ message: 'LiftCheck not found' });
                 return;
@@ -37,9 +39,9 @@ class LiftCheckController {
 
     async update(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, liftId, liftCheckId } = req.params;
             const updatedData = req.body;
-            const result = await LiftCheckModel.updateById(id, updatedData);
+            const result = await LiftCheckModel.updateByIdAndMountainAndLift(liftCheckId, mountainId, liftId, updatedData);
             if (!result) {
                 res.status(404).json({ message: 'LiftCheck not found' });
                 return;
@@ -49,11 +51,11 @@ class LiftCheckController {
             next(error);
         }
     }
-
+    
     async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const result = await LiftCheckModel.deleteById(id);
+            const { mountainId, liftId, liftCheckId } = req.params;
+            const result = await LiftCheckModel.deleteByIdAndMountainAndLift(liftCheckId, mountainId, liftId);
             if (!result) {
                 res.status(404).json({ message: 'LiftCheck not found' });
                 return;

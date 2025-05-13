@@ -4,7 +4,8 @@ import TrailCheckModel from '../../models/logs/trailCheckModel';
 class TrailCheckController {
     async create(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const data = req.body;
+            const { mountainId, trailId } = req.params;
+            const data = { ...req.body, mountainId, trailId };
             const result = await TrailCheckModel.create(data);
             res.status(201).json(result);
         } catch (error) {
@@ -14,7 +15,8 @@ class TrailCheckController {
 
     async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const result = await TrailCheckModel.findAll();
+            const { mountainId, trailId } = req.params;
+            const result = await TrailCheckModel.findAllByMountainAndTrail(mountainId, trailId);
             res.status(200).json(result);
         } catch (error) {
             next(error);
@@ -23,8 +25,8 @@ class TrailCheckController {
 
     async getById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const result = await TrailCheckModel.findById(id);
+            const { mountainId, trailId, trailCheckId } = req.params;
+            const result = await TrailCheckModel.findByIdAndMountainAndTrail(trailCheckId, mountainId, trailId);
             if (!result) {
                 res.status(404).json({ message: 'TrailCheck not found' });
                 return;
@@ -37,9 +39,9 @@ class TrailCheckController {
 
     async update(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { mountainId, trailId, trailCheckId } = req.params;
             const updatedData = req.body;
-            const result = await TrailCheckModel.updateById(id, updatedData);
+            const result = await TrailCheckModel.updateByIdAndMountainAndTrail(trailCheckId, mountainId, trailId, updatedData);
             if (!result) {
                 res.status(404).json({ message: 'TrailCheck not found' });
                 return;
@@ -52,8 +54,8 @@ class TrailCheckController {
 
     async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const result = await TrailCheckModel.deleteById(id);
+            const { mountainId, trailId, trailCheckId } = req.params;
+            const result = await TrailCheckModel.deleteByIdAndMountainAndTrail(trailCheckId, mountainId, trailId);
             if (!result) {
                 res.status(404).json({ message: 'TrailCheck not found' });
                 return;

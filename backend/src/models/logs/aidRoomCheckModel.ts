@@ -5,27 +5,44 @@ class AidRoomCheckModel {
         return await prisma.aidRoomCheck.create({ data });
     }
 
-    static async findById(id: string) {
-        return await prisma.aidRoomCheck.findUnique({ where: { id } });
+    static async findByIdAndMountainAndAidRoom(id: string, mountainId: string, aidRoomId: string) {
+        return await prisma.aidRoomCheck.findFirst({
+            where: {
+                id,
+                mountainId,
+                aidRoomId,
+            },
+        });
     }
 
-    static async findAll() {
-        return await prisma.aidRoomCheck.findMany();
+    static async findAllByMountainAndAidRoom(mountainId: string, aidRoomId: string) {
+        return await prisma.aidRoomCheck.findMany({
+            where: {
+                mountainId,
+                aidRoomId,
+            },
+        });
     }
 
-    static async findAllByMountain(mountainId: string) {
-        return await prisma.aidRoomCheck.findMany({ where: { mountainId } });
-    }
-
-    static async updateById(id: string, updatedData: any) {
-        return await prisma.aidRoomCheck.update({
-            where: { id },
+    static async updateByIdAndMountainAndAidRoom(id: string, mountainId: string, aidRoomId: string, updatedData: any) {
+        return await prisma.aidRoomCheck.updateMany({
+            where: {
+                id,
+                mountainId,
+                aidRoomId,
+            },
             data: updatedData,
         });
     }
 
-    static async deleteById(id: string) {
-        return await prisma.aidRoomCheck.delete({ where: { id } });
+    static async deleteByIdAndMountainAndAidRoom(id: string, mountainId: string, aidRoomId: string) {
+        return await prisma.aidRoomCheck.deleteMany({
+            where: {
+                id,
+                mountainId,
+                aidRoomId,
+            },
+        });
     }
 }
 

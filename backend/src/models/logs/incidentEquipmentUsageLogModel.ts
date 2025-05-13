@@ -1,32 +1,56 @@
 import { prisma } from '../../config/database';
 
-class IncidentEquipmentUseageLogModel {
+class IncidentEquipmentUsageLogModel {
     static async create(data: any) {
-        return await prisma.incidentEquipmentUseageLog.create({ data });
+        return await prisma.incidentEquipmentUsageLog.create({ data });
     }
 
-    static async findById(id: string) {
-        return await prisma.incidentEquipmentUseageLog.findUnique({ where: { id } });
-    }
-
-    static async findAll() {
-        return await prisma.incidentEquipmentUseageLog.findMany();
-    }
-
-    static async findAllByMountain(mountainId: string) {
-        return await prisma.incidentEquipmentUseageLog.findMany({ where: { mountainId } });
-    }
-
-    static async updateById(id: string, updatedData: any) {
-        return await prisma.incidentEquipmentUseageLog.update({
-            where: { id },
-            data: updatedData,
+    static async findByIdAndMountainAndIncident(id: string, mountainId: string, incidentId: string) {
+        return await prisma.incidentEquipmentUsageLog.findFirst({
+            where: {
+                id,
+                mountainId,
+                incidentId,
+            },
         });
     }
 
-    static async deleteById(id: string) {
-        return await prisma.incidentEquipmentUseageLog.delete({ where: { id } });
+    static async findAllByMountainAndIncident(mountainId: string, incidentId: string) {
+        return await prisma.incidentEquipmentUsageLog.findMany({
+            where: {
+                mountainId,
+                incidentId,
+            },
+        });
+    }
+
+    static async updateByIdAndMountainAndIncident(
+        id: string,
+        mountainId: string,
+        incidentId: string,
+        updatedData: any
+    ) {
+        return await prisma.incidentEquipmentUsageLog.updateMany({
+            where: {
+                id,
+                mountainId,
+                incidentId,
+            },
+            data: {
+                ...updatedData,
+            },
+        });
+    }
+
+    static async deleteByIdAndMountainAndIncident(id: string, mountainId: string, incidentId: string) {
+        return await prisma.incidentEquipmentUsageLog.deleteMany({
+            where: {
+                id,
+                mountainId,
+                incidentId,
+            },
+        });
     }
 }
 
-export default IncidentEquipmentUseageLogModel;
+export default IncidentEquipmentUsageLogModel;

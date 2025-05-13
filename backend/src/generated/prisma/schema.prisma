@@ -179,7 +179,7 @@ model Mountain {
 
   employeeAssignments       EmployeeMountainAssignment[]
   dispatcherAssignments     DispatcherAssignment[]
-  incidentEquipmentUsageLog IncidentEquipmentUseageLog[]
+  incidentEquipmentUsageLog IncidentEquipmentUsageLog[]
   equipmentServiceLogs      EquipmentServiceLog[]
 }
 
@@ -406,8 +406,8 @@ model Equipment {
   locationId String?
   location   Location? @relation(fields: [locationId], references: [id])
 
-  dateAdded                  DateTime                     @default(now())
-  incidentEquipmentUsageLogs IncidentEquipmentUseageLog[]
+  dateAdded                  DateTime                    @default(now())
+  incidentEquipmentUsageLogs IncidentEquipmentUsageLog[]
   equipmentChecks            EquipmentCheck[]
   equipmentServiceLogs       EquipmentServiceLog[]
 
@@ -416,21 +416,21 @@ model Equipment {
 }
 
 model Incident {
-  id                        String                       @id @default(uuid())
+  id                        String                      @id @default(uuid())
   description               String
-  status                    IncidentStatus               @default(Reported)
+  status                    IncidentStatus              @default(Reported)
   latitude                  Decimal?
   longitude                 Decimal?
   mountainId                String
-  mountain                  Mountain                     @relation(fields: [mountainId], references: [id], onDelete: Cascade)
-  startTime                 DateTime                     @default(now())
+  mountain                  Mountain                    @relation(fields: [mountainId], references: [id], onDelete: Cascade)
+  startTime                 DateTime                    @default(now())
   endTime                   DateTime?
   onSceneTime               DateTime?
   stableTime                DateTime?
   transportTime             DateTime?
-  emptyRun                  Boolean                      @default(false)
+  emptyRun                  Boolean                     @default(false)
   emptyRunAt                DateTime?
-  incidentEquipmentUsageLog IncidentEquipmentUseageLog[]
+  incidentEquipmentUsageLog IncidentEquipmentUsageLog[]
 
   locationType String
   locationId   String
@@ -445,7 +445,7 @@ model Incident {
   @@index([locationId, startTime])
 }
 
-model IncidentEquipmentUseageLog {
+model IncidentEquipmentUsageLog {
   id          String    @id @default(uuid())
   equipmentId String
   mountainId  String

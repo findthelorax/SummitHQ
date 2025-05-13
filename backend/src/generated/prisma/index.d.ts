@@ -104,10 +104,10 @@ export type Equipment = $Result.DefaultSelection<Prisma.$EquipmentPayload>
  */
 export type Incident = $Result.DefaultSelection<Prisma.$IncidentPayload>
 /**
- * Model IncidentEquipmentUseageLog
+ * Model IncidentEquipmentUsageLog
  * 
  */
-export type IncidentEquipmentUseageLog = $Result.DefaultSelection<Prisma.$IncidentEquipmentUseageLogPayload>
+export type IncidentEquipmentUsageLog = $Result.DefaultSelection<Prisma.$IncidentEquipmentUsageLogPayload>
 /**
  * Model LiftCheck
  * 
@@ -609,14 +609,14 @@ export class PrismaClient<
   get incident(): Prisma.IncidentDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.incidentEquipmentUseageLog`: Exposes CRUD operations for the **IncidentEquipmentUseageLog** model.
+   * `prisma.incidentEquipmentUsageLog`: Exposes CRUD operations for the **IncidentEquipmentUsageLog** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more IncidentEquipmentUseageLogs
-    * const incidentEquipmentUseageLogs = await prisma.incidentEquipmentUseageLog.findMany()
+    * // Fetch zero or more IncidentEquipmentUsageLogs
+    * const incidentEquipmentUsageLogs = await prisma.incidentEquipmentUsageLog.findMany()
     * ```
     */
-  get incidentEquipmentUseageLog(): Prisma.IncidentEquipmentUseageLogDelegate<ExtArgs, ClientOptions>;
+  get incidentEquipmentUsageLog(): Prisma.IncidentEquipmentUsageLogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.liftCheck`: Exposes CRUD operations for the **LiftCheck** model.
@@ -1125,7 +1125,7 @@ export namespace Prisma {
     EquipmentServiceLog: 'EquipmentServiceLog',
     Equipment: 'Equipment',
     Incident: 'Incident',
-    IncidentEquipmentUseageLog: 'IncidentEquipmentUseageLog',
+    IncidentEquipmentUsageLog: 'IncidentEquipmentUsageLog',
     LiftCheck: 'LiftCheck',
     TrailCheck: 'TrailCheck',
     HutCheck: 'HutCheck',
@@ -1149,7 +1149,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "area" | "location" | "hours" | "mountain" | "weather" | "employeeMountainAssignment" | "dispatcherAssignment" | "role" | "employeeRole" | "employee" | "lift" | "trail" | "lodge" | "hut" | "aidRoom" | "equipmentServiceLog" | "equipment" | "incident" | "incidentEquipmentUseageLog" | "liftCheck" | "trailCheck" | "hutCheck" | "aidRoomCheck" | "equipmentCheck"
+      modelProps: "area" | "location" | "hours" | "mountain" | "weather" | "employeeMountainAssignment" | "dispatcherAssignment" | "role" | "employeeRole" | "employee" | "lift" | "trail" | "lodge" | "hut" | "aidRoom" | "equipmentServiceLog" | "equipment" | "incident" | "incidentEquipmentUsageLog" | "liftCheck" | "trailCheck" | "hutCheck" | "aidRoomCheck" | "equipmentCheck"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2485,77 +2485,77 @@ export namespace Prisma {
           }
         }
       }
-      IncidentEquipmentUseageLog: {
-        payload: Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>
-        fields: Prisma.IncidentEquipmentUseageLogFieldRefs
+      IncidentEquipmentUsageLog: {
+        payload: Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>
+        fields: Prisma.IncidentEquipmentUsageLogFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.IncidentEquipmentUseageLogFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload> | null
+            args: Prisma.IncidentEquipmentUsageLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.IncidentEquipmentUseageLogFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>
+            args: Prisma.IncidentEquipmentUsageLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>
           }
           findFirst: {
-            args: Prisma.IncidentEquipmentUseageLogFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload> | null
+            args: Prisma.IncidentEquipmentUsageLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.IncidentEquipmentUseageLogFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>
+            args: Prisma.IncidentEquipmentUsageLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>
           }
           findMany: {
-            args: Prisma.IncidentEquipmentUseageLogFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>[]
+            args: Prisma.IncidentEquipmentUsageLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>[]
           }
           create: {
-            args: Prisma.IncidentEquipmentUseageLogCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>
+            args: Prisma.IncidentEquipmentUsageLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>
           }
           createMany: {
-            args: Prisma.IncidentEquipmentUseageLogCreateManyArgs<ExtArgs>
+            args: Prisma.IncidentEquipmentUsageLogCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.IncidentEquipmentUseageLogCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>[]
+            args: Prisma.IncidentEquipmentUsageLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>[]
           }
           delete: {
-            args: Prisma.IncidentEquipmentUseageLogDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>
+            args: Prisma.IncidentEquipmentUsageLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>
           }
           update: {
-            args: Prisma.IncidentEquipmentUseageLogUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>
+            args: Prisma.IncidentEquipmentUsageLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>
           }
           deleteMany: {
-            args: Prisma.IncidentEquipmentUseageLogDeleteManyArgs<ExtArgs>
+            args: Prisma.IncidentEquipmentUsageLogDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.IncidentEquipmentUseageLogUpdateManyArgs<ExtArgs>
+            args: Prisma.IncidentEquipmentUsageLogUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.IncidentEquipmentUseageLogUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>[]
+            args: Prisma.IncidentEquipmentUsageLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>[]
           }
           upsert: {
-            args: Prisma.IncidentEquipmentUseageLogUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUseageLogPayload>
+            args: Prisma.IncidentEquipmentUsageLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IncidentEquipmentUsageLogPayload>
           }
           aggregate: {
-            args: Prisma.IncidentEquipmentUseageLogAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateIncidentEquipmentUseageLog>
+            args: Prisma.IncidentEquipmentUsageLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIncidentEquipmentUsageLog>
           }
           groupBy: {
-            args: Prisma.IncidentEquipmentUseageLogGroupByArgs<ExtArgs>
-            result: $Utils.Optional<IncidentEquipmentUseageLogGroupByOutputType>[]
+            args: Prisma.IncidentEquipmentUsageLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IncidentEquipmentUsageLogGroupByOutputType>[]
           }
           count: {
-            args: Prisma.IncidentEquipmentUseageLogCountArgs<ExtArgs>
-            result: $Utils.Optional<IncidentEquipmentUseageLogCountAggregateOutputType> | number
+            args: Prisma.IncidentEquipmentUsageLogCountArgs<ExtArgs>
+            result: $Utils.Optional<IncidentEquipmentUsageLogCountAggregateOutputType> | number
           }
         }
       }
@@ -3031,7 +3031,7 @@ export namespace Prisma {
     equipmentServiceLog?: EquipmentServiceLogOmit
     equipment?: EquipmentOmit
     incident?: IncidentOmit
-    incidentEquipmentUseageLog?: IncidentEquipmentUseageLogOmit
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogOmit
     liftCheck?: LiftCheckOmit
     trailCheck?: TrailCheckOmit
     hutCheck?: HutCheckOmit
@@ -3388,7 +3388,7 @@ export namespace Prisma {
    * MountainCountOutputType without action
    */
   export type MountainCountOutputTypeCountIncidentEquipmentUsageLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
   }
 
   /**
@@ -3706,7 +3706,7 @@ export namespace Prisma {
    * EquipmentCountOutputType without action
    */
   export type EquipmentCountOutputTypeCountIncidentEquipmentUsageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
   }
 
   /**
@@ -3753,7 +3753,7 @@ export namespace Prisma {
    * IncidentCountOutputType without action
    */
   export type IncidentCountOutputTypeCountIncidentEquipmentUsageLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
   }
 
   /**
@@ -7559,7 +7559,7 @@ export namespace Prisma {
       equipment: Prisma.$EquipmentPayload<ExtArgs>[]
       employeeAssignments: Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>[]
       dispatcherAssignments: Prisma.$DispatcherAssignmentPayload<ExtArgs>[]
-      incidentEquipmentUsageLog: Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>[]
+      incidentEquipmentUsageLog: Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>[]
       equipmentServiceLogs: Prisma.$EquipmentServiceLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7986,7 +7986,7 @@ export namespace Prisma {
     equipment<T extends Mountain$equipmentArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$equipmentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     employeeAssignments<T extends Mountain$employeeAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$employeeAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMountainAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dispatcherAssignments<T extends Mountain$dispatcherAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$dispatcherAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DispatcherAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    incidentEquipmentUsageLog<T extends Mountain$incidentEquipmentUsageLogArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$incidentEquipmentUsageLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    incidentEquipmentUsageLog<T extends Mountain$incidentEquipmentUsageLogArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$incidentEquipmentUsageLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     equipmentServiceLogs<T extends Mountain$equipmentServiceLogsArgs<ExtArgs> = {}>(args?: Subset<T, Mountain$equipmentServiceLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentServiceLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8829,23 +8829,23 @@ export namespace Prisma {
    */
   export type Mountain$incidentEquipmentUsageLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
-    where?: IncidentEquipmentUseageLogWhereInput
-    orderBy?: IncidentEquipmentUseageLogOrderByWithRelationInput | IncidentEquipmentUseageLogOrderByWithRelationInput[]
-    cursor?: IncidentEquipmentUseageLogWhereUniqueInput
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
+    where?: IncidentEquipmentUsageLogWhereInput
+    orderBy?: IncidentEquipmentUsageLogOrderByWithRelationInput | IncidentEquipmentUsageLogOrderByWithRelationInput[]
+    cursor?: IncidentEquipmentUsageLogWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: IncidentEquipmentUseageLogScalarFieldEnum | IncidentEquipmentUseageLogScalarFieldEnum[]
+    distinct?: IncidentEquipmentUsageLogScalarFieldEnum | IncidentEquipmentUsageLogScalarFieldEnum[]
   }
 
   /**
@@ -23070,7 +23070,7 @@ export namespace Prisma {
     objects: {
       mountain: Prisma.$MountainPayload<ExtArgs>
       location: Prisma.$LocationPayload<ExtArgs> | null
-      incidentEquipmentUsageLogs: Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>[]
+      incidentEquipmentUsageLogs: Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>[]
       equipmentChecks: Prisma.$EquipmentCheckPayload<ExtArgs>[]
       equipmentServiceLogs: Prisma.$EquipmentServiceLogPayload<ExtArgs>[]
     }
@@ -23484,7 +23484,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     location<T extends Equipment$locationArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$locationArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    incidentEquipmentUsageLogs<T extends Equipment$incidentEquipmentUsageLogsArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$incidentEquipmentUsageLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    incidentEquipmentUsageLogs<T extends Equipment$incidentEquipmentUsageLogsArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$incidentEquipmentUsageLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     equipmentChecks<T extends Equipment$equipmentChecksArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$equipmentChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     equipmentServiceLogs<T extends Equipment$equipmentServiceLogsArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$equipmentServiceLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentServiceLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -23948,23 +23948,23 @@ export namespace Prisma {
    */
   export type Equipment$incidentEquipmentUsageLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
-    where?: IncidentEquipmentUseageLogWhereInput
-    orderBy?: IncidentEquipmentUseageLogOrderByWithRelationInput | IncidentEquipmentUseageLogOrderByWithRelationInput[]
-    cursor?: IncidentEquipmentUseageLogWhereUniqueInput
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
+    where?: IncidentEquipmentUsageLogWhereInput
+    orderBy?: IncidentEquipmentUsageLogOrderByWithRelationInput | IncidentEquipmentUsageLogOrderByWithRelationInput[]
+    cursor?: IncidentEquipmentUsageLogWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: IncidentEquipmentUseageLogScalarFieldEnum | IncidentEquipmentUseageLogScalarFieldEnum[]
+    distinct?: IncidentEquipmentUsageLogScalarFieldEnum | IncidentEquipmentUsageLogScalarFieldEnum[]
   }
 
   /**
@@ -24413,7 +24413,7 @@ export namespace Prisma {
     name: "Incident"
     objects: {
       mountain: Prisma.$MountainPayload<ExtArgs>
-      incidentEquipmentUsageLog: Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>[]
+      incidentEquipmentUsageLog: Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>[]
       location: Prisma.$LocationPayload<ExtArgs>
       employees: Prisma.$EmployeePayload<ExtArgs>[]
     }
@@ -24829,7 +24829,7 @@ export namespace Prisma {
   export interface Prisma__IncidentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    incidentEquipmentUsageLog<T extends Incident$incidentEquipmentUsageLogArgs<ExtArgs> = {}>(args?: Subset<T, Incident$incidentEquipmentUsageLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    incidentEquipmentUsageLog<T extends Incident$incidentEquipmentUsageLogArgs<ExtArgs> = {}>(args?: Subset<T, Incident$incidentEquipmentUsageLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     employees<T extends Incident$employeesArgs<ExtArgs> = {}>(args?: Subset<T, Incident$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -25277,23 +25277,23 @@ export namespace Prisma {
    */
   export type Incident$incidentEquipmentUsageLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
-    where?: IncidentEquipmentUseageLogWhereInput
-    orderBy?: IncidentEquipmentUseageLogOrderByWithRelationInput | IncidentEquipmentUseageLogOrderByWithRelationInput[]
-    cursor?: IncidentEquipmentUseageLogWhereUniqueInput
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
+    where?: IncidentEquipmentUsageLogWhereInput
+    orderBy?: IncidentEquipmentUsageLogOrderByWithRelationInput | IncidentEquipmentUsageLogOrderByWithRelationInput[]
+    cursor?: IncidentEquipmentUsageLogWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: IncidentEquipmentUseageLogScalarFieldEnum | IncidentEquipmentUseageLogScalarFieldEnum[]
+    distinct?: IncidentEquipmentUsageLogScalarFieldEnum | IncidentEquipmentUsageLogScalarFieldEnum[]
   }
 
   /**
@@ -25340,16 +25340,16 @@ export namespace Prisma {
 
 
   /**
-   * Model IncidentEquipmentUseageLog
+   * Model IncidentEquipmentUsageLog
    */
 
-  export type AggregateIncidentEquipmentUseageLog = {
-    _count: IncidentEquipmentUseageLogCountAggregateOutputType | null
-    _min: IncidentEquipmentUseageLogMinAggregateOutputType | null
-    _max: IncidentEquipmentUseageLogMaxAggregateOutputType | null
+  export type AggregateIncidentEquipmentUsageLog = {
+    _count: IncidentEquipmentUsageLogCountAggregateOutputType | null
+    _min: IncidentEquipmentUsageLogMinAggregateOutputType | null
+    _max: IncidentEquipmentUsageLogMaxAggregateOutputType | null
   }
 
-  export type IncidentEquipmentUseageLogMinAggregateOutputType = {
+  export type IncidentEquipmentUsageLogMinAggregateOutputType = {
     id: string | null
     equipmentId: string | null
     mountainId: string | null
@@ -25360,7 +25360,7 @@ export namespace Prisma {
     updatedAt: Date | null
   }
 
-  export type IncidentEquipmentUseageLogMaxAggregateOutputType = {
+  export type IncidentEquipmentUsageLogMaxAggregateOutputType = {
     id: string | null
     equipmentId: string | null
     mountainId: string | null
@@ -25371,7 +25371,7 @@ export namespace Prisma {
     updatedAt: Date | null
   }
 
-  export type IncidentEquipmentUseageLogCountAggregateOutputType = {
+  export type IncidentEquipmentUsageLogCountAggregateOutputType = {
     id: number
     equipmentId: number
     mountainId: number
@@ -25384,7 +25384,7 @@ export namespace Prisma {
   }
 
 
-  export type IncidentEquipmentUseageLogMinAggregateInputType = {
+  export type IncidentEquipmentUsageLogMinAggregateInputType = {
     id?: true
     equipmentId?: true
     mountainId?: true
@@ -25395,7 +25395,7 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type IncidentEquipmentUseageLogMaxAggregateInputType = {
+  export type IncidentEquipmentUsageLogMaxAggregateInputType = {
     id?: true
     equipmentId?: true
     mountainId?: true
@@ -25406,7 +25406,7 @@ export namespace Prisma {
     updatedAt?: true
   }
 
-  export type IncidentEquipmentUseageLogCountAggregateInputType = {
+  export type IncidentEquipmentUsageLogCountAggregateInputType = {
     id?: true
     equipmentId?: true
     mountainId?: true
@@ -25418,79 +25418,79 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type IncidentEquipmentUseageLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which IncidentEquipmentUseageLog to aggregate.
+     * Filter which IncidentEquipmentUsageLog to aggregate.
      */
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of IncidentEquipmentUseageLogs to fetch.
+     * Determine the order of IncidentEquipmentUsageLogs to fetch.
      */
-    orderBy?: IncidentEquipmentUseageLogOrderByWithRelationInput | IncidentEquipmentUseageLogOrderByWithRelationInput[]
+    orderBy?: IncidentEquipmentUsageLogOrderByWithRelationInput | IncidentEquipmentUsageLogOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: IncidentEquipmentUseageLogWhereUniqueInput
+    cursor?: IncidentEquipmentUsageLogWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` IncidentEquipmentUseageLogs from the position of the cursor.
+     * Take `±n` IncidentEquipmentUsageLogs from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` IncidentEquipmentUseageLogs.
+     * Skip the first `n` IncidentEquipmentUsageLogs.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned IncidentEquipmentUseageLogs
+     * Count returned IncidentEquipmentUsageLogs
     **/
-    _count?: true | IncidentEquipmentUseageLogCountAggregateInputType
+    _count?: true | IncidentEquipmentUsageLogCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: IncidentEquipmentUseageLogMinAggregateInputType
+    _min?: IncidentEquipmentUsageLogMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: IncidentEquipmentUseageLogMaxAggregateInputType
+    _max?: IncidentEquipmentUsageLogMaxAggregateInputType
   }
 
-  export type GetIncidentEquipmentUseageLogAggregateType<T extends IncidentEquipmentUseageLogAggregateArgs> = {
-        [P in keyof T & keyof AggregateIncidentEquipmentUseageLog]: P extends '_count' | 'count'
+  export type GetIncidentEquipmentUsageLogAggregateType<T extends IncidentEquipmentUsageLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateIncidentEquipmentUsageLog]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateIncidentEquipmentUseageLog[P]>
-      : GetScalarType<T[P], AggregateIncidentEquipmentUseageLog[P]>
+        : GetScalarType<T[P], AggregateIncidentEquipmentUsageLog[P]>
+      : GetScalarType<T[P], AggregateIncidentEquipmentUsageLog[P]>
   }
 
 
 
 
-  export type IncidentEquipmentUseageLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: IncidentEquipmentUseageLogWhereInput
-    orderBy?: IncidentEquipmentUseageLogOrderByWithAggregationInput | IncidentEquipmentUseageLogOrderByWithAggregationInput[]
-    by: IncidentEquipmentUseageLogScalarFieldEnum[] | IncidentEquipmentUseageLogScalarFieldEnum
-    having?: IncidentEquipmentUseageLogScalarWhereWithAggregatesInput
+  export type IncidentEquipmentUsageLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IncidentEquipmentUsageLogWhereInput
+    orderBy?: IncidentEquipmentUsageLogOrderByWithAggregationInput | IncidentEquipmentUsageLogOrderByWithAggregationInput[]
+    by: IncidentEquipmentUsageLogScalarFieldEnum[] | IncidentEquipmentUsageLogScalarFieldEnum
+    having?: IncidentEquipmentUsageLogScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: IncidentEquipmentUseageLogCountAggregateInputType | true
-    _min?: IncidentEquipmentUseageLogMinAggregateInputType
-    _max?: IncidentEquipmentUseageLogMaxAggregateInputType
+    _count?: IncidentEquipmentUsageLogCountAggregateInputType | true
+    _min?: IncidentEquipmentUsageLogMinAggregateInputType
+    _max?: IncidentEquipmentUsageLogMaxAggregateInputType
   }
 
-  export type IncidentEquipmentUseageLogGroupByOutputType = {
+  export type IncidentEquipmentUsageLogGroupByOutputType = {
     id: string
     equipmentId: string
     mountainId: string
@@ -25499,26 +25499,26 @@ export namespace Prisma {
     incidentId: string
     createdAt: Date
     updatedAt: Date
-    _count: IncidentEquipmentUseageLogCountAggregateOutputType | null
-    _min: IncidentEquipmentUseageLogMinAggregateOutputType | null
-    _max: IncidentEquipmentUseageLogMaxAggregateOutputType | null
+    _count: IncidentEquipmentUsageLogCountAggregateOutputType | null
+    _min: IncidentEquipmentUsageLogMinAggregateOutputType | null
+    _max: IncidentEquipmentUsageLogMaxAggregateOutputType | null
   }
 
-  type GetIncidentEquipmentUseageLogGroupByPayload<T extends IncidentEquipmentUseageLogGroupByArgs> = Prisma.PrismaPromise<
+  type GetIncidentEquipmentUsageLogGroupByPayload<T extends IncidentEquipmentUsageLogGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<IncidentEquipmentUseageLogGroupByOutputType, T['by']> &
+      PickEnumerable<IncidentEquipmentUsageLogGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof IncidentEquipmentUseageLogGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof IncidentEquipmentUsageLogGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], IncidentEquipmentUseageLogGroupByOutputType[P]>
-            : GetScalarType<T[P], IncidentEquipmentUseageLogGroupByOutputType[P]>
+              : GetScalarType<T[P], IncidentEquipmentUsageLogGroupByOutputType[P]>
+            : GetScalarType<T[P], IncidentEquipmentUsageLogGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type IncidentEquipmentUseageLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type IncidentEquipmentUsageLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     equipmentId?: boolean
     mountainId?: boolean
@@ -25530,9 +25530,9 @@ export namespace Prisma {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incident?: boolean | IncidentDefaultArgs<ExtArgs>
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["incidentEquipmentUseageLog"]>
+  }, ExtArgs["result"]["incidentEquipmentUsageLog"]>
 
-  export type IncidentEquipmentUseageLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type IncidentEquipmentUsageLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     equipmentId?: boolean
     mountainId?: boolean
@@ -25544,9 +25544,9 @@ export namespace Prisma {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incident?: boolean | IncidentDefaultArgs<ExtArgs>
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["incidentEquipmentUseageLog"]>
+  }, ExtArgs["result"]["incidentEquipmentUsageLog"]>
 
-  export type IncidentEquipmentUseageLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type IncidentEquipmentUsageLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     equipmentId?: boolean
     mountainId?: boolean
@@ -25558,9 +25558,9 @@ export namespace Prisma {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incident?: boolean | IncidentDefaultArgs<ExtArgs>
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["incidentEquipmentUseageLog"]>
+  }, ExtArgs["result"]["incidentEquipmentUsageLog"]>
 
-  export type IncidentEquipmentUseageLogSelectScalar = {
+  export type IncidentEquipmentUsageLogSelectScalar = {
     id?: boolean
     equipmentId?: boolean
     mountainId?: boolean
@@ -25571,25 +25571,25 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type IncidentEquipmentUseageLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "equipmentId" | "mountainId" | "usedAt" | "notes" | "incidentId" | "createdAt" | "updatedAt", ExtArgs["result"]["incidentEquipmentUseageLog"]>
-  export type IncidentEquipmentUseageLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "equipmentId" | "mountainId" | "usedAt" | "notes" | "incidentId" | "createdAt" | "updatedAt", ExtArgs["result"]["incidentEquipmentUsageLog"]>
+  export type IncidentEquipmentUsageLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incident?: boolean | IncidentDefaultArgs<ExtArgs>
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
   }
-  export type IncidentEquipmentUseageLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incident?: boolean | IncidentDefaultArgs<ExtArgs>
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
   }
-  export type IncidentEquipmentUseageLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incident?: boolean | IncidentDefaultArgs<ExtArgs>
     equipment?: boolean | EquipmentDefaultArgs<ExtArgs>
   }
 
-  export type $IncidentEquipmentUseageLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "IncidentEquipmentUseageLog"
+  export type $IncidentEquipmentUsageLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "IncidentEquipmentUsageLog"
     objects: {
       mountain: Prisma.$MountainPayload<ExtArgs>
       incident: Prisma.$IncidentPayload<ExtArgs>
@@ -25604,136 +25604,136 @@ export namespace Prisma {
       incidentId: string
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["incidentEquipmentUseageLog"]>
+    }, ExtArgs["result"]["incidentEquipmentUsageLog"]>
     composites: {}
   }
 
-  type IncidentEquipmentUseageLogGetPayload<S extends boolean | null | undefined | IncidentEquipmentUseageLogDefaultArgs> = $Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload, S>
+  type IncidentEquipmentUsageLogGetPayload<S extends boolean | null | undefined | IncidentEquipmentUsageLogDefaultArgs> = $Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload, S>
 
-  type IncidentEquipmentUseageLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<IncidentEquipmentUseageLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: IncidentEquipmentUseageLogCountAggregateInputType | true
+  type IncidentEquipmentUsageLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IncidentEquipmentUsageLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IncidentEquipmentUsageLogCountAggregateInputType | true
     }
 
-  export interface IncidentEquipmentUseageLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IncidentEquipmentUseageLog'], meta: { name: 'IncidentEquipmentUseageLog' } }
+  export interface IncidentEquipmentUsageLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IncidentEquipmentUsageLog'], meta: { name: 'IncidentEquipmentUsageLog' } }
     /**
-     * Find zero or one IncidentEquipmentUseageLog that matches the filter.
-     * @param {IncidentEquipmentUseageLogFindUniqueArgs} args - Arguments to find a IncidentEquipmentUseageLog
+     * Find zero or one IncidentEquipmentUsageLog that matches the filter.
+     * @param {IncidentEquipmentUsageLogFindUniqueArgs} args - Arguments to find a IncidentEquipmentUsageLog
      * @example
-     * // Get one IncidentEquipmentUseageLog
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.findUnique({
+     * // Get one IncidentEquipmentUsageLog
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends IncidentEquipmentUseageLogFindUniqueArgs>(args: SelectSubset<T, IncidentEquipmentUseageLogFindUniqueArgs<ExtArgs>>): Prisma__IncidentEquipmentUseageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends IncidentEquipmentUsageLogFindUniqueArgs>(args: SelectSubset<T, IncidentEquipmentUsageLogFindUniqueArgs<ExtArgs>>): Prisma__IncidentEquipmentUsageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one IncidentEquipmentUseageLog that matches the filter or throw an error with `error.code='P2025'`
+     * Find one IncidentEquipmentUsageLog that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {IncidentEquipmentUseageLogFindUniqueOrThrowArgs} args - Arguments to find a IncidentEquipmentUseageLog
+     * @param {IncidentEquipmentUsageLogFindUniqueOrThrowArgs} args - Arguments to find a IncidentEquipmentUsageLog
      * @example
-     * // Get one IncidentEquipmentUseageLog
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.findUniqueOrThrow({
+     * // Get one IncidentEquipmentUsageLog
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends IncidentEquipmentUseageLogFindUniqueOrThrowArgs>(args: SelectSubset<T, IncidentEquipmentUseageLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IncidentEquipmentUseageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends IncidentEquipmentUsageLogFindUniqueOrThrowArgs>(args: SelectSubset<T, IncidentEquipmentUsageLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IncidentEquipmentUsageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first IncidentEquipmentUseageLog that matches the filter.
+     * Find the first IncidentEquipmentUsageLog that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IncidentEquipmentUseageLogFindFirstArgs} args - Arguments to find a IncidentEquipmentUseageLog
+     * @param {IncidentEquipmentUsageLogFindFirstArgs} args - Arguments to find a IncidentEquipmentUsageLog
      * @example
-     * // Get one IncidentEquipmentUseageLog
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.findFirst({
+     * // Get one IncidentEquipmentUsageLog
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends IncidentEquipmentUseageLogFindFirstArgs>(args?: SelectSubset<T, IncidentEquipmentUseageLogFindFirstArgs<ExtArgs>>): Prisma__IncidentEquipmentUseageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends IncidentEquipmentUsageLogFindFirstArgs>(args?: SelectSubset<T, IncidentEquipmentUsageLogFindFirstArgs<ExtArgs>>): Prisma__IncidentEquipmentUsageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first IncidentEquipmentUseageLog that matches the filter or
+     * Find the first IncidentEquipmentUsageLog that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IncidentEquipmentUseageLogFindFirstOrThrowArgs} args - Arguments to find a IncidentEquipmentUseageLog
+     * @param {IncidentEquipmentUsageLogFindFirstOrThrowArgs} args - Arguments to find a IncidentEquipmentUsageLog
      * @example
-     * // Get one IncidentEquipmentUseageLog
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.findFirstOrThrow({
+     * // Get one IncidentEquipmentUsageLog
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends IncidentEquipmentUseageLogFindFirstOrThrowArgs>(args?: SelectSubset<T, IncidentEquipmentUseageLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__IncidentEquipmentUseageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends IncidentEquipmentUsageLogFindFirstOrThrowArgs>(args?: SelectSubset<T, IncidentEquipmentUsageLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__IncidentEquipmentUsageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more IncidentEquipmentUseageLogs that matches the filter.
+     * Find zero or more IncidentEquipmentUsageLogs that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IncidentEquipmentUseageLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {IncidentEquipmentUsageLogFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all IncidentEquipmentUseageLogs
-     * const incidentEquipmentUseageLogs = await prisma.incidentEquipmentUseageLog.findMany()
+     * // Get all IncidentEquipmentUsageLogs
+     * const incidentEquipmentUsageLogs = await prisma.incidentEquipmentUsageLog.findMany()
      * 
-     * // Get first 10 IncidentEquipmentUseageLogs
-     * const incidentEquipmentUseageLogs = await prisma.incidentEquipmentUseageLog.findMany({ take: 10 })
+     * // Get first 10 IncidentEquipmentUsageLogs
+     * const incidentEquipmentUsageLogs = await prisma.incidentEquipmentUsageLog.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const incidentEquipmentUseageLogWithIdOnly = await prisma.incidentEquipmentUseageLog.findMany({ select: { id: true } })
+     * const incidentEquipmentUsageLogWithIdOnly = await prisma.incidentEquipmentUsageLog.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends IncidentEquipmentUseageLogFindManyArgs>(args?: SelectSubset<T, IncidentEquipmentUseageLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends IncidentEquipmentUsageLogFindManyArgs>(args?: SelectSubset<T, IncidentEquipmentUsageLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a IncidentEquipmentUseageLog.
-     * @param {IncidentEquipmentUseageLogCreateArgs} args - Arguments to create a IncidentEquipmentUseageLog.
+     * Create a IncidentEquipmentUsageLog.
+     * @param {IncidentEquipmentUsageLogCreateArgs} args - Arguments to create a IncidentEquipmentUsageLog.
      * @example
-     * // Create one IncidentEquipmentUseageLog
-     * const IncidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.create({
+     * // Create one IncidentEquipmentUsageLog
+     * const IncidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.create({
      *   data: {
-     *     // ... data to create a IncidentEquipmentUseageLog
+     *     // ... data to create a IncidentEquipmentUsageLog
      *   }
      * })
      * 
      */
-    create<T extends IncidentEquipmentUseageLogCreateArgs>(args: SelectSubset<T, IncidentEquipmentUseageLogCreateArgs<ExtArgs>>): Prisma__IncidentEquipmentUseageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends IncidentEquipmentUsageLogCreateArgs>(args: SelectSubset<T, IncidentEquipmentUsageLogCreateArgs<ExtArgs>>): Prisma__IncidentEquipmentUsageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many IncidentEquipmentUseageLogs.
-     * @param {IncidentEquipmentUseageLogCreateManyArgs} args - Arguments to create many IncidentEquipmentUseageLogs.
+     * Create many IncidentEquipmentUsageLogs.
+     * @param {IncidentEquipmentUsageLogCreateManyArgs} args - Arguments to create many IncidentEquipmentUsageLogs.
      * @example
-     * // Create many IncidentEquipmentUseageLogs
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.createMany({
+     * // Create many IncidentEquipmentUsageLogs
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends IncidentEquipmentUseageLogCreateManyArgs>(args?: SelectSubset<T, IncidentEquipmentUseageLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends IncidentEquipmentUsageLogCreateManyArgs>(args?: SelectSubset<T, IncidentEquipmentUsageLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many IncidentEquipmentUseageLogs and returns the data saved in the database.
-     * @param {IncidentEquipmentUseageLogCreateManyAndReturnArgs} args - Arguments to create many IncidentEquipmentUseageLogs.
+     * Create many IncidentEquipmentUsageLogs and returns the data saved in the database.
+     * @param {IncidentEquipmentUsageLogCreateManyAndReturnArgs} args - Arguments to create many IncidentEquipmentUsageLogs.
      * @example
-     * // Create many IncidentEquipmentUseageLogs
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.createManyAndReturn({
+     * // Create many IncidentEquipmentUsageLogs
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many IncidentEquipmentUseageLogs and only return the `id`
-     * const incidentEquipmentUseageLogWithIdOnly = await prisma.incidentEquipmentUseageLog.createManyAndReturn({
+     * // Create many IncidentEquipmentUsageLogs and only return the `id`
+     * const incidentEquipmentUsageLogWithIdOnly = await prisma.incidentEquipmentUsageLog.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -25743,28 +25743,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends IncidentEquipmentUseageLogCreateManyAndReturnArgs>(args?: SelectSubset<T, IncidentEquipmentUseageLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends IncidentEquipmentUsageLogCreateManyAndReturnArgs>(args?: SelectSubset<T, IncidentEquipmentUsageLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a IncidentEquipmentUseageLog.
-     * @param {IncidentEquipmentUseageLogDeleteArgs} args - Arguments to delete one IncidentEquipmentUseageLog.
+     * Delete a IncidentEquipmentUsageLog.
+     * @param {IncidentEquipmentUsageLogDeleteArgs} args - Arguments to delete one IncidentEquipmentUsageLog.
      * @example
-     * // Delete one IncidentEquipmentUseageLog
-     * const IncidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.delete({
+     * // Delete one IncidentEquipmentUsageLog
+     * const IncidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.delete({
      *   where: {
-     *     // ... filter to delete one IncidentEquipmentUseageLog
+     *     // ... filter to delete one IncidentEquipmentUsageLog
      *   }
      * })
      * 
      */
-    delete<T extends IncidentEquipmentUseageLogDeleteArgs>(args: SelectSubset<T, IncidentEquipmentUseageLogDeleteArgs<ExtArgs>>): Prisma__IncidentEquipmentUseageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends IncidentEquipmentUsageLogDeleteArgs>(args: SelectSubset<T, IncidentEquipmentUsageLogDeleteArgs<ExtArgs>>): Prisma__IncidentEquipmentUsageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one IncidentEquipmentUseageLog.
-     * @param {IncidentEquipmentUseageLogUpdateArgs} args - Arguments to update one IncidentEquipmentUseageLog.
+     * Update one IncidentEquipmentUsageLog.
+     * @param {IncidentEquipmentUsageLogUpdateArgs} args - Arguments to update one IncidentEquipmentUsageLog.
      * @example
-     * // Update one IncidentEquipmentUseageLog
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.update({
+     * // Update one IncidentEquipmentUsageLog
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -25774,30 +25774,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends IncidentEquipmentUseageLogUpdateArgs>(args: SelectSubset<T, IncidentEquipmentUseageLogUpdateArgs<ExtArgs>>): Prisma__IncidentEquipmentUseageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends IncidentEquipmentUsageLogUpdateArgs>(args: SelectSubset<T, IncidentEquipmentUsageLogUpdateArgs<ExtArgs>>): Prisma__IncidentEquipmentUsageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more IncidentEquipmentUseageLogs.
-     * @param {IncidentEquipmentUseageLogDeleteManyArgs} args - Arguments to filter IncidentEquipmentUseageLogs to delete.
+     * Delete zero or more IncidentEquipmentUsageLogs.
+     * @param {IncidentEquipmentUsageLogDeleteManyArgs} args - Arguments to filter IncidentEquipmentUsageLogs to delete.
      * @example
-     * // Delete a few IncidentEquipmentUseageLogs
-     * const { count } = await prisma.incidentEquipmentUseageLog.deleteMany({
+     * // Delete a few IncidentEquipmentUsageLogs
+     * const { count } = await prisma.incidentEquipmentUsageLog.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends IncidentEquipmentUseageLogDeleteManyArgs>(args?: SelectSubset<T, IncidentEquipmentUseageLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends IncidentEquipmentUsageLogDeleteManyArgs>(args?: SelectSubset<T, IncidentEquipmentUsageLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more IncidentEquipmentUseageLogs.
+     * Update zero or more IncidentEquipmentUsageLogs.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IncidentEquipmentUseageLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {IncidentEquipmentUsageLogUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many IncidentEquipmentUseageLogs
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.updateMany({
+     * // Update many IncidentEquipmentUsageLogs
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -25807,14 +25807,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends IncidentEquipmentUseageLogUpdateManyArgs>(args: SelectSubset<T, IncidentEquipmentUseageLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends IncidentEquipmentUsageLogUpdateManyArgs>(args: SelectSubset<T, IncidentEquipmentUsageLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more IncidentEquipmentUseageLogs and returns the data updated in the database.
-     * @param {IncidentEquipmentUseageLogUpdateManyAndReturnArgs} args - Arguments to update many IncidentEquipmentUseageLogs.
+     * Update zero or more IncidentEquipmentUsageLogs and returns the data updated in the database.
+     * @param {IncidentEquipmentUsageLogUpdateManyAndReturnArgs} args - Arguments to update many IncidentEquipmentUsageLogs.
      * @example
-     * // Update many IncidentEquipmentUseageLogs
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.updateManyAndReturn({
+     * // Update many IncidentEquipmentUsageLogs
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -25823,8 +25823,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more IncidentEquipmentUseageLogs and only return the `id`
-     * const incidentEquipmentUseageLogWithIdOnly = await prisma.incidentEquipmentUseageLog.updateManyAndReturn({
+     * // Update zero or more IncidentEquipmentUsageLogs and only return the `id`
+     * const incidentEquipmentUsageLogWithIdOnly = await prisma.incidentEquipmentUsageLog.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -25837,56 +25837,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends IncidentEquipmentUseageLogUpdateManyAndReturnArgs>(args: SelectSubset<T, IncidentEquipmentUseageLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends IncidentEquipmentUsageLogUpdateManyAndReturnArgs>(args: SelectSubset<T, IncidentEquipmentUsageLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one IncidentEquipmentUseageLog.
-     * @param {IncidentEquipmentUseageLogUpsertArgs} args - Arguments to update or create a IncidentEquipmentUseageLog.
+     * Create or update one IncidentEquipmentUsageLog.
+     * @param {IncidentEquipmentUsageLogUpsertArgs} args - Arguments to update or create a IncidentEquipmentUsageLog.
      * @example
-     * // Update or create a IncidentEquipmentUseageLog
-     * const incidentEquipmentUseageLog = await prisma.incidentEquipmentUseageLog.upsert({
+     * // Update or create a IncidentEquipmentUsageLog
+     * const incidentEquipmentUsageLog = await prisma.incidentEquipmentUsageLog.upsert({
      *   create: {
-     *     // ... data to create a IncidentEquipmentUseageLog
+     *     // ... data to create a IncidentEquipmentUsageLog
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the IncidentEquipmentUseageLog we want to update
+     *     // ... the filter for the IncidentEquipmentUsageLog we want to update
      *   }
      * })
      */
-    upsert<T extends IncidentEquipmentUseageLogUpsertArgs>(args: SelectSubset<T, IncidentEquipmentUseageLogUpsertArgs<ExtArgs>>): Prisma__IncidentEquipmentUseageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends IncidentEquipmentUsageLogUpsertArgs>(args: SelectSubset<T, IncidentEquipmentUsageLogUpsertArgs<ExtArgs>>): Prisma__IncidentEquipmentUsageLogClient<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of IncidentEquipmentUseageLogs.
+     * Count the number of IncidentEquipmentUsageLogs.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IncidentEquipmentUseageLogCountArgs} args - Arguments to filter IncidentEquipmentUseageLogs to count.
+     * @param {IncidentEquipmentUsageLogCountArgs} args - Arguments to filter IncidentEquipmentUsageLogs to count.
      * @example
-     * // Count the number of IncidentEquipmentUseageLogs
-     * const count = await prisma.incidentEquipmentUseageLog.count({
+     * // Count the number of IncidentEquipmentUsageLogs
+     * const count = await prisma.incidentEquipmentUsageLog.count({
      *   where: {
-     *     // ... the filter for the IncidentEquipmentUseageLogs we want to count
+     *     // ... the filter for the IncidentEquipmentUsageLogs we want to count
      *   }
      * })
     **/
-    count<T extends IncidentEquipmentUseageLogCountArgs>(
-      args?: Subset<T, IncidentEquipmentUseageLogCountArgs>,
+    count<T extends IncidentEquipmentUsageLogCountArgs>(
+      args?: Subset<T, IncidentEquipmentUsageLogCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], IncidentEquipmentUseageLogCountAggregateOutputType>
+          : GetScalarType<T['select'], IncidentEquipmentUsageLogCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a IncidentEquipmentUseageLog.
+     * Allows you to perform aggregations operations on a IncidentEquipmentUsageLog.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IncidentEquipmentUseageLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {IncidentEquipmentUsageLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -25906,13 +25906,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends IncidentEquipmentUseageLogAggregateArgs>(args: Subset<T, IncidentEquipmentUseageLogAggregateArgs>): Prisma.PrismaPromise<GetIncidentEquipmentUseageLogAggregateType<T>>
+    aggregate<T extends IncidentEquipmentUsageLogAggregateArgs>(args: Subset<T, IncidentEquipmentUsageLogAggregateArgs>): Prisma.PrismaPromise<GetIncidentEquipmentUsageLogAggregateType<T>>
 
     /**
-     * Group by IncidentEquipmentUseageLog.
+     * Group by IncidentEquipmentUsageLog.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {IncidentEquipmentUseageLogGroupByArgs} args - Group by arguments.
+     * @param {IncidentEquipmentUsageLogGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -25927,14 +25927,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends IncidentEquipmentUseageLogGroupByArgs,
+      T extends IncidentEquipmentUsageLogGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: IncidentEquipmentUseageLogGroupByArgs['orderBy'] }
-        : { orderBy?: IncidentEquipmentUseageLogGroupByArgs['orderBy'] },
+        ? { orderBy: IncidentEquipmentUsageLogGroupByArgs['orderBy'] }
+        : { orderBy?: IncidentEquipmentUsageLogGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -25983,20 +25983,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, IncidentEquipmentUseageLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIncidentEquipmentUseageLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, IncidentEquipmentUsageLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIncidentEquipmentUsageLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the IncidentEquipmentUseageLog model
+   * Fields of the IncidentEquipmentUsageLog model
    */
-  readonly fields: IncidentEquipmentUseageLogFieldRefs;
+  readonly fields: IncidentEquipmentUsageLogFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for IncidentEquipmentUseageLog.
+   * The delegate class that acts as a "Promise-like" for IncidentEquipmentUsageLog.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__IncidentEquipmentUseageLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__IncidentEquipmentUsageLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     incident<T extends IncidentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IncidentDefaultArgs<ExtArgs>>): Prisma__IncidentClient<$Result.GetResult<Prisma.$IncidentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -26027,428 +26027,428 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the IncidentEquipmentUseageLog model
+   * Fields of the IncidentEquipmentUsageLog model
    */
-  interface IncidentEquipmentUseageLogFieldRefs {
-    readonly id: FieldRef<"IncidentEquipmentUseageLog", 'String'>
-    readonly equipmentId: FieldRef<"IncidentEquipmentUseageLog", 'String'>
-    readonly mountainId: FieldRef<"IncidentEquipmentUseageLog", 'String'>
-    readonly usedAt: FieldRef<"IncidentEquipmentUseageLog", 'DateTime'>
-    readonly notes: FieldRef<"IncidentEquipmentUseageLog", 'String'>
-    readonly incidentId: FieldRef<"IncidentEquipmentUseageLog", 'String'>
-    readonly createdAt: FieldRef<"IncidentEquipmentUseageLog", 'DateTime'>
-    readonly updatedAt: FieldRef<"IncidentEquipmentUseageLog", 'DateTime'>
+  interface IncidentEquipmentUsageLogFieldRefs {
+    readonly id: FieldRef<"IncidentEquipmentUsageLog", 'String'>
+    readonly equipmentId: FieldRef<"IncidentEquipmentUsageLog", 'String'>
+    readonly mountainId: FieldRef<"IncidentEquipmentUsageLog", 'String'>
+    readonly usedAt: FieldRef<"IncidentEquipmentUsageLog", 'DateTime'>
+    readonly notes: FieldRef<"IncidentEquipmentUsageLog", 'String'>
+    readonly incidentId: FieldRef<"IncidentEquipmentUsageLog", 'String'>
+    readonly createdAt: FieldRef<"IncidentEquipmentUsageLog", 'DateTime'>
+    readonly updatedAt: FieldRef<"IncidentEquipmentUsageLog", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * IncidentEquipmentUseageLog findUnique
+   * IncidentEquipmentUsageLog findUnique
    */
-  export type IncidentEquipmentUseageLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * Filter, which IncidentEquipmentUseageLog to fetch.
+     * Filter, which IncidentEquipmentUsageLog to fetch.
      */
-    where: IncidentEquipmentUseageLogWhereUniqueInput
+    where: IncidentEquipmentUsageLogWhereUniqueInput
   }
 
   /**
-   * IncidentEquipmentUseageLog findUniqueOrThrow
+   * IncidentEquipmentUsageLog findUniqueOrThrow
    */
-  export type IncidentEquipmentUseageLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * Filter, which IncidentEquipmentUseageLog to fetch.
+     * Filter, which IncidentEquipmentUsageLog to fetch.
      */
-    where: IncidentEquipmentUseageLogWhereUniqueInput
+    where: IncidentEquipmentUsageLogWhereUniqueInput
   }
 
   /**
-   * IncidentEquipmentUseageLog findFirst
+   * IncidentEquipmentUsageLog findFirst
    */
-  export type IncidentEquipmentUseageLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * Filter, which IncidentEquipmentUseageLog to fetch.
+     * Filter, which IncidentEquipmentUsageLog to fetch.
      */
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of IncidentEquipmentUseageLogs to fetch.
+     * Determine the order of IncidentEquipmentUsageLogs to fetch.
      */
-    orderBy?: IncidentEquipmentUseageLogOrderByWithRelationInput | IncidentEquipmentUseageLogOrderByWithRelationInput[]
+    orderBy?: IncidentEquipmentUsageLogOrderByWithRelationInput | IncidentEquipmentUsageLogOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for IncidentEquipmentUseageLogs.
+     * Sets the position for searching for IncidentEquipmentUsageLogs.
      */
-    cursor?: IncidentEquipmentUseageLogWhereUniqueInput
+    cursor?: IncidentEquipmentUsageLogWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` IncidentEquipmentUseageLogs from the position of the cursor.
+     * Take `±n` IncidentEquipmentUsageLogs from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` IncidentEquipmentUseageLogs.
+     * Skip the first `n` IncidentEquipmentUsageLogs.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of IncidentEquipmentUseageLogs.
+     * Filter by unique combinations of IncidentEquipmentUsageLogs.
      */
-    distinct?: IncidentEquipmentUseageLogScalarFieldEnum | IncidentEquipmentUseageLogScalarFieldEnum[]
+    distinct?: IncidentEquipmentUsageLogScalarFieldEnum | IncidentEquipmentUsageLogScalarFieldEnum[]
   }
 
   /**
-   * IncidentEquipmentUseageLog findFirstOrThrow
+   * IncidentEquipmentUsageLog findFirstOrThrow
    */
-  export type IncidentEquipmentUseageLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * Filter, which IncidentEquipmentUseageLog to fetch.
+     * Filter, which IncidentEquipmentUsageLog to fetch.
      */
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of IncidentEquipmentUseageLogs to fetch.
+     * Determine the order of IncidentEquipmentUsageLogs to fetch.
      */
-    orderBy?: IncidentEquipmentUseageLogOrderByWithRelationInput | IncidentEquipmentUseageLogOrderByWithRelationInput[]
+    orderBy?: IncidentEquipmentUsageLogOrderByWithRelationInput | IncidentEquipmentUsageLogOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for IncidentEquipmentUseageLogs.
+     * Sets the position for searching for IncidentEquipmentUsageLogs.
      */
-    cursor?: IncidentEquipmentUseageLogWhereUniqueInput
+    cursor?: IncidentEquipmentUsageLogWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` IncidentEquipmentUseageLogs from the position of the cursor.
+     * Take `±n` IncidentEquipmentUsageLogs from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` IncidentEquipmentUseageLogs.
+     * Skip the first `n` IncidentEquipmentUsageLogs.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of IncidentEquipmentUseageLogs.
+     * Filter by unique combinations of IncidentEquipmentUsageLogs.
      */
-    distinct?: IncidentEquipmentUseageLogScalarFieldEnum | IncidentEquipmentUseageLogScalarFieldEnum[]
+    distinct?: IncidentEquipmentUsageLogScalarFieldEnum | IncidentEquipmentUsageLogScalarFieldEnum[]
   }
 
   /**
-   * IncidentEquipmentUseageLog findMany
+   * IncidentEquipmentUsageLog findMany
    */
-  export type IncidentEquipmentUseageLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * Filter, which IncidentEquipmentUseageLogs to fetch.
+     * Filter, which IncidentEquipmentUsageLogs to fetch.
      */
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of IncidentEquipmentUseageLogs to fetch.
+     * Determine the order of IncidentEquipmentUsageLogs to fetch.
      */
-    orderBy?: IncidentEquipmentUseageLogOrderByWithRelationInput | IncidentEquipmentUseageLogOrderByWithRelationInput[]
+    orderBy?: IncidentEquipmentUsageLogOrderByWithRelationInput | IncidentEquipmentUsageLogOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing IncidentEquipmentUseageLogs.
+     * Sets the position for listing IncidentEquipmentUsageLogs.
      */
-    cursor?: IncidentEquipmentUseageLogWhereUniqueInput
+    cursor?: IncidentEquipmentUsageLogWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` IncidentEquipmentUseageLogs from the position of the cursor.
+     * Take `±n` IncidentEquipmentUsageLogs from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` IncidentEquipmentUseageLogs.
+     * Skip the first `n` IncidentEquipmentUsageLogs.
      */
     skip?: number
-    distinct?: IncidentEquipmentUseageLogScalarFieldEnum | IncidentEquipmentUseageLogScalarFieldEnum[]
+    distinct?: IncidentEquipmentUsageLogScalarFieldEnum | IncidentEquipmentUsageLogScalarFieldEnum[]
   }
 
   /**
-   * IncidentEquipmentUseageLog create
+   * IncidentEquipmentUsageLog create
    */
-  export type IncidentEquipmentUseageLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * The data needed to create a IncidentEquipmentUseageLog.
+     * The data needed to create a IncidentEquipmentUsageLog.
      */
-    data: XOR<IncidentEquipmentUseageLogCreateInput, IncidentEquipmentUseageLogUncheckedCreateInput>
+    data: XOR<IncidentEquipmentUsageLogCreateInput, IncidentEquipmentUsageLogUncheckedCreateInput>
   }
 
   /**
-   * IncidentEquipmentUseageLog createMany
+   * IncidentEquipmentUsageLog createMany
    */
-  export type IncidentEquipmentUseageLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many IncidentEquipmentUseageLogs.
+     * The data used to create many IncidentEquipmentUsageLogs.
      */
-    data: IncidentEquipmentUseageLogCreateManyInput | IncidentEquipmentUseageLogCreateManyInput[]
+    data: IncidentEquipmentUsageLogCreateManyInput | IncidentEquipmentUsageLogCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * IncidentEquipmentUseageLog createManyAndReturn
+   * IncidentEquipmentUsageLog createManyAndReturn
    */
-  export type IncidentEquipmentUseageLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelectCreateManyAndReturn<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
-     * The data used to create many IncidentEquipmentUseageLogs.
+     * The data used to create many IncidentEquipmentUsageLogs.
      */
-    data: IncidentEquipmentUseageLogCreateManyInput | IncidentEquipmentUseageLogCreateManyInput[]
+    data: IncidentEquipmentUsageLogCreateManyInput | IncidentEquipmentUsageLogCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * IncidentEquipmentUseageLog update
+   * IncidentEquipmentUsageLog update
    */
-  export type IncidentEquipmentUseageLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * The data needed to update a IncidentEquipmentUseageLog.
+     * The data needed to update a IncidentEquipmentUsageLog.
      */
-    data: XOR<IncidentEquipmentUseageLogUpdateInput, IncidentEquipmentUseageLogUncheckedUpdateInput>
+    data: XOR<IncidentEquipmentUsageLogUpdateInput, IncidentEquipmentUsageLogUncheckedUpdateInput>
     /**
-     * Choose, which IncidentEquipmentUseageLog to update.
+     * Choose, which IncidentEquipmentUsageLog to update.
      */
-    where: IncidentEquipmentUseageLogWhereUniqueInput
+    where: IncidentEquipmentUsageLogWhereUniqueInput
   }
 
   /**
-   * IncidentEquipmentUseageLog updateMany
+   * IncidentEquipmentUsageLog updateMany
    */
-  export type IncidentEquipmentUseageLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update IncidentEquipmentUseageLogs.
+     * The data used to update IncidentEquipmentUsageLogs.
      */
-    data: XOR<IncidentEquipmentUseageLogUpdateManyMutationInput, IncidentEquipmentUseageLogUncheckedUpdateManyInput>
+    data: XOR<IncidentEquipmentUsageLogUpdateManyMutationInput, IncidentEquipmentUsageLogUncheckedUpdateManyInput>
     /**
-     * Filter which IncidentEquipmentUseageLogs to update
+     * Filter which IncidentEquipmentUsageLogs to update
      */
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
     /**
-     * Limit how many IncidentEquipmentUseageLogs to update.
+     * Limit how many IncidentEquipmentUsageLogs to update.
      */
     limit?: number
   }
 
   /**
-   * IncidentEquipmentUseageLog updateManyAndReturn
+   * IncidentEquipmentUsageLog updateManyAndReturn
    */
-  export type IncidentEquipmentUseageLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
-     * The data used to update IncidentEquipmentUseageLogs.
+     * The data used to update IncidentEquipmentUsageLogs.
      */
-    data: XOR<IncidentEquipmentUseageLogUpdateManyMutationInput, IncidentEquipmentUseageLogUncheckedUpdateManyInput>
+    data: XOR<IncidentEquipmentUsageLogUpdateManyMutationInput, IncidentEquipmentUsageLogUncheckedUpdateManyInput>
     /**
-     * Filter which IncidentEquipmentUseageLogs to update
+     * Filter which IncidentEquipmentUsageLogs to update
      */
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
     /**
-     * Limit how many IncidentEquipmentUseageLogs to update.
+     * Limit how many IncidentEquipmentUsageLogs to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * IncidentEquipmentUseageLog upsert
+   * IncidentEquipmentUsageLog upsert
    */
-  export type IncidentEquipmentUseageLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * The filter to search for the IncidentEquipmentUseageLog to update in case it exists.
+     * The filter to search for the IncidentEquipmentUsageLog to update in case it exists.
      */
-    where: IncidentEquipmentUseageLogWhereUniqueInput
+    where: IncidentEquipmentUsageLogWhereUniqueInput
     /**
-     * In case the IncidentEquipmentUseageLog found by the `where` argument doesn't exist, create a new IncidentEquipmentUseageLog with this data.
+     * In case the IncidentEquipmentUsageLog found by the `where` argument doesn't exist, create a new IncidentEquipmentUsageLog with this data.
      */
-    create: XOR<IncidentEquipmentUseageLogCreateInput, IncidentEquipmentUseageLogUncheckedCreateInput>
+    create: XOR<IncidentEquipmentUsageLogCreateInput, IncidentEquipmentUsageLogUncheckedCreateInput>
     /**
-     * In case the IncidentEquipmentUseageLog was found with the provided `where` argument, update it with this data.
+     * In case the IncidentEquipmentUsageLog was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<IncidentEquipmentUseageLogUpdateInput, IncidentEquipmentUseageLogUncheckedUpdateInput>
+    update: XOR<IncidentEquipmentUsageLogUpdateInput, IncidentEquipmentUsageLogUncheckedUpdateInput>
   }
 
   /**
-   * IncidentEquipmentUseageLog delete
+   * IncidentEquipmentUsageLog delete
    */
-  export type IncidentEquipmentUseageLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
     /**
-     * Filter which IncidentEquipmentUseageLog to delete.
+     * Filter which IncidentEquipmentUsageLog to delete.
      */
-    where: IncidentEquipmentUseageLogWhereUniqueInput
+    where: IncidentEquipmentUsageLogWhereUniqueInput
   }
 
   /**
-   * IncidentEquipmentUseageLog deleteMany
+   * IncidentEquipmentUsageLog deleteMany
    */
-  export type IncidentEquipmentUseageLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which IncidentEquipmentUseageLogs to delete
+     * Filter which IncidentEquipmentUsageLogs to delete
      */
-    where?: IncidentEquipmentUseageLogWhereInput
+    where?: IncidentEquipmentUsageLogWhereInput
     /**
-     * Limit how many IncidentEquipmentUseageLogs to delete.
+     * Limit how many IncidentEquipmentUsageLogs to delete.
      */
     limit?: number
   }
 
   /**
-   * IncidentEquipmentUseageLog without action
+   * IncidentEquipmentUsageLog without action
    */
-  export type IncidentEquipmentUseageLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type IncidentEquipmentUsageLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the IncidentEquipmentUseageLog
+     * Select specific fields to fetch from the IncidentEquipmentUsageLog
      */
-    select?: IncidentEquipmentUseageLogSelect<ExtArgs> | null
+    select?: IncidentEquipmentUsageLogSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the IncidentEquipmentUseageLog
+     * Omit specific fields from the IncidentEquipmentUsageLog
      */
-    omit?: IncidentEquipmentUseageLogOmit<ExtArgs> | null
+    omit?: IncidentEquipmentUsageLogOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: IncidentEquipmentUseageLogInclude<ExtArgs> | null
+    include?: IncidentEquipmentUsageLogInclude<ExtArgs> | null
   }
 
 
@@ -32282,7 +32282,7 @@ export namespace Prisma {
   export type IncidentScalarFieldEnum = (typeof IncidentScalarFieldEnum)[keyof typeof IncidentScalarFieldEnum]
 
 
-  export const IncidentEquipmentUseageLogScalarFieldEnum: {
+  export const IncidentEquipmentUsageLogScalarFieldEnum: {
     id: 'id',
     equipmentId: 'equipmentId',
     mountainId: 'mountainId',
@@ -32293,7 +32293,7 @@ export namespace Prisma {
     updatedAt: 'updatedAt'
   };
 
-  export type IncidentEquipmentUseageLogScalarFieldEnum = (typeof IncidentEquipmentUseageLogScalarFieldEnum)[keyof typeof IncidentEquipmentUseageLogScalarFieldEnum]
+  export type IncidentEquipmentUsageLogScalarFieldEnum = (typeof IncidentEquipmentUsageLogScalarFieldEnum)[keyof typeof IncidentEquipmentUsageLogScalarFieldEnum]
 
 
   export const LiftCheckScalarFieldEnum: {
@@ -32842,7 +32842,7 @@ export namespace Prisma {
     equipment?: EquipmentListRelationFilter
     employeeAssignments?: EmployeeMountainAssignmentListRelationFilter
     dispatcherAssignments?: DispatcherAssignmentListRelationFilter
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogListRelationFilter
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogListRelationFilter
     equipmentServiceLogs?: EquipmentServiceLogListRelationFilter
   }
 
@@ -32876,7 +32876,7 @@ export namespace Prisma {
     equipment?: EquipmentOrderByRelationAggregateInput
     employeeAssignments?: EmployeeMountainAssignmentOrderByRelationAggregateInput
     dispatcherAssignments?: DispatcherAssignmentOrderByRelationAggregateInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogOrderByRelationAggregateInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogOrderByRelationAggregateInput
     equipmentServiceLogs?: EquipmentServiceLogOrderByRelationAggregateInput
   }
 
@@ -32913,7 +32913,7 @@ export namespace Prisma {
     equipment?: EquipmentListRelationFilter
     employeeAssignments?: EmployeeMountainAssignmentListRelationFilter
     dispatcherAssignments?: DispatcherAssignmentListRelationFilter
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogListRelationFilter
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogListRelationFilter
     equipmentServiceLogs?: EquipmentServiceLogListRelationFilter
   }, "id" | "name">
 
@@ -33830,7 +33830,7 @@ export namespace Prisma {
     dateAdded?: DateTimeFilter<"Equipment"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogListRelationFilter
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogListRelationFilter
     equipmentChecks?: EquipmentCheckListRelationFilter
     equipmentServiceLogs?: EquipmentServiceLogListRelationFilter
   }
@@ -33851,7 +33851,7 @@ export namespace Prisma {
     dateAdded?: SortOrder
     mountain?: MountainOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogOrderByRelationAggregateInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogOrderByRelationAggregateInput
     equipmentChecks?: EquipmentCheckOrderByRelationAggregateInput
     equipmentServiceLogs?: EquipmentServiceLogOrderByRelationAggregateInput
   }
@@ -33876,7 +33876,7 @@ export namespace Prisma {
     dateAdded?: DateTimeFilter<"Equipment"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogListRelationFilter
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogListRelationFilter
     equipmentChecks?: EquipmentCheckListRelationFilter
     equipmentServiceLogs?: EquipmentServiceLogListRelationFilter
   }, "id" | "mountainId_number">
@@ -33942,7 +33942,7 @@ export namespace Prisma {
     locationId?: StringFilter<"Incident"> | string
     entityId?: StringFilter<"Incident"> | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogListRelationFilter
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogListRelationFilter
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     employees?: EmployeeListRelationFilter
   }
@@ -33965,7 +33965,7 @@ export namespace Prisma {
     locationId?: SortOrder
     entityId?: SortOrder
     mountain?: MountainOrderByWithRelationInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogOrderByRelationAggregateInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogOrderByRelationAggregateInput
     location?: LocationOrderByWithRelationInput
     employees?: EmployeeOrderByRelationAggregateInput
   }
@@ -33991,7 +33991,7 @@ export namespace Prisma {
     locationId?: StringFilter<"Incident"> | string
     entityId?: StringFilter<"Incident"> | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogListRelationFilter
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogListRelationFilter
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
     employees?: EmployeeListRelationFilter
   }, "id">
@@ -34042,24 +34042,24 @@ export namespace Prisma {
     entityId?: StringWithAggregatesFilter<"Incident"> | string
   }
 
-  export type IncidentEquipmentUseageLogWhereInput = {
-    AND?: IncidentEquipmentUseageLogWhereInput | IncidentEquipmentUseageLogWhereInput[]
-    OR?: IncidentEquipmentUseageLogWhereInput[]
-    NOT?: IncidentEquipmentUseageLogWhereInput | IncidentEquipmentUseageLogWhereInput[]
-    id?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    equipmentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    mountainId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    usedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
-    notes?: StringNullableFilter<"IncidentEquipmentUseageLog"> | string | null
-    incidentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    createdAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
-    updatedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
+  export type IncidentEquipmentUsageLogWhereInput = {
+    AND?: IncidentEquipmentUsageLogWhereInput | IncidentEquipmentUsageLogWhereInput[]
+    OR?: IncidentEquipmentUsageLogWhereInput[]
+    NOT?: IncidentEquipmentUsageLogWhereInput | IncidentEquipmentUsageLogWhereInput[]
+    id?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    equipmentId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    mountainId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    usedAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
+    notes?: StringNullableFilter<"IncidentEquipmentUsageLog"> | string | null
+    incidentId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    createdAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
+    updatedAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     incident?: XOR<IncidentScalarRelationFilter, IncidentWhereInput>
     equipment?: XOR<EquipmentScalarRelationFilter, EquipmentWhereInput>
   }
 
-  export type IncidentEquipmentUseageLogOrderByWithRelationInput = {
+  export type IncidentEquipmentUsageLogOrderByWithRelationInput = {
     id?: SortOrder
     equipmentId?: SortOrder
     mountainId?: SortOrder
@@ -34073,24 +34073,24 @@ export namespace Prisma {
     equipment?: EquipmentOrderByWithRelationInput
   }
 
-  export type IncidentEquipmentUseageLogWhereUniqueInput = Prisma.AtLeast<{
+  export type IncidentEquipmentUsageLogWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: IncidentEquipmentUseageLogWhereInput | IncidentEquipmentUseageLogWhereInput[]
-    OR?: IncidentEquipmentUseageLogWhereInput[]
-    NOT?: IncidentEquipmentUseageLogWhereInput | IncidentEquipmentUseageLogWhereInput[]
-    equipmentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    mountainId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    usedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
-    notes?: StringNullableFilter<"IncidentEquipmentUseageLog"> | string | null
-    incidentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    createdAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
-    updatedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
+    AND?: IncidentEquipmentUsageLogWhereInput | IncidentEquipmentUsageLogWhereInput[]
+    OR?: IncidentEquipmentUsageLogWhereInput[]
+    NOT?: IncidentEquipmentUsageLogWhereInput | IncidentEquipmentUsageLogWhereInput[]
+    equipmentId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    mountainId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    usedAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
+    notes?: StringNullableFilter<"IncidentEquipmentUsageLog"> | string | null
+    incidentId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    createdAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
+    updatedAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     incident?: XOR<IncidentScalarRelationFilter, IncidentWhereInput>
     equipment?: XOR<EquipmentScalarRelationFilter, EquipmentWhereInput>
   }, "id">
 
-  export type IncidentEquipmentUseageLogOrderByWithAggregationInput = {
+  export type IncidentEquipmentUsageLogOrderByWithAggregationInput = {
     id?: SortOrder
     equipmentId?: SortOrder
     mountainId?: SortOrder
@@ -34099,23 +34099,23 @@ export namespace Prisma {
     incidentId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: IncidentEquipmentUseageLogCountOrderByAggregateInput
-    _max?: IncidentEquipmentUseageLogMaxOrderByAggregateInput
-    _min?: IncidentEquipmentUseageLogMinOrderByAggregateInput
+    _count?: IncidentEquipmentUsageLogCountOrderByAggregateInput
+    _max?: IncidentEquipmentUsageLogMaxOrderByAggregateInput
+    _min?: IncidentEquipmentUsageLogMinOrderByAggregateInput
   }
 
-  export type IncidentEquipmentUseageLogScalarWhereWithAggregatesInput = {
-    AND?: IncidentEquipmentUseageLogScalarWhereWithAggregatesInput | IncidentEquipmentUseageLogScalarWhereWithAggregatesInput[]
-    OR?: IncidentEquipmentUseageLogScalarWhereWithAggregatesInput[]
-    NOT?: IncidentEquipmentUseageLogScalarWhereWithAggregatesInput | IncidentEquipmentUseageLogScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
-    equipmentId?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
-    mountainId?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
-    usedAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUseageLog"> | Date | string
-    notes?: StringNullableWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string | null
-    incidentId?: StringWithAggregatesFilter<"IncidentEquipmentUseageLog"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUseageLog"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUseageLog"> | Date | string
+  export type IncidentEquipmentUsageLogScalarWhereWithAggregatesInput = {
+    AND?: IncidentEquipmentUsageLogScalarWhereWithAggregatesInput | IncidentEquipmentUsageLogScalarWhereWithAggregatesInput[]
+    OR?: IncidentEquipmentUsageLogScalarWhereWithAggregatesInput[]
+    NOT?: IncidentEquipmentUsageLogScalarWhereWithAggregatesInput | IncidentEquipmentUsageLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"IncidentEquipmentUsageLog"> | string
+    equipmentId?: StringWithAggregatesFilter<"IncidentEquipmentUsageLog"> | string
+    mountainId?: StringWithAggregatesFilter<"IncidentEquipmentUsageLog"> | string
+    usedAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUsageLog"> | Date | string
+    notes?: StringNullableWithAggregatesFilter<"IncidentEquipmentUsageLog"> | string | null
+    incidentId?: StringWithAggregatesFilter<"IncidentEquipmentUsageLog"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUsageLog"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUsageLog"> | Date | string
   }
 
   export type LiftCheckWhereInput = {
@@ -34743,7 +34743,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -34777,7 +34777,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -34811,7 +34811,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -34845,7 +34845,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -35782,7 +35782,7 @@ export namespace Prisma {
     dateAdded?: Date | string
     mountain: MountainCreateNestedOneWithoutEquipmentInput
     location?: LocationCreateNestedOneWithoutEquipmentInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEquipmentInput
   }
@@ -35801,7 +35801,7 @@ export namespace Prisma {
     mountainId: string
     locationId?: string | null
     dateAdded?: Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEquipmentInput
   }
@@ -35820,7 +35820,7 @@ export namespace Prisma {
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
     location?: LocationUpdateOneWithoutEquipmentNestedInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEquipmentNestedInput
   }
@@ -35839,7 +35839,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentNestedInput
   }
@@ -35906,7 +35906,7 @@ export namespace Prisma {
     locationType: string
     entityId: string
     mountain: MountainCreateNestedOneWithoutIncidentsInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutIncidentInput
     location: LocationCreateNestedOneWithoutIncidentsInput
     employees?: EmployeeCreateNestedManyWithoutIncidentsInput
   }
@@ -35928,7 +35928,7 @@ export namespace Prisma {
     locationType: string
     locationId: string
     entityId: string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutIncidentInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutIncidentsInput
   }
 
@@ -35948,7 +35948,7 @@ export namespace Prisma {
     locationType?: StringFieldUpdateOperationsInput | string
     entityId?: StringFieldUpdateOperationsInput | string
     mountain?: MountainUpdateOneRequiredWithoutIncidentsNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutIncidentNestedInput
     location?: LocationUpdateOneRequiredWithoutIncidentsNestedInput
     employees?: EmployeeUpdateManyWithoutIncidentsNestedInput
   }
@@ -35970,7 +35970,7 @@ export namespace Prisma {
     locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
     entityId?: StringFieldUpdateOperationsInput | string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutIncidentNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput
   }
 
@@ -36029,7 +36029,7 @@ export namespace Prisma {
     entityId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type IncidentEquipmentUseageLogCreateInput = {
+  export type IncidentEquipmentUsageLogCreateInput = {
     id?: string
     usedAt?: Date | string
     notes?: string | null
@@ -36040,7 +36040,7 @@ export namespace Prisma {
     equipment: EquipmentCreateNestedOneWithoutIncidentEquipmentUsageLogsInput
   }
 
-  export type IncidentEquipmentUseageLogUncheckedCreateInput = {
+  export type IncidentEquipmentUsageLogUncheckedCreateInput = {
     id?: string
     equipmentId: string
     mountainId: string
@@ -36051,7 +36051,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type IncidentEquipmentUseageLogUpdateInput = {
+  export type IncidentEquipmentUsageLogUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36062,7 +36062,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateOneRequiredWithoutIncidentEquipmentUsageLogsNestedInput
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateInput = {
+  export type IncidentEquipmentUsageLogUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
@@ -36073,7 +36073,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentEquipmentUseageLogCreateManyInput = {
+  export type IncidentEquipmentUsageLogCreateManyInput = {
     id?: string
     equipmentId: string
     mountainId: string
@@ -36084,7 +36084,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type IncidentEquipmentUseageLogUpdateManyMutationInput = {
+  export type IncidentEquipmentUsageLogUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36092,7 +36092,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateManyInput = {
+  export type IncidentEquipmentUsageLogUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
@@ -36934,10 +36934,10 @@ export namespace Prisma {
     none?: DispatcherAssignmentWhereInput
   }
 
-  export type IncidentEquipmentUseageLogListRelationFilter = {
-    every?: IncidentEquipmentUseageLogWhereInput
-    some?: IncidentEquipmentUseageLogWhereInput
-    none?: IncidentEquipmentUseageLogWhereInput
+  export type IncidentEquipmentUsageLogListRelationFilter = {
+    every?: IncidentEquipmentUsageLogWhereInput
+    some?: IncidentEquipmentUsageLogWhereInput
+    none?: IncidentEquipmentUsageLogWhereInput
   }
 
   export type EquipmentServiceLogListRelationFilter = {
@@ -37002,7 +37002,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type IncidentEquipmentUseageLogOrderByRelationAggregateInput = {
+  export type IncidentEquipmentUsageLogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -37958,7 +37958,7 @@ export namespace Prisma {
     isNot?: IncidentWhereInput
   }
 
-  export type IncidentEquipmentUseageLogCountOrderByAggregateInput = {
+  export type IncidentEquipmentUsageLogCountOrderByAggregateInput = {
     id?: SortOrder
     equipmentId?: SortOrder
     mountainId?: SortOrder
@@ -37969,7 +37969,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type IncidentEquipmentUseageLogMaxOrderByAggregateInput = {
+  export type IncidentEquipmentUsageLogMaxOrderByAggregateInput = {
     id?: SortOrder
     equipmentId?: SortOrder
     mountainId?: SortOrder
@@ -37980,7 +37980,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type IncidentEquipmentUseageLogMinOrderByAggregateInput = {
+  export type IncidentEquipmentUsageLogMinOrderByAggregateInput = {
     id?: SortOrder
     equipmentId?: SortOrder
     mountainId?: SortOrder
@@ -38557,11 +38557,11 @@ export namespace Prisma {
     connect?: DispatcherAssignmentWhereUniqueInput | DispatcherAssignmentWhereUniqueInput[]
   }
 
-  export type IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutMountainInput, IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput> | IncidentEquipmentUseageLogCreateWithoutMountainInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput | IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyMountainInputEnvelope
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
+  export type IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutMountainInput, IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput> | IncidentEquipmentUsageLogCreateWithoutMountainInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput | IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyMountainInputEnvelope
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
   }
 
   export type EquipmentServiceLogCreateNestedManyWithoutMountainInput = {
@@ -38690,11 +38690,11 @@ export namespace Prisma {
     connect?: DispatcherAssignmentWhereUniqueInput | DispatcherAssignmentWhereUniqueInput[]
   }
 
-  export type IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutMountainInput, IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput> | IncidentEquipmentUseageLogCreateWithoutMountainInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput | IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyMountainInputEnvelope
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
+  export type IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutMountainInput, IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput> | IncidentEquipmentUsageLogCreateWithoutMountainInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput | IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyMountainInputEnvelope
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
   }
 
   export type EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput = {
@@ -38958,18 +38958,18 @@ export namespace Prisma {
     deleteMany?: DispatcherAssignmentScalarWhereInput | DispatcherAssignmentScalarWhereInput[]
   }
 
-  export type IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutMountainInput, IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput> | IncidentEquipmentUseageLogCreateWithoutMountainInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput | IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput[]
-    upsert?: IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutMountainInput | IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutMountainInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyMountainInputEnvelope
-    set?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    disconnect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    delete?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    update?: IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutMountainInput | IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutMountainInput[]
-    updateMany?: IncidentEquipmentUseageLogUpdateManyWithWhereWithoutMountainInput | IncidentEquipmentUseageLogUpdateManyWithWhereWithoutMountainInput[]
-    deleteMany?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
+  export type IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutMountainInput, IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput> | IncidentEquipmentUsageLogCreateWithoutMountainInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput | IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput[]
+    upsert?: IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutMountainInput | IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutMountainInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyMountainInputEnvelope
+    set?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    disconnect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    delete?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    update?: IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutMountainInput | IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutMountainInput[]
+    updateMany?: IncidentEquipmentUsageLogUpdateManyWithWhereWithoutMountainInput | IncidentEquipmentUsageLogUpdateManyWithWhereWithoutMountainInput[]
+    deleteMany?: IncidentEquipmentUsageLogScalarWhereInput | IncidentEquipmentUsageLogScalarWhereInput[]
   }
 
   export type EquipmentServiceLogUpdateManyWithoutMountainNestedInput = {
@@ -39224,18 +39224,18 @@ export namespace Prisma {
     deleteMany?: DispatcherAssignmentScalarWhereInput | DispatcherAssignmentScalarWhereInput[]
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutMountainInput, IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput> | IncidentEquipmentUseageLogCreateWithoutMountainInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput | IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput[]
-    upsert?: IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutMountainInput | IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutMountainInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyMountainInputEnvelope
-    set?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    disconnect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    delete?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    update?: IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutMountainInput | IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutMountainInput[]
-    updateMany?: IncidentEquipmentUseageLogUpdateManyWithWhereWithoutMountainInput | IncidentEquipmentUseageLogUpdateManyWithWhereWithoutMountainInput[]
-    deleteMany?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
+  export type IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutMountainInput, IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput> | IncidentEquipmentUsageLogCreateWithoutMountainInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput | IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput[]
+    upsert?: IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutMountainInput | IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutMountainInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyMountainInputEnvelope
+    set?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    disconnect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    delete?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    update?: IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutMountainInput | IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutMountainInput[]
+    updateMany?: IncidentEquipmentUsageLogUpdateManyWithWhereWithoutMountainInput | IncidentEquipmentUsageLogUpdateManyWithWhereWithoutMountainInput[]
+    deleteMany?: IncidentEquipmentUsageLogScalarWhereInput | IncidentEquipmentUsageLogScalarWhereInput[]
   }
 
   export type EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput = {
@@ -40205,11 +40205,11 @@ export namespace Prisma {
     connect?: LocationWhereUniqueInput
   }
 
-  export type IncidentEquipmentUseageLogCreateNestedManyWithoutEquipmentInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutEquipmentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput> | IncidentEquipmentUseageLogCreateWithoutEquipmentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyEquipmentInputEnvelope
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
+  export type IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutEquipmentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput> | IncidentEquipmentUsageLogCreateWithoutEquipmentInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput | IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyEquipmentInputEnvelope
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
   }
 
   export type EquipmentCheckCreateNestedManyWithoutEquipmentInput = {
@@ -40226,11 +40226,11 @@ export namespace Prisma {
     connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
   }
 
-  export type IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutEquipmentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput> | IncidentEquipmentUseageLogCreateWithoutEquipmentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyEquipmentInputEnvelope
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
+  export type IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutEquipmentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput> | IncidentEquipmentUsageLogCreateWithoutEquipmentInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput | IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyEquipmentInputEnvelope
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
   }
 
   export type EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput = {
@@ -40265,18 +40265,18 @@ export namespace Prisma {
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutEquipmentInput, LocationUpdateWithoutEquipmentInput>, LocationUncheckedUpdateWithoutEquipmentInput>
   }
 
-  export type IncidentEquipmentUseageLogUpdateManyWithoutEquipmentNestedInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutEquipmentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput> | IncidentEquipmentUseageLogCreateWithoutEquipmentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput[]
-    upsert?: IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutEquipmentInput | IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutEquipmentInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyEquipmentInputEnvelope
-    set?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    disconnect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    delete?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    update?: IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutEquipmentInput | IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutEquipmentInput[]
-    updateMany?: IncidentEquipmentUseageLogUpdateManyWithWhereWithoutEquipmentInput | IncidentEquipmentUseageLogUpdateManyWithWhereWithoutEquipmentInput[]
-    deleteMany?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
+  export type IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutEquipmentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput> | IncidentEquipmentUsageLogCreateWithoutEquipmentInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput | IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput[]
+    upsert?: IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutEquipmentInput | IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutEquipmentInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyEquipmentInputEnvelope
+    set?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    disconnect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    delete?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    update?: IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutEquipmentInput | IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutEquipmentInput[]
+    updateMany?: IncidentEquipmentUsageLogUpdateManyWithWhereWithoutEquipmentInput | IncidentEquipmentUsageLogUpdateManyWithWhereWithoutEquipmentInput[]
+    deleteMany?: IncidentEquipmentUsageLogScalarWhereInput | IncidentEquipmentUsageLogScalarWhereInput[]
   }
 
   export type EquipmentCheckUpdateManyWithoutEquipmentNestedInput = {
@@ -40307,18 +40307,18 @@ export namespace Prisma {
     deleteMany?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutEquipmentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput> | IncidentEquipmentUseageLogCreateWithoutEquipmentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput[]
-    upsert?: IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutEquipmentInput | IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutEquipmentInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyEquipmentInputEnvelope
-    set?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    disconnect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    delete?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    update?: IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutEquipmentInput | IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutEquipmentInput[]
-    updateMany?: IncidentEquipmentUseageLogUpdateManyWithWhereWithoutEquipmentInput | IncidentEquipmentUseageLogUpdateManyWithWhereWithoutEquipmentInput[]
-    deleteMany?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
+  export type IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutEquipmentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput> | IncidentEquipmentUsageLogCreateWithoutEquipmentInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput | IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput[]
+    upsert?: IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutEquipmentInput | IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutEquipmentInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyEquipmentInputEnvelope
+    set?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    disconnect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    delete?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    update?: IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutEquipmentInput | IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutEquipmentInput[]
+    updateMany?: IncidentEquipmentUsageLogUpdateManyWithWhereWithoutEquipmentInput | IncidentEquipmentUsageLogUpdateManyWithWhereWithoutEquipmentInput[]
+    deleteMany?: IncidentEquipmentUsageLogScalarWhereInput | IncidentEquipmentUsageLogScalarWhereInput[]
   }
 
   export type EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput = {
@@ -40355,11 +40355,11 @@ export namespace Prisma {
     connect?: MountainWhereUniqueInput
   }
 
-  export type IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUseageLogCreateWithoutIncidentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyIncidentInputEnvelope
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
+  export type IncidentEquipmentUsageLogCreateNestedManyWithoutIncidentInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutIncidentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUsageLogCreateWithoutIncidentInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyIncidentInputEnvelope
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
   }
 
   export type LocationCreateNestedOneWithoutIncidentsInput = {
@@ -40374,11 +40374,11 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
   }
 
-  export type IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUseageLogCreateWithoutIncidentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyIncidentInputEnvelope
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
+  export type IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutIncidentInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutIncidentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUsageLogCreateWithoutIncidentInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyIncidentInputEnvelope
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
   }
 
   export type EmployeeUncheckedCreateNestedManyWithoutIncidentsInput = {
@@ -40403,18 +40403,18 @@ export namespace Prisma {
     update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutIncidentsInput, MountainUpdateWithoutIncidentsInput>, MountainUncheckedUpdateWithoutIncidentsInput>
   }
 
-  export type IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUseageLogCreateWithoutIncidentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput[]
-    upsert?: IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutIncidentInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyIncidentInputEnvelope
-    set?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    disconnect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    delete?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    update?: IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutIncidentInput[]
-    updateMany?: IncidentEquipmentUseageLogUpdateManyWithWhereWithoutIncidentInput | IncidentEquipmentUseageLogUpdateManyWithWhereWithoutIncidentInput[]
-    deleteMany?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
+  export type IncidentEquipmentUsageLogUpdateManyWithoutIncidentNestedInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutIncidentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUsageLogCreateWithoutIncidentInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput[]
+    upsert?: IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutIncidentInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyIncidentInputEnvelope
+    set?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    disconnect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    delete?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    update?: IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutIncidentInput[]
+    updateMany?: IncidentEquipmentUsageLogUpdateManyWithWhereWithoutIncidentInput | IncidentEquipmentUsageLogUpdateManyWithWhereWithoutIncidentInput[]
+    deleteMany?: IncidentEquipmentUsageLogScalarWhereInput | IncidentEquipmentUsageLogScalarWhereInput[]
   }
 
   export type LocationUpdateOneRequiredWithoutIncidentsNestedInput = {
@@ -40438,18 +40438,18 @@ export namespace Prisma {
     deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput = {
-    create?: XOR<IncidentEquipmentUseageLogCreateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUseageLogCreateWithoutIncidentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput[]
-    connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput[]
-    upsert?: IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutIncidentInput[]
-    createMany?: IncidentEquipmentUseageLogCreateManyIncidentInputEnvelope
-    set?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    disconnect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    delete?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
-    update?: IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutIncidentInput[]
-    updateMany?: IncidentEquipmentUseageLogUpdateManyWithWhereWithoutIncidentInput | IncidentEquipmentUseageLogUpdateManyWithWhereWithoutIncidentInput[]
-    deleteMany?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
+  export type IncidentEquipmentUsageLogUncheckedUpdateManyWithoutIncidentNestedInput = {
+    create?: XOR<IncidentEquipmentUsageLogCreateWithoutIncidentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUsageLogCreateWithoutIncidentInput[] | IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput[]
+    connectOrCreate?: IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput[]
+    upsert?: IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutIncidentInput[]
+    createMany?: IncidentEquipmentUsageLogCreateManyIncidentInputEnvelope
+    set?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    disconnect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    delete?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    connect?: IncidentEquipmentUsageLogWhereUniqueInput | IncidentEquipmentUsageLogWhereUniqueInput[]
+    update?: IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutIncidentInput[]
+    updateMany?: IncidentEquipmentUsageLogUpdateManyWithWhereWithoutIncidentInput | IncidentEquipmentUsageLogUpdateManyWithWhereWithoutIncidentInput[]
+    deleteMany?: IncidentEquipmentUsageLogScalarWhereInput | IncidentEquipmentUsageLogScalarWhereInput[]
   }
 
   export type EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput = {
@@ -41159,7 +41159,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -41192,7 +41192,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -41273,7 +41273,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -41306,7 +41306,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -41388,7 +41388,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -41421,7 +41421,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -41475,7 +41475,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     dateAdded?: Date | string
     mountain: MountainCreateNestedOneWithoutEquipmentInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEquipmentInput
   }
@@ -41493,7 +41493,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     mountainId: string
     dateAdded?: Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEquipmentInput
   }
@@ -41524,7 +41524,7 @@ export namespace Prisma {
     locationType: string
     entityId: string
     mountain: MountainCreateNestedOneWithoutIncidentsInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutIncidentInput
     employees?: EmployeeCreateNestedManyWithoutIncidentsInput
   }
 
@@ -41544,7 +41544,7 @@ export namespace Prisma {
     emptyRunAt?: Date | string | null
     locationType: string
     entityId: string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutIncidentInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutIncidentsInput
   }
 
@@ -41625,7 +41625,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -41658,7 +41658,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -42239,7 +42239,7 @@ export namespace Prisma {
     emptyRunAt?: Date | string | null
     locationType: string
     entityId: string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutIncidentInput
     location: LocationCreateNestedOneWithoutIncidentsInput
     employees?: EmployeeCreateNestedManyWithoutIncidentsInput
   }
@@ -42260,7 +42260,7 @@ export namespace Prisma {
     locationType: string
     locationId: string
     entityId: string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutIncidentInput
     employees?: EmployeeUncheckedCreateNestedManyWithoutIncidentsInput
   }
 
@@ -42287,7 +42287,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     dateAdded?: Date | string
     location?: LocationCreateNestedOneWithoutEquipmentInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEquipmentInput
   }
@@ -42305,7 +42305,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     locationId?: string | null
     dateAdded?: Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEquipmentInput
   }
@@ -42364,7 +42364,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type IncidentEquipmentUseageLogCreateWithoutMountainInput = {
+  export type IncidentEquipmentUsageLogCreateWithoutMountainInput = {
     id?: string
     usedAt?: Date | string
     notes?: string | null
@@ -42374,7 +42374,7 @@ export namespace Prisma {
     equipment: EquipmentCreateNestedOneWithoutIncidentEquipmentUsageLogsInput
   }
 
-  export type IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput = {
+  export type IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput = {
     id?: string
     equipmentId: string
     usedAt?: Date | string
@@ -42384,13 +42384,13 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type IncidentEquipmentUseageLogCreateOrConnectWithoutMountainInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    create: XOR<IncidentEquipmentUseageLogCreateWithoutMountainInput, IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput>
+  export type IncidentEquipmentUsageLogCreateOrConnectWithoutMountainInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    create: XOR<IncidentEquipmentUsageLogCreateWithoutMountainInput, IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput>
   }
 
-  export type IncidentEquipmentUseageLogCreateManyMountainInputEnvelope = {
-    data: IncidentEquipmentUseageLogCreateManyMountainInput | IncidentEquipmentUseageLogCreateManyMountainInput[]
+  export type IncidentEquipmentUsageLogCreateManyMountainInputEnvelope = {
+    data: IncidentEquipmentUsageLogCreateManyMountainInput | IncidentEquipmentUsageLogCreateManyMountainInput[]
     skipDuplicates?: boolean
   }
 
@@ -42884,34 +42884,34 @@ export namespace Prisma {
     assignedAt?: DateTimeFilter<"DispatcherAssignment"> | Date | string
   }
 
-  export type IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutMountainInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    update: XOR<IncidentEquipmentUseageLogUpdateWithoutMountainInput, IncidentEquipmentUseageLogUncheckedUpdateWithoutMountainInput>
-    create: XOR<IncidentEquipmentUseageLogCreateWithoutMountainInput, IncidentEquipmentUseageLogUncheckedCreateWithoutMountainInput>
+  export type IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutMountainInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    update: XOR<IncidentEquipmentUsageLogUpdateWithoutMountainInput, IncidentEquipmentUsageLogUncheckedUpdateWithoutMountainInput>
+    create: XOR<IncidentEquipmentUsageLogCreateWithoutMountainInput, IncidentEquipmentUsageLogUncheckedCreateWithoutMountainInput>
   }
 
-  export type IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutMountainInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    data: XOR<IncidentEquipmentUseageLogUpdateWithoutMountainInput, IncidentEquipmentUseageLogUncheckedUpdateWithoutMountainInput>
+  export type IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutMountainInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    data: XOR<IncidentEquipmentUsageLogUpdateWithoutMountainInput, IncidentEquipmentUsageLogUncheckedUpdateWithoutMountainInput>
   }
 
-  export type IncidentEquipmentUseageLogUpdateManyWithWhereWithoutMountainInput = {
-    where: IncidentEquipmentUseageLogScalarWhereInput
-    data: XOR<IncidentEquipmentUseageLogUpdateManyMutationInput, IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainInput>
+  export type IncidentEquipmentUsageLogUpdateManyWithWhereWithoutMountainInput = {
+    where: IncidentEquipmentUsageLogScalarWhereInput
+    data: XOR<IncidentEquipmentUsageLogUpdateManyMutationInput, IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainInput>
   }
 
-  export type IncidentEquipmentUseageLogScalarWhereInput = {
-    AND?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
-    OR?: IncidentEquipmentUseageLogScalarWhereInput[]
-    NOT?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
-    id?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    equipmentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    mountainId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    usedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
-    notes?: StringNullableFilter<"IncidentEquipmentUseageLog"> | string | null
-    incidentId?: StringFilter<"IncidentEquipmentUseageLog"> | string
-    createdAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
-    updatedAt?: DateTimeFilter<"IncidentEquipmentUseageLog"> | Date | string
+  export type IncidentEquipmentUsageLogScalarWhereInput = {
+    AND?: IncidentEquipmentUsageLogScalarWhereInput | IncidentEquipmentUsageLogScalarWhereInput[]
+    OR?: IncidentEquipmentUsageLogScalarWhereInput[]
+    NOT?: IncidentEquipmentUsageLogScalarWhereInput | IncidentEquipmentUsageLogScalarWhereInput[]
+    id?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    equipmentId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    mountainId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    usedAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
+    notes?: StringNullableFilter<"IncidentEquipmentUsageLog"> | string | null
+    incidentId?: StringFilter<"IncidentEquipmentUsageLog"> | string
+    createdAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
+    updatedAt?: DateTimeFilter<"IncidentEquipmentUsageLog"> | Date | string
   }
 
   export type EquipmentServiceLogUpsertWithWhereUniqueWithoutMountainInput = {
@@ -42974,7 +42974,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -43007,7 +43007,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -43056,7 +43056,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -43089,7 +43089,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -43163,7 +43163,7 @@ export namespace Prisma {
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -43196,7 +43196,7 @@ export namespace Prisma {
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -43292,7 +43292,7 @@ export namespace Prisma {
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -43325,7 +43325,7 @@ export namespace Prisma {
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -43399,7 +43399,7 @@ export namespace Prisma {
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -43432,7 +43432,7 @@ export namespace Prisma {
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -43528,7 +43528,7 @@ export namespace Prisma {
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -43561,7 +43561,7 @@ export namespace Prisma {
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -43939,7 +43939,7 @@ export namespace Prisma {
     locationType: string
     entityId: string
     mountain: MountainCreateNestedOneWithoutIncidentsInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutIncidentInput
     location: LocationCreateNestedOneWithoutIncidentsInput
   }
 
@@ -43960,7 +43960,7 @@ export namespace Prisma {
     locationType: string
     locationId: string
     entityId: string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutIncidentInput
   }
 
   export type IncidentCreateOrConnectWithoutEmployeesInput = {
@@ -44372,7 +44372,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -44405,7 +44405,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -44484,7 +44484,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -44517,7 +44517,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -44566,7 +44566,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -44599,7 +44599,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -44678,7 +44678,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -44711,7 +44711,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -44760,7 +44760,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -44793,7 +44793,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -44842,7 +44842,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -44875,7 +44875,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -44908,7 +44908,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -44941,7 +44941,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -45020,7 +45020,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -45053,7 +45053,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -45102,7 +45102,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -45135,7 +45135,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -45214,7 +45214,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -45247,7 +45247,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -45297,7 +45297,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
   }
 
   export type MountainUncheckedCreateWithoutEquipmentServiceLogsInput = {
@@ -45330,7 +45330,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
   export type MountainCreateOrConnectWithoutEquipmentServiceLogsInput = {
@@ -45393,7 +45393,7 @@ export namespace Prisma {
     dateAdded?: Date | string
     mountain: MountainCreateNestedOneWithoutEquipmentInput
     location?: LocationCreateNestedOneWithoutEquipmentInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEquipmentInput
   }
 
@@ -45411,7 +45411,7 @@ export namespace Prisma {
     mountainId: string
     locationId?: string | null
     dateAdded?: Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
@@ -45461,7 +45461,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
   }
 
   export type MountainUncheckedUpdateWithoutEquipmentServiceLogsInput = {
@@ -45494,7 +45494,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
   export type EmployeeUpsertWithoutEquipmentServiceLogsInput = {
@@ -45569,7 +45569,7 @@ export namespace Prisma {
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
     location?: LocationUpdateOneWithoutEquipmentNestedInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutEquipmentNestedInput
   }
 
@@ -45587,7 +45587,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
@@ -45620,7 +45620,7 @@ export namespace Prisma {
     incidents?: IncidentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -45653,7 +45653,7 @@ export namespace Prisma {
     incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -45689,7 +45689,7 @@ export namespace Prisma {
     create: XOR<LocationCreateWithoutEquipmentInput, LocationUncheckedCreateWithoutEquipmentInput>
   }
 
-  export type IncidentEquipmentUseageLogCreateWithoutEquipmentInput = {
+  export type IncidentEquipmentUsageLogCreateWithoutEquipmentInput = {
     id?: string
     usedAt?: Date | string
     notes?: string | null
@@ -45699,7 +45699,7 @@ export namespace Prisma {
     incident: IncidentCreateNestedOneWithoutIncidentEquipmentUsageLogInput
   }
 
-  export type IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput = {
+  export type IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput = {
     id?: string
     mountainId: string
     usedAt?: Date | string
@@ -45709,13 +45709,13 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type IncidentEquipmentUseageLogCreateOrConnectWithoutEquipmentInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    create: XOR<IncidentEquipmentUseageLogCreateWithoutEquipmentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput>
+  export type IncidentEquipmentUsageLogCreateOrConnectWithoutEquipmentInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    create: XOR<IncidentEquipmentUsageLogCreateWithoutEquipmentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput>
   }
 
-  export type IncidentEquipmentUseageLogCreateManyEquipmentInputEnvelope = {
-    data: IncidentEquipmentUseageLogCreateManyEquipmentInput | IncidentEquipmentUseageLogCreateManyEquipmentInput[]
+  export type IncidentEquipmentUsageLogCreateManyEquipmentInputEnvelope = {
+    data: IncidentEquipmentUsageLogCreateManyEquipmentInput | IncidentEquipmentUsageLogCreateManyEquipmentInput[]
     skipDuplicates?: boolean
   }
 
@@ -45821,7 +45821,7 @@ export namespace Prisma {
     incidents?: IncidentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -45854,7 +45854,7 @@ export namespace Prisma {
     incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -45891,20 +45891,20 @@ export namespace Prisma {
     incidents?: IncidentUncheckedUpdateManyWithoutLocationNestedInput
   }
 
-  export type IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutEquipmentInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    update: XOR<IncidentEquipmentUseageLogUpdateWithoutEquipmentInput, IncidentEquipmentUseageLogUncheckedUpdateWithoutEquipmentInput>
-    create: XOR<IncidentEquipmentUseageLogCreateWithoutEquipmentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutEquipmentInput>
+  export type IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutEquipmentInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    update: XOR<IncidentEquipmentUsageLogUpdateWithoutEquipmentInput, IncidentEquipmentUsageLogUncheckedUpdateWithoutEquipmentInput>
+    create: XOR<IncidentEquipmentUsageLogCreateWithoutEquipmentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutEquipmentInput>
   }
 
-  export type IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutEquipmentInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    data: XOR<IncidentEquipmentUseageLogUpdateWithoutEquipmentInput, IncidentEquipmentUseageLogUncheckedUpdateWithoutEquipmentInput>
+  export type IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutEquipmentInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    data: XOR<IncidentEquipmentUsageLogUpdateWithoutEquipmentInput, IncidentEquipmentUsageLogUncheckedUpdateWithoutEquipmentInput>
   }
 
-  export type IncidentEquipmentUseageLogUpdateManyWithWhereWithoutEquipmentInput = {
-    where: IncidentEquipmentUseageLogScalarWhereInput
-    data: XOR<IncidentEquipmentUseageLogUpdateManyMutationInput, IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentInput>
+  export type IncidentEquipmentUsageLogUpdateManyWithWhereWithoutEquipmentInput = {
+    where: IncidentEquipmentUsageLogScalarWhereInput
+    data: XOR<IncidentEquipmentUsageLogUpdateManyMutationInput, IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentInput>
   }
 
   export type EquipmentCheckUpsertWithWhereUniqueWithoutEquipmentInput = {
@@ -45968,7 +45968,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -46001,7 +46001,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -46010,7 +46010,7 @@ export namespace Prisma {
     create: XOR<MountainCreateWithoutIncidentsInput, MountainUncheckedCreateWithoutIncidentsInput>
   }
 
-  export type IncidentEquipmentUseageLogCreateWithoutIncidentInput = {
+  export type IncidentEquipmentUsageLogCreateWithoutIncidentInput = {
     id?: string
     usedAt?: Date | string
     notes?: string | null
@@ -46020,7 +46020,7 @@ export namespace Prisma {
     equipment: EquipmentCreateNestedOneWithoutIncidentEquipmentUsageLogsInput
   }
 
-  export type IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput = {
+  export type IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput = {
     id?: string
     equipmentId: string
     mountainId: string
@@ -46030,13 +46030,13 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    create: XOR<IncidentEquipmentUseageLogCreateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput>
+  export type IncidentEquipmentUsageLogCreateOrConnectWithoutIncidentInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    create: XOR<IncidentEquipmentUsageLogCreateWithoutIncidentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput>
   }
 
-  export type IncidentEquipmentUseageLogCreateManyIncidentInputEnvelope = {
-    data: IncidentEquipmentUseageLogCreateManyIncidentInput | IncidentEquipmentUseageLogCreateManyIncidentInput[]
+  export type IncidentEquipmentUsageLogCreateManyIncidentInputEnvelope = {
+    data: IncidentEquipmentUsageLogCreateManyIncidentInput | IncidentEquipmentUsageLogCreateManyIncidentInput[]
     skipDuplicates?: boolean
   }
 
@@ -46148,7 +46148,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -46181,24 +46181,24 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
-  export type IncidentEquipmentUseageLogUpsertWithWhereUniqueWithoutIncidentInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    update: XOR<IncidentEquipmentUseageLogUpdateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedUpdateWithoutIncidentInput>
-    create: XOR<IncidentEquipmentUseageLogCreateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput>
+  export type IncidentEquipmentUsageLogUpsertWithWhereUniqueWithoutIncidentInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    update: XOR<IncidentEquipmentUsageLogUpdateWithoutIncidentInput, IncidentEquipmentUsageLogUncheckedUpdateWithoutIncidentInput>
+    create: XOR<IncidentEquipmentUsageLogCreateWithoutIncidentInput, IncidentEquipmentUsageLogUncheckedCreateWithoutIncidentInput>
   }
 
-  export type IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutIncidentInput = {
-    where: IncidentEquipmentUseageLogWhereUniqueInput
-    data: XOR<IncidentEquipmentUseageLogUpdateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedUpdateWithoutIncidentInput>
+  export type IncidentEquipmentUsageLogUpdateWithWhereUniqueWithoutIncidentInput = {
+    where: IncidentEquipmentUsageLogWhereUniqueInput
+    data: XOR<IncidentEquipmentUsageLogUpdateWithoutIncidentInput, IncidentEquipmentUsageLogUncheckedUpdateWithoutIncidentInput>
   }
 
-  export type IncidentEquipmentUseageLogUpdateManyWithWhereWithoutIncidentInput = {
-    where: IncidentEquipmentUseageLogScalarWhereInput
-    data: XOR<IncidentEquipmentUseageLogUpdateManyMutationInput, IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentInput>
+  export type IncidentEquipmentUsageLogUpdateManyWithWhereWithoutIncidentInput = {
+    where: IncidentEquipmentUsageLogScalarWhereInput
+    data: XOR<IncidentEquipmentUsageLogUpdateManyMutationInput, IncidentEquipmentUsageLogUncheckedUpdateManyWithoutIncidentInput>
   }
 
   export type LocationUpsertWithoutIncidentsInput = {
@@ -46652,7 +46652,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -46685,7 +46685,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -46808,7 +46808,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -46841,7 +46841,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -46948,7 +46948,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -46981,7 +46981,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -47106,7 +47106,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -47139,7 +47139,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -47248,7 +47248,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -47281,7 +47281,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -47400,7 +47400,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -47433,7 +47433,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -47536,7 +47536,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -47569,7 +47569,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -47688,7 +47688,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -47721,7 +47721,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -47824,7 +47824,7 @@ export namespace Prisma {
     equipment?: EquipmentCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
   }
 
@@ -47857,7 +47857,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
   }
 
@@ -47880,7 +47880,7 @@ export namespace Prisma {
     dateAdded?: Date | string
     mountain: MountainCreateNestedOneWithoutEquipmentInput
     location?: LocationCreateNestedOneWithoutEquipmentInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEquipmentInput
   }
 
@@ -47898,7 +47898,7 @@ export namespace Prisma {
     mountainId: string
     locationId?: string | null
     dateAdded?: Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutEquipmentInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEquipmentInput
   }
 
@@ -47994,7 +47994,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
   }
 
@@ -48027,7 +48027,7 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
     employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
   }
 
@@ -48056,7 +48056,7 @@ export namespace Prisma {
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
     location?: LocationUpdateOneWithoutEquipmentNestedInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEquipmentNestedInput
   }
 
@@ -48074,7 +48074,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
@@ -48206,7 +48206,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEquipmentNestedInput
   }
@@ -48224,7 +48224,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     mountainId?: StringFieldUpdateOperationsInput | string
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentNestedInput
   }
@@ -48260,7 +48260,7 @@ export namespace Prisma {
     locationType?: StringFieldUpdateOperationsInput | string
     entityId?: StringFieldUpdateOperationsInput | string
     mountain?: MountainUpdateOneRequiredWithoutIncidentsNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutIncidentNestedInput
     employees?: EmployeeUpdateManyWithoutIncidentsNestedInput
   }
 
@@ -48280,7 +48280,7 @@ export namespace Prisma {
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     locationType?: StringFieldUpdateOperationsInput | string
     entityId?: StringFieldUpdateOperationsInput | string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutIncidentNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput
   }
 
@@ -48473,7 +48473,7 @@ export namespace Prisma {
     assignedAt: Date | string
   }
 
-  export type IncidentEquipmentUseageLogCreateManyMountainInput = {
+  export type IncidentEquipmentUsageLogCreateManyMountainInput = {
     id?: string
     equipmentId: string
     usedAt?: Date | string
@@ -48903,7 +48903,7 @@ export namespace Prisma {
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     locationType?: StringFieldUpdateOperationsInput | string
     entityId?: StringFieldUpdateOperationsInput | string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutIncidentNestedInput
     location?: LocationUpdateOneRequiredWithoutIncidentsNestedInput
     employees?: EmployeeUpdateManyWithoutIncidentsNestedInput
   }
@@ -48924,7 +48924,7 @@ export namespace Prisma {
     locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
     entityId?: StringFieldUpdateOperationsInput | string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutIncidentNestedInput
     employees?: EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput
   }
 
@@ -48959,7 +48959,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: LocationUpdateOneWithoutEquipmentNestedInput
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEquipmentNestedInput
   }
@@ -48977,7 +48977,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    incidentEquipmentUsageLogs?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentNestedInput
+    incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentNestedInput
   }
@@ -49033,7 +49033,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentEquipmentUseageLogUpdateWithoutMountainInput = {
+  export type IncidentEquipmentUsageLogUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -49043,7 +49043,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateOneRequiredWithoutIncidentEquipmentUsageLogsNestedInput
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateWithoutMountainInput = {
+  export type IncidentEquipmentUsageLogUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49053,7 +49053,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutMountainInput = {
+  export type IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49313,7 +49313,7 @@ export namespace Prisma {
     locationType?: StringFieldUpdateOperationsInput | string
     entityId?: StringFieldUpdateOperationsInput | string
     mountain?: MountainUpdateOneRequiredWithoutIncidentsNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutIncidentNestedInput
     location?: LocationUpdateOneRequiredWithoutIncidentsNestedInput
   }
 
@@ -49334,7 +49334,7 @@ export namespace Prisma {
     locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
     entityId?: StringFieldUpdateOperationsInput | string
-    incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutIncidentNestedInput
   }
 
   export type IncidentUncheckedUpdateManyWithoutEmployeesInput = {
@@ -49699,7 +49699,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentEquipmentUseageLogCreateManyEquipmentInput = {
+  export type IncidentEquipmentUsageLogCreateManyEquipmentInput = {
     id?: string
     mountainId: string
     usedAt?: Date | string
@@ -49730,7 +49730,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type IncidentEquipmentUseageLogUpdateWithoutEquipmentInput = {
+  export type IncidentEquipmentUsageLogUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -49740,7 +49740,7 @@ export namespace Prisma {
     incident?: IncidentUpdateOneRequiredWithoutIncidentEquipmentUsageLogNestedInput
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateWithoutEquipmentInput = {
+  export type IncidentEquipmentUsageLogUncheckedUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49750,7 +49750,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutEquipmentInput = {
+  export type IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -49823,7 +49823,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentEquipmentUseageLogCreateManyIncidentInput = {
+  export type IncidentEquipmentUsageLogCreateManyIncidentInput = {
     id?: string
     equipmentId: string
     mountainId: string
@@ -49833,7 +49833,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type IncidentEquipmentUseageLogUpdateWithoutIncidentInput = {
+  export type IncidentEquipmentUsageLogUpdateWithoutIncidentInput = {
     id?: StringFieldUpdateOperationsInput | string
     usedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -49843,7 +49843,7 @@ export namespace Prisma {
     equipment?: EquipmentUpdateOneRequiredWithoutIncidentEquipmentUsageLogsNestedInput
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateWithoutIncidentInput = {
+  export type IncidentEquipmentUsageLogUncheckedUpdateWithoutIncidentInput = {
     id?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
@@ -49853,7 +49853,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentInput = {
+  export type IncidentEquipmentUsageLogUncheckedUpdateManyWithoutIncidentInput = {
     id?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string

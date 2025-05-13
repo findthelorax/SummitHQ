@@ -317,7 +317,7 @@ exports.Prisma.IncidentScalarFieldEnum = {
   entityId: 'entityId'
 };
 
-exports.Prisma.IncidentEquipmentUseageLogScalarFieldEnum = {
+exports.Prisma.IncidentEquipmentUsageLogScalarFieldEnum = {
   id: 'id',
   equipmentId: 'equipmentId',
   mountainId: 'mountainId',
@@ -501,7 +501,7 @@ exports.Prisma.ModelName = {
   EquipmentServiceLog: 'EquipmentServiceLog',
   Equipment: 'Equipment',
   Incident: 'Incident',
-  IncidentEquipmentUseageLog: 'IncidentEquipmentUseageLog',
+  IncidentEquipmentUsageLog: 'IncidentEquipmentUsageLog',
   LiftCheck: 'LiftCheck',
   TrailCheck: 'TrailCheck',
   HutCheck: 'HutCheck',

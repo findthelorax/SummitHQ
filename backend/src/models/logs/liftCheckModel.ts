@@ -5,27 +5,44 @@ class LiftCheckModel {
         return await prisma.liftCheck.create({ data });
     }
 
-    static async findById(id: string) {
-        return await prisma.liftCheck.findUnique({ where: { id } });
+    static async findByIdAndMountainAndLift(id: string, mountainId: string, liftId: string) {
+        return await prisma.liftCheck.findFirst({
+            where: {
+                id,
+                mountainId,
+                liftId,
+            },
+        });
     }
 
-    static async findAll() {
-        return await prisma.liftCheck.findMany();
+    static async findAllByMountainAndLift(mountainId: string, liftId: string) {
+        return await prisma.liftCheck.findMany({
+            where: {
+                mountainId,
+                liftId,
+            },
+        });
     }
 
-    static async findAllByMountain(mountainId: string) {
-        return await prisma.liftCheck.findMany({ where: { mountainId } });
-    }
-
-    static async updateById(id: string, updatedData: any) {
-        return await prisma.liftCheck.update({
-            where: { id },
+    static async updateByIdAndMountainAndLift(id: string, mountainId: string, liftId: string, updatedData: any) {
+        return await prisma.liftCheck.updateMany({
+            where: {
+                id,
+                mountainId,
+                liftId,
+            },
             data: updatedData,
         });
     }
 
-    static async deleteById(id: string) {
-        return await prisma.liftCheck.delete({ where: { id } });
+    static async deleteByIdAndMountainAndLift(id: string, mountainId: string, liftId: string) {
+        return await prisma.liftCheck.deleteMany({
+            where: {
+                id,
+                mountainId,
+                liftId,
+            },
+        });
     }
 }
 
