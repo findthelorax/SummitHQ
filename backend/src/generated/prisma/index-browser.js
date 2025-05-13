@@ -304,7 +304,6 @@ exports.Prisma.IncidentScalarFieldEnum = {
   status: 'status',
   latitude: 'latitude',
   longitude: 'longitude',
-  employeeId: 'employeeId',
   mountainId: 'mountainId',
   startTime: 'startTime',
   endTime: 'endTime',
@@ -313,7 +312,9 @@ exports.Prisma.IncidentScalarFieldEnum = {
   transportTime: 'transportTime',
   emptyRun: 'emptyRun',
   emptyRunAt: 'emptyRunAt',
-  locationId: 'locationId'
+  locationType: 'locationType',
+  locationId: 'locationId',
+  entityId: 'entityId'
 };
 
 exports.Prisma.IncidentEquipmentUseageLogScalarFieldEnum = {

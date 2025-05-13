@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import LocationController from '../../controllers/locationController';
+import LocationController from '../../controllers/mountains/locationController';
 
 const router = Router();
 
@@ -14,10 +14,10 @@ router.get('/:mountainId/locations/:locationId/hours', LocationController.getLoc
 router.put('/:mountainId/locations/:locationId/hours/:hourId', LocationController.updateLocationHour);
 router.delete('/:mountainId/locations/:locationId/hours/:hourId', LocationController.deleteLocationHour);
 
-router.post('/:mountainId/locations/:locationId/incidents', LocationController.addLocationIncident);
+router.post('/:mountainId/locations/:locationId/incidents', LocationController.addIncidentToLocation);
 router.get('/:mountainId/locations/:locationId/incidents', LocationController.getLocationIncidents);
 router.put('/:mountainId/locations/:locationId/incidents/:incidentId', LocationController.updateLocationIncident);
-router.delete('/:mountainId/locations/:locationId/incidents/:incidentId', LocationController.deleteLocationIncident);
+router.delete('/:mountainId/locations/:locationId/incidents/:incidentId', LocationController.deleteIncidentFromLocation);
 
 router.get('/:mountainId/locations/:locationId/equipment', LocationController.getEquipmentByLocation);
 router.post('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.addEquipmentToLocation);

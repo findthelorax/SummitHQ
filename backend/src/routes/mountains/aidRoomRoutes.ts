@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import AidRoomController from '../../controllers/aidRoomController';
+import AidRoomController from '../../controllers/mountains/aidRoomController';
 
 const router = Router();
 

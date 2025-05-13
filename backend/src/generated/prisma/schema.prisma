@@ -279,7 +279,7 @@ model Employee {
   mountainAssignments   EmployeeMountainAssignment[]
   dispatcherAssignments DispatcherAssignment[]
 
-  incidents            Incident[]
+  incidents            Incident[]            @relation("IncidentEmployees")
   aidRoomChecks        AidRoomCheck[]
   hutChecks            HutCheck[]
   liftChecks           LiftCheck[]
@@ -421,8 +421,6 @@ model Incident {
   status                    IncidentStatus               @default(Reported)
   latitude                  Decimal?
   longitude                 Decimal?
-  employeeId                String?
-  employee                  Employee?                    @relation(fields: [employeeId], references: [id])
   mountainId                String
   mountain                  Mountain                     @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   startTime                 DateTime                     @default(now())
@@ -434,11 +432,14 @@ model Incident {
   emptyRunAt                DateTime?
   incidentEquipmentUsageLog IncidentEquipmentUseageLog[]
 
-  locationId String
-  location   Location @relation(fields: [locationId], references: [id])
+  locationType String
+  locationId   String
+  entityId     String
+  location     Location @relation(fields: [locationId], references: [id])
+
+  employees Employee[] @relation("IncidentEmployees")
 
   @@index([mountainId, locationId])
-  @@index([mountainId, employeeId])
   @@index([mountainId, id, startTime])
   @@index([mountainId, startTime])
   @@index([locationId, startTime])

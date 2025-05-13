@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import TrailController from '../../controllers/trailController';
+import TrailController from '../../controllers/mountains/trailController';
 
 const router = Router();
 

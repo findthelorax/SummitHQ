@@ -3730,10 +3730,12 @@ export namespace Prisma {
 
   export type IncidentCountOutputType = {
     incidentEquipmentUsageLog: number
+    employees: number
   }
 
   export type IncidentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     incidentEquipmentUsageLog?: boolean | IncidentCountOutputTypeCountIncidentEquipmentUsageLogArgs
+    employees?: boolean | IncidentCountOutputTypeCountEmployeesArgs
   }
 
   // Custom InputTypes
@@ -3752,6 +3754,13 @@ export namespace Prisma {
    */
   export type IncidentCountOutputTypeCountIncidentEquipmentUsageLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: IncidentEquipmentUseageLogWhereInput
+  }
+
+  /**
+   * IncidentCountOutputType without action
+   */
+  export type IncidentCountOutputTypeCountEmployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeWhereInput
   }
 
 
@@ -24053,7 +24062,6 @@ export namespace Prisma {
     status: $Enums.IncidentStatus | null
     latitude: Decimal | null
     longitude: Decimal | null
-    employeeId: string | null
     mountainId: string | null
     startTime: Date | null
     endTime: Date | null
@@ -24062,7 +24070,9 @@ export namespace Prisma {
     transportTime: Date | null
     emptyRun: boolean | null
     emptyRunAt: Date | null
+    locationType: string | null
     locationId: string | null
+    entityId: string | null
   }
 
   export type IncidentMaxAggregateOutputType = {
@@ -24071,7 +24081,6 @@ export namespace Prisma {
     status: $Enums.IncidentStatus | null
     latitude: Decimal | null
     longitude: Decimal | null
-    employeeId: string | null
     mountainId: string | null
     startTime: Date | null
     endTime: Date | null
@@ -24080,7 +24089,9 @@ export namespace Prisma {
     transportTime: Date | null
     emptyRun: boolean | null
     emptyRunAt: Date | null
+    locationType: string | null
     locationId: string | null
+    entityId: string | null
   }
 
   export type IncidentCountAggregateOutputType = {
@@ -24089,7 +24100,6 @@ export namespace Prisma {
     status: number
     latitude: number
     longitude: number
-    employeeId: number
     mountainId: number
     startTime: number
     endTime: number
@@ -24098,7 +24108,9 @@ export namespace Prisma {
     transportTime: number
     emptyRun: number
     emptyRunAt: number
+    locationType: number
     locationId: number
+    entityId: number
     _all: number
   }
 
@@ -24119,7 +24131,6 @@ export namespace Prisma {
     status?: true
     latitude?: true
     longitude?: true
-    employeeId?: true
     mountainId?: true
     startTime?: true
     endTime?: true
@@ -24128,7 +24139,9 @@ export namespace Prisma {
     transportTime?: true
     emptyRun?: true
     emptyRunAt?: true
+    locationType?: true
     locationId?: true
+    entityId?: true
   }
 
   export type IncidentMaxAggregateInputType = {
@@ -24137,7 +24150,6 @@ export namespace Prisma {
     status?: true
     latitude?: true
     longitude?: true
-    employeeId?: true
     mountainId?: true
     startTime?: true
     endTime?: true
@@ -24146,7 +24158,9 @@ export namespace Prisma {
     transportTime?: true
     emptyRun?: true
     emptyRunAt?: true
+    locationType?: true
     locationId?: true
+    entityId?: true
   }
 
   export type IncidentCountAggregateInputType = {
@@ -24155,7 +24169,6 @@ export namespace Prisma {
     status?: true
     latitude?: true
     longitude?: true
-    employeeId?: true
     mountainId?: true
     startTime?: true
     endTime?: true
@@ -24164,7 +24177,9 @@ export namespace Prisma {
     transportTime?: true
     emptyRun?: true
     emptyRunAt?: true
+    locationType?: true
     locationId?: true
+    entityId?: true
     _all?: true
   }
 
@@ -24260,7 +24275,6 @@ export namespace Prisma {
     status: $Enums.IncidentStatus
     latitude: Decimal | null
     longitude: Decimal | null
-    employeeId: string | null
     mountainId: string
     startTime: Date
     endTime: Date | null
@@ -24269,7 +24283,9 @@ export namespace Prisma {
     transportTime: Date | null
     emptyRun: boolean
     emptyRunAt: Date | null
+    locationType: string
     locationId: string
+    entityId: string
     _count: IncidentCountAggregateOutputType | null
     _avg: IncidentAvgAggregateOutputType | null
     _sum: IncidentSumAggregateOutputType | null
@@ -24297,7 +24313,6 @@ export namespace Prisma {
     status?: boolean
     latitude?: boolean
     longitude?: boolean
-    employeeId?: boolean
     mountainId?: boolean
     startTime?: boolean
     endTime?: boolean
@@ -24306,11 +24321,13 @@ export namespace Prisma {
     transportTime?: boolean
     emptyRun?: boolean
     emptyRunAt?: boolean
+    locationType?: boolean
     locationId?: boolean
-    employee?: boolean | Incident$employeeArgs<ExtArgs>
+    entityId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incidentEquipmentUsageLog?: boolean | Incident$incidentEquipmentUsageLogArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
+    employees?: boolean | Incident$employeesArgs<ExtArgs>
     _count?: boolean | IncidentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["incident"]>
 
@@ -24320,7 +24337,6 @@ export namespace Prisma {
     status?: boolean
     latitude?: boolean
     longitude?: boolean
-    employeeId?: boolean
     mountainId?: boolean
     startTime?: boolean
     endTime?: boolean
@@ -24329,8 +24345,9 @@ export namespace Prisma {
     transportTime?: boolean
     emptyRun?: boolean
     emptyRunAt?: boolean
+    locationType?: boolean
     locationId?: boolean
-    employee?: boolean | Incident$employeeArgs<ExtArgs>
+    entityId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["incident"]>
@@ -24341,7 +24358,6 @@ export namespace Prisma {
     status?: boolean
     latitude?: boolean
     longitude?: boolean
-    employeeId?: boolean
     mountainId?: boolean
     startTime?: boolean
     endTime?: boolean
@@ -24350,8 +24366,9 @@ export namespace Prisma {
     transportTime?: boolean
     emptyRun?: boolean
     emptyRunAt?: boolean
+    locationType?: boolean
     locationId?: boolean
-    employee?: boolean | Incident$employeeArgs<ExtArgs>
+    entityId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["incident"]>
@@ -24362,7 +24379,6 @@ export namespace Prisma {
     status?: boolean
     latitude?: boolean
     longitude?: boolean
-    employeeId?: boolean
     mountainId?: boolean
     startTime?: boolean
     endTime?: boolean
@@ -24371,24 +24387,24 @@ export namespace Prisma {
     transportTime?: boolean
     emptyRun?: boolean
     emptyRunAt?: boolean
+    locationType?: boolean
     locationId?: boolean
+    entityId?: boolean
   }
 
-  export type IncidentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "status" | "latitude" | "longitude" | "employeeId" | "mountainId" | "startTime" | "endTime" | "onSceneTime" | "stableTime" | "transportTime" | "emptyRun" | "emptyRunAt" | "locationId", ExtArgs["result"]["incident"]>
+  export type IncidentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "status" | "latitude" | "longitude" | "mountainId" | "startTime" | "endTime" | "onSceneTime" | "stableTime" | "transportTime" | "emptyRun" | "emptyRunAt" | "locationType" | "locationId" | "entityId", ExtArgs["result"]["incident"]>
   export type IncidentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | Incident$employeeArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incidentEquipmentUsageLog?: boolean | Incident$incidentEquipmentUsageLogArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
+    employees?: boolean | Incident$employeesArgs<ExtArgs>
     _count?: boolean | IncidentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type IncidentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | Incident$employeeArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }
   export type IncidentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | Incident$employeeArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     location?: boolean | LocationDefaultArgs<ExtArgs>
   }
@@ -24396,10 +24412,10 @@ export namespace Prisma {
   export type $IncidentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Incident"
     objects: {
-      employee: Prisma.$EmployeePayload<ExtArgs> | null
       mountain: Prisma.$MountainPayload<ExtArgs>
       incidentEquipmentUsageLog: Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>[]
       location: Prisma.$LocationPayload<ExtArgs>
+      employees: Prisma.$EmployeePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -24407,7 +24423,6 @@ export namespace Prisma {
       status: $Enums.IncidentStatus
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
-      employeeId: string | null
       mountainId: string
       startTime: Date
       endTime: Date | null
@@ -24416,7 +24431,9 @@ export namespace Prisma {
       transportTime: Date | null
       emptyRun: boolean
       emptyRunAt: Date | null
+      locationType: string
       locationId: string
+      entityId: string
     }, ExtArgs["result"]["incident"]>
     composites: {}
   }
@@ -24811,10 +24828,10 @@ export namespace Prisma {
    */
   export interface Prisma__IncidentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    employee<T extends Incident$employeeArgs<ExtArgs> = {}>(args?: Subset<T, Incident$employeeArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     incidentEquipmentUsageLog<T extends Incident$incidentEquipmentUsageLogArgs<ExtArgs> = {}>(args?: Subset<T, Incident$incidentEquipmentUsageLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUseageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    employees<T extends Incident$employeesArgs<ExtArgs> = {}>(args?: Subset<T, Incident$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -24849,7 +24866,6 @@ export namespace Prisma {
     readonly status: FieldRef<"Incident", 'IncidentStatus'>
     readonly latitude: FieldRef<"Incident", 'Decimal'>
     readonly longitude: FieldRef<"Incident", 'Decimal'>
-    readonly employeeId: FieldRef<"Incident", 'String'>
     readonly mountainId: FieldRef<"Incident", 'String'>
     readonly startTime: FieldRef<"Incident", 'DateTime'>
     readonly endTime: FieldRef<"Incident", 'DateTime'>
@@ -24858,7 +24874,9 @@ export namespace Prisma {
     readonly transportTime: FieldRef<"Incident", 'DateTime'>
     readonly emptyRun: FieldRef<"Incident", 'Boolean'>
     readonly emptyRunAt: FieldRef<"Incident", 'DateTime'>
+    readonly locationType: FieldRef<"Incident", 'String'>
     readonly locationId: FieldRef<"Incident", 'String'>
+    readonly entityId: FieldRef<"Incident", 'String'>
   }
     
 
@@ -25255,25 +25273,6 @@ export namespace Prisma {
   }
 
   /**
-   * Incident.employee
-   */
-  export type Incident$employeeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Employee
-     */
-    select?: EmployeeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Employee
-     */
-    omit?: EmployeeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: EmployeeInclude<ExtArgs> | null
-    where?: EmployeeWhereInput
-  }
-
-  /**
    * Incident.incidentEquipmentUsageLog
    */
   export type Incident$incidentEquipmentUsageLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25295,6 +25294,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: IncidentEquipmentUseageLogScalarFieldEnum | IncidentEquipmentUseageLogScalarFieldEnum[]
+  }
+
+  /**
+   * Incident.employees
+   */
+  export type Incident$employeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    where?: EmployeeWhereInput
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    cursor?: EmployeeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
   }
 
   /**
@@ -32243,7 +32266,6 @@ export namespace Prisma {
     status: 'status',
     latitude: 'latitude',
     longitude: 'longitude',
-    employeeId: 'employeeId',
     mountainId: 'mountainId',
     startTime: 'startTime',
     endTime: 'endTime',
@@ -32252,7 +32274,9 @@ export namespace Prisma {
     transportTime: 'transportTime',
     emptyRun: 'emptyRun',
     emptyRunAt: 'emptyRunAt',
-    locationId: 'locationId'
+    locationType: 'locationType',
+    locationId: 'locationId',
+    entityId: 'entityId'
   };
 
   export type IncidentScalarFieldEnum = (typeof IncidentScalarFieldEnum)[keyof typeof IncidentScalarFieldEnum]
@@ -33906,7 +33930,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFilter<"Incident"> | $Enums.IncidentStatus
     latitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
-    employeeId?: StringNullableFilter<"Incident"> | string | null
     mountainId?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -33915,11 +33938,13 @@ export namespace Prisma {
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     emptyRun?: BoolFilter<"Incident"> | boolean
     emptyRunAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    locationType?: StringFilter<"Incident"> | string
     locationId?: StringFilter<"Incident"> | string
-    employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+    entityId?: StringFilter<"Incident"> | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogListRelationFilter
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    employees?: EmployeeListRelationFilter
   }
 
   export type IncidentOrderByWithRelationInput = {
@@ -33928,7 +33953,6 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    employeeId?: SortOrderInput | SortOrder
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrderInput | SortOrder
@@ -33937,11 +33961,13 @@ export namespace Prisma {
     transportTime?: SortOrderInput | SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrderInput | SortOrder
+    locationType?: SortOrder
     locationId?: SortOrder
-    employee?: EmployeeOrderByWithRelationInput
+    entityId?: SortOrder
     mountain?: MountainOrderByWithRelationInput
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogOrderByRelationAggregateInput
     location?: LocationOrderByWithRelationInput
+    employees?: EmployeeOrderByRelationAggregateInput
   }
 
   export type IncidentWhereUniqueInput = Prisma.AtLeast<{
@@ -33953,7 +33979,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFilter<"Incident"> | $Enums.IncidentStatus
     latitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
-    employeeId?: StringNullableFilter<"Incident"> | string | null
     mountainId?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -33962,11 +33987,13 @@ export namespace Prisma {
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     emptyRun?: BoolFilter<"Incident"> | boolean
     emptyRunAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    locationType?: StringFilter<"Incident"> | string
     locationId?: StringFilter<"Incident"> | string
-    employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+    entityId?: StringFilter<"Incident"> | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogListRelationFilter
     location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    employees?: EmployeeListRelationFilter
   }, "id">
 
   export type IncidentOrderByWithAggregationInput = {
@@ -33975,7 +34002,6 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    employeeId?: SortOrderInput | SortOrder
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrderInput | SortOrder
@@ -33984,7 +34010,9 @@ export namespace Prisma {
     transportTime?: SortOrderInput | SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrderInput | SortOrder
+    locationType?: SortOrder
     locationId?: SortOrder
+    entityId?: SortOrder
     _count?: IncidentCountOrderByAggregateInput
     _avg?: IncidentAvgOrderByAggregateInput
     _max?: IncidentMaxOrderByAggregateInput
@@ -34001,7 +34029,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusWithAggregatesFilter<"Incident"> | $Enums.IncidentStatus
     latitude?: DecimalNullableWithAggregatesFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
-    employeeId?: StringNullableWithAggregatesFilter<"Incident"> | string | null
     mountainId?: StringWithAggregatesFilter<"Incident"> | string
     startTime?: DateTimeWithAggregatesFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
@@ -34010,7 +34037,9 @@ export namespace Prisma {
     transportTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
     emptyRun?: BoolWithAggregatesFilter<"Incident"> | boolean
     emptyRunAt?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
+    locationType?: StringWithAggregatesFilter<"Incident"> | string
     locationId?: StringWithAggregatesFilter<"Incident"> | string
+    entityId?: StringWithAggregatesFilter<"Incident"> | string
   }
 
   export type IncidentEquipmentUseageLogWhereInput = {
@@ -35198,7 +35227,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -35217,7 +35246,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -35236,7 +35265,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -35255,7 +35284,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -35874,10 +35903,12 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    employee?: EmployeeCreateNestedOneWithoutIncidentsInput
+    locationType: string
+    entityId: string
     mountain: MountainCreateNestedOneWithoutIncidentsInput
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput
     location: LocationCreateNestedOneWithoutIncidentsInput
+    employees?: EmployeeCreateNestedManyWithoutIncidentsInput
   }
 
   export type IncidentUncheckedCreateInput = {
@@ -35886,7 +35917,6 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
@@ -35895,8 +35925,11 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
     locationId: string
+    entityId: string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutIncidentsInput
   }
 
   export type IncidentUpdateInput = {
@@ -35912,10 +35945,12 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    employee?: EmployeeUpdateOneWithoutIncidentsNestedInput
+    locationType?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     mountain?: MountainUpdateOneRequiredWithoutIncidentsNestedInput
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput
     location?: LocationUpdateOneRequiredWithoutIncidentsNestedInput
+    employees?: EmployeeUpdateManyWithoutIncidentsNestedInput
   }
 
   export type IncidentUncheckedUpdateInput = {
@@ -35924,7 +35959,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -35933,8 +35967,11 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput
   }
 
   export type IncidentCreateManyInput = {
@@ -35943,7 +35980,6 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
@@ -35952,7 +35988,9 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
     locationId: string
+    entityId: string
   }
 
   export type IncidentUpdateManyMutationInput = {
@@ -35968,6 +36006,8 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
   }
 
   export type IncidentUncheckedUpdateManyInput = {
@@ -35976,7 +36016,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -35985,7 +36024,9 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
   }
 
   export type IncidentEquipmentUseageLogCreateInput = {
@@ -37833,7 +37874,6 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    employeeId?: SortOrder
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
@@ -37842,7 +37882,9 @@ export namespace Prisma {
     transportTime?: SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrder
+    locationType?: SortOrder
     locationId?: SortOrder
+    entityId?: SortOrder
   }
 
   export type IncidentAvgOrderByAggregateInput = {
@@ -37856,7 +37898,6 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    employeeId?: SortOrder
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
@@ -37865,7 +37906,9 @@ export namespace Prisma {
     transportTime?: SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrder
+    locationType?: SortOrder
     locationId?: SortOrder
+    entityId?: SortOrder
   }
 
   export type IncidentMinOrderByAggregateInput = {
@@ -37874,7 +37917,6 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    employeeId?: SortOrder
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
@@ -37883,7 +37925,9 @@ export namespace Prisma {
     transportTime?: SortOrder
     emptyRun?: SortOrder
     emptyRunAt?: SortOrder
+    locationType?: SortOrder
     locationId?: SortOrder
+    entityId?: SortOrder
   }
 
   export type IncidentSumOrderByAggregateInput = {
@@ -39446,10 +39490,9 @@ export namespace Prisma {
     connect?: DispatcherAssignmentWhereUniqueInput | DispatcherAssignmentWhereUniqueInput[]
   }
 
-  export type IncidentCreateNestedManyWithoutEmployeeInput = {
-    create?: XOR<IncidentCreateWithoutEmployeeInput, IncidentUncheckedCreateWithoutEmployeeInput> | IncidentCreateWithoutEmployeeInput[] | IncidentUncheckedCreateWithoutEmployeeInput[]
-    connectOrCreate?: IncidentCreateOrConnectWithoutEmployeeInput | IncidentCreateOrConnectWithoutEmployeeInput[]
-    createMany?: IncidentCreateManyEmployeeInputEnvelope
+  export type IncidentCreateNestedManyWithoutEmployeesInput = {
+    create?: XOR<IncidentCreateWithoutEmployeesInput, IncidentUncheckedCreateWithoutEmployeesInput> | IncidentCreateWithoutEmployeesInput[] | IncidentUncheckedCreateWithoutEmployeesInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutEmployeesInput | IncidentCreateOrConnectWithoutEmployeesInput[]
     connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
   }
 
@@ -39516,10 +39559,9 @@ export namespace Prisma {
     connect?: DispatcherAssignmentWhereUniqueInput | DispatcherAssignmentWhereUniqueInput[]
   }
 
-  export type IncidentUncheckedCreateNestedManyWithoutEmployeeInput = {
-    create?: XOR<IncidentCreateWithoutEmployeeInput, IncidentUncheckedCreateWithoutEmployeeInput> | IncidentCreateWithoutEmployeeInput[] | IncidentUncheckedCreateWithoutEmployeeInput[]
-    connectOrCreate?: IncidentCreateOrConnectWithoutEmployeeInput | IncidentCreateOrConnectWithoutEmployeeInput[]
-    createMany?: IncidentCreateManyEmployeeInputEnvelope
+  export type IncidentUncheckedCreateNestedManyWithoutEmployeesInput = {
+    create?: XOR<IncidentCreateWithoutEmployeesInput, IncidentUncheckedCreateWithoutEmployeesInput> | IncidentCreateWithoutEmployeesInput[] | IncidentUncheckedCreateWithoutEmployeesInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutEmployeesInput | IncidentCreateOrConnectWithoutEmployeesInput[]
     connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
   }
 
@@ -39617,17 +39659,16 @@ export namespace Prisma {
     deleteMany?: DispatcherAssignmentScalarWhereInput | DispatcherAssignmentScalarWhereInput[]
   }
 
-  export type IncidentUpdateManyWithoutEmployeeNestedInput = {
-    create?: XOR<IncidentCreateWithoutEmployeeInput, IncidentUncheckedCreateWithoutEmployeeInput> | IncidentCreateWithoutEmployeeInput[] | IncidentUncheckedCreateWithoutEmployeeInput[]
-    connectOrCreate?: IncidentCreateOrConnectWithoutEmployeeInput | IncidentCreateOrConnectWithoutEmployeeInput[]
-    upsert?: IncidentUpsertWithWhereUniqueWithoutEmployeeInput | IncidentUpsertWithWhereUniqueWithoutEmployeeInput[]
-    createMany?: IncidentCreateManyEmployeeInputEnvelope
+  export type IncidentUpdateManyWithoutEmployeesNestedInput = {
+    create?: XOR<IncidentCreateWithoutEmployeesInput, IncidentUncheckedCreateWithoutEmployeesInput> | IncidentCreateWithoutEmployeesInput[] | IncidentUncheckedCreateWithoutEmployeesInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutEmployeesInput | IncidentCreateOrConnectWithoutEmployeesInput[]
+    upsert?: IncidentUpsertWithWhereUniqueWithoutEmployeesInput | IncidentUpsertWithWhereUniqueWithoutEmployeesInput[]
     set?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
     disconnect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
     delete?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
     connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
-    update?: IncidentUpdateWithWhereUniqueWithoutEmployeeInput | IncidentUpdateWithWhereUniqueWithoutEmployeeInput[]
-    updateMany?: IncidentUpdateManyWithWhereWithoutEmployeeInput | IncidentUpdateManyWithWhereWithoutEmployeeInput[]
+    update?: IncidentUpdateWithWhereUniqueWithoutEmployeesInput | IncidentUpdateWithWhereUniqueWithoutEmployeesInput[]
+    updateMany?: IncidentUpdateManyWithWhereWithoutEmployeesInput | IncidentUpdateManyWithWhereWithoutEmployeesInput[]
     deleteMany?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
   }
 
@@ -39757,17 +39798,16 @@ export namespace Prisma {
     deleteMany?: DispatcherAssignmentScalarWhereInput | DispatcherAssignmentScalarWhereInput[]
   }
 
-  export type IncidentUncheckedUpdateManyWithoutEmployeeNestedInput = {
-    create?: XOR<IncidentCreateWithoutEmployeeInput, IncidentUncheckedCreateWithoutEmployeeInput> | IncidentCreateWithoutEmployeeInput[] | IncidentUncheckedCreateWithoutEmployeeInput[]
-    connectOrCreate?: IncidentCreateOrConnectWithoutEmployeeInput | IncidentCreateOrConnectWithoutEmployeeInput[]
-    upsert?: IncidentUpsertWithWhereUniqueWithoutEmployeeInput | IncidentUpsertWithWhereUniqueWithoutEmployeeInput[]
-    createMany?: IncidentCreateManyEmployeeInputEnvelope
+  export type IncidentUncheckedUpdateManyWithoutEmployeesNestedInput = {
+    create?: XOR<IncidentCreateWithoutEmployeesInput, IncidentUncheckedCreateWithoutEmployeesInput> | IncidentCreateWithoutEmployeesInput[] | IncidentUncheckedCreateWithoutEmployeesInput[]
+    connectOrCreate?: IncidentCreateOrConnectWithoutEmployeesInput | IncidentCreateOrConnectWithoutEmployeesInput[]
+    upsert?: IncidentUpsertWithWhereUniqueWithoutEmployeesInput | IncidentUpsertWithWhereUniqueWithoutEmployeesInput[]
     set?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
     disconnect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
     delete?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
     connect?: IncidentWhereUniqueInput | IncidentWhereUniqueInput[]
-    update?: IncidentUpdateWithWhereUniqueWithoutEmployeeInput | IncidentUpdateWithWhereUniqueWithoutEmployeeInput[]
-    updateMany?: IncidentUpdateManyWithWhereWithoutEmployeeInput | IncidentUpdateManyWithWhereWithoutEmployeeInput[]
+    update?: IncidentUpdateWithWhereUniqueWithoutEmployeesInput | IncidentUpdateWithWhereUniqueWithoutEmployeesInput[]
+    updateMany?: IncidentUpdateManyWithWhereWithoutEmployeesInput | IncidentUpdateManyWithWhereWithoutEmployeesInput[]
     deleteMany?: IncidentScalarWhereInput | IncidentScalarWhereInput[]
   }
 
@@ -40309,12 +40349,6 @@ export namespace Prisma {
     deleteMany?: EquipmentServiceLogScalarWhereInput | EquipmentServiceLogScalarWhereInput[]
   }
 
-  export type EmployeeCreateNestedOneWithoutIncidentsInput = {
-    create?: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput>
-    connectOrCreate?: EmployeeCreateOrConnectWithoutIncidentsInput
-    connect?: EmployeeWhereUniqueInput
-  }
-
   export type MountainCreateNestedOneWithoutIncidentsInput = {
     create?: XOR<MountainCreateWithoutIncidentsInput, MountainUncheckedCreateWithoutIncidentsInput>
     connectOrCreate?: MountainCreateOrConnectWithoutIncidentsInput
@@ -40334,11 +40368,23 @@ export namespace Prisma {
     connect?: LocationWhereUniqueInput
   }
 
+  export type EmployeeCreateNestedManyWithoutIncidentsInput = {
+    create?: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput> | EmployeeCreateWithoutIncidentsInput[] | EmployeeUncheckedCreateWithoutIncidentsInput[]
+    connectOrCreate?: EmployeeCreateOrConnectWithoutIncidentsInput | EmployeeCreateOrConnectWithoutIncidentsInput[]
+    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+  }
+
   export type IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput = {
     create?: XOR<IncidentEquipmentUseageLogCreateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUseageLogCreateWithoutIncidentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput[]
     connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput[]
     createMany?: IncidentEquipmentUseageLogCreateManyIncidentInputEnvelope
     connect?: IncidentEquipmentUseageLogWhereUniqueInput | IncidentEquipmentUseageLogWhereUniqueInput[]
+  }
+
+  export type EmployeeUncheckedCreateNestedManyWithoutIncidentsInput = {
+    create?: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput> | EmployeeCreateWithoutIncidentsInput[] | EmployeeUncheckedCreateWithoutIncidentsInput[]
+    connectOrCreate?: EmployeeCreateOrConnectWithoutIncidentsInput | EmployeeCreateOrConnectWithoutIncidentsInput[]
+    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
   }
 
   export type EnumIncidentStatusFieldUpdateOperationsInput = {
@@ -40347,16 +40393,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type EmployeeUpdateOneWithoutIncidentsNestedInput = {
-    create?: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput>
-    connectOrCreate?: EmployeeCreateOrConnectWithoutIncidentsInput
-    upsert?: EmployeeUpsertWithoutIncidentsInput
-    disconnect?: EmployeeWhereInput | boolean
-    delete?: EmployeeWhereInput | boolean
-    connect?: EmployeeWhereUniqueInput
-    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutIncidentsInput, EmployeeUpdateWithoutIncidentsInput>, EmployeeUncheckedUpdateWithoutIncidentsInput>
   }
 
   export type MountainUpdateOneRequiredWithoutIncidentsNestedInput = {
@@ -40389,6 +40425,19 @@ export namespace Prisma {
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutIncidentsInput, LocationUpdateWithoutIncidentsInput>, LocationUncheckedUpdateWithoutIncidentsInput>
   }
 
+  export type EmployeeUpdateManyWithoutIncidentsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput> | EmployeeCreateWithoutIncidentsInput[] | EmployeeUncheckedCreateWithoutIncidentsInput[]
+    connectOrCreate?: EmployeeCreateOrConnectWithoutIncidentsInput | EmployeeCreateOrConnectWithoutIncidentsInput[]
+    upsert?: EmployeeUpsertWithWhereUniqueWithoutIncidentsInput | EmployeeUpsertWithWhereUniqueWithoutIncidentsInput[]
+    set?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    disconnect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    delete?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    update?: EmployeeUpdateWithWhereUniqueWithoutIncidentsInput | EmployeeUpdateWithWhereUniqueWithoutIncidentsInput[]
+    updateMany?: EmployeeUpdateManyWithWhereWithoutIncidentsInput | EmployeeUpdateManyWithWhereWithoutIncidentsInput[]
+    deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
+  }
+
   export type IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput = {
     create?: XOR<IncidentEquipmentUseageLogCreateWithoutIncidentInput, IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput> | IncidentEquipmentUseageLogCreateWithoutIncidentInput[] | IncidentEquipmentUseageLogUncheckedCreateWithoutIncidentInput[]
     connectOrCreate?: IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput | IncidentEquipmentUseageLogCreateOrConnectWithoutIncidentInput[]
@@ -40401,6 +40450,19 @@ export namespace Prisma {
     update?: IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutIncidentInput | IncidentEquipmentUseageLogUpdateWithWhereUniqueWithoutIncidentInput[]
     updateMany?: IncidentEquipmentUseageLogUpdateManyWithWhereWithoutIncidentInput | IncidentEquipmentUseageLogUpdateManyWithWhereWithoutIncidentInput[]
     deleteMany?: IncidentEquipmentUseageLogScalarWhereInput | IncidentEquipmentUseageLogScalarWhereInput[]
+  }
+
+  export type EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput> | EmployeeCreateWithoutIncidentsInput[] | EmployeeUncheckedCreateWithoutIncidentsInput[]
+    connectOrCreate?: EmployeeCreateOrConnectWithoutIncidentsInput | EmployeeCreateOrConnectWithoutIncidentsInput[]
+    upsert?: EmployeeUpsertWithWhereUniqueWithoutIncidentsInput | EmployeeUpsertWithWhereUniqueWithoutIncidentsInput[]
+    set?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    disconnect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    delete?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    update?: EmployeeUpdateWithWhereUniqueWithoutIncidentsInput | EmployeeUpdateWithWhereUniqueWithoutIncidentsInput[]
+    updateMany?: EmployeeUpdateManyWithWhereWithoutIncidentsInput | EmployeeUpdateManyWithWhereWithoutIncidentsInput[]
+    deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
   }
 
   export type MountainCreateNestedOneWithoutIncidentEquipmentUsageLogInput = {
@@ -41459,9 +41521,11 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    employee?: EmployeeCreateNestedOneWithoutIncidentsInput
+    locationType: string
+    entityId: string
     mountain: MountainCreateNestedOneWithoutIncidentsInput
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput
+    employees?: EmployeeCreateNestedManyWithoutIncidentsInput
   }
 
   export type IncidentUncheckedCreateWithoutLocationInput = {
@@ -41470,7 +41534,6 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
@@ -41479,7 +41542,10 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
+    entityId: string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutIncidentsInput
   }
 
   export type IncidentCreateOrConnectWithoutLocationInput = {
@@ -41687,7 +41753,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFilter<"Incident"> | $Enums.IncidentStatus
     latitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Incident"> | Decimal | DecimalJsLike | number | string | null
-    employeeId?: StringNullableFilter<"Incident"> | string | null
     mountainId?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -41696,7 +41761,9 @@ export namespace Prisma {
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     emptyRun?: BoolFilter<"Incident"> | boolean
     emptyRunAt?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    locationType?: StringFilter<"Incident"> | string
     locationId?: StringFilter<"Incident"> | string
+    entityId?: StringFilter<"Incident"> | string
   }
 
   export type LocationCreateWithoutHoursInput = {
@@ -42170,9 +42237,11 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    employee?: EmployeeCreateNestedOneWithoutIncidentsInput
+    locationType: string
+    entityId: string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput
     location: LocationCreateNestedOneWithoutIncidentsInput
+    employees?: EmployeeCreateNestedManyWithoutIncidentsInput
   }
 
   export type IncidentUncheckedCreateWithoutMountainInput = {
@@ -42181,7 +42250,6 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -42189,8 +42257,11 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
     locationId: string
+    entityId: string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
+    employees?: EmployeeUncheckedCreateNestedManyWithoutIncidentsInput
   }
 
   export type IncidentCreateOrConnectWithoutMountainInput = {
@@ -43031,7 +43102,7 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -43049,7 +43120,7 @@ export namespace Prisma {
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -43154,7 +43225,7 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -43172,7 +43243,7 @@ export namespace Prisma {
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -43267,7 +43338,7 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -43285,7 +43356,7 @@ export namespace Prisma {
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -43390,7 +43461,7 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -43408,7 +43479,7 @@ export namespace Prisma {
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -43503,7 +43574,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -43521,7 +43592,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -43622,7 +43693,7 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutEmployeesInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -43640,7 +43711,7 @@ export namespace Prisma {
     roleId?: string | null
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -43701,7 +43772,7 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -43719,7 +43790,7 @@ export namespace Prisma {
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -43852,7 +43923,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type IncidentCreateWithoutEmployeeInput = {
+  export type IncidentCreateWithoutEmployeesInput = {
     id?: string
     description: string
     status?: $Enums.IncidentStatus
@@ -43865,12 +43936,14 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
+    entityId: string
     mountain: MountainCreateNestedOneWithoutIncidentsInput
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogCreateNestedManyWithoutIncidentInput
     location: LocationCreateNestedOneWithoutIncidentsInput
   }
 
-  export type IncidentUncheckedCreateWithoutEmployeeInput = {
+  export type IncidentUncheckedCreateWithoutEmployeesInput = {
     id?: string
     description: string
     status?: $Enums.IncidentStatus
@@ -43884,18 +43957,15 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
     locationId: string
+    entityId: string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedCreateNestedManyWithoutIncidentInput
   }
 
-  export type IncidentCreateOrConnectWithoutEmployeeInput = {
+  export type IncidentCreateOrConnectWithoutEmployeesInput = {
     where: IncidentWhereUniqueInput
-    create: XOR<IncidentCreateWithoutEmployeeInput, IncidentUncheckedCreateWithoutEmployeeInput>
-  }
-
-  export type IncidentCreateManyEmployeeInputEnvelope = {
-    data: IncidentCreateManyEmployeeInput | IncidentCreateManyEmployeeInput[]
-    skipDuplicates?: boolean
+    create: XOR<IncidentCreateWithoutEmployeesInput, IncidentUncheckedCreateWithoutEmployeesInput>
   }
 
   export type AidRoomCheckCreateWithoutEmployeeInput = {
@@ -44161,20 +44231,20 @@ export namespace Prisma {
     data: XOR<DispatcherAssignmentUpdateManyMutationInput, DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeInput>
   }
 
-  export type IncidentUpsertWithWhereUniqueWithoutEmployeeInput = {
+  export type IncidentUpsertWithWhereUniqueWithoutEmployeesInput = {
     where: IncidentWhereUniqueInput
-    update: XOR<IncidentUpdateWithoutEmployeeInput, IncidentUncheckedUpdateWithoutEmployeeInput>
-    create: XOR<IncidentCreateWithoutEmployeeInput, IncidentUncheckedCreateWithoutEmployeeInput>
+    update: XOR<IncidentUpdateWithoutEmployeesInput, IncidentUncheckedUpdateWithoutEmployeesInput>
+    create: XOR<IncidentCreateWithoutEmployeesInput, IncidentUncheckedCreateWithoutEmployeesInput>
   }
 
-  export type IncidentUpdateWithWhereUniqueWithoutEmployeeInput = {
+  export type IncidentUpdateWithWhereUniqueWithoutEmployeesInput = {
     where: IncidentWhereUniqueInput
-    data: XOR<IncidentUpdateWithoutEmployeeInput, IncidentUncheckedUpdateWithoutEmployeeInput>
+    data: XOR<IncidentUpdateWithoutEmployeesInput, IncidentUncheckedUpdateWithoutEmployeesInput>
   }
 
-  export type IncidentUpdateManyWithWhereWithoutEmployeeInput = {
+  export type IncidentUpdateManyWithWhereWithoutEmployeesInput = {
     where: IncidentScalarWhereInput
-    data: XOR<IncidentUpdateManyMutationInput, IncidentUncheckedUpdateManyWithoutEmployeeInput>
+    data: XOR<IncidentUpdateManyMutationInput, IncidentUncheckedUpdateManyWithoutEmployeesInput>
   }
 
   export type AidRoomCheckUpsertWithWhereUniqueWithoutEmployeeInput = {
@@ -45278,7 +45348,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -45296,7 +45366,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -45448,7 +45518,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -45466,7 +45536,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -45869,47 +45939,6 @@ export namespace Prisma {
     data: XOR<EquipmentServiceLogUpdateManyMutationInput, EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentInput>
   }
 
-  export type EmployeeCreateWithoutIncidentsInput = {
-    id?: string
-    employeeIdNumber: number
-    email: string
-    phoneNumber: string
-    name: string
-    role?: RoleCreateNestedOneWithoutEmployeesInput
-    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
-    mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
-    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
-    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
-    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeUncheckedCreateWithoutIncidentsInput = {
-    id?: string
-    employeeIdNumber: number
-    email: string
-    phoneNumber: string
-    name: string
-    roleId?: string | null
-    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
-    mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeCreateOrConnectWithoutIncidentsInput = {
-    where: EmployeeWhereUniqueInput
-    create: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput>
-  }
-
   export type MountainCreateWithoutIncidentsInput = {
     id?: string
     name: string
@@ -46038,51 +46067,45 @@ export namespace Prisma {
     create: XOR<LocationCreateWithoutIncidentsInput, LocationUncheckedCreateWithoutIncidentsInput>
   }
 
-  export type EmployeeUpsertWithoutIncidentsInput = {
-    update: XOR<EmployeeUpdateWithoutIncidentsInput, EmployeeUncheckedUpdateWithoutIncidentsInput>
+  export type EmployeeCreateWithoutIncidentsInput = {
+    id?: string
+    employeeIdNumber: number
+    email: string
+    phoneNumber: string
+    name: string
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
+    mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutIncidentsInput = {
+    id?: string
+    employeeIdNumber: number
+    email: string
+    phoneNumber: string
+    name: string
+    roleId?: string | null
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
+    mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutIncidentsInput = {
+    where: EmployeeWhereUniqueInput
     create: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput>
-    where?: EmployeeWhereInput
-  }
-
-  export type EmployeeUpdateToOneWithWhereWithoutIncidentsInput = {
-    where?: EmployeeWhereInput
-    data: XOR<EmployeeUpdateWithoutIncidentsInput, EmployeeUncheckedUpdateWithoutIncidentsInput>
-  }
-
-  export type EmployeeUpdateWithoutIncidentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    role?: RoleUpdateOneWithoutEmployeesNestedInput
-    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
-    mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
-    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type EmployeeUncheckedUpdateWithoutIncidentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
-    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
-    mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type MountainUpsertWithoutIncidentsInput = {
@@ -46211,6 +46234,22 @@ export namespace Prisma {
     equipment?: EquipmentUncheckedUpdateManyWithoutLocationNestedInput
   }
 
+  export type EmployeeUpsertWithWhereUniqueWithoutIncidentsInput = {
+    where: EmployeeWhereUniqueInput
+    update: XOR<EmployeeUpdateWithoutIncidentsInput, EmployeeUncheckedUpdateWithoutIncidentsInput>
+    create: XOR<EmployeeCreateWithoutIncidentsInput, EmployeeUncheckedCreateWithoutIncidentsInput>
+  }
+
+  export type EmployeeUpdateWithWhereUniqueWithoutIncidentsInput = {
+    where: EmployeeWhereUniqueInput
+    data: XOR<EmployeeUpdateWithoutIncidentsInput, EmployeeUncheckedUpdateWithoutIncidentsInput>
+  }
+
+  export type EmployeeUpdateManyWithWhereWithoutIncidentsInput = {
+    where: EmployeeScalarWhereInput
+    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyWithoutIncidentsInput>
+  }
+
   export type MountainCreateWithoutIncidentEquipmentUsageLogInput = {
     id?: string
     name: string
@@ -46295,9 +46334,11 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
-    employee?: EmployeeCreateNestedOneWithoutIncidentsInput
+    locationType: string
+    entityId: string
     mountain: MountainCreateNestedOneWithoutIncidentsInput
     location: LocationCreateNestedOneWithoutIncidentsInput
+    employees?: EmployeeCreateNestedManyWithoutIncidentsInput
   }
 
   export type IncidentUncheckedCreateWithoutIncidentEquipmentUsageLogInput = {
@@ -46306,7 +46347,6 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
@@ -46315,7 +46355,10 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
     locationId: string
+    entityId: string
+    employees?: EmployeeUncheckedCreateNestedManyWithoutIncidentsInput
   }
 
   export type IncidentCreateOrConnectWithoutIncidentEquipmentUsageLogInput = {
@@ -46465,9 +46508,11 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    employee?: EmployeeUpdateOneWithoutIncidentsNestedInput
+    locationType?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     mountain?: MountainUpdateOneRequiredWithoutIncidentsNestedInput
     location?: LocationUpdateOneRequiredWithoutIncidentsNestedInput
+    employees?: EmployeeUpdateManyWithoutIncidentsNestedInput
   }
 
   export type IncidentUncheckedUpdateWithoutIncidentEquipmentUsageLogInput = {
@@ -46476,7 +46521,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -46485,7 +46529,10 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
+    employees?: EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput
   }
 
   export type EquipmentUpsertWithoutIncidentEquipmentUsageLogsInput = {
@@ -46545,7 +46592,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
@@ -46563,7 +46610,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -46695,7 +46742,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
@@ -46713,7 +46760,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -46841,7 +46888,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -46859,7 +46906,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -46993,7 +47040,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -47011,7 +47058,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -47141,7 +47188,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
@@ -47159,7 +47206,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -47287,7 +47334,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
@@ -47305,7 +47352,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -47429,7 +47476,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
@@ -47447,7 +47494,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -47575,7 +47622,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
@@ -47593,7 +47640,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -47717,7 +47764,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
@@ -47735,7 +47782,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
     liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
@@ -47881,7 +47928,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -47899,7 +47946,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -48101,7 +48148,6 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
@@ -48110,6 +48156,8 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
+    entityId: string
   }
 
   export type HoursUpdateWithoutLocationInput = {
@@ -48209,9 +48257,11 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    employee?: EmployeeUpdateOneWithoutIncidentsNestedInput
+    locationType?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     mountain?: MountainUpdateOneRequiredWithoutIncidentsNestedInput
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput
+    employees?: EmployeeUpdateManyWithoutIncidentsNestedInput
   }
 
   export type IncidentUncheckedUpdateWithoutLocationInput = {
@@ -48220,7 +48270,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -48229,7 +48278,10 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput
   }
 
   export type IncidentUncheckedUpdateManyWithoutLocationInput = {
@@ -48238,7 +48290,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -48247,6 +48298,8 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
   }
 
   export type WeatherCreateManyMountainInput = {
@@ -48381,7 +48434,6 @@ export namespace Prisma {
     status?: $Enums.IncidentStatus
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    employeeId?: string | null
     startTime?: Date | string
     endTime?: Date | string | null
     onSceneTime?: Date | string | null
@@ -48389,7 +48441,9 @@ export namespace Prisma {
     transportTime?: Date | string | null
     emptyRun?: boolean
     emptyRunAt?: Date | string | null
+    locationType: string
     locationId: string
+    entityId: string
   }
 
   export type EquipmentCreateManyMountainInput = {
@@ -48847,9 +48901,11 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    employee?: EmployeeUpdateOneWithoutIncidentsNestedInput
+    locationType?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput
     location?: LocationUpdateOneRequiredWithoutIncidentsNestedInput
+    employees?: EmployeeUpdateManyWithoutIncidentsNestedInput
   }
 
   export type IncidentUncheckedUpdateWithoutMountainInput = {
@@ -48858,7 +48914,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -48866,8 +48921,11 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
+    employees?: EmployeeUncheckedUpdateManyWithoutIncidentsNestedInput
   }
 
   export type IncidentUncheckedUpdateManyWithoutMountainInput = {
@@ -48876,7 +48934,6 @@ export namespace Prisma {
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -48884,7 +48941,9 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
   }
 
   export type EquipmentUpdateWithoutMountainInput = {
@@ -49059,7 +49118,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
@@ -49077,7 +49136,7 @@ export namespace Prisma {
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
     liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -49124,23 +49183,6 @@ export namespace Prisma {
     id?: string
     mountainId: string
     assignedAt: Date | string
-  }
-
-  export type IncidentCreateManyEmployeeInput = {
-    id?: string
-    description: string
-    status?: $Enums.IncidentStatus
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
-    startTime?: Date | string
-    endTime?: Date | string | null
-    onSceneTime?: Date | string | null
-    stableTime?: Date | string | null
-    transportTime?: Date | string | null
-    emptyRun?: boolean
-    emptyRunAt?: Date | string | null
-    locationId: string
   }
 
   export type AidRoomCheckCreateManyEmployeeInput = {
@@ -49255,7 +49297,7 @@ export namespace Prisma {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IncidentUpdateWithoutEmployeeInput = {
+  export type IncidentUpdateWithoutEmployeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
@@ -49268,12 +49310,14 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     mountain?: MountainUpdateOneRequiredWithoutIncidentsNestedInput
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUpdateManyWithoutIncidentNestedInput
     location?: LocationUpdateOneRequiredWithoutIncidentsNestedInput
   }
 
-  export type IncidentUncheckedUpdateWithoutEmployeeInput = {
+  export type IncidentUncheckedUpdateWithoutEmployeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
@@ -49287,11 +49331,13 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
     incidentEquipmentUsageLog?: IncidentEquipmentUseageLogUncheckedUpdateManyWithoutIncidentNestedInput
   }
 
-  export type IncidentUncheckedUpdateManyWithoutEmployeeInput = {
+  export type IncidentUncheckedUpdateManyWithoutEmployeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     status?: EnumIncidentStatusFieldUpdateOperationsInput | $Enums.IncidentStatus
@@ -49305,7 +49351,9 @@ export namespace Prisma {
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     emptyRun?: BoolFieldUpdateOperationsInput | boolean
     emptyRunAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    locationType?: StringFieldUpdateOperationsInput | string
     locationId?: StringFieldUpdateOperationsInput | string
+    entityId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AidRoomCheckUpdateWithoutEmployeeInput = {
@@ -49813,6 +49861,51 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeUpdateWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
+    mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
+    mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateManyWithoutIncidentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

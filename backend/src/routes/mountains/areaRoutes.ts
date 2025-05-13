@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import AreaController from '../../controllers/areaController';
+import AreaController from '../../controllers/mountains/areaController';
 
 const router = Router();
 
