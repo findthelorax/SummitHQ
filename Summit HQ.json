@@ -1,0 +1,177 @@
+{
+  "id": "cma2um1za002fbza8t3nh6rxh",
+  "v": 1,
+  "name": "Summit HQ",
+  "variables": [
+    {
+      "key": "APP IP",
+      "value": "http://localhost:3000",
+      "secret": false
+    },
+    {
+      "key": "Mountain ID",
+      "value": "b584ed34-590f-4bc4-8472-4cc3d34f2fd8",
+      "secret": false
+    },
+    {
+      "key": "Lift ID",
+      "value": "d1e5cc98-96e9-4684-9d8c-0aed5fefd3c3",
+      "secret": false
+    },
+    {
+      "key": "Trail ID",
+      "value": "2f144231-1c90-427a-b0dd-b7264ace6e50",
+      "secret": false
+    },
+    {
+      "key": "Lodge ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Hut ID",
+      "value": "25d14830-26f8-438c-b13c-793bd257cba5",
+      "secret": false
+    },
+    {
+      "key": "Aid Room ID",
+      "value": "2f0388df-6df4-47f7-b012-da933a19ff84",
+      "secret": false
+    },
+    {
+      "key": "Employee ID",
+      "value": "38ed1da1-e69e-4ca2-89ac-70248414b906",
+      "secret": false
+    },
+    {
+      "key": "Employee2 ID",
+      "value": "631dbab7-e6e2-4961-afdf-3d955ee191a9",
+      "secret": false
+    },
+    {
+      "key": "Dispatch Assignment ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Mountain Assignment ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Equipment ID",
+      "value": "ddd3421f-4718-4c35-aeac-0ddaae3b0dae",
+      "secret": false
+    },
+    {
+      "key": "Incident ID",
+      "value": "1631ce56-d79e-49a6-831f-eb49ad3dd9b5",
+      "secret": false
+    },
+    {
+      "key": "Incident Log ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Incident Equipment Log ID",
+      "value": "506e9e1b-d8a5-404d-b165-261e17b09d59",
+      "secret": false
+    },
+    {
+      "key": "Lift Check ID",
+      "value": "a8513e59-fbd0-4671-bdf2-dd23467a5cb8",
+      "secret": false
+    },
+    {
+      "key": "Trail Check ID",
+      "value": "a0e316b5-3374-4600-9ad4-7de031eda7cb",
+      "secret": false
+    },
+    {
+      "key": "Equipment Check ID",
+      "value": "b79c78a8-ec5f-44d7-9f04-5b61fa7d7011",
+      "secret": false
+    },
+    {
+      "key": "Hut Check ID",
+      "value": "772528ff-dcb6-49a1-8c05-f7330f7c1a4a",
+      "secret": false
+    },
+    {
+      "key": "Aid Room Check ID",
+      "value": "224fe395-139f-4ef2-84f6-a34ff6e15d2f",
+      "secret": false
+    },
+    {
+      "key": "Location Hours ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Location ID",
+      "value": "b2cc69d0-7ac5-4a03-901e-240ca35c1be3",
+      "secret": false
+    },
+    {
+      "key": "Location2 ID",
+      "value": "9f0acb54-8889-40bc-9835-54873df7d45f",
+      "secret": false
+    },
+    {
+      "key": "Location3 ID",
+      "value": "43438cac-8f55-4c9f-8061-b90f9addae89",
+      "secret": false
+    },
+    {
+      "key": "Location4 ID",
+      "value": "3348f59a-e5cd-46a7-9e0b-76568a16c2e6",
+      "secret": false
+    },
+    {
+      "key": "Location5 ID",
+      "value": "8c5f5c74-3367-48eb-acbe-b53fb19b2bc7",
+      "secret": false
+    },
+    {
+      "key": "Area ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Area2 ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Role ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Role2 ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "IncidentEmployee ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Employee Role ID",
+      "value": "1",
+      "secret": false
+    },
+    {
+      "key": "Equipment Service Log ID",
+      "value": "0a769d0c-a602-43f0-8824-0957367a02a2",
+      "secret": false
+    },
+    {
+      "key": "Incident Equipment Usage Log ID",
+      "value": "1",
+      "secret": false
+    }
+  ]
+}
