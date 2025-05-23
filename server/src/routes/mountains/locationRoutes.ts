@@ -20,10 +20,11 @@ router.put('/:mountainId/locations/:locationId/incidents/:incidentId', LocationC
 router.delete('/:mountainId/locations/:locationId/incidents/:incidentId', LocationController.deleteIncidentFromLocation);
 
 router.get('/:mountainId/locations/:locationId/equipment', LocationController.getEquipmentByLocation);
-router.post('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.addEquipmentToLocation);
-router.patch('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.moveEquipmentToLocation);
-router.put('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.updateEquipmentInLocation);
-router.delete('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.deleteEquipmentFromLocation);
+
+// router.post('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.addEquipmentToLocation);
+// router.patch('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.moveEquipmentToLocation);
+// router.put('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.updateEquipmentInLocation);
+// router.delete('/:mountainId/locations/:locationId/equipment/:equipmentId', LocationController.deleteEquipmentFromLocation);
 
 router.post('/:mountainId/locations/:locationId/areas/:areaId', LocationController.addAreaToLocation);
 router.put('/:mountainId/locations/:locationId/areas/:areaId', LocationController.updateAreaInLocation);

@@ -1,9 +1,9 @@
 import React from 'react';
-import MountainForm from '../components/Mountain/MountainForm';
-import TrailsList from '../components/Trail/TrailsList';
-import TrailForm from '../components/Trail/TrailForm';
-import LiftForm from '../components/Lift/LiftForm';
-import AreaForm from '../components/Area/AreaForm';
+import MountainForm from '../components/mountain/MountainForm';
+import TrailsList from '../components/trail/TrailsList';
+import TrailForm from '../components/trail/TrailForm';
+import LiftForm from '../components/lift/LiftForm';
+import AreaForm from '../components/area/AreaForm';
 
 const Dashboard: React.FC = () => {
 

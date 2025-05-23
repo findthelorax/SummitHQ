@@ -291,9 +291,9 @@ exports.Prisma.EquipmentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   type: 'type',
+  status: 'status',
   number: 'number',
   description: 'description',
-  status: 'status',
   picture: 'picture',
   cost: 'cost',
   latitude: 'latitude',
@@ -408,7 +408,7 @@ exports.AREA_TYPE = exports.$Enums.AREA_TYPE = {
 };
 
 exports.LOCATION_TYPE = exports.$Enums.LOCATION_TYPE = {
-  AID_ROOM: 'AID_ROOM',
+  AIDROOM: 'AIDROOM',
   HUT: 'HUT',
   LODGE: 'LODGE',
   LIFT: 'LIFT',

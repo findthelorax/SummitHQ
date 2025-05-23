@@ -9,7 +9,7 @@ datasource db {
 }
 
 enum LOCATION_TYPE {
-  AID_ROOM @map("Aid Room")
+  AIDROOM
   HUT
   LODGE
   LIFT
@@ -331,8 +331,8 @@ model Trail {
   mountain    Mountain     @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   trailChecks TrailCheck[]
 
-  locationId String   @unique
-  location   Location @relation("TrailLocation", fields: [locationId], references: [id])
+  locationId String?   @unique
+  location   Location? @relation("TrailLocation", fields: [locationId], references: [id])
 
   @@unique([mountainId, name])
   @@index([mountainId])
@@ -349,8 +349,8 @@ model Lodge {
 
   mountain Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
 
-  locationId String   @unique
-  location   Location @relation("LodgeLocation", fields: [locationId], references: [id])
+  locationId String?   @unique
+  location   Location? @relation("LodgeLocation", fields: [locationId], references: [id])
 
   @@unique([mountainId, name])
   @@index([mountainId])
@@ -367,8 +367,8 @@ model Hut {
   mountain  Mountain   @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   hutChecks HutCheck[]
 
-  locationId String   @unique
-  location   Location @relation("HutLocation", fields: [locationId], references: [id])
+  locationId String?   @unique
+  location   Location? @relation("HutLocation", fields: [locationId], references: [id])
 
   @@unique([mountainId, name])
   @@index([mountainId])
@@ -385,8 +385,8 @@ model AidRoom {
   mountain      Mountain       @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   aidRoomChecks AidRoomCheck[]
 
-  locationId String   @unique
-  location   Location @relation("AidRoomLocation", fields: [locationId], references: [id])
+  locationId String?   @unique
+  location   Location? @relation("AidRoomLocation", fields: [locationId], references: [id])
 
   @@unique([mountainId, name])
   @@index([mountainId])
@@ -416,15 +416,15 @@ model Equipment {
   id          String           @id @default(uuid())
   name        String
   type        String
+  status      EQUIPMENT_STATUS @default(OPERATIONAL)
   number      Int?
   description String?
-  status      EQUIPMENT_STATUS @default(OPERATIONAL)
   picture     String?
   cost        Float?
   latitude    Decimal?
   longitude   Decimal?
-  mountainId  String
-  mountain    Mountain         @relation(fields: [mountainId], references: [id])
+  mountainId  String?
+  mountain    Mountain?        @relation(fields: [mountainId], references: [id])
 
   locationId String?   @unique
   location   Location? @relation(fields: [locationId], references: [id])

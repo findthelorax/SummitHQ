@@ -1,33 +1,44 @@
 import React, { useState } from 'react';
-import SearchAppBar from '../components/Dashboard/AppBar';
-import { PermanentDrawerLeft } from '../components/Dashboard/Drawer';
-import Footer from '../components/Dashboard/Footer';
+import AppBar from '../components/dashboard/AppBar';
+import { PermanentDrawerLeft } from '../components/dashboard/Drawer';
+import { MainListItems, SecondaryListItems, SettingsListItems } from '../components/dashboard/NavItemsList';
+import Footer from '../components/dashboard/Footer';
 import AppRoutes from './AppRoutes';
 
 const drawerWidth = 240;
 
-const MainLayout: React.FC = () => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+interface MainLayoutProps {
+	drawerItems?: React.ReactNode;
+}
 
-    const handleDrawerToggle = () => setIsDrawerOpen((open) => !open);
+const MainLayout: React.FC<MainLayoutProps> = ({ drawerItems }) => {
+	const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
-    return (
-        <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
-            <SearchAppBar open={isDrawerOpen} handleDrawerToggle={handleDrawerToggle} />
-            <div className="flex flex-1 min-h-0">
-                <div
-                    style={{ width: isDrawerOpen ? drawerWidth : 64 }}
-                    className="transition-all duration-300"
-                >
-                    <PermanentDrawerLeft open={isDrawerOpen} />
-                </div>
-                <main className="flex-1 min-h-0">
-                    <AppRoutes />
-                </main>
-            </div>
-            <Footer />
-        </div>
-    );
+	const handleDrawerToggle = () => setIsDrawerOpen((open) => !open);
+
+	return (
+		<div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
+			<AppBar open={isDrawerOpen} handleDrawerToggle={handleDrawerToggle} />
+			<div className="flex flex-1 min-h-0">
+				<div style={{ width: isDrawerOpen ? drawerWidth : 64 }} className="transition-all duration-300">
+					<PermanentDrawerLeft
+						open={isDrawerOpen}
+						drawerItems={
+							<>
+								<MainListItems open={isDrawerOpen} />
+								<SecondaryListItems open={isDrawerOpen} />
+								<SettingsListItems open={isDrawerOpen} />
+							</>
+						}
+					/>
+				</div>
+				<main className="flex-1 min-h-0">
+					<AppRoutes />
+				</main>
+			</div>
+			<Footer />
+		</div>
+	);
 };
 
 export default MainLayout;

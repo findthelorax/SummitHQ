@@ -139,7 +139,7 @@ export type EquipmentCheck = $Result.DefaultSelection<Prisma.$EquipmentCheckPayl
  */
 export namespace $Enums {
   export const LOCATION_TYPE: {
-  AID_ROOM: 'AID_ROOM',
+  AIDROOM: 'AIDROOM',
   HUT: 'HUT',
   LODGE: 'LODGE',
   LIFT: 'LIFT',
@@ -17351,7 +17351,7 @@ export namespace Prisma {
     latitude: Decimal | null
     longitude: Decimal | null
     condition: $Enums.TRAIL_CONDITION
-    locationId: string
+    locationId: string | null
     _count: TrailCountAggregateOutputType | null
     _avg: TrailAvgAggregateOutputType | null
     _sum: TrailSumAggregateOutputType | null
@@ -17386,7 +17386,7 @@ export namespace Prisma {
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     trailChecks?: boolean | Trail$trailChecksArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Trail$locationArgs<ExtArgs>
     _count?: boolean | TrailCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["trail"]>
 
@@ -17402,7 +17402,7 @@ export namespace Prisma {
     condition?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Trail$locationArgs<ExtArgs>
   }, ExtArgs["result"]["trail"]>
 
   export type TrailSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17417,7 +17417,7 @@ export namespace Prisma {
     condition?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Trail$locationArgs<ExtArgs>
   }, ExtArgs["result"]["trail"]>
 
   export type TrailSelectScalar = {
@@ -17437,16 +17437,16 @@ export namespace Prisma {
   export type TrailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     trailChecks?: boolean | Trail$trailChecksArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Trail$locationArgs<ExtArgs>
     _count?: boolean | TrailCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TrailIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Trail$locationArgs<ExtArgs>
   }
   export type TrailIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Trail$locationArgs<ExtArgs>
   }
 
   export type $TrailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17454,7 +17454,7 @@ export namespace Prisma {
     objects: {
       mountain: Prisma.$MountainPayload<ExtArgs>
       trailChecks: Prisma.$TrailCheckPayload<ExtArgs>[]
-      location: Prisma.$LocationPayload<ExtArgs>
+      location: Prisma.$LocationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -17466,7 +17466,7 @@ export namespace Prisma {
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
       condition: $Enums.TRAIL_CONDITION
-      locationId: string
+      locationId: string | null
     }, ExtArgs["result"]["trail"]>
     composites: {}
   }
@@ -17863,7 +17863,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     trailChecks<T extends Trail$trailChecksArgs<ExtArgs> = {}>(args?: Subset<T, Trail$trailChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    location<T extends Trail$locationArgs<ExtArgs> = {}>(args?: Subset<T, Trail$locationArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18323,6 +18323,25 @@ export namespace Prisma {
   }
 
   /**
+   * Trail.location
+   */
+  export type Trail$locationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Location
+     */
+    select?: LocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Location
+     */
+    omit?: LocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LocationInclude<ExtArgs> | null
+    where?: LocationWhereInput
+  }
+
+  /**
    * Trail without action
    */
   export type TrailDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18540,7 +18559,7 @@ export namespace Prisma {
     latitude: Decimal | null
     longitude: Decimal | null
     status: $Enums.STATUS
-    locationId: string
+    locationId: string | null
     _count: LodgeCountAggregateOutputType | null
     _avg: LodgeAvgAggregateOutputType | null
     _sum: LodgeSumAggregateOutputType | null
@@ -18572,7 +18591,7 @@ export namespace Prisma {
     status?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Lodge$locationArgs<ExtArgs>
   }, ExtArgs["result"]["lodge"]>
 
   export type LodgeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18585,7 +18604,7 @@ export namespace Prisma {
     status?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Lodge$locationArgs<ExtArgs>
   }, ExtArgs["result"]["lodge"]>
 
   export type LodgeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -18598,7 +18617,7 @@ export namespace Prisma {
     status?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Lodge$locationArgs<ExtArgs>
   }, ExtArgs["result"]["lodge"]>
 
   export type LodgeSelectScalar = {
@@ -18615,22 +18634,22 @@ export namespace Prisma {
   export type LodgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "name" | "capacity" | "latitude" | "longitude" | "status" | "locationId", ExtArgs["result"]["lodge"]>
   export type LodgeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Lodge$locationArgs<ExtArgs>
   }
   export type LodgeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Lodge$locationArgs<ExtArgs>
   }
   export type LodgeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Lodge$locationArgs<ExtArgs>
   }
 
   export type $LodgePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Lodge"
     objects: {
       mountain: Prisma.$MountainPayload<ExtArgs>
-      location: Prisma.$LocationPayload<ExtArgs>
+      location: Prisma.$LocationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -18640,7 +18659,7 @@ export namespace Prisma {
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
       status: $Enums.STATUS
-      locationId: string
+      locationId: string | null
     }, ExtArgs["result"]["lodge"]>
     composites: {}
   }
@@ -19036,7 +19055,7 @@ export namespace Prisma {
   export interface Prisma__LodgeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    location<T extends Lodge$locationArgs<ExtArgs> = {}>(args?: Subset<T, Lodge$locationArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19470,6 +19489,25 @@ export namespace Prisma {
   }
 
   /**
+   * Lodge.location
+   */
+  export type Lodge$locationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Location
+     */
+    select?: LocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Location
+     */
+    omit?: LocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LocationInclude<ExtArgs> | null
+    where?: LocationWhereInput
+  }
+
+  /**
    * Lodge without action
    */
   export type LodgeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19676,7 +19714,7 @@ export namespace Prisma {
     status: $Enums.STATUS
     latitude: Decimal | null
     longitude: Decimal | null
-    locationId: string
+    locationId: string | null
     _count: HutCountAggregateOutputType | null
     _avg: HutAvgAggregateOutputType | null
     _sum: HutSumAggregateOutputType | null
@@ -19708,7 +19746,7 @@ export namespace Prisma {
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     hutChecks?: boolean | Hut$hutChecksArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Hut$locationArgs<ExtArgs>
     _count?: boolean | HutCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["hut"]>
 
@@ -19721,7 +19759,7 @@ export namespace Prisma {
     longitude?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Hut$locationArgs<ExtArgs>
   }, ExtArgs["result"]["hut"]>
 
   export type HutSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -19733,7 +19771,7 @@ export namespace Prisma {
     longitude?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Hut$locationArgs<ExtArgs>
   }, ExtArgs["result"]["hut"]>
 
   export type HutSelectScalar = {
@@ -19750,16 +19788,16 @@ export namespace Prisma {
   export type HutInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     hutChecks?: boolean | Hut$hutChecksArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Hut$locationArgs<ExtArgs>
     _count?: boolean | HutCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type HutIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Hut$locationArgs<ExtArgs>
   }
   export type HutIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | Hut$locationArgs<ExtArgs>
   }
 
   export type $HutPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19767,7 +19805,7 @@ export namespace Prisma {
     objects: {
       mountain: Prisma.$MountainPayload<ExtArgs>
       hutChecks: Prisma.$HutCheckPayload<ExtArgs>[]
-      location: Prisma.$LocationPayload<ExtArgs>
+      location: Prisma.$LocationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -19776,7 +19814,7 @@ export namespace Prisma {
       status: $Enums.STATUS
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
-      locationId: string
+      locationId: string | null
     }, ExtArgs["result"]["hut"]>
     composites: {}
   }
@@ -20173,7 +20211,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     hutChecks<T extends Hut$hutChecksArgs<ExtArgs> = {}>(args?: Subset<T, Hut$hutChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    location<T extends Hut$locationArgs<ExtArgs> = {}>(args?: Subset<T, Hut$locationArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20630,6 +20668,25 @@ export namespace Prisma {
   }
 
   /**
+   * Hut.location
+   */
+  export type Hut$locationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Location
+     */
+    select?: LocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Location
+     */
+    omit?: LocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LocationInclude<ExtArgs> | null
+    where?: LocationWhereInput
+  }
+
+  /**
    * Hut without action
    */
   export type HutDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20836,7 +20893,7 @@ export namespace Prisma {
     status: $Enums.STATUS
     latitude: Decimal | null
     longitude: Decimal | null
-    locationId: string
+    locationId: string | null
     _count: AidRoomCountAggregateOutputType | null
     _avg: AidRoomAvgAggregateOutputType | null
     _sum: AidRoomSumAggregateOutputType | null
@@ -20868,7 +20925,7 @@ export namespace Prisma {
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     aidRoomChecks?: boolean | AidRoom$aidRoomChecksArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | AidRoom$locationArgs<ExtArgs>
     _count?: boolean | AidRoomCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["aidRoom"]>
 
@@ -20881,7 +20938,7 @@ export namespace Prisma {
     longitude?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | AidRoom$locationArgs<ExtArgs>
   }, ExtArgs["result"]["aidRoom"]>
 
   export type AidRoomSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20893,7 +20950,7 @@ export namespace Prisma {
     longitude?: boolean
     locationId?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | AidRoom$locationArgs<ExtArgs>
   }, ExtArgs["result"]["aidRoom"]>
 
   export type AidRoomSelectScalar = {
@@ -20910,16 +20967,16 @@ export namespace Prisma {
   export type AidRoomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     aidRoomChecks?: boolean | AidRoom$aidRoomChecksArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | AidRoom$locationArgs<ExtArgs>
     _count?: boolean | AidRoomCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AidRoomIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | AidRoom$locationArgs<ExtArgs>
   }
   export type AidRoomIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    location?: boolean | LocationDefaultArgs<ExtArgs>
+    location?: boolean | AidRoom$locationArgs<ExtArgs>
   }
 
   export type $AidRoomPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20927,7 +20984,7 @@ export namespace Prisma {
     objects: {
       mountain: Prisma.$MountainPayload<ExtArgs>
       aidRoomChecks: Prisma.$AidRoomCheckPayload<ExtArgs>[]
-      location: Prisma.$LocationPayload<ExtArgs>
+      location: Prisma.$LocationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -20936,7 +20993,7 @@ export namespace Prisma {
       status: $Enums.STATUS
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
-      locationId: string
+      locationId: string | null
     }, ExtArgs["result"]["aidRoom"]>
     composites: {}
   }
@@ -21333,7 +21390,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     aidRoomChecks<T extends AidRoom$aidRoomChecksArgs<ExtArgs> = {}>(args?: Subset<T, AidRoom$aidRoomChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AidRoomCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    location<T extends LocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocationDefaultArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    location<T extends AidRoom$locationArgs<ExtArgs> = {}>(args?: Subset<T, AidRoom$locationArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21787,6 +21844,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AidRoomCheckScalarFieldEnum | AidRoomCheckScalarFieldEnum[]
+  }
+
+  /**
+   * AidRoom.location
+   */
+  export type AidRoom$locationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Location
+     */
+    select?: LocationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Location
+     */
+    omit?: LocationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LocationInclude<ExtArgs> | null
+    where?: LocationWhereInput
   }
 
   /**
@@ -22983,9 +23059,9 @@ export namespace Prisma {
     id: string | null
     name: string | null
     type: string | null
+    status: $Enums.EQUIPMENT_STATUS | null
     number: number | null
     description: string | null
-    status: $Enums.EQUIPMENT_STATUS | null
     picture: string | null
     cost: number | null
     latitude: Decimal | null
@@ -22999,9 +23075,9 @@ export namespace Prisma {
     id: string | null
     name: string | null
     type: string | null
+    status: $Enums.EQUIPMENT_STATUS | null
     number: number | null
     description: string | null
-    status: $Enums.EQUIPMENT_STATUS | null
     picture: string | null
     cost: number | null
     latitude: Decimal | null
@@ -23015,9 +23091,9 @@ export namespace Prisma {
     id: number
     name: number
     type: number
+    status: number
     number: number
     description: number
-    status: number
     picture: number
     cost: number
     latitude: number
@@ -23047,9 +23123,9 @@ export namespace Prisma {
     id?: true
     name?: true
     type?: true
+    status?: true
     number?: true
     description?: true
-    status?: true
     picture?: true
     cost?: true
     latitude?: true
@@ -23063,9 +23139,9 @@ export namespace Prisma {
     id?: true
     name?: true
     type?: true
+    status?: true
     number?: true
     description?: true
-    status?: true
     picture?: true
     cost?: true
     latitude?: true
@@ -23079,9 +23155,9 @@ export namespace Prisma {
     id?: true
     name?: true
     type?: true
+    status?: true
     number?: true
     description?: true
-    status?: true
     picture?: true
     cost?: true
     latitude?: true
@@ -23182,14 +23258,14 @@ export namespace Prisma {
     id: string
     name: string
     type: string
+    status: $Enums.EQUIPMENT_STATUS
     number: number | null
     description: string | null
-    status: $Enums.EQUIPMENT_STATUS
     picture: string | null
     cost: number | null
     latitude: Decimal | null
     longitude: Decimal | null
-    mountainId: string
+    mountainId: string | null
     locationId: string | null
     dateAdded: Date
     _count: EquipmentCountAggregateOutputType | null
@@ -23217,9 +23293,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     type?: boolean
+    status?: boolean
     number?: boolean
     description?: boolean
-    status?: boolean
     picture?: boolean
     cost?: boolean
     latitude?: boolean
@@ -23227,7 +23303,7 @@ export namespace Prisma {
     mountainId?: boolean
     locationId?: boolean
     dateAdded?: boolean
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    mountain?: boolean | Equipment$mountainArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
     incidentEquipmentUsageLogs?: boolean | Equipment$incidentEquipmentUsageLogsArgs<ExtArgs>
     equipmentChecks?: boolean | Equipment$equipmentChecksArgs<ExtArgs>
@@ -23239,9 +23315,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     type?: boolean
+    status?: boolean
     number?: boolean
     description?: boolean
-    status?: boolean
     picture?: boolean
     cost?: boolean
     latitude?: boolean
@@ -23249,7 +23325,7 @@ export namespace Prisma {
     mountainId?: boolean
     locationId?: boolean
     dateAdded?: boolean
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    mountain?: boolean | Equipment$mountainArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
   }, ExtArgs["result"]["equipment"]>
 
@@ -23257,9 +23333,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     type?: boolean
+    status?: boolean
     number?: boolean
     description?: boolean
-    status?: boolean
     picture?: boolean
     cost?: boolean
     latitude?: boolean
@@ -23267,7 +23343,7 @@ export namespace Prisma {
     mountainId?: boolean
     locationId?: boolean
     dateAdded?: boolean
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    mountain?: boolean | Equipment$mountainArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
   }, ExtArgs["result"]["equipment"]>
 
@@ -23275,9 +23351,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     type?: boolean
+    status?: boolean
     number?: boolean
     description?: boolean
-    status?: boolean
     picture?: boolean
     cost?: boolean
     latitude?: boolean
@@ -23287,9 +23363,9 @@ export namespace Prisma {
     dateAdded?: boolean
   }
 
-  export type EquipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type" | "number" | "description" | "status" | "picture" | "cost" | "latitude" | "longitude" | "mountainId" | "locationId" | "dateAdded", ExtArgs["result"]["equipment"]>
+  export type EquipmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "type" | "status" | "number" | "description" | "picture" | "cost" | "latitude" | "longitude" | "mountainId" | "locationId" | "dateAdded", ExtArgs["result"]["equipment"]>
   export type EquipmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    mountain?: boolean | Equipment$mountainArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
     incidentEquipmentUsageLogs?: boolean | Equipment$incidentEquipmentUsageLogsArgs<ExtArgs>
     equipmentChecks?: boolean | Equipment$equipmentChecksArgs<ExtArgs>
@@ -23297,18 +23373,18 @@ export namespace Prisma {
     _count?: boolean | EquipmentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EquipmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    mountain?: boolean | Equipment$mountainArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
   }
   export type EquipmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    mountain?: boolean | Equipment$mountainArgs<ExtArgs>
     location?: boolean | Equipment$locationArgs<ExtArgs>
   }
 
   export type $EquipmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Equipment"
     objects: {
-      mountain: Prisma.$MountainPayload<ExtArgs>
+      mountain: Prisma.$MountainPayload<ExtArgs> | null
       location: Prisma.$LocationPayload<ExtArgs> | null
       incidentEquipmentUsageLogs: Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>[]
       equipmentChecks: Prisma.$EquipmentCheckPayload<ExtArgs>[]
@@ -23318,14 +23394,14 @@ export namespace Prisma {
       id: string
       name: string
       type: string
+      status: $Enums.EQUIPMENT_STATUS
       number: number | null
       description: string | null
-      status: $Enums.EQUIPMENT_STATUS
       picture: string | null
       cost: number | null
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
-      mountainId: string
+      mountainId: string | null
       locationId: string | null
       dateAdded: Date
     }, ExtArgs["result"]["equipment"]>
@@ -23722,7 +23798,7 @@ export namespace Prisma {
    */
   export interface Prisma__EquipmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    mountain<T extends Equipment$mountainArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$mountainArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     location<T extends Equipment$locationArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$locationArgs<ExtArgs>>): Prisma__LocationClient<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     incidentEquipmentUsageLogs<T extends Equipment$incidentEquipmentUsageLogsArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$incidentEquipmentUsageLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncidentEquipmentUsageLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     equipmentChecks<T extends Equipment$equipmentChecksArgs<ExtArgs> = {}>(args?: Subset<T, Equipment$equipmentChecksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EquipmentCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -23759,9 +23835,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Equipment", 'String'>
     readonly name: FieldRef<"Equipment", 'String'>
     readonly type: FieldRef<"Equipment", 'String'>
+    readonly status: FieldRef<"Equipment", 'EQUIPMENT_STATUS'>
     readonly number: FieldRef<"Equipment", 'Int'>
     readonly description: FieldRef<"Equipment", 'String'>
-    readonly status: FieldRef<"Equipment", 'EQUIPMENT_STATUS'>
     readonly picture: FieldRef<"Equipment", 'String'>
     readonly cost: FieldRef<"Equipment", 'Float'>
     readonly latitude: FieldRef<"Equipment", 'Decimal'>
@@ -24162,6 +24238,25 @@ export namespace Prisma {
      * Limit how many Equipment to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Equipment.mountain
+   */
+  export type Equipment$mountainArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mountain
+     */
+    select?: MountainSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mountain
+     */
+    omit?: MountainOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MountainInclude<ExtArgs> | null
+    where?: MountainWhereInput
   }
 
   /**
@@ -32464,9 +32559,9 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     type: 'type',
+    status: 'status',
     number: 'number',
     description: 'description',
-    status: 'status',
     picture: 'picture',
     cost: 'cost',
     latitude: 'latitude',
@@ -33703,10 +33798,10 @@ export namespace Prisma {
     latitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFilter<"Trail"> | $Enums.TRAIL_CONDITION
-    locationId?: StringFilter<"Trail"> | string
+    locationId?: StringNullableFilter<"Trail"> | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     trailChecks?: TrailCheckListRelationFilter
-    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
   }
 
   export type TrailOrderByWithRelationInput = {
@@ -33719,7 +33814,7 @@ export namespace Prisma {
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     condition?: SortOrder
-    locationId?: SortOrder
+    locationId?: SortOrderInput | SortOrder
     mountain?: MountainOrderByWithRelationInput
     trailChecks?: TrailCheckOrderByRelationAggregateInput
     location?: LocationOrderByWithRelationInput
@@ -33742,7 +33837,7 @@ export namespace Prisma {
     condition?: EnumTRAIL_CONDITIONFilter<"Trail"> | $Enums.TRAIL_CONDITION
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     trailChecks?: TrailCheckListRelationFilter
-    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
   }, "id" | "locationId" | "mountainId_name">
 
   export type TrailOrderByWithAggregationInput = {
@@ -33755,7 +33850,7 @@ export namespace Prisma {
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     condition?: SortOrder
-    locationId?: SortOrder
+    locationId?: SortOrderInput | SortOrder
     _count?: TrailCountOrderByAggregateInput
     _avg?: TrailAvgOrderByAggregateInput
     _max?: TrailMaxOrderByAggregateInput
@@ -33776,7 +33871,7 @@ export namespace Prisma {
     latitude?: DecimalNullableWithAggregatesFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONWithAggregatesFilter<"Trail"> | $Enums.TRAIL_CONDITION
-    locationId?: StringWithAggregatesFilter<"Trail"> | string
+    locationId?: StringNullableWithAggregatesFilter<"Trail"> | string | null
   }
 
   export type LodgeWhereInput = {
@@ -33790,9 +33885,9 @@ export namespace Prisma {
     latitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFilter<"Lodge"> | $Enums.STATUS
-    locationId?: StringFilter<"Lodge"> | string
+    locationId?: StringNullableFilter<"Lodge"> | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
   }
 
   export type LodgeOrderByWithRelationInput = {
@@ -33803,7 +33898,7 @@ export namespace Prisma {
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     status?: SortOrder
-    locationId?: SortOrder
+    locationId?: SortOrderInput | SortOrder
     mountain?: MountainOrderByWithRelationInput
     location?: LocationOrderByWithRelationInput
   }
@@ -33822,7 +33917,7 @@ export namespace Prisma {
     longitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFilter<"Lodge"> | $Enums.STATUS
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
   }, "id" | "locationId" | "mountainId_name">
 
   export type LodgeOrderByWithAggregationInput = {
@@ -33833,7 +33928,7 @@ export namespace Prisma {
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     status?: SortOrder
-    locationId?: SortOrder
+    locationId?: SortOrderInput | SortOrder
     _count?: LodgeCountOrderByAggregateInput
     _avg?: LodgeAvgOrderByAggregateInput
     _max?: LodgeMaxOrderByAggregateInput
@@ -33852,7 +33947,7 @@ export namespace Prisma {
     latitude?: DecimalNullableWithAggregatesFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSWithAggregatesFilter<"Lodge"> | $Enums.STATUS
-    locationId?: StringWithAggregatesFilter<"Lodge"> | string
+    locationId?: StringNullableWithAggregatesFilter<"Lodge"> | string | null
   }
 
   export type HutWhereInput = {
@@ -33865,10 +33960,10 @@ export namespace Prisma {
     status?: EnumSTATUSFilter<"Hut"> | $Enums.STATUS
     latitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFilter<"Hut"> | string
+    locationId?: StringNullableFilter<"Hut"> | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     hutChecks?: HutCheckListRelationFilter
-    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
   }
 
   export type HutOrderByWithRelationInput = {
@@ -33878,7 +33973,7 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    locationId?: SortOrder
+    locationId?: SortOrderInput | SortOrder
     mountain?: MountainOrderByWithRelationInput
     hutChecks?: HutCheckOrderByRelationAggregateInput
     location?: LocationOrderByWithRelationInput
@@ -33898,7 +33993,7 @@ export namespace Prisma {
     longitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     hutChecks?: HutCheckListRelationFilter
-    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
   }, "id" | "locationId" | "mountainId_name">
 
   export type HutOrderByWithAggregationInput = {
@@ -33908,7 +34003,7 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    locationId?: SortOrder
+    locationId?: SortOrderInput | SortOrder
     _count?: HutCountOrderByAggregateInput
     _avg?: HutAvgOrderByAggregateInput
     _max?: HutMaxOrderByAggregateInput
@@ -33926,7 +34021,7 @@ export namespace Prisma {
     status?: EnumSTATUSWithAggregatesFilter<"Hut"> | $Enums.STATUS
     latitude?: DecimalNullableWithAggregatesFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringWithAggregatesFilter<"Hut"> | string
+    locationId?: StringNullableWithAggregatesFilter<"Hut"> | string | null
   }
 
   export type AidRoomWhereInput = {
@@ -33939,10 +34034,10 @@ export namespace Prisma {
     status?: EnumSTATUSFilter<"AidRoom"> | $Enums.STATUS
     latitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFilter<"AidRoom"> | string
+    locationId?: StringNullableFilter<"AidRoom"> | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     aidRoomChecks?: AidRoomCheckListRelationFilter
-    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
   }
 
   export type AidRoomOrderByWithRelationInput = {
@@ -33952,7 +34047,7 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    locationId?: SortOrder
+    locationId?: SortOrderInput | SortOrder
     mountain?: MountainOrderByWithRelationInput
     aidRoomChecks?: AidRoomCheckOrderByRelationAggregateInput
     location?: LocationOrderByWithRelationInput
@@ -33972,7 +34067,7 @@ export namespace Prisma {
     longitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     aidRoomChecks?: AidRoomCheckListRelationFilter
-    location?: XOR<LocationScalarRelationFilter, LocationWhereInput>
+    location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
   }, "id" | "locationId" | "mountainId_name">
 
   export type AidRoomOrderByWithAggregationInput = {
@@ -33982,7 +34077,7 @@ export namespace Prisma {
     status?: SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    locationId?: SortOrder
+    locationId?: SortOrderInput | SortOrder
     _count?: AidRoomCountOrderByAggregateInput
     _avg?: AidRoomAvgOrderByAggregateInput
     _max?: AidRoomMaxOrderByAggregateInput
@@ -34000,7 +34095,7 @@ export namespace Prisma {
     status?: EnumSTATUSWithAggregatesFilter<"AidRoom"> | $Enums.STATUS
     latitude?: DecimalNullableWithAggregatesFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringWithAggregatesFilter<"AidRoom"> | string
+    locationId?: StringNullableWithAggregatesFilter<"AidRoom"> | string | null
   }
 
   export type EquipmentServiceLogWhereInput = {
@@ -34091,17 +34186,17 @@ export namespace Prisma {
     id?: StringFilter<"Equipment"> | string
     name?: StringFilter<"Equipment"> | string
     type?: StringFilter<"Equipment"> | string
+    status?: EnumEQUIPMENT_STATUSFilter<"Equipment"> | $Enums.EQUIPMENT_STATUS
     number?: IntNullableFilter<"Equipment"> | number | null
     description?: StringNullableFilter<"Equipment"> | string | null
-    status?: EnumEQUIPMENT_STATUSFilter<"Equipment"> | $Enums.EQUIPMENT_STATUS
     picture?: StringNullableFilter<"Equipment"> | string | null
     cost?: FloatNullableFilter<"Equipment"> | number | null
     latitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFilter<"Equipment"> | string
+    mountainId?: StringNullableFilter<"Equipment"> | string | null
     locationId?: StringNullableFilter<"Equipment"> | string | null
     dateAdded?: DateTimeFilter<"Equipment"> | Date | string
-    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+    mountain?: XOR<MountainNullableScalarRelationFilter, MountainWhereInput> | null
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogListRelationFilter
     equipmentChecks?: EquipmentCheckListRelationFilter
@@ -34112,14 +34207,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
+    status?: SortOrder
     number?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    status?: SortOrder
     picture?: SortOrderInput | SortOrder
     cost?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    mountainId?: SortOrder
+    mountainId?: SortOrderInput | SortOrder
     locationId?: SortOrderInput | SortOrder
     dateAdded?: SortOrder
     mountain?: MountainOrderByWithRelationInput
@@ -34138,16 +34233,16 @@ export namespace Prisma {
     NOT?: EquipmentWhereInput | EquipmentWhereInput[]
     name?: StringFilter<"Equipment"> | string
     type?: StringFilter<"Equipment"> | string
+    status?: EnumEQUIPMENT_STATUSFilter<"Equipment"> | $Enums.EQUIPMENT_STATUS
     number?: IntNullableFilter<"Equipment"> | number | null
     description?: StringNullableFilter<"Equipment"> | string | null
-    status?: EnumEQUIPMENT_STATUSFilter<"Equipment"> | $Enums.EQUIPMENT_STATUS
     picture?: StringNullableFilter<"Equipment"> | string | null
     cost?: FloatNullableFilter<"Equipment"> | number | null
     latitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFilter<"Equipment"> | string
+    mountainId?: StringNullableFilter<"Equipment"> | string | null
     dateAdded?: DateTimeFilter<"Equipment"> | Date | string
-    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+    mountain?: XOR<MountainNullableScalarRelationFilter, MountainWhereInput> | null
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogListRelationFilter
     equipmentChecks?: EquipmentCheckListRelationFilter
@@ -34158,14 +34253,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
+    status?: SortOrder
     number?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    status?: SortOrder
     picture?: SortOrderInput | SortOrder
     cost?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
-    mountainId?: SortOrder
+    mountainId?: SortOrderInput | SortOrder
     locationId?: SortOrderInput | SortOrder
     dateAdded?: SortOrder
     _count?: EquipmentCountOrderByAggregateInput
@@ -34182,14 +34277,14 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Equipment"> | string
     name?: StringWithAggregatesFilter<"Equipment"> | string
     type?: StringWithAggregatesFilter<"Equipment"> | string
+    status?: EnumEQUIPMENT_STATUSWithAggregatesFilter<"Equipment"> | $Enums.EQUIPMENT_STATUS
     number?: IntNullableWithAggregatesFilter<"Equipment"> | number | null
     description?: StringNullableWithAggregatesFilter<"Equipment"> | string | null
-    status?: EnumEQUIPMENT_STATUSWithAggregatesFilter<"Equipment"> | $Enums.EQUIPMENT_STATUS
     picture?: StringNullableWithAggregatesFilter<"Equipment"> | string | null
     cost?: FloatNullableWithAggregatesFilter<"Equipment"> | number | null
     latitude?: DecimalNullableWithAggregatesFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringWithAggregatesFilter<"Equipment"> | string
+    mountainId?: StringNullableWithAggregatesFilter<"Equipment"> | string | null
     locationId?: StringNullableWithAggregatesFilter<"Equipment"> | string | null
     dateAdded?: DateTimeWithAggregatesFilter<"Equipment"> | Date | string
   }
@@ -35699,7 +35794,7 @@ export namespace Prisma {
     condition?: $Enums.TRAIL_CONDITION
     mountain: MountainCreateNestedOneWithoutTrailsInput
     trailChecks?: TrailCheckCreateNestedManyWithoutTrailInput
-    location: LocationCreateNestedOneWithoutTrailInput
+    location?: LocationCreateNestedOneWithoutTrailInput
   }
 
   export type TrailUncheckedCreateInput = {
@@ -35712,7 +35807,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
-    locationId: string
+    locationId?: string | null
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutTrailInput
   }
 
@@ -35727,7 +35822,7 @@ export namespace Prisma {
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
     mountain?: MountainUpdateOneRequiredWithoutTrailsNestedInput
     trailChecks?: TrailCheckUpdateManyWithoutTrailNestedInput
-    location?: LocationUpdateOneRequiredWithoutTrailNestedInput
+    location?: LocationUpdateOneWithoutTrailNestedInput
   }
 
   export type TrailUncheckedUpdateInput = {
@@ -35740,7 +35835,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutTrailNestedInput
   }
 
@@ -35754,7 +35849,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
-    locationId: string
+    locationId?: string | null
   }
 
   export type TrailUpdateManyMutationInput = {
@@ -35778,7 +35873,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LodgeCreateInput = {
@@ -35789,7 +35884,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.STATUS
     mountain: MountainCreateNestedOneWithoutLodgesInput
-    location: LocationCreateNestedOneWithoutLodgeInput
+    location?: LocationCreateNestedOneWithoutLodgeInput
   }
 
   export type LodgeUncheckedCreateInput = {
@@ -35800,7 +35895,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.STATUS
-    locationId: string
+    locationId?: string | null
   }
 
   export type LodgeUpdateInput = {
@@ -35811,7 +35906,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     mountain?: MountainUpdateOneRequiredWithoutLodgesNestedInput
-    location?: LocationUpdateOneRequiredWithoutLodgeNestedInput
+    location?: LocationUpdateOneWithoutLodgeNestedInput
   }
 
   export type LodgeUncheckedUpdateInput = {
@@ -35822,7 +35917,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LodgeCreateManyInput = {
@@ -35833,7 +35928,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.STATUS
-    locationId: string
+    locationId?: string | null
   }
 
   export type LodgeUpdateManyMutationInput = {
@@ -35853,7 +35948,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type HutCreateInput = {
@@ -35864,7 +35959,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     mountain: MountainCreateNestedOneWithoutHutsInput
     hutChecks?: HutCheckCreateNestedManyWithoutHutInput
-    location: LocationCreateNestedOneWithoutHutInput
+    location?: LocationCreateNestedOneWithoutHutInput
   }
 
   export type HutUncheckedCreateInput = {
@@ -35874,7 +35969,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutHutInput
   }
 
@@ -35886,7 +35981,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     mountain?: MountainUpdateOneRequiredWithoutHutsNestedInput
     hutChecks?: HutCheckUpdateManyWithoutHutNestedInput
-    location?: LocationUpdateOneRequiredWithoutHutNestedInput
+    location?: LocationUpdateOneWithoutHutNestedInput
   }
 
   export type HutUncheckedUpdateInput = {
@@ -35896,7 +35991,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
     hutChecks?: HutCheckUncheckedUpdateManyWithoutHutNestedInput
   }
 
@@ -35907,7 +36002,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
   }
 
   export type HutUpdateManyMutationInput = {
@@ -35925,7 +36020,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AidRoomCreateInput = {
@@ -35936,7 +36031,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     mountain: MountainCreateNestedOneWithoutAidRoomsInput
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutAidRoomInput
-    location: LocationCreateNestedOneWithoutAidRoomInput
+    location?: LocationCreateNestedOneWithoutAidRoomInput
   }
 
   export type AidRoomUncheckedCreateInput = {
@@ -35946,7 +36041,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutAidRoomInput
   }
 
@@ -35958,7 +36053,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     mountain?: MountainUpdateOneRequiredWithoutAidRoomsNestedInput
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutAidRoomNestedInput
-    location?: LocationUpdateOneRequiredWithoutAidRoomNestedInput
+    location?: LocationUpdateOneWithoutAidRoomNestedInput
   }
 
   export type AidRoomUncheckedUpdateInput = {
@@ -35968,7 +36063,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutAidRoomNestedInput
   }
 
@@ -35979,7 +36074,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
   }
 
   export type AidRoomUpdateManyMutationInput = {
@@ -35997,7 +36092,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EquipmentServiceLogCreateInput = {
@@ -36085,15 +36180,15 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     dateAdded?: Date | string
-    mountain: MountainCreateNestedOneWithoutEquipmentInput
+    mountain?: MountainCreateNestedOneWithoutEquipmentInput
     location?: LocationCreateNestedOneWithoutEquipmentInput
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEquipmentInput
@@ -36104,14 +36199,14 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainId?: string | null
     locationId?: string | null
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
@@ -36123,15 +36218,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
+    mountain?: MountainUpdateOneWithoutEquipmentNestedInput
     location?: LocationUpdateOneWithoutEquipmentNestedInput
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutEquipmentNestedInput
@@ -36142,14 +36237,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainId?: NullableStringFieldUpdateOperationsInput | string | null
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -36161,14 +36256,14 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainId?: string | null
     locationId?: string | null
     dateAdded?: Date | string
   }
@@ -36177,9 +36272,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -36191,14 +36286,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainId?: NullableStringFieldUpdateOperationsInput | string | null
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38133,6 +38228,11 @@ export namespace Prisma {
     _max?: NestedEnumEQUIPMENT_STATUSFilter<$PrismaModel>
   }
 
+  export type MountainNullableScalarRelationFilter = {
+    is?: MountainWhereInput | null
+    isNot?: MountainWhereInput | null
+  }
+
   export type EquipmentMountainIdNumberCompoundUniqueInput = {
     mountainId: string
     number: number
@@ -38142,9 +38242,9 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
+    status?: SortOrder
     number?: SortOrder
     description?: SortOrder
-    status?: SortOrder
     picture?: SortOrder
     cost?: SortOrder
     latitude?: SortOrder
@@ -38165,9 +38265,9 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
+    status?: SortOrder
     number?: SortOrder
     description?: SortOrder
-    status?: SortOrder
     picture?: SortOrder
     cost?: SortOrder
     latitude?: SortOrder
@@ -38181,9 +38281,9 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
+    status?: SortOrder
     number?: SortOrder
     description?: SortOrder
-    status?: SortOrder
     picture?: SortOrder
     cost?: SortOrder
     latitude?: SortOrder
@@ -40525,10 +40625,12 @@ export namespace Prisma {
     deleteMany?: TrailCheckScalarWhereInput | TrailCheckScalarWhereInput[]
   }
 
-  export type LocationUpdateOneRequiredWithoutTrailNestedInput = {
+  export type LocationUpdateOneWithoutTrailNestedInput = {
     create?: XOR<LocationCreateWithoutTrailInput, LocationUncheckedCreateWithoutTrailInput>
     connectOrCreate?: LocationCreateOrConnectWithoutTrailInput
     upsert?: LocationUpsertWithoutTrailInput
+    disconnect?: LocationWhereInput | boolean
+    delete?: LocationWhereInput | boolean
     connect?: LocationWhereUniqueInput
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutTrailInput, LocationUpdateWithoutTrailInput>, LocationUncheckedUpdateWithoutTrailInput>
   }
@@ -40567,10 +40669,12 @@ export namespace Prisma {
     update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutLodgesInput, MountainUpdateWithoutLodgesInput>, MountainUncheckedUpdateWithoutLodgesInput>
   }
 
-  export type LocationUpdateOneRequiredWithoutLodgeNestedInput = {
+  export type LocationUpdateOneWithoutLodgeNestedInput = {
     create?: XOR<LocationCreateWithoutLodgeInput, LocationUncheckedCreateWithoutLodgeInput>
     connectOrCreate?: LocationCreateOrConnectWithoutLodgeInput
     upsert?: LocationUpsertWithoutLodgeInput
+    disconnect?: LocationWhereInput | boolean
+    delete?: LocationWhereInput | boolean
     connect?: LocationWhereUniqueInput
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutLodgeInput, LocationUpdateWithoutLodgeInput>, LocationUncheckedUpdateWithoutLodgeInput>
   }
@@ -40623,10 +40727,12 @@ export namespace Prisma {
     deleteMany?: HutCheckScalarWhereInput | HutCheckScalarWhereInput[]
   }
 
-  export type LocationUpdateOneRequiredWithoutHutNestedInput = {
+  export type LocationUpdateOneWithoutHutNestedInput = {
     create?: XOR<LocationCreateWithoutHutInput, LocationUncheckedCreateWithoutHutInput>
     connectOrCreate?: LocationCreateOrConnectWithoutHutInput
     upsert?: LocationUpsertWithoutHutInput
+    disconnect?: LocationWhereInput | boolean
+    delete?: LocationWhereInput | boolean
     connect?: LocationWhereUniqueInput
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutHutInput, LocationUpdateWithoutHutInput>, LocationUncheckedUpdateWithoutHutInput>
   }
@@ -40693,10 +40799,12 @@ export namespace Prisma {
     deleteMany?: AidRoomCheckScalarWhereInput | AidRoomCheckScalarWhereInput[]
   }
 
-  export type LocationUpdateOneRequiredWithoutAidRoomNestedInput = {
+  export type LocationUpdateOneWithoutAidRoomNestedInput = {
     create?: XOR<LocationCreateWithoutAidRoomInput, LocationUncheckedCreateWithoutAidRoomInput>
     connectOrCreate?: LocationCreateOrConnectWithoutAidRoomInput
     upsert?: LocationUpsertWithoutAidRoomInput
+    disconnect?: LocationWhereInput | boolean
+    delete?: LocationWhereInput | boolean
     connect?: LocationWhereUniqueInput
     update?: XOR<XOR<LocationUpdateToOneWithWhereWithoutAidRoomInput, LocationUpdateWithoutAidRoomInput>, LocationUncheckedUpdateWithoutAidRoomInput>
   }
@@ -40817,10 +40925,12 @@ export namespace Prisma {
     connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
   }
 
-  export type MountainUpdateOneRequiredWithoutEquipmentNestedInput = {
+  export type MountainUpdateOneWithoutEquipmentNestedInput = {
     create?: XOR<MountainCreateWithoutEquipmentInput, MountainUncheckedCreateWithoutEquipmentInput>
     connectOrCreate?: MountainCreateOrConnectWithoutEquipmentInput
     upsert?: MountainUpsertWithoutEquipmentInput
+    disconnect?: MountainWhereInput | boolean
+    delete?: MountainWhereInput | boolean
     connect?: MountainWhereUniqueInput
     update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutEquipmentInput, MountainUpdateWithoutEquipmentInput>, MountainUncheckedUpdateWithoutEquipmentInput>
   }
@@ -42181,15 +42291,15 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     dateAdded?: Date | string
-    mountain: MountainCreateNestedOneWithoutEquipmentInput
+    mountain?: MountainCreateNestedOneWithoutEquipmentInput
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEquipmentInput
@@ -42199,14 +42309,14 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainId?: string | null
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
@@ -42592,14 +42702,14 @@ export namespace Prisma {
     id?: StringFilter<"Equipment"> | string
     name?: StringFilter<"Equipment"> | string
     type?: StringFilter<"Equipment"> | string
+    status?: EnumEQUIPMENT_STATUSFilter<"Equipment"> | $Enums.EQUIPMENT_STATUS
     number?: IntNullableFilter<"Equipment"> | number | null
     description?: StringNullableFilter<"Equipment"> | string | null
-    status?: EnumEQUIPMENT_STATUSFilter<"Equipment"> | $Enums.EQUIPMENT_STATUS
     picture?: StringNullableFilter<"Equipment"> | string | null
     cost?: FloatNullableFilter<"Equipment"> | number | null
     latitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Equipment"> | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFilter<"Equipment"> | string
+    mountainId?: StringNullableFilter<"Equipment"> | string | null
     locationId?: StringNullableFilter<"Equipment"> | string | null
     dateAdded?: DateTimeFilter<"Equipment"> | Date | string
   }
@@ -42835,7 +42945,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutAidRoomInput
-    location: LocationCreateNestedOneWithoutAidRoomInput
+    location?: LocationCreateNestedOneWithoutAidRoomInput
   }
 
   export type AidRoomUncheckedCreateWithoutMountainInput = {
@@ -42844,7 +42954,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
     aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutAidRoomInput
   }
 
@@ -42865,7 +42975,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     hutChecks?: HutCheckCreateNestedManyWithoutHutInput
-    location: LocationCreateNestedOneWithoutHutInput
+    location?: LocationCreateNestedOneWithoutHutInput
   }
 
   export type HutUncheckedCreateWithoutMountainInput = {
@@ -42874,7 +42984,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
     hutChecks?: HutCheckUncheckedCreateNestedManyWithoutHutInput
   }
 
@@ -42895,7 +43005,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.STATUS
-    location: LocationCreateNestedOneWithoutLodgeInput
+    location?: LocationCreateNestedOneWithoutLodgeInput
   }
 
   export type LodgeUncheckedCreateWithoutMountainInput = {
@@ -42905,7 +43015,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.STATUS
-    locationId: string
+    locationId?: string | null
   }
 
   export type LodgeCreateOrConnectWithoutMountainInput = {
@@ -42962,7 +43072,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
     trailChecks?: TrailCheckCreateNestedManyWithoutTrailInput
-    location: LocationCreateNestedOneWithoutTrailInput
+    location?: LocationCreateNestedOneWithoutTrailInput
   }
 
   export type TrailUncheckedCreateWithoutMountainInput = {
@@ -42974,7 +43084,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
-    locationId: string
+    locationId?: string | null
     trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutTrailInput
   }
 
@@ -43188,9 +43298,9 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -43206,9 +43316,9 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -43440,7 +43550,7 @@ export namespace Prisma {
     status?: EnumSTATUSFilter<"AidRoom"> | $Enums.STATUS
     latitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"AidRoom"> | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFilter<"AidRoom"> | string
+    locationId?: StringNullableFilter<"AidRoom"> | string | null
   }
 
   export type HutUpsertWithWhereUniqueWithoutMountainInput = {
@@ -43469,7 +43579,7 @@ export namespace Prisma {
     status?: EnumSTATUSFilter<"Hut"> | $Enums.STATUS
     latitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Hut"> | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFilter<"Hut"> | string
+    locationId?: StringNullableFilter<"Hut"> | string | null
   }
 
   export type LodgeUpsertWithWhereUniqueWithoutMountainInput = {
@@ -43499,7 +43609,7 @@ export namespace Prisma {
     latitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Lodge"> | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFilter<"Lodge"> | $Enums.STATUS
-    locationId?: StringFilter<"Lodge"> | string
+    locationId?: StringNullableFilter<"Lodge"> | string | null
   }
 
   export type LiftUpsertWithWhereUniqueWithoutMountainInput = {
@@ -43562,7 +43672,7 @@ export namespace Prisma {
     latitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFilter<"Trail"> | $Enums.TRAIL_CONDITION
-    locationId?: StringFilter<"Trail"> | string
+    locationId?: StringNullableFilter<"Trail"> | string | null
   }
 
   export type AidRoomCheckUpsertWithWhereUniqueWithoutMountainInput = {
@@ -46694,15 +46804,15 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     dateAdded?: Date | string
-    mountain: MountainCreateNestedOneWithoutEquipmentInput
+    mountain?: MountainCreateNestedOneWithoutEquipmentInput
     location?: LocationCreateNestedOneWithoutEquipmentInput
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEquipmentInput
@@ -46712,14 +46822,14 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainId?: string | null
     locationId?: string | null
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
@@ -46870,15 +46980,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
+    mountain?: MountainUpdateOneWithoutEquipmentNestedInput
     location?: LocationUpdateOneWithoutEquipmentNestedInput
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutEquipmentNestedInput
@@ -46888,14 +46998,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainId?: NullableStringFieldUpdateOperationsInput | string | null
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -47717,15 +47827,15 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     dateAdded?: Date | string
-    mountain: MountainCreateNestedOneWithoutEquipmentInput
+    mountain?: MountainCreateNestedOneWithoutEquipmentInput
     location?: LocationCreateNestedOneWithoutEquipmentInput
     equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEquipmentInput
@@ -47735,14 +47845,14 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainId?: string | null
     locationId?: string | null
     dateAdded?: Date | string
     equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEquipmentInput
@@ -47893,15 +48003,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
+    mountain?: MountainUpdateOneWithoutEquipmentNestedInput
     location?: LocationUpdateOneWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEquipmentNestedInput
@@ -47911,14 +48021,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainId?: NullableStringFieldUpdateOperationsInput | string | null
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -48347,7 +48457,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
     mountain: MountainCreateNestedOneWithoutTrailsInput
-    location: LocationCreateNestedOneWithoutTrailInput
+    location?: LocationCreateNestedOneWithoutTrailInput
   }
 
   export type TrailUncheckedCreateWithoutTrailChecksInput = {
@@ -48360,7 +48470,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
-    locationId: string
+    locationId?: string | null
   }
 
   export type TrailCreateOrConnectWithoutTrailChecksInput = {
@@ -48513,7 +48623,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
     mountain?: MountainUpdateOneRequiredWithoutTrailsNestedInput
-    location?: LocationUpdateOneRequiredWithoutTrailNestedInput
+    location?: LocationUpdateOneWithoutTrailNestedInput
   }
 
   export type TrailUncheckedUpdateWithoutTrailChecksInput = {
@@ -48526,7 +48636,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmployeeCreateWithoutHutChecksInput = {
@@ -48648,7 +48758,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     mountain: MountainCreateNestedOneWithoutHutsInput
-    location: LocationCreateNestedOneWithoutHutInput
+    location?: LocationCreateNestedOneWithoutHutInput
   }
 
   export type HutUncheckedCreateWithoutHutChecksInput = {
@@ -48658,7 +48768,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
   }
 
   export type HutCreateOrConnectWithoutHutChecksInput = {
@@ -48808,7 +48918,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     mountain?: MountainUpdateOneRequiredWithoutHutsNestedInput
-    location?: LocationUpdateOneRequiredWithoutHutNestedInput
+    location?: LocationUpdateOneWithoutHutNestedInput
   }
 
   export type HutUncheckedUpdateWithoutHutChecksInput = {
@@ -48818,7 +48928,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmployeeCreateWithoutAidRoomChecksInput = {
@@ -48940,7 +49050,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     mountain: MountainCreateNestedOneWithoutAidRoomsInput
-    location: LocationCreateNestedOneWithoutAidRoomInput
+    location?: LocationCreateNestedOneWithoutAidRoomInput
   }
 
   export type AidRoomUncheckedCreateWithoutAidRoomChecksInput = {
@@ -48950,7 +49060,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
   }
 
   export type AidRoomCreateOrConnectWithoutAidRoomChecksInput = {
@@ -49100,7 +49210,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     mountain?: MountainUpdateOneRequiredWithoutAidRoomsNestedInput
-    location?: LocationUpdateOneRequiredWithoutAidRoomNestedInput
+    location?: LocationUpdateOneWithoutAidRoomNestedInput
   }
 
   export type AidRoomUncheckedUpdateWithoutAidRoomChecksInput = {
@@ -49110,7 +49220,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmployeeCreateWithoutEquipmentChecksInput = {
@@ -49229,15 +49339,15 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     dateAdded?: Date | string
-    mountain: MountainCreateNestedOneWithoutEquipmentInput
+    mountain?: MountainCreateNestedOneWithoutEquipmentInput
     location?: LocationCreateNestedOneWithoutEquipmentInput
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogCreateNestedManyWithoutEquipmentInput
     equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEquipmentInput
@@ -49247,14 +49357,14 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainId?: string | null
     locationId?: string | null
     dateAdded?: Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutEquipmentInput
@@ -49405,15 +49515,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
+    mountain?: MountainUpdateOneWithoutEquipmentNestedInput
     location?: LocationUpdateOneWithoutEquipmentNestedInput
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEquipmentNestedInput
@@ -49423,14 +49533,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainId?: NullableStringFieldUpdateOperationsInput | string | null
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -49500,14 +49610,14 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    mountainId: string
+    mountainId?: string | null
     dateAdded?: Date | string
   }
 
@@ -49564,15 +49674,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
-    mountain?: MountainUpdateOneRequiredWithoutEquipmentNestedInput
+    mountain?: MountainUpdateOneWithoutEquipmentNestedInput
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUpdateManyWithoutEquipmentNestedInput
     equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEquipmentNestedInput
@@ -49582,14 +49692,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
     incidentEquipmentUsageLogs?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutEquipmentNestedInput
     equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEquipmentNestedInput
@@ -49600,14 +49710,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountainId?: StringFieldUpdateOperationsInput | string
+    mountainId?: NullableStringFieldUpdateOperationsInput | string | null
     dateAdded?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -49699,7 +49809,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
   }
 
   export type HutCreateManyMountainInput = {
@@ -49708,7 +49818,7 @@ export namespace Prisma {
     status?: $Enums.STATUS
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId: string
+    locationId?: string | null
   }
 
   export type LodgeCreateManyMountainInput = {
@@ -49718,7 +49828,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     status?: $Enums.STATUS
-    locationId: string
+    locationId?: string | null
   }
 
   export type LiftCreateManyMountainInput = {
@@ -49741,7 +49851,7 @@ export namespace Prisma {
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
-    locationId: string
+    locationId?: string | null
   }
 
   export type AidRoomCheckCreateManyMountainInput = {
@@ -49814,9 +49924,9 @@ export namespace Prisma {
     id?: string
     name: string
     type: string
+    status?: $Enums.EQUIPMENT_STATUS
     number?: number | null
     description?: string | null
-    status?: $Enums.EQUIPMENT_STATUS
     picture?: string | null
     cost?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
@@ -49973,7 +50083,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     aidRoomChecks?: AidRoomCheckUpdateManyWithoutAidRoomNestedInput
-    location?: LocationUpdateOneRequiredWithoutAidRoomNestedInput
+    location?: LocationUpdateOneWithoutAidRoomNestedInput
   }
 
   export type AidRoomUncheckedUpdateWithoutMountainInput = {
@@ -49982,7 +50092,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
     aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutAidRoomNestedInput
   }
 
@@ -49992,7 +50102,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type HutUpdateWithoutMountainInput = {
@@ -50002,7 +50112,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     hutChecks?: HutCheckUpdateManyWithoutHutNestedInput
-    location?: LocationUpdateOneRequiredWithoutHutNestedInput
+    location?: LocationUpdateOneWithoutHutNestedInput
   }
 
   export type HutUncheckedUpdateWithoutMountainInput = {
@@ -50011,7 +50121,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
     hutChecks?: HutCheckUncheckedUpdateManyWithoutHutNestedInput
   }
 
@@ -50021,7 +50131,7 @@ export namespace Prisma {
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LodgeUpdateWithoutMountainInput = {
@@ -50031,7 +50141,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    location?: LocationUpdateOneRequiredWithoutLodgeNestedInput
+    location?: LocationUpdateOneWithoutLodgeNestedInput
   }
 
   export type LodgeUncheckedUpdateWithoutMountainInput = {
@@ -50041,7 +50151,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LodgeUncheckedUpdateManyWithoutMountainInput = {
@@ -50051,7 +50161,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type LiftUpdateWithoutMountainInput = {
@@ -50099,7 +50209,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
     trailChecks?: TrailCheckUpdateManyWithoutTrailNestedInput
-    location?: LocationUpdateOneRequiredWithoutTrailNestedInput
+    location?: LocationUpdateOneWithoutTrailNestedInput
   }
 
   export type TrailUncheckedUpdateWithoutMountainInput = {
@@ -50111,7 +50221,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
     trailChecks?: TrailCheckUncheckedUpdateManyWithoutTrailNestedInput
   }
 
@@ -50124,7 +50234,7 @@ export namespace Prisma {
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
-    locationId?: StringFieldUpdateOperationsInput | string
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AidRoomCheckUpdateWithoutMountainInput = {
@@ -50333,9 +50443,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -50351,9 +50461,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -50369,9 +50479,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
+    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     number?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEQUIPMENT_STATUSFieldUpdateOperationsInput | $Enums.EQUIPMENT_STATUS
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     cost?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null

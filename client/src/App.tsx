@@ -4,6 +4,7 @@ import { DateProvider } from './contexts/DateContext';
 import MountainProvider from './contexts/MountainContext';
 import { SnackbarProvider } from './contexts/SnackbarContext';
 import MainLayout from './pages/MainLayout';
+import AdminLayout from './pages/admin/AdminLayout';
 
 function App() {
   const [darkMode] = useState(() => {
@@ -18,13 +19,16 @@ function App() {
   return (
     <SnackbarProvider>
       <DateProvider>
-        <MountainProvider>
-          <Router>
-            <Routes>
-              <Route path="*" element={<MainLayout />} />
-            </Routes>
-          </Router>
-        </MountainProvider>
+        <Router>
+          <Routes>
+            <Route path="/admin/*" element={<AdminLayout />} />
+            <Route path="*" element={
+              <MountainProvider>
+                <MainLayout />
+              </MountainProvider>
+            } />
+          </Routes>
+        </Router>
       </DateProvider>
     </SnackbarProvider>
   );

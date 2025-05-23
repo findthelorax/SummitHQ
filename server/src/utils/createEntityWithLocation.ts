@@ -33,8 +33,6 @@ export async function createEntityWithLocation(
 		...(mountainId && !isCreatingMountain ? { mountain: { connect: { id: mountainId } } } : {}),
 	};
 
-	console.log('🚀 ~ Sanitized entity data being sent to Prisma:', entityData);
-
 	return await prisma.$transaction(async (prisma: PrismaClient) => {
 		// 1. Create the entity (e.g., Lift) WITHOUT locationId or mountain
 		const entity = await prisma[entityType].create({

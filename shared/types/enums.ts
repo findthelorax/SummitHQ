@@ -1,5 +1,5 @@
 export enum LOCATION_TYPE {
-  AID_ROOM = "AID_ROOM",
+  AID_ROOM = "AIDROOM",
   HUT = "HUT",
   LODGE = "LODGE",
   LIFT = "LIFT",

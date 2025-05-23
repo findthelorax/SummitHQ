@@ -2,17 +2,20 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 // import Map from './Map';
-// import Patrollers from './Patrollers';
-// import IncidentLogs from './IncidentLogs';
-// import Areas from './Areas';
+import Areas from './Areas';
+import AreaLocationPage from './AreaLocationPage';
+import Trails from './Trails';
 import Lifts from './Lifts';
-// import Trails from './Trails';
-// import Equipment from './Equipment';
-// import Lodges from './Lodges';
-// import Huts from './Huts';
-// import FirstAidRooms from './FirstAidRooms';
+import Lodges from './Lodges';
+import Huts from './Huts';
+import AidRooms from './AidRooms';
+// import IncidentLogs from './IncidentLogs';
+import Employees from './Employees';
+import Equipment from './Equipment';
 // import Logs from './Logs';
 // import Settings from './Settings';
+
+import AdminLayout from './admin/AdminLayout';
 
 interface RouteConfig {
 	path: string;
@@ -22,17 +25,19 @@ interface RouteConfig {
 const routes: RouteConfig[] = [
 	{ path: '/dashboard', Component: Dashboard },
 	// { path: '/map', Component: Map },
-	// { path: '/incidentLogs', Component: IncidentLogs },
-	// { path: '/areas', Component: Areas },
-	// { path: '/patrollers', Component: Patrollers },
-	// { path: '/firstAidRooms', Component: FirstAidRooms },
-	// { path: '/huts', Component: Huts },
+	{ path: '/areas', Component: Areas },
+	{ path: '/areaLocations', Component: AreaLocationPage },
+	{ path: '/trails', Component: Trails },
 	{ path: '/lifts', Component: Lifts },
-	// { path: '/trails', Component: Trails },
-	// { path: '/lodges', Component: Lodges },
-	// { path: '/equipment', Component: Equipment },
+	{ path: '/lodges', Component: Lodges },
+	{ path: '/huts', Component: Huts },
+	{ path: '/aidRooms', Component: AidRooms },
+	// { path: '/incidentLogs', Component: IncidentLogs },
+	{ path: '/employees', Component: Employees },
+	{ path: '/equipment', Component: Equipment },
 	// { path: '/logs', Component: Logs },
 	// { path: '/settings', Component: Settings },
+	{ path: '/admin/*', Component: AdminLayout },
 	{ path: '*', Component: Dashboard },
 ];
 

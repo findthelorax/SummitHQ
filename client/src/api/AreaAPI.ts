@@ -39,4 +39,19 @@ export const areaApi = {
         const res = await axios.delete<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
         return res.data;
     },
+
+    async addAreaToLocation(locationId: string, areaId: string) {
+        const res = await axios.post(url(`/api/locations/${locationId}/area`), { areaId });
+        return res.data;
+    },
+
+    async updateAreaInLocation(locationId: string, mountainId: string, updated: Partial<AreaCreatePayload>) {
+        const res = await axios.put(url(`/api/locations/${locationId}/area`), { mountainId, ...updated });
+        return res.data;
+    },
+
+    async removeAreaFromLocation(locationId: string) {
+        const res = await axios.delete(url(`/api/locations/${locationId}/area`));
+        return res.data;
+    },
 };

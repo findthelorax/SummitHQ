@@ -124,24 +124,6 @@ class LocationController {
         res.status(204).send();
     });
 
-    addEquipmentToLocation = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId, locationId, equipmentId } = req.params;
-
-        if (!mountainId || !locationId || !equipmentId) {
-            res.status(400).json({ message: 'Mountain ID, Location ID, and Equipment ID are required.' });
-            return;
-        }
-
-        const updatedEquipment = await LocationModel.addEquipmentToLocation(mountainId, locationId, equipmentId);
-
-        if (!updatedEquipment) {
-            res.status(404).json({ message: 'Equipment, Location, or Mountain not found.' });
-            return;
-        }
-
-        res.status(200).json(updatedEquipment);
-    });
-
     getEquipmentByLocation = asyncWrapper(async (req: Request, res: Response) => {
         const { mountainId, locationId } = req.params;
 
@@ -155,60 +137,78 @@ class LocationController {
         res.status(200).json(equipment);
     });
 
-    moveEquipmentToLocation = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId, locationId: currentLocationId, equipmentId } = req.params;
-        const { newLocationId } = req.body;
+    // addEquipmentToLocation = asyncWrapper(async (req: Request, res: Response) => {
+    //     const { mountainId, locationId, equipmentId } = req.params;
 
-        if (!newLocationId) {
-            res.status(400).json({ message: 'New Location ID is required in the body.' });
-            return;
-        }
+    //     if (!mountainId || !locationId || !equipmentId) {
+    //         res.status(400).json({ message: 'Mountain ID, Location ID, and Equipment ID are required.' });
+    //         return;
+    //     }
 
-        const updatedEquipment = await LocationModel.moveEquipmentToLocation(
-            mountainId,
-            currentLocationId,
-            newLocationId,
-            equipmentId
-        );
+    //     const updatedEquipment = await LocationModel.addEquipmentToLocation(mountainId, locationId, equipmentId);
 
-        res.status(200).json(updatedEquipment);
-    });
+    //     if (!updatedEquipment) {
+    //         res.status(404).json({ message: 'Equipment, Location, or Mountain not found.' });
+    //         return;
+    //     }
 
-    updateEquipmentInLocation = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId, locationId, equipmentId } = req.params;
-        const updatedData = req.body;
+    //     res.status(200).json(updatedEquipment);
+    // });
 
-        const updatedEquipment = await LocationModel.updateEquipmentInLocation(
-            mountainId,
-            locationId,
-            equipmentId,
-            updatedData
-        );
+    // moveEquipmentToLocation = asyncWrapper(async (req: Request, res: Response) => {
+    //     const { mountainId, locationId: currentLocationId, equipmentId } = req.params;
+    //     const { newLocationId } = req.body;
 
-        if (!updatedEquipment) {
-            res.status(404).json({ message: 'Equipment not found in this location' });
-            return;
-        }
+    //     if (!newLocationId) {
+    //         res.status(400).json({ message: 'New Location ID is required in the body.' });
+    //         return;
+    //     }
 
-        res.status(200).json(updatedEquipment);
-    });
+    //     const updatedEquipment = await LocationModel.moveEquipmentToLocation(
+    //         mountainId,
+    //         currentLocationId,
+    //         newLocationId,
+    //         equipmentId
+    //     );
 
-    deleteEquipmentFromLocation = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId, locationId, equipmentId } = req.params;
+    //     res.status(200).json(updatedEquipment);
+    // });
 
-        const deleted = await LocationModel.deleteEquipmentFromLocation(
-            mountainId,
-            locationId,
-            equipmentId
-        );
+    // updateEquipmentInLocation = asyncWrapper(async (req: Request, res: Response) => {
+    //     const { mountainId, locationId, equipmentId } = req.params;
+    //     const updatedData = req.body;
 
-        if (!deleted) {
-            res.status(404).json({ message: 'Equipment not found in this location' });
-            return;
-        }
+    //     const updatedEquipment = await LocationModel.updateEquipmentInLocation(
+    //         mountainId,
+    //         locationId,
+    //         equipmentId,
+    //         updatedData
+    //     );
 
-        res.status(204).send();
-    });
+    //     if (!updatedEquipment) {
+    //         res.status(404).json({ message: 'Equipment not found in this location' });
+    //         return;
+    //     }
+
+    //     res.status(200).json(updatedEquipment);
+    // });
+
+    // deleteEquipmentFromLocation = asyncWrapper(async (req: Request, res: Response) => {
+    //     const { mountainId, locationId, equipmentId } = req.params;
+
+    //     const deleted = await LocationModel.deleteEquipmentFromLocation(
+    //         mountainId,
+    //         locationId,
+    //         equipmentId
+    //     );
+
+    //     if (!deleted) {
+    //         res.status(404).json({ message: 'Equipment not found in this location' });
+    //         return;
+    //     }
+
+    //     res.status(204).send();
+    // });
 
     addAreaToLocation = asyncWrapper(async (req: Request, res: Response) => {
         const { mountainId, locationId, areaId } = req.params;

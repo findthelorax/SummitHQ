@@ -1,5 +1,6 @@
 import axios from 'axios';
 import type { Hut, HutCheck } from 'shared/types';
+import type { STATUS } from 'shared/types/enums';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
@@ -7,35 +8,40 @@ const BASE_URL = `${IP}:${PORT}`;
 
 const url = (path: string) => `${BASE_URL}${path}`;
 
+export type HutCreatePayload = {
+    name: string;
+    status: STATUS;
+    latitude: number | null;
+    longitude: number | null;
+};
+
 export const hutApi = {
-	// Hut endpoints
-	async createHut(mountainId: string, hut: Omit<Hut, 'id' | 'mountainId' | 'hutChecks'>) {
-		const res = await axios.post<Hut>(url(`/api/mountains/${mountainId}/huts`), hut);
-		return res.data;
-	},
+    async createHut(mountainId: string, hut: HutCreatePayload) {
+        const res = await axios.post<Hut>(url(`/api/mountains/${mountainId}/huts`), hut);
+        return res.data;
+    },
 
-	async getHuts(mountainId: string) {
-		const res = await axios.get<Hut[]>(url(`/api/mountains/${mountainId}/huts`));
-		return res.data;
-	},
+    async getHuts(mountainId: string) {
+        const res = await axios.get<Hut[]>(url(`/api/mountains/${mountainId}/huts`));
+        return res.data;
+    },
 
-	async getHut(mountainId: string, hutId: string) {
-		const res = await axios.get<Hut>(url(`/api/mountains/${mountainId}/huts/${hutId}`));
-		return res.data;
-	},
+    async getHut(mountainId: string, hutId: string) {
+        const res = await axios.get<Hut>(url(`/api/mountains/${mountainId}/huts/${hutId}`));
+        return res.data;
+    },
 
-	async updateHut(mountainId: string, hutId: string, updated: Partial<Hut>) {
-		const res = await axios.put<Hut>(url(`/api/mountains/${mountainId}/huts/${hutId}`), updated);
-		return res.data;
-	},
+    async updateHut(mountainId: string, hutId: string, updated: Partial<HutCreatePayload>) {
+        const res = await axios.put<Hut>(url(`/api/mountains/${mountainId}/huts/${hutId}`), updated);
+        return res.data;
+    },
 
-	async deleteHut(mountainId: string, hutId: string) {
-		const res = await axios.delete<Hut>(url(`/api/mountains/${mountainId}/huts/${hutId}`));
-		return res.data;
-	},
+    async deleteHut(mountainId: string, hutId: string) {
+        const res = await axios.delete<Hut>(url(`/api/mountains/${mountainId}/huts/${hutId}`));
+        return res.data;
+    },
 
-	// HutCheck endpoints
-	async createHutCheck(
+		async createHutCheck(
 		mountainId: string,
 		hutId: string,
 		check: Omit<HutCheck, 'id' | 'mountainId' | 'hutId' | 'createdAt' | 'updatedAt'>

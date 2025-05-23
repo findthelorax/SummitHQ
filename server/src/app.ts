@@ -20,9 +20,9 @@ app.use(express.json());
 
 connectDatabase();
 
-app.use('/api/employees', employeeRoutes);
 app.use('/api/mountains', mountainRoutes);
-app.use('/api/mountains', equipmentRoutes);
+app.use('/api/employees', employeeRoutes);
+app.use('/api/equipment', equipmentRoutes);
 
 if (process.env.NODE_ENV !== 'production') {
     app.use('/api/debug', debugRoutes);

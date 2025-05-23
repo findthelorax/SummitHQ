@@ -1,5 +1,7 @@
 import axios from 'axios';
-import type { Trail, TrailCheck, TRAIL_CONDITION, TRAIL_DIFFICULTY, STATUS } from 'shared/types';
+import type { Trail, TrailCheck } from 'shared/types';
+import type { TRAIL_DIFFICULTY, STATUS, TRAIL_CONDITION } from 'shared/types/enums';
+
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
