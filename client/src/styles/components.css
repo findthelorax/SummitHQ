@@ -1,5 +1,5 @@
 .form-container {
-  @apply bg-white dark:bg-gray-800 rounded shadow p-6 max-w-md mx-auto;
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow p-6 max-w-md mx-auto mt-6;
 }
 
 .dropdown {
@@ -16,6 +16,10 @@
 
 .label {
   @apply block mb-1 font-semibold;
+}
+
+.drawer-text {
+  @apply -mt-1;
 }
 
 .button-primary {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMountain } from '../contexts/MountainContext';
 import { useIncidents } from '../hooks/useIncidents';
-import IncidentForm from '../components/incident/incidentForm';
+import IncidentForm from '../components/incident/IncidentForm';
 
 // import IncidentsTable from '../../components/incident/IncidentsTable';
 

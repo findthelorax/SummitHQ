@@ -13,14 +13,87 @@ interface AreaFormProps {
     onCreated?: () => void;
 }
 
+const emptyForm: AreaInputPayload = {
+    name: '',
+    type: AREA_TYPE.BASE_AREA,
+    description: '',
+};
+
+const fields = [
+    {
+        label: 'Name',
+        name: 'name',
+        type: 'text',
+        required: true,
+    },
+    {
+        label: 'Type',
+        name: 'type',
+        type: 'select',
+        required: true,
+        options: AREA_TYPE_OPTIONS,
+    },
+    {
+        label: 'Description',
+        name: 'description',
+        type: 'textarea',
+        required: false,
+    },
+];
+
+const FormField = ({ field, value, onChange }: any) => {
+    if (field.type === 'select') {
+        return (
+            <div className="mb-4">
+                <label className="block mb-1 font-semibold">{field.label}</label>
+                <select
+                    name={field.name}
+                    value={value}
+                    onChange={onChange}
+                    required={field.required}
+                    className="dropdown"
+                >
+                    {field.options.map((opt: any) => (
+                        <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        );
+    }
+    if (field.type === 'textarea') {
+        return (
+            <div className="mb-4">
+                <label className="block mb-1 font-semibold">{field.label}</label>
+                <textarea
+                    name={field.name}
+                    value={value ?? ''}
+                    onChange={onChange}
+                    className="w-full border rounded px-3 py-2"
+                />
+            </div>
+        );
+    }
+    return (
+        <div className="mb-4">
+            <label className="block mb-1 font-semibold">{field.label}</label>
+            <input
+                type={field.type}
+                name={field.name}
+                value={value ?? ''}
+                onChange={onChange}
+                required={field.required}
+                className="w-full border rounded px-3 py-2"
+            />
+        </div>
+    );
+};
+
 const AreaForm: React.FC<AreaFormProps> = ({ onCreated }) => {
     const { selectedMountain } = useMountain();
     const { createArea } = useAreas(selectedMountain?.id);
-    const [form, setForm] = useState<AreaInputPayload>({
-        name: '',
-        type: AREA_TYPE.BASE_AREA,
-        description: '',
-    });
+    const [form, setForm] = useState<AreaInputPayload>(emptyForm);
     const { showSnackbar } = useSnackbarContext();
 
     const handleChange = (
@@ -41,7 +114,7 @@ const AreaForm: React.FC<AreaFormProps> = ({ onCreated }) => {
         }
         try {
             await createArea(form);
-            setForm({ name: '', type: AREA_TYPE.BASE_AREA, description: '' });
+            setForm(emptyForm);
             showSnackbar(`${form.name} area created successfully`, 'success');
             if (onCreated) onCreated();
         } catch (error) {
@@ -51,42 +124,14 @@ const AreaForm: React.FC<AreaFormProps> = ({ onCreated }) => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={form.name}
+            {fields.map((field) => (
+                <FormField
+                    key={field.name}
+                    field={field}
+                    value={form[field.name as keyof AreaInputPayload]}
                     onChange={handleChange}
-                    required
-                    className="w-full border rounded px-3 py-2"
                 />
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Type</label>
-                <select
-                    name="type"
-                    value={form.type}
-                    onChange={handleChange}
-                    required
-                    className="dropdown"
-                >
-                    {AREA_TYPE_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                            {opt.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Description</label>
-                <textarea
-                    name="description"
-                    value={form.description ?? ''}
-                    onChange={handleChange}
-                    className="w-full border rounded px-3 py-2"
-                />
-            </div>
+            ))}
             <button
                 type="submit"
                 className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"

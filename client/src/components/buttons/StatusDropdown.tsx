@@ -17,6 +17,21 @@ type StatusToggleButtonProps = {
 const toNumberOrNull = (val: any) =>
     val === null || val === undefined ? null : typeof val === 'number' ? val : Number(val);
 
+const typeConfig = {
+    lift: {
+        api: liftApi.updateLift,
+        fields: ['name', 'type', 'capacity', 'latitude', 'longitude'],
+    },
+    trail: {
+        api: trailApi.updateTrail,
+        fields: ['name', 'difficulty', 'length', 'condition', 'latitude', 'longitude'],
+    },
+    lodge: {
+        api: lodgeApi.updateLodge,
+        fields: ['name', 'capacity', 'latitude', 'longitude'],
+    },
+} as const;
+
 const StatusDropdown: React.FC<StatusToggleButtonProps> = ({ value, data, type, onStatusChange }) => {
     const { selectedMountain } = useMountain();
 
@@ -24,48 +39,25 @@ const StatusDropdown: React.FC<StatusToggleButtonProps> = ({ value, data, type, 
         if (!selectedMountain) return;
         const newStatus = e.target.value as STATUS;
 
-        let updatedItem: any = { status: newStatus };
+        const config = typeConfig[type];
+        const updatedItem: any = { status: newStatus };
 
-        if (type === 'lift') {
-            const lift = data as Lift;
-            updatedItem = {
-                status: newStatus,
-                name: lift.name,
-                type: lift.type,
-                capacity: lift.capacity,
-                latitude: toNumberOrNull(lift.latitude),
-                longitude: toNumberOrNull(lift.longitude),
-            };
-            await liftApi.updateLift(selectedMountain.id, lift.id, updatedItem);
-        } else if (type === 'trail') {
-            const trail = data as Trail;
-            updatedItem = {
-                status: newStatus,
-                name: trail.name,
-                difficulty: trail.difficulty,
-                length: trail.length,
-                condition: trail.condition,
-                latitude: toNumberOrNull(trail.latitude),
-                longitude: toNumberOrNull(trail.longitude),
-            };
-            await trailApi.updateTrail(selectedMountain.id, trail.id, updatedItem);
-        } else if (type === 'lodge') {
-            const lodge = data as Lodge;
-            updatedItem = {
-                status: newStatus,
-                name: lodge.name,
-                capacity: lodge.capacity,
-                latitude: toNumberOrNull(lodge.latitude),
-                longitude: toNumberOrNull(lodge.longitude),
-            };
-            await lodgeApi.updateLodge(selectedMountain.id, lodge.id, updatedItem);
+        for (const field of config.fields) {
+            // Convert latitude/longitude to number or null
+            if (field === 'latitude' || field === 'longitude') {
+                updatedItem[field] = toNumberOrNull((data as any)[field]);
+            } else {
+                updatedItem[field] = (data as any)[field];
+            }
         }
+
+        await config.api(selectedMountain.id, (data as any).id, updatedItem);
 
         if (onStatusChange) {
             await onStatusChange();
         }
     };
-    
+
     return (
         <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <select

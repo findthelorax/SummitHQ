@@ -9,13 +9,14 @@ import AdminMountains from '../components/admin/AdminMountains';
 import AdminEmployees from '../components/admin/AdminEmployees';
 import AdminEquipment from '../components/admin/AdminEquipment';
 import AdminRoles from '../components/admin/AdminRoles';
+import AdminEmployeesGrid from '../components/admin/AdminEmployeesGrid';
 
 const drawerWidth = 240;
 
 const AdminLayout: React.FC = () => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 	const { setSelectedMountain } = useMountain();
-	
+
 	useEffect(() => {
 		setSelectedMountain(null, false);
 	}, [setSelectedMountain]);

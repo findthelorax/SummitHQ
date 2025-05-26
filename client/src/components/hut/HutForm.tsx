@@ -13,15 +13,76 @@ interface HutFormProps {
     onCreated?: () => void;
 }
 
+const emptyForm: HutInputPayload = {
+    name: '',
+    status: STATUS.UNKNOWN,
+    latitude: null,
+    longitude: null,
+};
+
+const fieldConfigs = [
+    { label: 'Name', name: 'name', type: 'text', required: true },
+    {
+        label: 'Status',
+        name: 'status',
+        type: 'select',
+        required: true,
+        options: STATUS_OPTIONS,
+    },
+    { label: 'Latitude', name: 'latitude', type: 'number', required: false, placeholder: '(optional)', step: 'any' },
+    { label: 'Longitude', name: 'longitude', type: 'number', required: false, placeholder: '(optional)', step: 'any' },
+];
+
+const FormField = ({
+    field,
+    value,
+    onChange,
+}: {
+    field: any;
+    value: any;
+    onChange: (e: React.ChangeEvent<any>) => void;
+}) => {
+    if (field.type === 'select') {
+        return (
+            <div className="mb-4">
+                <label className="block mb-1 font-semibold">{field.label}</label>
+                <select
+                    name={field.name}
+                    value={value}
+                    onChange={onChange}
+                    required={field.required}
+                    className="dropdown"
+                >
+                    {field.options.map((opt: any) => (
+                        <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        );
+    }
+    return (
+        <div className="mb-4">
+            <label className="block mb-1 font-semibold">{field.label}</label>
+            <input
+                type={field.type}
+                name={field.name}
+                value={value ?? ''}
+                onChange={onChange}
+                required={field.required}
+                className="w-full border rounded px-3 py-2"
+                placeholder={field.placeholder}
+                step={field.step}
+            />
+        </div>
+    );
+};
+
 const HutForm: React.FC<HutFormProps> = ({ onCreated }) => {
     const { selectedMountain } = useMountain();
     const { createHut } = useHuts(selectedMountain?.id);
-    const [form, setForm] = useState<HutInputPayload>({
-        name: '',
-        status: STATUS.UNKNOWN,
-        latitude: null,
-        longitude: null,
-    });
+    const [form, setForm] = useState<HutInputPayload>(emptyForm);
     const { showSnackbar } = useSnackbarContext();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -41,12 +102,7 @@ const HutForm: React.FC<HutFormProps> = ({ onCreated }) => {
         try {
             await createHut(form);
             showSnackbar(`${form.name} hut created successfully`, 'success');
-            setForm({
-                name: '',
-                status: STATUS.UNKNOWN,
-                latitude: null,
-                longitude: null,
-            });
+            setForm(emptyForm);
             if (onCreated) onCreated();
         } catch (error) {
             showSnackbar('Error creating hut', 'error');
@@ -55,57 +111,14 @@ const HutForm: React.FC<HutFormProps> = ({ onCreated }) => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={form.name}
+            {fieldConfigs.map((field) => (
+                <FormField
+                    key={field.name}
+                    field={field}
+                    value={form[field.name as keyof HutInputPayload]}
                     onChange={handleChange}
-                    required
-                    className="w-full border rounded px-3 py-2"
                 />
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Status</label>
-                <select
-                    name="status"
-                    value={form.status}
-                    onChange={handleChange}
-                    required
-                    className="dropdown"
-                >
-                    {STATUS_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                            {opt.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Latitude</label>
-                <input
-                    type="number"
-                    name="latitude"
-                    value={form.latitude ?? ''}
-                    onChange={handleChange}
-                    step="any"
-                    className="w-full border rounded px-3 py-2"
-                    placeholder="(optional)"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Longitude</label>
-                <input
-                    type="number"
-                    name="longitude"
-                    value={form.longitude ?? ''}
-                    onChange={handleChange}
-                    step="any"
-                    className="w-full border rounded px-3 py-2"
-                    placeholder="(optional)"
-                />
-            </div>
+            ))}
             <button
                 type="submit"
                 className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
@@ -114,7 +127,9 @@ const HutForm: React.FC<HutFormProps> = ({ onCreated }) => {
                 Add Hut
             </button>
             {!selectedMountain && (
-                <div className="text-red-500 text-sm mt-2 text-center">Please select a mountain to add a hut.</div>
+                <div className="text-red-500 text-sm mt-2 text-center">
+                    Please select a mountain to add a hut.
+                </div>
             )}
         </form>
     );

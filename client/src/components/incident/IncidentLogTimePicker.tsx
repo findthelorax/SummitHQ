@@ -4,7 +4,7 @@ type IncidentLogTimePickerProps = {
     label: string;
     name: string;
     value?: string | null;
-    handleTimeChange: (name: string, value: string | null) => void; // <-- string, not Date
+    handleTimeChange: (name: string, value: string | null) => void;
     clear?: boolean;
 };
 
@@ -34,16 +34,13 @@ const IncidentLogTimePicker: React.FC<IncidentLogTimePickerProps> = ({
         const now = new Date();
         const timeString = now.toLocaleTimeString('en-GB', { hour12: false }).slice(0, 8);
         setSelectedTime(timeString);
-        handleTimeChange(name, timeString); // <-- pass string
+        handleTimeChange(name, timeString);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedTime(e.target.value);
-        if (e.target.value) {
-            handleTimeChange(name, e.target.value); // <-- pass string
-        } else {
-            handleTimeChange(name, null);
-        }
+        const val = e.target.value;
+        setSelectedTime(val);
+        handleTimeChange(name, val || null);
     };
 
     return (

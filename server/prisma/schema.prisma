@@ -281,6 +281,18 @@ model EmployeeRole {
   @@unique([employeeId, roleId])
 }
 
+model Certification {
+  id           String   @id @default(uuid())
+  name         String
+  issuedBy     String?
+  issuedAt     DateTime?
+  expiresAt    DateTime?
+  employeeId   String
+  employee     Employee @relation(fields: [employeeId], references: [id])
+
+  @@index([employeeId])
+}
+
 model Employee {
   id                String     @id @default(uuid())
   employeeIdNumber  Int?       @unique
@@ -292,11 +304,11 @@ model Employee {
   roleId            String?
   role              Role?      @relation(fields: [roleId], references: [id])
 
-  additionalRoles   EmployeeRole[]
+  certifications    Certification[]
 
+  additionalRoles       EmployeeRole[]
   mountainAssignments   EmployeeMountainAssignment[]
   dispatcherAssignments DispatcherAssignment[]
-
   incidents             Incident[]    @relation("IncidentEmployees")
   aidRoomChecks         AidRoomCheck[]
   hutChecks             HutCheck[]

@@ -8,7 +8,7 @@ const url = (path: string) => `${BASE_URL}${path}`;
 
 export type EmployeeMountainAssignmentInputPayload = {
     mountainId: string;
-    assignedAt?: string; // ISO string, optional (backend may set)
+    assignedAt?: string;
 };
 
 export const employeeMountainAssignmentApi = {

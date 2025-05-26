@@ -209,6 +209,15 @@ exports.Prisma.EmployeeRoleScalarFieldEnum = {
   roleId: 'roleId'
 };
 
+exports.Prisma.CertificationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  issuedBy: 'issuedBy',
+  issuedAt: 'issuedAt',
+  expiresAt: 'expiresAt',
+  employeeId: 'employeeId'
+};
+
 exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
   employeeIdNumber: 'employeeIdNumber',
@@ -517,6 +526,7 @@ exports.Prisma.ModelName = {
   DispatcherAssignment: 'DispatcherAssignment',
   Role: 'Role',
   EmployeeRole: 'EmployeeRole',
+  Certification: 'Certification',
   Employee: 'Employee',
   Lift: 'Lift',
   Trail: 'Trail',

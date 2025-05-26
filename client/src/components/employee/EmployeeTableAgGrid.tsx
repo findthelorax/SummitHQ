@@ -1,12 +1,12 @@
 import React, { useCallback, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
-import type { EmployeeWithRole } from 'shared/types';
+import type { EmployeeFull } from 'shared/types';
 import { DEPARTMENT_LABELS } from 'shared/types/utils/enumLabels';
 import type { ColDef, GridSizeChangedEvent, FirstDataRenderedEvent } from 'ag-grid-community';
 
 interface EmployeeTableAgGridProps {
-	employees: EmployeeWithRole[];
+	employees: EmployeeFull[];
 	fetchEmployees: () => Promise<void>;
 	isLoading: boolean;
 }

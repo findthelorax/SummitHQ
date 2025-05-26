@@ -3,6 +3,28 @@ import { mountainApi } from '../../api/MountainAPI';
 import type { Mountain } from 'shared/types';
 import MountainForm from '../mountain/MountainForm';
 
+const toFormData = (mountain: Mountain) => ({
+    name: mountain.name || '',
+    city: mountain.city || '',
+    state: mountain.state || '',
+    latitude: mountain.latitude ?? null,
+    longitude: mountain.longitude ?? null,
+    height: mountain.height ?? null,
+    phoneNumber: mountain.phoneNumber || '',
+    address: mountain.address || '',
+    zipcode: mountain.zipcode || '',
+    openingDate: mountain.openingDate
+        ? typeof mountain.openingDate === 'string'
+            ? mountain.openingDate
+            : (mountain.openingDate as Date).toISOString().slice(0, 10)
+        : '',
+    closingDate: mountain.closingDate
+        ? typeof mountain.closingDate === 'string'
+            ? mountain.closingDate
+            : (mountain.closingDate as Date).toISOString().slice(0, 10)
+        : '',
+});
+
 const AdminMountains: React.FC = () => {
     const [mountains, setMountains] = useState<Mountain[]>([]);
     const [editingMountain, setEditingMountain] = useState<{ id: string; data: any } | null>(null);
@@ -12,9 +34,8 @@ const AdminMountains: React.FC = () => {
     const fetchMountains = async () => {
         setIsLoading(true);
         try {
-            const data = await mountainApi.getAllMountains();
-            setMountains(data);
-        } catch (e) {
+            setMountains(await mountainApi.getAllMountains());
+        } catch {
             setError('Failed to fetch mountains');
         } finally {
             setIsLoading(false);
@@ -26,36 +47,7 @@ const AdminMountains: React.FC = () => {
     }, []);
 
     const handleEdit = (mountain: Mountain) => {
-        setEditingMountain({
-            id: mountain.id,
-            data: {
-                name: mountain.name || '',
-                city: mountain.city || '',
-                state: mountain.state || '',
-                latitude: mountain.latitude !== null && mountain.latitude !== undefined
-                    ? Number(mountain.latitude)
-                    : null,
-                longitude: mountain.longitude !== null && mountain.longitude !== undefined
-                    ? Number(mountain.longitude)
-                    : null,
-                height: mountain.height !== null && mountain.height !== undefined
-                    ? Number(mountain.height)
-                    : null,
-                phoneNumber: mountain.phoneNumber || '',
-                address: mountain.address || '',
-                zipcode: mountain.zipcode || '',
-                openingDate: mountain.openingDate
-                    ? typeof mountain.openingDate === 'string'
-                        ? mountain.openingDate
-                        : (mountain.openingDate as Date).toISOString().slice(0, 10)
-                    : '',
-                closingDate: mountain.closingDate
-                    ? typeof mountain.closingDate === 'string'
-                        ? mountain.closingDate
-                        : (mountain.closingDate as Date).toISOString().slice(0, 10)
-                    : '',
-            }
-        });
+        setEditingMountain({ id: mountain.id, data: toFormData(mountain) });
     };
 
     const handleDelete = async (id: string) => {
@@ -64,22 +56,20 @@ const AdminMountains: React.FC = () => {
         try {
             await mountainApi.deleteMountain(id);
             await fetchMountains();
-        } catch (e) {
+        } catch {
             setError('Failed to delete mountain');
         }
     };
 
-    const handleCancel = () => {
-        setEditingMountain(null);
-    };
+    const handleCancel = () => setEditingMountain(null);
 
     return (
         <div className="max-w-3xl mx-auto p-4">
             <h2 className="text-xl font-bold mb-4">All Mountains</h2>
             {error && <div className="text-red-600 mb-2">{error}</div>}
             <MountainForm
-                initial={editingMountain ? editingMountain.data : undefined}
-                editingId={editingMountain ? editingMountain.id : undefined}
+                initial={editingMountain?.data}
+                editingId={editingMountain?.id}
                 onSuccess={() => {
                     setEditingMountain(null);
                     fetchMountains();

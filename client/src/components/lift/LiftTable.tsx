@@ -10,30 +10,38 @@ interface LiftTableProps {
     isLoading: boolean;
 }
 
+const columns = [
+    { label: 'Name', key: 'name', className: 'min-w-[120px]' },
+    { label: 'Status', key: 'status', className: 'min-w-[140px]' },
+    { label: 'Type', key: 'type' },
+    { label: 'Capacity', key: 'capacity' },
+    { label: 'Latitude', key: 'latitude' },
+    { label: 'Longitude', key: 'longitude' },
+];
+
 const LiftTable: React.FC<LiftTableProps> = ({ lifts, fetchLifts, isLoading }) => {
     return (
         <div className="rounded shadow bg-white text-black mx-auto w-fit">
             <table className="text-sm w-fit">
                 <thead className="bg-gray-200">
                     <tr>
-                        <th className="px-2 py-2 text-left min-w-[120px]">Name</th>
-                        <th className="px-2 py-2 text-left min-w-[140px]">Status</th>
-                        <th className="px-2 py-2 text-left">Type</th>
-                        <th className="px-2 py-2 text-left">Capacity</th>
-                        <th className="px-2 py-2 text-left">Latitude</th>
-                        <th className="px-2 py-2 text-left">Longitude</th>
+                        {columns.map((col) => (
+                            <th key={col.key} className={`px-2 py-2 text-left ${col.className || ''}`}>
+                                {col.label}
+                            </th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody>
                     {isLoading ? (
                         <tr>
-                            <td colSpan={6} className="px-2 py-8 text-center text-gray-500">
+                            <td colSpan={columns.length} className="px-2 py-8 text-center text-gray-500">
                                 Loading lifts...
                             </td>
                         </tr>
                     ) : lifts.length === 0 ? (
                         <tr>
-                            <td colSpan={6} className="px-2 py-8 text-center text-gray-500">
+                            <td colSpan={columns.length} className="px-2 py-8 text-center text-gray-500">
                                 No lifts found.
                             </td>
                         </tr>

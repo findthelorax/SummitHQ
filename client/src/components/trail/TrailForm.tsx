@@ -16,6 +16,80 @@ const TRAIL_DIFFICULTY_OPTIONS = enumToOptions(TRAIL_DIFFICULTY, TRAIL_DIFFICULT
 const STATUS_OPTIONS = enumToOptions(STATUS, STATUS_LABELS);
 const TRAIL_CONDITION_OPTIONS = enumToOptions(TRAIL_CONDITION, TRAIL_CONDITION_LABELS);
 
+const fieldConfigs = [
+    { label: 'Name', name: 'name', type: 'text', required: true },
+    {
+        label: 'Difficulty',
+        name: 'difficulty',
+        type: 'select',
+        required: true,
+        options: TRAIL_DIFFICULTY_OPTIONS,
+    },
+    {
+        label: 'Status',
+        name: 'status',
+        type: 'select',
+        required: true,
+        options: STATUS_OPTIONS,
+    },
+    {
+        label: 'Condition',
+        name: 'condition',
+        type: 'select',
+        required: true,
+        options: TRAIL_CONDITION_OPTIONS,
+    },
+    { label: 'Length (miles)', name: 'length', type: 'number', required: true, step: 'any' },
+    { label: 'Latitude', name: 'latitude', type: 'number', required: false, placeholder: '(optional)', step: 'any' },
+    { label: 'Longitude', name: 'longitude', type: 'number', required: false, placeholder: '(optional)', step: 'any' },
+];
+
+const FormField = ({
+    field,
+    value,
+    onChange,
+}: {
+    field: any;
+    value: any;
+    onChange: (e: React.ChangeEvent<any>) => void;
+}) => {
+    if (field.type === 'select') {
+        return (
+            <div className="mb-4">
+                <label className="block mb-1 font-semibold">{field.label}</label>
+                <select
+                    name={field.name}
+                    value={value}
+                    onChange={onChange}
+                    required={field.required}
+                    className="dropdown"
+                >
+                    {field.options.map((opt: any) => (
+                        <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        );
+    }
+    return (
+        <div className="mb-4">
+            <label className="block mb-1 font-semibold">{field.label}</label>
+            <input
+                type={field.type}
+                name={field.name}
+                value={value ?? ''}
+                onChange={onChange}
+                required={field.required}
+                className="w-full border rounded px-3 py-2"
+                placeholder={field.placeholder}
+                step={field.step}
+            />
+        </div>
+    );
+};
+
 interface TrailFormProps {
     onCreated?: () => void;
 }
@@ -68,101 +142,14 @@ const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={form.name}
+            {fieldConfigs.map((field) => (
+                <FormField
+                    key={field.name}
+                    field={field}
+                    value={form[field.name as keyof TrailInputPayload]}
                     onChange={handleChange}
-                    required
-                    className="w-full border rounded px-3 py-2"
                 />
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Difficulty</label>
-                <select
-                    name="difficulty"
-                    value={form.difficulty}
-                    onChange={handleChange}
-                    required
-                    className="dropdown"
-                >
-                    {TRAIL_DIFFICULTY_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                            {opt.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Status</label>
-                <select
-                    name="status"
-                    value={form.status}
-                    onChange={handleChange}
-                    required
-                    className="dropdown"
-                >
-                    {STATUS_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                            {opt.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Condition</label>
-                <select
-                    name="condition"
-                    value={form.condition}
-                    onChange={handleChange}
-                    required
-                    className="dropdown"
-                >
-                    {TRAIL_CONDITION_OPTIONS.map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                            {opt.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Length (miles)</label>
-                <input
-                    type="number"
-                    name="length"
-                    value={form.length ?? ''}
-                    onChange={handleChange}
-                    step="any"
-                    required
-                    className="w-full border rounded px-3 py-2"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Latitude</label>
-                <input
-                    type="number"
-                    name="latitude"
-                    value={form.latitude ?? ''}
-                    onChange={handleChange}
-                    step="any"
-                    className="w-full border rounded px-3 py-2"
-                    placeholder="(optional)"
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">Longitude</label>
-                <input
-                    type="number"
-                    name="longitude"
-                    value={form.longitude ?? ''}
-                    onChange={handleChange}
-                    step="any"
-                    className="w-full border rounded px-3 py-2"
-                    placeholder="(optional)"
-                />
-            </div>
+            ))}
             <button
                 type="submit"
                 className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"

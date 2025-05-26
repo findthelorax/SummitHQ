@@ -31,38 +31,31 @@ export function useAidRooms(mountainId: string | undefined) {
         fetchAidRooms();
     }, [fetchAidRooms]);
 
-    const createAidRoom = async (aidRoom: AidRoomInputPayload) => {
+    const mutateAndRefresh = async (fn: () => Promise<any>) => {
         if (!mountainId) return;
-        const payload = {
-            ...aidRoom,
-            status: toSharedStatus(aidRoom.status),
-        };
-        await aidRoomApi.createAidRoom(mountainId, payload);
+        await fn();
         await fetchAidRooms();
     };
 
-    const updateAidRoom = async (aidRoomId: string, updated: Partial<AidRoom>) => {
+    const createAidRoom = (aidRoom: AidRoomInputPayload) =>
+        mutateAndRefresh(() =>
+            aidRoomApi.createAidRoom(mountainId!, { ...aidRoom, status: toSharedStatus(aidRoom.status) })
+        );
+
+    const updateAidRoom = (aidRoomId: string, updated: Partial<AidRoom>) => {
         if (!mountainId) return;
         const { name, status, latitude, longitude } = updated;
         const payload: Partial<AidRoomInputPayload> = {
             ...(name !== undefined ? { name } : {}),
             ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
-            ...(latitude !== undefined
-                ? { latitude: latitude === null || latitude === undefined ? null : Number(latitude) }
-                : {}),
-            ...(longitude !== undefined
-                ? { longitude: longitude === null || longitude === undefined ? null : Number(longitude) }
-                : {}),
+            ...(latitude !== undefined ? { latitude: latitude == null ? null : Number(latitude) } : {}),
+            ...(longitude !== undefined ? { longitude: longitude == null ? null : Number(longitude) } : {}),
         };
-        await aidRoomApi.updateAidRoom(mountainId, aidRoomId, payload);
-        await fetchAidRooms();
+        return mutateAndRefresh(() => aidRoomApi.updateAidRoom(mountainId, aidRoomId, payload));
     };
 
-    const deleteAidRoom = async (aidRoomId: string) => {
-        if (!mountainId) return;
-        await aidRoomApi.deleteAidRoom(mountainId, aidRoomId);
-        await fetchAidRooms();
-    };
+    const deleteAidRoom = (aidRoomId: string) =>
+        mutateAndRefresh(() => aidRoomApi.deleteAidRoom(mountainId!, aidRoomId));
 
     return { aidRooms, isLoading, fetchAidRooms, createAidRoom, updateAidRoom, deleteAidRoom };
 }

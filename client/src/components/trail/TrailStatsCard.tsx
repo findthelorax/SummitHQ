@@ -1,8 +1,12 @@
 import React from 'react';
-import { useMountain } from '../../contexts/MountainContext';
+import { useTrails } from '../../hooks/useTrails';
 
-const TrailStatsCard: React.FC = () => {
-    const { trails } = useMountain();
+interface TrailStatsCardProps {
+    mountainId: string | undefined;
+}
+
+const TrailStatsCard: React.FC<TrailStatsCardProps> = ({ mountainId }) => {
+    const { trails } = useTrails(mountainId);
 
     const totalTrails = trails.length;
     const openTrails = trails.filter((trail: any) => trail.status === 'open').length;

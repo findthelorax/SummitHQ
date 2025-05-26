@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 const states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
@@ -12,22 +12,47 @@ const states = [
 type StatesAutocompleteProps = {
     state: string;
     setState: (state: string) => void;
+    placeholder?: string;
 };
 
-const StatesAutocomplete: React.FC<StatesAutocompleteProps> = ({ state, setState }) => {
+const DropdownItem: React.FC<{
+    value: string;
+    isSelected: boolean;
+    onSelect: (value: string) => void;
+}> = ({ value, isSelected, onSelect }) => (
+    <li
+        className={`px-4 py-2 cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-700 ${isSelected ? 'font-bold' : ''}`}
+        onMouseDown={() => onSelect(value)}
+    >
+        {value}
+    </li>
+);
+
+const StatesAutocomplete: React.FC<StatesAutocompleteProps> = ({
+    state,
+    setState,
+    placeholder = 'State',
+}) => {
     const [inputValue, setInputValue] = useState(state || '');
     const [showDropdown, setShowDropdown] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        setInputValue(state || '');
+    }, [state]);
 
     const filteredStates = inputValue
         ? states.filter((s) => s.toLowerCase().startsWith(inputValue.toLowerCase()))
         : states;
 
-    const handleSelect = (selected: string) => {
-        setInputValue(selected);
-        setState(selected);
-        setShowDropdown(false);
-    };
+    const handleSelect = useCallback(
+        (selected: string) => {
+            setInputValue(selected);
+            setState(selected);
+            setShowDropdown(false);
+        },
+        [setState]
+    );
 
     return (
         <div className="relative">
@@ -53,7 +78,7 @@ const StatesAutocomplete: React.FC<StatesAutocompleteProps> = ({ state, setState
                         handleSelect(filteredStates[0]);
                     }
                 }}
-                placeholder="State"
+                placeholder={placeholder}
                 className="w-full border rounded px-3 py-2 dark:bg-gray-800 dark:text-white"
                 autoComplete="new-password"
                 required
@@ -61,15 +86,12 @@ const StatesAutocomplete: React.FC<StatesAutocompleteProps> = ({ state, setState
             {showDropdown && filteredStates.length > 0 && (
                 <ul className="absolute z-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded w-full max-h-60 overflow-y-auto shadow mt-1">
                     {filteredStates.map((s) => (
-                        <li
+                        <DropdownItem
                             key={s}
-                            className={`px-4 py-2 cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-700 ${
-                                s === state ? 'font-bold' : ''
-                            }`}
-                            onMouseDown={() => handleSelect(s)}
-                        >
-                            {s}
-                        </li>
+                            value={s}
+                            isSelected={s === state}
+                            onSelect={handleSelect}
+                        />
                     ))}
                 </ul>
             )}
