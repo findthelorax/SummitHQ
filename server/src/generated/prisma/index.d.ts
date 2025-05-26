@@ -251,16 +251,30 @@ export const AREA_TYPE: {
 export type AREA_TYPE = (typeof AREA_TYPE)[keyof typeof AREA_TYPE]
 
 
-export const EMPLOYEE_ROLES: {
-  SUPERVISOR: 'SUPERVISOR',
-  ADVANCED_PATROLLER: 'ADVANCED_PATROLLER',
-  HILL_CHIEF: 'HILL_CHIEF',
-  SPECIALIST: 'SPECIALIST',
-  TRAINER: 'TRAINER',
-  DIRECTOR: 'DIRECTOR'
+export const EMPLOYEE_STATUS: {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  ON_LEAVE: 'ON_LEAVE',
+  TERMINATED: 'TERMINATED'
 };
 
-export type EMPLOYEE_ROLES = (typeof EMPLOYEE_ROLES)[keyof typeof EMPLOYEE_ROLES]
+export type EMPLOYEE_STATUS = (typeof EMPLOYEE_STATUS)[keyof typeof EMPLOYEE_STATUS]
+
+
+export const ROLE_LEVEL: {
+  LEVEL_1: 'LEVEL_1',
+  LEVEL_2: 'LEVEL_2',
+  LEVEL_3: 'LEVEL_3',
+  LEVEL_4: 'LEVEL_4',
+  LEVEL_5: 'LEVEL_5',
+  LEVEL_6: 'LEVEL_6',
+  LEVEL_7: 'LEVEL_7',
+  LEVEL_8: 'LEVEL_8',
+  LEVEL_9: 'LEVEL_9',
+  LEVEL_10: 'LEVEL_10'
+};
+
+export type ROLE_LEVEL = (typeof ROLE_LEVEL)[keyof typeof ROLE_LEVEL]
 
 }
 
@@ -300,9 +314,13 @@ export type AREA_TYPE = $Enums.AREA_TYPE
 
 export const AREA_TYPE: typeof $Enums.AREA_TYPE
 
-export type EMPLOYEE_ROLES = $Enums.EMPLOYEE_ROLES
+export type EMPLOYEE_STATUS = $Enums.EMPLOYEE_STATUS
 
-export const EMPLOYEE_ROLES: typeof $Enums.EMPLOYEE_ROLES
+export const EMPLOYEE_STATUS: typeof $Enums.EMPLOYEE_STATUS
+
+export type ROLE_LEVEL = $Enums.ROLE_LEVEL
+
+export const ROLE_LEVEL: typeof $Enums.ROLE_LEVEL
 
 /**
  * ##  Prisma Client ʲˢ
@@ -12335,42 +12353,29 @@ export namespace Prisma {
 
   export type AggregateRole = {
     _count: RoleCountAggregateOutputType | null
-    _avg: RoleAvgAggregateOutputType | null
-    _sum: RoleSumAggregateOutputType | null
     _min: RoleMinAggregateOutputType | null
     _max: RoleMaxAggregateOutputType | null
-  }
-
-  export type RoleAvgAggregateOutputType = {
-    level: number | null
-  }
-
-  export type RoleSumAggregateOutputType = {
-    level: number | null
   }
 
   export type RoleMinAggregateOutputType = {
     id: string | null
     department: $Enums.DEPARTMENT | null
-    name: string | null
     title: string | null
     position: string | null
-    level: number | null
+    level: $Enums.ROLE_LEVEL | null
   }
 
   export type RoleMaxAggregateOutputType = {
     id: string | null
     department: $Enums.DEPARTMENT | null
-    name: string | null
     title: string | null
     position: string | null
-    level: number | null
+    level: $Enums.ROLE_LEVEL | null
   }
 
   export type RoleCountAggregateOutputType = {
     id: number
     department: number
-    name: number
     title: number
     position: number
     level: number
@@ -12379,18 +12384,9 @@ export namespace Prisma {
   }
 
 
-  export type RoleAvgAggregateInputType = {
-    level?: true
-  }
-
-  export type RoleSumAggregateInputType = {
-    level?: true
-  }
-
   export type RoleMinAggregateInputType = {
     id?: true
     department?: true
-    name?: true
     title?: true
     position?: true
     level?: true
@@ -12399,7 +12395,6 @@ export namespace Prisma {
   export type RoleMaxAggregateInputType = {
     id?: true
     department?: true
-    name?: true
     title?: true
     position?: true
     level?: true
@@ -12408,7 +12403,6 @@ export namespace Prisma {
   export type RoleCountAggregateInputType = {
     id?: true
     department?: true
-    name?: true
     title?: true
     position?: true
     level?: true
@@ -12454,18 +12448,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: RoleAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: RoleSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: RoleMinAggregateInputType
@@ -12496,8 +12478,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: RoleCountAggregateInputType | true
-    _avg?: RoleAvgAggregateInputType
-    _sum?: RoleSumAggregateInputType
     _min?: RoleMinAggregateInputType
     _max?: RoleMaxAggregateInputType
   }
@@ -12505,14 +12485,11 @@ export namespace Prisma {
   export type RoleGroupByOutputType = {
     id: string
     department: $Enums.DEPARTMENT
-    name: string
     title: string
     position: string
-    level: number | null
+    level: $Enums.ROLE_LEVEL
     permissions: string[]
     _count: RoleCountAggregateOutputType | null
-    _avg: RoleAvgAggregateOutputType | null
-    _sum: RoleSumAggregateOutputType | null
     _min: RoleMinAggregateOutputType | null
     _max: RoleMaxAggregateOutputType | null
   }
@@ -12534,7 +12511,6 @@ export namespace Prisma {
   export type RoleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     department?: boolean
-    name?: boolean
     title?: boolean
     position?: boolean
     level?: boolean
@@ -12547,7 +12523,6 @@ export namespace Prisma {
   export type RoleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     department?: boolean
-    name?: boolean
     title?: boolean
     position?: boolean
     level?: boolean
@@ -12557,7 +12532,6 @@ export namespace Prisma {
   export type RoleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     department?: boolean
-    name?: boolean
     title?: boolean
     position?: boolean
     level?: boolean
@@ -12567,14 +12541,13 @@ export namespace Prisma {
   export type RoleSelectScalar = {
     id?: boolean
     department?: boolean
-    name?: boolean
     title?: boolean
     position?: boolean
     level?: boolean
     permissions?: boolean
   }
 
-  export type RoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "department" | "name" | "title" | "position" | "level" | "permissions", ExtArgs["result"]["role"]>
+  export type RoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "department" | "title" | "position" | "level" | "permissions", ExtArgs["result"]["role"]>
   export type RoleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employees?: boolean | Role$employeesArgs<ExtArgs>
     employeeRole?: boolean | Role$employeeRoleArgs<ExtArgs>
@@ -12592,10 +12565,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       department: $Enums.DEPARTMENT
-      name: string
       title: string
       position: string
-      level: number | null
+      level: $Enums.ROLE_LEVEL
       permissions: string[]
     }, ExtArgs["result"]["role"]>
     composites: {}
@@ -13024,10 +12996,9 @@ export namespace Prisma {
   interface RoleFieldRefs {
     readonly id: FieldRef<"Role", 'String'>
     readonly department: FieldRef<"Role", 'DEPARTMENT'>
-    readonly name: FieldRef<"Role", 'String'>
     readonly title: FieldRef<"Role", 'String'>
     readonly position: FieldRef<"Role", 'String'>
-    readonly level: FieldRef<"Role", 'Int'>
+    readonly level: FieldRef<"Role", 'ROLE_LEVEL'>
     readonly permissions: FieldRef<"Role", 'String[]'>
   }
     
@@ -14546,27 +14517,33 @@ export namespace Prisma {
   export type EmployeeMinAggregateOutputType = {
     id: string | null
     employeeIdNumber: number | null
+    firstName: string | null
+    lastName: string | null
     email: string | null
     phoneNumber: string | null
-    name: string | null
+    employeeStatus: $Enums.EMPLOYEE_STATUS | null
     roleId: string | null
   }
 
   export type EmployeeMaxAggregateOutputType = {
     id: string | null
     employeeIdNumber: number | null
+    firstName: string | null
+    lastName: string | null
     email: string | null
     phoneNumber: string | null
-    name: string | null
+    employeeStatus: $Enums.EMPLOYEE_STATUS | null
     roleId: string | null
   }
 
   export type EmployeeCountAggregateOutputType = {
     id: number
     employeeIdNumber: number
+    firstName: number
+    lastName: number
     email: number
     phoneNumber: number
-    name: number
+    employeeStatus: number
     roleId: number
     _all: number
   }
@@ -14583,27 +14560,33 @@ export namespace Prisma {
   export type EmployeeMinAggregateInputType = {
     id?: true
     employeeIdNumber?: true
+    firstName?: true
+    lastName?: true
     email?: true
     phoneNumber?: true
-    name?: true
+    employeeStatus?: true
     roleId?: true
   }
 
   export type EmployeeMaxAggregateInputType = {
     id?: true
     employeeIdNumber?: true
+    firstName?: true
+    lastName?: true
     email?: true
     phoneNumber?: true
-    name?: true
+    employeeStatus?: true
     roleId?: true
   }
 
   export type EmployeeCountAggregateInputType = {
     id?: true
     employeeIdNumber?: true
+    firstName?: true
+    lastName?: true
     email?: true
     phoneNumber?: true
-    name?: true
+    employeeStatus?: true
     roleId?: true
     _all?: true
   }
@@ -14696,10 +14679,12 @@ export namespace Prisma {
 
   export type EmployeeGroupByOutputType = {
     id: string
-    employeeIdNumber: number
+    employeeIdNumber: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId: string | null
     _count: EmployeeCountAggregateOutputType | null
     _avg: EmployeeAvgAggregateOutputType | null
@@ -14725,9 +14710,11 @@ export namespace Prisma {
   export type EmployeeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeIdNumber?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
     phoneNumber?: boolean
-    name?: boolean
+    employeeStatus?: boolean
     roleId?: boolean
     role?: boolean | Employee$roleArgs<ExtArgs>
     additionalRoles?: boolean | Employee$additionalRolesArgs<ExtArgs>
@@ -14746,9 +14733,11 @@ export namespace Prisma {
   export type EmployeeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeIdNumber?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
     phoneNumber?: boolean
-    name?: boolean
+    employeeStatus?: boolean
     roleId?: boolean
     role?: boolean | Employee$roleArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
@@ -14756,9 +14745,11 @@ export namespace Prisma {
   export type EmployeeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeIdNumber?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
     phoneNumber?: boolean
-    name?: boolean
+    employeeStatus?: boolean
     roleId?: boolean
     role?: boolean | Employee$roleArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
@@ -14766,13 +14757,15 @@ export namespace Prisma {
   export type EmployeeSelectScalar = {
     id?: boolean
     employeeIdNumber?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
     phoneNumber?: boolean
-    name?: boolean
+    employeeStatus?: boolean
     roleId?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeIdNumber" | "email" | "phoneNumber" | "name" | "roleId", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeIdNumber" | "firstName" | "lastName" | "email" | "phoneNumber" | "employeeStatus" | "roleId", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     role?: boolean | Employee$roleArgs<ExtArgs>
     additionalRoles?: boolean | Employee$additionalRolesArgs<ExtArgs>
@@ -14811,10 +14804,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      employeeIdNumber: number
+      employeeIdNumber: number | null
+      firstName: string
+      lastName: string
       email: string
       phoneNumber: string
-      name: string
+      employeeStatus: $Enums.EMPLOYEE_STATUS
       roleId: string | null
     }, ExtArgs["result"]["employee"]>
     composites: {}
@@ -15252,9 +15247,11 @@ export namespace Prisma {
   interface EmployeeFieldRefs {
     readonly id: FieldRef<"Employee", 'String'>
     readonly employeeIdNumber: FieldRef<"Employee", 'Int'>
+    readonly firstName: FieldRef<"Employee", 'String'>
+    readonly lastName: FieldRef<"Employee", 'String'>
     readonly email: FieldRef<"Employee", 'String'>
     readonly phoneNumber: FieldRef<"Employee", 'String'>
-    readonly name: FieldRef<"Employee", 'String'>
+    readonly employeeStatus: FieldRef<"Employee", 'EMPLOYEE_STATUS'>
     readonly roleId: FieldRef<"Employee", 'String'>
   }
     
@@ -32438,7 +32435,6 @@ export namespace Prisma {
   export const RoleScalarFieldEnum: {
     id: 'id',
     department: 'department',
-    name: 'name',
     title: 'title',
     position: 'position',
     level: 'level',
@@ -32460,9 +32456,11 @@ export namespace Prisma {
   export const EmployeeScalarFieldEnum: {
     id: 'id',
     employeeIdNumber: 'employeeIdNumber',
+    firstName: 'firstName',
+    lastName: 'lastName',
     email: 'email',
     phoneNumber: 'phoneNumber',
-    name: 'name',
+    employeeStatus: 'employeeStatus',
     roleId: 'roleId'
   };
 
@@ -32830,6 +32828,34 @@ export namespace Prisma {
    * Reference to a field of type 'DEPARTMENT[]'
    */
   export type ListEnumDEPARTMENTFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DEPARTMENT[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ROLE_LEVEL'
+   */
+  export type EnumROLE_LEVELFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ROLE_LEVEL'>
+    
+
+
+  /**
+   * Reference to a field of type 'ROLE_LEVEL[]'
+   */
+  export type ListEnumROLE_LEVELFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ROLE_LEVEL[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'EMPLOYEE_STATUS'
+   */
+  export type EnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EMPLOYEE_STATUS'>
+    
+
+
+  /**
+   * Reference to a field of type 'EMPLOYEE_STATUS[]'
+   */
+  export type ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EMPLOYEE_STATUS[]'>
     
 
 
@@ -33494,10 +33520,9 @@ export namespace Prisma {
     NOT?: RoleWhereInput | RoleWhereInput[]
     id?: StringFilter<"Role"> | string
     department?: EnumDEPARTMENTFilter<"Role"> | $Enums.DEPARTMENT
-    name?: StringFilter<"Role"> | string
     title?: StringFilter<"Role"> | string
     position?: StringFilter<"Role"> | string
-    level?: IntNullableFilter<"Role"> | number | null
+    level?: EnumROLE_LEVELFilter<"Role"> | $Enums.ROLE_LEVEL
     permissions?: StringNullableListFilter<"Role">
     employees?: EmployeeListRelationFilter
     employeeRole?: EmployeeRoleListRelationFilter
@@ -33506,10 +33531,9 @@ export namespace Prisma {
   export type RoleOrderByWithRelationInput = {
     id?: SortOrder
     department?: SortOrder
-    name?: SortOrder
     title?: SortOrder
     position?: SortOrder
-    level?: SortOrderInput | SortOrder
+    level?: SortOrder
     permissions?: SortOrder
     employees?: EmployeeOrderByRelationAggregateInput
     employeeRole?: EmployeeRoleOrderByRelationAggregateInput
@@ -33517,33 +33541,28 @@ export namespace Prisma {
 
   export type RoleWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    department_name?: RoleDepartmentNameCompoundUniqueInput
     AND?: RoleWhereInput | RoleWhereInput[]
     OR?: RoleWhereInput[]
     NOT?: RoleWhereInput | RoleWhereInput[]
     department?: EnumDEPARTMENTFilter<"Role"> | $Enums.DEPARTMENT
-    name?: StringFilter<"Role"> | string
     title?: StringFilter<"Role"> | string
     position?: StringFilter<"Role"> | string
-    level?: IntNullableFilter<"Role"> | number | null
+    level?: EnumROLE_LEVELFilter<"Role"> | $Enums.ROLE_LEVEL
     permissions?: StringNullableListFilter<"Role">
     employees?: EmployeeListRelationFilter
     employeeRole?: EmployeeRoleListRelationFilter
-  }, "id" | "department_name">
+  }, "id">
 
   export type RoleOrderByWithAggregationInput = {
     id?: SortOrder
     department?: SortOrder
-    name?: SortOrder
     title?: SortOrder
     position?: SortOrder
-    level?: SortOrderInput | SortOrder
+    level?: SortOrder
     permissions?: SortOrder
     _count?: RoleCountOrderByAggregateInput
-    _avg?: RoleAvgOrderByAggregateInput
     _max?: RoleMaxOrderByAggregateInput
     _min?: RoleMinOrderByAggregateInput
-    _sum?: RoleSumOrderByAggregateInput
   }
 
   export type RoleScalarWhereWithAggregatesInput = {
@@ -33552,10 +33571,9 @@ export namespace Prisma {
     NOT?: RoleScalarWhereWithAggregatesInput | RoleScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Role"> | string
     department?: EnumDEPARTMENTWithAggregatesFilter<"Role"> | $Enums.DEPARTMENT
-    name?: StringWithAggregatesFilter<"Role"> | string
     title?: StringWithAggregatesFilter<"Role"> | string
     position?: StringWithAggregatesFilter<"Role"> | string
-    level?: IntNullableWithAggregatesFilter<"Role"> | number | null
+    level?: EnumROLE_LEVELWithAggregatesFilter<"Role"> | $Enums.ROLE_LEVEL
     permissions?: StringNullableListFilter<"Role">
   }
 
@@ -33613,10 +33631,12 @@ export namespace Prisma {
     OR?: EmployeeWhereInput[]
     NOT?: EmployeeWhereInput | EmployeeWhereInput[]
     id?: StringFilter<"Employee"> | string
-    employeeIdNumber?: IntFilter<"Employee"> | number
+    employeeIdNumber?: IntNullableFilter<"Employee"> | number | null
+    firstName?: StringFilter<"Employee"> | string
+    lastName?: StringFilter<"Employee"> | string
     email?: StringFilter<"Employee"> | string
     phoneNumber?: StringFilter<"Employee"> | string
-    name?: StringFilter<"Employee"> | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
     roleId?: StringNullableFilter<"Employee"> | string | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     additionalRoles?: EmployeeRoleListRelationFilter
@@ -33633,10 +33653,12 @@ export namespace Prisma {
 
   export type EmployeeOrderByWithRelationInput = {
     id?: SortOrder
-    employeeIdNumber?: SortOrder
+    employeeIdNumber?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
-    name?: SortOrder
+    employeeStatus?: SortOrder
     roleId?: SortOrderInput | SortOrder
     role?: RoleOrderByWithRelationInput
     additionalRoles?: EmployeeRoleOrderByRelationAggregateInput
@@ -33658,8 +33680,10 @@ export namespace Prisma {
     AND?: EmployeeWhereInput | EmployeeWhereInput[]
     OR?: EmployeeWhereInput[]
     NOT?: EmployeeWhereInput | EmployeeWhereInput[]
+    firstName?: StringFilter<"Employee"> | string
+    lastName?: StringFilter<"Employee"> | string
     phoneNumber?: StringFilter<"Employee"> | string
-    name?: StringFilter<"Employee"> | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
     roleId?: StringNullableFilter<"Employee"> | string | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     additionalRoles?: EmployeeRoleListRelationFilter
@@ -33676,10 +33700,12 @@ export namespace Prisma {
 
   export type EmployeeOrderByWithAggregationInput = {
     id?: SortOrder
-    employeeIdNumber?: SortOrder
+    employeeIdNumber?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
-    name?: SortOrder
+    employeeStatus?: SortOrder
     roleId?: SortOrderInput | SortOrder
     _count?: EmployeeCountOrderByAggregateInput
     _avg?: EmployeeAvgOrderByAggregateInput
@@ -33693,10 +33719,12 @@ export namespace Prisma {
     OR?: EmployeeScalarWhereWithAggregatesInput[]
     NOT?: EmployeeScalarWhereWithAggregatesInput | EmployeeScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Employee"> | string
-    employeeIdNumber?: IntWithAggregatesFilter<"Employee"> | number
+    employeeIdNumber?: IntNullableWithAggregatesFilter<"Employee"> | number | null
+    firstName?: StringWithAggregatesFilter<"Employee"> | string
+    lastName?: StringWithAggregatesFilter<"Employee"> | string
     email?: StringWithAggregatesFilter<"Employee"> | string
     phoneNumber?: StringWithAggregatesFilter<"Employee"> | string
-    name?: StringWithAggregatesFilter<"Employee"> | string
+    employeeStatus?: EnumEMPLOYEE_STATUSWithAggregatesFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
     roleId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
   }
 
@@ -35480,10 +35508,9 @@ export namespace Prisma {
   export type RoleCreateInput = {
     id?: string
     department: $Enums.DEPARTMENT
-    name: string
     title: string
     position: string
-    level?: number | null
+    level?: $Enums.ROLE_LEVEL
     permissions?: RoleCreatepermissionsInput | string[]
     employees?: EmployeeCreateNestedManyWithoutRoleInput
     employeeRole?: EmployeeRoleCreateNestedManyWithoutRoleInput
@@ -35492,10 +35519,9 @@ export namespace Prisma {
   export type RoleUncheckedCreateInput = {
     id?: string
     department: $Enums.DEPARTMENT
-    name: string
     title: string
     position: string
-    level?: number | null
+    level?: $Enums.ROLE_LEVEL
     permissions?: RoleCreatepermissionsInput | string[]
     employees?: EmployeeUncheckedCreateNestedManyWithoutRoleInput
     employeeRole?: EmployeeRoleUncheckedCreateNestedManyWithoutRoleInput
@@ -35504,10 +35530,9 @@ export namespace Prisma {
   export type RoleUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: EnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT
-    name?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
-    level?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: EnumROLE_LEVELFieldUpdateOperationsInput | $Enums.ROLE_LEVEL
     permissions?: RoleUpdatepermissionsInput | string[]
     employees?: EmployeeUpdateManyWithoutRoleNestedInput
     employeeRole?: EmployeeRoleUpdateManyWithoutRoleNestedInput
@@ -35516,10 +35541,9 @@ export namespace Prisma {
   export type RoleUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: EnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT
-    name?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
-    level?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: EnumROLE_LEVELFieldUpdateOperationsInput | $Enums.ROLE_LEVEL
     permissions?: RoleUpdatepermissionsInput | string[]
     employees?: EmployeeUncheckedUpdateManyWithoutRoleNestedInput
     employeeRole?: EmployeeRoleUncheckedUpdateManyWithoutRoleNestedInput
@@ -35528,30 +35552,27 @@ export namespace Prisma {
   export type RoleCreateManyInput = {
     id?: string
     department: $Enums.DEPARTMENT
-    name: string
     title: string
     position: string
-    level?: number | null
+    level?: $Enums.ROLE_LEVEL
     permissions?: RoleCreatepermissionsInput | string[]
   }
 
   export type RoleUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: EnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT
-    name?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
-    level?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: EnumROLE_LEVELFieldUpdateOperationsInput | $Enums.ROLE_LEVEL
     permissions?: RoleUpdatepermissionsInput | string[]
   }
 
   export type RoleUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: EnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT
-    name?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
-    level?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: EnumROLE_LEVELFieldUpdateOperationsInput | $Enums.ROLE_LEVEL
     permissions?: RoleUpdatepermissionsInput | string[]
   }
 
@@ -35597,10 +35618,12 @@ export namespace Prisma {
 
   export type EmployeeCreateInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -35616,10 +35639,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -35635,10 +35660,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -35654,10 +35681,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -35673,27 +35702,33 @@ export namespace Prisma {
 
   export type EmployeeCreateManyInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
   }
 
   export type EmployeeUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
   }
 
   export type EmployeeUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -37708,6 +37743,13 @@ export namespace Prisma {
     not?: NestedEnumDEPARTMENTFilter<$PrismaModel> | $Enums.DEPARTMENT
   }
 
+  export type EnumROLE_LEVELFilter<$PrismaModel = never> = {
+    equals?: $Enums.ROLE_LEVEL | EnumROLE_LEVELFieldRefInput<$PrismaModel>
+    in?: $Enums.ROLE_LEVEL[] | ListEnumROLE_LEVELFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ROLE_LEVEL[] | ListEnumROLE_LEVELFieldRefInput<$PrismaModel>
+    not?: NestedEnumROLE_LEVELFilter<$PrismaModel> | $Enums.ROLE_LEVEL
+  }
+
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -37736,29 +37778,18 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type RoleDepartmentNameCompoundUniqueInput = {
-    department: $Enums.DEPARTMENT
-    name: string
-  }
-
   export type RoleCountOrderByAggregateInput = {
     id?: SortOrder
     department?: SortOrder
-    name?: SortOrder
     title?: SortOrder
     position?: SortOrder
     level?: SortOrder
     permissions?: SortOrder
   }
 
-  export type RoleAvgOrderByAggregateInput = {
-    level?: SortOrder
-  }
-
   export type RoleMaxOrderByAggregateInput = {
     id?: SortOrder
     department?: SortOrder
-    name?: SortOrder
     title?: SortOrder
     position?: SortOrder
     level?: SortOrder
@@ -37767,13 +37798,8 @@ export namespace Prisma {
   export type RoleMinOrderByAggregateInput = {
     id?: SortOrder
     department?: SortOrder
-    name?: SortOrder
     title?: SortOrder
     position?: SortOrder
-    level?: SortOrder
-  }
-
-  export type RoleSumOrderByAggregateInput = {
     level?: SortOrder
   }
 
@@ -37785,6 +37811,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDEPARTMENTFilter<$PrismaModel>
     _max?: NestedEnumDEPARTMENTFilter<$PrismaModel>
+  }
+
+  export type EnumROLE_LEVELWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ROLE_LEVEL | EnumROLE_LEVELFieldRefInput<$PrismaModel>
+    in?: $Enums.ROLE_LEVEL[] | ListEnumROLE_LEVELFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ROLE_LEVEL[] | ListEnumROLE_LEVELFieldRefInput<$PrismaModel>
+    not?: NestedEnumROLE_LEVELWithAggregatesFilter<$PrismaModel> | $Enums.ROLE_LEVEL
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumROLE_LEVELFilter<$PrismaModel>
+    _max?: NestedEnumROLE_LEVELFilter<$PrismaModel>
   }
 
   export type RoleScalarRelationFilter = {
@@ -37815,6 +37851,13 @@ export namespace Prisma {
     roleId?: SortOrder
   }
 
+  export type EnumEMPLOYEE_STATUSFilter<$PrismaModel = never> = {
+    equals?: $Enums.EMPLOYEE_STATUS | EnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    in?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    not?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel> | $Enums.EMPLOYEE_STATUS
+  }
+
   export type RoleNullableScalarRelationFilter = {
     is?: RoleWhereInput | null
     isNot?: RoleWhereInput | null
@@ -37823,9 +37866,11 @@ export namespace Prisma {
   export type EmployeeCountOrderByAggregateInput = {
     id?: SortOrder
     employeeIdNumber?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
-    name?: SortOrder
+    employeeStatus?: SortOrder
     roleId?: SortOrder
   }
 
@@ -37836,23 +37881,37 @@ export namespace Prisma {
   export type EmployeeMaxOrderByAggregateInput = {
     id?: SortOrder
     employeeIdNumber?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
-    name?: SortOrder
+    employeeStatus?: SortOrder
     roleId?: SortOrder
   }
 
   export type EmployeeMinOrderByAggregateInput = {
     id?: SortOrder
     employeeIdNumber?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
-    name?: SortOrder
+    employeeStatus?: SortOrder
     roleId?: SortOrder
   }
 
   export type EmployeeSumOrderByAggregateInput = {
     employeeIdNumber?: SortOrder
+  }
+
+  export type EnumEMPLOYEE_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EMPLOYEE_STATUS | EnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    in?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    not?: NestedEnumEMPLOYEE_STATUSWithAggregatesFilter<$PrismaModel> | $Enums.EMPLOYEE_STATUS
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel>
+    _max?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel>
   }
 
   export type EnumLIFT_TYPEFilter<$PrismaModel = never> = {
@@ -39972,6 +40031,10 @@ export namespace Prisma {
     set?: $Enums.DEPARTMENT
   }
 
+  export type EnumROLE_LEVELFieldUpdateOperationsInput = {
+    set?: $Enums.ROLE_LEVEL
+  }
+
   export type RoleUpdatepermissionsInput = {
     set?: string[]
     push?: string | string[]
@@ -40203,6 +40266,10 @@ export namespace Prisma {
     connectOrCreate?: EquipmentServiceLogCreateOrConnectWithoutEmployeeInput | EquipmentServiceLogCreateOrConnectWithoutEmployeeInput[]
     createMany?: EquipmentServiceLogCreateManyEmployeeInputEnvelope
     connect?: EquipmentServiceLogWhereUniqueInput | EquipmentServiceLogWhereUniqueInput[]
+  }
+
+  export type EnumEMPLOYEE_STATUSFieldUpdateOperationsInput = {
+    set?: $Enums.EMPLOYEE_STATUS
   }
 
   export type RoleUpdateOneWithoutEmployeesNestedInput = {
@@ -41702,6 +41769,13 @@ export namespace Prisma {
     not?: NestedEnumDEPARTMENTFilter<$PrismaModel> | $Enums.DEPARTMENT
   }
 
+  export type NestedEnumROLE_LEVELFilter<$PrismaModel = never> = {
+    equals?: $Enums.ROLE_LEVEL | EnumROLE_LEVELFieldRefInput<$PrismaModel>
+    in?: $Enums.ROLE_LEVEL[] | ListEnumROLE_LEVELFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ROLE_LEVEL[] | ListEnumROLE_LEVELFieldRefInput<$PrismaModel>
+    not?: NestedEnumROLE_LEVELFilter<$PrismaModel> | $Enums.ROLE_LEVEL
+  }
+
   export type NestedEnumDEPARTMENTWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.DEPARTMENT | EnumDEPARTMENTFieldRefInput<$PrismaModel>
     in?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel>
@@ -41710,6 +41784,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumDEPARTMENTFilter<$PrismaModel>
     _max?: NestedEnumDEPARTMENTFilter<$PrismaModel>
+  }
+
+  export type NestedEnumROLE_LEVELWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ROLE_LEVEL | EnumROLE_LEVELFieldRefInput<$PrismaModel>
+    in?: $Enums.ROLE_LEVEL[] | ListEnumROLE_LEVELFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ROLE_LEVEL[] | ListEnumROLE_LEVELFieldRefInput<$PrismaModel>
+    not?: NestedEnumROLE_LEVELWithAggregatesFilter<$PrismaModel> | $Enums.ROLE_LEVEL
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumROLE_LEVELFilter<$PrismaModel>
+    _max?: NestedEnumROLE_LEVELFilter<$PrismaModel>
+  }
+
+  export type NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel = never> = {
+    equals?: $Enums.EMPLOYEE_STATUS | EnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    in?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    not?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel> | $Enums.EMPLOYEE_STATUS
+  }
+
+  export type NestedEnumEMPLOYEE_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EMPLOYEE_STATUS | EnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    in?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
+    not?: NestedEnumEMPLOYEE_STATUSWithAggregatesFilter<$PrismaModel> | $Enums.EMPLOYEE_STATUS
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel>
+    _max?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel>
   }
 
   export type NestedEnumLIFT_TYPEFilter<$PrismaModel = never> = {
@@ -44120,10 +44221,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutMountainAssignmentsInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
@@ -44138,10 +44241,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutMountainAssignmentsInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -44243,10 +44348,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutMountainAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -44261,10 +44368,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutMountainAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -44356,10 +44465,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutDispatcherAssignmentsInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -44374,10 +44485,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutDispatcherAssignmentsInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -44479,10 +44592,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutDispatcherAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -44497,10 +44612,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutDispatcherAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -44592,10 +44709,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutRoleInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
@@ -44610,10 +44729,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutRoleInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -44677,10 +44798,12 @@ export namespace Prisma {
     OR?: EmployeeScalarWhereInput[]
     NOT?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
     id?: StringFilter<"Employee"> | string
-    employeeIdNumber?: IntFilter<"Employee"> | number
+    employeeIdNumber?: IntNullableFilter<"Employee"> | number | null
+    firstName?: StringFilter<"Employee"> | string
+    lastName?: StringFilter<"Employee"> | string
     email?: StringFilter<"Employee"> | string
     phoneNumber?: StringFilter<"Employee"> | string
-    name?: StringFilter<"Employee"> | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
     roleId?: StringNullableFilter<"Employee"> | string | null
   }
 
@@ -44711,10 +44834,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutAdditionalRolesInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
@@ -44729,10 +44854,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutAdditionalRolesInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -44753,10 +44880,9 @@ export namespace Prisma {
   export type RoleCreateWithoutEmployeeRoleInput = {
     id?: string
     department: $Enums.DEPARTMENT
-    name: string
     title: string
     position: string
-    level?: number | null
+    level?: $Enums.ROLE_LEVEL
     permissions?: RoleCreatepermissionsInput | string[]
     employees?: EmployeeCreateNestedManyWithoutRoleInput
   }
@@ -44764,10 +44890,9 @@ export namespace Prisma {
   export type RoleUncheckedCreateWithoutEmployeeRoleInput = {
     id?: string
     department: $Enums.DEPARTMENT
-    name: string
     title: string
     position: string
-    level?: number | null
+    level?: $Enums.ROLE_LEVEL
     permissions?: RoleCreatepermissionsInput | string[]
     employees?: EmployeeUncheckedCreateNestedManyWithoutRoleInput
   }
@@ -44790,10 +44915,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutAdditionalRolesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -44808,10 +44935,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutAdditionalRolesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -44838,10 +44967,9 @@ export namespace Prisma {
   export type RoleUpdateWithoutEmployeeRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: EnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT
-    name?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
-    level?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: EnumROLE_LEVELFieldUpdateOperationsInput | $Enums.ROLE_LEVEL
     permissions?: RoleUpdatepermissionsInput | string[]
     employees?: EmployeeUpdateManyWithoutRoleNestedInput
   }
@@ -44849,10 +44977,9 @@ export namespace Prisma {
   export type RoleUncheckedUpdateWithoutEmployeeRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: EnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT
-    name?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
-    level?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: EnumROLE_LEVELFieldUpdateOperationsInput | $Enums.ROLE_LEVEL
     permissions?: RoleUpdatepermissionsInput | string[]
     employees?: EmployeeUncheckedUpdateManyWithoutRoleNestedInput
   }
@@ -44860,10 +44987,9 @@ export namespace Prisma {
   export type RoleCreateWithoutEmployeesInput = {
     id?: string
     department: $Enums.DEPARTMENT
-    name: string
     title: string
     position: string
-    level?: number | null
+    level?: $Enums.ROLE_LEVEL
     permissions?: RoleCreatepermissionsInput | string[]
     employeeRole?: EmployeeRoleCreateNestedManyWithoutRoleInput
   }
@@ -44871,10 +44997,9 @@ export namespace Prisma {
   export type RoleUncheckedCreateWithoutEmployeesInput = {
     id?: string
     department: $Enums.DEPARTMENT
-    name: string
     title: string
     position: string
-    level?: number | null
+    level?: $Enums.ROLE_LEVEL
     permissions?: RoleCreatepermissionsInput | string[]
     employeeRole?: EmployeeRoleUncheckedCreateNestedManyWithoutRoleInput
   }
@@ -45185,10 +45310,9 @@ export namespace Prisma {
   export type RoleUpdateWithoutEmployeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: EnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT
-    name?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
-    level?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: EnumROLE_LEVELFieldUpdateOperationsInput | $Enums.ROLE_LEVEL
     permissions?: RoleUpdatepermissionsInput | string[]
     employeeRole?: EmployeeRoleUpdateManyWithoutRoleNestedInput
   }
@@ -45196,10 +45320,9 @@ export namespace Prisma {
   export type RoleUncheckedUpdateWithoutEmployeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     department?: EnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT
-    name?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     position?: StringFieldUpdateOperationsInput | string
-    level?: NullableIntFieldUpdateOperationsInput | number | null
+    level?: EnumROLE_LEVELFieldUpdateOperationsInput | $Enums.ROLE_LEVEL
     permissions?: RoleUpdatepermissionsInput | string[]
     employeeRole?: EmployeeRoleUncheckedUpdateManyWithoutRoleNestedInput
   }
@@ -46761,10 +46884,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutEquipmentServiceLogsInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -46779,10 +46904,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutEquipmentServiceLogsInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -46931,10 +47058,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutEquipmentServiceLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -46949,10 +47078,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutEquipmentServiceLogsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -47520,10 +47651,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutIncidentsInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -47538,10 +47671,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutIncidentsInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -48037,10 +48172,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutLiftChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -48055,10 +48192,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutLiftChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -48189,10 +48328,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutLiftChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -48207,10 +48348,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutLiftChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -48337,10 +48480,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutTrailChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -48355,10 +48500,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutTrailChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -48491,10 +48638,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutTrailChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -48509,10 +48658,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutTrailChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -48641,10 +48792,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutHutChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -48659,10 +48812,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutHutChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -48789,10 +48944,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutHutChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -48807,10 +48964,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutHutChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -48933,10 +49092,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutAidRoomChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -48951,10 +49112,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutAidRoomChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -49081,10 +49244,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutAidRoomChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -49099,10 +49264,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutAidRoomChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -49225,10 +49392,12 @@ export namespace Prisma {
 
   export type EmployeeCreateWithoutEquipmentChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -49243,10 +49412,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedCreateWithoutEquipmentChecksInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
     roleId?: string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -49389,10 +49560,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutEquipmentChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -49407,10 +49580,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutEquipmentChecksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -50591,10 +50766,12 @@ export namespace Prisma {
 
   export type EmployeeCreateManyRoleInput = {
     id?: string
-    employeeIdNumber: number
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
     email: string
     phoneNumber: string
-    name: string
+    employeeStatus: $Enums.EMPLOYEE_STATUS
   }
 
   export type EmployeeRoleCreateManyRoleInput = {
@@ -50604,10 +50781,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -50622,10 +50801,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -50640,10 +50821,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateManyWithoutRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
   }
 
   export type EmployeeRoleUpdateWithoutRoleInput = {
@@ -51352,10 +51535,12 @@ export namespace Prisma {
 
   export type EmployeeUpdateWithoutIncidentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -51370,10 +51555,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateWithoutIncidentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -51388,10 +51575,12 @@ export namespace Prisma {
 
   export type EmployeeUncheckedUpdateManyWithoutIncidentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: IntFieldUpdateOperationsInput | number
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

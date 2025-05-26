@@ -8,50 +8,50 @@ const BASE_URL = `${IP}:${PORT}`;
 
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type AreaCreatePayload = {
-    name: string;
-    type: AREA_TYPE;
-    description?: string | null;
+export type AreaInputPayload = {
+	name: string;
+	type: (typeof AREA_TYPE)[keyof typeof AREA_TYPE];
+	description?: string | null;
 };
 
 export const areaApi = {
-    async createArea(mountainId: string, area: AreaCreatePayload) {
-        const res = await axios.post<Area>(url(`/api/mountains/${mountainId}/areas`), area);
-        return res.data;
-    },
+	async createArea(mountainId: string, area: AreaInputPayload) {
+		const res = await axios.post<Area>(url(`/api/mountains/${mountainId}/areas`), area);
+		return res.data;
+	},
 
-    async getAreas(mountainId: string) {
-        const res = await axios.get<Area[]>(url(`/api/mountains/${mountainId}/areas`));
-        return res.data;
-    },
+	async getAreas(mountainId: string) {
+		const res = await axios.get<Area[]>(url(`/api/mountains/${mountainId}/areas`));
+		return res.data;
+	},
 
-    async getArea(mountainId: string, areaId: string) {
-        const res = await axios.get<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
-        return res.data;
-    },
+	async getArea(mountainId: string, areaId: string) {
+		const res = await axios.get<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
+		return res.data;
+	},
 
-    async updateArea(mountainId: string, areaId: string, updated: Partial<AreaCreatePayload>) {
-        const res = await axios.put<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`), updated);
-        return res.data;
-    },
+	async updateArea(mountainId: string, areaId: string, updated: Partial<AreaInputPayload>) {
+		const res = await axios.put<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`), updated);
+		return res.data;
+	},
 
-    async deleteArea(mountainId: string, areaId: string) {
-        const res = await axios.delete<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
-        return res.data;
-    },
+	async deleteArea(mountainId: string, areaId: string) {
+		const res = await axios.delete<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
+		return res.data;
+	},
 
-    async addAreaToLocation(locationId: string, areaId: string) {
-        const res = await axios.post(url(`/api/locations/${locationId}/area`), { areaId });
-        return res.data;
-    },
+	async addAreaToLocation(locationId: string, areaId: string) {
+		const res = await axios.post(url(`/api/locations/${locationId}/area`), { areaId });
+		return res.data;
+	},
 
-    async updateAreaInLocation(locationId: string, mountainId: string, updated: Partial<AreaCreatePayload>) {
-        const res = await axios.put(url(`/api/locations/${locationId}/area`), { mountainId, ...updated });
-        return res.data;
-    },
+	async updateAreaInLocation(locationId: string, mountainId: string, updated: Partial<AreaInputPayload>) {
+		const res = await axios.put(url(`/api/locations/${locationId}/area`), { mountainId, ...updated });
+		return res.data;
+	},
 
-    async removeAreaFromLocation(locationId: string) {
-        const res = await axios.delete(url(`/api/locations/${locationId}/area`));
-        return res.data;
-    },
+	async removeAreaFromLocation(locationId: string) {
+		const res = await axios.delete(url(`/api/locations/${locationId}/area`));
+		return res.data;
+	},
 };

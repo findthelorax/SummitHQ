@@ -94,13 +94,24 @@ enum AREA_TYPE {
   OTHER
 }
 
-enum EMPLOYEE_ROLES {
-  SUPERVISOR
-  ADVANCED_PATROLLER
-  HILL_CHIEF
-  SPECIALIST
-  TRAINER
-  DIRECTOR
+enum EMPLOYEE_STATUS {
+  ACTIVE
+  INACTIVE
+  ON_LEAVE
+  TERMINATED
+}
+
+enum ROLE_LEVEL {
+  LEVEL_1
+  LEVEL_2
+  LEVEL_3
+  LEVEL_4
+  LEVEL_5
+  LEVEL_6
+  LEVEL_7
+  LEVEL_8
+  LEVEL_9
+  LEVEL_10
 }
 
 model Area {
@@ -250,16 +261,13 @@ model DispatcherAssignment {
 model Role {
   id          String   @id @default(uuid())
   department  DEPARTMENT
-  name        String
   title       String
   position    String
-  level       Int?
-  permissions String[]        // Array of permissions (e.g., ["CREATE_INCIdENT", "ASSIGN_EQUIPMENT"])
+  level       ROLE_LEVEL    @default(LEVEL_1)
+  permissions String[]      // Array of permissions (e.g., ["CREATE_INCIdENT", "ASSIGN_EQUIPMENT"])
 
   employees   Employee[]
   employeeRole  EmployeeRole[]
-
-  @@unique([department, name])
 }
 
 model EmployeeRole {
@@ -275,12 +283,14 @@ model EmployeeRole {
 
 model Employee {
   id                String     @id @default(uuid())
-  employeeIdNumber  Int        @unique
+  employeeIdNumber  Int?       @unique
+  firstName         String
+  lastName          String
   email             String     @unique
   phoneNumber       String
-  name              String
+  employeeStatus    EMPLOYEE_STATUS
   roleId            String?
-  role              Role?       @relation(fields: [roleId], references: [id])
+  role              Role?      @relation(fields: [roleId], references: [id])
 
   additionalRoles   EmployeeRole[]
 

@@ -113,7 +113,7 @@ class LocationModel {
 	}
 
 	static async deleteHour(locationId: string, hourId: string) {
-		return await prisma.hours.deleteMany({
+		return await prisma.hours.delete({
 			where: {
 				id: hourId,
 				locationId,
@@ -153,7 +153,7 @@ class LocationModel {
 	}
 
 	static async updateIncident(locationId: string, incidentId: string, incidentData: any) {
-		return await prisma.incident.updateMany({
+		return await prisma.incident.update({
 			where: {
 				id: incidentId,
 				locationId,
@@ -163,7 +163,7 @@ class LocationModel {
 	}
 
 	static async deleteIncidentFromLocation(locationId: string, incidentId: string) {
-		return await prisma.incident.deleteMany({
+		return await prisma.incident.delete({
 			where: {
 				id: incidentId,
 				locationId,
@@ -172,7 +172,7 @@ class LocationModel {
 	}
 
 	static async findEquipmentByLocation(mountainId: string, locationId: string) {
-		return await prisma.equipment.findMany({
+		return await prisma.equipment.findUnique({
 			where: {
 				mountainId,
 				locationId,

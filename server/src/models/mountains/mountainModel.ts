@@ -26,6 +26,16 @@ class MountainModel {
         return await prisma.mountain.findUnique({
             where: { id: mountainId },
             include: {
+                employeeAssignments: {
+                    include: {
+                        employee: {
+                            include: {
+                                role: true,
+                                additionalRoles: true,
+                            },
+                        },
+                    },
+                },
                 locations: {
                     include: {
                         hours: true,
@@ -54,8 +64,9 @@ class MountainModel {
     }
 
     static async delete(mountainId: string) {
-        await prisma.location.deleteMany({
-            where: { mountainId: mountainId },
+        // If you want to delete all locations for a mountain, use deleteMany
+        await prisma.location.delete({
+            where: { id: mountainId },
         });
 
         return await prisma.mountain.delete({

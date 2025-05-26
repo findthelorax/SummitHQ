@@ -2,14 +2,13 @@ import axios from 'axios';
 import type { Trail, TrailCheck } from 'shared/types';
 import type { TRAIL_DIFFICULTY, STATUS, TRAIL_CONDITION } from 'shared/types/enums';
 
-
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
 const BASE_URL = `${IP}:${PORT}`;
 
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type TrailCreatePayload = {
+export type TrailInputPayload = {
 	name: string;
 	difficulty: TRAIL_DIFFICULTY;
 	status: STATUS;
@@ -19,13 +18,13 @@ export type TrailCreatePayload = {
 	condition: TRAIL_CONDITION;
 };
 
-export type TrailCheckCreatePayload = Omit<
+export type TrailCheckInputPayload = Omit<
 	TrailCheck,
 	'id' | 'mountainId' | 'trailId' | 'employeeId' | 'createdAt' | 'updatedAt' | 'mountain' | 'trail' | 'employee'
 >;
 
 export const trailApi = {
-	async createTrail(mountainId: string, trail: TrailCreatePayload) {
+	async createTrail(mountainId: string, trail: TrailInputPayload) {
 		const res = await axios.post<Trail>(url(`/api/mountains/${mountainId}/trails`), trail);
 		return res.data;
 	},
@@ -40,7 +39,7 @@ export const trailApi = {
 		return res.data;
 	},
 
-	async updateTrail(mountainId: string, trailId: string, updated: Partial<TrailCreatePayload>) {
+	async updateTrail(mountainId: string, trailId: string, updated: Partial<TrailInputPayload>) {
 		const res = await axios.put<Trail>(url(`/api/mountains/${mountainId}/trails/${trailId}`), updated);
 		return res.data;
 	},
@@ -50,7 +49,7 @@ export const trailApi = {
 		return res.data;
 	},
 
-	async createTrailCheck(mountainId: string, trailId: string, check: TrailCheckCreatePayload) {
+	async createTrailCheck(mountainId: string, trailId: string, check: TrailCheckInputPayload) {
 		const res = await axios.post<TrailCheck>(
 			url(`/api/mountains/${mountainId}/trails/${trailId}/trailChecks`),
 			check
@@ -74,7 +73,7 @@ export const trailApi = {
 		mountainId: string,
 		trailId: string,
 		trailCheckId: string,
-		updated: Partial<TrailCheckCreatePayload>
+		updated: Partial<TrailCheckInputPayload>
 	) {
 		const res = await axios.put<TrailCheck>(
 			url(`/api/mountains/${mountainId}/trails/${trailId}/trailChecks/${trailCheckId}`),

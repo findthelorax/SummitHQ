@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { liftApi } from '../api/LiftAPI';
 import type { Lift } from 'shared/types';
 import { LIFT_TYPE, STATUS } from 'shared/types/enums';
-import type { LiftCreatePayload } from '../api/LiftAPI';
+import { LiftInputPayload } from '../api/LiftAPI';
 
 function toSharedLiftType(type: any): LIFT_TYPE {
     if (Object.values(LIFT_TYPE).includes(type)) return type as LIFT_TYPE;
@@ -36,7 +36,7 @@ export function useLifts(mountainId: string | undefined) {
         fetchLifts();
     }, [fetchLifts]);
 
-    const createLift = useCallback(async (lift: LiftCreatePayload) => {
+    const createLift = useCallback(async (lift: LiftInputPayload) => {
         if (!mountainId) return;
         const payload = {
             ...lift,
@@ -50,7 +50,7 @@ export function useLifts(mountainId: string | undefined) {
     const updateLift = useCallback(async (liftId: string, updated: Partial<Lift>) => {
         if (!mountainId) return;
         const { name, type, status, capacity, latitude, longitude, locationId } = updated;
-        const payload: Partial<LiftCreatePayload> = {
+        const payload: Partial<LiftInputPayload> = {
             ...(name !== undefined ? { name } : {}),
             ...(type !== undefined ? { type: toSharedLiftType(type) } : {}),
             ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
@@ -61,7 +61,9 @@ export function useLifts(mountainId: string | undefined) {
             ...(longitude !== undefined
                 ? { longitude: longitude === null || longitude === undefined ? null : Number(longitude) }
                 : {}),
-            ...(locationId !== undefined ? { locationId } : {}),
+            ...(locationId !== undefined
+                ? { locationId: locationId === null ? undefined : locationId }
+                : {}),
         };
         await liftApi.updateLift(mountainId, liftId, payload);
         await fetchLifts();

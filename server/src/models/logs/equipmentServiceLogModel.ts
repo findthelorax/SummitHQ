@@ -25,7 +25,7 @@ class EquipmentServiceLogModel {
     }
 
     static async updateByIdAndMountainAndEquipment(id: string, mountainId: string, equipmentId: string, updatedData: any) {
-        return await prisma.equipmentServiceLog.updateMany({
+        return await prisma.equipmentServiceLog.update({
             where: {
                 id,
                 mountainId,
@@ -36,7 +36,7 @@ class EquipmentServiceLogModel {
     }
 
     static async deleteByIdAndMountainAndEquipment(id: string, mountainId: string, equipmentId: string) {
-        return await prisma.equipmentServiceLog.deleteMany({
+        return await prisma.equipmentServiceLog.delete({
             where: {
                 id,
                 mountainId,

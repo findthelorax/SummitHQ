@@ -13,10 +13,8 @@ interface AppBarProps {
 const AppBar: React.FC<AppBarProps> = ({ open, handleDrawerToggle, hideMountainSelect }) => {
     let mountains, selectedMountain, setSelectedMountain;
     try {
-        // Try to use context, but allow fallback for admin
         ({ mountains, selectedMountain, setSelectedMountain } = useMountain());
     } catch {
-        // Not in provider, skip mountain select
     }
 
     return (

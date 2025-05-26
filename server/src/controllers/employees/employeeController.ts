@@ -18,19 +18,24 @@ class EmployeeController {
 
     getEmployeesByMountain = asyncWrapper(async (req: Request, res: Response) => {
         const { mountainId } = req.params;
-
+    
         if (!mountainId) {
             res.status(400).json({ message: 'Mountain ID is required' });
             return;
         }
-
-        const assignments = await prisma.employeeMountainAssignment.findMany({
-            where: { mountainId },
-            include: { employee: true },
+    
+        // This is the correct query:
+        const employees = await prisma.employee.findMany({
+            where: {
+                mountainAssignments: {
+                    some: { mountainId }
+                }
+            },
+            include: {
+                role: true, // <-- this ensures the role is included!
+            }
         });
-
-        const employees = assignments.map(a => a.employee);
-
+    
         res.status(200).json(employees);
     });
 

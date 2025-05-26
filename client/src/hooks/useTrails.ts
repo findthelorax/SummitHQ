@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { trailApi } from '../api/TrailAPI';
 import type { Trail } from 'shared/types';
 import { TRAIL_DIFFICULTY, STATUS, TRAIL_CONDITION } from 'shared/types/enums';
-import type { TrailCreatePayload } from '../api/TrailAPI';
+import type { TrailInputPayload } from '../api/TrailAPI';
 
 function toSharedDifficulty(difficulty: any): TRAIL_DIFFICULTY {
     if (Object.values(TRAIL_DIFFICULTY).includes(difficulty)) return difficulty as TRAIL_DIFFICULTY;
@@ -41,7 +41,7 @@ export function useTrails(mountainId: string | undefined) {
         fetchTrails();
     }, [fetchTrails]);
 
-    const createTrail = useCallback(async (trail: TrailCreatePayload) => {
+    const createTrail = useCallback(async (trail: TrailInputPayload) => {
         if (!mountainId) return;
         const payload = {
             ...trail,
@@ -56,7 +56,7 @@ export function useTrails(mountainId: string | undefined) {
     const updateTrail = useCallback(async (trailId: string, updated: Partial<Trail>) => {
         if (!mountainId) return;
         const { name, difficulty, status, length, latitude, longitude, condition } = updated;
-        const payload: Partial<TrailCreatePayload> = {
+        const payload: Partial<TrailInputPayload> = {
             ...(name !== undefined ? { name } : {}),
             ...(difficulty !== undefined ? { difficulty: toSharedDifficulty(difficulty) } : {}),
             ...(status !== undefined ? { status: toSharedStatus(status) } : {}),

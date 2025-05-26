@@ -42,10 +42,10 @@ class AidRoomModel {
                 },
             });
 
-            await prisma.location.deleteMany({
+            await prisma.location.delete({
                 where: {
                     entityId: aidRoomId,
-                    entityType: 'AID_ROOM',
+                    entityType: 'AIDROOM',
                 },
             });
 

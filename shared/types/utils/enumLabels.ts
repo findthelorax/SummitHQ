@@ -8,7 +8,8 @@ import {
 	TRAIL_DIFFICULTY,
 	DEPARTMENT,
 	AREA_TYPE,
-	EMPLOYEE_ROLES,
+	EMPLOYEE_STATUS,
+	ROLE_LEVEL,
 } from '../enums';
 
 export const LOCATION_TYPE_LABELS: Record<LOCATION_TYPE, string> = {
@@ -97,11 +98,40 @@ export const AREA_TYPE_LABELS: Record<AREA_TYPE, string> = {
 	[AREA_TYPE.OTHER]: 'Other',
 };
 
-export const EMPLOYEE_ROLES_LABELS: Record<EMPLOYEE_ROLES, string> = {
-	[EMPLOYEE_ROLES.SUPERVISOR]: 'Supervisor',
-	[EMPLOYEE_ROLES.ADVANCED_PATROLLER]: 'Advanced Patroller',
-	[EMPLOYEE_ROLES.HILL_CHIEF]: 'Hill Chief',
-	[EMPLOYEE_ROLES.SPECIALIST]: 'Specialist',
-	[EMPLOYEE_ROLES.TRAINER]: 'Trainer',
-	[EMPLOYEE_ROLES.DIRECTOR]: 'Director',
+export const EMPLOYEE_STATUS_LABELS: Record<EMPLOYEE_STATUS, string> = {
+    [EMPLOYEE_STATUS.ACTIVE]: 'Active',
+    [EMPLOYEE_STATUS.INACTIVE]: 'Inactive',
+    [EMPLOYEE_STATUS.ON_LEAVE]: 'On Leave',
+    [EMPLOYEE_STATUS.TERMINATED]: 'Terminated',
 };
+
+export const ROLE_LEVEL_LABELS: Record<ROLE_LEVEL, string> = {
+    [ROLE_LEVEL.LEVEL_1]: 'Level 1',
+    [ROLE_LEVEL.LEVEL_2]: 'Level 2',
+    [ROLE_LEVEL.LEVEL_3]: 'Level 3',
+    [ROLE_LEVEL.LEVEL_4]: 'Level 4',
+    [ROLE_LEVEL.LEVEL_5]: 'Level 5',
+    [ROLE_LEVEL.LEVEL_6]: 'Level 6',
+    [ROLE_LEVEL.LEVEL_7]: 'Level 7',
+    [ROLE_LEVEL.LEVEL_8]: 'Level 8',
+    [ROLE_LEVEL.LEVEL_9]: 'Level 9',
+    [ROLE_LEVEL.LEVEL_10]: 'Level 10',
+};
+
+// Generic fallback formatter
+export function defaultEnumLabel(value: string) {
+	return value.charAt(0) + value.slice(1).toLowerCase().replace(/_/g, ' ');
+}
+
+// Generic helper to get label for any enum value
+export function getEnumLabel<T extends string>(value: T, labelMap: Record<T, string>): string {
+	return labelMap[value] ?? defaultEnumLabel(value);
+}
+
+// Helper to generate options for selects
+export function enumToOptions<T extends string>(enumObj: Record<string, T>, labelMap: Record<T, string>) {
+	return Object.values(enumObj).map((value) => ({
+		value,
+		label: getEnumLabel(value, labelMap),
+	}));
+}

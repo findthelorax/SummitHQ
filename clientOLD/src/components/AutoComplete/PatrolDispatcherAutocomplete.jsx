@@ -21,7 +21,6 @@ const PatrolDispatcherAutocomplete = () => {
 	const currentDispatcher = patrollers.find(patroller => patroller._id === currentDayDispatcher.patrollerId) || null;
 	
 	const setDispatcher = async (dispatcher) => {
-		console.log("🚀 ~ file: PatrolDispatcherAutocomplete.jsx:24 ~ setDispatcher ~ dispatcher:", dispatcher)
 		try {
 			if (selectedMountain) {
 				updateCurrentDayDispatcher(dispatcher);
@@ -32,7 +31,6 @@ const PatrolDispatcherAutocomplete = () => {
 				console.error('No mountain selected');
 			}
 		} catch (error) {
-			console.error(`Error saving patrol dispatcher with id ${dispatcher._id}`, error);
 			setSnackbarMessage('Failed to set patrol dispatcher');
 			setSnackbarSeverity('error');
 			setOpenSnackbar(true);

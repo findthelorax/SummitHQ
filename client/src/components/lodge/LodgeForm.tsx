@@ -4,32 +4,10 @@ import { useSnackbarContext } from '../../contexts/SnackbarContext';
 import { useMountain } from '../../contexts/MountainContext';
 import { useLodges } from '../../hooks/useLodges';
 import { STATUS } from 'shared/types/enums';
+import { STATUS_LABELS, enumToOptions } from 'shared/types/utils/enumLabels';
+import type { LodgeInputPayload } from '../../api/LodgeAPI';
 
-const formatLabel = (value: string) => {
-    const labelMap: Record<string, string> = {
-        OPEN: 'Open',
-        CLOSED: 'Closed',
-        ON_HOLD: 'On Hold',
-        UNKNOWN: 'Unknown',
-    };
-    return labelMap[value] ?? value.charAt(0) + value.slice(1).toLowerCase().replace(/_/g, ' ');
-};
-
-const enumToOptions = (e: Record<string, string>) =>
-    Object.entries(e).map(([_, value]) => ({
-        value,
-        label: formatLabel(value),
-    }));
-
-const STATUS_OPTIONS = enumToOptions(STATUS);
-
-type LodgeInput = {
-    name: string;
-    capacity: number | null;
-    latitude: number | null;
-    longitude: number | null;
-    status: (typeof STATUS)[keyof typeof STATUS];
-};
+const STATUS_OPTIONS = enumToOptions(STATUS, STATUS_LABELS);
 
 interface LodgeFormProps {
     onCreated?: () => void;
@@ -38,9 +16,9 @@ interface LodgeFormProps {
 const LodgeForm: React.FC<LodgeFormProps> = ({ onCreated }) => {
     const { selectedMountain } = useMountain();
     const { createLodge } = useLodges(selectedMountain?.id);
-    const [form, setForm] = useState<LodgeInput>({
+    const [form, setForm] = useState<LodgeInputPayload>({
         name: '',
-        capacity: null,
+        capacity: 0,
         latitude: null,
         longitude: null,
         status: STATUS.UNKNOWN,
@@ -70,7 +48,7 @@ const LodgeForm: React.FC<LodgeFormProps> = ({ onCreated }) => {
             showSnackbar(`${form.name} lodge created successfully`, 'success');
             setForm({
                 name: '',
-                capacity: null,
+                capacity: 0,
                 latitude: null,
                 longitude: null,
                 status: STATUS.UNKNOWN,
@@ -82,7 +60,7 @@ const LodgeForm: React.FC<LodgeFormProps> = ({ onCreated }) => {
     };
 
     return (
-        <form className="bg-white dark:bg-gray-800 rounded shadow p-6 max-w-md mx-auto" onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit}>
             <div className="mb-4">
                 <label className="block mb-1 font-semibold">Name</label>
                 <input
@@ -112,7 +90,7 @@ const LodgeForm: React.FC<LodgeFormProps> = ({ onCreated }) => {
                     value={form.status}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded px-3 py-2 dark:bg-gray-700"
+                    className="dropdown"
                 >
                     {STATUS_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.value}>

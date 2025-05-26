@@ -1,15 +1,30 @@
 import axios from 'axios';
-import type { Employee, EmployeeRole } from 'shared/types';
+import type { Employee, EmployeeRole, Role, EMPLOYEE_STATUS, DEPARTMENT, ROLE_LEVEL } from 'shared/types';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
 const BASE_URL = `${IP}:${PORT}`;
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type EmployeeCreatePayload = Omit<Employee, 'id' | 'createdAt' | 'updatedAt'>;
+export type EmployeeInputPayload = {
+	email: string;
+	phoneNumber: string;
+	firstName: string;
+	lastName: string;
+	roleId: string | null;
+	employeeStatus?: EMPLOYEE_STATUS;
+};
+
+export type RoleInputPayload = {
+	department: DEPARTMENT;
+	title: string;
+	position: string;
+	level?: ROLE_LEVEL;
+	permissions: string[];
+};
 
 export const employeeApi = {
-	async createEmployee(employee: EmployeeCreatePayload) {
+	async createEmployee(employee: EmployeeInputPayload) {
 		const res = await axios.post<Employee>(url(`/api/employees`), employee);
 		return res.data;
 	},
@@ -24,7 +39,7 @@ export const employeeApi = {
 		return res.data;
 	},
 
-	async updateEmployee(employeeId: string, updated: Partial<EmployeeCreatePayload>) {
+	async updateEmployee(employeeId: string, updated: Partial<EmployeeInputPayload>) {
 		const res = await axios.put<Employee>(url(`/api/employees/${employeeId}`), updated);
 		return res.data;
 	},
@@ -45,23 +60,23 @@ export const employeeApi = {
 	},
 
 	// --- Roles ---
-	async createRole(role: Partial<EmployeeRole>) {
-		const res = await axios.post<EmployeeRole>(url(`/api/employees/roles`), role);
+	async createRole(role: Partial<Role>) {
+		const res = await axios.post<Role>(url(`/api/employees/roles`), role);
 		return res.data;
 	},
 
 	async getAllRoles() {
-		const res = await axios.get<EmployeeRole[]>(url(`/api/employees/roles`));
+		const res = await axios.get<Role[]>(url(`/api/employees/roles`));
 		return res.data;
 	},
 
 	async getRoleById(roleId: string) {
-		const res = await axios.get<EmployeeRole>(url(`/api/employees/roles/${roleId}`));
+		const res = await axios.get<Role>(url(`/api/employees/roles/${roleId}`));
 		return res.data;
 	},
 
-	async updateRole(roleId: string, updated: Partial<EmployeeRole>) {
-		const res = await axios.put<EmployeeRole>(url(`/api/employees/roles/${roleId}`), updated);
+	async updateRole(roleId: string, updated: Partial<Role>) {
+		const res = await axios.put<Role>(url(`/api/employees/roles/${roleId}`), updated);
 		return res.data;
 	},
 

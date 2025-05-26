@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
-import AppBar from '../../components/dashboard/AppBar';
-import { PermanentDrawerLeft } from '../../components/dashboard/Drawer';
-import { AdminNavItems } from '../../components/dashboard/AdminNavItemsList';
-import Footer from '../../components/dashboard/Footer';
+import React, { useState, useEffect } from 'react';
+import { useMountain } from '../contexts/MountainContext';
+import AppBar from '../components/dashboard/AppBar';
+import { PermanentDrawerLeft } from '../components/dashboard/Drawer';
+import { AdminNavItems } from '../components/dashboard/AdminNavItemsList';
+import Footer from '../components/dashboard/Footer';
 import { Routes, Route } from 'react-router-dom';
-import AdminMountains from './AdminMountains';
-import AdminEmployees from './AdminEmployees';
-import AdminEquipment from './AdminEquipment';
+import AdminMountains from '../components/admin/AdminMountains';
+import AdminEmployees from '../components/admin/AdminEmployees';
+import AdminEquipment from '../components/admin/AdminEquipment';
+import AdminRoles from '../components/admin/AdminRoles';
 
 const drawerWidth = 240;
 
 const AdminLayout: React.FC = () => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+	const { setSelectedMountain } = useMountain();
+	
+	useEffect(() => {
+		setSelectedMountain(null, false);
+	}, [setSelectedMountain]);
 
-        const handleDrawerToggle = () => {
-        setIsDrawerOpen((prev) => !prev);
-    };
-    
+	const handleDrawerToggle = () => {
+		setIsDrawerOpen((prev) => !prev);
+	};
+
 	return (
 		<div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
 			<AppBar open={isDrawerOpen} handleDrawerToggle={handleDrawerToggle} hideMountainSelect />
@@ -29,6 +36,7 @@ const AdminLayout: React.FC = () => {
 						<Route path="mountains" element={<AdminMountains />} />
 						<Route path="employees" element={<AdminEmployees />} />
 						<Route path="equipment" element={<AdminEquipment />} />
+						<Route path="roles" element={<AdminRoles />} />
 						<Route path="*" element={<div>Select an admin section.</div>} />
 					</Routes>
 				</main>

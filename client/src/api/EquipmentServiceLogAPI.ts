@@ -6,10 +6,10 @@ const PORT = import.meta.env.VITE_BACKEND_PORT;
 const BASE_URL = `${IP}:${PORT}`;
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type EquipmentServiceLogCreatePayload = Omit<EquipmentServiceLog, 'id' | 'createdAt' | 'updatedAt'>;
+export type EquipmentServiceLogInputPayload = Omit<EquipmentServiceLog, 'id' | 'createdAt' | 'updatedAt'>;
 
 export const equipmentServiceLogApi = {
-    async create(mountainId: string, equipmentId: string, payload: EquipmentServiceLogCreatePayload) {
+    async create(mountainId: string, equipmentId: string, payload: EquipmentServiceLogInputPayload) {
         const res = await axios.post<EquipmentServiceLog>(
             url(`/api/mountains/${mountainId}/equipment/${equipmentId}/service-logs`),
             payload
@@ -31,7 +31,7 @@ export const equipmentServiceLogApi = {
         return res.data;
     },
 
-    async update(mountainId: string, equipmentId: string, logId: string, updated: Partial<EquipmentServiceLogCreatePayload>) {
+    async update(mountainId: string, equipmentId: string, logId: string, updated: Partial<EquipmentServiceLogInputPayload>) {
         const res = await axios.put(
             url(`/api/mountains/${mountainId}/equipment/${equipmentId}/service-logs/${logId}`),
             updated

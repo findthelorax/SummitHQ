@@ -1,11 +1,13 @@
-// Export all types from Prisma (models, etc)
+import type { Area, Trail, Lift, Hut, AidRoom, Lodge, Equipment, Location } from '../../server/src/generated/prisma';
+import type { Employee as PrismaEmployee, Role as PrismaRole } from '../../server/src/generated/prisma';
+
 export * from '../../server/src/generated/prisma';
 
-// Explicitly re-export enums from your shared enums file
 export {
 	AREA_TYPE,
 	DEPARTMENT,
-	EMPLOYEE_ROLES,
+	EMPLOYEE_STATUS,
+	ROLE_LEVEL,
 	EQUIPMENT_STATUS,
 	INCIDENT_STATUS,
 	LIFT_TYPE,
@@ -15,8 +17,19 @@ export {
 	TRAIL_DIFFICULTY,
 } from '../types/enums';
 
-import type { Area, Trail, Lift, Hut, AidRoom, Lodge } from '../../server/src/generated/prisma';
+// Equipment with optional location (only includes necessary Location fields)
+export type EquipmentWithLocation = Equipment & {
+	location?: {
+		entityType: string;
+	} | null;
+};
 
+// Employee with role (for department filtering)
+export type EmployeeWithRole = PrismaEmployee & {
+    role?: PrismaRole | null;
+};
+
+// Area with all related entities eagerly loaded
 export type AreaWithEntities = Area & {
 	trails: Trail[];
 	lifts: Lift[];

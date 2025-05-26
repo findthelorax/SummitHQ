@@ -31,7 +31,6 @@ const AddAreaForm = () => {
 			setSnackbarMessage(`Area ${name} created successfully!`);
 			setOpenSnackbar(true);
 		} catch (error) {
-			console.error('Error creating area', error);
 			setSnackbarSeverity('error');
 			setSnackbarMessage(`Error creating ${name}`);
 			setOpenSnackbar(true);

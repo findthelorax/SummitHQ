@@ -42,7 +42,7 @@ class LiftModel {
                 },
             });
 
-            await prisma.location.deleteMany({
+            await prisma.location.delete({
                 where: {
                     entityId: liftId,
                     entityType: 'LIFT',

@@ -17,6 +17,8 @@ const labelWidth = 'w-40';
 
 export const AdminNavItems: React.FC<NavListProps> = ({ open }) => {
     const location = useLocation();
+
+    
     return (
         <>
             <Link to="/dashboard" className={navItemClass(false)}>
@@ -55,6 +57,15 @@ export const AdminNavItems: React.FC<NavListProps> = ({ open }) => {
                     ${open ? `${labelWidth} opacity-100 ml-2` : 'w-0 opacity-0 ml-0'}
                 `}>
                     Equipment
+                </span>
+            </Link>
+            <Link to="/admin/roles" className={navItemClass(location.pathname === '/admin/roles')}>
+                <MdSpaceDashboard />
+                <span className={`
+                    inline-block overflow-hidden transition-all duration-300 whitespace-nowrap
+                    ${open ? `${labelWidth} opacity-100 ml-2` : 'w-0 opacity-0 ml-0'}
+                `}>
+                    Roles
                 </span>
             </Link>
         </>

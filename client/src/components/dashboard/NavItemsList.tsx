@@ -55,6 +55,17 @@ export const SecondaryListItems: React.FC<NavListProps> = ({ open }) => {
 	return (
 		<>
 			<div className="border-t border-gray-300 my-2" />
+			<Link to="/incidents" className={navItemClass(location.pathname === '/incidents')}>
+				<PiFirstAidDuotone />
+				<span
+					className={`
+                    inline-block overflow-hidden transition-all duration-300 whitespace-nowrap
+                    ${open ? `${labelWidth} opacity-100 ml-2` : 'w-0 opacity-0 ml-0'}
+                `}
+				>
+					Incidents
+				</span>
+			</Link>
 			<Link to="/incidentLogs" className={navItemClass(location.pathname === '/incidentLogs')}>
 				<PiFirstAidDuotone />
 				<span

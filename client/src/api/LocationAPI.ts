@@ -1,13 +1,13 @@
 import axios from 'axios';
 import type { Location, Hours, Incident, Equipment, Area } from 'shared/types';
-import type { LOCATION_TYPE, STATUS } from 'shared/types/enums';
+import type { LOCATION_TYPE } from 'shared/types/enums';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
 const BASE_URL = `${IP}:${PORT}`;
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type LocationCreatePayload = {
+export type LocationInputPayload = {
     name: string;
     entityId: string;
     entityType: LOCATION_TYPE;
@@ -15,7 +15,7 @@ export type LocationCreatePayload = {
 };
 
 export const locationApi = {
-    async createLocation(mountainId: string, location: LocationCreatePayload) {
+    async createLocation(mountainId: string, location: LocationInputPayload) {
         const res = await axios.post<Location>(url(`/api/mountains/${mountainId}/locations`), location);
         return res.data;
     },
@@ -30,7 +30,7 @@ export const locationApi = {
         return res.data;
     },
 
-    async updateLocation(mountainId: string, locationId: string, updated: Partial<LocationCreatePayload>) {
+    async updateLocation(mountainId: string, locationId: string, updated: Partial<LocationInputPayload>) {
         const res = await axios.put<Location>(url(`/api/mountains/${mountainId}/locations/${locationId}`), updated);
         return res.data;
     },

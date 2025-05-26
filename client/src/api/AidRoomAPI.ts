@@ -8,7 +8,7 @@ const BASE_URL = `${IP}:${PORT}`;
 
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type AidRoomCreatePayload = {
+export type AidRoomInputPayload = {
     name: string;
     status: STATUS;
     latitude: number | null;
@@ -16,7 +16,7 @@ export type AidRoomCreatePayload = {
 };
 
 export const aidRoomApi = {
-    async createAidRoom(mountainId: string, aidRoom: AidRoomCreatePayload) {
+    async createAidRoom(mountainId: string, aidRoom: AidRoomInputPayload) {
         const res = await axios.post<AidRoom>(url(`/api/mountains/${mountainId}/aidRooms`), aidRoom);
         return res.data;
     },
@@ -31,7 +31,7 @@ export const aidRoomApi = {
         return res.data;
     },
 
-    async updateAidRoom(mountainId: string, aidRoomId: string, updated: Partial<AidRoomCreatePayload>) {
+    async updateAidRoom(mountainId: string, aidRoomId: string, updated: Partial<AidRoomInputPayload>) {
         const res = await axios.put<AidRoom>(url(`/api/mountains/${mountainId}/aidRooms/${aidRoomId}`), updated);
         return res.data;
     },

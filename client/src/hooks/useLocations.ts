@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { locationApi, LocationCreatePayload } from '../api/LocationAPI';
+import { locationApi, LocationInputPayload } from '../api/LocationAPI';
 import type { Location, Hours, Incident, Equipment, Area } from 'shared/types';
 import { LOCATION_TYPE } from 'shared/types/enums';
 
@@ -30,7 +30,7 @@ export function useLocations(mountainId: string | undefined) {
         fetchLocations();
     }, [fetchLocations]);
 
-    const createLocation = useCallback(async (location: LocationCreatePayload) => {
+    const createLocation = useCallback(async (location: LocationInputPayload) => {
         if (!mountainId) return;
         const payload = {
             ...location,
@@ -43,7 +43,7 @@ export function useLocations(mountainId: string | undefined) {
     const updateLocation = useCallback(async (locationId: string, updated: Partial<Location>) => {
         if (!mountainId) return;
         const { name, entityId, entityType, areaId } = updated;
-        const payload: Partial<LocationCreatePayload> = {
+        const payload: Partial<LocationInputPayload> = {
             ...(name !== undefined ? { name } : {}),
             ...(entityId !== undefined ? { entityId } : {}),
             ...(entityType !== undefined ? { entityType: toSharedLocationType(entityType) } : {}),

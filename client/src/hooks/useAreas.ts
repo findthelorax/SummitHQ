@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { areaApi } from '../api/AreaAPI';
 import type { Area, AreaWithEntities } from 'shared/types';
 import { AREA_TYPE } from 'shared/types/enums';
-import type { AreaCreatePayload } from '../api/AreaAPI';
+import type { AreaInputPayload } from '../api/AreaAPI';
 
 function toSharedAreaType(type: any): AREA_TYPE {
 	if (Object.values(AREA_TYPE).includes(type)) return type as AREA_TYPE;
@@ -31,7 +31,7 @@ export function useAreas(mountainId: string | undefined) {
 		fetchAreas();
 	}, [fetchAreas]);
 
-	const createArea = async (area: AreaCreatePayload) => {
+	const createArea = async (area: AreaInputPayload) => {
 		if (!mountainId) return;
 		const payload = { ...area, type: toSharedAreaType(area.type) };
 		await areaApi.createArea(mountainId, payload);
@@ -41,9 +41,9 @@ export function useAreas(mountainId: string | undefined) {
 	const updateArea = async (areaId: string, updated: Partial<Area>) => {
 		if (!mountainId) return;
 		const { name, type, description } = updated;
-		const payload: Partial<import('../api/AreaAPI').AreaCreatePayload> = {
+		const payload: Partial<import('../api/AreaAPI').AreaInputPayload> = {
 			...(name !== undefined ? { name } : {}),
-			...(type !== undefined ? { type: type as import('../api/AreaAPI').AreaCreatePayload['type'] } : {}),
+			...(type !== undefined ? { type: type as import('../api/AreaAPI').AreaInputPayload['type'] } : {}),
 			...(description !== undefined ? { description } : {}),
 		};
 		await areaApi.updateArea(mountainId, areaId, payload);

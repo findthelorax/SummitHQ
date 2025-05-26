@@ -9,13 +9,14 @@ import Lifts from './Lifts';
 import Lodges from './Lodges';
 import Huts from './Huts';
 import AidRooms from './AidRooms';
+import IncidentsPage from './Incidents';
 // import IncidentLogs from './IncidentLogs';
 import Employees from './Employees';
 import Equipment from './Equipment';
 // import Logs from './Logs';
-// import Settings from './Settings';
+import Settings from './Settings';
 
-import AdminLayout from './admin/AdminLayout';
+import AdminLayout from './AdminLayout';
 
 interface RouteConfig {
 	path: string;
@@ -32,11 +33,12 @@ const routes: RouteConfig[] = [
 	{ path: '/lodges', Component: Lodges },
 	{ path: '/huts', Component: Huts },
 	{ path: '/aidRooms', Component: AidRooms },
+	{ path: '/incidents', Component: IncidentsPage },
 	// { path: '/incidentLogs', Component: IncidentLogs },
 	{ path: '/employees', Component: Employees },
 	{ path: '/equipment', Component: Equipment },
 	// { path: '/logs', Component: Logs },
-	// { path: '/settings', Component: Settings },
+	{ path: '/settings', Component: Settings },
 	{ path: '/admin/*', Component: AdminLayout },
 	{ path: '*', Component: Dashboard },
 ];

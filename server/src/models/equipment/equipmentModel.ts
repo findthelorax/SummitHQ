@@ -1,37 +1,48 @@
 import { prisma } from '../../config/database.js';
-import { getNextEquipmentNumber } from '../../utils/getNextEquipmentNumber.ts';
+import { getNextEquipmentNumber } from '../../utils/getNextEquipmentNumber.js';
 
 class EquipmentModel {
-    static async create(data: any, mountainId?: string) {
-        if (typeof data !== 'object' || data === null) {
-            throw new Error('Invalid data format: expected an object');
-        }
+	static async create(data: any, mountainId?: string) {
+		if (typeof data !== 'object' || data === null) {
+			throw new Error('Invalid data format: expected an object');
+		}
 
-        const { mountainId: _mountainId, locationId, number, ...rest } = data;
+		const { mountainId: mountainIdBody, locationId, number, ...rest } = data;
+		const mountainIdFinal = mountainIdBody || mountainId;
 
-        if (!rest.name || !rest.type || !rest.status) {
-            throw new Error('Missing required fields');
-        }
+		if (!rest.name || !rest.type || !rest.status) {
+			throw new Error('Missing required fields');
+		}
 
-        let assignedNumber = number;
-        if (assignedNumber === undefined || assignedNumber === null) {
-            assignedNumber = await getNextEquipmentNumber(mountainId);
-        }
+		let assignedNumber = number;
+		if (assignedNumber === undefined || assignedNumber === null) {
+			assignedNumber = await getNextEquipmentNumber(mountainIdFinal);
+		}
 
-        const dataToCreate: any = {
-            ...rest,
-            number: assignedNumber,
-            ...(mountainId ? { mountain: { connect: { id: mountainId } } } : {}),
-            location: locationId ? { connect: { id: locationId } } : undefined,
-        };
+		const dataToCreate: any = {
+			...rest,
+			number: assignedNumber,
+			...(mountainIdFinal ? { mountainId: mountainIdFinal } : {}),
+			location: locationId ? { connect: { id: locationId } } : undefined,
+		};
 
-        return await prisma.equipment.create({
-            data: dataToCreate,
-        });
-    }
+		return await prisma.equipment.create({
+			data: dataToCreate,
+		});
+	}
 
 	static async findAll() {
-		return await prisma.equipment.findMany();
+		return await prisma.equipment.findMany({
+			include: {
+				mountain: true,
+				location: {
+					select: {
+						name: true,
+						entityType: true,
+					},
+				},
+			},
+		});
 	}
 
 	static async findAllByLocation(mountainId: string, locationId: string) {
@@ -76,50 +87,50 @@ class EquipmentModel {
 		});
 	}
 
-    static async assignToLocation(equipmentId: string, locationId: string, mountainId: string) {
-        // Ensure equipment and location both belong to the same mountain
-        const equipment = await prisma.equipment.findFirst({
-            where: { id: equipmentId, mountainId },
-        });
-        const location = await prisma.location.findFirst({
-            where: { id: locationId, mountainId },
-        });
-        if (!equipment || !location) return null;
+	static async assignToLocation(equipmentId: string, locationId: string, mountainId: string) {
+		// Ensure equipment and location both belong to the same mountain
+		const equipment = await prisma.equipment.findFirst({
+			where: { id: equipmentId, mountainId },
+		});
+		const location = await prisma.location.findFirst({
+			where: { id: locationId, mountainId },
+		});
+		if (!equipment || !location) return null;
 
-        return await prisma.equipment.update({
-            where: { id: equipmentId },
-            data: { locationId },
-        });
-    }
+		return await prisma.equipment.update({
+			where: { id: equipmentId },
+			data: { locationId },
+		});
+	}
 
-    static async removeFromLocation(equipmentId: string, locationId: string, mountainId: string) {
-        // Ensure equipment and location both belong to the same mountain
-        const equipment = await prisma.equipment.findFirst({
-            where: { id: equipmentId, mountainId, locationId },
-        });
-        if (!equipment) return null;
+	static async removeFromLocation(equipmentId: string, locationId: string, mountainId: string) {
+		// Ensure equipment and location both belong to the same mountain
+		const equipment = await prisma.equipment.findFirst({
+			where: { id: equipmentId, mountainId, locationId },
+		});
+		if (!equipment) return null;
 
-        return await prisma.equipment.update({
-            where: { id: equipmentId },
-            data: { locationId: null },
-        });
-    }
+		return await prisma.equipment.update({
+			where: { id: equipmentId },
+			data: { locationId: null },
+		});
+	}
 
-    static async moveToLocation(equipmentId: string, newLocationId: string, mountainId: string) {
-        // Ensure equipment and new location both belong to the same mountain
-        const equipment = await prisma.equipment.findFirst({
-            where: { id: equipmentId, mountainId },
-        });
-        const location = await prisma.location.findFirst({
-            where: { id: newLocationId, mountainId },
-        });
-        if (!equipment || !location) return null;
+	static async moveToLocation(equipmentId: string, newLocationId: string, mountainId: string) {
+		// Ensure equipment and new location both belong to the same mountain
+		const equipment = await prisma.equipment.findFirst({
+			where: { id: equipmentId, mountainId },
+		});
+		const location = await prisma.location.findFirst({
+			where: { id: newLocationId, mountainId },
+		});
+		if (!equipment || !location) return null;
 
-        return await prisma.equipment.update({
-            where: { id: equipmentId },
-            data: { locationId: newLocationId },
-        });
-    }
+		return await prisma.equipment.update({
+			where: { id: equipmentId },
+			data: { locationId: newLocationId },
+		});
+	}
 
 	static async assignToMountain(equipmentId: string, mountainId: string) {
 		// Only assign if not already assigned to this mountain

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Equipment } from 'shared/types';
 
-type EquipmentInputPayload = {
+export type EquipmentInputPayload = {
     name: string;
     type: string;
     number?: number;
@@ -23,7 +23,6 @@ const url = (path: string) => `${BASE_URL}${path}`;
 export const equipmentApi = {
     async createEquipment(equipment: EquipmentInputPayload) {
         const res = await axios.post<Equipment>(url(`/api/equipment`), equipment);
-        console.log("🚀 ~ createEquipment ~ equipment:", equipment)
         return res.data;
     },
 

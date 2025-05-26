@@ -1,81 +1,91 @@
 import React, { useState } from 'react';
-import { employeeApi } from '../../api/EmployeeAPI';
-import { DEPARTMENT } from 'shared/types/enums';
-
-type EmployeeInputPayload = {
-    employeeIdNumber: number | '';
-    email: string;
-    phoneNumber: string;
-    name: string;
-    roleId?: string;
-    department?: DEPARTMENT;
-};
+import { EMPLOYEE_STATUS } from 'shared/types/enums';
+import { useEmployees } from '../../hooks/useEmployees';
+import type { EmployeeInputPayload } from '../../api/EmployeeAPI';
+import { useSnackbarContext } from '../../contexts/SnackbarContext';
 
 const emptyForm: EmployeeInputPayload = {
-    employeeIdNumber: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phoneNumber: '',
-    name: '',
-    roleId: '',
-    department: DEPARTMENT.OTHER,
+    roleId: null,
+    employeeStatus: EMPLOYEE_STATUS.INACTIVE,
 };
 
 const EmployeeForm: React.FC<{ onCreated?: () => void }> = ({ onCreated }) => {
     const [form, setForm] = useState<EmployeeInputPayload>(emptyForm);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState<string | null>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value, type } = e.target;
+    const { filteredRoleOptions, selectedDepartment, createEmployee } = useEmployees();
+    const { showSnackbar } = useSnackbarContext(); // <-- Use the snackbar context
+
+    const groupedRoles = filteredRoleOptions.reduce((acc, role: { label: string; value: string; department?: string }) => {
+        const department = role.department || 'Other';
+        if (!acc[department]) acc[department] = [];
+        acc[department].push(role);
+        return acc;
+    }, {} as Record<string, typeof filteredRoleOptions>);
+
+    const handleRoleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setForm((prev) => ({
             ...prev,
-            [name]: type === 'number' || name === 'employeeIdNumber'
-                ? value === '' ? '' : Number(value)
-                : value,
+            roleId: e.target.value === '' ? null : e.target.value,
+        }));
+    };
+
+    const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setForm((prev) => ({
+            ...prev,
+            employeeStatus: e.target.value as EMPLOYEE_STATUS,
+        }));
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({
+            ...prev,
+            [name]: value,
         }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setError(null);
-        setSuccess(null);
         try {
-            await employeeApi.createEmployee({
+            await createEmployee({
                 ...form,
-                employeeIdNumber: form.employeeIdNumber === '' ? 0 : form.employeeIdNumber,
-                roleId: form.roleId === undefined ? null : form.roleId,
+                roleId: form.roleId ?? null,
             });
             setForm(emptyForm);
-            setSuccess('Employee added successfully!');
+            showSnackbar('Employee added successfully!', 'success');
             if (onCreated) onCreated();
         } catch {
-            setError('Error adding employee');
+            showSnackbar('Error adding employee', 'error');
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <form className="bg-white dark:bg-gray-800 rounded shadow p-6 max-w-md mx-auto" onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit}>
             <div className="mb-4">
-                <label className="block mb-1 font-semibold">Employee ID Number</label>
+                <label className="block mb-1 font-semibold">First Name</label>
                 <input
-                    type="number"
-                    name="employeeIdNumber"
-                    value={form.employeeIdNumber}
+                    type="text"
+                    name="firstName"
+                    value={form.firstName}
                     onChange={handleChange}
                     required
                     className="w-full border rounded px-3 py-2"
                 />
             </div>
             <div className="mb-4">
-                <label className="block mb-1 font-semibold">Name</label>
+                <label className="block mb-1 font-semibold">Last Name</label>
                 <input
                     type="text"
-                    name="name"
-                    value={form.name}
+                    name="lastName"
+                    value={form.lastName}
                     onChange={handleChange}
                     required
                     className="w-full border rounded px-3 py-2"
@@ -103,32 +113,35 @@ const EmployeeForm: React.FC<{ onCreated?: () => void }> = ({ onCreated }) => {
                 />
             </div>
             <div className="mb-4">
-                <label className="block mb-1 font-semibold">Role ID</label>
-                <input
-                    type="text"
-                    name="roleId"
-                    value={form.roleId}
-                    onChange={handleChange}
-                    className="w-full border rounded px-3 py-2"
-                />
+                <label className="block mb-1 font-semibold">Role</label>
+                <select name="roleId" value={form.roleId ?? ''} onChange={handleRoleChange} className="dropdown">
+                    <option value="">Select Role</option>
+                    {Object.entries(groupedRoles).map(([department, roles]) => (
+                        <optgroup key={department} label={department}>
+                            {roles.map((opt) => (
+                                <option key={opt.value} value={opt.value}>
+                                    {opt.label}
+                                </option>
+                            ))}
+                        </optgroup>
+                    ))}
+                </select>
             </div>
             <div className="mb-4">
-                <label className="block mb-1 font-semibold">Department</label>
+                <label className="block mb-1 font-semibold">Status</label>
                 <select
-                    name="department"
-                    value={form.department}
-                    onChange={handleChange}
-                    className="w-full border rounded px-3 py-2"
+                    name="employeeStatus"
+                    value={form.employeeStatus}
+                    onChange={handleStatusChange}
+                    className="dropdown"
                 >
-                    {Object.values(DEPARTMENT).map((dept) => (
-                        <option key={dept} value={dept}>
-                            {dept.replace(/_/g, ' ')}
+                    {Object.values(EMPLOYEE_STATUS).map((status) => (
+                        <option key={status} value={status}>
+                            {status.charAt(0) + status.slice(1).toLowerCase()}
                         </option>
                     ))}
                 </select>
             </div>
-            {error && <div className="text-red-600 mb-2">{error}</div>}
-            {success && <div className="text-green-600 mb-2">{success}</div>}
             <button
                 type="submit"
                 className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"

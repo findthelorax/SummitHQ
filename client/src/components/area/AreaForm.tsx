@@ -1,33 +1,13 @@
 import React, { useState } from 'react';
 import type { FormEvent } from 'react';
 import { useSnackbarContext } from '../../contexts/SnackbarContext';
-import { AREA_TYPE } from 'shared/types/enums';
 import { useMountain } from '../../contexts/MountainContext';
 import { useAreas } from '../../hooks/useAreas';
+import { AREA_TYPE } from 'shared/types/enums';
+import { AREA_TYPE_LABELS, enumToOptions } from 'shared/types/utils/enumLabels';
+import type { AreaInputPayload } from '../../api/AreaAPI';
 
-const formatLabel = (value: string) => {
-    const labelMap: Record<string, string> = {
-        BASE_AREA: 'Base Area',
-        MOUNTAIN_AREA: 'Mountain Area',
-        SUMMIT: 'Summit',
-        OTHER: 'Other',
-    };
-    return labelMap[value] ?? value;
-};
-
-const enumToOptions = (e: Record<string, string>) =>
-    Object.entries(e).map(([_, value]) => ({
-        value,
-        label: formatLabel(value),
-    }));
-
-const AREA_TYPE_OPTIONS = enumToOptions(AREA_TYPE);
-
-type AreaInput = {
-    name: string;
-    type: (typeof AREA_TYPE)[keyof typeof AREA_TYPE];
-    description?: string;
-};
+const AREA_TYPE_OPTIONS = enumToOptions(AREA_TYPE, AREA_TYPE_LABELS);
 
 interface AreaFormProps {
     onCreated?: () => void;
@@ -36,7 +16,7 @@ interface AreaFormProps {
 const AreaForm: React.FC<AreaFormProps> = ({ onCreated }) => {
     const { selectedMountain } = useMountain();
     const { createArea } = useAreas(selectedMountain?.id);
-    const [form, setForm] = useState<AreaInput>({
+    const [form, setForm] = useState<AreaInputPayload>({
         name: '',
         type: AREA_TYPE.BASE_AREA,
         description: '',
@@ -70,7 +50,7 @@ const AreaForm: React.FC<AreaFormProps> = ({ onCreated }) => {
     };
 
     return (
-        <form className="bg-white dark:bg-gray-800 rounded shadow p-6 max-w-md mx-auto" onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit}>
             <div className="mb-4">
                 <label className="block mb-1 font-semibold">Name</label>
                 <input
@@ -89,7 +69,7 @@ const AreaForm: React.FC<AreaFormProps> = ({ onCreated }) => {
                     value={form.type}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded px-3 py-2 dark:bg-gray-700"
+                    className="dropdown"
                 >
                     {AREA_TYPE_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.value}>
@@ -102,7 +82,7 @@ const AreaForm: React.FC<AreaFormProps> = ({ onCreated }) => {
                 <label className="block mb-1 font-semibold">Description</label>
                 <textarea
                     name="description"
-                    value={form.description}
+                    value={form.description ?? ''}
                     onChange={handleChange}
                     className="w-full border rounded px-3 py-2"
                 />

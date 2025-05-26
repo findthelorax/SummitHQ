@@ -1,78 +1,3 @@
-Great! Here’s a clean TypeScript utility function example for your app that, given an array of Location records, loads the correct entity details by checking the entityType and entityId. It uses Prisma client queries dynamically:
-
-import { PrismaClient, LocationType } from '@prisma/client';
-
-const prisma = new PrismaClient();
-
-type LocationWithEntity = {
-  location: {
-    id: string;
-    name: string;
-    entityId: string;
-    entityType: LocationType;
-    // ...other Location fields
-  };
-  entityDetails: any; // The actual entity object (Lift, Trail, etc.)
-};
-
-async function fetchEntitiesForLocations(
-  locations: Array<{ id: string; name: string; entityId: string; entityType: LocationType }>
-): Promise<LocationWithEntity[]> {
-  const results: LocationWithEntity[] = [];
-
-  for (const loc of locations) {
-    let entityDetails = null;
-
-    switch (loc.entityType) {
-      case 'LIFT':
-        entityDetails = await prisma.lift.findUnique({ where: { id: loc.entityId } });
-        break;
-      case 'TRAIL':
-        entityDetails = await prisma.trail.findUnique({ where: { id: loc.entityId } });
-        break;
-      case 'HUT':
-        entityDetails = await prisma.hut.findUnique({ where: { id: loc.entityId } });
-        break;
-      case 'LODGE':
-        entityDetails = await prisma.lodge.findUnique({ where: { id: loc.entityId } });
-        break;
-      case 'AID_ROOM':
-        entityDetails = await prisma.aidRoom.findUnique({ where: { id: loc.entityId } });
-        break;
-      default:
-        // Unknown type, handle accordingly or skip
-        entityDetails = null;
-    }
-
-    results.push({ location: loc, entityDetails });
-  }
-
-  return results;
-}
-
-How to use it:
-
-async function example() {
-  const locations = await prisma.location.findMany({
-    where: { areaId: 'some-area-id' },
-    select: { id: true, name: true, entityId: true, entityType: true },
-  });
-
-  const locationsWithEntities = await fetchEntitiesForLocations(locations);
-
-  for (const { location, entityDetails } of locationsWithEntities) {
-    console.log('Location:', location.name);
-    console.log('Entity details:', entityDetails);
-  }
-}
-
-Optional improvements:
-
-    Batch queries by entity type (fetch all lifts in one query, all trails in one query) for performance.
-
-    Cache entity details if you need to reuse.
-
-
 1. Efficient Updates (Using updateMany)
 
 You're using updateMany() in several places (e.g., updateByMountain, updateIncident) where update() would be more precise and performant if you’re only updating a single record.
@@ -99,7 +24,7 @@ There’s currently no validation of inputs (e.g., whether a name is provided wh
 Some operations involve multiple DB calls (e.g., moving equipment, adding hours). If consistency matters, especially in concurrent scenarios, consider wrapping those in a prisma.$transaction().
 
 
-ou'll need to manually join the specific entity based on entityType and entityId.
+You'll need to manually join the specific entity based on entityType and entityId.
 
 Here's how to do it in JavaScript/TypeScript with prisma:
 
@@ -198,5 +123,4 @@ If you’re working with a frontend (e.g., React or Vue), return the details fie
 {location.entityType === "Trail" && (
   <TrailCard {...location.details} />
 )}
-
 

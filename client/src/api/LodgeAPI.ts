@@ -8,7 +8,7 @@ const BASE_URL = `${IP}:${PORT}`;
 
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type LodgeCreatePayload = {
+export type LodgeInputPayload = {
     name: string;
     capacity: number;
     latitude: number | null;
@@ -17,7 +17,7 @@ export type LodgeCreatePayload = {
 };
 
 export const lodgeApi = {
-    async createLodge(mountainId: string, lodge: LodgeCreatePayload) {
+    async createLodge(mountainId: string, lodge: LodgeInputPayload) {
         const res = await axios.post<Lodge>(url(`/api/mountains/${mountainId}/lodges`), lodge);
         return res.data;
     },
@@ -32,7 +32,7 @@ export const lodgeApi = {
         return res.data;
     },
 
-    async updateLodge(mountainId: string, lodgeId: string, updated: Partial<LodgeCreatePayload>) {
+    async updateLodge(mountainId: string, lodgeId: string, updated: Partial<LodgeInputPayload>) {
         const res = await axios.put<Lodge>(url(`/api/mountains/${mountainId}/lodges/${lodgeId}`), updated);
         return res.data;
     },

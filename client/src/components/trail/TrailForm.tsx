@@ -4,50 +4,17 @@ import { useSnackbarContext } from '../../contexts/SnackbarContext';
 import { useMountain } from '../../contexts/MountainContext';
 import { useTrails } from '../../hooks/useTrails';
 import { TRAIL_DIFFICULTY, STATUS, TRAIL_CONDITION } from 'shared/types/enums';
+import {
+    TRAIL_DIFFICULTY_LABELS,
+    STATUS_LABELS,
+    TRAIL_CONDITION_LABELS,
+    enumToOptions,
+} from 'shared/types/utils/enumLabels';
+import type { TrailInputPayload } from '../../api/TrailAPI';
 
-const formatLabel = (value: string) => {
-    const labelMap: Record<string, string> = {
-        GREEN_CIRCLE: 'Green Circle',
-        BLUE_SQUARE: 'Blue Square',
-        BLACK_DIAMOND: 'Black Diamond',
-        DOUBLE_BLACK_DIAMOND: 'Double Black Diamond',
-        TERRAIN_PARK: 'Terrain Park',
-        RACE_COURSE: 'Race Course',
-        OTHER: 'Other',
-        MACHINE_GROOMED: 'Machine Groomed',
-        HARD_PACK: 'Hard Pack',
-        PACKED_POWDER: 'Packed Powder',
-        POWDER: 'Powder',
-        MOGULS: 'Moguls',
-        NATURAL: 'Natural',
-        GLADES: 'Glades',
-        CLOSED: 'Closed',
-        OPEN: 'Open',
-        ON_HOLD: 'On Hold',
-        UNKNOWN: 'Unknown',
-    };
-    return labelMap[value] ?? value;
-};
-
-const enumToOptions = (e: Record<string, string>) =>
-    Object.entries(e).map(([_, value]) => ({
-        value,
-        label: formatLabel(value),
-    }));
-
-const TRAIL_DIFFICULTY_OPTIONS = enumToOptions(TRAIL_DIFFICULTY);
-const STATUS_OPTIONS = enumToOptions(STATUS);
-const TRAIL_CONDITION_OPTIONS = enumToOptions(TRAIL_CONDITION);
-
-type TrailInput = {
-    name: string;
-    difficulty: (typeof TRAIL_DIFFICULTY)[keyof typeof TRAIL_DIFFICULTY];
-    status: (typeof STATUS)[keyof typeof STATUS];
-    length: number | null;
-    latitude: number | null;
-    longitude: number | null;
-    condition: (typeof TRAIL_CONDITION)[keyof typeof TRAIL_CONDITION];
-};
+const TRAIL_DIFFICULTY_OPTIONS = enumToOptions(TRAIL_DIFFICULTY, TRAIL_DIFFICULTY_LABELS);
+const STATUS_OPTIONS = enumToOptions(STATUS, STATUS_LABELS);
+const TRAIL_CONDITION_OPTIONS = enumToOptions(TRAIL_CONDITION, TRAIL_CONDITION_LABELS);
 
 interface TrailFormProps {
     onCreated?: () => void;
@@ -56,7 +23,7 @@ interface TrailFormProps {
 const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
     const { selectedMountain } = useMountain();
     const { createTrail } = useTrails(selectedMountain?.id);
-    const [form, setForm] = useState<TrailInput>({
+    const [form, setForm] = useState<TrailInputPayload>({
         name: '',
         difficulty: TRAIL_DIFFICULTY.OTHER,
         status: STATUS.UNKNOWN,
@@ -82,7 +49,7 @@ const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
             return;
         }
         try {
-            await createTrail(form); // This will also refresh the grid
+            await createTrail(form);
             showSnackbar(`${form.name} trail created successfully`, 'success');
             setForm({
                 name: '',
@@ -100,7 +67,7 @@ const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
     };
 
     return (
-        <form className="bg-white dark:bg-gray-800 rounded shadow p-6 max-w-md mx-auto" onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit}>
             <div className="mb-4">
                 <label className="block mb-1 font-semibold">Name</label>
                 <input
@@ -119,7 +86,7 @@ const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
                     value={form.difficulty}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded px-3 py-2 dark:bg-gray-700"
+                    className="dropdown"
                 >
                     {TRAIL_DIFFICULTY_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.value}>
@@ -135,7 +102,7 @@ const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
                     value={form.status}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded px-3 py-2 dark:bg-gray-700"
+                    className="dropdown"
                 >
                     {STATUS_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.value}>
@@ -151,7 +118,7 @@ const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
                     value={form.condition}
                     onChange={handleChange}
                     required
-                    className="w-full border rounded px-3 py-2 dark:bg-gray-700"
+                    className="dropdown"
                 >
                     {TRAIL_CONDITION_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.value}>

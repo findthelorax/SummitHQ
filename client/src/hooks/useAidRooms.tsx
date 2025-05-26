@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { aidRoomApi } from '../api/AidRoomAPI';
 import type { AidRoom } from 'shared/types';
 import { STATUS } from 'shared/types/enums';
-import type { AidRoomCreatePayload } from '../api/AidRoomAPI';
+import type { AidRoomInputPayload } from '../api/AidRoomAPI';
 
 function toSharedStatus(status: any): STATUS {
     if (Object.values(STATUS).includes(status)) return status as STATUS;
@@ -31,7 +31,7 @@ export function useAidRooms(mountainId: string | undefined) {
         fetchAidRooms();
     }, [fetchAidRooms]);
 
-    const createAidRoom = async (aidRoom: AidRoomCreatePayload) => {
+    const createAidRoom = async (aidRoom: AidRoomInputPayload) => {
         if (!mountainId) return;
         const payload = {
             ...aidRoom,
@@ -44,7 +44,7 @@ export function useAidRooms(mountainId: string | undefined) {
     const updateAidRoom = async (aidRoomId: string, updated: Partial<AidRoom>) => {
         if (!mountainId) return;
         const { name, status, latitude, longitude } = updated;
-        const payload: Partial<AidRoomCreatePayload> = {
+        const payload: Partial<AidRoomInputPayload> = {
             ...(name !== undefined ? { name } : {}),
             ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
             ...(latitude !== undefined

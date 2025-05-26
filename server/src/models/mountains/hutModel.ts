@@ -42,7 +42,7 @@ class HutModel {
                 },
             });
 
-            await prisma.location.deleteMany({
+            await prisma.location.delete({
                 where: {
                     entityId: hutId,
                     entityType: 'HUT',

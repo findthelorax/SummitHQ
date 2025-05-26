@@ -8,7 +8,7 @@ const BASE_URL = `${IP}:${PORT}`;
 
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type HutCreatePayload = {
+export type HutInputPayload = {
     name: string;
     status: STATUS;
     latitude: number | null;
@@ -16,7 +16,7 @@ export type HutCreatePayload = {
 };
 
 export const hutApi = {
-    async createHut(mountainId: string, hut: HutCreatePayload) {
+    async createHut(mountainId: string, hut: HutInputPayload) {
         const res = await axios.post<Hut>(url(`/api/mountains/${mountainId}/huts`), hut);
         return res.data;
     },
@@ -31,7 +31,7 @@ export const hutApi = {
         return res.data;
     },
 
-    async updateHut(mountainId: string, hutId: string, updated: Partial<HutCreatePayload>) {
+    async updateHut(mountainId: string, hutId: string, updated: Partial<HutInputPayload>) {
         const res = await axios.put<Hut>(url(`/api/mountains/${mountainId}/huts/${hutId}`), updated);
         return res.data;
     },

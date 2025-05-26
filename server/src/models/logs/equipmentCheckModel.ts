@@ -25,7 +25,7 @@ class EquipmentCheckModel {
     }
 
     static async updateByIdAndMountainAndEquipment(id: string, mountainId: string, equipmentId: string, updatedData: any) {
-        return await prisma.equipmentCheck.updateMany({
+        return await prisma.equipmentCheck.update({
             where: {
                 id,
                 mountainId,
@@ -36,7 +36,7 @@ class EquipmentCheckModel {
     }
 
     static async deleteByIdAndMountainAndEquipment(id: string, mountainId: string, equipmentId: string) {
-        return await prisma.equipmentCheck.deleteMany({
+        return await prisma.equipmentCheck.delete({
             where: {
                 id,
                 mountainId,

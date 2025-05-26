@@ -2,20 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { equipmentApi } from '../api/EquipmentAPI';
 import type { Equipment } from 'shared/types';
 import { EQUIPMENT_STATUS } from 'shared/types/enums';
-
-type EquipmentInput = {
-    name: string;
-    type: string;
-    number?: number;
-    description?: string;
-    status?: EQUIPMENT_STATUS;
-    picture?: string;
-    cost?: number;
-    latitude?: number | null;
-    longitude?: number | null;
-    mountainId?: string;
-    locationId?: string | null;
-};
+import type { EquipmentInputPayload } from '../api/EquipmentAPI';
 
 function toSharedEquipmentStatus(status: any): EQUIPMENT_STATUS {
     if (Object.values(EQUIPMENT_STATUS).includes(status)) return status as EQUIPMENT_STATUS;
@@ -46,7 +33,7 @@ export function useEquipment(mountainId?: string) {
     }, [fetchEquipment]);
 
     const createEquipment = useCallback(
-        async (input: EquipmentInput) => {
+        async (input: EquipmentInputPayload) => {
             const payload = {
                 ...input,
                 status: input.status ? toSharedEquipmentStatus(input.status) : EQUIPMENT_STATUS.OPERATIONAL,
@@ -59,8 +46,8 @@ export function useEquipment(mountainId?: string) {
     );
 
     const updateEquipment = useCallback(
-        async (equipmentId: string, updated: Partial<EquipmentInput>) => {
-            const payload: Partial<EquipmentInput> = {
+        async (equipmentId: string, updated: Partial<EquipmentInputPayload>) => {
+            const payload: Partial<EquipmentInputPayload> = {
                 ...(updated.name !== undefined ? { name: updated.name } : {}),
                 ...(updated.type !== undefined ? { type: updated.type } : {}),
                 ...(updated.status !== undefined ? { status: toSharedEquipmentStatus(updated.status) } : {}),

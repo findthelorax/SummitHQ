@@ -197,7 +197,6 @@ exports.Prisma.DispatcherAssignmentScalarFieldEnum = {
 exports.Prisma.RoleScalarFieldEnum = {
   id: 'id',
   department: 'department',
-  name: 'name',
   title: 'title',
   position: 'position',
   level: 'level',
@@ -213,9 +212,11 @@ exports.Prisma.EmployeeRoleScalarFieldEnum = {
 exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
   employeeIdNumber: 'employeeIdNumber',
+  firstName: 'firstName',
+  lastName: 'lastName',
   email: 'email',
   phoneNumber: 'phoneNumber',
-  name: 'name',
+  employeeStatus: 'employeeStatus',
   roleId: 'roleId'
 };
 
@@ -431,6 +432,26 @@ exports.DEPARTMENT = exports.$Enums.DEPARTMENT = {
   MAINTENANCE: 'MAINTENANCE',
   ADMINISTRATION: 'ADMINISTRATION',
   OTHER: 'OTHER'
+};
+
+exports.ROLE_LEVEL = exports.$Enums.ROLE_LEVEL = {
+  LEVEL_1: 'LEVEL_1',
+  LEVEL_2: 'LEVEL_2',
+  LEVEL_3: 'LEVEL_3',
+  LEVEL_4: 'LEVEL_4',
+  LEVEL_5: 'LEVEL_5',
+  LEVEL_6: 'LEVEL_6',
+  LEVEL_7: 'LEVEL_7',
+  LEVEL_8: 'LEVEL_8',
+  LEVEL_9: 'LEVEL_9',
+  LEVEL_10: 'LEVEL_10'
+};
+
+exports.EMPLOYEE_STATUS = exports.$Enums.EMPLOYEE_STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  ON_LEAVE: 'ON_LEAVE',
+  TERMINATED: 'TERMINATED'
 };
 
 exports.LIFT_TYPE = exports.$Enums.LIFT_TYPE = {

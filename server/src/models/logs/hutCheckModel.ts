@@ -25,7 +25,7 @@ class HutCheckModel {
     }
 
     static async updateByIdAndMountainAndHut(id: string, mountainId: string, hutId: string, updatedData: any) {
-        return await prisma.hutCheck.updateMany({
+        return await prisma.hutCheck.update({
             where: {
                 id,
                 mountainId,
@@ -36,7 +36,7 @@ class HutCheckModel {
     }
 
     static async deleteByIdAndMountainAndHut(id: string, mountainId: string, hutId: string) {
-        return await prisma.hutCheck.deleteMany({
+        return await prisma.hutCheck.delete({
             where: {
                 id,
                 mountainId,

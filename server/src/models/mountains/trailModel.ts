@@ -42,7 +42,7 @@ class TrailModel {
                 },
             });
 
-            await prisma.location.deleteMany({
+            await prisma.location.delete({
                 where: {
                     entityId: trailId,
                     entityType: 'TRAIL',

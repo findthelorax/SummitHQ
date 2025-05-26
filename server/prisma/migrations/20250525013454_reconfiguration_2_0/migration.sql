@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "LOCATION_TYPE" AS ENUM ('Aid Room', 'HUT', 'LODGE', 'LIFT', 'TRAIL', 'MOUNTAIN', 'OTHER');
+CREATE TYPE "LOCATION_TYPE" AS ENUM ('AIDROOM', 'HUT', 'LODGE', 'LIFT', 'TRAIL', 'MOUNTAIN', 'OTHER');
 
 -- CreateEnum
 CREATE TYPE "STATUS" AS ENUM ('OPEN', 'CLOSED', 'On Hold', 'UNKNOWN');
@@ -11,7 +11,7 @@ CREATE TYPE "INCIDENT_STATUS" AS ENUM ('STANDBY', 'REPORTED', 'In Progress', 'RE
 CREATE TYPE "EQUIPMENT_STATUS" AS ENUM ('OPERATIONAL', 'In Service', 'Out Of Service', 'In Use', 'CLEANING', 'Needs Inspection', 'Pending Repair', 'Under Maintenance', 'LOST', 'DAMAGED', 'RETIRED', 'STANDBY');
 
 -- CreateEnum
-CREATE TYPE "LIFT_TYPE" AS ENUM ('CHAIR', 'GONDOLA', 'SURFACE', 'ROPE', 'CONVEYOR', 'OTHER');
+CREATE TYPE "LIFT_TYPE" AS ENUM ('CHAIR', 'GONDOLA', 'T_BAR', 'MAGIC_CARPET', 'ROPE_TOW', 'OTHER');
 
 -- CreateEnum
 CREATE TYPE "TRAIL_CONDITION" AS ENUM ('Machine Groomed', 'Hard Pack', 'Packed Powder', 'POWDER', 'MOGULS', 'NATURAL', 'GLADES', 'CLOSED');
@@ -26,7 +26,10 @@ CREATE TYPE "DEPARTMENT" AS ENUM ('PATROL', 'Lift Operations', 'DISPATCH', 'MAIN
 CREATE TYPE "AREA_TYPE" AS ENUM ('BASE_AREA', 'MOUNTAIN_AREA', 'SUMMIT', 'OTHER');
 
 -- CreateEnum
-CREATE TYPE "EMPLOYEE_ROLES" AS ENUM ('SUPERVISOR', 'ADVANCED_PATROLLER', 'HILL_CHIEF', 'SPECIALIST', 'TRAINER', 'DIRECTOR');
+CREATE TYPE "EMPLOYEE_STATUS" AS ENUM ('ACTIVE', 'INACTIVE', 'ON_LEAVE', 'TERMINATED');
+
+-- CreateEnum
+CREATE TYPE "ROLE_LEVEL" AS ENUM ('LEVEL_1', 'LEVEL_2', 'LEVEL_3', 'LEVEL_4', 'LEVEL_5', 'LEVEL_6', 'LEVEL_7', 'LEVEL_8', 'LEVEL_9', 'LEVEL_10');
 
 -- CreateTable
 CREATE TABLE "Area" (
@@ -127,10 +130,9 @@ CREATE TABLE "DispatcherAssignment" (
 CREATE TABLE "Role" (
     "id" TEXT NOT NULL,
     "department" "DEPARTMENT" NOT NULL,
-    "name" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "position" TEXT NOT NULL,
-    "level" INTEGER,
+    "level" "ROLE_LEVEL" NOT NULL DEFAULT 'LEVEL_1',
     "permissions" TEXT[],
 
     CONSTRAINT "Role_pkey" PRIMARY KEY ("id")
@@ -148,10 +150,11 @@ CREATE TABLE "EmployeeRole" (
 -- CreateTable
 CREATE TABLE "Employee" (
     "id" TEXT NOT NULL,
-    "employeeIdNumber" INTEGER NOT NULL,
+    "employeeIdNumber" INTEGER,
     "email" TEXT NOT NULL,
     "phoneNumber" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "employeeStatus" "EMPLOYEE_STATUS" NOT NULL,
     "roleId" TEXT,
 
     CONSTRAINT "Employee_pkey" PRIMARY KEY ("id")
@@ -167,7 +170,7 @@ CREATE TABLE "Lift" (
     "capacity" INTEGER NOT NULL,
     "latitude" DECIMAL(65,30),
     "longitude" DECIMAL(65,30),
-    "locationId" TEXT NOT NULL,
+    "locationId" TEXT,
 
     CONSTRAINT "Lift_pkey" PRIMARY KEY ("id")
 );
@@ -183,7 +186,7 @@ CREATE TABLE "Trail" (
     "latitude" DECIMAL(65,30),
     "longitude" DECIMAL(65,30),
     "condition" "TRAIL_CONDITION" NOT NULL DEFAULT 'CLOSED',
-    "locationId" TEXT NOT NULL,
+    "locationId" TEXT,
 
     CONSTRAINT "Trail_pkey" PRIMARY KEY ("id")
 );
@@ -197,7 +200,7 @@ CREATE TABLE "Lodge" (
     "latitude" DECIMAL(65,30),
     "longitude" DECIMAL(65,30),
     "status" "STATUS" NOT NULL DEFAULT 'UNKNOWN',
-    "locationId" TEXT NOT NULL,
+    "locationId" TEXT,
 
     CONSTRAINT "Lodge_pkey" PRIMARY KEY ("id")
 );
@@ -210,7 +213,7 @@ CREATE TABLE "Hut" (
     "status" "STATUS" NOT NULL DEFAULT 'UNKNOWN',
     "latitude" DECIMAL(65,30),
     "longitude" DECIMAL(65,30),
-    "locationId" TEXT NOT NULL,
+    "locationId" TEXT,
 
     CONSTRAINT "Hut_pkey" PRIMARY KEY ("id")
 );
@@ -223,7 +226,7 @@ CREATE TABLE "AidRoom" (
     "status" "STATUS" NOT NULL DEFAULT 'UNKNOWN',
     "latitude" DECIMAL(65,30),
     "longitude" DECIMAL(65,30),
-    "locationId" TEXT NOT NULL,
+    "locationId" TEXT,
 
     CONSTRAINT "AidRoom_pkey" PRIMARY KEY ("id")
 );
@@ -248,14 +251,14 @@ CREATE TABLE "Equipment" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "type" TEXT NOT NULL,
+    "status" "EQUIPMENT_STATUS" NOT NULL DEFAULT 'OPERATIONAL',
     "number" INTEGER,
     "description" TEXT,
-    "status" "EQUIPMENT_STATUS" NOT NULL DEFAULT 'OPERATIONAL',
     "picture" TEXT,
     "cost" DOUBLE PRECISION,
     "latitude" DECIMAL(65,30),
     "longitude" DECIMAL(65,30),
-    "mountainId" TEXT NOT NULL,
+    "mountainId" TEXT,
     "locationId" TEXT,
     "dateAdded" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -418,9 +421,6 @@ CREATE INDEX "DispatcherAssignment_mountainId_idx" ON "DispatcherAssignment"("mo
 
 -- CreateIndex
 CREATE UNIQUE INDEX "DispatcherAssignment_employeeId_mountainId_assignedAt_key" ON "DispatcherAssignment"("employeeId", "mountainId", "assignedAt");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Role_department_name_key" ON "Role"("department", "name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "EmployeeRole_employeeId_roleId_key" ON "EmployeeRole"("employeeId", "roleId");
@@ -618,31 +618,31 @@ ALTER TABLE "Employee" ADD CONSTRAINT "Employee_roleId_fkey" FOREIGN KEY ("roleI
 ALTER TABLE "Lift" ADD CONSTRAINT "Lift_mountainId_fkey" FOREIGN KEY ("mountainId") REFERENCES "Mountain"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Lift" ADD CONSTRAINT "Lift_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Lift" ADD CONSTRAINT "Lift_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Trail" ADD CONSTRAINT "Trail_mountainId_fkey" FOREIGN KEY ("mountainId") REFERENCES "Mountain"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Trail" ADD CONSTRAINT "Trail_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Trail" ADD CONSTRAINT "Trail_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Lodge" ADD CONSTRAINT "Lodge_mountainId_fkey" FOREIGN KEY ("mountainId") REFERENCES "Mountain"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Lodge" ADD CONSTRAINT "Lodge_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Lodge" ADD CONSTRAINT "Lodge_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Hut" ADD CONSTRAINT "Hut_mountainId_fkey" FOREIGN KEY ("mountainId") REFERENCES "Mountain"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Hut" ADD CONSTRAINT "Hut_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Hut" ADD CONSTRAINT "Hut_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "AidRoom" ADD CONSTRAINT "AidRoom_mountainId_fkey" FOREIGN KEY ("mountainId") REFERENCES "Mountain"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "AidRoom" ADD CONSTRAINT "AidRoom_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "AidRoom" ADD CONSTRAINT "AidRoom_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "EquipmentServiceLog" ADD CONSTRAINT "EquipmentServiceLog_mountainId_fkey" FOREIGN KEY ("mountainId") REFERENCES "Mountain"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -654,7 +654,7 @@ ALTER TABLE "EquipmentServiceLog" ADD CONSTRAINT "EquipmentServiceLog_employeeId
 ALTER TABLE "EquipmentServiceLog" ADD CONSTRAINT "EquipmentServiceLog_equipmentId_fkey" FOREIGN KEY ("equipmentId") REFERENCES "Equipment"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Equipment" ADD CONSTRAINT "Equipment_mountainId_fkey" FOREIGN KEY ("mountainId") REFERENCES "Mountain"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Equipment" ADD CONSTRAINT "Equipment_mountainId_fkey" FOREIGN KEY ("mountainId") REFERENCES "Mountain"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Equipment" ADD CONSTRAINT "Equipment_locationId_fkey" FOREIGN KEY ("locationId") REFERENCES "Location"("id") ON DELETE SET NULL ON UPDATE CASCADE;

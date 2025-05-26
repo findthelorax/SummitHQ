@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { lodgeApi } from '../api/LodgeAPI';
 import type { Lodge } from 'shared/types';
 import { STATUS } from 'shared/types/enums';
-import type { LodgeCreatePayload } from '../api/LodgeAPI';
+import type { LodgeInputPayload } from '../api/LodgeAPI';
 
 function toSharedStatus(status: any): STATUS {
     if (Object.values(STATUS).includes(status)) return status as STATUS;
@@ -31,7 +31,7 @@ export function useLodges(mountainId: string | undefined) {
         fetchLodges();
     }, [fetchLodges]);
 
-    const createLodge = async (lodge: LodgeCreatePayload) => {
+    const createLodge = async (lodge: LodgeInputPayload) => {
         if (!mountainId) return;
         const payload = {
             ...lodge,
@@ -44,7 +44,7 @@ export function useLodges(mountainId: string | undefined) {
     const updateLodge = async (lodgeId: string, updated: Partial<Lodge>) => {
         if (!mountainId) return;
         const { name, capacity, latitude, longitude, status } = updated;
-        const payload: Partial<LodgeCreatePayload> = {
+        const payload: Partial<LodgeInputPayload> = {
             ...(name !== undefined ? { name } : {}),
             ...(capacity !== undefined ? { capacity } : {}),
             ...(latitude !== undefined

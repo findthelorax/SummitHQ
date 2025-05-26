@@ -42,7 +42,7 @@ class LodgeModel {
                 },
             });
 
-            await prisma.location.deleteMany({
+            await prisma.location.delete({
                 where: {
                     entityId: lodgeId,
                     entityType: 'LODGE',

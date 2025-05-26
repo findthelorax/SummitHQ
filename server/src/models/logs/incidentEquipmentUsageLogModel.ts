@@ -30,7 +30,7 @@ class IncidentEquipmentUsageLogModel {
         incidentId: string,
         updatedData: any
     ) {
-        return await prisma.incidentEquipmentUsageLog.updateMany({
+        return await prisma.incidentEquipmentUsageLog.update({
             where: {
                 id,
                 mountainId,
@@ -43,7 +43,7 @@ class IncidentEquipmentUsageLogModel {
     }
 
     static async deleteByIdAndMountainAndIncident(id: string, mountainId: string, incidentId: string) {
-        return await prisma.incidentEquipmentUsageLog.deleteMany({
+        return await prisma.incidentEquipmentUsageLog.delete({
             where: {
                 id,
                 mountainId,

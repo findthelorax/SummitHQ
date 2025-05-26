@@ -1,101 +1,151 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { employeeApi } from '../api/EmployeeAPI';
-import type { Employee, EmployeeRole } from 'shared/types';
-import { EMPLOYEE_ROLES, DEPARTMENT } from 'shared/types/enums';
+import type { EmployeeWithRole, Role } from 'shared/types';
+import { DEPARTMENT } from 'shared/types/enums';
+import type { EmployeeInputPayload } from '../api/EmployeeAPI';
 
 export function useEmployees(mountainId?: string) {
-    const [employees, setEmployees] = useState<Employee[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [roles, setRoles] = useState<EmployeeRole[]>([]);
+	const [employees, setEmployees] = useState<EmployeeWithRole[]>([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const [roles, setRoles] = useState<Role[]>([]);
+	const [selectedDepartment, setSelectedDepartment] = useState<DEPARTMENT | ''>('');
 
-    const fetchEmployees = useCallback(async () => {
-        setIsLoading(true);
-        try {
-            if (mountainId) {
-                const data = await employeeApi.getEmployeesByMountain(mountainId);
-                setEmployees(data);
-            } else {
-                const data = await employeeApi.getEmployees();
-                setEmployees(data);
-            }
-        } finally {
-            setIsLoading(false);
-        }
-    }, [mountainId]);
+	// Fetch employees, optionally filtered by mountainId
+	const fetchEmployees = useCallback(async () => {
+		setIsLoading(true);
+		try {
+			let data: EmployeeWithRole[] = [];
+			if (mountainId) {
+				data = await employeeApi.getEmployeesByMountain(mountainId);
+			} else {
+				data = await employeeApi.getEmployees();
+			}
+			setEmployees(data);
+		} finally {
+			setIsLoading(false);
+		}
+	}, [mountainId]);
 
-    useEffect(() => {
-        fetchEmployees();
-    }, [fetchEmployees]);
+	useEffect(() => {
+		fetchEmployees();
+	}, [fetchEmployees]);
 
-    const fetchRoles = useCallback(async () => {
-        const data = await employeeApi.getAllRoles();
-        setRoles(data);
-    }, []);
+	const fetchRoles = useCallback(async () => {
+		const data = await employeeApi.getAllRoles();
+		const mappedRoles: Role[] = data.map((item: any) => ({
+			id: item.id,
+			department: item.department ?? DEPARTMENT.OTHER,
+			title: item.title ?? '',
+			position: item.position ?? '',
+			level: item.level ?? null,
+			permissions: item.permissions ?? [],
+		}));
+		setRoles(mappedRoles);
+	}, []);
 
-    useEffect(() => {
-        fetchRoles();
-    }, [fetchRoles]);
+	useEffect(() => {
+		fetchRoles();
+	}, [fetchRoles]);
 
-    const createEmployee = useCallback(async (payload: any) => {
-        await employeeApi.createEmployee(payload);
-        await fetchEmployees();
-    }, [fetchEmployees]);
+	const createEmployee = useCallback(
+		async (employee: EmployeeInputPayload) => {
+			await employeeApi.createEmployee(employee);
+			await fetchEmployees();
+		},
+		[fetchEmployees]
+	);
 
-    const updateEmployee = useCallback(async (employeeId: string, updated: Partial<Employee>) => {
-        await employeeApi.updateEmployee(employeeId, updated);
-        await fetchEmployees();
-    }, [fetchEmployees]);
+	const updateEmployee = useCallback(
+		async (employeeId: string, updated: Partial<EmployeeInputPayload>) => {
+			const payload: Partial<EmployeeInputPayload> = {
+				...(updated.firstName !== undefined ? { firstName: updated.firstName } : {}),
+				...(updated.lastName !== undefined ? { lastName: updated.lastName } : {}),
+				...(updated.email !== undefined ? { email: updated.email } : {}),
+				...(updated.phoneNumber !== undefined ? { phoneNumber: updated.phoneNumber } : {}),
+				...(updated.roleId !== undefined ? { roleId: updated.roleId } : {}),
+			};
+			await employeeApi.updateEmployee(employeeId, payload);
+			await fetchEmployees();
+		},
+		[fetchEmployees]
+	);
 
-    const deleteEmployee = useCallback(async (employeeId: string) => {
-        await employeeApi.deleteEmployee(employeeId);
-        await fetchEmployees();
-    }, [fetchEmployees]);
+	const deleteEmployee = useCallback(
+		async (employeeId: string) => {
+			await employeeApi.deleteEmployee(employeeId);
+			await fetchEmployees();
+		},
+		[fetchEmployees]
+	);
 
-    const assignToMountain = useCallback(async (employeeId: string, mId: string) => {
-        await employeeApi.assignToMountain(employeeId, mId);
-        await fetchEmployees();
-    }, [fetchEmployees]);
+	const assignToMountain = useCallback(
+		async (employeeId: string, mId: string) => {
+			await employeeApi.assignToMountain(employeeId, mId);
+			await fetchEmployees();
+		},
+		[fetchEmployees]
+	);
 
-    // --- Roles ---
-    const getEmployeeRoles = useCallback(async (employeeId: string) => {
-        return employeeApi.getEmployeeRoles(employeeId);
-    }, []);
+	const getEmployeeRoles = useCallback(async (employeeId: string) => {
+		return employeeApi.getEmployeeRoles(employeeId);
+	}, []);
 
-    const addRoleToEmployee = useCallback(async (employeeId: string, roleId: string) => {
-        await employeeApi.addRoleToEmployee(employeeId, roleId);
-        await fetchEmployees();
-    }, [fetchEmployees]);
+	const addRoleToEmployee = useCallback(
+		async (employeeId: string, roleId: string) => {
+			await employeeApi.addRoleToEmployee(employeeId, roleId);
+			await fetchEmployees();
+		},
+		[fetchEmployees]
+	);
 
-    const removeRoleFromEmployee = useCallback(async (employeeId: string, roleId: string) => {
-        await employeeApi.removeRoleFromEmployee(employeeId, roleId);
-        await fetchEmployees();
-    }, [fetchEmployees]);
+	const removeRoleFromEmployee = useCallback(
+		async (employeeId: string, roleId: string) => {
+			await employeeApi.removeRoleFromEmployee(employeeId, roleId);
+			await fetchEmployees();
+		},
+		[fetchEmployees]
+	);
 
-    // Enum helpers for UI
-    const employeeRoleOptions = Object.values(EMPLOYEE_ROLES).map(role => ({
-        label: role.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase()),
-        value: role,
-    }));
+	const departmentOptions = useMemo(
+		() => [
+			{ label: 'Select Department', value: '' },
+			...Object.values(DEPARTMENT).map((dept) => ({
+				label: dept
+					.replace(/_/g, ' ')
+					.toLowerCase()
+					.replace(/\b\w/g, (l) => l.toUpperCase()),
+				value: dept,
+			})),
+		],
+		[]
+	);
 
-    const departmentOptions = Object.values(DEPARTMENT).map(dept => ({
-        label: dept.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase()),
-        value: dept,
-    }));
+	const filteredRoleOptions = useMemo(() => {
+		if (!selectedDepartment) return [];
+		return roles
+			.filter((role) => role.department === selectedDepartment)
+			.map((role) => ({
+				label: role.title || role.position || role.level,
+				value: role.id,
+			}));
+	}, [roles, selectedDepartment]);
 
-    return {
-        employees,
-        isLoading,
-        fetchEmployees,
-        createEmployee,
-        updateEmployee,
-        deleteEmployee,
-        assignToMountain,
-        getEmployeeRoles,
-        addRoleToEmployee,
-        removeRoleFromEmployee,
-        roles,
-        fetchRoles,
-        employeeRoleOptions,
-        departmentOptions,
-    };
+	return {
+		employees,
+		isLoading,
+		fetchEmployees,
+		createEmployee,
+		updateEmployee,
+		deleteEmployee,
+		assignToMountain,
+		getEmployeeRoles,
+		addRoleToEmployee,
+		removeRoleFromEmployee,
+		roles,
+		fetchRoles,
+		departmentOptions,
+		filteredRoleOptions,
+		selectedDepartment,
+		setSelectedDepartment,
+	};
 }

@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { hutApi } from '../api/HutAPI';
+import { hutApi, HutInputPayload } from '../api/HutAPI';
 import type { Hut } from 'shared/types';
 import { STATUS } from 'shared/types/enums';
-import type { HutCreatePayload } from '../api/HutAPI';
 
 function toSharedStatus(status: any): STATUS {
     if (Object.values(STATUS).includes(status)) return status as STATUS;
@@ -31,7 +30,7 @@ export function useHuts(mountainId: string | undefined) {
         fetchHuts();
     }, [fetchHuts]);
 
-    const createHut = async (hut: HutCreatePayload) => {
+    const createHut = async (hut: HutInputPayload) => {
         if (!mountainId) return;
         const payload = {
             ...hut,
@@ -44,7 +43,7 @@ export function useHuts(mountainId: string | undefined) {
     const updateHut = async (hutId: string, updated: Partial<Hut>) => {
         if (!mountainId) return;
         const { name, status, latitude, longitude } = updated;
-        const payload: Partial<HutCreatePayload> = {
+        const payload: Partial<HutInputPayload> = {
             ...(name !== undefined ? { name } : {}),
             ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
             ...(latitude !== undefined

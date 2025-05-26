@@ -6,13 +6,13 @@ const PORT = import.meta.env.VITE_BACKEND_PORT;
 const BASE_URL = `${IP}:${PORT}`;
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type EmployeeMountainAssignmentCreatePayload = {
+export type EmployeeMountainAssignmentInputPayload = {
     mountainId: string;
     assignedAt?: string; // ISO string, optional (backend may set)
 };
 
 export const employeeMountainAssignmentApi = {
-    async createAssignment(employeeId: string, payload: EmployeeMountainAssignmentCreatePayload) {
+    async createAssignment(employeeId: string, payload: EmployeeMountainAssignmentInputPayload) {
         const res = await axios.post<EmployeeMountainAssignment>(
             url(`/api/employees/${employeeId}/mountain-assignments`),
             payload
@@ -32,7 +32,7 @@ export const employeeMountainAssignmentApi = {
         return res.data;
     },
 
-    async updateAssignment(employeeId: string, mountainAssignmentId: string, updated: Partial<EmployeeMountainAssignmentCreatePayload>) {
+    async updateAssignment(employeeId: string, mountainAssignmentId: string, updated: Partial<EmployeeMountainAssignmentInputPayload>) {
         const res = await axios.put(
             url(`/api/employees/${employeeId}/mountain-assignments/${mountainAssignmentId}`),
             updated

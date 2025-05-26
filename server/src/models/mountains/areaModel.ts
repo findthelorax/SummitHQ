@@ -16,7 +16,6 @@ class AreaModel {
 				mountainId,
 			},
 		});
-		console.log('Created area:', result);
 		return result;
 	}
 

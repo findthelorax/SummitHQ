@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Mountain } from 'shared/types';
 
-type MountainInputPayload = {
+export type MountainInputPayload = {
 	name: string;
 	city: string;
 	state: string;
@@ -37,7 +37,7 @@ export const mountainApi = {
 		return res.data;
 	},
 
-	async updateMountain(mountainId: string, updated: Partial<Mountain>) {
+	async updateMountain(mountainId: string, updated: Partial<MountainInputPayload>) {
 		const res = await axios.put<Mountain>(url(`/api/mountains/${mountainId}`), updated);
 		return res.data;
 	},

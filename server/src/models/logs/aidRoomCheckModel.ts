@@ -25,7 +25,7 @@ class AidRoomCheckModel {
     }
 
     static async updateByIdAndMountainAndAidRoom(id: string, mountainId: string, aidRoomId: string, updatedData: any) {
-        return await prisma.aidRoomCheck.updateMany({
+        return await prisma.aidRoomCheck.update({
             where: {
                 id,
                 mountainId,
@@ -36,7 +36,7 @@ class AidRoomCheckModel {
     }
 
     static async deleteByIdAndMountainAndAidRoom(id: string, mountainId: string, aidRoomId: string) {
-        return await prisma.aidRoomCheck.deleteMany({
+        return await prisma.aidRoomCheck.delete({
             where: {
                 id,
                 mountainId,

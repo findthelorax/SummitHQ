@@ -8,20 +8,21 @@ const BASE_URL = `${IP}:${PORT}`;
 
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type LiftCreatePayload = {
-    name: string;
-    type: LIFT_TYPE;
-    status: STATUS;
-    capacity: number | null;
-    latitude: number | null;
-    longitude: number | null;
+export type LiftInputPayload = {
+	name: string;
+	type: LIFT_TYPE;
+	status: STATUS;
+	capacity: number | null;
+	latitude: number | null;
+	longitude: number | null;
+	locationId: string;
 };
 
-export type LiftUpdatePayload = Partial<LiftCreatePayload>;
-export type LiftCheckCreatePayload = Omit<LiftCheck, 'id' | 'mountainId' | 'liftId' | 'createdAt' | 'updatedAt'>;
+export type LiftUpdatePayload = Partial<LiftInputPayload>;
+export type LiftCheckInputPayload = Omit<LiftCheck, 'id' | 'mountainId' | 'liftId' | 'createdAt' | 'updatedAt'>;
 
 export const liftApi = {
-	async createLift(mountainId: string, lift: LiftCreatePayload) {
+	async createLift(mountainId: string, lift: LiftInputPayload) {
 		const res = await axios.post<Lift>(url(`/api/mountains/${mountainId}/lifts`), lift);
 		return res.data;
 	},
@@ -42,7 +43,7 @@ export const liftApi = {
 		return res.data;
 	},
 
-	async createLiftCheck(mountainId: string, liftId: string, check: LiftCheckCreatePayload) {
+	async createLiftCheck(mountainId: string, liftId: string, check: LiftCheckInputPayload) {
 		const res = await axios.post<LiftCheck>(url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks`), check);
 		return res.data;
 	},
@@ -60,7 +61,7 @@ export const liftApi = {
 		mountainId: string,
 		liftId: string,
 		liftCheckId: string,
-		updates: Partial<LiftCheckCreatePayload>
+		updates: Partial<LiftCheckInputPayload>
 	) {
 		const res = await axios.put<LiftCheck>(
 			url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks/${liftCheckId}`),
