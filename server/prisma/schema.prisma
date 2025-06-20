@@ -14,7 +14,6 @@ enum LOCATION_TYPE {
   LODGE
   LIFT
   TRAIL
-  MOUNTAIN
   OTHER
 }
 
@@ -22,7 +21,6 @@ enum STATUS {
   OPEN
   CLOSED
   ON_HOLD      @map("On Hold")
-  UNKNOWN
 }
 
 enum INCIDENT_STATUS {
@@ -30,7 +28,6 @@ enum INCIDENT_STATUS {
   REPORTED
   IN_PROGRESS    @map("In Progress")
   RESOLVED
-  UNKNOWN
 }
 
 enum EQUIPMENT_STATUS {
@@ -99,6 +96,8 @@ enum EMPLOYEE_STATUS {
   INACTIVE
   ON_LEAVE
   TERMINATED
+  RETIRED
+  UNKNOWN
 }
 
 enum ROLE_LEVEL {
@@ -126,7 +125,7 @@ model Area {
   locations   Location[] @relation("AreaLocation")
 
   @@index([mountainId])
-  @@unique([name, type])
+  @@unique([mountainId, name, type])
 }
 
 model Location {
@@ -177,16 +176,16 @@ model Hours {
 model Mountain {
   id                String   @id @default(uuid())
   name              String   @unique
-  latitude          Decimal?
-  longitude         Decimal?
+  latitude          Decimal? @db.Decimal(9,6)
+  longitude         Decimal? @db.Decimal(9,6)
   height            Int
   phoneNumber       String
   address           String
   city              String
   state             String
   zipcode           String
-  openingDate       DateTime?
-  closingDate       DateTime?
+  openingDate       DateTime? @db.Date
+  closingDate       DateTime? @db.Date
   weather           Weather[]
   locations         Location[] @relation("MountainLocation")
 
@@ -234,9 +233,10 @@ model EmployeeMountainAssignment {
   id          String    @id @default(uuid())
   employeeId  String
   mountainId  String
-  assignedAt  DateTime @db.Date
+  startDate   DateTime  @db.Date @default(now())
+  endDate     DateTime? @db.Date
 
-  employee    Employee  @relation(fields: [employeeId], references: [id])
+  employee    Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
   mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
 
   @@index([mountainId])
@@ -248,10 +248,10 @@ model DispatcherAssignment {
   id           String     @id @default(uuid())
   employeeId   String
   mountainId   String
-  assignedAt   DateTime @db.Date
+  assignedAt   DateTime   @db.Date 
 
-  employee     Employee   @relation(fields: [employeeId], references: [id])
-  mountain     Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
+  employee     Employee   @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  mountain     Mountain   @relation(fields: [mountainId], references: [id], onDelete: Cascade)
 
   @@index([employeeId])
   @@index([mountainId])
@@ -268,6 +268,8 @@ model Role {
 
   employees   Employee[]
   employeeRole  EmployeeRole[]
+
+  @@unique([department, title, level])
 }
 
 model EmployeeRole {
@@ -298,11 +300,14 @@ model Employee {
   employeeIdNumber  Int?       @unique
   firstName         String
   lastName          String
-  email             String     @unique
-  phoneNumber       String
-  employeeStatus    EMPLOYEE_STATUS
+  email             String?     @unique
+  phoneNumber       String?
+  status            EMPLOYEE_STATUS
+  primaryDepartment DEPARTMENT?
   roleId            String?
   role              Role?      @relation(fields: [roleId], references: [id])
+  startDate         DateTime?  @db.Date  @default(now())
+  endDate           DateTime?  @db.Date
 
   certifications    Certification[]
 
@@ -323,10 +328,10 @@ model Lift {
   mountainId  String
   name        String
   type        LIFT_TYPE
-  status      STATUS   @default(UNKNOWN)
+  status      STATUS   @default(CLOSED)
   capacity    Int
-  latitude    Decimal?
-  longitude   Decimal?
+  latitude    Decimal? @db.Decimal(9,6)
+  longitude   Decimal? @db.Decimal(9,6)
 
   mountain    Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   liftChecks  LiftCheck[]
@@ -335,8 +340,7 @@ model Lift {
   location    Location?    @relation("LiftLocation", fields: [locationId], references: [id])
 
   @@index([mountainId])
-  @@unique([name, type])
-  @@unique([mountainId, name])
+  @@unique([mountainId, name, type])
 }
 
 model Trail {
@@ -344,10 +348,10 @@ model Trail {
   mountainId  String
   name        String
   difficulty  TRAIL_DIFFICULTY
-  status      STATUS   @default(UNKNOWN)
-  length      Float
-  latitude    Decimal?
-  longitude   Decimal?
+  status      STATUS   @default(CLOSED)
+  length      Float?
+  latitude    Decimal? @db.Decimal(9,6)
+  longitude   Decimal? @db.Decimal(9,6)
   condition   TRAIL_CONDITION   @default(CLOSED)
 
   mountain    Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
@@ -365,9 +369,9 @@ model Lodge {
   mountainId  String
   name        String
   capacity    Int
-  latitude    Decimal?
-  longitude   Decimal?
-  status      STATUS   @default(UNKNOWN)
+  latitude    Decimal? @db.Decimal(9,6)
+  longitude   Decimal? @db.Decimal(9,6)
+  status      STATUS   @default(CLOSED)
 
   mountain    Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   
@@ -382,9 +386,9 @@ model Hut {
   id          String   @id @default(uuid())
   mountainId  String
   name        String
-  status      STATUS   @default(UNKNOWN)
-  latitude    Decimal?
-  longitude   Decimal?
+  status      STATUS   @default(CLOSED)
+  latitude    Decimal? @db.Decimal(9,6)
+  longitude   Decimal? @db.Decimal(9,6)
 
   mountain    Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   hutChecks   HutCheck[]
@@ -400,9 +404,9 @@ model AidRoom {
   id             String       @id @default(uuid())
   mountainId     String
   name           String
-  status         STATUS       @default(UNKNOWN)
-  latitude       Decimal?
-  longitude      Decimal?
+  status         STATUS       @default(CLOSED)
+  latitude       Decimal? @db.Decimal(9,6)
+  longitude      Decimal? @db.Decimal(9,6)
 
   mountain       Mountain     @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   aidRoomChecks  AidRoomCheck[]
@@ -443,8 +447,8 @@ model Equipment {
   description String?
   picture     String?
   cost        Float?
-  latitude    Decimal?
-  longitude   Decimal?
+  latitude    Decimal? @db.Decimal(9,6)
+  longitude   Decimal? @db.Decimal(9,6)
   mountainId  String?
   mountain    Mountain? @relation(fields: [mountainId], references: [id])
 
@@ -465,12 +469,13 @@ model Incident {
   id             String       @id @default(uuid())
   description    String
   status         INCIDENT_STATUS   @default(REPORTED)
-  latitude       Decimal?
-  longitude      Decimal?
+  latitude       Decimal? @db.Decimal(9,6)
+  longitude      Decimal? @db.Decimal(9,6)
   mountainId     String
   mountain       Mountain     @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   startTime      DateTime     @default(now())
   endTime        DateTime?
+  callTime       DateTime?
   onSceneTime    DateTime?
   stableTime     DateTime?
   transportTime  DateTime?

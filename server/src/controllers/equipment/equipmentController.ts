@@ -108,7 +108,6 @@ class EquipmentController {
 	assignToLocation = asyncWrapper(async (req: Request, res: Response) => {
 		const { equipmentId, mountainId, locationId } = req.params;
 
-		// Ensure the location belongs to the specified mountain
 		const location = await prisma.location.findFirst({
 			where: { id: locationId, mountainId },
 		});
@@ -117,7 +116,6 @@ class EquipmentController {
 			return;
 		}
 
-		// Assign equipment to location
 		const updated = await EquipmentModel.assignToLocation(equipmentId, locationId, mountainId);
 		if (!updated) {
 			res.status(404).json({ message: 'Equipment or Location not found' });
@@ -129,7 +127,6 @@ class EquipmentController {
 	removeFromLocation = asyncWrapper(async (req: Request, res: Response) => {
 		const { equipmentId, mountainId, locationId } = req.params;
 
-		// Ensure the location belongs to the specified mountain
 		const location = await prisma.location.findFirst({
 			where: { id: locationId, mountainId },
 		});
@@ -138,7 +135,6 @@ class EquipmentController {
 			return;
 		}
 
-		// Remove equipment from location
 		const updated = await EquipmentModel.removeFromLocation(equipmentId, locationId, mountainId);
 		if (!updated) {
 			res.status(404).json({ message: 'Equipment not found' });
@@ -151,7 +147,6 @@ class EquipmentController {
 		const { equipmentId, mountainId } = req.params;
 		const { newLocationId } = req.body;
 
-		// Ensure the new location belongs to the specified mountain
 		const location = await prisma.location.findFirst({
 			where: { id: newLocationId, mountainId },
 		});
@@ -160,7 +155,6 @@ class EquipmentController {
 			return;
 		}
 
-		// Move equipment to new location
 		const updated = await EquipmentModel.moveToLocation(equipmentId, newLocationId, mountainId);
 		if (!updated) {
 			res.status(404).json({ message: 'Equipment or Location not found' });

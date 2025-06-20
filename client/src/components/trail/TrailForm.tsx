@@ -1,22 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { useSnackbarContext } from '../../contexts/SnackbarContext';
 import { useMountain } from '../../contexts/MountainContext';
-import { useTrails } from '../../hooks/useTrails';
-import { TRAIL_DIFFICULTY, STATUS, TRAIL_CONDITION } from 'shared/types/enums';
+import { useTrails } from '../../hooks/trail/useTrails';
 import {
+    TRAIL_DIFFICULTY, STATUS, TRAIL_CONDITION,
     TRAIL_DIFFICULTY_LABELS,
     STATUS_LABELS,
     TRAIL_CONDITION_LABELS,
     enumToOptions,
-} from 'shared/types/utils/enumLabels';
+} from '../../types/generated-enums';
 import type { TrailInputPayload } from '../../api/TrailAPI';
 
 const TRAIL_DIFFICULTY_OPTIONS = enumToOptions(TRAIL_DIFFICULTY, TRAIL_DIFFICULTY_LABELS);
 const STATUS_OPTIONS = enumToOptions(STATUS, STATUS_LABELS);
 const TRAIL_CONDITION_OPTIONS = enumToOptions(TRAIL_CONDITION, TRAIL_CONDITION_LABELS);
 
-const fieldConfigs = [
+const getEmptyForm = (): TrailInputPayload => ({
+    name: '',
+    difficulty: TRAIL_DIFFICULTY.OTHER,
+    status: STATUS.CLOSED,
+    length: 0,
+    latitude: null,
+    longitude: null,
+    condition: TRAIL_CONDITION.NATURAL,
+});
+
+const fields = [
     { label: 'Name', name: 'name', type: 'text', required: true },
     {
         label: 'Difficulty',
@@ -55,7 +65,7 @@ const FormField = ({
 }) => {
     if (field.type === 'select') {
         return (
-            <div className="mb-4">
+            <div className="mb-4 w-full">
                 <label className="block mb-1 font-semibold">{field.label}</label>
                 <select
                     name={field.name}
@@ -74,7 +84,7 @@ const FormField = ({
         );
     }
     return (
-        <div className="mb-4">
+        <div className="mb-4 w-full">
             <label className="block mb-1 font-semibold">{field.label}</label>
             <input
                 type={field.type}
@@ -82,7 +92,7 @@ const FormField = ({
                 value={value ?? ''}
                 onChange={onChange}
                 required={field.required}
-                className="w-full border rounded px-3 py-2"
+                className="input"
                 placeholder={field.placeholder}
                 step={field.step}
             />
@@ -97,16 +107,12 @@ interface TrailFormProps {
 const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
     const { selectedMountain } = useMountain();
     const { createTrail } = useTrails(selectedMountain?.id);
-    const [form, setForm] = useState<TrailInputPayload>({
-        name: '',
-        difficulty: TRAIL_DIFFICULTY.OTHER,
-        status: STATUS.UNKNOWN,
-        length: null,
-        latitude: null,
-        longitude: null,
-        condition: TRAIL_CONDITION.CLOSED,
-    });
+    const [form, setForm] = useState<TrailInputPayload>(getEmptyForm());
     const { showSnackbar } = useSnackbarContext();
+
+    useEffect(() => {
+        setForm(getEmptyForm());
+    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
@@ -125,40 +131,43 @@ const TrailForm: React.FC<TrailFormProps> = ({ onCreated }) => {
         try {
             await createTrail(form);
             showSnackbar(`${form.name} trail created successfully`, 'success');
-            setForm({
-                name: '',
-                difficulty: TRAIL_DIFFICULTY.OTHER,
-                status: STATUS.UNKNOWN,
-                length: null,
-                latitude: null,
-                longitude: null,
-                condition: TRAIL_CONDITION.CLOSED,
-            });
+            setForm(getEmptyForm());
             if (onCreated) onCreated();
         } catch (error) {
-            showSnackbar('Error creating trail', 'error');
+            showSnackbar('Error saving trail', 'error');
         }
     };
 
+    const fieldRows = [
+        [fields[0], fields[1], fields[2]], // Name, Difficulty, Status
+        [fields[3], fields[4], fields[5], fields[6]], // Condition, Length, Latitude, Longitude
+    ];
+
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            {fieldConfigs.map((field) => (
-                <FormField
-                    key={field.name}
-                    field={field}
-                    value={form[field.name as keyof TrailInputPayload]}
-                    onChange={handleChange}
-                />
+            {fieldRows.map((row, rowIdx) => (
+                <div
+                    key={rowIdx}
+                    className="mb-4 grid gap-4"
+                    style={{ gridTemplateColumns: `repeat(${row.length}, minmax(0, 1fr))` }}
+                >
+                    {row.map((field) => (
+                        <FormField
+                            key={field.name}
+                            field={field}
+                            value={form[field.name as keyof TrailInputPayload]}
+                            onChange={handleChange}
+                        />
+                    ))}
+                </div>
             ))}
-            <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-                disabled={!selectedMountain}
-            >
-                Add Trail
-            </button>
+            <div className="form-button-center">
+                <button type="submit" className="button-primary form-button-quarter" disabled={!selectedMountain}>
+                    Add Trail
+                </button>
+            </div>
             {!selectedMountain && (
-                <div className="text-red-500 text-sm mt-2 text-center">Please select a mountain to add a trail.</div>
+                <div className="text-error text-center mt-2">Please select a mountain to add a trail.</div>
             )}
         </form>
     );

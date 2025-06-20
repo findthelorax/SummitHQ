@@ -1,4 +1,4 @@
-import { PrismaClient, STATUS, DEPARTMENT, TRAIL_CONDITION, TRAIL_DIFFICULTY, LIFT_TYPE, INCIDENT_STATUS, EQUIPMENT_STATUS, LOCATION_TYPE } from '../generated/prisma/index.js';
+import { PrismaClient } from '../generated/prisma/index.js';
 import logger from './logger.js';
 
 logger.info('Initializing Prisma Client...');
@@ -14,15 +14,4 @@ const connectDatabase = async () => {
     }
 };
 
-export {
-    prisma,
-    connectDatabase,
-    STATUS,
-    DEPARTMENT,
-    TRAIL_CONDITION,
-    TRAIL_DIFFICULTY,
-    LIFT_TYPE,
-    INCIDENT_STATUS,
-    EQUIPMENT_STATUS,
-    LOCATION_TYPE
-};
+export { prisma, connectDatabase };

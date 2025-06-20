@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { IncidentEquipmentUsageLog } from 'shared/types';
+import type { IncidentEquipmentUsageLogDTO } from '../types/index';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
@@ -12,11 +12,11 @@ export const incidentEquipmentUsageLogApi = {
 		mountainId: string,
 		incidentId: string,
 		log: Omit<
-			IncidentEquipmentUsageLog,
+			IncidentEquipmentUsageLogDTO,
 			'id' | 'mountainId' | 'incidentId' | 'equipment' | 'incident' | 'mountain' | 'createdAt' | 'updatedAt'
 		>
 	) {
-		const res = await axios.post<IncidentEquipmentUsageLog>(
+		const res = await axios.post<IncidentEquipmentUsageLogDTO>(
 			url(`/api/mountains/${mountainId}/incidents/${incidentId}/equipmentUsageLogs`),
 			log
 		);
@@ -24,21 +24,21 @@ export const incidentEquipmentUsageLogApi = {
 	},
 
 	async getAll(mountainId: string, incidentId: string) {
-		const res = await axios.get<IncidentEquipmentUsageLog[]>(
+		const res = await axios.get<IncidentEquipmentUsageLogDTO[]>(
 			url(`/api/mountains/${mountainId}/incidents/${incidentId}/equipmentUsageLogs`)
 		);
 		return res.data;
 	},
 
 	async getById(mountainId: string, incidentId: string, logId: string) {
-		const res = await axios.get<IncidentEquipmentUsageLog>(
+		const res = await axios.get<IncidentEquipmentUsageLogDTO>(
 			url(`/api/mountains/${mountainId}/incidents/${incidentId}/equipmentUsageLogs/${logId}`)
 		);
 		return res.data;
 	},
 
-	async update(mountainId: string, incidentId: string, logId: string, updated: Partial<IncidentEquipmentUsageLog>) {
-		const res = await axios.put<IncidentEquipmentUsageLog>(
+	async update(mountainId: string, incidentId: string, logId: string, updated: Partial<IncidentEquipmentUsageLogDTO>) {
+		const res = await axios.put<IncidentEquipmentUsageLogDTO>(
 			url(`/api/mountains/${mountainId}/incidents/${incidentId}/equipmentUsageLogs/${logId}`),
 			updated
 		);
@@ -46,7 +46,7 @@ export const incidentEquipmentUsageLogApi = {
 	},
 
 	async delete(mountainId: string, incidentId: string, logId: string) {
-		const res = await axios.delete<IncidentEquipmentUsageLog>(
+		const res = await axios.delete<IncidentEquipmentUsageLogDTO>(
 			url(`/api/mountains/${mountainId}/incidents/${incidentId}/equipmentUsageLogs/${logId}`)
 		);
 		return res.data;

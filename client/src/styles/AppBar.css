@@ -1,0 +1,32 @@
+.appbar {
+	background: var(--surface);
+	color: var(--text);
+	height: 4rem;
+	box-shadow: var(--shadow);
+	display: flex;
+	align-items: center;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.appbar-icon {
+	color: var(--text);
+	transition: color 0.2s;
+	height: 2rem;
+	width: 2rem;
+}
+.appbar-icon:hover {
+	color: var(--accent);
+}
+
+.appbar-btn {
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	background: transparent;
+	transition: background 0.2s;
+	border: none;
+	cursor: pointer;
+}
+.appbar-btn:hover {
+	background: var(--primary-light);
+}

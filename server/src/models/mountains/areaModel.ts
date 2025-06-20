@@ -30,11 +30,6 @@ class AreaModel {
 				mountainId,
 			},
 			include: {
-				// trails: true,
-				// huts: true,
-				// lifts: true,
-				// lodges: true,
-				// aidrooms: true,
 				locations: true,
 			},
 		});
@@ -43,6 +38,9 @@ class AreaModel {
 	static async findAllByMountain(mountainId: string) {
 		return await prisma.area.findMany({
 			where: { mountainId },
+			include: {
+				locations: true,
+			},
 		});
 	}
 

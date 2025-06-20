@@ -1,182 +1,247 @@
 import React, { useState } from 'react';
-import { EMPLOYEE_STATUS } from 'shared/types/enums';
-import { useEmployees } from '../../hooks/useEmployees';
+import { EMPLOYEE_STATUS, DEPARTMENT, EMPLOYEE_STATUS_LABELS, DEPARTMENT_LABELS } from '../../types/generated-enums';
 import type { EmployeeInputPayload } from '../../api/EmployeeAPI';
+import type { RoleDTO } from '../../types/index';
+import { formatPhoneNumber, validateEmail } from '../../utils/common/formatData';
+import { useMountain } from '../../contexts/MountainContext';
 import { useSnackbarContext } from '../../contexts/SnackbarContext';
 
-const emptyForm: EmployeeInputPayload = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    roleId: null,
-    employeeStatus: EMPLOYEE_STATUS.INACTIVE,
+type Props = {
+    form: EmployeeInputPayload;
+    roles: RoleDTO[];
+    groupedRoles: Record<string, RoleDTO[]>;
+    editingId: string | null;
+    error: string | null;
+    success: string | null;
+    loading?: boolean;
+    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+    onSubmit: (e: React.FormEvent) => void;
+    onCancel: () => void;
 };
 
-const fieldConfigs = [
-    {
-        label: 'First Name',
-        name: 'firstName',
-        type: 'text',
-        required: true,
-    },
-    {
-        label: 'Last Name',
-        name: 'lastName',
-        type: 'text',
-        required: true,
-    },
-    {
-        label: 'Email',
-        name: 'email',
-        type: 'email',
-        required: true,
-    },
-    {
-        label: 'Phone Number',
-        name: 'phoneNumber',
-        type: 'text',
-        required: false,
-    },
-    {
-        label: 'Role',
-        name: 'roleId',
-        type: 'role-select',
-        required: false,
-    },
-    {
-        label: 'Status',
-        name: 'employeeStatus',
-        type: 'status-select',
-        required: true,
-    },
-];
-
-const FormField = ({
-    field,
-    value,
-    onChange,
+export const EmployeeForm: React.FC<Props> = ({
+    form,
     groupedRoles,
-}: {
-    field: any;
-    value: any;
-    onChange: (e: React.ChangeEvent<any>) => void;
-    groupedRoles?: Record<string, any[]>;
+    editingId,
+    error,
+    success,
+    loading,
+    onChange,
+    onSubmit,
+    onCancel,
 }) => {
-    if (field.type === 'role-select') {
-        return (
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">{field.label}</label>
-                <select name="roleId" value={value ?? ''} onChange={onChange} className="dropdown">
-                    <option value="">Select Role</option>
-                    {groupedRoles &&
-                        Object.entries(groupedRoles).map(([department, roles]) => (
-                            <optgroup key={department} label={department}>
-                                {roles.map((opt) => (
-                                    <option key={opt.value} value={opt.value}>
-                                        {opt.label}
-                                    </option>
-                                ))}
-                            </optgroup>
-                        ))}
-                </select>
-            </div>
-        );
-    }
-    if (field.type === 'status-select') {
-        return (
-            <div className="mb-4">
-                <label className="block mb-1 font-semibold">{field.label}</label>
-                <select
-                    name="employeeStatus"
-                    value={value}
-                    onChange={onChange}
-                    className="dropdown"
-                >
-                    {Object.values(EMPLOYEE_STATUS).map((status) => (
-                        <option key={status} value={status}>
-                            {status.charAt(0) + status.slice(1).toLowerCase()}
-                        </option>
-                    ))}
-                </select>
-            </div>
-        );
-    }
-    return (
-        <div className="mb-4">
-            <label className="block mb-1 font-semibold">{field.label}</label>
-            <input
-                type={field.type}
-                name={field.name}
-                value={value}
-                onChange={onChange}
-                required={field.required}
-                className="w-full border rounded px-3 py-2"
-            />
-        </div>
-    );
-};
-
-const EmployeeForm: React.FC<{ onCreated?: () => void }> = ({ onCreated }) => {
-    const [form, setForm] = useState<EmployeeInputPayload>(emptyForm);
-    const [loading, setLoading] = useState(false);
-
-    const { filteredRoleOptions, createEmployee } = useEmployees();
+    const [fieldErrors, setFieldErrors] = useState<{ email?: string; phoneNumber?: string }>({});
+    const { mountains, selectedMountain } = useMountain();
     const { showSnackbar } = useSnackbarContext();
 
-    const groupedRoles = filteredRoleOptions.reduce((acc, role: { label: string; value: string; department?: string }) => {
-        const department = role.department || 'Other';
-        if (!acc[department]) acc[department] = [];
-        acc[department].push(role);
-        return acc;
-    }, {} as Record<string, typeof filteredRoleOptions>);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setForm((prev) => ({
-            ...prev,
-            [name]: name === 'roleId' ? (value === '' ? null : value) : value,
-        }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            await createEmployee({
-                ...form,
-                roleId: form.roleId ?? null,
-            });
-            setForm(emptyForm);
-            showSnackbar('Employee added successfully!', 'success');
-            if (onCreated) onCreated();
-        } catch {
-            showSnackbar('Error adding employee', 'error');
-        } finally {
-            setLoading(false);
+        if (name === 'phoneNumber') {
+            const digits = value.replace(/\D/g, '');
+            const formatted = formatPhoneNumber(digits);
+            onChange({
+                ...e,
+                target: {
+                    ...e.target,
+                    value: formatted,
+                    name,
+                },
+            } as React.ChangeEvent<HTMLInputElement>);
+        } else {
+            onChange(e);
         }
     };
 
+    const handleFormSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const errors: typeof fieldErrors = {};
+        if (form.email && !validateEmail(form.email)) {
+            errors.email = 'Please enter a valid email address.';
+        }
+        if (form.phoneNumber && !/^\d{3}-\d{3}-\d{4}$/.test(form.phoneNumber)) {
+            errors.phoneNumber = 'Phone number must be in the format 123-456-7890.';
+        }
+        setFieldErrors(errors);
+        if (Object.keys(errors).length === 0) {
+            onSubmit(e);
+        } else {
+            Object.values(errors).forEach(msg => showSnackbar(msg, 'error'));
+        }
+    };
+
+    const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        const errors: typeof fieldErrors = { ...fieldErrors };
+
+        if (name === 'email') {
+            if (!value) {
+                delete errors.email;
+            } else if (!validateEmail(value)) {
+                errors.email = 'Invalid email';
+                showSnackbar('Invalid email', 'error');
+            } else {
+                delete errors.email;
+            }
+        }
+        if (name === 'phoneNumber') {
+            if (!value) {
+                delete errors.phoneNumber;
+            } else if (!/^\d{3}-\d{3}-\d{4}$/.test(value)) {
+                errors.phoneNumber = 'Phone number must be 123-456-7890.';
+                showSnackbar('Phone number must be 123-456-7890.', 'error');
+            } else {
+                delete errors.phoneNumber;
+            }
+        }
+        setFieldErrors(errors);
+    };
+
+    React.useEffect(() => {
+        if (error) showSnackbar(error, 'error');
+    }, [error, showSnackbar]);
+    React.useEffect(() => {
+        if (success) showSnackbar(success, 'success');
+    }, [success, showSnackbar]);
+
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            {fieldConfigs.map((field) => (
-                <FormField
-                    key={field.name}
-                    field={field}
-                    value={form[field.name as keyof EmployeeInputPayload]}
-                    onChange={handleChange}
-                    groupedRoles={field.type === 'role-select' ? groupedRoles : undefined}
-                />
-            ))}
-            <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-                disabled={loading}
-            >
-                {loading ? 'Adding...' : 'Add Employee'}
-            </button>
-        </form>
+        <div className="form-container">
+            <form onSubmit={handleFormSubmit} className="form-row">
+                {/* Row 1: First Name, Last Name, Email */}
+                <div className="mb-4 grid gap-4 w-full" style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
+                    <div>
+                        <label className="block mb-1 font-semibold">First Name</label>
+                        <input
+                            className="input"
+                            name="firstName"
+                            type="text"
+                            value={form.firstName}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-1 font-semibold">Last Name</label>
+                        <input
+                            className="input"
+                            name="lastName"
+                            type="text"
+                            value={form.lastName}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </div>
+                    <div className="relative">
+                        <label className="block mb-1 font-semibold">Email</label>
+                        <input
+                            className="input"
+                            name="email"
+                            type="email"
+                            value={form.email}
+                            onChange={handleInputChange}
+                            onBlur={handleInputBlur}
+                        />
+                    </div>
+                </div>
+                {/* Row 2: Phone Number, Primary Department, Status */}
+                <div className="mb-4 grid gap-4 w-full" style={{ gridTemplateColumns: '1fr 1fr 2fr 1fr' }}>
+                    <div className="relative">
+                        <label className="block mb-1 font-semibold">Phone Number</label>
+                        <input
+                            className="input"
+                            name="phoneNumber"
+                            type="text"
+                            value={form.phoneNumber}
+                            onChange={handleInputChange}
+                            onBlur={handleInputBlur}
+                            inputMode="numeric"
+                            maxLength={12}
+                            pattern="\d{3}-\d{3}-\d{4}"
+                            placeholder="123-456-7890"
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-1 font-semibold">Primary Department</label>
+                        <select
+                            className="dropdown"
+                            name="primaryDepartment"
+                            value={form.primaryDepartment ?? ''}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            <option value="">Select Department</option>
+                            {Object.entries(DEPARTMENT_LABELS).map(([key, label]) => (
+                                <option key={key} value={key}>
+                                    {label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block mb-1 font-semibold">Role</label>
+                        <select
+                            className="dropdown"
+                            name="roleId"
+                            value={form.roleId ?? ''}
+                            onChange={handleInputChange}
+                            required
+                            disabled={!form.primaryDepartment}
+                        >
+                            <option value="">Select Role</option>
+                            {form.primaryDepartment &&
+                                groupedRoles[form.primaryDepartment] &&
+                                groupedRoles[form.primaryDepartment].map((role) => (
+                                    <option key={role.id} value={role.id}>
+                                        {role.title} {role.position ? `- ${role.position}` : ''}
+                                    </option>
+                                ))}
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block mb-1 font-semibold">Status</label>
+                        <select
+                            className="dropdown"
+                            name="status"
+                            value={form.status}
+                            onChange={handleInputChange}
+                            required
+                        >
+                            {Object.entries(EMPLOYEE_STATUS_LABELS).map(([key, label]) => (
+                                <option key={key} value={key}>
+                                    {label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+                <div className="mb-4 grid gap-4 w-full" style={{ gridTemplateColumns: '1fr' }}>
+                    <label className="block mb-1 font-semibold">Assigned Mountain</label>
+                    <select
+                        className="dropdown"
+                        name="mountainId"
+                        value={selectedMountain ? selectedMountain.id : form.mountainId ?? ''}
+                        onChange={handleInputChange}
+                        disabled={!!selectedMountain}
+                        required
+                    >
+                        <option value="">Select Mountain</option>
+                        {mountains.map((mtn) => (
+                            <option key={mtn.id} value={mtn.id}>
+                                {mtn.name} ({mtn.city}, {mtn.state})
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="form-button-center">
+                    <button type="submit" className="button-primary form-button-quarter" disabled={loading}>
+                        {editingId ? 'Update' : 'Add Employee'}
+                    </button>
+                    {editingId && (
+                        <button type="button" onClick={onCancel} className="button-secondary form-button-quarter">
+                            Cancel
+                        </button>
+                    )}
+                </div>
+            </form>
+        </div>
     );
 };
-
-export default EmployeeForm;

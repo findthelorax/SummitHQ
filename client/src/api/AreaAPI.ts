@@ -1,6 +1,6 @@
 import axios from 'axios';
-import type { Area } from 'shared/types';
-import type { AREA_TYPE } from 'shared/types/enums';
+import type { AreaFull } from '../types/index';
+import type { AREA_TYPE } from '../types/generated-enums';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
@@ -16,27 +16,27 @@ export type AreaInputPayload = {
 
 export const areaApi = {
 	async createArea(mountainId: string, area: AreaInputPayload) {
-		const res = await axios.post<Area>(url(`/api/mountains/${mountainId}/areas`), area);
+		const res = await axios.post<AreaFull>(url(`/api/mountains/${mountainId}/areas`), area);
 		return res.data;
 	},
 
 	async getAreas(mountainId: string) {
-		const res = await axios.get<Area[]>(url(`/api/mountains/${mountainId}/areas`));
+		const res = await axios.get<AreaFull[]>(url(`/api/mountains/${mountainId}/areas`));
 		return res.data;
 	},
 
 	async getArea(mountainId: string, areaId: string) {
-		const res = await axios.get<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
+		const res = await axios.get<AreaFull>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
 		return res.data;
 	},
 
 	async updateArea(mountainId: string, areaId: string, updated: Partial<AreaInputPayload>) {
-		const res = await axios.put<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`), updated);
+		const res = await axios.put<AreaFull>(url(`/api/mountains/${mountainId}/areas/${areaId}`), updated);
 		return res.data;
 	},
 
 	async deleteArea(mountainId: string, areaId: string) {
-		const res = await axios.delete<Area>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
+		const res = await axios.delete<AreaFull>(url(`/api/mountains/${mountainId}/areas/${areaId}`));
 		return res.data;
 	},
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Equipment } from 'shared/types';
+import type { EquipmentDTO } from '../types/index';
 
 export type EquipmentInputPayload = {
     name: string;
@@ -8,11 +8,13 @@ export type EquipmentInputPayload = {
     status?: string;
     description?: string;
     picture?: string;
-    cost?: number;
+    cost?: number | 0;
     latitude?: number | null;
     longitude?: number | null;
     mountainId?: string;
     locationId?: string | null;
+    dateAdded?: string | Date;
+    areaId?: string | undefined;
 };
 
 const IP = import.meta.env.VITE_BACKEND_IP;
@@ -22,22 +24,22 @@ const url = (path: string) => `${BASE_URL}${path}`;
 
 export const equipmentApi = {
     async createEquipment(equipment: EquipmentInputPayload) {
-        const res = await axios.post<Equipment>(url(`/api/equipment`), equipment);
+        const res = await axios.post<EquipmentDTO>(url(`/api/equipment`), equipment);
         return res.data;
     },
 
     async getAllEquipment() {
-        const res = await axios.get<Equipment[]>(url(`/api/equipment`));
+        const res = await axios.get<EquipmentDTO[]>(url(`/api/equipment`));
         return res.data;
     },
 
     async getEquipment(equipmentId: string) {
-        const res = await axios.get<Equipment>(url(`/api/equipment/${equipmentId}`));
+        const res = await axios.get<EquipmentDTO>(url(`/api/equipment/${equipmentId}`));
         return res.data;
     },
 
     async updateEquipment(equipmentId: string, updated: Partial<EquipmentInputPayload>) {
-        const res = await axios.put<Equipment>(url(`/api/equipment/${equipmentId}`), updated);
+        const res = await axios.put<EquipmentDTO>(url(`/api/equipment/${equipmentId}`), updated);
         return res.data;
     },
 
@@ -47,36 +49,36 @@ export const equipmentApi = {
     },
 
     async getEquipmentByMountain(mountainId: string) {
-        const res = await axios.get<Equipment[]>(url(`/api/equipment?mountainId=${mountainId}`));
+        const res = await axios.get<EquipmentDTO[]>(url(`/api/equipment?mountainId=${mountainId}`));
         return res.data;
     },
 
     async assignToMountain(equipmentId: string, mountainId: string) {
-        const res = await axios.post<Equipment>(url(`/api/equipment/${equipmentId}/assign/${mountainId}`));
+        const res = await axios.post<EquipmentDTO>(url(`/api/equipment/${equipmentId}/assign/${mountainId}`));
         return res.data;
     },
 
     async removeFromMountain(equipmentId: string, mountainId: string) {
-        const res = await axios.delete<Equipment>(url(`/api/equipment/${equipmentId}/remove/${mountainId}`));
+        const res = await axios.delete<EquipmentDTO>(url(`/api/equipment/${equipmentId}/remove/${mountainId}`));
         return res.data;
     },
 
     async assignToLocation(equipmentId: string, mountainId: string, locationId: string) {
-        const res = await axios.post<Equipment>(
+        const res = await axios.post<EquipmentDTO>(
             url(`/api/equipment/${equipmentId}/assign-location/${mountainId}/${locationId}`)
         );
         return res.data;
     },
 
     async removeFromLocation(equipmentId: string, mountainId: string, locationId: string) {
-        const res = await axios.delete<Equipment>(
+        const res = await axios.delete<EquipmentDTO>(
             url(`/api/equipment/${equipmentId}/remove-location/${mountainId}/${locationId}`)
         );
         return res.data;
     },
 
     async moveToLocation(equipmentId: string, mountainId: string, newLocationId: string) {
-        const res = await axios.post<Equipment>(
+        const res = await axios.post<EquipmentDTO>(
             url(`/api/equipment/${equipmentId}/move-location/${mountainId}`),
             { newLocationId }
         );

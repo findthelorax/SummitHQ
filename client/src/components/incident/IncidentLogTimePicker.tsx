@@ -1,4 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
 type IncidentLogTimePickerProps = {
     label: string;
@@ -15,54 +19,101 @@ const IncidentLogTimePicker: React.FC<IncidentLogTimePickerProps> = ({
     handleTimeChange,
     clear,
 }) => {
-    const [selectedTime, setSelectedTime] = useState<string>('');
-    const prevClear = useRef<boolean | undefined>(undefined);
+    const [open, setOpen] = React.useState(false);
+    const [pickerValue, setPickerValue] = React.useState<string | null>(value ?? null);
+    const lastConfirmed = React.useRef<string | null>(value ?? null);
 
-    useEffect(() => {
-        setSelectedTime(value || '');
+    React.useEffect(() => {
+        setPickerValue(value ?? null);
+        lastConfirmed.current = value ?? null;
     }, [value]);
 
-    useEffect(() => {
-        if (clear && !prevClear.current) {
-            setSelectedTime('');
-            handleTimeChange(name, null);
-        }
-        prevClear.current = clear;
-    }, [clear, name, handleTimeChange]);
-
-    const setCurrentTime = () => {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString('en-GB', { hour12: false }).slice(0, 8);
-        setSelectedTime(timeString);
-        handleTimeChange(name, timeString);
+    const handleChange = (newValue: any) => {
+        setPickerValue(newValue ? dayjs(newValue).format('hh:mm A') : null);
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const val = e.target.value;
-        setSelectedTime(val);
-        handleTimeChange(name, val || null);
+    const handleAccept = (newValue: any) => {
+        const formatted = newValue ? dayjs(newValue).format('hh:mm A') : null;
+        lastConfirmed.current = formatted;
+        handleTimeChange(name, formatted);
+        setOpen(false);
+    };
+
+    const handleClose = () => {
+        // If closed by cancel, revert to last confirmed value
+        setPickerValue(lastConfirmed.current);
+        setOpen(false);
+    };
+
+    const handleNow = () => {
+        const now = dayjs();
+        setPickerValue(now.format('hh:mm A'));
+        handleTimeChange(name, now.format('hh:mm A'));
     };
 
     return (
-        <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">{label}</label>
-            <div className="flex items-center gap-2">
-                <input
-                    type="time"
-                    step="1"
-                    value={selectedTime}
-                    onChange={handleInputChange}
-                    className="border rounded px-2 py-1 text-sm w-[120px] dark:bg-gray-900 dark:text-white"
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <TimePicker
+                    label={label}
+                    value={pickerValue ? dayjs(pickerValue, ['hh:mm A', 'HH:mm']) : null}
+                    onChange={handleChange}
+                    onAccept={handleAccept}
+                    onClose={handleClose}
+                    ampm={true}
+                    open={open}
+                    onOpen={() => setOpen(true)}
+                    closeOnSelect={false}
+                    slotProps={{
+                        textField: {
+                            fullWidth: true,
+                            variant: "outlined",
+                            size: "small",
+                            onClick: () => setOpen(true),
+                            style: { cursor: "pointer" },
+                            disabled: clear,
+                        },
+                        actionBar: {
+                            actions: ['cancel', 'accept'],
+                            sx: {
+                                '& button': {
+                                    background: '#1976d2',
+                                    color: '#fff',
+                                    borderRadius: 2,
+                                    padding: '6px 16px',
+                                    margin: '0 8px',
+                                    fontWeight: 600,
+                                    fontSize: 14,
+                                    textTransform: 'none',
+                                    '&:hover': {
+                                        background: '#1565c0',
+                                    },
+                                },
+                            },
+                        },
+                    }}
+                    disabled={clear}
                 />
                 <button
                     type="button"
-                    onClick={setCurrentTime}
-                    className="px-2 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded text-xs"
+                    onClick={handleNow}
+                    disabled={clear}
+                    style={{
+                        marginLeft: 8,
+                        padding: '6px 12px',
+                        borderRadius: 4,
+                        border: '1px solid #1976d2',
+                        background: '#1976d2',
+                        color: '#fff',
+                        cursor: 'pointer',
+                        fontSize: 14,
+                        height: 36,
+                    }}
                 >
                     Now
                 </button>
             </div>
-        </div>
+        </LocalizationProvider>
     );
 };
 

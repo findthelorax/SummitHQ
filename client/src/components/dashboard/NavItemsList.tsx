@@ -7,16 +7,8 @@ import { GiMushroomHouse, GiTrail, GiTreasureMap } from 'react-icons/gi';
 import { PiFirstAidDuotone, PiReadCvLogoDuotone } from 'react-icons/pi';
 import { TbBuildingHospital, TbAerialLift } from 'react-icons/tb';
 
-const navItemClass = (selected: boolean) =>
-	`flex items-center mx-4 my-1 px-4 py-2 rounded-lg text-lg transition-colors
-    ${
-		selected
-			? 'bg-[#2b0845] text-white'
-			: 'text-gray-700 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-gray-700'
-	}`;
-
-const iconClass = 'w-8 h-8 flex-shrink-0';
-const labelWidth = 'w-40';
+const navItemClass = (selected: boolean) => `nav-item${selected ? ' nav-item-selected' : ''}`;
+const iconClass = 'nav-icon';
 
 interface NavListProps {
 	open: boolean;
@@ -35,15 +27,13 @@ const navItems: NavItemConfig[] = [
 	{ to: '/map', label: 'Map', icon: <GiTreasureMap className={iconClass} /> },
 
 	{ dividerBefore: true, to: '/incidents', label: 'Incidents', icon: <PiFirstAidDuotone className={iconClass} /> },
-	{ to: '/incidentLogs', label: 'Incident Logs', icon: <PiFirstAidDuotone className={iconClass} /> },
 	{ to: '/areas', label: 'Areas', icon: <LiaMountainSolid className={iconClass} /> },
-	{ to: '/areaLocations', label: 'Area Location', icon: <LiaMountainSolid className={iconClass} /> },
 
-	{ dividerBefore: true, to: '/trails', label: 'Trails', icon: <GiTrail className={iconClass} /> },
+	{ dividerBefore: true, to: '/aidRooms', label: 'Aid Rooms', icon: <TbBuildingHospital className={iconClass} /> },
+	{ to: '/huts', label: 'Huts', icon: <GiMushroomHouse className={iconClass} /> },
 	{ to: '/lifts', label: 'Lifts', icon: <TbAerialLift className={iconClass} /> },
 	{ to: '/lodges', label: 'Lodges', icon: <MdFoodBank className={iconClass} /> },
-	{ to: '/huts', label: 'Huts', icon: <GiMushroomHouse className={iconClass} /> },
-	{ to: '/aidRooms', label: 'Aid Rooms', icon: <TbBuildingHospital className={iconClass} /> },
+	{ to: '/trails', label: 'Trails', icon: <GiTrail className={iconClass} /> },
 	{ to: '/equipment', label: 'Equipment', icon: <MdSnowmobile className={iconClass} /> },
 
 	{ dividerBefore: true, to: '/employees', label: 'Employees', icon: <FaSkiing className={iconClass} /> },
@@ -60,14 +50,7 @@ const navItems: NavItemConfig[] = [
 const NavItem: React.FC<{ item: NavItemConfig; open: boolean; selected: boolean }> = ({ item, open, selected }) => (
 	<Link to={item.to} className={navItemClass(selected)}>
 		{item.icon}
-		<span
-			className={`
-                inline-block overflow-hidden transition-all duration-300 whitespace-nowrap text-lg -mt-1
-                ${open ? `${labelWidth} opacity-100 ml-2` : 'w-0 opacity-0 ml-0'}
-            `}
-		>
-			{item.label}
-		</span>
+		<span className={`nav-label ${open ? 'nav-label-open' : 'nav-label-closed'}`}>{item.label}</span>
 	</Link>
 );
 
@@ -82,7 +65,7 @@ export const MainListItems: React.FC<NavListProps> = ({ open }) => {
 				lastDivider = !!item.dividerBefore;
 				return (
 					<React.Fragment key={item.to}>
-						{divider && <div className="border-t border-gray-300 my-2" />}
+						{divider && <div className="nav-divider" />}
 						<NavItem item={item} open={open} selected={selected} />
 					</React.Fragment>
 				);

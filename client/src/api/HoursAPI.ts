@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Hours } from 'shared/types';
+import type { HoursDTO } from '../types/index';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
@@ -10,29 +10,29 @@ const url = (path: string) => `${BASE_URL}${path}`;
 export const hoursApi = {
 	async createHours(
 		mountainId: string,
-		hours: Omit<Hours, 'id' | 'mountainId' | 'location' | 'createdAt' | 'updatedAt'>
+		hours: Omit<HoursDTO, 'id' | 'mountainId' | 'location' | 'createdAt' | 'updatedAt'>
 	) {
-		const res = await axios.post<Hours>(url(`/api/mountains/${mountainId}/hours`), hours);
+		const res = await axios.post<HoursDTO>(url(`/api/mountains/${mountainId}/hours`), hours);
 		return res.data;
 	},
 
 	async getHours(mountainId: string) {
-		const res = await axios.get<Hours[]>(url(`/api/mountains/${mountainId}/hours`));
+		const res = await axios.get<HoursDTO[]>(url(`/api/mountains/${mountainId}/hours`));
 		return res.data;
 	},
 
 	async getHour(mountainId: string, hoursId: string) {
-		const res = await axios.get<Hours>(url(`/api/mountains/${mountainId}/hours/${hoursId}`));
+		const res = await axios.get<HoursDTO>(url(`/api/mountains/${mountainId}/hours/${hoursId}`));
 		return res.data;
 	},
 
-	async updateHours(mountainId: string, hoursId: string, updated: Partial<Hours>) {
-		const res = await axios.put<Hours>(url(`/api/mountains/${mountainId}/hours/${hoursId}`), updated);
+	async updateHours(mountainId: string, hoursId: string, updated: Partial<HoursDTO>) {
+		const res = await axios.put<HoursDTO>(url(`/api/mountains/${mountainId}/hours/${hoursId}`), updated);
 		return res.data;
 	},
 
 	async deleteHours(mountainId: string, hoursId: string) {
-		const res = await axios.delete<Hours>(url(`/api/mountains/${mountainId}/hours/${hoursId}`));
+		const res = await axios.delete<HoursDTO>(url(`/api/mountains/${mountainId}/hours/${hoursId}`));
 		return res.data;
 	},
 };

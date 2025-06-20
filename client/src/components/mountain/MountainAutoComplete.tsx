@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import type { Mountain } from 'shared/types';
+import type { MountainDTO } from '../../types/index';
 
 type MountainAutocompleteProps = {
-    options: Mountain[];
-    selectedValue: Mountain | null;
-    setSelectedValue: (mountain: Mountain | null) => void;
+    options: MountainDTO[];
+    selectedValue: MountainDTO | null;
+    setSelectedValue: (mountain: MountainDTO | null) => void;
     label?: string;
     className?: string;
 };
 
-const getDisplayString = (m: Mountain) =>
+const getDisplayString = (m: MountainDTO) =>
     `${m.name}${m.city ? ' - ' + m.city : ''}${m.state ? ', ' + m.state : ''}`;
 
 const MountainAutocomplete: React.FC<MountainAutocompleteProps> = ({
@@ -35,7 +35,7 @@ const MountainAutocomplete: React.FC<MountainAutocompleteProps> = ({
             ? options
             : options.filter((option) => getDisplayString(option).toLowerCase().includes(inputValue.toLowerCase()));
 
-    const handleSelect = (mountain: Mountain) => {
+    const handleSelect = (mountain: MountainDTO) => {
         setInputValue(getDisplayString(mountain));
         setSelectedValue(mountain);
         setShowDropdown(false);
@@ -55,7 +55,7 @@ const MountainAutocomplete: React.FC<MountainAutocompleteProps> = ({
                 onFocus={() => setShowDropdown(true)}
                 onBlur={() => setTimeout(() => setShowDropdown(false), 120)}
                 placeholder={label}
-                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
+                className="input"
                 autoComplete="off"
                 required
             />
@@ -69,16 +69,17 @@ const MountainAutocomplete: React.FC<MountainAutocompleteProps> = ({
                     inputRef.current?.focus();
                 }}
             >
-                {showDropdown ? <FaChevronUp className="text-blue-600" /> : <FaChevronDown className="text-blue-600" />}
+                {showDropdown ? <FaChevronUp style={{ color: 'var(--primary)' }} /> : <FaChevronDown style={{ color: 'var(--primary)' }} />}
             </button>
             {showDropdown && filteredOptions.length > 0 && (
-                <ul className="absolute z-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded w-full max-h-60 overflow-y-auto shadow mt-1">
+                <ul className="dropdown-list">
                     {filteredOptions.map((option) => (
                         <li
                             key={option.id}
-                            className={`px-4 py-2 cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-700 ${
-                                selectedValue && option.id === selectedValue.id ? 'font-bold' : ''
-                            }`}
+                            className={
+                                'dropdown-option' +
+                                (selectedValue && option.id === selectedValue.id ? ' selected' : '')
+                            }
                             onMouseDown={() => handleSelect(option)}
                         >
                             {getDisplayString(option)}
@@ -87,7 +88,7 @@ const MountainAutocomplete: React.FC<MountainAutocompleteProps> = ({
                 </ul>
             )}
             {showDropdown && filteredOptions.length === 0 && (
-                <div className="absolute z-10 mt-1 w-full bg-white dark:bg-gray-800 border rounded shadow-lg px-4 py-2 text-gray-500">
+                <div className="dropdown-no-options">
                     No Mountains Available
                 </div>
             )}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { EmployeeMountainAssignment } from 'shared/types';
+import type { EmployeeMountainAssignmentDTO } from '../types/index';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
@@ -13,7 +13,7 @@ export type EmployeeMountainAssignmentInputPayload = {
 
 export const employeeMountainAssignmentApi = {
     async createAssignment(employeeId: string, payload: EmployeeMountainAssignmentInputPayload) {
-        const res = await axios.post<EmployeeMountainAssignment>(
+        const res = await axios.post<EmployeeMountainAssignmentDTO>(
             url(`/api/employees/${employeeId}/mountain-assignments`),
             payload
         );
@@ -21,12 +21,12 @@ export const employeeMountainAssignmentApi = {
     },
 
     async getAssignments() {
-        const res = await axios.get<EmployeeMountainAssignment[]>(url(`/api/employees/mountain-assignments`));
+        const res = await axios.get<EmployeeMountainAssignmentDTO[]>(url(`/api/employees/mountain-assignments`));
         return res.data;
     },
 
     async getAssignment(employeeId: string, mountainAssignmentId: string) {
-        const res = await axios.get<EmployeeMountainAssignment>(
+        const res = await axios.get<EmployeeMountainAssignmentDTO>(
             url(`/api/employees/${employeeId}/mountain-assignments/${mountainAssignmentId}`)
         );
         return res.data;

@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { incidentApi } from '../api/IncidentsAPI';
-import type { Incident } from 'shared/types';
-import type { IncidentInputPayload } from '../api/IncidentsAPI';
+import { incidentApi } from '../api/IncidentAPI';
+import type { IncidentDTO } from '../types/index';
+import type { IncidentInputPayload } from '../api/IncidentAPI';
 
 export function useIncidents(mountainId?: string) {
-    const [incidents, setIncidents] = useState<Incident[]>([]);
+    const [incidents, setIncidents] = useState<IncidentDTO[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchIncidents = useCallback(async () => {
@@ -33,9 +33,10 @@ export function useIncidents(mountainId?: string) {
 
     const updateIncident = useCallback(
         async (incidentId: string, updated: Partial<IncidentInputPayload>) => {
-            if (!mountainId) return;
-            await incidentApi.updateIncident(mountainId, incidentId, updated);
+            if (!mountainId) return Promise.reject('No mountainId');
+            const updatedIncident = await incidentApi.updateIncident(mountainId, incidentId, updated);
             await fetchIncidents();
+            return updatedIncident;
         },
         [fetchIncidents, mountainId]
     );

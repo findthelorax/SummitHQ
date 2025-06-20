@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Employee" ADD COLUMN     "endDate" TIMESTAMP(3),
+ADD COLUMN     "startDate" TIMESTAMP(3),
+ALTER COLUMN "email" DROP NOT NULL,
+ALTER COLUMN "phoneNumber" DROP NOT NULL;

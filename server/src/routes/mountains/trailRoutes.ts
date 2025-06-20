@@ -4,6 +4,7 @@ import TrailCheckController from '../../controllers/logs/trailCheckController.js
 
 const router = Router();
 
+router.get('/trails', TrailController.getAllTrails);
 router.post('/:mountainId/trails', TrailController.createTrail);
 router.get('/:mountainId/trails', TrailController.getTrails);
 router.get('/:mountainId/trails/:trailId', TrailController.getTrail);

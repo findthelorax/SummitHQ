@@ -2,95 +2,101 @@ import { Request, Response } from 'express';
 import { prisma } from '../../config/database.js';
 import LiftModel from '../../models/mountains/liftModel.js';
 import { asyncWrapper } from '../../utils/asyncWrapper.js';
-import STATUS from '../../../../shared/types/enums.js';
+import { locationWithAreaInclude } from '../../utils/prismaIncludes.js';
 
 class LiftController {
-    createLift = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId } = req.params;
-        const data = req.body;
+	createLift = asyncWrapper(async (req: Request, res: Response) => {
+		const { mountainId } = req.params;
+		const { areaId, ...liftData } = req.body;
 
-        if (!mountainId) {
-            res.status(400).json({ message: 'Mountain ID is required' });
-            return;
-        }
+		if (!mountainId) {
+			res.status(400).json({ message: 'Mountain ID is required' });
+			return;
+		}
 
-        const mountainExists = await prisma.mountain.findUnique({
-            where: { id: mountainId },
-        });
-        if (!mountainExists) {
-            res.status(404).json({ message: 'Mountain not found' });
-        }
-        
-        const lift = await LiftModel.create(mountainId, data);
-        res.status(201).json(lift);
-        return;
-    });
+		const mountainExists = await prisma.mountain.findUnique({
+			where: { id: mountainId },
+		});
+		if (!mountainExists) {
+			res.status(404).json({ message: 'Mountain not found' });
+		}
 
-    getLift = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId, liftId } = req.params;
+		const lift = await LiftModel.create(mountainId, liftData, areaId);
+		res.status(201).json(lift);
+		return;
+	});
 
-        if (!mountainId || !liftId) {
-            res.status(400).json({ message: 'Mountain ID and Lift ID are required' });
-            return;
-        }
+	getLift = asyncWrapper(async (req: Request, res: Response) => {
+		const { mountainId, liftId } = req.params;
 
-        const lift = await LiftModel.findByIdAndMountain(liftId, mountainId);
-        if (!lift) {
-            res.status(404).json({ message: 'Lift not found' });
-            return;
-        }
+		if (!mountainId || !liftId) {
+			res.status(400).json({ message: 'Mountain ID and Lift ID are required' });
+			return;
+		}
 
-        res.status(200).json(lift);
-    });
+		const lift = await LiftModel.findByIdAndMountain(liftId, mountainId);
 
-    getLifts = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId } = req.params;
+		if (!lift) {
+			res.status(404).json({ message: 'Lift not found' });
+			return;
+		}
 
-        if (!mountainId) {
-            res.status(400).json({ message: 'Mountain ID is required' });
-            return;
-        }
+		res.status(200).json(lift);
+	});
 
-        const lifts = await LiftModel.findAllByMountain(mountainId);
-        res.status(200).json(lifts);
-    });
+	getAllLifts = asyncWrapper(async (req: Request, res: Response) => {
+		const lifts = await LiftModel.findAll();
+		res.status(200).json(lifts);
+	});
 
-    updateLift = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId, liftId } = req.params;
-        const data = req.body;
+	getLifts = asyncWrapper(async (req: Request, res: Response) => {
+		const { mountainId } = req.params;
 
-        if (!mountainId || !liftId) {
-            res.status(400).json({ message: 'Mountain ID and Lift ID are required' });
-            return;
-        }
+		if (!mountainId) {
+			res.status(400).json({ message: 'Mountain ID is required' });
+			return;
+		}
 
-        const liftExists = await LiftModel.findByIdAndMountain(liftId, mountainId);
-        if (!liftExists) {
-            res.status(404).json({ message: 'Lift not found' });
-            return;
-        }
+		const lifts = await LiftModel.findAllByMountain(mountainId);
+		res.status(200).json(lifts);
+	});
 
-        const updatedLift = await LiftModel.updateById(liftId, data);
-        res.status(200).json(updatedLift);
-    });
+	updateLift = asyncWrapper(async (req: Request, res: Response) => {
+		const { mountainId, liftId } = req.params;
+		const data = req.body;
 
-    deleteLift = asyncWrapper(async (req: Request, res: Response) => {
-        const { mountainId, liftId } = req.params;
+		if (!mountainId || !liftId) {
+			res.status(400).json({ message: 'Mountain ID and Lift ID are required' });
+			return;
+		}
 
-        if (!mountainId || !liftId) {
-            res.status(400).json({ message: 'Mountain ID and Lift ID are required' });
-            return;
-        }
+		const liftExists = await LiftModel.findByIdAndMountain(liftId, mountainId);
+		if (!liftExists) {
+			res.status(404).json({ message: 'Lift not found' });
+			return;
+		}
 
-        const liftExists = await LiftModel.findByIdAndMountain(liftId, mountainId);
-        if (!liftExists) {
-            res.status(404).json({ message: 'Lift not found' });
-            return;
-        }
+		const updatedLift = await LiftModel.updateById(liftId, data);
+		res.status(200).json(updatedLift);
+	});
 
-        await LiftModel.deleteById(liftId);
-        res.status(204).send();
-    });
+	deleteLift = asyncWrapper(async (req: Request, res: Response) => {
+		const { mountainId, liftId } = req.params;
+
+		if (!mountainId || !liftId) {
+			res.status(400).json({ message: 'Mountain ID and Lift ID are required' });
+			return;
+		}
+
+		const liftExists = await LiftModel.findByIdAndMountain(liftId, mountainId);
+		if (!liftExists) {
+			res.status(404).json({ message: 'Lift not found' });
+			return;
+		}
+
+		await LiftModel.deleteById(liftId);
+		res.status(204).send();
+	});
 }
 
 export default new LiftController();

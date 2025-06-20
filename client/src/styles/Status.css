@@ -1,0 +1,55 @@
+.status-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-toggle-label {
+    min-width: 3.5rem;
+    font-size: 0.95em;
+    font-weight: 500;
+    color: var(--text-invert);
+}
+
+.status-toggle-btn {
+    @apply text-sm rounded;
+    padding: 0.25rem .5rem;
+    border: 1px solid transparent;
+    font-size: 0.95em;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    color: var(--text-invert);
+}
+
+.status-toggle-open {
+    background: var(--success);
+    color: var(--text-invert);
+}
+.status-toggle-open:hover {
+    background: var(--success-dark);
+}
+
+.status-toggle-close {
+    background: var(--danger);
+    color: var(--text-invert);
+}
+.status-toggle-close:hover {
+    background: var(--danger-dark);
+}
+
+.status-dropdown-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-dropdown {
+    min-width: 7rem;
+    max-width: 12rem;
+    font-size: 0.95em;
+    font-weight: 500;
+}

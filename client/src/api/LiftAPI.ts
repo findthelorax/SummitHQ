@@ -1,6 +1,6 @@
 import axios from 'axios';
-import type { Lift, LiftCheck } from 'shared/types';
-import type { LIFT_TYPE, STATUS } from 'shared/types/enums';
+import type { LiftDTO, LiftCheckDTO } from '../types/index';
+import type { LIFT_TYPE, STATUS } from '../types/generated-enums';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
@@ -12,47 +12,64 @@ export type LiftInputPayload = {
 	name: string;
 	type: LIFT_TYPE;
 	status: STATUS;
-	capacity: number | null;
+	capacity: number | 0;
 	latitude: number | null;
 	longitude: number | null;
-	locationId: string;
+	areaId?: string | null;
 };
 
-export type LiftUpdatePayload = Partial<LiftInputPayload>;
-export type LiftCheckInputPayload = Omit<LiftCheck, 'id' | 'mountainId' | 'liftId' | 'createdAt' | 'updatedAt'>;
+export type LiftCheckInputPayload = {
+	employeeId: string;
+	liftId: string;
+	recordedAt: string;
+	notes?: string;
+};
 
 export const liftApi = {
-	async createLift(mountainId: string, lift: LiftInputPayload) {
-		const res = await axios.post<Lift>(url(`/api/mountains/${mountainId}/lifts`), lift);
+	async createLift(mountainId: string, lift: LiftInputPayload, areaId?: string) {
+		const payload = areaId ? { ...lift, areaId } : lift;
+		const res = await axios.post<LiftDTO>(url(`/api/mountains/${mountainId}/lifts`), payload);
 		return res.data;
 	},
+
 	async getLifts(mountainId: string) {
-		const res = await axios.get<Lift[]>(url(`/api/mountains/${mountainId}/lifts`));
+		const res = await axios.get<LiftDTO[]>(url(`/api/mountains/${mountainId}/lifts`));
 		return res.data;
 	},
+
+	async getAllLifts() {
+		const res = await axios.get<LiftDTO[]>(url(`/api/lifts`));
+		return res.data;
+	},
+
 	async getLift(mountainId: string, liftId: string) {
-		const res = await axios.get<Lift>(url(`/api/mountains/${mountainId}/lifts/${liftId}`));
+		const res = await axios.get<LiftDTO>(url(`/api/mountains/${mountainId}/lifts/${liftId}`));
 		return res.data;
 	},
-	async updateLift(mountainId: string, liftId: string, updates: LiftUpdatePayload) {
-		const res = await axios.put<Lift>(url(`/api/mountains/${mountainId}/lifts/${liftId}`), updates);
+
+	async updateLift(mountainId: string, liftId: string, updated: Partial<LiftInputPayload>) {
+		const res = await axios.put<LiftDTO>(url(`/api/mountains/${mountainId}/lifts/${liftId}`), updated);
 		return res.data;
 	},
+	
 	async deleteLift(mountainId: string, liftId: string) {
-		const res = await axios.delete<Lift>(url(`/api/mountains/${mountainId}/lifts/${liftId}`));
+		const res = await axios.delete<LiftDTO>(url(`/api/mountains/${mountainId}/lifts/${liftId}`));
 		return res.data;
 	},
 
 	async createLiftCheck(mountainId: string, liftId: string, check: LiftCheckInputPayload) {
-		const res = await axios.post<LiftCheck>(url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks`), check);
+		const res = await axios.post<LiftCheckDTO>(
+			url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks`),
+			check
+		);
 		return res.data;
 	},
 	async getLiftChecks(mountainId: string, liftId: string) {
-		const res = await axios.get<LiftCheck[]>(url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks`));
+		const res = await axios.get<LiftCheckDTO[]>(url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks`));
 		return res.data;
 	},
 	async getLiftCheck(mountainId: string, liftId: string, liftCheckId: string) {
-		const res = await axios.get<LiftCheck>(
+		const res = await axios.get<LiftCheckDTO>(
 			url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks/${liftCheckId}`)
 		);
 		return res.data;
@@ -63,14 +80,14 @@ export const liftApi = {
 		liftCheckId: string,
 		updates: Partial<LiftCheckInputPayload>
 	) {
-		const res = await axios.put<LiftCheck>(
+		const res = await axios.put<LiftCheckDTO>(
 			url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks/${liftCheckId}`),
 			updates
 		);
 		return res.data;
 	},
 	async deleteLiftCheck(mountainId: string, liftId: string, liftCheckId: string) {
-		const res = await axios.delete<LiftCheck>(
+		const res = await axios.delete<LiftCheckDTO>(
 			url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks/${liftCheckId}`)
 		);
 		return res.data;

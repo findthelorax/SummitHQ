@@ -1,6 +1,6 @@
 import axios from 'axios';
-import type { Location, Hours, Incident, Equipment, Area } from 'shared/types';
-import type { LOCATION_TYPE } from 'shared/types/enums';
+import type { LocationDTO, HoursDTO, IncidentDTO, EquipmentDTO, AreaDTO } from '../types/index';
+import type { LOCATION_TYPE } from '../types/generated-enums';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
@@ -16,46 +16,46 @@ export type LocationInputPayload = {
 
 export const locationApi = {
     async createLocation(mountainId: string, location: LocationInputPayload) {
-        const res = await axios.post<Location>(url(`/api/mountains/${mountainId}/locations`), location);
+        const res = await axios.post<LocationDTO>(url(`/api/mountains/${mountainId}/locations`), location);
         return res.data;
     },
 
     async getLocations(mountainId: string) {
-        const res = await axios.get<Location[]>(url(`/api/mountains/${mountainId}/locations`));
+        const res = await axios.get<LocationDTO[]>(url(`/api/mountains/${mountainId}/locations`));
         return res.data;
     },
 
     async getLocation(mountainId: string, locationId: string) {
-        const res = await axios.get<Location>(url(`/api/mountains/${mountainId}/locations/${locationId}`));
+        const res = await axios.get<LocationDTO>(url(`/api/mountains/${mountainId}/locations/${locationId}`));
         return res.data;
     },
 
     async updateLocation(mountainId: string, locationId: string, updated: Partial<LocationInputPayload>) {
-        const res = await axios.put<Location>(url(`/api/mountains/${mountainId}/locations/${locationId}`), updated);
+        const res = await axios.put<LocationDTO>(url(`/api/mountains/${mountainId}/locations/${locationId}`), updated);
         return res.data;
     },
 
     async deleteLocation(mountainId: string, locationId: string) {
-        const res = await axios.delete<Location>(url(`/api/mountains/${mountainId}/locations/${locationId}`));
+        const res = await axios.delete<LocationDTO>(url(`/api/mountains/${mountainId}/locations/${locationId}`));
         return res.data;
     },
 
     async addLocationHours(
         mountainId: string,
         locationId: string,
-        hours: Omit<Hours, 'id' | 'locationId' | 'location' | 'createdAt' | 'updatedAt'>
+        hours: Omit<HoursDTO, 'id' | 'locationId' | 'location' | 'createdAt' | 'updatedAt'>
     ) {
-        const res = await axios.post<Hours>(url(`/api/mountains/${mountainId}/locations/${locationId}/hours`), hours);
+        const res = await axios.post<HoursDTO>(url(`/api/mountains/${mountainId}/locations/${locationId}/hours`), hours);
         return res.data;
     },
 
     async getLocationHours(mountainId: string, locationId: string) {
-        const res = await axios.get<Hours[]>(url(`/api/mountains/${mountainId}/locations/${locationId}/hours`));
+        const res = await axios.get<HoursDTO[]>(url(`/api/mountains/${mountainId}/locations/${locationId}/hours`));
         return res.data;
     },
 
-    async updateLocationHour(mountainId: string, locationId: string, hourId: string, updated: Partial<Hours>) {
-        const res = await axios.put<Hours>(
+    async updateLocationHour(mountainId: string, locationId: string, hourId: string, updated: Partial<HoursDTO>) {
+        const res = await axios.put<HoursDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/hours/${hourId}`),
             updated
         );
@@ -63,7 +63,7 @@ export const locationApi = {
     },
 
     async deleteLocationHour(mountainId: string, locationId: string, hourId: string) {
-        const res = await axios.delete<Hours>(
+        const res = await axios.delete<HoursDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/hours/${hourId}`)
         );
         return res.data;
@@ -73,11 +73,11 @@ export const locationApi = {
         mountainId: string,
         locationId: string,
         incident: Omit<
-            Incident,
+            IncidentDTO,
             'id' | 'mountainId' | 'locationId' | 'location' | 'employees' | 'incidentEquipmentUsageLog'
         >
     ) {
-        const res = await axios.post<Incident>(
+        const res = await axios.post<IncidentDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/incidents`),
             incident
         );
@@ -85,7 +85,7 @@ export const locationApi = {
     },
 
     async getLocationIncidents(mountainId: string, locationId: string) {
-        const res = await axios.get<Incident[]>(url(`/api/mountains/${mountainId}/locations/${locationId}/incidents`));
+        const res = await axios.get<IncidentDTO[]>(url(`/api/mountains/${mountainId}/locations/${locationId}/incidents`));
         return res.data;
     },
 
@@ -93,9 +93,9 @@ export const locationApi = {
         mountainId: string,
         locationId: string,
         incidentId: string,
-        updated: Partial<Incident>
+        updated: Partial<IncidentDTO>
     ) {
-        const res = await axios.put<Incident>(
+        const res = await axios.put<IncidentDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/incidents/${incidentId}`),
             updated
         );
@@ -103,19 +103,19 @@ export const locationApi = {
     },
 
     async deleteIncidentFromLocation(mountainId: string, locationId: string, incidentId: string) {
-        const res = await axios.delete<Incident>(
+        const res = await axios.delete<IncidentDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/incidents/${incidentId}`)
         );
         return res.data;
     },
 
     async getEquipmentByLocation(mountainId: string, locationId: string) {
-        const res = await axios.get<Equipment[]>(url(`/api/mountains/${mountainId}/locations/${locationId}/equipment`));
+        const res = await axios.get<EquipmentDTO[]>(url(`/api/mountains/${mountainId}/locations/${locationId}/equipment`));
         return res.data;
     },
 
     async addEquipmentToLocation(mountainId: string, locationId: string, equipmentId: string) {
-        const res = await axios.post<Equipment>(
+        const res = await axios.post<EquipmentDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/equipment/${equipmentId}`)
         );
         return res.data;
@@ -127,7 +127,7 @@ export const locationApi = {
         equipmentId: string,
         data: { fromLocationId: string }
     ) {
-        const res = await axios.patch<Equipment>(
+        const res = await axios.patch<EquipmentDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/equipment/${equipmentId}`),
             data
         );
@@ -138,9 +138,9 @@ export const locationApi = {
         mountainId: string,
         locationId: string,
         equipmentId: string,
-        updated: Partial<Equipment>
+        updated: Partial<EquipmentDTO>
     ) {
-        const res = await axios.put<Equipment>(
+        const res = await axios.put<EquipmentDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/equipment/${equipmentId}`),
             updated
         );
@@ -148,19 +148,19 @@ export const locationApi = {
     },
 
     async deleteEquipmentFromLocation(mountainId: string, locationId: string, equipmentId: string) {
-        const res = await axios.delete<Equipment>(
+        const res = await axios.delete<EquipmentDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/equipment/${equipmentId}`)
         );
         return res.data;
     },
 
     async addAreaToLocation(mountainId: string, locationId: string, areaId: string) {
-        const res = await axios.post<Area>(url(`/api/mountains/${mountainId}/locations/${locationId}/areas/${areaId}`));
+        const res = await axios.post<AreaDTO>(url(`/api/mountains/${mountainId}/locations/${locationId}/areas/${areaId}`));
         return res.data;
     },
 
-    async updateAreaInLocation(mountainId: string, locationId: string, areaId: string, updated: Partial<Area>) {
-        const res = await axios.put<Area>(
+    async updateAreaInLocation(mountainId: string, locationId: string, areaId: string, updated: Partial<AreaDTO>) {
+        const res = await axios.put<AreaDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/areas/${areaId}`),
             updated
         );
@@ -168,7 +168,7 @@ export const locationApi = {
     },
 
     async removeAreaFromLocation(mountainId: string, locationId: string, areaId: string) {
-        const res = await axios.delete<Area>(
+        const res = await axios.delete<AreaDTO>(
             url(`/api/mountains/${mountainId}/locations/${locationId}/areas/${areaId}`)
         );
         return res.data;

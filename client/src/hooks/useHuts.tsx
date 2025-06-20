@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { hutApi, HutInputPayload } from '../api/HutAPI';
-import type { Hut } from 'shared/types';
-import { STATUS } from 'shared/types/enums';
+import type { HutDTO, HutWithLocation } from '../types/index';
+import { STATUS } from '../types/generated-enums';
 
 function toSharedStatus(status: any): STATUS {
     if (Object.values(STATUS).includes(status)) return status as STATUS;
@@ -9,20 +9,21 @@ function toSharedStatus(status: any): STATUS {
 }
 
 export function useHuts(mountainId: string | undefined) {
-    const [huts, setHuts] = useState<Hut[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [huts, setHuts] = useState<HutDTO[]>([]);
+    const [isLoadingHuts, setIsLoadingHuts] = useState(false);
 
     const fetchHuts = useCallback(async () => {
         if (!mountainId) {
             setHuts([]);
             return;
         }
-        setIsLoading(true);
+        setIsLoadingHuts(true);
         try {
-            const data = await hutApi.getHuts(mountainId);
+            let data: HutDTO[];
+            data = await hutApi.getHuts(mountainId);
             setHuts(data);
         } finally {
-            setIsLoading(false);
+            setIsLoadingHuts(false);
         }
     }, [mountainId]);
 
@@ -30,38 +31,58 @@ export function useHuts(mountainId: string | undefined) {
         fetchHuts();
     }, [fetchHuts]);
 
-    const createHut = async (hut: HutInputPayload) => {
-        if (!mountainId) return;
-        const payload = {
-            ...hut,
-            status: toSharedStatus(hut.status),
-        };
-        await hutApi.createHut(mountainId, payload);
-        await fetchHuts();
-    };
+    const createHut = useCallback(
+        async (hut: HutInputPayload) => {
+            if (!mountainId) throw new Error('No mountainId provided');
+            const payload = {
+                ...hut,
+                status: toSharedStatus(hut.status),
+            };
+            const created = await hutApi.createHut(mountainId, payload);
+            await fetchHuts();
+            if (!created) throw new Error('Hut creation failed');
+            return created as HutWithLocation;
+        },
+        [mountainId, fetchHuts]
+    );
 
-    const updateHut = async (hutId: string, updated: Partial<Hut>) => {
-        if (!mountainId) return;
-        const { name, status, latitude, longitude } = updated;
-        const payload: Partial<HutInputPayload> = {
-            ...(name !== undefined ? { name } : {}),
-            ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
-            ...(latitude !== undefined
-                ? { latitude: latitude === null || latitude === undefined ? null : Number(latitude) }
-                : {}),
-            ...(longitude !== undefined
-                ? { longitude: longitude === null || longitude === undefined ? null : Number(longitude) }
-                : {}),
-        };
-        await hutApi.updateHut(mountainId, hutId, payload);
-        await fetchHuts();
-    };
+    const updateHut = useCallback(
+        async (hutId: string, updated: Partial<HutInputPayload>) => {
+            if (!mountainId) throw new Error('No mountainId provided');
+            const { name, status, latitude, longitude, areaId } = updated;
+            const payload: Partial<HutInputPayload> = {
+                ...(name !== undefined ? { name } : {}),
+                ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
+                ...(latitude !== undefined
+                    ? { latitude: latitude === undefined ? undefined : Number(latitude) }
+                    : {}),
+                ...(longitude !== undefined
+                    ? { longitude: longitude === undefined ? undefined : Number(longitude) }
+                    : {}),
+                ...(areaId !== undefined ? { areaId: areaId ?? undefined } : {}),
+            };
+            const updatedHut = await hutApi.updateHut(mountainId, hutId, payload);
+            await fetchHuts();
+            return updatedHut as HutWithLocation;
+        },
+        [mountainId, fetchHuts]
+    );
 
-    const deleteHut = async (hutId: string) => {
-        if (!mountainId) return;
-        await hutApi.deleteHut(mountainId, hutId);
-        await fetchHuts();
-    };
+    const deleteHut = useCallback(
+        async (hutId: string) => {
+            if (!mountainId) return;
+            await hutApi.deleteHut(mountainId, hutId);
+            await fetchHuts();
+        },
+        [mountainId, fetchHuts]
+    );
 
-    return { huts, isLoading, fetchHuts, createHut, updateHut, deleteHut };
+    return {
+        huts,
+        isLoadingHuts,
+        fetchHuts,
+        createHut,
+        updateHut,
+        deleteHut,
+    };
 }

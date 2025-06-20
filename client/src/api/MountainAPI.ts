@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Mountain } from 'shared/types';
+import type { MountainFull } from '../types/index';
 
 export type MountainInputPayload = {
 	name: string;
@@ -23,32 +23,32 @@ const url = (path: string) => `${BASE_URL}${path}`;
 
 export const mountainApi = {
 	async createMountain(mountain: MountainInputPayload) {
-		const res = await axios.post<Mountain>(url(`/api/mountains`), mountain);
+		const res = await axios.post<MountainFull>(url(`/api/mountains`), mountain);
 		return res.data;
 	},
 
 	async getAllMountains() {
-		const res = await axios.get<Mountain[]>(url(`/api/mountains`));
+		const res = await axios.get<MountainFull[]>(url(`/api/mountains`));
 		return res.data;
 	},
 
 	async getMountain(mountainId: string) {
-		const res = await axios.get<Mountain>(url(`/api/mountains/${mountainId}`));
+		const res = await axios.get<MountainFull>(url(`/api/mountains/${mountainId}`));
 		return res.data;
 	},
 
 	async updateMountain(mountainId: string, updated: Partial<MountainInputPayload>) {
-		const res = await axios.put<Mountain>(url(`/api/mountains/${mountainId}`), updated);
+		const res = await axios.put<MountainFull>(url(`/api/mountains/${mountainId}`), updated);
 		return res.data;
 	},
 
 	async deleteMountain(mountainId: string) {
-		const res = await axios.delete<Mountain>(url(`/api/mountains/${mountainId}`));
+		const res = await axios.delete<MountainFull>(url(`/api/mountains/${mountainId}`));
 		return res.data;
 	},
 
 	async deleteAllMountains() {
-		const res = await axios.delete<Mountain[]>(url(`/api/mountains`));
+		const res = await axios.delete<MountainFull[]>(url(`/api/mountains`));
 		return res.data;
 	},
 };

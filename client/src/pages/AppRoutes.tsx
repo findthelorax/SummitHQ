@@ -3,14 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 // import Map from './Map';
 import Areas from './Areas';
-import AreaLocationPage from './AreaLocationPage';
 import Trails from './Trails';
 import Lifts from './Lifts';
 import Lodges from './Lodges';
 import Huts from './Huts';
 import AidRooms from './AidRooms';
 import IncidentsPage from './Incidents';
-// import IncidentLogs from './IncidentLogs';
 import Employees from './Employees';
 import Equipment from './Equipment';
 // import Logs from './Logs';
@@ -27,14 +25,12 @@ const routes: RouteConfig[] = [
 	{ path: '/dashboard', Component: Dashboard },
 	// { path: '/map', Component: Map },
 	{ path: '/areas', Component: Areas },
-	{ path: '/areaLocations', Component: AreaLocationPage },
 	{ path: '/trails', Component: Trails },
 	{ path: '/lifts', Component: Lifts },
 	{ path: '/lodges', Component: Lodges },
 	{ path: '/huts', Component: Huts },
 	{ path: '/aidRooms', Component: AidRooms },
 	{ path: '/incidents', Component: IncidentsPage },
-	// { path: '/incidentLogs', Component: IncidentLogs },
 	{ path: '/employees', Component: Employees },
 	{ path: '/equipment', Component: Equipment },
 	// { path: '/logs', Component: Logs },

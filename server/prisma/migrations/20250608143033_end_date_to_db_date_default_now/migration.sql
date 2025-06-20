@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Employee" ALTER COLUMN "endDate" SET DATA TYPE DATE,
+ALTER COLUMN "startDate" SET DATA TYPE DATE;
+
+-- AlterTable
+ALTER TABLE "EmployeeMountainAssignment" ALTER COLUMN "endDate" DROP NOT NULL,
+ALTER COLUMN "startDate" SET DEFAULT CURRENT_TIMESTAMP;

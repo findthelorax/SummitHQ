@@ -1,0 +1,60 @@
+.mountain-autocomplete-input {
+  width: 100%;
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  padding: var(--input-padding);
+  background: var(--input-bg);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: var(--input-font-size);
+}
+
+.mountain-autocomplete-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.mountain-autocomplete-dropdown {
+  position: absolute;
+  z-index: 10;
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  width: 100%;
+  max-height: 15rem;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+  margin-top: 0.25rem;
+}
+
+.mountain-autocomplete-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: var(--text);
+}
+
+.mountain-autocomplete-option:hover {
+  background: var(--primary-light);
+  color: var(--text-invert);
+}
+
+.mountain-autocomplete-option.selected {
+  font-weight: bold;
+  background: var(--primary);
+  color: var(--text-invert);
+}
+
+.mountain-autocomplete-no-options {
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  box-shadow: var(--shadow);
+  padding: 0.5rem 1rem;
+  color: var(--text);
+  margin-top: 0.25rem;
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+}

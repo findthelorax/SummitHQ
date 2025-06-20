@@ -1,0 +1,89 @@
+.drawer {
+	background: var(--surface);
+	color: var(--text);
+	box-shadow: var(--shadow);
+	height: 100%;
+	transition: width 0.3s;
+	overflow: hidden;
+}
+
+.drawer-text {
+	margin-top: -0.25rem;
+}
+
+.drawer-open {
+	width: 15rem;
+}
+
+.drawer-closed {
+	width: 5rem;
+}
+
+.nav-item {
+	display: flex;
+	align-items: center;
+	margin: 0rem 1rem;
+	padding: 0.5rem .5rem;
+	border-radius: 0.5rem;
+	font-size: 1.125rem;
+	color: var(--text);
+	background: transparent;
+	transition: background 0.2s, color 0.2s;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.nav-item:hover {
+    background: var(--primary-hover);
+    color: var(--primary-dark);
+}
+
+.nav-item-selected {
+	background: var(--primary-dark);
+	color: var(--text-invert);
+}
+
+.nav-item.nav-item-selected:hover,
+.nav-item-selected.nav-item:hover {
+    color: var(--primary-dark) !important;
+}
+
+.nav-item:not(.nav-item--selected):hover {
+	background: var(--primary-light);
+	color: var(--text-invert);
+}
+
+.nav-icon {
+	width: 2rem;
+	height: 2rem;
+	flex-shrink: 0;
+}
+
+.nav-label {
+	display: inline-block;
+	overflow: hidden;
+	transition: all 0.3s;
+	white-space: nowrap;
+	font-size: 1.125rem;
+	margin-top: -0.25rem;
+	width: 10rem;
+	opacity: 1;
+	margin-left: 0.5rem;
+}
+
+.nav-label-open {
+    width: 10rem;
+    opacity: 1;
+    margin-left: 0.5rem;
+}
+
+.nav-label.closed {
+	width: 0;
+	opacity: 0;
+	margin-left: 0;
+}
+
+.nav-divider {
+	border-top: 1px solid var(--primary-light);
+	margin: 0.5rem 0;
+}

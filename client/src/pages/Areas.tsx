@@ -1,34 +1,27 @@
 import React, { useState } from 'react';
 import { useMountain } from '../contexts/MountainContext';
 import { useAreas } from '../hooks/useAreas';
-import AreaForm from '../components/area/AreaForm';
-import AreaTable from '../components/area/AreaTable';
 import AreaTabs from '../components/area/AreaTabs';
-import AreasEntitiesPage from '../components/area/AreaEntities';
-import TableAddRemoveLocation from '../components/area/TableAddRemoveLocation';
-import InlineSelectAddLocation from '../components/area/InlineSelectAddLocation';
-import ModalDialogAddLocation from '../components/area/ModalDialogAddLocation';
+import AreaTable from '../components/area/AreaTable';
 
-const AreasPage: React.FC = () => {
+const AreaEntitiesPage: React.FC = () => {
     const { selectedMountain } = useMountain();
-    const { areas, fetchAreas, isLoading } = useAreas(selectedMountain?.id);
+    const { areas, isLoadingAreas } = useAreas(selectedMountain?.id);
     const [tab, setTab] = useState(0);
 
-    const handleTabChange = (event: React.MouseEvent<HTMLButtonElement>, newValue: number) => {
-        setTab(newValue);
-    };
+    const handleTabChange = (_: React.MouseEvent<HTMLButtonElement>, newValue: number) => setTab(newValue);
+
+    if (isLoadingAreas) return <div>Loading...</div>;
+    if (!areas || areas.length === 0) return <div>No areas found.</div>;
+
+    const selectedArea = areas[tab];
 
     return (
-        <>
-            <AreaForm onCreated={fetchAreas} />
-            {areas.length > 0 && (
-                <AreaTabs value={tab} onChange={handleTabChange} areas={areas} />
-            )}
-            <AreaTable value={tab} employees={[]} />
-            <AreasEntitiesPage />
-            
-        </>
+        <div>
+            <AreaTabs value={tab} onChange={handleTabChange} areas={areas} />
+            <AreaTable area={selectedArea} />
+        </div>
     );
 };
 
-export default AreasPage;
+export default AreaEntitiesPage;

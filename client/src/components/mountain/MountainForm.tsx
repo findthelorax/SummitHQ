@@ -4,6 +4,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import { mountainApi, MountainInputPayload } from '../../api/MountainAPI';
 import StatesAutocomplete from '../autocomplete/StatesAutoComplete';
 import { useMountain } from '../../contexts/MountainContext';
+import { useSnackbarContext } from '../../contexts/SnackbarContext';
 
 type MountainFormProps = {
     initial?: MountainInputPayload;
@@ -62,9 +63,9 @@ const FormField = ({
                     name={field.name}
                     value={value}
                     onChange={onChange}
-                    className={`w-full border rounded px-3 py-2 ${phoneValid ? '' : 'border-red-500'}`}
+                    className={`input${phoneValid ? '' : ' border-red-500'}`}
                 />
-                {!phoneValid && <span className="text-red-500 text-sm">Invalid phone number</span>}
+                {!phoneValid && <span className="text-error">Invalid phone number</span>}
             </div>
         );
     }
@@ -77,7 +78,7 @@ const FormField = ({
                 value={value ?? ''}
                 onChange={onChange}
                 required={field.required}
-                className="w-full border rounded px-3 py-2"
+                className="input"
                 placeholder={field.placeholder}
                 step={field.step}
             />
@@ -91,6 +92,7 @@ const MountainForm: React.FC<MountainFormProps> = ({
     onSuccess,
     onCancel,
 }) => {
+    const { showSnackbar } = useSnackbarContext();
     const [form, setForm] = useState<MountainInputPayload>(initial || emptyForm);
     const [phoneValid, setPhoneValid] = useState(true);
     const { fetchMountains } = useMountain();
@@ -126,7 +128,7 @@ const MountainForm: React.FC<MountainFormProps> = ({
         if (submitForm.phoneNumber) {
             const phoneObj = parsePhoneNumberFromString(submitForm.phoneNumber, 'US');
             if (!phoneObj || !phoneObj.isValid()) {
-                alert('Please enter a valid phone number');
+                showSnackbar('Please enter a valid phone number', 'error');
                 return;
             }
             submitForm.phoneNumber = phoneObj.format('E.164');
@@ -141,12 +143,12 @@ const MountainForm: React.FC<MountainFormProps> = ({
             setForm(emptyForm);
             if (onSuccess) onSuccess();
         } catch (error) {
-            alert('Error saving mountain');
+            showSnackbar('Error saving mountain', 'error');
         }
     };
 
     return (
-        <form className="bg-white dark:bg-gray-800 rounded shadow p-6 max-w-md mx-auto" onSubmit={handleSubmit}>
+        <form className="form-container" onSubmit={handleSubmit}>
             {fieldConfigs.map((field) =>
                 field.name === 'state' ? (
                     <div className="mb-4" key="state">
@@ -166,7 +168,7 @@ const MountainForm: React.FC<MountainFormProps> = ({
             <div className="flex gap-2">
                 <button
                     type="submit"
-                    className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                    className="button-primary"
                 >
                     {editingId ? 'Update Mountain' : 'Add Mountain'}
                 </button>
@@ -174,7 +176,8 @@ const MountainForm: React.FC<MountainFormProps> = ({
                     <button
                         type="button"
                         onClick={onCancel}
-                        className="flex-1 bg-gray-400 text-white py-2 rounded hover:bg-gray-500 transition"
+                        className="button-primary"
+                        style={{ background: 'var(--input-bg)', color: 'var(--text)' }}
                     >
                         Cancel
                     </button>

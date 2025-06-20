@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { lodgeApi } from '../api/LodgeAPI';
-import type { Lodge } from 'shared/types';
-import { STATUS } from 'shared/types/enums';
+import type { LodgeDTO, LodgeWithLocation } from '../types/index';
+import { STATUS } from '../types/generated-enums';
 import type { LodgeInputPayload } from '../api/LodgeAPI';
 
 function toSharedStatus(status: any): STATUS {
@@ -10,20 +10,21 @@ function toSharedStatus(status: any): STATUS {
 }
 
 export function useLodges(mountainId: string | undefined) {
-    const [lodges, setLodges] = useState<Lodge[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [lodges, setLodges] = useState<LodgeDTO[]>([]);
+    const [isLoadingLodges, setIsLoadingLodges] = useState(false);
 
     const fetchLodges = useCallback(async () => {
         if (!mountainId) {
             setLodges([]);
             return;
         }
-        setIsLoading(true);
+        setIsLoadingLodges(true);
         try {
-            const data = await lodgeApi.getLodges(mountainId);
+            let data: LodgeDTO[];
+            data = await lodgeApi.getLodges(mountainId);
             setLodges(data);
         } finally {
-            setIsLoading(false);
+            setIsLoadingLodges(false);
         }
     }, [mountainId]);
 
@@ -31,39 +32,66 @@ export function useLodges(mountainId: string | undefined) {
         fetchLodges();
     }, [fetchLodges]);
 
-    const createLodge = async (lodge: LodgeInputPayload) => {
-        if (!mountainId) return;
-        const payload = {
-            ...lodge,
-            status: toSharedStatus(lodge.status),
-        };
-        await lodgeApi.createLodge(mountainId, payload);
-        await fetchLodges();
-    };
+    const createLodge = useCallback(
+        async (lodge: LodgeInputPayload): Promise<LodgeWithLocation> => {
+            if (!mountainId) throw new Error("No mountainId");
+            const payload = {
+                ...lodge,
+                status: toSharedStatus(lodge.status),
+            };
+            const created = await lodgeApi.createLodge(mountainId, payload);
+            await fetchLodges();
+            if (!created || !created.id) throw new Error("Failed to create lodge");
+            // Fetch the full LodgeWithLocation
+            const full = await lodgeApi.getLodge(mountainId, created.id);
+            if (!full) throw new Error("Failed to fetch LodgeWithLocation");
+            return full;
+        },
+        [mountainId, fetchLodges]
+    );
 
-    const updateLodge = async (lodgeId: string, updated: Partial<Lodge>) => {
-        if (!mountainId) return;
-        const { name, capacity, latitude, longitude, status } = updated;
-        const payload: Partial<LodgeInputPayload> = {
-            ...(name !== undefined ? { name } : {}),
-            ...(capacity !== undefined ? { capacity } : {}),
-            ...(latitude !== undefined
-                ? { latitude: latitude === null || latitude === undefined ? null : Number(latitude) }
-                : {}),
-            ...(longitude !== undefined
-                ? { longitude: longitude === null || longitude === undefined ? null : Number(longitude) }
-                : {}),
-            ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
-        };
-        await lodgeApi.updateLodge(mountainId, lodgeId, payload);
-        await fetchLodges();
-    };
+    const updateLodge = useCallback(
+        async (lodgeId: string, updated: Partial<LodgeInputPayload>): Promise<LodgeWithLocation> => {
+            if (!mountainId) throw new Error("No mountainId");
+            const { name, capacity, status, latitude, longitude, areaId } = updated;
+            const payload: Partial<LodgeInputPayload> = {
+                ...(name !== undefined ? { name } : {}),
+                ...(capacity !== undefined ? { capacity } : {}),
+                ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
+                ...(latitude !== undefined
+                    ? { latitude: latitude === null || latitude === undefined ? null : Number(latitude) }
+                    : {}),
+                ...(longitude !== undefined
+                    ? { longitude: longitude === null || longitude === undefined ? null : Number(longitude) }
+                    : {}),
+                ...(areaId !== undefined ? { areaId } : {}),
+            };
+            const updatedLodge = await lodgeApi.updateLodge(mountainId, lodgeId, payload);
+            await fetchLodges();
+            if (!updatedLodge || !updatedLodge.id) throw new Error("Failed to update lodge");
+            // Fetch the full LodgeWithLocation
+            const full = await lodgeApi.getLodge(mountainId, updatedLodge.id);
+            if (!full) throw new Error("Failed to fetch LodgeWithLocation");
+            return full;
+        },
+        [mountainId, fetchLodges]
+    );
 
-    const deleteLodge = async (lodgeId: string) => {
-        if (!mountainId) return;
-        await lodgeApi.deleteLodge(mountainId, lodgeId);
-        await fetchLodges();
-    };
+    const deleteLodge = useCallback(
+        async (lodgeId: string) => {
+            if (!mountainId) return;
+            await lodgeApi.deleteLodge(mountainId, lodgeId);
+            await fetchLodges();
+        },
+        [mountainId, fetchLodges]
+    );
 
-    return { lodges, isLoading, fetchLodges, createLodge, updateLodge, deleteLodge };
+    return {
+        lodges,
+        isLoadingLodges,
+        fetchLodges,
+        createLodge,
+        updateLodge,
+        deleteLodge,
+    };
 }

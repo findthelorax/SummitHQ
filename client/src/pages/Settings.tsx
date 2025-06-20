@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useSnackbarContext } from '../contexts/SnackbarContext'; 
 
 const SettingsPage: React.FC = () => {
     const [darkMode, setDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const { showSnackbar } = useSnackbarContext();
 
     const handleDarkModeToggle = () => {
         const newMode = !darkMode;
@@ -15,7 +17,7 @@ const SettingsPage: React.FC = () => {
     const handleProfileSave = (e: React.FormEvent) => {
         e.preventDefault();
         // Save profile logic here
-        alert('Profile saved!');
+        showSnackbar('Profile saved!', 'success');
     };
 
     return (

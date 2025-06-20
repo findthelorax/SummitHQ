@@ -1,26 +1,34 @@
 import { prisma } from '../../config/database.js';
 import { normalizePhoneNumber } from '../../utils/parsePhoneNumberFromString.js';
 import { generateNextEmployeeIdNumber } from '../../utils/getNextEmployeeIdNumber.js';
+import { capitalizeWords } from '../../utils/capitalizeWords.js';
 
 class Employee {
 	static async create(employeeData: any) {
-		const { phoneNumber, roleId, ...rest } = employeeData;
-		const normalizedPhoneNumber = normalizePhoneNumber(phoneNumber);
-	
+		const { phoneNumber, roleId, mountainId, ...rest } = employeeData;
+		let normalizedPhoneNumber: string | null = null;
+		if (phoneNumber && phoneNumber.trim() !== '') {
+			normalizedPhoneNumber = normalizePhoneNumber(phoneNumber);
+		}
+
+		if (rest.firstName) rest.firstName = capitalizeWords(rest.firstName);
+		if (rest.lastName) rest.lastName = capitalizeWords(rest.lastName);
+
 		const data: any = {
 			...rest,
 			phoneNumber: normalizedPhoneNumber,
 		};
+		
 		if (roleId && typeof roleId === 'string' && roleId.trim() !== '') {
 			data.roleId = roleId;
 		} else {
 			data.roleId = null;
 		}
-	
+
 		let retries = 3;
 		while (retries > 0) {
 			try {
-				return await prisma.$transaction(async (tx) => {
+				const employee = await prisma.$transaction(async (tx) => {
 					const newEmployeeIdNumber = await generateNextEmployeeIdNumber(tx, rest.department);
 					return await tx.employee.create({
 						data: {
@@ -29,6 +37,10 @@ class Employee {
 						},
 					});
 				});
+				if (mountainId) {
+					await Employee.assignToMountain(employee.id, mountainId);
+				}
+				return employee;
 			} catch (err: any) {
 				if (err.code === 'P2002' && err.meta?.target?.includes('employeeIdNumber')) {
 					retries--;
@@ -94,13 +106,62 @@ class Employee {
 		return employee;
 	}
 
-static async findAll() {
-    return await prisma.employee.findMany({
-        include: {
-            role: true,
-        },
-    });
-}
+	static async findAll() {
+		const employees = await prisma.employee.findMany({
+			include: {
+				role: true,
+				certifications: true,
+				additionalRoles: true,
+				mountainAssignments: {
+					include: {
+						mountain: true,
+					},
+				},
+				dispatcherAssignments: true,
+				incidents: true,
+				aidRoomChecks: true,
+				hutChecks: true,
+				liftChecks: true,
+				trailChecks: true,
+				equipmentChecks: true,
+				equipmentServiceLogs: true,
+			},
+		});
+
+		if (!employees) {
+			const err = new Error('Employees not found') as any;
+			err.status = 404;
+			throw err;
+		}
+
+		return employees;
+	}
+
+	static async findAllByMountain(mountainId: string) {
+		return await prisma.employee.findMany({
+			where: {
+				mountainAssignments: {
+					some: { mountainId },
+				},
+			},
+			include: {
+				role: true,
+				certifications: true,
+				additionalRoles: true,
+				mountainAssignments: {
+					include: { mountain: true },
+				},
+				dispatcherAssignments: true,
+				incidents: true,
+				aidRoomChecks: true,
+				hutChecks: true,
+				liftChecks: true,
+				trailChecks: true,
+				equipmentChecks: true,
+				equipmentServiceLogs: true,
+			},
+		});
+	}
 
 	static async update(employeeId: string, updatedData: any) {
 		return await prisma.employee.update({

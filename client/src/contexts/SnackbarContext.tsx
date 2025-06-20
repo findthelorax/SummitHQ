@@ -19,7 +19,6 @@ const useSnackbarContext = (): SnackbarContextValue => {
     return context;
 };
 
-// Map to keep track of active toast IDs by message to avoid duplicates
 const activeToasts = new Map<string, string | number>();
 
 const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -28,11 +27,7 @@ const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({ children })
         severity: 'success' | 'error' | 'info' | 'warning',
         once = false
     ) => {
-        // If 'once' flag is true, don't show duplicate messages
         if (once && activeToasts.has(message)) return;
-
-        // Also avoid duplicates even if once is false (optional, remove if you want duplicates)
-        if (activeToasts.has(message)) return;
 
         const toastId = toast(message, {
             style: {

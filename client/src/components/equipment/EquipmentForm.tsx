@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import type { FormEvent } from 'react';
-import { EQUIPMENT_STATUS } from 'shared/types/enums';
-import { EQUIPMENT_STATUS_LABELS, enumToOptions } from 'shared/types/utils/enumLabels';
+import { EQUIPMENT_STATUS, EQUIPMENT_STATUS_LABELS, enumToOptions } from '../../types/generated-enums';
 import { useMountain } from '../../contexts/MountainContext';
 import { useEquipment } from '../../hooks/useEquipment';
 import type { EquipmentInputPayload } from '../../api/EquipmentAPI';
@@ -77,7 +76,7 @@ const FormField = ({
                 value={value ?? ''}
                 onChange={onChange}
                 required={field.required}
-                className="w-full border rounded px-3 py-2"
+                className="input"
                 placeholder={field.placeholder}
                 step={field.step}
             />
@@ -127,17 +126,19 @@ const EquipmentForm: React.FC<{ onCreated?: () => void }> = ({ onCreated }) => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            {fieldConfigs.map((field) => (
-                <FormField
-                    key={field.name}
-                    field={field}
-                    value={form[field.name as keyof EquipmentInputPayload]}
-                    onChange={handleChange}
-                />
-            ))}
+            <div className="equipment-form-grid">
+                {fieldConfigs.map((field) => (
+                    <FormField
+                        key={field.name}
+                        field={field}
+                        value={form[field.name as keyof EquipmentInputPayload]}
+                        onChange={handleChange}
+                    />
+                ))}
+            </div>
             <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                className="button-primary"
                 disabled={loading}
             >
                 {loading ? 'Adding...' : 'Add Equipment'}

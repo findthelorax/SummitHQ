@@ -1,9 +1,21 @@
 import { prisma } from '../../config/database.js';
 import { createEntityWithLocation } from '../../utils/createEntityWithLocation.js';
+import { updateEntityLocationArea } from '../../utils/updateEntityWithLocation.js';
+import { capitalizeWords } from '../../utils/capitalizeWords.js';
+import { locationWithAreaInclude } from '../../utils/prismaIncludes.js';
 
 class AidRoomModel {
-    static async create(mountainId: string, data: any) {
-        return await createEntityWithLocation(prisma, 'aidRoom', mountainId, data);
+    static async create(mountainId: string, data: any, areaId?: string) {
+        const mountainExists = await prisma.mountain.findUnique({
+            where: { id: mountainId },
+        });
+        if (!mountainExists) {
+            throw new Error(`Mountain with ID ${mountainId} does not exist.`);
+        }
+        if (data.name) {
+            data.name = capitalizeWords(data.name);
+        }
+        return await createEntityWithLocation('aidRoom', mountainId, data, areaId);
     }
 
     static async findByIdAndMountain(aidRoomId: string, mountainId: string) {
@@ -12,26 +24,41 @@ class AidRoomModel {
                 id: aidRoomId,
                 mountainId,
             },
+            include: locationWithAreaInclude,
         });
     }
 
     static async findAll() {
-        return await prisma.aidRoom.findMany();
+        return await prisma.aidRoom.findMany({
+            include: locationWithAreaInclude,
+        });
     }
 
     static async findAllByMountain(mountainId: string) {
         return await prisma.aidRoom.findMany({
             where: { mountainId },
+            include: locationWithAreaInclude,
         });
     }
 
     static async updateById(aidRoomId: string, updatedData: any) {
-        return await prisma.aidRoom.update({
-            where: {
-                id: aidRoomId,
-            },
-            data: updatedData,
+        const { areaId, ...aidRoomUpdate } = updatedData;
+
+        if (aidRoomUpdate.name) {
+            aidRoomUpdate.name = capitalizeWords(aidRoomUpdate.name);
+        }
+
+        const updatedAidRoom = await prisma.aidRoom.update({
+            where: { id: aidRoomId },
+            data: aidRoomUpdate,
+            include: locationWithAreaInclude,
         });
+
+        if (areaId !== undefined) {
+            await updateEntityLocationArea('aidRoom', updatedAidRoom.mountainId, aidRoomId, areaId);
+        }
+
+        return updatedAidRoom;
     }
 
     static async deleteById(aidRoomId: string) {

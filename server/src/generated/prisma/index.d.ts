@@ -149,7 +149,6 @@ export namespace $Enums {
   LODGE: 'LODGE',
   LIFT: 'LIFT',
   TRAIL: 'TRAIL',
-  MOUNTAIN: 'MOUNTAIN',
   OTHER: 'OTHER'
 };
 
@@ -159,8 +158,7 @@ export type LOCATION_TYPE = (typeof LOCATION_TYPE)[keyof typeof LOCATION_TYPE]
 export const STATUS: {
   OPEN: 'OPEN',
   CLOSED: 'CLOSED',
-  ON_HOLD: 'ON_HOLD',
-  UNKNOWN: 'UNKNOWN'
+  ON_HOLD: 'ON_HOLD'
 };
 
 export type STATUS = (typeof STATUS)[keyof typeof STATUS]
@@ -170,8 +168,7 @@ export const INCIDENT_STATUS: {
   STANDBY: 'STANDBY',
   REPORTED: 'REPORTED',
   IN_PROGRESS: 'IN_PROGRESS',
-  RESOLVED: 'RESOLVED',
-  UNKNOWN: 'UNKNOWN'
+  RESOLVED: 'RESOLVED'
 };
 
 export type INCIDENT_STATUS = (typeof INCIDENT_STATUS)[keyof typeof INCIDENT_STATUS]
@@ -260,7 +257,9 @@ export const EMPLOYEE_STATUS: {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
   ON_LEAVE: 'ON_LEAVE',
-  TERMINATED: 'TERMINATED'
+  TERMINATED: 'TERMINATED',
+  RETIRED: 'RETIRED',
+  UNKNOWN: 'UNKNOWN'
 };
 
 export type EMPLOYEE_STATUS = (typeof EMPLOYEE_STATUS)[keyof typeof EMPLOYEE_STATUS]
@@ -759,8 +758,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.8.2
-   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+   * Prisma Client JS version: 6.9.0
+   * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
    */
   export type PrismaVersion = {
     client: string
@@ -10355,21 +10354,24 @@ export namespace Prisma {
     id: string | null
     employeeId: string | null
     mountainId: string | null
-    assignedAt: Date | null
+    startDate: Date | null
+    endDate: Date | null
   }
 
   export type EmployeeMountainAssignmentMaxAggregateOutputType = {
     id: string | null
     employeeId: string | null
     mountainId: string | null
-    assignedAt: Date | null
+    startDate: Date | null
+    endDate: Date | null
   }
 
   export type EmployeeMountainAssignmentCountAggregateOutputType = {
     id: number
     employeeId: number
     mountainId: number
-    assignedAt: number
+    startDate: number
+    endDate: number
     _all: number
   }
 
@@ -10378,21 +10380,24 @@ export namespace Prisma {
     id?: true
     employeeId?: true
     mountainId?: true
-    assignedAt?: true
+    startDate?: true
+    endDate?: true
   }
 
   export type EmployeeMountainAssignmentMaxAggregateInputType = {
     id?: true
     employeeId?: true
     mountainId?: true
-    assignedAt?: true
+    startDate?: true
+    endDate?: true
   }
 
   export type EmployeeMountainAssignmentCountAggregateInputType = {
     id?: true
     employeeId?: true
     mountainId?: true
-    assignedAt?: true
+    startDate?: true
+    endDate?: true
     _all?: true
   }
 
@@ -10472,7 +10477,8 @@ export namespace Prisma {
     id: string
     employeeId: string
     mountainId: string
-    assignedAt: Date
+    startDate: Date
+    endDate: Date | null
     _count: EmployeeMountainAssignmentCountAggregateOutputType | null
     _min: EmployeeMountainAssignmentMinAggregateOutputType | null
     _max: EmployeeMountainAssignmentMaxAggregateOutputType | null
@@ -10496,7 +10502,8 @@ export namespace Prisma {
     id?: boolean
     employeeId?: boolean
     mountainId?: boolean
-    assignedAt?: boolean
+    startDate?: boolean
+    endDate?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employeeMountainAssignment"]>
@@ -10505,7 +10512,8 @@ export namespace Prisma {
     id?: boolean
     employeeId?: boolean
     mountainId?: boolean
-    assignedAt?: boolean
+    startDate?: boolean
+    endDate?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employeeMountainAssignment"]>
@@ -10514,7 +10522,8 @@ export namespace Prisma {
     id?: boolean
     employeeId?: boolean
     mountainId?: boolean
-    assignedAt?: boolean
+    startDate?: boolean
+    endDate?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employeeMountainAssignment"]>
@@ -10523,10 +10532,11 @@ export namespace Prisma {
     id?: boolean
     employeeId?: boolean
     mountainId?: boolean
-    assignedAt?: boolean
+    startDate?: boolean
+    endDate?: boolean
   }
 
-  export type EmployeeMountainAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "assignedAt", ExtArgs["result"]["employeeMountainAssignment"]>
+  export type EmployeeMountainAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "startDate" | "endDate", ExtArgs["result"]["employeeMountainAssignment"]>
   export type EmployeeMountainAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -10550,7 +10560,8 @@ export namespace Prisma {
       id: string
       employeeId: string
       mountainId: string
-      assignedAt: Date
+      startDate: Date
+      endDate: Date | null
     }, ExtArgs["result"]["employeeMountainAssignment"]>
     composites: {}
   }
@@ -10979,7 +10990,8 @@ export namespace Prisma {
     readonly id: FieldRef<"EmployeeMountainAssignment", 'String'>
     readonly employeeId: FieldRef<"EmployeeMountainAssignment", 'String'>
     readonly mountainId: FieldRef<"EmployeeMountainAssignment", 'String'>
-    readonly assignedAt: FieldRef<"EmployeeMountainAssignment", 'DateTime'>
+    readonly startDate: FieldRef<"EmployeeMountainAssignment", 'DateTime'>
+    readonly endDate: FieldRef<"EmployeeMountainAssignment", 'DateTime'>
   }
     
 
@@ -15692,8 +15704,11 @@ export namespace Prisma {
     lastName: string | null
     email: string | null
     phoneNumber: string | null
-    employeeStatus: $Enums.EMPLOYEE_STATUS | null
+    status: $Enums.EMPLOYEE_STATUS | null
+    primaryDepartment: $Enums.DEPARTMENT | null
     roleId: string | null
+    startDate: Date | null
+    endDate: Date | null
   }
 
   export type EmployeeMaxAggregateOutputType = {
@@ -15703,8 +15718,11 @@ export namespace Prisma {
     lastName: string | null
     email: string | null
     phoneNumber: string | null
-    employeeStatus: $Enums.EMPLOYEE_STATUS | null
+    status: $Enums.EMPLOYEE_STATUS | null
+    primaryDepartment: $Enums.DEPARTMENT | null
     roleId: string | null
+    startDate: Date | null
+    endDate: Date | null
   }
 
   export type EmployeeCountAggregateOutputType = {
@@ -15714,8 +15732,11 @@ export namespace Prisma {
     lastName: number
     email: number
     phoneNumber: number
-    employeeStatus: number
+    status: number
+    primaryDepartment: number
     roleId: number
+    startDate: number
+    endDate: number
     _all: number
   }
 
@@ -15735,8 +15756,11 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phoneNumber?: true
-    employeeStatus?: true
+    status?: true
+    primaryDepartment?: true
     roleId?: true
+    startDate?: true
+    endDate?: true
   }
 
   export type EmployeeMaxAggregateInputType = {
@@ -15746,8 +15770,11 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phoneNumber?: true
-    employeeStatus?: true
+    status?: true
+    primaryDepartment?: true
     roleId?: true
+    startDate?: true
+    endDate?: true
   }
 
   export type EmployeeCountAggregateInputType = {
@@ -15757,8 +15784,11 @@ export namespace Prisma {
     lastName?: true
     email?: true
     phoneNumber?: true
-    employeeStatus?: true
+    status?: true
+    primaryDepartment?: true
     roleId?: true
+    startDate?: true
+    endDate?: true
     _all?: true
   }
 
@@ -15853,10 +15883,13 @@ export namespace Prisma {
     employeeIdNumber: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email: string | null
+    phoneNumber: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment: $Enums.DEPARTMENT | null
     roleId: string | null
+    startDate: Date | null
+    endDate: Date | null
     _count: EmployeeCountAggregateOutputType | null
     _avg: EmployeeAvgAggregateOutputType | null
     _sum: EmployeeSumAggregateOutputType | null
@@ -15885,8 +15918,11 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phoneNumber?: boolean
-    employeeStatus?: boolean
+    status?: boolean
+    primaryDepartment?: boolean
     roleId?: boolean
+    startDate?: boolean
+    endDate?: boolean
     role?: boolean | Employee$roleArgs<ExtArgs>
     certifications?: boolean | Employee$certificationsArgs<ExtArgs>
     additionalRoles?: boolean | Employee$additionalRolesArgs<ExtArgs>
@@ -15909,8 +15945,11 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phoneNumber?: boolean
-    employeeStatus?: boolean
+    status?: boolean
+    primaryDepartment?: boolean
     roleId?: boolean
+    startDate?: boolean
+    endDate?: boolean
     role?: boolean | Employee$roleArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -15921,8 +15960,11 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phoneNumber?: boolean
-    employeeStatus?: boolean
+    status?: boolean
+    primaryDepartment?: boolean
     roleId?: boolean
+    startDate?: boolean
+    endDate?: boolean
     role?: boolean | Employee$roleArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -15933,11 +15975,14 @@ export namespace Prisma {
     lastName?: boolean
     email?: boolean
     phoneNumber?: boolean
-    employeeStatus?: boolean
+    status?: boolean
+    primaryDepartment?: boolean
     roleId?: boolean
+    startDate?: boolean
+    endDate?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeIdNumber" | "firstName" | "lastName" | "email" | "phoneNumber" | "employeeStatus" | "roleId", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeIdNumber" | "firstName" | "lastName" | "email" | "phoneNumber" | "status" | "primaryDepartment" | "roleId" | "startDate" | "endDate", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     role?: boolean | Employee$roleArgs<ExtArgs>
     certifications?: boolean | Employee$certificationsArgs<ExtArgs>
@@ -15981,10 +16026,13 @@ export namespace Prisma {
       employeeIdNumber: number | null
       firstName: string
       lastName: string
-      email: string
-      phoneNumber: string
-      employeeStatus: $Enums.EMPLOYEE_STATUS
+      email: string | null
+      phoneNumber: string | null
+      status: $Enums.EMPLOYEE_STATUS
+      primaryDepartment: $Enums.DEPARTMENT | null
       roleId: string | null
+      startDate: Date | null
+      endDate: Date | null
     }, ExtArgs["result"]["employee"]>
     composites: {}
   }
@@ -16426,8 +16474,11 @@ export namespace Prisma {
     readonly lastName: FieldRef<"Employee", 'String'>
     readonly email: FieldRef<"Employee", 'String'>
     readonly phoneNumber: FieldRef<"Employee", 'String'>
-    readonly employeeStatus: FieldRef<"Employee", 'EMPLOYEE_STATUS'>
+    readonly status: FieldRef<"Employee", 'EMPLOYEE_STATUS'>
+    readonly primaryDepartment: FieldRef<"Employee", 'DEPARTMENT'>
     readonly roleId: FieldRef<"Employee", 'String'>
+    readonly startDate: FieldRef<"Employee", 'DateTime'>
+    readonly endDate: FieldRef<"Employee", 'DateTime'>
   }
     
 
@@ -18543,7 +18594,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status: $Enums.STATUS
-    length: number
+    length: number | null
     latitude: Decimal | null
     longitude: Decimal | null
     condition: $Enums.TRAIL_CONDITION
@@ -18658,7 +18709,7 @@ export namespace Prisma {
       name: string
       difficulty: $Enums.TRAIL_DIFFICULTY
       status: $Enums.STATUS
-      length: number
+      length: number | null
       latitude: Prisma.Decimal | null
       longitude: Prisma.Decimal | null
       condition: $Enums.TRAIL_CONDITION
@@ -25596,6 +25647,7 @@ export namespace Prisma {
     mountainId: string | null
     startTime: Date | null
     endTime: Date | null
+    callTime: Date | null
     onSceneTime: Date | null
     stableTime: Date | null
     transportTime: Date | null
@@ -25613,6 +25665,7 @@ export namespace Prisma {
     mountainId: string | null
     startTime: Date | null
     endTime: Date | null
+    callTime: Date | null
     onSceneTime: Date | null
     stableTime: Date | null
     transportTime: Date | null
@@ -25630,6 +25683,7 @@ export namespace Prisma {
     mountainId: number
     startTime: number
     endTime: number
+    callTime: number
     onSceneTime: number
     stableTime: number
     transportTime: number
@@ -25659,6 +25713,7 @@ export namespace Prisma {
     mountainId?: true
     startTime?: true
     endTime?: true
+    callTime?: true
     onSceneTime?: true
     stableTime?: true
     transportTime?: true
@@ -25676,6 +25731,7 @@ export namespace Prisma {
     mountainId?: true
     startTime?: true
     endTime?: true
+    callTime?: true
     onSceneTime?: true
     stableTime?: true
     transportTime?: true
@@ -25693,6 +25749,7 @@ export namespace Prisma {
     mountainId?: true
     startTime?: true
     endTime?: true
+    callTime?: true
     onSceneTime?: true
     stableTime?: true
     transportTime?: true
@@ -25797,6 +25854,7 @@ export namespace Prisma {
     mountainId: string
     startTime: Date
     endTime: Date | null
+    callTime: Date | null
     onSceneTime: Date | null
     stableTime: Date | null
     transportTime: Date | null
@@ -25833,6 +25891,7 @@ export namespace Prisma {
     mountainId?: boolean
     startTime?: boolean
     endTime?: boolean
+    callTime?: boolean
     onSceneTime?: boolean
     stableTime?: boolean
     transportTime?: boolean
@@ -25855,6 +25914,7 @@ export namespace Prisma {
     mountainId?: boolean
     startTime?: boolean
     endTime?: boolean
+    callTime?: boolean
     onSceneTime?: boolean
     stableTime?: boolean
     transportTime?: boolean
@@ -25874,6 +25934,7 @@ export namespace Prisma {
     mountainId?: boolean
     startTime?: boolean
     endTime?: boolean
+    callTime?: boolean
     onSceneTime?: boolean
     stableTime?: boolean
     transportTime?: boolean
@@ -25893,6 +25954,7 @@ export namespace Prisma {
     mountainId?: boolean
     startTime?: boolean
     endTime?: boolean
+    callTime?: boolean
     onSceneTime?: boolean
     stableTime?: boolean
     transportTime?: boolean
@@ -25901,7 +25963,7 @@ export namespace Prisma {
     locationId?: boolean
   }
 
-  export type IncidentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "status" | "latitude" | "longitude" | "mountainId" | "startTime" | "endTime" | "onSceneTime" | "stableTime" | "transportTime" | "emptyRun" | "emptyRunAt" | "locationId", ExtArgs["result"]["incident"]>
+  export type IncidentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "status" | "latitude" | "longitude" | "mountainId" | "startTime" | "endTime" | "callTime" | "onSceneTime" | "stableTime" | "transportTime" | "emptyRun" | "emptyRunAt" | "locationId", ExtArgs["result"]["incident"]>
   export type IncidentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
     incidentEquipmentUsageLog?: boolean | Incident$incidentEquipmentUsageLogArgs<ExtArgs>
@@ -25935,6 +25997,7 @@ export namespace Prisma {
       mountainId: string
       startTime: Date
       endTime: Date | null
+      callTime: Date | null
       onSceneTime: Date | null
       stableTime: Date | null
       transportTime: Date | null
@@ -26376,6 +26439,7 @@ export namespace Prisma {
     readonly mountainId: FieldRef<"Incident", 'String'>
     readonly startTime: FieldRef<"Incident", 'DateTime'>
     readonly endTime: FieldRef<"Incident", 'DateTime'>
+    readonly callTime: FieldRef<"Incident", 'DateTime'>
     readonly onSceneTime: FieldRef<"Incident", 'DateTime'>
     readonly stableTime: FieldRef<"Incident", 'DateTime'>
     readonly transportTime: FieldRef<"Incident", 'DateTime'>
@@ -33615,7 +33679,8 @@ export namespace Prisma {
     id: 'id',
     employeeId: 'employeeId',
     mountainId: 'mountainId',
-    assignedAt: 'assignedAt'
+    startDate: 'startDate',
+    endDate: 'endDate'
   };
 
   export type EmployeeMountainAssignmentScalarFieldEnum = (typeof EmployeeMountainAssignmentScalarFieldEnum)[keyof typeof EmployeeMountainAssignmentScalarFieldEnum]
@@ -33671,8 +33736,11 @@ export namespace Prisma {
     lastName: 'lastName',
     email: 'email',
     phoneNumber: 'phoneNumber',
-    employeeStatus: 'employeeStatus',
-    roleId: 'roleId'
+    status: 'status',
+    primaryDepartment: 'primaryDepartment',
+    roleId: 'roleId',
+    startDate: 'startDate',
+    endDate: 'endDate'
   };
 
   export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
@@ -33792,6 +33860,7 @@ export namespace Prisma {
     mountainId: 'mountainId',
     startTime: 'startTime',
     endTime: 'endTime',
+    callTime: 'callTime',
     onSceneTime: 'onSceneTime',
     stableTime: 'stableTime',
     transportTime: 'transportTime',
@@ -34175,7 +34244,7 @@ export namespace Prisma {
 
   export type AreaWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    name_type?: AreaNameTypeCompoundUniqueInput
+    mountainId_name_type?: AreaMountainIdNameTypeCompoundUniqueInput
     AND?: AreaWhereInput | AreaWhereInput[]
     OR?: AreaWhereInput[]
     NOT?: AreaWhereInput | AreaWhereInput[]
@@ -34185,7 +34254,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Area"> | string | null
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     locations?: LocationListRelationFilter
-  }, "id" | "name_type">
+  }, "id" | "mountainId_name_type">
 
   export type AreaOrderByWithAggregationInput = {
     id?: SortOrder
@@ -34624,7 +34693,8 @@ export namespace Prisma {
     id?: StringFilter<"EmployeeMountainAssignment"> | string
     employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
     mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
-    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+    startDate?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+    endDate?: DateTimeNullableFilter<"EmployeeMountainAssignment"> | Date | string | null
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
   }
@@ -34633,7 +34703,8 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    assignedAt?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
     employee?: EmployeeOrderByWithRelationInput
     mountain?: MountainOrderByWithRelationInput
   }
@@ -34646,7 +34717,8 @@ export namespace Prisma {
     NOT?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
     employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
     mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
-    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+    startDate?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+    endDate?: DateTimeNullableFilter<"EmployeeMountainAssignment"> | Date | string | null
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
   }, "id" | "employeeId_mountainId">
@@ -34655,7 +34727,8 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    assignedAt?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
     _count?: EmployeeMountainAssignmentCountOrderByAggregateInput
     _max?: EmployeeMountainAssignmentMaxOrderByAggregateInput
     _min?: EmployeeMountainAssignmentMinOrderByAggregateInput
@@ -34668,7 +34741,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
     employeeId?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
     mountainId?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
-    assignedAt?: DateTimeWithAggregatesFilter<"EmployeeMountainAssignment"> | Date | string
+    startDate?: DateTimeWithAggregatesFilter<"EmployeeMountainAssignment"> | Date | string
+    endDate?: DateTimeNullableWithAggregatesFilter<"EmployeeMountainAssignment"> | Date | string | null
   }
 
   export type DispatcherAssignmentWhereInput = {
@@ -34752,6 +34826,7 @@ export namespace Prisma {
 
   export type RoleWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    department_title_level?: RoleDepartmentTitleLevelCompoundUniqueInput
     AND?: RoleWhereInput | RoleWhereInput[]
     OR?: RoleWhereInput[]
     NOT?: RoleWhereInput | RoleWhereInput[]
@@ -34762,7 +34837,7 @@ export namespace Prisma {
     permissions?: StringNullableListFilter<"Role">
     employees?: EmployeeListRelationFilter
     employeeRole?: EmployeeRoleListRelationFilter
-  }, "id">
+  }, "id" | "department_title_level">
 
   export type RoleOrderByWithAggregationInput = {
     id?: SortOrder
@@ -34905,10 +34980,13 @@ export namespace Prisma {
     employeeIdNumber?: IntNullableFilter<"Employee"> | number | null
     firstName?: StringFilter<"Employee"> | string
     lastName?: StringFilter<"Employee"> | string
-    email?: StringFilter<"Employee"> | string
-    phoneNumber?: StringFilter<"Employee"> | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
+    email?: StringNullableFilter<"Employee"> | string | null
+    phoneNumber?: StringNullableFilter<"Employee"> | string | null
+    status?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: EnumDEPARTMENTNullableFilter<"Employee"> | $Enums.DEPARTMENT | null
     roleId?: StringNullableFilter<"Employee"> | string | null
+    startDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     certifications?: CertificationListRelationFilter
     additionalRoles?: EmployeeRoleListRelationFilter
@@ -34928,10 +35006,13 @@ export namespace Prisma {
     employeeIdNumber?: SortOrderInput | SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    employeeStatus?: SortOrder
+    email?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    status?: SortOrder
+    primaryDepartment?: SortOrderInput | SortOrder
     roleId?: SortOrderInput | SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
     role?: RoleOrderByWithRelationInput
     certifications?: CertificationOrderByRelationAggregateInput
     additionalRoles?: EmployeeRoleOrderByRelationAggregateInput
@@ -34955,9 +35036,12 @@ export namespace Prisma {
     NOT?: EmployeeWhereInput | EmployeeWhereInput[]
     firstName?: StringFilter<"Employee"> | string
     lastName?: StringFilter<"Employee"> | string
-    phoneNumber?: StringFilter<"Employee"> | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
+    phoneNumber?: StringNullableFilter<"Employee"> | string | null
+    status?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: EnumDEPARTMENTNullableFilter<"Employee"> | $Enums.DEPARTMENT | null
     roleId?: StringNullableFilter<"Employee"> | string | null
+    startDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     certifications?: CertificationListRelationFilter
     additionalRoles?: EmployeeRoleListRelationFilter
@@ -34977,10 +35061,13 @@ export namespace Prisma {
     employeeIdNumber?: SortOrderInput | SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
-    email?: SortOrder
-    phoneNumber?: SortOrder
-    employeeStatus?: SortOrder
+    email?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    status?: SortOrder
+    primaryDepartment?: SortOrderInput | SortOrder
     roleId?: SortOrderInput | SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
     _count?: EmployeeCountOrderByAggregateInput
     _avg?: EmployeeAvgOrderByAggregateInput
     _max?: EmployeeMaxOrderByAggregateInput
@@ -34996,10 +35083,13 @@ export namespace Prisma {
     employeeIdNumber?: IntNullableWithAggregatesFilter<"Employee"> | number | null
     firstName?: StringWithAggregatesFilter<"Employee"> | string
     lastName?: StringWithAggregatesFilter<"Employee"> | string
-    email?: StringWithAggregatesFilter<"Employee"> | string
-    phoneNumber?: StringWithAggregatesFilter<"Employee"> | string
-    employeeStatus?: EnumEMPLOYEE_STATUSWithAggregatesFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
+    email?: StringNullableWithAggregatesFilter<"Employee"> | string | null
+    phoneNumber?: StringNullableWithAggregatesFilter<"Employee"> | string | null
+    status?: EnumEMPLOYEE_STATUSWithAggregatesFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: EnumDEPARTMENTNullableWithAggregatesFilter<"Employee"> | $Enums.DEPARTMENT | null
     roleId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
+    startDate?: DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
+    endDate?: DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
   }
 
   export type LiftWhereInput = {
@@ -35038,8 +35128,7 @@ export namespace Prisma {
   export type LiftWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     locationId?: string
-    name_type?: LiftNameTypeCompoundUniqueInput
-    mountainId_name?: LiftMountainIdNameCompoundUniqueInput
+    mountainId_name_type?: LiftMountainIdNameTypeCompoundUniqueInput
     AND?: LiftWhereInput | LiftWhereInput[]
     OR?: LiftWhereInput[]
     NOT?: LiftWhereInput | LiftWhereInput[]
@@ -35053,7 +35142,7 @@ export namespace Prisma {
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
     liftChecks?: LiftCheckListRelationFilter
     location?: XOR<LocationNullableScalarRelationFilter, LocationWhereInput> | null
-  }, "id" | "locationId" | "name_type" | "mountainId_name">
+  }, "id" | "locationId" | "mountainId_name_type">
 
   export type LiftOrderByWithAggregationInput = {
     id?: SortOrder
@@ -35096,7 +35185,7 @@ export namespace Prisma {
     name?: StringFilter<"Trail"> | string
     difficulty?: EnumTRAIL_DIFFICULTYFilter<"Trail"> | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFilter<"Trail"> | $Enums.STATUS
-    length?: FloatFilter<"Trail"> | number
+    length?: FloatNullableFilter<"Trail"> | number | null
     latitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFilter<"Trail"> | $Enums.TRAIL_CONDITION
@@ -35112,7 +35201,7 @@ export namespace Prisma {
     name?: SortOrder
     difficulty?: SortOrder
     status?: SortOrder
-    length?: SortOrder
+    length?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     condition?: SortOrder
@@ -35133,7 +35222,7 @@ export namespace Prisma {
     name?: StringFilter<"Trail"> | string
     difficulty?: EnumTRAIL_DIFFICULTYFilter<"Trail"> | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFilter<"Trail"> | $Enums.STATUS
-    length?: FloatFilter<"Trail"> | number
+    length?: FloatNullableFilter<"Trail"> | number | null
     latitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFilter<"Trail"> | $Enums.TRAIL_CONDITION
@@ -35148,7 +35237,7 @@ export namespace Prisma {
     name?: SortOrder
     difficulty?: SortOrder
     status?: SortOrder
-    length?: SortOrder
+    length?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     condition?: SortOrder
@@ -35169,7 +35258,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Trail"> | string
     difficulty?: EnumTRAIL_DIFFICULTYWithAggregatesFilter<"Trail"> | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSWithAggregatesFilter<"Trail"> | $Enums.STATUS
-    length?: FloatWithAggregatesFilter<"Trail"> | number
+    length?: FloatNullableWithAggregatesFilter<"Trail"> | number | null
     latitude?: DecimalNullableWithAggregatesFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableWithAggregatesFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONWithAggregatesFilter<"Trail"> | $Enums.TRAIL_CONDITION
@@ -35603,6 +35692,7 @@ export namespace Prisma {
     mountainId?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    callTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     onSceneTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     stableTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -35624,6 +35714,7 @@ export namespace Prisma {
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrderInput | SortOrder
+    callTime?: SortOrderInput | SortOrder
     onSceneTime?: SortOrderInput | SortOrder
     stableTime?: SortOrderInput | SortOrder
     transportTime?: SortOrderInput | SortOrder
@@ -35648,6 +35739,7 @@ export namespace Prisma {
     mountainId?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    callTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     onSceneTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     stableTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -35669,6 +35761,7 @@ export namespace Prisma {
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrderInput | SortOrder
+    callTime?: SortOrderInput | SortOrder
     onSceneTime?: SortOrderInput | SortOrder
     stableTime?: SortOrderInput | SortOrder
     transportTime?: SortOrderInput | SortOrder
@@ -35694,6 +35787,7 @@ export namespace Prisma {
     mountainId?: StringWithAggregatesFilter<"Incident"> | string
     startTime?: DateTimeWithAggregatesFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
+    callTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
     onSceneTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
     stableTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
     transportTime?: DateTimeNullableWithAggregatesFilter<"Incident"> | Date | string | null
@@ -36687,7 +36781,8 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentCreateInput = {
     id?: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
     employee: EmployeeCreateNestedOneWithoutMountainAssignmentsInput
     mountain: MountainCreateNestedOneWithoutEmployeeAssignmentsInput
   }
@@ -36696,12 +36791,14 @@ export namespace Prisma {
     id?: string
     employeeId: string
     mountainId: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
   }
 
   export type EmployeeMountainAssignmentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employee?: EmployeeUpdateOneRequiredWithoutMountainAssignmentsNestedInput
     mountain?: MountainUpdateOneRequiredWithoutEmployeeAssignmentsNestedInput
   }
@@ -36710,26 +36807,30 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type EmployeeMountainAssignmentCreateManyInput = {
     id?: string
     employeeId: string
     mountainId: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
   }
 
   export type EmployeeMountainAssignmentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type EmployeeMountainAssignmentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type DispatcherAssignmentCreateInput = {
@@ -36957,9 +37058,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -36979,10 +37083,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -37001,9 +37108,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -37023,10 +37133,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -37045,10 +37158,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
   }
 
   export type EmployeeUpdateManyMutationInput = {
@@ -37056,9 +37172,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type EmployeeUncheckedUpdateManyInput = {
@@ -37066,10 +37185,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type LiftCreateInput = {
@@ -37163,7 +37285,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -37178,7 +37300,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -37191,7 +37313,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -37206,7 +37328,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -37220,7 +37342,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -37232,7 +37354,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -37244,7 +37366,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -37681,6 +37803,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -37701,6 +37824,7 @@ export namespace Prisma {
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -37719,6 +37843,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -37739,6 +37864,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -37758,6 +37884,7 @@ export namespace Prisma {
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -37774,6 +37901,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -37790,6 +37918,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -38299,7 +38428,8 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type AreaNameTypeCompoundUniqueInput = {
+  export type AreaMountainIdNameTypeCompoundUniqueInput = {
+    mountainId: string
     name: string
     type: $Enums.AREA_TYPE
   }
@@ -39032,21 +39162,24 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    assignedAt?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
   }
 
   export type EmployeeMountainAssignmentMaxOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    assignedAt?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
   }
 
   export type EmployeeMountainAssignmentMinOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    assignedAt?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
   }
 
   export type DispatcherAssignmentEmployeeIdMountainIdAssignedAtCompoundUniqueInput = {
@@ -39116,6 +39249,12 @@ export namespace Prisma {
 
   export type EmployeeRoleOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type RoleDepartmentTitleLevelCompoundUniqueInput = {
+    department: $Enums.DEPARTMENT
+    title: string
+    level: $Enums.ROLE_LEVEL
   }
 
   export type RoleCountOrderByAggregateInput = {
@@ -39225,6 +39364,13 @@ export namespace Prisma {
     not?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel> | $Enums.EMPLOYEE_STATUS
   }
 
+  export type EnumDEPARTMENTNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.DEPARTMENT | EnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    in?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumDEPARTMENTNullableFilter<$PrismaModel> | $Enums.DEPARTMENT | null
+  }
+
   export type RoleNullableScalarRelationFilter = {
     is?: RoleWhereInput | null
     isNot?: RoleWhereInput | null
@@ -39247,8 +39393,11 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
-    employeeStatus?: SortOrder
+    status?: SortOrder
+    primaryDepartment?: SortOrder
     roleId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
   }
 
   export type EmployeeAvgOrderByAggregateInput = {
@@ -39262,8 +39411,11 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
-    employeeStatus?: SortOrder
+    status?: SortOrder
+    primaryDepartment?: SortOrder
     roleId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
   }
 
   export type EmployeeMinOrderByAggregateInput = {
@@ -39273,8 +39425,11 @@ export namespace Prisma {
     lastName?: SortOrder
     email?: SortOrder
     phoneNumber?: SortOrder
-    employeeStatus?: SortOrder
+    status?: SortOrder
+    primaryDepartment?: SortOrder
     roleId?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
   }
 
   export type EmployeeSumOrderByAggregateInput = {
@@ -39291,6 +39446,16 @@ export namespace Prisma {
     _max?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel>
   }
 
+  export type EnumDEPARTMENTNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DEPARTMENT | EnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    in?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumDEPARTMENTNullableWithAggregatesFilter<$PrismaModel> | $Enums.DEPARTMENT | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumDEPARTMENTNullableFilter<$PrismaModel>
+    _max?: NestedEnumDEPARTMENTNullableFilter<$PrismaModel>
+  }
+
   export type EnumLIFT_TYPEFilter<$PrismaModel = never> = {
     equals?: $Enums.LIFT_TYPE | EnumLIFT_TYPEFieldRefInput<$PrismaModel>
     in?: $Enums.LIFT_TYPE[] | ListEnumLIFT_TYPEFieldRefInput<$PrismaModel>
@@ -39303,14 +39468,10 @@ export namespace Prisma {
     isNot?: LocationWhereInput | null
   }
 
-  export type LiftNameTypeCompoundUniqueInput = {
-    name: string
-    type: $Enums.LIFT_TYPE
-  }
-
-  export type LiftMountainIdNameCompoundUniqueInput = {
+  export type LiftMountainIdNameTypeCompoundUniqueInput = {
     mountainId: string
     name: string
+    type: $Enums.LIFT_TYPE
   }
 
   export type LiftCountOrderByAggregateInput = {
@@ -39757,6 +39918,7 @@ export namespace Prisma {
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    callTime?: SortOrder
     onSceneTime?: SortOrder
     stableTime?: SortOrder
     transportTime?: SortOrder
@@ -39779,6 +39941,7 @@ export namespace Prisma {
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    callTime?: SortOrder
     onSceneTime?: SortOrder
     stableTime?: SortOrder
     transportTime?: SortOrder
@@ -39796,6 +39959,7 @@ export namespace Prisma {
     mountainId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
+    callTime?: SortOrder
     onSceneTime?: SortOrder
     stableTime?: SortOrder
     transportTime?: SortOrder
@@ -41677,6 +41841,10 @@ export namespace Prisma {
     set?: $Enums.EMPLOYEE_STATUS
   }
 
+  export type NullableEnumDEPARTMENTFieldUpdateOperationsInput = {
+    set?: $Enums.DEPARTMENT | null
+  }
+
   export type RoleUpdateOneWithoutEmployeesNestedInput = {
     create?: XOR<RoleCreateWithoutEmployeesInput, RoleUncheckedCreateWithoutEmployeesInput>
     connectOrCreate?: RoleCreateOrConnectWithoutEmployeesInput
@@ -43236,6 +43404,13 @@ export namespace Prisma {
     not?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel> | $Enums.EMPLOYEE_STATUS
   }
 
+  export type NestedEnumDEPARTMENTNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.DEPARTMENT | EnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    in?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumDEPARTMENTNullableFilter<$PrismaModel> | $Enums.DEPARTMENT | null
+  }
+
   export type NestedEnumEMPLOYEE_STATUSWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.EMPLOYEE_STATUS | EnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
     in?: $Enums.EMPLOYEE_STATUS[] | ListEnumEMPLOYEE_STATUSFieldRefInput<$PrismaModel>
@@ -43244,6 +43419,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel>
     _max?: NestedEnumEMPLOYEE_STATUSFilter<$PrismaModel>
+  }
+
+  export type NestedEnumDEPARTMENTNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DEPARTMENT | EnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    in?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.DEPARTMENT[] | ListEnumDEPARTMENTFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumDEPARTMENTNullableWithAggregatesFilter<$PrismaModel> | $Enums.DEPARTMENT | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumDEPARTMENTNullableFilter<$PrismaModel>
+    _max?: NestedEnumDEPARTMENTNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumLIFT_TYPEFilter<$PrismaModel = never> = {
@@ -43688,7 +43873,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -43702,7 +43887,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -43875,6 +44060,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -43894,6 +44080,7 @@ export namespace Prisma {
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -44068,7 +44255,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -44082,7 +44269,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -44276,6 +44463,7 @@ export namespace Prisma {
     mountainId?: StringFilter<"Incident"> | string
     startTime?: DateTimeFilter<"Incident"> | Date | string
     endTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
+    callTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     onSceneTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     stableTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
     transportTime?: DateTimeNullableFilter<"Incident"> | Date | string | null
@@ -44601,7 +44789,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -44614,7 +44802,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -44790,6 +44978,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -44808,6 +44997,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -44876,14 +45066,16 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentCreateWithoutMountainInput = {
     id?: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
     employee: EmployeeCreateNestedOneWithoutMountainAssignmentsInput
   }
 
   export type EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput = {
     id?: string
     employeeId: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
   }
 
   export type EmployeeMountainAssignmentCreateOrConnectWithoutMountainInput = {
@@ -45202,7 +45394,7 @@ export namespace Prisma {
     name?: StringFilter<"Trail"> | string
     difficulty?: EnumTRAIL_DIFFICULTYFilter<"Trail"> | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFilter<"Trail"> | $Enums.STATUS
-    length?: FloatFilter<"Trail"> | number
+    length?: FloatNullableFilter<"Trail"> | number | null
     latitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     longitude?: DecimalNullableFilter<"Trail"> | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFilter<"Trail"> | $Enums.TRAIL_CONDITION
@@ -45414,7 +45606,8 @@ export namespace Prisma {
     id?: StringFilter<"EmployeeMountainAssignment"> | string
     employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
     mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
-    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+    startDate?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
+    endDate?: DateTimeNullableFilter<"EmployeeMountainAssignment"> | Date | string | null
   }
 
   export type DispatcherAssignmentUpsertWithWhereUniqueWithoutMountainInput = {
@@ -45657,9 +45850,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -45678,10 +45874,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -45786,9 +45985,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -45807,10 +46009,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -45905,9 +46110,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -45926,10 +46134,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -46034,9 +46245,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -46055,10 +46269,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -46153,9 +46370,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -46174,9 +46394,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -46244,10 +46467,13 @@ export namespace Prisma {
     employeeIdNumber?: IntNullableFilter<"Employee"> | number | null
     firstName?: StringFilter<"Employee"> | string
     lastName?: StringFilter<"Employee"> | string
-    email?: StringFilter<"Employee"> | string
-    phoneNumber?: StringFilter<"Employee"> | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
+    email?: StringNullableFilter<"Employee"> | string | null
+    phoneNumber?: StringNullableFilter<"Employee"> | string | null
+    status?: EnumEMPLOYEE_STATUSFilter<"Employee"> | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: EnumDEPARTMENTNullableFilter<"Employee"> | $Enums.DEPARTMENT | null
     roleId?: StringNullableFilter<"Employee"> | string | null
+    startDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
   }
 
   export type EmployeeRoleUpsertWithWhereUniqueWithoutRoleInput = {
@@ -46280,9 +46506,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -46301,10 +46530,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -46363,9 +46595,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -46384,10 +46619,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -46436,9 +46674,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
@@ -46457,10 +46698,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -46494,9 +46738,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -46515,10 +46762,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
     dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -46604,14 +46854,16 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentCreateWithoutEmployeeInput = {
     id?: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
     mountain: MountainCreateNestedOneWithoutEmployeeAssignmentsInput
   }
 
   export type EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput = {
     id?: string
     mountainId: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
   }
 
   export type EmployeeMountainAssignmentCreateOrConnectWithoutEmployeeInput = {
@@ -46654,6 +46906,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -46673,6 +46926,7 @@ export namespace Prisma {
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -48488,9 +48742,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -48509,10 +48766,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -48664,9 +48924,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -48685,10 +48948,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -49259,9 +49525,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -49280,10 +49549,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -49532,6 +49804,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -49551,6 +49824,7 @@ export namespace Prisma {
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -49702,6 +49976,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -49721,6 +49996,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -49782,9 +50058,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -49803,10 +50082,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -49940,9 +50222,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -49961,10 +50246,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -50094,9 +50382,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -50115,10 +50406,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -50212,7 +50506,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -50226,7 +50520,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -50254,9 +50548,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -50275,10 +50572,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -50384,7 +50684,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -50398,7 +50698,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -50410,9 +50710,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -50431,10 +50734,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -50564,9 +50870,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -50585,10 +50894,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -50714,9 +51026,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -50735,10 +51050,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -50868,9 +51186,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -50889,10 +51210,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -51018,9 +51342,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     role?: RoleCreateNestedOneWithoutEmployeesInput
     certifications?: CertificationCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
@@ -51039,10 +51366,13 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
     roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
     certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
     additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
@@ -51188,9 +51518,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -51209,10 +51542,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -51432,6 +51768,7 @@ export namespace Prisma {
     mountainId: string
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -51531,6 +51868,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -51550,6 +51888,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -51568,6 +51907,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -51649,7 +51989,7 @@ export namespace Prisma {
     name: string
     difficulty: $Enums.TRAIL_DIFFICULTY
     status?: $Enums.STATUS
-    length: number
+    length?: number | null
     latitude?: Decimal | DecimalJsLike | number | string | null
     longitude?: Decimal | DecimalJsLike | number | string | null
     condition?: $Enums.TRAIL_CONDITION
@@ -51714,6 +52054,7 @@ export namespace Prisma {
     longitude?: Decimal | DecimalJsLike | number | string | null
     startTime?: Date | string
     endTime?: Date | string | null
+    callTime?: Date | string | null
     onSceneTime?: Date | string | null
     stableTime?: Date | string | null
     transportTime?: Date | string | null
@@ -51740,7 +52081,8 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentCreateManyMountainInput = {
     id?: string
     employeeId: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
   }
 
   export type DispatcherAssignmentCreateManyMountainInput = {
@@ -52006,7 +52348,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -52019,7 +52361,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -52032,7 +52374,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     difficulty?: EnumTRAIL_DIFFICULTYFieldUpdateOperationsInput | $Enums.TRAIL_DIFFICULTY
     status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    length?: FloatFieldUpdateOperationsInput | number
+    length?: NullableFloatFieldUpdateOperationsInput | number | null
     latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
@@ -52197,6 +52539,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -52215,6 +52558,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -52233,6 +52577,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -52294,20 +52639,23 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employee?: EmployeeUpdateOneRequiredWithoutMountainAssignmentsNestedInput
   }
 
   export type EmployeeMountainAssignmentUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type DispatcherAssignmentUpdateWithoutMountainInput = {
@@ -52396,9 +52744,12 @@ export namespace Prisma {
     employeeIdNumber?: number | null
     firstName: string
     lastName: string
-    email: string
-    phoneNumber: string
-    employeeStatus: $Enums.EMPLOYEE_STATUS
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
   }
 
   export type EmployeeRoleCreateManyRoleInput = {
@@ -52411,9 +52762,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
@@ -52432,9 +52786,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -52453,9 +52810,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type EmployeeRoleUpdateWithoutRoleInput = {
@@ -52489,7 +52849,8 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentCreateManyEmployeeInput = {
     id?: string
     mountainId: string
-    assignedAt: Date | string
+    startDate?: Date | string
+    endDate?: Date | string | null
   }
 
   export type DispatcherAssignmentCreateManyEmployeeInput = {
@@ -52600,20 +52961,23 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mountain?: MountainUpdateOneRequiredWithoutEmployeeAssignmentsNestedInput
   }
 
   export type EmployeeMountainAssignmentUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
-    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type DispatcherAssignmentUpdateWithoutEmployeeInput = {
@@ -52642,6 +53006,7 @@ export namespace Prisma {
     longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -52661,6 +53026,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -52679,6 +53045,7 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    callTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     onSceneTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stableTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transportTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -53199,9 +53566,12 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: RoleUpdateOneWithoutEmployeesNestedInput
     certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
@@ -53220,10 +53590,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
     mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -53241,10 +53614,13 @@ export namespace Prisma {
     employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    employeeStatus?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
     roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 

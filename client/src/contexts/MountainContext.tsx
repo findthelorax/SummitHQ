@@ -1,29 +1,33 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { mountainApi } from '../api/MountainAPI';
-import type { Mountain } from 'shared/types';
+import type { MountainDTO } from '../types/index';
+import type { MountainInputPayload } from '../api/MountainAPI';
 
 type MountainContextType = {
-    selectedMountain: Mountain | null;
-    setSelectedMountain: (mountain: Mountain | null, persist?: boolean) => void;
-    mountains: Mountain[];
+    selectedMountain: MountainDTO | null;
+    setSelectedMountain: (mountain: MountainDTO | null, persist?: boolean) => void;
+    mountains: MountainDTO[];
     fetchMountains: () => Promise<void>;
-    isLoading: boolean;
+    isLoadingMountains: boolean;
+    createMountain: (mountain: MountainInputPayload) => Promise<MountainDTO>;
+    updateMountain: (mountainId: string, updated: Partial<MountainInputPayload>) => Promise<MountainDTO>;
+    deleteMountain: (mountainId: string) => Promise<void>;
 };
 
 const MountainContext = createContext<MountainContextType | undefined>(undefined);
 
 const MountainProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	const [selectedMountain, setSelectedMountainState] = useState<Mountain | null>(null);
-	const [mountains, setMountains] = useState<Mountain[]>([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [selectedMountain, setSelectedMountainState] = useState<MountainDTO | null>(null);
+	const [mountains, setMountains] = useState<MountainDTO[]>([]);
+	const [isLoadingMountains, setIsLoadingMountains] = useState(false);
 
 	const fetchMountains = useCallback(async () => {
-		setIsLoading(true);
+		setIsLoadingMountains(true);
 		try {
 			const data = await mountainApi.getAllMountains();
 			setMountains(data);
 		} finally {
-			setIsLoading(false);
+			setIsLoadingMountains(false);
 		}
 	}, []);
 
@@ -31,7 +35,7 @@ const MountainProvider: React.FC<{ children: React.ReactNode }> = ({ children })
 		fetchMountains();
 	}, [fetchMountains]);
 
-	const setSelectedMountain = (mountain: Mountain | null, persist = true) => {
+	const setSelectedMountain = (mountain: MountainDTO | null, persist = true) => {
 		setSelectedMountainState(mountain);
 		if (persist) {
 			if (mountain) {
@@ -50,6 +54,23 @@ const MountainProvider: React.FC<{ children: React.ReactNode }> = ({ children })
 		}
 	}, [mountains]);
 
+	const createMountain = async (mountain: MountainInputPayload) => {
+		const created = await mountainApi.createMountain(mountain);
+		await fetchMountains();
+		return created;
+	};
+	
+	const updateMountain = async (mountainId: string, updated: Partial<MountainInputPayload>): Promise<MountainDTO> => {
+		const updatedMountain = await mountainApi.updateMountain(mountainId, updated);
+		await fetchMountains();
+		return updatedMountain;
+	};
+
+	const deleteMountain = async (mountainId: string) => {
+		await mountainApi.deleteMountain(mountainId);
+		await fetchMountains();
+	};
+
 	return (
 		<MountainContext.Provider
 			value={{
@@ -57,7 +78,10 @@ const MountainProvider: React.FC<{ children: React.ReactNode }> = ({ children })
 				setSelectedMountain,
 				mountains,
 				fetchMountains,
-				isLoading,
+				isLoadingMountains,
+				createMountain,
+				updateMountain,
+				deleteMountain,
 			}}
 		>
 			{children}

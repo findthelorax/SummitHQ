@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
-const states = [
+export const states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
     'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
     'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
@@ -21,7 +21,7 @@ const DropdownItem: React.FC<{
     onSelect: (value: string) => void;
 }> = ({ value, isSelected, onSelect }) => (
     <li
-        className={`px-4 py-2 cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-700 ${isSelected ? 'font-bold' : ''}`}
+        className={`dropdown-option${isSelected ? ' selected' : ''}`}
         onMouseDown={() => onSelect(value)}
     >
         {value}
@@ -79,12 +79,12 @@ const StatesAutocomplete: React.FC<StatesAutocompleteProps> = ({
                     }
                 }}
                 placeholder={placeholder}
-                className="w-full border rounded px-3 py-2 dark:bg-gray-800 dark:text-white"
+                className="input"
                 autoComplete="new-password"
                 required
             />
             {showDropdown && filteredStates.length > 0 && (
-                <ul className="absolute z-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded w-full max-h-60 overflow-y-auto shadow mt-1">
+                <ul className="dropdown-list">
                     {filteredStates.map((s) => (
                         <DropdownItem
                             key={s}

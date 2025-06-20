@@ -1,17 +1,45 @@
 import React from 'react';
 import { useMountain } from '../contexts/MountainContext';
 import { useEquipment } from '../hooks/useEquipment';
-import EquipmentForm from '../components/equipment/EquipmentForm';
-import EquipmentTableAgGrid from '../components/equipment/EquipmentTableAgGrid';
+import BaseEquipmentTableAgGrid from '../components/equipment/BaseEquipmentTableAgGrid';
+import NoSelectionNotice from '../components/common/NoSelectionNotice';
 
 const EquipmentPage: React.FC = () => {
-    const { selectedMountain } = useMountain();
-    const { equipment, fetchEquipment, isLoading } = useEquipment(selectedMountain?.id);
+    const { mountains, selectedMountain } = useMountain();
+    const {
+        equipment,
+        isLoadingEquipment,
+        fetchEquipmentByMountain,
+    } = useEquipment(selectedMountain?.id);
+
+    if (!selectedMountain) {
+        return (
+            <NoSelectionNotice
+                title="No Mountain Selected"
+                message={
+                    <>
+                        Please select a mountain to view its equipment.<br />
+                        You can choose a mountain from the menu above.
+                    </>
+                }
+            />
+        );
+    }
+
+    const filteredEquipment = equipment.filter((eq) =>
+        eq.mountainId === selectedMountain.id
+    );
 
     return (
         <>
-            <EquipmentForm onCreated={fetchEquipment} />
-            <EquipmentTableAgGrid equipment={equipment} fetchEquipment={fetchEquipment} isLoading={isLoading} />
+            <BaseEquipmentTableAgGrid
+                equipment={filteredEquipment}
+                fetchEquipment={fetchEquipmentByMountain}
+                isLoadingEquipment={isLoadingEquipment}
+                mountains={mountains}
+                mountainId={selectedMountain.id}
+                mountainName={selectedMountain.name}
+            />
         </>
     );
 };

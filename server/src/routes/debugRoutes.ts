@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { getAllData } from '../controllers/debugController.js';
+import { getAllData, deleteAllData } from '../controllers/debugController.js';
 
 const router = Router();
 
 router.get('/all-data', getAllData);
+router.delete('/all-data', deleteAllData);
+
 
 export default router;

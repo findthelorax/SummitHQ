@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { areaApi } from '../api/AreaAPI';
-import type { Area, AreaWithEntities } from 'shared/types';
-import { AREA_TYPE } from 'shared/types/enums';
+import type { AreaDTO, AreaFull } from '../types/index';
+import { AREA_TYPE } from '../types/generated-enums';
 import type { AreaInputPayload } from '../api/AreaAPI';
 
 function toSharedAreaType(type: any): AREA_TYPE {
@@ -10,20 +10,20 @@ function toSharedAreaType(type: any): AREA_TYPE {
 }
 
 export function useAreas(mountainId: string | undefined) {
-	const [areas, setAreas] = useState<AreaWithEntities[]>([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [areas, setAreas] = useState<AreaFull[]>([]);
+	const [isLoadingAreas, setIsLoadingAreas] = useState(false);
 
 	const fetchAreas = useCallback(async () => {
 		if (!mountainId) {
 			setAreas([]);
 			return;
 		}
-		setIsLoading(true);
+		setIsLoadingAreas(true);
 		try {
 			const data = await areaApi.getAreas(mountainId);
-			setAreas(data as AreaWithEntities[]);
+			setAreas(data as AreaFull[]);
 		} finally {
-			setIsLoading(false);
+			setIsLoadingAreas(false);
 		}
 	}, [mountainId]);
 
@@ -38,7 +38,7 @@ export function useAreas(mountainId: string | undefined) {
 		await fetchAreas();
 	};
 
-	const updateArea = async (areaId: string, updated: Partial<Area>) => {
+	const updateArea = async (areaId: string, updated: Partial<AreaDTO>) => {
 		if (!mountainId) return;
 		const { name, type, description } = updated;
 		const payload: Partial<import('../api/AreaAPI').AreaInputPayload> = {
@@ -56,5 +56,5 @@ export function useAreas(mountainId: string | undefined) {
 		await fetchAreas();
 	};
 
-	return { areas, isLoading, fetchAreas, createArea, updateArea, deleteArea };
+	return { areas, isLoadingAreas, fetchAreas, createArea, updateArea, deleteArea };
 }

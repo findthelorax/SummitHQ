@@ -1,20 +1,20 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../generated/prisma/index.js';
 
 const DEPARTMENT_PREFIX: Record<string, number> = {
-    PATROL: 100,
-    LIFT_OPS: 200,
-    MAINTENANCE: 300,
-    ADMIN: 400,
-    OTHER: 900,
+    PATROL: 10,
+    LIFT_OPS: 20,
+    MAINTENANCE: 30,
+    ADMIN: 40,
+    OTHER: 90,
 };
 
 export async function generateNextEmployeeIdNumber(
-    tx: PrismaClient,
-    department: string
+    tx: Pick<PrismaClient, 'employee'>, // <-- Accepts both PrismaClient and transaction client
+    primaryDepartment: string
 ): Promise<number> {
-    const prefix = DEPARTMENT_PREFIX[department] ?? DEPARTMENT_PREFIX.OTHER;
-    const minNumber = prefix * 1000; // e.g., 101000
-    const maxNumber = (prefix + 1) * 1000 - 1; // e.g., 101999
+    const prefix = DEPARTMENT_PREFIX[primaryDepartment] ?? DEPARTMENT_PREFIX.OTHER;
+    const minNumber = prefix * 1;
+    const maxNumber = (prefix + 1) * 100 - 1;
 
     // Fast path: just increment the max
     const lastEmployee = await tx.employee.findFirst({

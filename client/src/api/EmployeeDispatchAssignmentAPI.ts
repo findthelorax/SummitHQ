@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { DispatcherAssignment } from 'shared/types';
+import type { DispatcherAssignmentDTO } from '../types/index';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
@@ -12,7 +12,7 @@ export type EmployeeDispatchAssignmentInputPayload = {
 
 export const employeeDispatchAssignmentApi = {
     async createAssignment(employeeId: string, payload: EmployeeDispatchAssignmentInputPayload) {
-        const res = await axios.post<DispatcherAssignment>(
+        const res = await axios.post<DispatcherAssignmentDTO>(
             url(`/api/employees/${employeeId}/dispatch-assignments`),
             payload
         );
@@ -20,12 +20,12 @@ export const employeeDispatchAssignmentApi = {
     },
 
     async getAssignments() {
-        const res = await axios.get<DispatcherAssignment[]>(url(`/api/employees/dispatch-assignments`));
+        const res = await axios.get<DispatcherAssignmentDTO[]>(url(`/api/employees/dispatch-assignments`));
         return res.data;
     },
 
     async getAssignment(employeeId: string, dispatchAssignmentId: string) {
-        const res = await axios.get<DispatcherAssignment>(
+        const res = await axios.get<DispatcherAssignmentDTO>(
             url(`/api/employees/${employeeId}/dispatch-assignments/${dispatchAssignmentId}`)
         );
         return res.data;

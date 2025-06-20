@@ -88,7 +88,6 @@ class EquipmentModel {
 	}
 
 	static async assignToLocation(equipmentId: string, locationId: string, mountainId: string) {
-		// Ensure equipment and location both belong to the same mountain
 		const equipment = await prisma.equipment.findFirst({
 			where: { id: equipmentId, mountainId },
 		});
@@ -104,7 +103,6 @@ class EquipmentModel {
 	}
 
 	static async removeFromLocation(equipmentId: string, locationId: string, mountainId: string) {
-		// Ensure equipment and location both belong to the same mountain
 		const equipment = await prisma.equipment.findFirst({
 			where: { id: equipmentId, mountainId, locationId },
 		});
@@ -117,7 +115,6 @@ class EquipmentModel {
 	}
 
 	static async moveToLocation(equipmentId: string, newLocationId: string, mountainId: string) {
-		// Ensure equipment and new location both belong to the same mountain
 		const equipment = await prisma.equipment.findFirst({
 			where: { id: equipmentId, mountainId },
 		});
@@ -133,7 +130,6 @@ class EquipmentModel {
 	}
 
 	static async assignToMountain(equipmentId: string, mountainId: string) {
-		// Only assign if not already assigned to this mountain
 		const equipment = await prisma.equipment.findFirst({
 			where: { id: equipmentId, mountainId },
 		});
@@ -145,7 +141,6 @@ class EquipmentModel {
 	}
 
 	static async removeFromMountain(equipmentId: string, mountainId: string) {
-		// Only remove if currently assigned to this mountain
 		const equipment = await prisma.equipment.findFirst({
 			where: { id: equipmentId, mountainId },
 		});

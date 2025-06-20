@@ -1,5 +1,5 @@
 import { useMountain } from '../../contexts/MountainContext';
-import { useTrails } from '../../hooks/useTrails';
+import { useTrails } from '../../hooks/trail/useTrails';
 import React from 'react';
 
 function TrailsList() {

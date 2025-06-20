@@ -110,17 +110,13 @@ const expanded = await Promise.all(
 
 return expanded
 
-Depending on your stack:
 
-    Backend API (Node.js/Express/NestJS):
+<!-- TODO -->
+Database Injection + Syringe
 
-        Place in a service layer (e.g., locationService.ts)
+Swagger UI
 
-        Then expose it in a controller or resolver (e.g., GET /locations)
+Zod / validbot
 
-If you’re working with a frontend (e.g., React or Vue), return the details field alongside the Location, and use conditional UI components:
-
-{location.entityType === "Trail" && (
-  <TrailCard {...location.details} />
-)}
-
+generic request wrapper
+centralize axios with custom instance

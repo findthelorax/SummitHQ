@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { locationApi, LocationInputPayload } from '../api/LocationAPI';
-import type { Location, Hours, Incident, Equipment, Area } from 'shared/types';
-import { LOCATION_TYPE } from 'shared/types/enums';
+import type { LocationDTO, HoursDTO, IncidentDTO, EquipmentDTO, AreaDTO } from '../types/index';
+import { LOCATION_TYPE } from '../types/generated-enums';
 
 function toSharedLocationType(type: any): LOCATION_TYPE {
     if (Object.values(LOCATION_TYPE).includes(type)) return type as LOCATION_TYPE;
@@ -9,7 +9,7 @@ function toSharedLocationType(type: any): LOCATION_TYPE {
 }
 
 export function useLocations(mountainId: string | undefined) {
-    const [locations, setLocations] = useState<Location[]>([]);
+    const [locations, setLocations] = useState<LocationDTO[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchLocations = useCallback(async () => {
@@ -40,7 +40,7 @@ export function useLocations(mountainId: string | undefined) {
         await fetchLocations();
     }, [mountainId, fetchLocations]);
 
-    const updateLocation = useCallback(async (locationId: string, updated: Partial<Location>) => {
+    const updateLocation = useCallback(async (locationId: string, updated: Partial<LocationDTO>) => {
         if (!mountainId) return;
         const { name, entityId, entityType, areaId } = updated;
         const payload: Partial<LocationInputPayload> = {
@@ -62,7 +62,7 @@ export function useLocations(mountainId: string | undefined) {
     // --- HOURS ---
     const addLocationHours = useCallback(async (
         locationId: string,
-        hours: Omit<Hours, 'id' | 'locationId' | 'location' | 'createdAt' | 'updatedAt'>
+        hours: Omit<HoursDTO, 'id' | 'locationId' | 'location' | 'createdAt' | 'updatedAt'>
     ) => {
         if (!mountainId) return;
         return locationApi.addLocationHours(mountainId, locationId, hours);
@@ -76,7 +76,7 @@ export function useLocations(mountainId: string | undefined) {
     const updateLocationHour = useCallback(async (
         locationId: string,
         hourId: string,
-        updated: Partial<Hours>
+        updated: Partial<HoursDTO>
     ) => {
         if (!mountainId) return;
         return locationApi.updateLocationHour(mountainId, locationId, hourId, updated);
@@ -90,7 +90,7 @@ export function useLocations(mountainId: string | undefined) {
     // --- INCIDENTS ---
     const addIncidentToLocation = useCallback(async (
         locationId: string,
-        incident: Omit<Incident, 'id' | 'mountainId' | 'locationId' | 'location' | 'employees' | 'incidentEquipmentUsageLog'>
+        incident: Omit<IncidentDTO, 'id' | 'mountainId' | 'locationId' | 'location' | 'employees' | 'incidentEquipmentUsageLog'>
     ) => {
         if (!mountainId) return;
         return locationApi.addIncidentToLocation(mountainId, locationId, incident);
@@ -104,7 +104,7 @@ export function useLocations(mountainId: string | undefined) {
     const updateLocationIncident = useCallback(async (
         locationId: string,
         incidentId: string,
-        updated: Partial<Incident>
+        updated: Partial<IncidentDTO>
     ) => {
         if (!mountainId) return;
         return locationApi.updateLocationIncident(mountainId, locationId, incidentId, updated);
@@ -121,33 +121,33 @@ export function useLocations(mountainId: string | undefined) {
         return locationApi.getEquipmentByLocation(mountainId, locationId);
     }, [mountainId]);
 
-    // const addEquipmentToLocation = useCallback(async (locationId: string, equipmentId: string) => {
-    //     if (!mountainId) return;
-    //     return locationApi.addEquipmentToLocation(mountainId, locationId, equipmentId);
-    // }, [mountainId]);
+    const addEquipmentToLocation = useCallback(async (locationId: string, equipmentId: string) => {
+        if (!mountainId) return;
+        return locationApi.addEquipmentToLocation(mountainId, locationId, equipmentId);
+    }, [mountainId]);
 
-    // const moveEquipmentToLocation = useCallback(async (
-    //     locationId: string,
-    //     equipmentId: string,
-    //     data: { fromLocationId: string }
-    // ) => {
-    //     if (!mountainId) return;
-    //     return locationApi.moveEquipmentToLocation(mountainId, locationId, equipmentId, data);
-    // }, [mountainId]);
+    const moveEquipmentToLocation = useCallback(async (
+        locationId: string,
+        equipmentId: string,
+        data: { fromLocationId: string }
+    ) => {
+        if (!mountainId) return;
+        return locationApi.moveEquipmentToLocation(mountainId, locationId, equipmentId, data);
+    }, [mountainId]);
 
-    // const updateEquipmentInLocation = useCallback(async (
-    //     locationId: string,
-    //     equipmentId: string,
-    //     updated: Partial<Equipment>
-    // ) => {
-    //     if (!mountainId) return;
-    //     return locationApi.updateEquipmentInLocation(mountainId, locationId, equipmentId, updated);
-    // }, [mountainId]);
+    const updateEquipmentInLocation = useCallback(async (
+        locationId: string,
+        equipmentId: string,
+        updated: Partial<EquipmentDTO>
+    ) => {
+        if (!mountainId) return;
+        return locationApi.updateEquipmentInLocation(mountainId, locationId, equipmentId, updated);
+    }, [mountainId]);
 
-    // const deleteEquipmentFromLocation = useCallback(async (locationId: string, equipmentId: string) => {
-    //     if (!mountainId) return;
-    //     return locationApi.deleteEquipmentFromLocation(mountainId, locationId, equipmentId);
-    // }, [mountainId]);
+    const deleteEquipmentFromLocation = useCallback(async (locationId: string, equipmentId: string) => {
+        if (!mountainId) return;
+        return locationApi.deleteEquipmentFromLocation(mountainId, locationId, equipmentId);
+    }, [mountainId]);
 
     // --- AREAS ---
     const addAreaToLocation = useCallback(async (locationId: string, areaId: string) => {
@@ -158,7 +158,7 @@ export function useLocations(mountainId: string | undefined) {
     const updateAreaInLocation = useCallback(async (
         locationId: string,
         areaId: string,
-        updated: Partial<Area>
+        updated: Partial<AreaDTO>
     ) => {
         if (!mountainId) return;
         return locationApi.updateAreaInLocation(mountainId, locationId, areaId, updated);
@@ -188,10 +188,10 @@ export function useLocations(mountainId: string | undefined) {
         deleteIncidentFromLocation,
         // equipment
         getEquipmentByLocation,
-        // addEquipmentToLocation,
-        // moveEquipmentToLocation,
-        // updateEquipmentInLocation,
-        // deleteEquipmentFromLocation,
+        addEquipmentToLocation,
+        moveEquipmentToLocation,
+        updateEquipmentInLocation,
+        deleteEquipmentFromLocation,
         // areas
         addAreaToLocation,
         updateAreaInLocation,

@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
 @import "./components.css";
-@import "./App.css";
+
+@import "./AgGrid.css";
+@import "./AppBar.css";
+@import "./AutoComplete.css";
+@import "./ConfirmationDialog.css";
+@import "./Drawer.css";
+@import "./Footer.css";
+@import "./Forms.css";
+@import "./MainLayout.css";
+@import "./Status.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

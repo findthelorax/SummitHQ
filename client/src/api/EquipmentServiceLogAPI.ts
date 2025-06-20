@@ -1,16 +1,16 @@
 import axios from 'axios';
-import type { EquipmentServiceLog } from 'shared/types';
+import type { EquipmentServiceLogDTO } from '../types/index';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
 const PORT = import.meta.env.VITE_BACKEND_PORT;
 const BASE_URL = `${IP}:${PORT}`;
 const url = (path: string) => `${BASE_URL}${path}`;
 
-export type EquipmentServiceLogInputPayload = Omit<EquipmentServiceLog, 'id' | 'createdAt' | 'updatedAt'>;
+export type EquipmentServiceLogInputPayload = Omit<EquipmentServiceLogDTO, 'id' | 'createdAt' | 'updatedAt'>;
 
 export const equipmentServiceLogApi = {
     async create(mountainId: string, equipmentId: string, payload: EquipmentServiceLogInputPayload) {
-        const res = await axios.post<EquipmentServiceLog>(
+        const res = await axios.post<EquipmentServiceLogDTO>(
             url(`/api/mountains/${mountainId}/equipment/${equipmentId}/service-logs`),
             payload
         );
@@ -18,14 +18,14 @@ export const equipmentServiceLogApi = {
     },
 
     async getAll(mountainId: string, equipmentId: string) {
-        const res = await axios.get<EquipmentServiceLog[]>(
+        const res = await axios.get<EquipmentServiceLogDTO[]>(
             url(`/api/mountains/${mountainId}/equipment/${equipmentId}/service-logs`)
         );
         return res.data;
     },
 
     async getById(mountainId: string, equipmentId: string, logId: string) {
-        const res = await axios.get<EquipmentServiceLog>(
+        const res = await axios.get<EquipmentServiceLogDTO>(
             url(`/api/mountains/${mountainId}/equipment/${equipmentId}/service-logs/${logId}`)
         );
         return res.data;
