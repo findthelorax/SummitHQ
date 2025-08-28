@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "if [ \"$RAILWAY_ENVIRONMENT\" ]; then tsc -p tsconfig.railway.json && vite build; else tsc -b && vite build; fi",
     "lint": "eslint .",
     "preview": "vite preview"
   },
