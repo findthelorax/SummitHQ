@@ -11,6 +11,7 @@
 @import "./Forms.css";
 @import "./MainLayout.css";
 @import "./Status.css";
+@import "./CheckPages.css";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

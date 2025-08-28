@@ -113,15 +113,27 @@ export const HutChecksGrid: React.FC<HutChecksGridProps> = ({ mountainId, hutId 
                 field: 'equipmentIssues',
                 cellRenderer: 'agCheckboxCellRenderer',
                 minWidth: 150,
+                editable: (params) => params.node.rowPinned === 'top',
             },
-            { headerName: 'Equipment Notes', field: 'equipmentNotes', minWidth: 250 },
+            { 
+                headerName: 'Equipment Notes', 
+                field: 'equipmentNotes', 
+                minWidth: 250,
+                editable: (params) => params.node.rowPinned === 'top',
+            },
             {
                 headerName: 'Paperwork Stocked',
                 field: 'paperworkStocked',
                 cellRenderer: 'agCheckboxCellRenderer',
                 minWidth: 150,
+                editable: (params) => params.node.rowPinned === 'top',
             },
-            { headerName: 'General Notes', field: 'notes', minWidth: 250 },
+            { 
+                headerName: 'General Notes', 
+                field: 'notes', 
+                minWidth: 250,
+                editable: (params) => params.node.rowPinned === 'top',
+            },
             {
                 headerName: 'Actions',
                 field: 'actions',
@@ -137,23 +149,35 @@ export const HutChecksGrid: React.FC<HutChecksGridProps> = ({ mountainId, hutId 
         [handleCreate, handleDelete, hutId]
     );
 
+    const defaultColDef = useMemo(() => ({
+        resizable: true,
+        sortable: true,
+        filter: true,
+        editable: false, // Default is NOT editable
+        flex: 1,
+    }), []);
+
+    const pinnedTopRowData = useMemo(() => [{
+        ...newCheck,
+        employee: null,
+        createdAt: new Date().toISOString(),
+    }], [newCheck]);
+
     return (
         <div className="ag-theme-quartz-dark" style={{ height: 600, width: '100%' }}>
             <AgGridReact
                 columnDefs={columnDefs}
                 rowData={hutChecks}
-                pinnedTopRowData={[newCheck]}
+                pinnedTopRowData={pinnedTopRowData}
                 onCellValueChanged={onCellValueChanged}
-                defaultColDef={{
-                    resizable: true,
-                    sortable: true,
-                    filter: true,
-                    editable: true,
-                    flex: 1,
-                }}
-                getRowId={(params) => params.data.id}
+                defaultColDef={defaultColDef}
+                getRowId={(params) => params.data.id || 'new'}
                 stopEditingWhenCellsLoseFocus
+                theme={myTheme}
+                onGridReady={() => setIsLoadingHutChecks(false)}
             />
         </div>
     );
 };
+
+export default HutChecksGrid;

@@ -35,8 +35,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(errorHandler);
 
-app.listen(PORT, IP, () => {
-	logger.info(`Server is running on http://${IP}:${PORT}`);
+app.listen(PORT, () => {
+    logger.info(`Server is running on port ${PORT}`);
 });
 
 export default app;
