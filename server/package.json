@@ -5,9 +5,8 @@
 	"type": "module",
 	"main": "src/app.ts",
 	"scripts": {
-		"prebuild": "if [ \"$RAILWAY_ENVIRONMENT\" ]; then cp ../tsconfig.json ./parent-tsconfig.json && sed -i 's/\"../tsconfig.json\"/\".\\/parent-tsconfig.json\"/' tsconfig.json; fi",
 		"start": "node dist/app.js",
-		"build": "tsc",
+		"build": "if [ \"$RAILWAY_ENVIRONMENT\" ]; then tsc -p ./tsconfig.railway.json; else tsc; fi",
 		"dev": "tsx watch src/app.ts",
 		"test": "jest",
 		"seed": "tsx prisma/seed.ts",
