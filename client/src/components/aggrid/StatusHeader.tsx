@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import OpenAllButton from '../buttons/StatusOpenAll';
 import CloseAllButton from '../buttons/StatusCloseAll';
 

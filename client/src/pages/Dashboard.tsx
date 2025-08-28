@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import MountainForm from '../components/mountain/MountainForm';
 import { useMountain } from '../contexts/MountainContext';
 import MountainStatsPanel from '../components/mountain/MountainStatsPanel';

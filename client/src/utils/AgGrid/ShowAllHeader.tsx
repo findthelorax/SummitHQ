@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 export const ShowAllHeader: React.FC<{ showAllRows: () => void; params: any }> = ({ showAllRows, params }) => {
 	const [filterHover, setFilterHover] = React.useState(false);

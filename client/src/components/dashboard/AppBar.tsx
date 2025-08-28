@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { MdNotifications, MdSettings, MdMenu } from 'react-icons/md';
 import { useMountain } from '../../contexts/MountainContext';

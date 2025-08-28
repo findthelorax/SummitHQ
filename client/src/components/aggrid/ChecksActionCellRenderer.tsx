@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { ICellRendererParams } from 'ag-grid-community';
 import { Button } from '@mui/material'; // Or your preferred button component
 import { AddCircleOutline, DeleteOutline } from '@mui/icons-material';

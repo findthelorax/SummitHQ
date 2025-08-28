@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MdSpaceDashboard, MdPeople, MdSnowmobile, MdTerrain, MdArrowBack, MdFoodBank } from 'react-icons/md';
 import { GiMushroomHouse, GiTrail } from 'react-icons/gi';

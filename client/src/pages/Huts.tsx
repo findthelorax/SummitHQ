@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useMountain } from '../contexts/MountainContext';
 import { useHuts } from '../hooks/useHuts';
 import BaseHutsTableAgGrid from '../components/hut/BaseHutsTableAgGrid';

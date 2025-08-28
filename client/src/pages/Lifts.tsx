@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useMountain } from '../contexts/MountainContext';
 import { useLifts } from '../hooks/useLifts';
 import BaseLiftsTableAgGrid from '../components/lift/BaseLiftsTableAgGrid';

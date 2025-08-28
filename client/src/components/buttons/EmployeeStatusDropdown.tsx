@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { EMPLOYEE_STATUS, EMPLOYEE_STATUS_LABELS } from '../../types/generated-enums';
 
 interface StatusDropdownProps {

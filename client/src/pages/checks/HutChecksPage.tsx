@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useHuts } from '../../hooks/useHuts';
 import { HutChecksGrid } from '../../components/hut/HutChecksTable';
 import { GenericChecksPage } from '../../pages/checks/GenericChecksPage';

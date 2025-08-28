@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import patrolcross from '../../assets/patrolcross.jpg';
 
 interface SidebarProps {

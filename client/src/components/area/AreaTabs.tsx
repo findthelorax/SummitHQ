@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { AreaFull } from '../../types/index';
 
 interface AreaTabsProps {

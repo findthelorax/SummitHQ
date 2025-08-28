@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useMountain } from '../contexts/MountainContext';
 import { useTrails } from '../hooks/useTrails';
 import BaseTrailsTableAgGrid from '../components/trail/BaseTrailsTableAgGrid';

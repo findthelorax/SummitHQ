@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useAidRooms } from '../../hooks/useAidRooms';
 import { AidRoomChecksGrid } from '../../components/aidRoom/AidRoomChecksTable';
 import { GenericChecksPage } from '../../pages/checks/GenericChecksPage';

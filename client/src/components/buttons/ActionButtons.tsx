@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { ICellRendererParams } from 'ag-grid-community';
 
 type ActionButtonsProps<T, TResult = any> = ICellRendererParams<T> & {

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { MdSpaceDashboard, MdFoodBank, MdSnowmobile, MdSettings, MdAdminPanelSettings } from 'react-icons/md';
 import { FaMap, FaSkiing } from 'react-icons/fa';

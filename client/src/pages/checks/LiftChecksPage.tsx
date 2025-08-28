@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useLifts } from '../../hooks/useLifts';
 import { LiftChecksGrid } from '../../components/lift/LiftChecksTable';
 import { GenericChecksPage } from '../../pages/checks/GenericChecksPage';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { AreaFull, LocationDTO, TrailDTO, LiftDTO, HutDTO, AidRoomDTO, LodgeDTO } from '../../types/index';
 
 interface AreaTableProps {

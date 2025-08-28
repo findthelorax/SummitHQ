@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useMountain } from '../contexts/MountainContext';
 import { useEquipment } from '../hooks/useEquipment';
 import BaseEquipmentTableAgGrid from '../components/equipment/BaseEquipmentTableAgGrid';
