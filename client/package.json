@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "if [ \"$RAILWAY_ENVIRONMENT\" ]; then bash railway-prebuild.sh; else tsc -b && vite build; fi",
+		"build": "if [ \"$RAILWAY_ENVIRONMENT\" ]; then chmod +x railway-prebuild.sh && bash railway-prebuild.sh; else tsc -b && vite build; fi",
 		"lint": "eslint .",
 		"preview": "vite preview"
 	},
