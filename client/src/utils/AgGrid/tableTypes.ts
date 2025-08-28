@@ -506,6 +506,8 @@ export type LiftCheckRow = {
 	employeeId: string;
 	mountainId: string;
 	liftId: string;
+	status: STATUS;
+	hazards: boolean | false;
 	notes?: string | null;
 	createdAt?: string;
 	updatedAt?: string | null;
@@ -585,6 +587,10 @@ export type TrailCheckRow = {
 	employeeId: string;
 	mountainId: string;
 	trailId: string;
+	condition: TRAIL_CONDITION;
+	status: STATUS;
+	hazards: boolean | false;
+	snowmaking: boolean | false;
 	notes?: string | null;
 	createdAt?: string;
 	updatedAt?: string | null;

@@ -70,7 +70,6 @@ export function equipmentRowToInputPayload(row: EquipmentRow): EquipmentInputPay
 
 // export function equipmentCheckRowToInputPayload(row: EquipmentCheckRow): EquipmentCheckInputPayload {
 // 	return {
-// 		recordedAt: row.recordedAt ? new Date(row.recordedAt) : new Date(),
 // 		employeeId: row.employeeId,
 // 		mountainId: row.mountainId,
 // 		equipmentId: row.equipmentId,
@@ -183,7 +182,6 @@ export function aidRoomRowToInputPayload(row: AidRoomRow): AidRoomInputPayload {
 
 // export function aidRoomCheckRowToInputPayload(row: AidRoomCheckRow): AidRoomCheckInputPayload {
 // 	return {
-// 		recordedAt: row.recordedAt ? new Date(row.recordedAt) : new Date(),
 // 		employeeId: row.employeeId,
 // 		mountainId: row.mountainId,
 // 		aidRoomId: row.aidRoomId,
@@ -203,7 +201,6 @@ export function hutRowToInputPayload(row: HutRow): HutInputPayload {
 
 // export function hutCheckRowToInputPayload(row: HutCheckRow): HutCheckInputPayload {
 // 	return {
-// 		recordedAt: row.recordedAt ? new Date(row.recordedAt) : new Date(),
 // 		employeeId: row.employeeId,
 // 		mountainId: row.mountainId,
 // 		hutId: row.hutId,
@@ -225,10 +222,10 @@ export function liftRowToInputPayload(row: LiftRow): LiftInputPayload {
 
 export function liftCheckRowToInputPayload(row: LiftCheckRow): LiftCheckInputPayload {
 	return {
-		recordedAt: row.recordedAt ? new Date(row.recordedAt).toISOString() : new Date().toISOString(),
 		employeeId: row.employeeId,
-		liftId: row.liftId,
 		notes: row.notes || '',
+		hazards: typeof row.hazards === 'boolean' ? row.hazards : Boolean(row.hazards),
+		status: row.status as STATUS,
 	};
 }
 
@@ -258,9 +255,11 @@ export function trailRowToInputPayload(row: TrailRow): TrailInputPayload {
 
 export function trailCheckRowToInputPayload(row: TrailCheckRow): TrailCheckInputPayload {
 	return {
-		recordedAt: row.recordedAt ? new Date(row.recordedAt).toISOString() : new Date().toISOString(),
 		employeeId: row.employeeId,
-		trailId: row.trailId,
+		condition: row.condition as TRAIL_CONDITION,
+		status: row.status as STATUS,
+		hazards: typeof row.hazards === 'boolean' ? row.hazards : Boolean(row.hazards),
+		snowmaking: row.snowmaking ?? false,
 		notes: row.notes || '',
 	};
 }
