@@ -199,6 +199,7 @@ exports.Prisma.EmployeeMountainAssignmentScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
   mountainId: 'mountainId',
+  assignedAt: 'assignedAt',
   startDate: 'startDate',
   endDate: 'endDate'
 };

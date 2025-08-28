@@ -10624,6 +10624,7 @@ export namespace Prisma {
     id: string | null
     employeeId: string | null
     mountainId: string | null
+    assignedAt: Date | null
     startDate: Date | null
     endDate: Date | null
   }
@@ -10632,6 +10633,7 @@ export namespace Prisma {
     id: string | null
     employeeId: string | null
     mountainId: string | null
+    assignedAt: Date | null
     startDate: Date | null
     endDate: Date | null
   }
@@ -10640,6 +10642,7 @@ export namespace Prisma {
     id: number
     employeeId: number
     mountainId: number
+    assignedAt: number
     startDate: number
     endDate: number
     _all: number
@@ -10650,6 +10653,7 @@ export namespace Prisma {
     id?: true
     employeeId?: true
     mountainId?: true
+    assignedAt?: true
     startDate?: true
     endDate?: true
   }
@@ -10658,6 +10662,7 @@ export namespace Prisma {
     id?: true
     employeeId?: true
     mountainId?: true
+    assignedAt?: true
     startDate?: true
     endDate?: true
   }
@@ -10666,6 +10671,7 @@ export namespace Prisma {
     id?: true
     employeeId?: true
     mountainId?: true
+    assignedAt?: true
     startDate?: true
     endDate?: true
     _all?: true
@@ -10747,6 +10753,7 @@ export namespace Prisma {
     id: string
     employeeId: string
     mountainId: string
+    assignedAt: Date
     startDate: Date
     endDate: Date | null
     _count: EmployeeMountainAssignmentCountAggregateOutputType | null
@@ -10772,6 +10779,7 @@ export namespace Prisma {
     id?: boolean
     employeeId?: boolean
     mountainId?: boolean
+    assignedAt?: boolean
     startDate?: boolean
     endDate?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -10782,6 +10790,7 @@ export namespace Prisma {
     id?: boolean
     employeeId?: boolean
     mountainId?: boolean
+    assignedAt?: boolean
     startDate?: boolean
     endDate?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -10792,6 +10801,7 @@ export namespace Prisma {
     id?: boolean
     employeeId?: boolean
     mountainId?: boolean
+    assignedAt?: boolean
     startDate?: boolean
     endDate?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -10802,11 +10812,12 @@ export namespace Prisma {
     id?: boolean
     employeeId?: boolean
     mountainId?: boolean
+    assignedAt?: boolean
     startDate?: boolean
     endDate?: boolean
   }
 
-  export type EmployeeMountainAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "startDate" | "endDate", ExtArgs["result"]["employeeMountainAssignment"]>
+  export type EmployeeMountainAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "assignedAt" | "startDate" | "endDate", ExtArgs["result"]["employeeMountainAssignment"]>
   export type EmployeeMountainAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -10830,6 +10841,7 @@ export namespace Prisma {
       id: string
       employeeId: string
       mountainId: string
+      assignedAt: Date
       startDate: Date
       endDate: Date | null
     }, ExtArgs["result"]["employeeMountainAssignment"]>
@@ -11260,6 +11272,7 @@ export namespace Prisma {
     readonly id: FieldRef<"EmployeeMountainAssignment", 'String'>
     readonly employeeId: FieldRef<"EmployeeMountainAssignment", 'String'>
     readonly mountainId: FieldRef<"EmployeeMountainAssignment", 'String'>
+    readonly assignedAt: FieldRef<"EmployeeMountainAssignment", 'DateTime'>
     readonly startDate: FieldRef<"EmployeeMountainAssignment", 'DateTime'>
     readonly endDate: FieldRef<"EmployeeMountainAssignment", 'DateTime'>
   }
@@ -34055,6 +34068,7 @@ export namespace Prisma {
     id: 'id',
     employeeId: 'employeeId',
     mountainId: 'mountainId',
+    assignedAt: 'assignedAt',
     startDate: 'startDate',
     endDate: 'endDate'
   };
@@ -35165,6 +35179,7 @@ export namespace Prisma {
     id?: StringFilter<"EmployeeMountainAssignment"> | string
     employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
     mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
     startDate?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
     endDate?: DateTimeNullableFilter<"EmployeeMountainAssignment"> | Date | string | null
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
@@ -35175,6 +35190,7 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
+    assignedAt?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrderInput | SortOrder
     employee?: EmployeeOrderByWithRelationInput
@@ -35189,6 +35205,7 @@ export namespace Prisma {
     NOT?: EmployeeMountainAssignmentWhereInput | EmployeeMountainAssignmentWhereInput[]
     employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
     mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
     startDate?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
     endDate?: DateTimeNullableFilter<"EmployeeMountainAssignment"> | Date | string | null
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
@@ -35199,6 +35216,7 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
+    assignedAt?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrderInput | SortOrder
     _count?: EmployeeMountainAssignmentCountOrderByAggregateInput
@@ -35213,6 +35231,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
     employeeId?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
     mountainId?: StringWithAggregatesFilter<"EmployeeMountainAssignment"> | string
+    assignedAt?: DateTimeWithAggregatesFilter<"EmployeeMountainAssignment"> | Date | string
     startDate?: DateTimeWithAggregatesFilter<"EmployeeMountainAssignment"> | Date | string
     endDate?: DateTimeNullableWithAggregatesFilter<"EmployeeMountainAssignment"> | Date | string | null
   }
@@ -37393,6 +37412,7 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentCreateInput = {
     id?: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
     employee: EmployeeCreateNestedOneWithoutMountainAssignmentsInput
@@ -37403,12 +37423,14 @@ export namespace Prisma {
     id?: string
     employeeId: string
     mountainId: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
   }
 
   export type EmployeeMountainAssignmentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employee?: EmployeeUpdateOneRequiredWithoutMountainAssignmentsNestedInput
@@ -37419,6 +37441,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -37427,12 +37450,14 @@ export namespace Prisma {
     id?: string
     employeeId: string
     mountainId: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
   }
 
   export type EmployeeMountainAssignmentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -37441,6 +37466,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -39918,6 +39944,7 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
+    assignedAt?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
   }
@@ -39926,6 +39953,7 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
+    assignedAt?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
   }
@@ -39934,6 +39962,7 @@ export namespace Prisma {
     id?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
+    assignedAt?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
   }
@@ -45925,6 +45954,7 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentCreateWithoutMountainInput = {
     id?: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
     employee: EmployeeCreateNestedOneWithoutMountainAssignmentsInput
@@ -45933,6 +45963,7 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentUncheckedCreateWithoutMountainInput = {
     id?: string
     employeeId: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
   }
@@ -46487,6 +46518,7 @@ export namespace Prisma {
     id?: StringFilter<"EmployeeMountainAssignment"> | string
     employeeId?: StringFilter<"EmployeeMountainAssignment"> | string
     mountainId?: StringFilter<"EmployeeMountainAssignment"> | string
+    assignedAt?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
     startDate?: DateTimeFilter<"EmployeeMountainAssignment"> | Date | string
     endDate?: DateTimeNullableFilter<"EmployeeMountainAssignment"> | Date | string | null
   }
@@ -47735,6 +47767,7 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentCreateWithoutEmployeeInput = {
     id?: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
     mountain: MountainCreateNestedOneWithoutEmployeeAssignmentsInput
@@ -47743,6 +47776,7 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentUncheckedCreateWithoutEmployeeInput = {
     id?: string
     mountainId: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
   }
@@ -53012,6 +53046,7 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentCreateManyMountainInput = {
     id?: string
     employeeId: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
   }
@@ -53636,6 +53671,7 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employee?: EmployeeUpdateOneRequiredWithoutMountainAssignmentsNestedInput
@@ -53644,6 +53680,7 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -53651,6 +53688,7 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -53846,6 +53884,7 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentCreateManyEmployeeInput = {
     id?: string
     mountainId: string
+    assignedAt?: Date | string
     startDate?: Date | string
     endDate?: Date | string | null
   }
@@ -53965,6 +54004,7 @@ export namespace Prisma {
 
   export type EmployeeMountainAssignmentUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mountain?: MountainUpdateOneRequiredWithoutEmployeeAssignmentsNestedInput
@@ -53973,6 +54013,7 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -53980,6 +54021,7 @@ export namespace Prisma {
   export type EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }

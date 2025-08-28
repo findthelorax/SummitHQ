@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  provider        = "prisma-client-js"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["referentialActions"]
 }
 
 datasource db {
@@ -270,6 +271,7 @@ model EmployeeMountainAssignment {
   id         String    @id @default(uuid())
   employeeId String
   mountainId String
+  assignedAt DateTime  @default(now())
   startDate  DateTime  @default(now()) @db.Date
   endDate    DateTime? @db.Date
 
