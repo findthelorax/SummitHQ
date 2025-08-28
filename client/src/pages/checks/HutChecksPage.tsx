@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHuts } from '../../hooks/useHuts';
 import { HutChecksGrid } from '../../components/hut/HutChecksTable';
-import { GenericChecksPage } from '../../pages/Logs/GenericChecksPage';
+import { GenericChecksPage } from '../../pages/checks/GenericChecksPage';
 
 const HutChecksPage: React.FC = () => (
     <GenericChecksPage

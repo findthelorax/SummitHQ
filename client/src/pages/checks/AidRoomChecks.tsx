@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAidRooms } from '../../hooks/useAidRooms';
 import { AidRoomChecksGrid } from '../../components/aidRoom/AidRoomChecksTable';
-import { GenericChecksPage } from '../../pages/Logs/GenericChecksPage';
+import { GenericChecksPage } from '../../pages/checks/GenericChecksPage';
 
 const AidRoomChecksPage: React.FC = () => (
     <GenericChecksPage

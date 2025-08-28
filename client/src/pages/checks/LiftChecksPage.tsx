@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLifts } from '../../hooks/useLifts';
 import { LiftChecksGrid } from '../../components/lift/LiftChecksTable';
-import { GenericChecksPage } from '../../pages/Logs/GenericChecksPage';
+import { GenericChecksPage } from '../../pages/checks/GenericChecksPage';
 
 const LiftChecksPage: React.FC = () => (
     <GenericChecksPage
