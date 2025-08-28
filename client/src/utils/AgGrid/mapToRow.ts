@@ -219,32 +219,34 @@ export function mapHoursToRow(hours: HoursDTO): HoursRow {
 
 // Employee
 export function mapEmployeeToRow(employee: EmployeeDTO): EmployeeRow {
-    return {
-        id: employee.id ?? '',
-        employeeIdNumber: employee.employeeIdNumber ?? 0,
-        firstName: employee.firstName ?? '',
-        lastName: employee.lastName ?? '',
-        email: employee.email ?? '',
-        phoneNumber: employee.phoneNumber ?? '',
-        status: employee.status as EMPLOYEE_STATUS,
-        primaryDepartment: employee.primaryDepartment as DEPARTMENT,
-        roleId: employee.roleId ?? '',
-        startDate: employee.startDate ? new Date(employee.startDate).toISOString() : '',
-        endDate: employee.endDate ? new Date(employee.endDate).toISOString() : '',
-        mountainId: employee.mountainAssignments?.[0]?.mountainId ?? '',
-        isNew: false,
+	return {
+		id: employee.id ?? '',
+		employeeIdNumber: employee.employeeIdNumber ?? 0,
+		firstName: employee.firstName ?? '',
+		lastName: employee.lastName ?? '',
+		email: employee.email ?? '',
+		phoneNumber: employee.phoneNumber ?? '',
+		status: employee.status as EMPLOYEE_STATUS,
+		primaryDepartment: employee.primaryDepartment as DEPARTMENT,
+		roleId: employee.roleId ?? '',
+		startDate: employee.startDate ? new Date(employee.startDate).toISOString() : '',
+		endDate: employee.endDate ? new Date(employee.endDate).toISOString() : '',
+		mountainId: employee.mountainAssignments?.[0]?.mountainId ?? '',
+		isNew: false,
 
-        // Derived fields
-        roleDepartment: employee.role?.department ?? '' as DEPARTMENT,
-        roleTitle: employee.role?.title ?? '',
-        rolePosition: employee.role?.position ?? '',
-        roleLevel: employee.role?.level ?? '' as ROLE_LEVEL,
-        rolePermissions: employee.role?.permissions?.join(', ') ?? '',
-        certifications: employee.certifications?.map((c) => c.name).join(', ') ?? '',
-        assignedMountainName: employee.mountainAssignments?.[0]?.mountain?.name ?? '',
-        assignedMountainCity: employee.mountainAssignments?.[0]?.mountain?.city ?? '',
-        assignedMountainState: employee.mountainAssignments?.[0]?.mountain?.state ?? '',
-    };
+		// Derived fields
+		roleDepartment: employee.role?.department ?? ('' as DEPARTMENT),
+		roleTitle: employee.role?.title ?? '',
+		rolePosition: employee.role?.position ?? '',
+		roleLevel: employee.role?.level ?? ('' as ROLE_LEVEL),
+		rolePermissions: Array.isArray(employee.role?.permissions)
+			? employee.role?.permissions.join(', ')
+			: employee.role?.permissions ?? '',
+		certifications: employee.certifications?.map((c) => c.name).join(', ') ?? '',
+		assignedMountainName: employee.mountainAssignments?.[0]?.mountain?.name ?? '',
+		assignedMountainCity: employee.mountainAssignments?.[0]?.mountain?.city ?? '',
+		assignedMountainState: employee.mountainAssignments?.[0]?.mountain?.state ?? '',
+	};
 }
 
 // Incident
@@ -271,13 +273,12 @@ export function mapIncidentToRow(incident: IncidentDTO): IncidentRow {
 export function mapEquipmentCheckToRow(check: EquipmentCheckDTO): EquipmentCheckRow {
 	return {
 		id: check.id,
-		recordedAt: check.recordedAt ? new Date(check.recordedAt).toISOString() : '',
 		employeeId: check.employeeId,
 		mountainId: check.mountainId,
 		equipmentId: check.equipmentId,
 		notes: check.notes ?? '',
-		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : null,
-		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : null,
+		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : undefined,
+		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : undefined,
 	};
 }
 
@@ -291,8 +292,8 @@ export function mapEquipmentServiceLogToRow(log: EquipmentServiceLogDTO): Equipm
 		status: log.status,
 		changedAt: log.changedAt ? new Date(log.changedAt).toISOString() : '',
 		notes: log.notes ?? '',
-		createdAt: log.createdAt ? new Date(log.createdAt).toISOString() : null,
-		updatedAt: log.updatedAt ? new Date(log.updatedAt).toISOString() : null,
+		createdAt: log.createdAt ? new Date(log.createdAt).toISOString() : undefined,
+		updatedAt: log.updatedAt ? new Date(log.updatedAt).toISOString() : undefined,
 	};
 }
 
@@ -305,8 +306,8 @@ export function mapIncidentEquipmentUsageLogToRow(log: IncidentEquipmentUsageLog
 		mountainId: log.mountainId,
 		equipmentId: log.equipmentId,
 		incidentId: log.incidentId,
-		createdAt: log.createdAt ? new Date(log.createdAt).toISOString() : null,
-		updatedAt: log.updatedAt ? new Date(log.updatedAt).toISOString() : null,
+		createdAt: log.createdAt ? new Date(log.createdAt).toISOString() : undefined,
+		updatedAt: log.updatedAt ? new Date(log.updatedAt).toISOString() : undefined,
 	};
 }
 
@@ -314,13 +315,12 @@ export function mapIncidentEquipmentUsageLogToRow(log: IncidentEquipmentUsageLog
 export function mapAidRoomCheckToRow(check: AidRoomCheckDTO): AidRoomCheckRow {
 	return {
 		id: check.id,
-		recordedAt: check.recordedAt ? new Date(check.recordedAt).toISOString() : '',
 		employeeId: check.employeeId,
 		mountainId: check.mountainId,
 		aidRoomId: check.aidRoomId,
 		notes: check.notes ?? '',
-		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : null,
-		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : null,
+		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : undefined,
+		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : undefined,
 	};
 }
 
@@ -328,13 +328,12 @@ export function mapAidRoomCheckToRow(check: AidRoomCheckDTO): AidRoomCheckRow {
 export function mapHutCheckToRow(check: HutCheckDTO): HutCheckRow {
 	return {
 		id: check.id,
-		recordedAt: check.recordedAt ? new Date(check.recordedAt).toISOString() : '',
 		employeeId: check.employeeId,
 		mountainId: check.mountainId,
 		hutId: check.hutId,
 		notes: check.notes ?? '',
-		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : null,
-		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : null,
+		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : undefined,
+		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : undefined,
 	};
 }
 
@@ -342,13 +341,12 @@ export function mapHutCheckToRow(check: HutCheckDTO): HutCheckRow {
 export function mapLiftCheckToRow(check: LiftCheckDTO): LiftCheckRow {
 	return {
 		id: check.id,
-		recordedAt: check.recordedAt ? new Date(check.recordedAt).toISOString() : '',
 		employeeId: check.employeeId,
 		mountainId: check.mountainId,
 		liftId: check.liftId,
 		notes: check.notes ?? '',
-		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : null,
-		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : null,
+		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : undefined,
+		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : undefined,
 	};
 }
 
@@ -356,12 +354,11 @@ export function mapLiftCheckToRow(check: LiftCheckDTO): LiftCheckRow {
 export function mapTrailCheckToRow(check: TrailCheckDTO): TrailCheckRow {
 	return {
 		id: check.id,
-		recordedAt: check.recordedAt ? new Date(check.recordedAt).toISOString() : '',
 		employeeId: check.employeeId,
 		mountainId: check.mountainId,
 		trailId: check.trailId,
 		notes: check.notes ?? '',
-		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : null,
-		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : null,
+		createdAt: check.createdAt ? new Date(check.createdAt).toISOString() : undefined,
+		updatedAt: check.updatedAt ? new Date(check.updatedAt).toISOString() : undefined,
 	};
 }

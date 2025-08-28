@@ -87,12 +87,11 @@ export interface EquipmentTableAgGridProps extends BaseEquipmentTableAgGridProps
 /** Equipment Checks */
 export type EquipmentCheckRow = {
 	id?: string;
-	recordedAt: string;
 	employeeId: string;
 	mountainId: string;
 	equipmentId: string;
 	notes?: string | null;
-	createdAt?: string | null;
+	createdAt?: string;
 	updatedAt?: string | null;
 	isNew?: boolean;
 };
@@ -404,12 +403,11 @@ export interface AidRoomsTableAgGridProps extends BaseAidRoomsTableAgGridProps {
 /** Aid Room Checks */
 export type AidRoomCheckRow = {
 	id?: string;
-	recordedAt: string;
 	employeeId: string;
 	mountainId: string;
 	aidRoomId: string;
 	notes?: string | null;
-	createdAt?: string | null;
+	createdAt?: string;
 	updatedAt?: string | null;
 	isNew?: boolean;
 };
@@ -454,12 +452,11 @@ export interface HutsTableAgGridProps extends BaseHutsTableAgGridProps {
 /** Hut Checks */
 export type HutCheckRow = {
 	id?: string;
-	recordedAt: string;
 	employeeId: string;
 	mountainId: string;
 	hutId: string;
 	notes?: string | null;
-	createdAt?: string | null;
+	createdAt?: string;
 	updatedAt?: string | null;
 	isNew?: boolean;
 };
@@ -506,12 +503,11 @@ export interface LiftsTableAgGridProps extends BaseLiftsTableAgGridProps {
 /** Lift Checks */
 export type LiftCheckRow = {
 	id?: string;
-	recordedAt: string;
 	employeeId: string;
 	mountainId: string;
 	liftId: string;
 	notes?: string | null;
-	createdAt?: string | null;
+	createdAt?: string;
 	updatedAt?: string | null;
 	isNew?: boolean;
 };
@@ -586,8 +582,12 @@ export interface TrailsTableAgGridProps extends BaseTrailsTableAgGridProps {
 /** Trail Checks */
 export type TrailCheckRow = {
 	id?: string;
-	
+	employeeId: string;
+	mountainId: string;
+	trailId: string;
 	notes?: string | null;
+	createdAt?: string;
+	updatedAt?: string | null;
 	isNew?: boolean;
 };
 
