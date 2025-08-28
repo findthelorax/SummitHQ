@@ -10,6 +10,8 @@ router.get('/:mountainId/huts/:hutId', HutController.getHut);
 router.put('/:mountainId/huts/:hutId', HutController.updateHut);
 router.delete('/:mountainId/huts/:hutId', HutController.deleteHut);
 
+router.get('/:mountainId/hutChecks', HutCheckController.getAllByMountain);
+
 router.post('/:mountainId/huts/:hutId/hutChecks', HutCheckController.create);
 router.get('/:mountainId/huts/:hutId/hutChecks', HutCheckController.getAll);
 router.get('/:mountainId/huts/:hutId/hutChecks/:hutCheckId', HutCheckController.getById);

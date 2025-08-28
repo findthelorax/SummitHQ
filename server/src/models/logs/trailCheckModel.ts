@@ -12,6 +12,11 @@ class TrailCheckModel {
                 mountainId,
                 trailId,
             },
+            include: {
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
+            },
         });
     }
 
@@ -21,9 +26,28 @@ class TrailCheckModel {
                 mountainId,
                 trailId,
             },
+            include: {
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
+            },
         });
     }
 
+    static async findAllByMountain(mountainId: string) {
+        return await prisma.trailCheck.findMany({
+            where: {
+                mountainId,
+            },
+            include: {
+                trail: { select: { name: true } },
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
+            },
+        });
+    }
+    
     static async updateByIdAndMountainAndTrail(id: string, mountainId: string, trailId: string, updatedData: any) {
         return await prisma.trailCheck.update({
             where: {

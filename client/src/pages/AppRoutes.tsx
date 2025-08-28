@@ -14,6 +14,11 @@ import Equipment from './Equipment';
 // import Logs from './Logs';
 import Settings from './Settings';
 
+import AidRoomChecksPage from './Logs/AidRoomChecks';
+import HutChecksPage from './Logs/HutChecksPage';
+import LiftChecksPage from './Logs/LiftChecksPage';
+import TrailChecksPage from './Logs/TrailChecksPage';
+
 import AdminLayout from './AdminLayout';
 
 interface RouteConfig {
@@ -34,6 +39,10 @@ const routes: RouteConfig[] = [
 	{ path: '/employees', Component: Employees },
 	{ path: '/equipment', Component: Equipment },
 	// { path: '/logs', Component: Logs },
+	{ path: '/aidRoomChecks', Component: AidRoomChecksPage },
+	{ path: '/hutChecks', Component: HutChecksPage },
+	{ path: '/liftChecks', Component: LiftChecksPage },
+	{ path: '/trailChecks', Component: TrailChecksPage },
 	{ path: '/settings', Component: Settings },
 	{ path: '/admin/*', Component: AdminLayout },
 	{ path: '*', Component: Dashboard },

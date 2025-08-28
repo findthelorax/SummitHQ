@@ -11,6 +11,8 @@ router.get('/:mountainId/trails/:trailId', TrailController.getTrail);
 router.put('/:mountainId/trails/:trailId', TrailController.updateTrail);
 router.delete('/:mountainId/trails/:trailId', TrailController.deleteTrail);
 
+router.get('/:mountainId/trailChecks', TrailCheckController.getAllByMountain);
+
 router.post('/:mountainId/trails/:trailId/trailChecks', TrailCheckController.create);
 router.get('/:mountainId/trails/:trailId/trailChecks', TrailCheckController.getAll);
 router.get('/:mountainId/trails/:trailId/trailChecks/:trailCheckId', TrailCheckController.getById);

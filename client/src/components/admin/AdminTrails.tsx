@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMountain } from '../../contexts/MountainContext';
-import { useTrails } from '../../hooks/trail/useTrails';
+import { useTrails } from '../../hooks/useTrails';
 import type { TrailWithLocation } from '../../types/index';
 import AdminTrailsTableAgGrid from '../trail/AdminTrailsTableAgGrid';
 

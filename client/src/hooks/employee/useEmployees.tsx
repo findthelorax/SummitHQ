@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { employeeApi } from '../../api/EmployeeAPI';
 import type { EmployeeFull, EmployeeDTO, RoleDTO } from '../../types/index';
-import { DEPARTMENT } from '../../types/generated-enums';
+import { DEPARTMENT } from '../../types//generated-enums';
 import type { EmployeeInputPayload, RoleInputPayload } from '../../api/EmployeeAPI';
 
 export function useEmployees(mountainId?: string) {
@@ -66,6 +66,8 @@ export function useEmployees(mountainId?: string) {
 				position: item.position ?? '',
 				level: item.level ?? null,
 				permissions: item.permissions ?? [],
+				employees: item.employees ?? [],
+				employeeRole: item.employeeRole ?? null,
 			}));
 			setRoles(mappedRoles);
 		} finally {
@@ -75,7 +77,11 @@ export function useEmployees(mountainId?: string) {
 
 	const createRole = useCallback(
 		async (role: RoleInputPayload): Promise<RoleDTO> => {
-			const created = await employeeApi.createRole(role);
+			const payload: Partial<RoleDTO> = {
+				...role,
+				permissions: Array.isArray(role.permissions) ? role.permissions.join(',') : role.permissions,
+			};
+			const created = await employeeApi.createRole(payload);
 			await fetchRoles();
 			return created;
 		},
@@ -84,7 +90,13 @@ export function useEmployees(mountainId?: string) {
 
 	const updateRole = useCallback(
 		async (roleId: string, updated: Partial<RoleInputPayload>): Promise<RoleDTO> => {
-			const updatedRole = await employeeApi.updateRole(roleId, updated);
+			const payload: Partial<RoleDTO> = {
+				...updated,
+				permissions: Array.isArray(updated.permissions)
+					? updated.permissions.join(',')
+					: updated.permissions,
+			};
+			const updatedRole = await employeeApi.updateRole(roleId, payload);
 			await fetchRoles();
 			return updatedRole;
 		},
@@ -122,7 +134,7 @@ export function useEmployees(mountainId?: string) {
 				...(updated.roleId !== undefined ? { roleId: updated.roleId } : {}),
 				...(updated.primaryDepartment !== undefined ? { primaryDepartment: updated.primaryDepartment } : {}),
 			};
-			const updatedEmployee = await employeeApi.updateEmployee(employeeId, payload); // should return EmployeeDTO
+			const updatedEmployee = await employeeApi.updateEmployee(employeeId, payload);
 			await fetchEmployees();
 			return updatedEmployee;
 		},

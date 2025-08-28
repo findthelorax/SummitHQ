@@ -1,21 +1,22 @@
-.drawer {
-	background: var(--surface);
-	color: var(--text);
-	box-shadow: var(--shadow);
-	height: 100%;
+.sidebar {
+	background: var(--color-20);
+	color: var(--text-invert);
+	/* box-shadow: var(--shadow); */
+	    overflow-y: auto !important;
+    height: 100% !important;
 	transition: width 0.3s;
 	overflow: hidden;
 }
 
-.drawer-text {
+.sidebar-text {
 	margin-top: -0.25rem;
 }
 
-.drawer-open {
+.sidebar-open {
 	width: 15rem;
 }
 
-.drawer-closed {
+.sidebar-closed {
 	width: 5rem;
 }
 
@@ -26,7 +27,7 @@
 	padding: 0.5rem .5rem;
 	border-radius: 0.5rem;
 	font-size: 1.125rem;
-	color: var(--text);
+	color: var(--text-invert);
 	background: transparent;
 	transition: background 0.2s, color 0.2s;
 	cursor: pointer;
@@ -86,4 +87,25 @@
 .nav-divider {
 	border-top: 1px solid var(--primary-light);
 	margin: 0.5rem 0;
+}
+
+.nav-section-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    padding: 0.75rem 1rem 0.25rem;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.nav-section-title-closed {
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
 }

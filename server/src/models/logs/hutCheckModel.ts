@@ -12,6 +12,11 @@ class HutCheckModel {
                 mountainId,
                 hutId,
             },
+            include: {
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
+            },
         });
     }
 
@@ -20,6 +25,25 @@ class HutCheckModel {
             where: {
                 mountainId,
                 hutId,
+            },
+            include: {
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
+            },
+        });
+    }
+
+    static async findAllByMountain(mountainId: string) {
+        return await prisma.hutCheck.findMany({
+            where: {
+                mountainId,
+            },
+            include: {
+                hut: { select: { name: true } },
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
             },
         });
     }

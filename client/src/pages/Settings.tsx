@@ -21,7 +21,7 @@ const SettingsPage: React.FC = () => {
     };
 
     return (
-        <div className="max-w-xl mx-auto p-6">
+        <div className="max-w-xl mx-auto p-6 text-white">
             <h1 className="text-2xl font-bold mb-6">Settings</h1>
 
             <section className="mb-8">
@@ -54,7 +54,7 @@ const SettingsPage: React.FC = () => {
                     />
                     <button
                         type="submit"
-                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                        className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition"
                     >
                         Save Profile
                     </button>

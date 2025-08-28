@@ -1,7 +1,7 @@
 .dialog-backdrop {
 	position: fixed;
 	inset: 0;
-	background: rgba(0, 0, 0, 0.4);
+	background: var(--dialog-bg);
 	backdrop-filter: blur(4px);
 	display: flex;
 	align-items: center;
@@ -9,7 +9,7 @@
 	z-index: 50;
 }
 .dialog-container {
-	background: var(--surface);
+	background: var(--dialog-bg);
 	color: var(--text);
 	border-radius: var(--form-radius);
 	box-shadow: var(--shadow);

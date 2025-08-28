@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import AppBar from '../components/dashboard/AppBar';
-import { PermanentDrawerLeft } from '../components/dashboard/Drawer';
+import Sidebar from '../components/dashboard/Sidebar';
 import { MainListItems } from '../components/dashboard/NavItemsList';
-import Footer from '../components/dashboard/Footer';
-import AppRoutes from './AppRoutes';
+import Dashboard from '../components/dashboard/Dashboard';
 import { useMountain } from '../contexts/MountainContext';
 
-const drawerWidth = 240;
+const sidebarWidth = 240;
 
-interface MainLayoutProps {
-    drawerItems?: React.ReactNode;
-}
-
-const MainLayout: React.FC<MainLayoutProps> = ({ drawerItems }) => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+const MainLayout: React.FC = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const { selectedMountain, setSelectedMountain, mountains } = useMountain();
 
     useEffect(() => {
@@ -26,20 +21,23 @@ const MainLayout: React.FC<MainLayoutProps> = ({ drawerItems }) => {
         }
     }, [selectedMountain, mountains, setSelectedMountain]);
 
-    const handleDrawerToggle = () => setIsDrawerOpen((open) => !open);
+    const handleSidebarToggle = () => setIsSidebarOpen((open) => !open);
 
     return (
-        <div className="main-layout">
-            <AppBar open={isDrawerOpen} handleDrawerToggle={handleDrawerToggle} />
-            <div className="flex flex-1 min-h-0">
-                <div style={{ width: isDrawerOpen ? drawerWidth : 64 }} className="transition-all duration-300">
-                    <PermanentDrawerLeft open={isDrawerOpen} drawerItems={<MainListItems open={isDrawerOpen} />} />
+        <div className="flex flex-col h-screen">
+            <AppBar open={isSidebarOpen} handleDrawerToggle={handleSidebarToggle} />
+            
+            <div className="flex flex-1 overflow-hidden">
+                <div className="h-full" style={{ width: isSidebarOpen ? sidebarWidth : 64 }}>
+                    <Sidebar 
+                        open={isSidebarOpen}
+                        navItems={<MainListItems open={isSidebarOpen} />}
+                    />
                 </div>
-                <main className="flex-1 min-h-0">
-                    <AppRoutes />
-                </main>
+                                <div className="flex-1 h-full">
+                    <Dashboard />
+                </div>
             </div>
-            <Footer />
         </div>
     );
 };

@@ -10,8 +10,7 @@ type MountainAutocompleteProps = {
     className?: string;
 };
 
-const getDisplayString = (m: MountainDTO) =>
-    `${m.name}${m.city ? ' - ' + m.city : ''}${m.state ? ', ' + m.state : ''}`;
+const getDisplayString = (m: MountainDTO) => m.name;
 
 const MountainAutocomplete: React.FC<MountainAutocompleteProps> = ({
     options,
@@ -82,7 +81,19 @@ const MountainAutocomplete: React.FC<MountainAutocompleteProps> = ({
                             }
                             onMouseDown={() => handleSelect(option)}
                         >
-                            {getDisplayString(option)}
+                            <div style={{ fontWeight: 500 }}>{option.name}</div>
+                            {(option.city || option.state) && (
+                                <div
+                                    style={{
+                                        fontSize: '0.85em',
+                                        color: '#888',
+                                        marginLeft: 16,
+                                        marginTop: 2,
+                                    }}
+                                >
+                                    {[option.city, option.state].filter(Boolean).join(', ')}
+                                </div>
+                            )}
                         </li>
                     ))}
                 </ul>

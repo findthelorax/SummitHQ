@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { LocationDTO, HoursDTO, IncidentDTO, EquipmentDTO, AreaDTO } from '../types/index';
+import type { LocationDTO, HoursDTO, IncidentDTO, EquipmentDTO, AreaDTO, LocationFull } from '../types/index';
 import type { LOCATION_TYPE } from '../types/generated-enums';
 
 const IP = import.meta.env.VITE_BACKEND_IP;
@@ -26,7 +26,7 @@ export const locationApi = {
     },
 
     async getLocation(mountainId: string, locationId: string) {
-        const res = await axios.get<LocationDTO>(url(`/api/mountains/${mountainId}/locations/${locationId}`));
+        const res = await axios.get<LocationFull>(url(`/api/mountains/${mountainId}/locations/${locationId}`));
         return res.data;
     },
 

@@ -15,7 +15,12 @@ const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const IP = process.env.IP || 'localhost';
 
-app.use(cors());
+app.use(
+	cors({
+		origin: process.env.FRONTEND_URL || '*',
+		credentials: true,
+	})
+);
 app.use(express.json());
 
 connectDatabase();
@@ -25,11 +30,11 @@ app.use('/api/employees', employeeRoutes);
 app.use('/api/equipment', equipmentRoutes);
 
 if (process.env.NODE_ENV !== 'production') {
-    app.use('/api/debug', debugRoutes);
+	app.use('/api/debug', debugRoutes);
 }
 
 app.use(errorHandler);
 
 app.listen(PORT, IP, () => {
-    logger.info(`Server is running on http://${IP}:${PORT}`);
+	logger.info(`Server is running on http://${IP}:${PORT}`);
 });

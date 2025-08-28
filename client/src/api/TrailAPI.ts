@@ -1,3 +1,4 @@
+import { stat } from 'fs';
 import axios from 'axios';
 import type { TrailDTO, TrailCheckDTO } from '../types/index';
 import type { TRAIL_DIFFICULTY, STATUS, TRAIL_CONDITION } from '../types/generated-enums';
@@ -21,9 +22,11 @@ export type TrailInputPayload = {
 
 export type TrailCheckInputPayload = {
 	employeeId: string;
-	trailId: string;
-	recordedAt: string;
-	notes?: string;
+	condition: TRAIL_CONDITION;
+	status: STATUS;
+	hazards: boolean;
+	snowmaking: boolean;
+	notes?: string | null;
 };
 
 export const trailApi = {
@@ -95,6 +98,11 @@ export const trailApi = {
 		const res = await axios.delete<TrailCheckDTO>(
 			url(`/api/mountains/${mountainId}/trails/${trailId}/trailChecks/${trailCheckId}`)
 		);
+		return res.data;
+	},
+
+	async getAllTrailChecks(mountainId: string) {
+		const res = await axios.get<TrailCheckDTO[]>(url(`/api/mountains/${mountainId}/trailChecks`));
 		return res.data;
 	},
 };

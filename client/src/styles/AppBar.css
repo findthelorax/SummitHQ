@@ -2,7 +2,6 @@
 	background: var(--surface);
 	color: var(--text);
 	height: 4rem;
-	box-shadow: var(--shadow);
 	display: flex;
 	align-items: center;
 	padding-left: 1rem;

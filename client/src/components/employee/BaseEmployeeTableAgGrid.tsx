@@ -30,11 +30,8 @@ const myTheme = themeQuartz.withPart(colorSchemeDarkBlue);
 const BaseEmployeeTableAgGrid: React.FC<BaseEmployeesTableAgGridProps> = ({
 	employees,
 	roles,
-	mountains,
 	fetchEmployees,
 	isLoading,
-	mountainId,
-	mountainName,
 }) => {
 	const gridRef = useRef<AgGridReact<EmployeeRow>>(null);
 	const { onFirstDataRendered, onGridSizeChanged } = useAgGridAutoSize();
@@ -43,6 +40,7 @@ const BaseEmployeeTableAgGrid: React.FC<BaseEmployeesTableAgGridProps> = ({
 
 	const columnDefs: ColDef<EmployeeRow>[] = useMemo(
 		() => [
+			{ headerName: 'ID Number', field: 'employeeIdNumber', minWidth: 80, hide: true },
 			{ headerName: 'First Name', field: 'firstName', minWidth: 120 },
 			{ headerName: 'Last Name', field: 'lastName', minWidth: 120 },
 			{ headerName: 'Email', field: 'email', minWidth: 180 },

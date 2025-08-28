@@ -1,5 +1,5 @@
 // AUTO-GENERATED FILE. DO NOT EDIT.
-// Run scripts/generate-enums.ts to update.
+// Run server/scripts/generate-types.ts to update.
 
 export enum LOCATION_TYPE {
   AIDROOM = "AIDROOM",
@@ -209,6 +209,32 @@ export const ROLE_LEVEL_LABELS: Record<ROLE_LEVEL, string> = {
   [ROLE_LEVEL.LEVEL_8]: "Level 8",
   [ROLE_LEVEL.LEVEL_9]: "Level 9",
   [ROLE_LEVEL.LEVEL_10]: "Level 10",
+};
+
+export enum PRECIPITATION_TYPE {
+  NONE = "NONE",
+  SNOW = "SNOW",
+  RAIN = "RAIN",
+  SLEET = "SLEET",
+  FREEZING_RAIN = "FREEZING_RAIN",
+  HAIL = "HAIL",
+  DRIZZLE = "DRIZZLE",
+  MIXED = "MIXED",
+  GRAUPEL = "GRAUPEL",
+  UNKNOWN = "UNKNOWN",
+}
+
+export const PRECIPITATION_TYPE_LABELS: Record<PRECIPITATION_TYPE, string> = {
+  [PRECIPITATION_TYPE.NONE]: "None",
+  [PRECIPITATION_TYPE.SNOW]: "Snow",
+  [PRECIPITATION_TYPE.RAIN]: "Rain",
+  [PRECIPITATION_TYPE.SLEET]: "Sleet",
+  [PRECIPITATION_TYPE.FREEZING_RAIN]: "Freezing Rain",
+  [PRECIPITATION_TYPE.HAIL]: "Hail",
+  [PRECIPITATION_TYPE.DRIZZLE]: "Drizzle",
+  [PRECIPITATION_TYPE.MIXED]: "Mixed",
+  [PRECIPITATION_TYPE.GRAUPEL]: "Graupel",
+  [PRECIPITATION_TYPE.UNKNOWN]: "Unknown",
 };
 
 // Generic fallback formatter

@@ -12,6 +12,11 @@ class LiftCheckModel {
                 mountainId,
                 liftId,
             },
+            include: {
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
+            },
         });
     }
 
@@ -20,6 +25,25 @@ class LiftCheckModel {
             where: {
                 mountainId,
                 liftId,
+            },
+            include: {
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
+            },
+        });
+    }
+
+    static async findAllByMountain(mountainId: string) {
+        return await prisma.liftCheck.findMany({
+            where: {
+                mountainId,
+            },
+            include: {
+                lift: { select: { name: true } },
+                employee: {
+                    select: { firstName: true, lastName: true, primaryDepartment: true },
+                },
             },
         });
     }

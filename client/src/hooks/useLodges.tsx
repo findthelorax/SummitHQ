@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { lodgeApi } from '../api/LodgeAPI';
-import type { LodgeDTO, LodgeWithLocation } from '../types/index';
+import type { LodgeDTO, LodgeFull, LodgeWithLocation } from '../types/index';
 import { STATUS } from '../types/generated-enums';
 import type { LodgeInputPayload } from '../api/LodgeAPI';
 
@@ -10,7 +10,7 @@ function toSharedStatus(status: any): STATUS {
 }
 
 export function useLodges(mountainId: string | undefined) {
-    const [lodges, setLodges] = useState<LodgeDTO[]>([]);
+    const [lodges, setLodges] = useState<LodgeFull[]>([]);
     const [isLoadingLodges, setIsLoadingLodges] = useState(false);
 
     const fetchLodges = useCallback(async () => {
@@ -20,8 +20,14 @@ export function useLodges(mountainId: string | undefined) {
         }
         setIsLoadingLodges(true);
         try {
-            let data: LodgeDTO[];
-            data = await lodgeApi.getLodges(mountainId);
+            const lodgeDTOs = await lodgeApi.getLodges(mountainId);
+            const data: LodgeFull[] = await Promise.all(
+                lodgeDTOs.map(async (lodge) => {
+                    const fullLodge = await lodgeApi.getLodge(mountainId, lodge.id);
+                    if (!fullLodge) throw new Error(`Failed to fetch full lodge for id ${lodge.id}`);
+                    return fullLodge as LodgeFull;
+                })
+            );
             setLodges(data);
         } finally {
             setIsLoadingLodges(false);

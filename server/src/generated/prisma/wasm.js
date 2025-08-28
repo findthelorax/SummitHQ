@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.9.0
- * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
+ * Prisma Client JS version: 6.10.1
+ * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
  */
 Prisma.prismaVersion = {
-  client: "6.9.0",
-  engine: "81e4af48011447c3cc503a190e86995b66d2a28e"
+  client: "6.10.1",
+  engine: "9b628578b3b7cae625e8c927178f15a170e74a9c"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -169,13 +169,28 @@ exports.Prisma.WeatherScalarFieldEnum = {
   mountainId: 'mountainId',
   date: 'date',
   temperature: 'temperature',
+  feelsLikeTemperature: 'feelsLikeTemperature',
+  humidity: 'humidity',
+  dewPoint: 'dewPoint',
   windSpeed: 'windSpeed',
   windDirection: 'windDirection',
+  windGust: 'windGust',
   visibility: 'visibility',
   conditions: 'conditions',
   snowfallRecent: 'snowfallRecent',
   snowfall24h: 'snowfall24h',
   snowfall7d: 'snowfall7d',
+  snowDepthBase: 'snowDepthBase',
+  snowDepthSummit: 'snowDepthSummit',
+  isSnowmakingPossible: 'isSnowmakingPossible',
+  precipitationType: 'precipitationType',
+  precipitationIntensity: 'precipitationIntensity',
+  precipitationChance: 'precipitationChance',
+  stormWarning: 'stormWarning',
+  cloudCoverage: 'cloudCoverage',
+  uvIndex: 'uvIndex',
+  sunriseTime: 'sunriseTime',
+  sunsetTime: 'sunsetTime',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -346,23 +361,14 @@ exports.Prisma.IncidentEquipmentUsageLogScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.LiftCheckScalarFieldEnum = {
+exports.Prisma.AidRoomCheckScalarFieldEnum = {
   id: 'id',
-  recordedAt: 'recordedAt',
   employeeId: 'employeeId',
   mountainId: 'mountainId',
-  liftId: 'liftId',
-  notes: 'notes',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.TrailCheckScalarFieldEnum = {
-  id: 'id',
-  recordedAt: 'recordedAt',
-  employeeId: 'employeeId',
-  mountainId: 'mountainId',
-  trailId: 'trailId',
+  aidRoomId: 'aidRoomId',
+  equipmentIssues: 'equipmentIssues',
+  equipmentNotes: 'equipmentNotes',
+  paperworkStocked: 'paperworkStocked',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -370,21 +376,38 @@ exports.Prisma.TrailCheckScalarFieldEnum = {
 
 exports.Prisma.HutCheckScalarFieldEnum = {
   id: 'id',
-  recordedAt: 'recordedAt',
   employeeId: 'employeeId',
   mountainId: 'mountainId',
   hutId: 'hutId',
+  equipmentIssues: 'equipmentIssues',
+  equipmentNotes: 'equipmentNotes',
+  paperworkStocked: 'paperworkStocked',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.AidRoomCheckScalarFieldEnum = {
+exports.Prisma.LiftCheckScalarFieldEnum = {
   id: 'id',
-  recordedAt: 'recordedAt',
   employeeId: 'employeeId',
   mountainId: 'mountainId',
-  aidRoomId: 'aidRoomId',
+  liftId: 'liftId',
+  hazards: 'hazards',
+  status: 'status',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TrailCheckScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  mountainId: 'mountainId',
+  trailId: 'trailId',
+  status: 'status',
+  condition: 'condition',
+  hazards: 'hazards',
+  snowmaking: 'snowmaking',
   notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -392,7 +415,6 @@ exports.Prisma.AidRoomCheckScalarFieldEnum = {
 
 exports.Prisma.EquipmentCheckScalarFieldEnum = {
   id: 'id',
-  recordedAt: 'recordedAt',
   employeeId: 'employeeId',
   mountainId: 'mountainId',
   equipmentId: 'equipmentId',
@@ -435,6 +457,19 @@ exports.STATUS = exports.$Enums.STATUS = {
   OPEN: 'OPEN',
   CLOSED: 'CLOSED',
   ON_HOLD: 'ON_HOLD'
+};
+
+exports.PRECIPITATION_TYPE = exports.$Enums.PRECIPITATION_TYPE = {
+  NONE: 'NONE',
+  SNOW: 'SNOW',
+  RAIN: 'RAIN',
+  SLEET: 'SLEET',
+  FREEZING_RAIN: 'FREEZING_RAIN',
+  HAIL: 'HAIL',
+  DRIZZLE: 'DRIZZLE',
+  MIXED: 'MIXED',
+  GRAUPEL: 'GRAUPEL',
+  UNKNOWN: 'UNKNOWN'
 };
 
 exports.DEPARTMENT = exports.$Enums.DEPARTMENT = {
@@ -541,10 +576,10 @@ exports.Prisma.ModelName = {
   Equipment: 'Equipment',
   Incident: 'Incident',
   IncidentEquipmentUsageLog: 'IncidentEquipmentUsageLog',
+  AidRoomCheck: 'AidRoomCheck',
+  HutCheck: 'HutCheck',
   LiftCheck: 'LiftCheck',
   TrailCheck: 'TrailCheck',
-  HutCheck: 'HutCheck',
-  AidRoomCheck: 'AidRoomCheck',
   EquipmentCheck: 'EquipmentCheck'
 };
 

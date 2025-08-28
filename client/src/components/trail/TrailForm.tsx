@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { useSnackbarContext } from '../../contexts/SnackbarContext';
 import { useMountain } from '../../contexts/MountainContext';
-import { useTrails } from '../../hooks/trail/useTrails';
+import { useTrails } from '../../hooks/useTrails';
 import {
     TRAIL_DIFFICULTY, STATUS, TRAIL_CONDITION,
     TRAIL_DIFFICULTY_LABELS,

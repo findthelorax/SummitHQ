@@ -4,14 +4,23 @@ import type { MountainDTO } from '../types/index';
 import type { MountainInputPayload } from '../api/MountainAPI';
 
 type MountainContextType = {
-    selectedMountain: MountainDTO | null;
-    setSelectedMountain: (mountain: MountainDTO | null, persist?: boolean) => void;
-    mountains: MountainDTO[];
-    fetchMountains: () => Promise<void>;
-    isLoadingMountains: boolean;
-    createMountain: (mountain: MountainInputPayload) => Promise<MountainDTO>;
-    updateMountain: (mountainId: string, updated: Partial<MountainInputPayload>) => Promise<MountainDTO>;
-    deleteMountain: (mountainId: string) => Promise<void>;
+	mountains: MountainDTO[];
+	isLoadingMountains: boolean;
+	selectedMountain: MountainDTO | null;
+	setSelectedMountain: (mountain: MountainDTO | null, persist?: boolean) => void;
+	fetchMountains: () => Promise<void>;
+	createMountain: (mountain: MountainInputPayload) => Promise<MountainDTO>;
+	updateMountain: (mountainId: string, updated: Partial<MountainInputPayload>) => Promise<MountainDTO>;
+	deleteMountain: (mountainId: string) => Promise<void>;
+
+	getWeather: (
+		mountainId: string,
+		params?: { limit?: number; offset?: number; order?: 'asc' | 'desc' }
+	) => Promise<any[]>;
+	getEmployees: (mountainId: string) => Promise<any[]>;
+	getEquipment: (mountainId: string) => Promise<any[]>;
+	getLocations: (mountainId: string) => Promise<any[]>;
+	getLiftChecks: (mountainId: string) => Promise<any[]>;
 };
 
 const MountainContext = createContext<MountainContextType | undefined>(undefined);
@@ -59,7 +68,7 @@ const MountainProvider: React.FC<{ children: React.ReactNode }> = ({ children })
 		await fetchMountains();
 		return created;
 	};
-	
+
 	const updateMountain = async (mountainId: string, updated: Partial<MountainInputPayload>): Promise<MountainDTO> => {
 		const updatedMountain = await mountainApi.updateMountain(mountainId, updated);
 		await fetchMountains();
@@ -71,17 +80,41 @@ const MountainProvider: React.FC<{ children: React.ReactNode }> = ({ children })
 		await fetchMountains();
 	};
 
+	const getWeather = async (
+		mountainId: string,
+		params?: { limit?: number; offset?: number; order?: 'asc' | 'desc' }
+	) => {
+		return await mountainApi.getWeather(mountainId, params);
+	};
+	const getEmployees = async (mountainId: string) => {
+		return await mountainApi.getEmployees(mountainId);
+	};
+	const getEquipment = async (mountainId: string) => {
+		return await mountainApi.getEquipment(mountainId);
+	};
+	const getLocations = async (mountainId: string) => {
+		return await mountainApi.getLocations(mountainId);
+	};
+	const getLiftChecks = async (mountainId: string) => {
+		return await mountainApi.getLiftChecks(mountainId);
+	};
 	return (
 		<MountainContext.Provider
 			value={{
-				selectedMountain,
-				setSelectedMountain,
 				mountains,
-				fetchMountains,
+				selectedMountain,
 				isLoadingMountains,
+				setSelectedMountain,
+				fetchMountains,
 				createMountain,
 				updateMountain,
 				deleteMountain,
+
+				getWeather,
+				getEmployees,
+				getEquipment,
+				getLocations,
+				getLiftChecks,
 			}}
 		>
 			{children}

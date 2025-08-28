@@ -9,14 +9,13 @@ const DEPARTMENT_PREFIX: Record<string, number> = {
 };
 
 export async function generateNextEmployeeIdNumber(
-    tx: Pick<PrismaClient, 'employee'>, // <-- Accepts both PrismaClient and transaction client
+    tx: Pick<PrismaClient, 'employee'>,
     primaryDepartment: string
 ): Promise<number> {
     const prefix = DEPARTMENT_PREFIX[primaryDepartment] ?? DEPARTMENT_PREFIX.OTHER;
     const minNumber = prefix * 1;
     const maxNumber = (prefix + 1) * 100 - 1;
 
-    // Fast path: just increment the max
     const lastEmployee = await tx.employee.findFirst({
         where: {
             employeeIdNumber: { gte: minNumber, lte: maxNumber },
@@ -33,7 +32,6 @@ export async function generateNextEmployeeIdNumber(
         return newEmployeeIdNumber;
     }
 
-    // Slow path: range is full, fill the lowest available gap
     const employees = await tx.employee.findMany({
         where: {
             employeeIdNumber: { gte: minNumber, lte: maxNumber },

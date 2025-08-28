@@ -38,7 +38,7 @@ ski-resort-backend
 1. Clone the repository:
    ```
    git clone <repository-url>
-   cd ski-resort-backend
+   cd <folder>
    ```
 
 2. Install dependencies:
@@ -55,10 +55,13 @@ ski-resort-backend
 
 ## Usage
 - The API endpoints for managing mountains can be accessed at `/api/mountains`.
-- Use tools like Postman or cURL to interact with the API.
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
 
-## License
-This project is licensed under the MIT License.
+npx prisma migrate dev
+npx prisma generate
+npx prisma validate
+
+npm run generate:enums
+npm run seed
+
+npm run dev

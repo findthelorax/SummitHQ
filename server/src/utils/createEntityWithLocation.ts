@@ -40,7 +40,6 @@ export async function createEntityWithLocation(entityType: string, mountainId: s
 			data: entityData,
 		});
 
-		// Safely map string to enum value
 		const locationType = LOCATION_TYPE[entityType.toUpperCase() as keyof typeof LOCATION_TYPE];
 		if (!locationType) {
 			throw new Error(`Invalid entityType: ${entityType}`);

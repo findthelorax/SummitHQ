@@ -10,6 +10,8 @@ router.get('/:mountainId/aidRooms/:aidRoomId', AidRoomController.getAidRoom);
 router.put('/:mountainId/aidRooms/:aidRoomId', AidRoomController.updateAidRoom);
 router.delete('/:mountainId/aidRooms/:aidRoomId', AidRoomController.deleteAidRoom);
 
+router.get('/:mountainId/aidRoomChecks', AidRoomCheckController.getAllByMountain);
+
 router.post('/:mountainId/aidRooms/:aidRoomId/aidRoomChecks', AidRoomCheckController.create);
 router.get('/:mountainId/aidRooms/:aidRoomId/aidRoomChecks', AidRoomCheckController.getAll);
 router.get('/:mountainId/aidRooms/:aidRoomId/aidRoomChecks/:aidRoomCheckId', AidRoomCheckController.getById);

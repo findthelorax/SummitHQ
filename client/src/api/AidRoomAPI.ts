@@ -16,6 +16,14 @@ export type AidRoomInputPayload = {
 	areaId?: string;
 };
 
+export type AidRoomCheckInputPayload = {
+	employeeId: string;
+	equipmentIssues: boolean;
+	equipmentNotes: string;
+	paperworkStocked: boolean;
+	notes: string;
+};
+
 export const aidRoomApi = {
 	async createAidRoom(mountainId: string, aidRoom: AidRoomInputPayload, areaId?: string) {
 		const payload = areaId ? { ...aidRoom, areaId } : aidRoom;
@@ -51,7 +59,7 @@ export const aidRoomApi = {
 	async createAidRoomCheck(
 		mountainId: string,
 		aidRoomId: string,
-		check: Omit<AidRoomCheckDTO, 'id' | 'mountainId' | 'aidRoomId' | 'createdAt' | 'updatedAt'>
+		check: Partial<AidRoomCheckInputPayload>
 	) {
 		const res = await axios.post<AidRoomCheckDTO>(
 			url(`/api/mountains/${mountainId}/aidRooms/${aidRoomId}/aidRoomChecks`),
@@ -91,6 +99,11 @@ export const aidRoomApi = {
 		const res = await axios.delete<AidRoomCheckDTO>(
 			url(`/api/mountains/${mountainId}/aidRooms/${aidRoomId}/aidRoomChecks/${aidRoomCheckId}`)
 		);
+		return res.data;
+	},
+
+	async getAllAidRoomChecks(mountainId: string) {
+		const res = await axios.get<AidRoomCheckDTO[]>(url(`/api/mountains/${mountainId}/aidRoomChecks`));
 		return res.data;
 	},
 };

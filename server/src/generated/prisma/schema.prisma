@@ -113,6 +113,19 @@ enum ROLE_LEVEL {
   LEVEL_10
 }
 
+enum PRECIPITATION_TYPE {
+  NONE
+  SNOW
+  RAIN
+  SLEET
+  FREEZING_RAIN
+  HAIL
+  DRIZZLE
+  MIXED
+  GRAUPEL
+  UNKNOWN
+}
+
 model Area {
   id          String    @id @default(uuid())
   mountainId  String
@@ -216,14 +229,38 @@ model Weather {
   mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   date       DateTime @default(now())
 
-  temperature    Float
-  windSpeed      Float
-  windDirection  String?
-  visibility     Float?
-  conditions     String
-  snowfallRecent Float?
-  snowfall24h    Float?
-  snowfall7d     Float?
+  /// 🌡️ Temperature & Humidity
+  temperature          Float
+  feelsLikeTemperature Float?
+  humidity             Float?
+  dewPoint             Float?
+
+  /// 🌬️ Wind & Visibility
+  windSpeed     Float?
+  windDirection String?
+  windGust      Float?
+  visibility    Float?
+
+  /// ❄️ Snow & Surface Conditions
+  conditions           String?
+  snowfallRecent       Float?
+  snowfall24h          Float?
+  snowfall7d           Float?
+  snowDepthBase        Float?
+  snowDepthSummit      Float?
+  isSnowmakingPossible Boolean?
+
+  /// 🌧️ Precipitation
+  precipitationType      PRECIPITATION_TYPE?
+  precipitationIntensity Float?
+  precipitationChance    Float?
+  stormWarning           Boolean?
+
+  /// ☁️ Sky & Sunlight
+  cloudCoverage Float?
+  uvIndex       Int?
+  sunriseTime   DateTime?
+  sunsetTime    DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -514,89 +551,100 @@ model IncidentEquipmentUsageLog {
   @@index([mountainId, usedAt])
 }
 
-model LiftCheck {
-  id         String   @id @default(uuid())
-  recordedAt DateTime @default(now())
-  employeeId String
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  mountainId String
-  mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
-  liftId     String
-  lift       Lift     @relation(fields: [liftId], references: [id], onDelete: Cascade)
-  notes      String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([liftId])
-  @@index([mountainId, recordedAt, employeeId])
-  @@index([mountainId, createdAt])
-  @@index([liftId, createdAt])
-}
-
-model TrailCheck {
-  id         String   @id @default(uuid())
-  recordedAt DateTime @default(now())
-  employeeId String
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  mountainId String
-  mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
-  trailId    String
-  trail      Trail    @relation(fields: [trailId], references: [id], onDelete: Cascade)
-  notes      String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([trailId])
-  @@index([mountainId, recordedAt, employeeId])
-  @@index([mountainId, createdAt])
-  @@index([trailId, createdAt])
-}
-
-model HutCheck {
-  id         String   @id @default(uuid())
-  recordedAt DateTime @default(now())
-  employeeId String
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  mountainId String
-  mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
-  hutId      String
-  hut        Hut      @relation(fields: [hutId], references: [id], onDelete: Cascade)
-  notes      String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([hutId])
-  @@index([mountainId, recordedAt, employeeId])
-  @@index([mountainId, createdAt])
-  @@index([hutId, createdAt])
-}
-
 model AidRoomCheck {
   id         String   @id @default(uuid())
-  recordedAt DateTime @default(now())
   employeeId String
   employee   Employee @relation(fields: [employeeId], references: [id])
   mountainId String
   mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
   aidRoomId  String
   aidRoom    AidRoom  @relation(fields: [aidRoomId], references: [id], onDelete: Cascade)
-  notes      String?
+
+  equipmentIssues  Boolean @default(false)
+  equipmentNotes   String?
+  paperworkStocked Boolean @default(false)
+  notes            String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([aidRoomId])
-  @@index([mountainId, recordedAt, employeeId])
+  @@index([mountainId, createdAt, employeeId])
   @@index([mountainId, createdAt])
   @@index([aidRoomId, createdAt])
 }
 
+model HutCheck {
+  id         String   @id @default(uuid())
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  mountainId String
+  mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
+  hutId      String
+  hut        Hut      @relation(fields: [hutId], references: [id], onDelete: Cascade)
+
+  equipmentIssues  Boolean @default(false)
+  equipmentNotes   String?
+  paperworkStocked Boolean @default(false)
+  notes            String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([hutId])
+  @@index([mountainId, createdAt, employeeId])
+  @@index([mountainId, createdAt])
+  @@index([hutId, createdAt])
+}
+
+model LiftCheck {
+  id         String   @id @default(uuid())
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  mountainId String
+  mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
+  liftId     String
+  lift       Lift     @relation(fields: [liftId], references: [id], onDelete: Cascade)
+
+  hazards Boolean @default(false)
+  status  STATUS
+  notes   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([liftId])
+  @@index([mountainId, createdAt, employeeId])
+  @@index([mountainId, createdAt])
+  @@index([liftId, createdAt])
+}
+
+model TrailCheck {
+  id         String   @id @default(uuid())
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  mountainId String
+  mountain   Mountain @relation(fields: [mountainId], references: [id], onDelete: Cascade)
+  trailId    String
+  trail      Trail    @relation(fields: [trailId], references: [id], onDelete: Cascade)
+
+  status     STATUS
+  condition  TRAIL_CONDITION
+  hazards    Boolean         @default(false)
+  snowmaking Boolean         @default(false)
+  notes      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([trailId])
+  @@index([mountainId, createdAt, employeeId])
+  @@index([mountainId, createdAt])
+  @@index([trailId, createdAt])
+}
+
 model EquipmentCheck {
   id          String    @id @default(uuid())
-  recordedAt  DateTime  @default(now())
   employeeId  String
   employee    Employee  @relation(fields: [employeeId], references: [id])
   mountainId  String
@@ -609,7 +657,7 @@ model EquipmentCheck {
   updatedAt DateTime @updatedAt
 
   @@index([equipmentId])
-  @@index([mountainId, recordedAt, employeeId])
+  @@index([mountainId, createdAt, employeeId])
   @@index([mountainId, createdAt])
   @@index([equipmentId, createdAt])
 }

@@ -30,6 +30,11 @@ export function useLocations(mountainId: string | undefined) {
         fetchLocations();
     }, [fetchLocations]);
 
+    const getLocationById = useCallback(async (locationId: string) => {
+        if (!mountainId) return null;
+        return locationApi.getLocation(mountainId, locationId);
+    }, [mountainId]);
+
     const createLocation = useCallback(async (location: LocationInputPayload) => {
         if (!mountainId) return;
         const payload = {
@@ -173,6 +178,7 @@ export function useLocations(mountainId: string | undefined) {
         locations,
         isLoading,
         fetchLocations,
+        getLocationById,
         createLocation,
         updateLocation,
         deleteLocation,

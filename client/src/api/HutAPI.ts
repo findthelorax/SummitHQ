@@ -16,6 +16,14 @@ export type HutInputPayload = {
 	areaId?: string | null;
 };
 
+export type HutCheckInputPayload = {
+	employeeId: string;
+	equipmentIssues: boolean;
+	equipmentNotes: string;
+	paperworkStocked: boolean;
+	notes: string;
+};
+
 export const hutApi = {
 	async createHut(mountainId: string, hut: HutInputPayload, areaId?: string) {
 		const payload = areaId ? { ...hut, areaId } : hut;
@@ -48,11 +56,7 @@ export const hutApi = {
 		return res.data;
 	},
 
-	async createHutCheck(
-		mountainId: string,
-		hutId: string,
-		check: Omit<HutCheckDTO, 'id' | 'mountainId' | 'hutId' | 'createdAt' | 'updatedAt'>
-	) {
+	async createHutCheck(mountainId: string, hutId: string, check: HutCheckInputPayload) {
 		const res = await axios.post<HutCheckDTO>(url(`/api/mountains/${mountainId}/huts/${hutId}/hutChecks`), check);
 		return res.data;
 	},
@@ -81,6 +85,11 @@ export const hutApi = {
 		const res = await axios.delete<HutCheckDTO>(
 			url(`/api/mountains/${mountainId}/huts/${hutId}/hutChecks/${hutCheckId}`)
 		);
+		return res.data;
+	},
+
+	async getAllHutChecks(mountainId: string) {
+		const res = await axios.get<HutCheckDTO[]>(url(`/api/mountains/${mountainId}/hutChecks`));
 		return res.data;
 	},
 };

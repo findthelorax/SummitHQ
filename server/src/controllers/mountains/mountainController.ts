@@ -3,52 +3,102 @@ import MountainModel from '../../models/mountains/mountainModel.js';
 import { asyncWrapper } from '../../utils/asyncWrapper.js';
 
 class MountainController {
-    createMountain = asyncWrapper(async (req: Request, res: Response) => {
-        const mountainData = req.body;
-        const mountain = await MountainModel.create(mountainData);
-        res.status(201).json(mountain);
-    });
+	createMountain = asyncWrapper(async (req: Request, res: Response) => {
+		const mountainData = req.body;
+		const mountain = await MountainModel.create(mountainData);
+		res.status(201).json(mountain);
+	});
 
-    getAllMountains = asyncWrapper(async (req: Request, res: Response) => {
-        const mountains = await MountainModel.findAll();
-        res.status(200).json(mountains);
-    });
+	getAllMountains = asyncWrapper(async (req: Request, res: Response) => {
+		const mountains = await MountainModel.findAll();
+		res.status(200).json(mountains);
+	});
 
-    getMountain = asyncWrapper(async (req: Request, res: Response) => {
-        const mountainId = req.params.mountainId;
-        const mountain = await MountainModel.findById(mountainId);
-        if (!mountain) {
-            res.status(404).json({ message: 'Mountain not found' });
-            return;
-        }
-        res.status(200).json(mountain);
-    });
+	getMountain = asyncWrapper(async (req: Request, res: Response) => {
+		const mountainId = req.params.mountainId;
+		const mountain = await MountainModel.findById(mountainId);
+		if (!mountain) {
+			res.status(404).json({ message: 'Mountain not found' });
+			return;
+		}
+		res.status(200).json(mountain);
+	});
 
-    updateMountain = asyncWrapper(async (req: Request, res: Response) => {
-        const mountainId = req.params.mountainId;
-        const mountainData = req.body;
-        const updatedMountain = await MountainModel.update(mountainId, mountainData);
-        if (!updatedMountain) {
-            res.status(404).json({ message: 'Mountain not found' });
-            return;
-        }
-        res.status(200).json(updatedMountain);
-    });
+	updateMountain = asyncWrapper(async (req: Request, res: Response) => {
+		const mountainId = req.params.mountainId;
+		const mountainData = req.body;
+		const updatedMountain = await MountainModel.update(mountainId, mountainData);
+		if (!updatedMountain) {
+			res.status(404).json({ message: 'Mountain not found' });
+			return;
+		}
+		res.status(200).json(updatedMountain);
+	});
 
-    deleteMountain = asyncWrapper(async (req: Request, res: Response) => {
-        const mountainId = req.params.mountainId;
-        const deletedMountain = await MountainModel.delete(mountainId);
-        if (!deletedMountain) {
-            res.status(404).json({ message: 'Mountain not found' });
-            return;
-        }
-        res.status(204).send();
-    });
+	deleteMountain = asyncWrapper(async (req: Request, res: Response) => {
+		const mountainId = req.params.mountainId;
+		const deletedMountain = await MountainModel.delete(mountainId);
+		if (!deletedMountain) {
+			res.status(404).json({ message: 'Mountain not found' });
+			return;
+		}
+		res.status(204).send();
+	});
 
-    deleteAllMountains = asyncWrapper(async (req: Request, res: Response) => {
-        await MountainModel.deleteAll();
-        res.status(204).send();
-    });
+	deleteAllMountains = asyncWrapper(async (req: Request, res: Response) => {
+		await MountainModel.deleteAll();
+		res.status(204).send();
+	});
+
+	// --- New endpoints for related data ---
+
+	getWeather = asyncWrapper(async (req: Request, res: Response) => {
+		const { limit, offset, order } = req.query;
+		const parsedLimit = limit !== undefined ? Number(limit) : undefined;
+		const parsedOffset = offset !== undefined ? Number(offset) : undefined;
+		const parsedOrder = typeof order === 'string' ? order : undefined;
+		const weather = await MountainModel.getWeather(req.params.mountainId, {
+			limit: parsedLimit,
+			offset: parsedOffset,
+			order: parsedOrder,
+		});
+		res.status(200).json(weather);
+	});
+
+	getEmployees = asyncWrapper(async (req: Request, res: Response) => {
+		const { limit, offset } = req.query;
+		const parsedLimit = limit !== undefined ? Number(limit) : undefined;
+		const parsedOffset = offset !== undefined ? Number(offset) : undefined;
+		const employees = await MountainModel.getEmployees(req.params.mountainId, {
+			limit: parsedLimit,
+			offset: parsedOffset,
+		});
+		res.status(200).json(employees);
+	});
+
+	getLocations = asyncWrapper(async (req: Request, res: Response) => {
+		const { limit, offset } = req.query;
+		const parsedLimit = limit !== undefined ? Number(limit) : undefined;
+		const parsedOffset = offset !== undefined ? Number(offset) : undefined;
+		const locations = await MountainModel.getLocations(req.params.mountainId, {
+			limit: parsedLimit,
+			offset: parsedOffset,
+		});
+		res.status(200).json(locations);
+	});
+
+	getLiftChecks = asyncWrapper(async (req: Request, res: Response) => {
+		const { limit, offset } = req.query;
+		const parsedLimit = limit !== undefined ? Number(limit) : undefined;
+		const parsedOffset = offset !== undefined ? Number(offset) : undefined;
+		const checks = await MountainModel.getLiftChecks(req.params.mountainId, {
+			limit: parsedLimit,
+			offset: parsedOffset,
+		});
+		res.status(200).json(checks);
+	});
+
+	// Add similar methods for aidRoomChecks, hutChecks, trailChecks, equipmentChecks, incidents, etc.
 }
 
 export default new MountainController();

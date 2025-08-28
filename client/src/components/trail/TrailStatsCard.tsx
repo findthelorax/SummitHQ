@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTrails } from '../../hooks/trail/useTrails';
+import { useTrails } from '../../hooks/useTrails';
 
 interface TrailStatsCardProps {
     mountainId: string | undefined;

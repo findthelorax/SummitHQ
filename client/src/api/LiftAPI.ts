@@ -1,3 +1,4 @@
+import { stat } from 'fs';
 import axios from 'axios';
 import type { LiftDTO, LiftCheckDTO } from '../types/index';
 import type { LIFT_TYPE, STATUS } from '../types/generated-enums';
@@ -20,9 +21,9 @@ export type LiftInputPayload = {
 
 export type LiftCheckInputPayload = {
 	employeeId: string;
-	liftId: string;
-	recordedAt: string;
-	notes?: string;
+	hazards: boolean;
+	status: STATUS;
+	notes?: string | null;
 };
 
 export const liftApi = {
@@ -90,6 +91,11 @@ export const liftApi = {
 		const res = await axios.delete<LiftCheckDTO>(
 			url(`/api/mountains/${mountainId}/lifts/${liftId}/liftChecks/${liftCheckId}`)
 		);
+		return res.data;
+	},
+
+	async getAllLiftChecks(mountainId: string) {
+		const res = await axios.get<LiftCheckDTO[]>(url(`/api/mountains/${mountainId}/liftChecks`));
 		return res.data;
 	},
 };

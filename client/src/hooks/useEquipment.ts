@@ -56,10 +56,6 @@ export function useEquipment(defaultMountainId?: string) {
 		}
 	}, []);
 
-	useEffect(() => {
-		fetchAllEquipment();
-	}, [fetchAllEquipment]);
-
 	const createEquipment = useCallback(
 		async (
 			input: EquipmentInputPayload & { areaId?: string; mountainId?: string }
@@ -100,6 +96,14 @@ export function useEquipment(defaultMountainId?: string) {
 		[fetchEquipmentByMountain, defaultMountainId]
 	);
 
+		useEffect(() => {
+			if (defaultMountainId) {
+				fetchEquipmentByMountain(defaultMountainId);
+			} else {
+				fetchAllEquipment();
+			}
+		}, [defaultMountainId, fetchEquipmentByMountain, fetchAllEquipment]);
+		
 	return {
 		equipment,
 		isLoadingEquipment,

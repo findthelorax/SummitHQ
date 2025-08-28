@@ -1,0 +1,21 @@
+-- CreateEnum
+CREATE TYPE "PRECIPITATION_TYPE" AS ENUM ('NONE', 'SNOW', 'RAIN', 'SLEET', 'FREEZING_RAIN', 'HAIL', 'DRIZZLE', 'MIXED', 'GRAUPEL', 'UNKNOWN');
+
+-- AlterTable
+ALTER TABLE "Weather" ADD COLUMN     "cloudCoverage" DOUBLE PRECISION,
+ADD COLUMN     "dewPoint" DOUBLE PRECISION,
+ADD COLUMN     "feelsLikeTemperature" DOUBLE PRECISION,
+ADD COLUMN     "humidity" DOUBLE PRECISION,
+ADD COLUMN     "isSnowmakingPossible" BOOLEAN,
+ADD COLUMN     "precipitationChance" DOUBLE PRECISION,
+ADD COLUMN     "precipitationIntensity" DOUBLE PRECISION,
+ADD COLUMN     "precipitationType" "PRECIPITATION_TYPE",
+ADD COLUMN     "snowDepthBase" DOUBLE PRECISION,
+ADD COLUMN     "snowDepthSummit" DOUBLE PRECISION,
+ADD COLUMN     "stormWarning" BOOLEAN,
+ADD COLUMN     "sunriseTime" TIMESTAMP(3),
+ADD COLUMN     "sunsetTime" TIMESTAMP(3),
+ADD COLUMN     "uvIndex" INTEGER,
+ADD COLUMN     "windGust" DOUBLE PRECISION,
+ALTER COLUMN "windSpeed" DROP NOT NULL,
+ALTER COLUMN "conditions" DROP NOT NULL;

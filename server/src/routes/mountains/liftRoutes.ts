@@ -10,6 +10,8 @@ router.get('/:mountainId/lifts/:liftId', LiftController.getLift);
 router.put('/:mountainId/lifts/:liftId', LiftController.updateLift);
 router.delete('/:mountainId/lifts/:liftId', LiftController.deleteLift);
 
+router.get('/:mountainId/liftChecks', LiftCheckController.getAllByMountain);
+
 router.post('/:mountainId/lifts/:liftId/liftChecks', LiftCheckController.create);
 router.get('/:mountainId/lifts/:liftId/liftChecks', LiftCheckController.getAll);
 router.get('/:mountainId/lifts/:liftId/liftChecks/:liftCheckId', LiftCheckController.getById);

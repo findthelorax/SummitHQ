@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { hutApi, HutInputPayload } from '../api/HutAPI';
-import type { HutDTO, HutWithLocation } from '../types/index';
+import type { HutDTO, HutFull, HutWithLocation } from '../types/index';
 import { STATUS } from '../types/generated-enums';
 
 function toSharedStatus(status: any): STATUS {
@@ -9,7 +9,7 @@ function toSharedStatus(status: any): STATUS {
 }
 
 export function useHuts(mountainId: string | undefined) {
-    const [huts, setHuts] = useState<HutDTO[]>([]);
+    const [huts, setHuts] = useState<HutFull[]>([]);
     const [isLoadingHuts, setIsLoadingHuts] = useState(false);
 
     const fetchHuts = useCallback(async () => {
@@ -19,8 +19,12 @@ export function useHuts(mountainId: string | undefined) {
         }
         setIsLoadingHuts(true);
         try {
-            let data: HutDTO[];
-            data = await hutApi.getHuts(mountainId);
+            let data: HutFull[];
+            const rawData = await hutApi.getHuts(mountainId);
+            data = rawData.map((hut: any) => ({
+                ...hut,
+                hutChecks: hut.hutChecks ?? [],
+            }));
             setHuts(data);
         } finally {
             setIsLoadingHuts(false);

@@ -114,6 +114,16 @@ export type Incident = $Result.DefaultSelection<Prisma.$IncidentPayload>
  */
 export type IncidentEquipmentUsageLog = $Result.DefaultSelection<Prisma.$IncidentEquipmentUsageLogPayload>
 /**
+ * Model AidRoomCheck
+ * 
+ */
+export type AidRoomCheck = $Result.DefaultSelection<Prisma.$AidRoomCheckPayload>
+/**
+ * Model HutCheck
+ * 
+ */
+export type HutCheck = $Result.DefaultSelection<Prisma.$HutCheckPayload>
+/**
  * Model LiftCheck
  * 
  */
@@ -123,16 +133,6 @@ export type LiftCheck = $Result.DefaultSelection<Prisma.$LiftCheckPayload>
  * 
  */
 export type TrailCheck = $Result.DefaultSelection<Prisma.$TrailCheckPayload>
-/**
- * Model HutCheck
- * 
- */
-export type HutCheck = $Result.DefaultSelection<Prisma.$HutCheckPayload>
-/**
- * Model AidRoomCheck
- * 
- */
-export type AidRoomCheck = $Result.DefaultSelection<Prisma.$AidRoomCheckPayload>
 /**
  * Model EquipmentCheck
  * 
@@ -280,6 +280,22 @@ export const ROLE_LEVEL: {
 
 export type ROLE_LEVEL = (typeof ROLE_LEVEL)[keyof typeof ROLE_LEVEL]
 
+
+export const PRECIPITATION_TYPE: {
+  NONE: 'NONE',
+  SNOW: 'SNOW',
+  RAIN: 'RAIN',
+  SLEET: 'SLEET',
+  FREEZING_RAIN: 'FREEZING_RAIN',
+  HAIL: 'HAIL',
+  DRIZZLE: 'DRIZZLE',
+  MIXED: 'MIXED',
+  GRAUPEL: 'GRAUPEL',
+  UNKNOWN: 'UNKNOWN'
+};
+
+export type PRECIPITATION_TYPE = (typeof PRECIPITATION_TYPE)[keyof typeof PRECIPITATION_TYPE]
+
 }
 
 export type LOCATION_TYPE = $Enums.LOCATION_TYPE
@@ -325,6 +341,10 @@ export const EMPLOYEE_STATUS: typeof $Enums.EMPLOYEE_STATUS
 export type ROLE_LEVEL = $Enums.ROLE_LEVEL
 
 export const ROLE_LEVEL: typeof $Enums.ROLE_LEVEL
+
+export type PRECIPITATION_TYPE = $Enums.PRECIPITATION_TYPE
+
+export const PRECIPITATION_TYPE: typeof $Enums.PRECIPITATION_TYPE
 
 /**
  * ##  Prisma Client ʲˢ
@@ -652,6 +672,26 @@ export class PrismaClient<
   get incidentEquipmentUsageLog(): Prisma.IncidentEquipmentUsageLogDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.aidRoomCheck`: Exposes CRUD operations for the **AidRoomCheck** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AidRoomChecks
+    * const aidRoomChecks = await prisma.aidRoomCheck.findMany()
+    * ```
+    */
+  get aidRoomCheck(): Prisma.AidRoomCheckDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hutCheck`: Exposes CRUD operations for the **HutCheck** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more HutChecks
+    * const hutChecks = await prisma.hutCheck.findMany()
+    * ```
+    */
+  get hutCheck(): Prisma.HutCheckDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.liftCheck`: Exposes CRUD operations for the **LiftCheck** model.
     * Example usage:
     * ```ts
@@ -670,26 +710,6 @@ export class PrismaClient<
     * ```
     */
   get trailCheck(): Prisma.TrailCheckDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.hutCheck`: Exposes CRUD operations for the **HutCheck** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more HutChecks
-    * const hutChecks = await prisma.hutCheck.findMany()
-    * ```
-    */
-  get hutCheck(): Prisma.HutCheckDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.aidRoomCheck`: Exposes CRUD operations for the **AidRoomCheck** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more AidRoomChecks
-    * const aidRoomChecks = await prisma.aidRoomCheck.findMany()
-    * ```
-    */
-  get aidRoomCheck(): Prisma.AidRoomCheckDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.equipmentCheck`: Exposes CRUD operations for the **EquipmentCheck** model.
@@ -758,8 +778,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.9.0
-   * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
+   * Prisma Client JS version: 6.10.1
+   * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
    */
   export type PrismaVersion = {
     client: string
@@ -1160,10 +1180,10 @@ export namespace Prisma {
     Equipment: 'Equipment',
     Incident: 'Incident',
     IncidentEquipmentUsageLog: 'IncidentEquipmentUsageLog',
+    AidRoomCheck: 'AidRoomCheck',
+    HutCheck: 'HutCheck',
     LiftCheck: 'LiftCheck',
     TrailCheck: 'TrailCheck',
-    HutCheck: 'HutCheck',
-    AidRoomCheck: 'AidRoomCheck',
     EquipmentCheck: 'EquipmentCheck'
   };
 
@@ -1183,7 +1203,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "area" | "location" | "hours" | "mountain" | "weather" | "employeeMountainAssignment" | "dispatcherAssignment" | "role" | "employeeRole" | "certification" | "employee" | "lift" | "trail" | "lodge" | "hut" | "aidRoom" | "equipmentServiceLog" | "equipment" | "incident" | "incidentEquipmentUsageLog" | "liftCheck" | "trailCheck" | "hutCheck" | "aidRoomCheck" | "equipmentCheck"
+      modelProps: "area" | "location" | "hours" | "mountain" | "weather" | "employeeMountainAssignment" | "dispatcherAssignment" | "role" | "employeeRole" | "certification" | "employee" | "lift" | "trail" | "lodge" | "hut" | "aidRoom" | "equipmentServiceLog" | "equipment" | "incident" | "incidentEquipmentUsageLog" | "aidRoomCheck" | "hutCheck" | "liftCheck" | "trailCheck" | "equipmentCheck"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2667,6 +2687,154 @@ export namespace Prisma {
           }
         }
       }
+      AidRoomCheck: {
+        payload: Prisma.$AidRoomCheckPayload<ExtArgs>
+        fields: Prisma.AidRoomCheckFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AidRoomCheckFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AidRoomCheckFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
+          }
+          findFirst: {
+            args: Prisma.AidRoomCheckFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AidRoomCheckFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
+          }
+          findMany: {
+            args: Prisma.AidRoomCheckFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>[]
+          }
+          create: {
+            args: Prisma.AidRoomCheckCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
+          }
+          createMany: {
+            args: Prisma.AidRoomCheckCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AidRoomCheckCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>[]
+          }
+          delete: {
+            args: Prisma.AidRoomCheckDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
+          }
+          update: {
+            args: Prisma.AidRoomCheckUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
+          }
+          deleteMany: {
+            args: Prisma.AidRoomCheckDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AidRoomCheckUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AidRoomCheckUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>[]
+          }
+          upsert: {
+            args: Prisma.AidRoomCheckUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
+          }
+          aggregate: {
+            args: Prisma.AidRoomCheckAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAidRoomCheck>
+          }
+          groupBy: {
+            args: Prisma.AidRoomCheckGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AidRoomCheckGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AidRoomCheckCountArgs<ExtArgs>
+            result: $Utils.Optional<AidRoomCheckCountAggregateOutputType> | number
+          }
+        }
+      }
+      HutCheck: {
+        payload: Prisma.$HutCheckPayload<ExtArgs>
+        fields: Prisma.HutCheckFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HutCheckFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HutCheckFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
+          }
+          findFirst: {
+            args: Prisma.HutCheckFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HutCheckFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
+          }
+          findMany: {
+            args: Prisma.HutCheckFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>[]
+          }
+          create: {
+            args: Prisma.HutCheckCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
+          }
+          createMany: {
+            args: Prisma.HutCheckCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HutCheckCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>[]
+          }
+          delete: {
+            args: Prisma.HutCheckDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
+          }
+          update: {
+            args: Prisma.HutCheckUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
+          }
+          deleteMany: {
+            args: Prisma.HutCheckDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HutCheckUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HutCheckUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>[]
+          }
+          upsert: {
+            args: Prisma.HutCheckUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
+          }
+          aggregate: {
+            args: Prisma.HutCheckAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHutCheck>
+          }
+          groupBy: {
+            args: Prisma.HutCheckGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HutCheckGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HutCheckCountArgs<ExtArgs>
+            result: $Utils.Optional<HutCheckCountAggregateOutputType> | number
+          }
+        }
+      }
       LiftCheck: {
         payload: Prisma.$LiftCheckPayload<ExtArgs>
         fields: Prisma.LiftCheckFieldRefs
@@ -2812,154 +2980,6 @@ export namespace Prisma {
           count: {
             args: Prisma.TrailCheckCountArgs<ExtArgs>
             result: $Utils.Optional<TrailCheckCountAggregateOutputType> | number
-          }
-        }
-      }
-      HutCheck: {
-        payload: Prisma.$HutCheckPayload<ExtArgs>
-        fields: Prisma.HutCheckFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.HutCheckFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.HutCheckFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
-          }
-          findFirst: {
-            args: Prisma.HutCheckFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.HutCheckFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
-          }
-          findMany: {
-            args: Prisma.HutCheckFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>[]
-          }
-          create: {
-            args: Prisma.HutCheckCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
-          }
-          createMany: {
-            args: Prisma.HutCheckCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.HutCheckCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>[]
-          }
-          delete: {
-            args: Prisma.HutCheckDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
-          }
-          update: {
-            args: Prisma.HutCheckUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
-          }
-          deleteMany: {
-            args: Prisma.HutCheckDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.HutCheckUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.HutCheckUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>[]
-          }
-          upsert: {
-            args: Prisma.HutCheckUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HutCheckPayload>
-          }
-          aggregate: {
-            args: Prisma.HutCheckAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateHutCheck>
-          }
-          groupBy: {
-            args: Prisma.HutCheckGroupByArgs<ExtArgs>
-            result: $Utils.Optional<HutCheckGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.HutCheckCountArgs<ExtArgs>
-            result: $Utils.Optional<HutCheckCountAggregateOutputType> | number
-          }
-        }
-      }
-      AidRoomCheck: {
-        payload: Prisma.$AidRoomCheckPayload<ExtArgs>
-        fields: Prisma.AidRoomCheckFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.AidRoomCheckFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.AidRoomCheckFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
-          }
-          findFirst: {
-            args: Prisma.AidRoomCheckFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.AidRoomCheckFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
-          }
-          findMany: {
-            args: Prisma.AidRoomCheckFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>[]
-          }
-          create: {
-            args: Prisma.AidRoomCheckCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
-          }
-          createMany: {
-            args: Prisma.AidRoomCheckCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.AidRoomCheckCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>[]
-          }
-          delete: {
-            args: Prisma.AidRoomCheckDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
-          }
-          update: {
-            args: Prisma.AidRoomCheckUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
-          }
-          deleteMany: {
-            args: Prisma.AidRoomCheckDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.AidRoomCheckUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.AidRoomCheckUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>[]
-          }
-          upsert: {
-            args: Prisma.AidRoomCheckUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AidRoomCheckPayload>
-          }
-          aggregate: {
-            args: Prisma.AidRoomCheckAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAidRoomCheck>
-          }
-          groupBy: {
-            args: Prisma.AidRoomCheckGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AidRoomCheckGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.AidRoomCheckCountArgs<ExtArgs>
-            result: $Utils.Optional<AidRoomCheckCountAggregateOutputType> | number
           }
         }
       }
@@ -3141,10 +3161,10 @@ export namespace Prisma {
     equipment?: EquipmentOmit
     incident?: IncidentOmit
     incidentEquipmentUsageLog?: IncidentEquipmentUsageLogOmit
+    aidRoomCheck?: AidRoomCheckOmit
+    hutCheck?: HutCheckOmit
     liftCheck?: LiftCheckOmit
     trailCheck?: TrailCheckOmit
-    hutCheck?: HutCheckOmit
-    aidRoomCheck?: AidRoomCheckOmit
     equipmentCheck?: EquipmentCheckOmit
   }
 
@@ -9138,20 +9158,40 @@ export namespace Prisma {
 
   export type WeatherAvgAggregateOutputType = {
     temperature: number | null
+    feelsLikeTemperature: number | null
+    humidity: number | null
+    dewPoint: number | null
     windSpeed: number | null
+    windGust: number | null
     visibility: number | null
     snowfallRecent: number | null
     snowfall24h: number | null
     snowfall7d: number | null
+    snowDepthBase: number | null
+    snowDepthSummit: number | null
+    precipitationIntensity: number | null
+    precipitationChance: number | null
+    cloudCoverage: number | null
+    uvIndex: number | null
   }
 
   export type WeatherSumAggregateOutputType = {
     temperature: number | null
+    feelsLikeTemperature: number | null
+    humidity: number | null
+    dewPoint: number | null
     windSpeed: number | null
+    windGust: number | null
     visibility: number | null
     snowfallRecent: number | null
     snowfall24h: number | null
     snowfall7d: number | null
+    snowDepthBase: number | null
+    snowDepthSummit: number | null
+    precipitationIntensity: number | null
+    precipitationChance: number | null
+    cloudCoverage: number | null
+    uvIndex: number | null
   }
 
   export type WeatherMinAggregateOutputType = {
@@ -9159,13 +9199,28 @@ export namespace Prisma {
     mountainId: string | null
     date: Date | null
     temperature: number | null
+    feelsLikeTemperature: number | null
+    humidity: number | null
+    dewPoint: number | null
     windSpeed: number | null
     windDirection: string | null
+    windGust: number | null
     visibility: number | null
     conditions: string | null
     snowfallRecent: number | null
     snowfall24h: number | null
     snowfall7d: number | null
+    snowDepthBase: number | null
+    snowDepthSummit: number | null
+    isSnowmakingPossible: boolean | null
+    precipitationType: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity: number | null
+    precipitationChance: number | null
+    stormWarning: boolean | null
+    cloudCoverage: number | null
+    uvIndex: number | null
+    sunriseTime: Date | null
+    sunsetTime: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9175,13 +9230,28 @@ export namespace Prisma {
     mountainId: string | null
     date: Date | null
     temperature: number | null
+    feelsLikeTemperature: number | null
+    humidity: number | null
+    dewPoint: number | null
     windSpeed: number | null
     windDirection: string | null
+    windGust: number | null
     visibility: number | null
     conditions: string | null
     snowfallRecent: number | null
     snowfall24h: number | null
     snowfall7d: number | null
+    snowDepthBase: number | null
+    snowDepthSummit: number | null
+    isSnowmakingPossible: boolean | null
+    precipitationType: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity: number | null
+    precipitationChance: number | null
+    stormWarning: boolean | null
+    cloudCoverage: number | null
+    uvIndex: number | null
+    sunriseTime: Date | null
+    sunsetTime: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -9191,13 +9261,28 @@ export namespace Prisma {
     mountainId: number
     date: number
     temperature: number
+    feelsLikeTemperature: number
+    humidity: number
+    dewPoint: number
     windSpeed: number
     windDirection: number
+    windGust: number
     visibility: number
     conditions: number
     snowfallRecent: number
     snowfall24h: number
     snowfall7d: number
+    snowDepthBase: number
+    snowDepthSummit: number
+    isSnowmakingPossible: number
+    precipitationType: number
+    precipitationIntensity: number
+    precipitationChance: number
+    stormWarning: number
+    cloudCoverage: number
+    uvIndex: number
+    sunriseTime: number
+    sunsetTime: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -9206,20 +9291,40 @@ export namespace Prisma {
 
   export type WeatherAvgAggregateInputType = {
     temperature?: true
+    feelsLikeTemperature?: true
+    humidity?: true
+    dewPoint?: true
     windSpeed?: true
+    windGust?: true
     visibility?: true
     snowfallRecent?: true
     snowfall24h?: true
     snowfall7d?: true
+    snowDepthBase?: true
+    snowDepthSummit?: true
+    precipitationIntensity?: true
+    precipitationChance?: true
+    cloudCoverage?: true
+    uvIndex?: true
   }
 
   export type WeatherSumAggregateInputType = {
     temperature?: true
+    feelsLikeTemperature?: true
+    humidity?: true
+    dewPoint?: true
     windSpeed?: true
+    windGust?: true
     visibility?: true
     snowfallRecent?: true
     snowfall24h?: true
     snowfall7d?: true
+    snowDepthBase?: true
+    snowDepthSummit?: true
+    precipitationIntensity?: true
+    precipitationChance?: true
+    cloudCoverage?: true
+    uvIndex?: true
   }
 
   export type WeatherMinAggregateInputType = {
@@ -9227,13 +9332,28 @@ export namespace Prisma {
     mountainId?: true
     date?: true
     temperature?: true
+    feelsLikeTemperature?: true
+    humidity?: true
+    dewPoint?: true
     windSpeed?: true
     windDirection?: true
+    windGust?: true
     visibility?: true
     conditions?: true
     snowfallRecent?: true
     snowfall24h?: true
     snowfall7d?: true
+    snowDepthBase?: true
+    snowDepthSummit?: true
+    isSnowmakingPossible?: true
+    precipitationType?: true
+    precipitationIntensity?: true
+    precipitationChance?: true
+    stormWarning?: true
+    cloudCoverage?: true
+    uvIndex?: true
+    sunriseTime?: true
+    sunsetTime?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9243,13 +9363,28 @@ export namespace Prisma {
     mountainId?: true
     date?: true
     temperature?: true
+    feelsLikeTemperature?: true
+    humidity?: true
+    dewPoint?: true
     windSpeed?: true
     windDirection?: true
+    windGust?: true
     visibility?: true
     conditions?: true
     snowfallRecent?: true
     snowfall24h?: true
     snowfall7d?: true
+    snowDepthBase?: true
+    snowDepthSummit?: true
+    isSnowmakingPossible?: true
+    precipitationType?: true
+    precipitationIntensity?: true
+    precipitationChance?: true
+    stormWarning?: true
+    cloudCoverage?: true
+    uvIndex?: true
+    sunriseTime?: true
+    sunsetTime?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -9259,13 +9394,28 @@ export namespace Prisma {
     mountainId?: true
     date?: true
     temperature?: true
+    feelsLikeTemperature?: true
+    humidity?: true
+    dewPoint?: true
     windSpeed?: true
     windDirection?: true
+    windGust?: true
     visibility?: true
     conditions?: true
     snowfallRecent?: true
     snowfall24h?: true
     snowfall7d?: true
+    snowDepthBase?: true
+    snowDepthSummit?: true
+    isSnowmakingPossible?: true
+    precipitationType?: true
+    precipitationIntensity?: true
+    precipitationChance?: true
+    stormWarning?: true
+    cloudCoverage?: true
+    uvIndex?: true
+    sunriseTime?: true
+    sunsetTime?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -9362,13 +9512,28 @@ export namespace Prisma {
     mountainId: string
     date: Date
     temperature: number
-    windSpeed: number
+    feelsLikeTemperature: number | null
+    humidity: number | null
+    dewPoint: number | null
+    windSpeed: number | null
     windDirection: string | null
+    windGust: number | null
     visibility: number | null
-    conditions: string
+    conditions: string | null
     snowfallRecent: number | null
     snowfall24h: number | null
     snowfall7d: number | null
+    snowDepthBase: number | null
+    snowDepthSummit: number | null
+    isSnowmakingPossible: boolean | null
+    precipitationType: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity: number | null
+    precipitationChance: number | null
+    stormWarning: boolean | null
+    cloudCoverage: number | null
+    uvIndex: number | null
+    sunriseTime: Date | null
+    sunsetTime: Date | null
     createdAt: Date
     updatedAt: Date
     _count: WeatherCountAggregateOutputType | null
@@ -9397,13 +9562,28 @@ export namespace Prisma {
     mountainId?: boolean
     date?: boolean
     temperature?: boolean
+    feelsLikeTemperature?: boolean
+    humidity?: boolean
+    dewPoint?: boolean
     windSpeed?: boolean
     windDirection?: boolean
+    windGust?: boolean
     visibility?: boolean
     conditions?: boolean
     snowfallRecent?: boolean
     snowfall24h?: boolean
     snowfall7d?: boolean
+    snowDepthBase?: boolean
+    snowDepthSummit?: boolean
+    isSnowmakingPossible?: boolean
+    precipitationType?: boolean
+    precipitationIntensity?: boolean
+    precipitationChance?: boolean
+    stormWarning?: boolean
+    cloudCoverage?: boolean
+    uvIndex?: boolean
+    sunriseTime?: boolean
+    sunsetTime?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -9414,13 +9594,28 @@ export namespace Prisma {
     mountainId?: boolean
     date?: boolean
     temperature?: boolean
+    feelsLikeTemperature?: boolean
+    humidity?: boolean
+    dewPoint?: boolean
     windSpeed?: boolean
     windDirection?: boolean
+    windGust?: boolean
     visibility?: boolean
     conditions?: boolean
     snowfallRecent?: boolean
     snowfall24h?: boolean
     snowfall7d?: boolean
+    snowDepthBase?: boolean
+    snowDepthSummit?: boolean
+    isSnowmakingPossible?: boolean
+    precipitationType?: boolean
+    precipitationIntensity?: boolean
+    precipitationChance?: boolean
+    stormWarning?: boolean
+    cloudCoverage?: boolean
+    uvIndex?: boolean
+    sunriseTime?: boolean
+    sunsetTime?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -9431,13 +9626,28 @@ export namespace Prisma {
     mountainId?: boolean
     date?: boolean
     temperature?: boolean
+    feelsLikeTemperature?: boolean
+    humidity?: boolean
+    dewPoint?: boolean
     windSpeed?: boolean
     windDirection?: boolean
+    windGust?: boolean
     visibility?: boolean
     conditions?: boolean
     snowfallRecent?: boolean
     snowfall24h?: boolean
     snowfall7d?: boolean
+    snowDepthBase?: boolean
+    snowDepthSummit?: boolean
+    isSnowmakingPossible?: boolean
+    precipitationType?: boolean
+    precipitationIntensity?: boolean
+    precipitationChance?: boolean
+    stormWarning?: boolean
+    cloudCoverage?: boolean
+    uvIndex?: boolean
+    sunriseTime?: boolean
+    sunsetTime?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -9448,18 +9658,33 @@ export namespace Prisma {
     mountainId?: boolean
     date?: boolean
     temperature?: boolean
+    feelsLikeTemperature?: boolean
+    humidity?: boolean
+    dewPoint?: boolean
     windSpeed?: boolean
     windDirection?: boolean
+    windGust?: boolean
     visibility?: boolean
     conditions?: boolean
     snowfallRecent?: boolean
     snowfall24h?: boolean
     snowfall7d?: boolean
+    snowDepthBase?: boolean
+    snowDepthSummit?: boolean
+    isSnowmakingPossible?: boolean
+    precipitationType?: boolean
+    precipitationIntensity?: boolean
+    precipitationChance?: boolean
+    stormWarning?: boolean
+    cloudCoverage?: boolean
+    uvIndex?: boolean
+    sunriseTime?: boolean
+    sunsetTime?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type WeatherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "date" | "temperature" | "windSpeed" | "windDirection" | "visibility" | "conditions" | "snowfallRecent" | "snowfall24h" | "snowfall7d" | "createdAt" | "updatedAt", ExtArgs["result"]["weather"]>
+  export type WeatherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "mountainId" | "date" | "temperature" | "feelsLikeTemperature" | "humidity" | "dewPoint" | "windSpeed" | "windDirection" | "windGust" | "visibility" | "conditions" | "snowfallRecent" | "snowfall24h" | "snowfall7d" | "snowDepthBase" | "snowDepthSummit" | "isSnowmakingPossible" | "precipitationType" | "precipitationIntensity" | "precipitationChance" | "stormWarning" | "cloudCoverage" | "uvIndex" | "sunriseTime" | "sunsetTime" | "createdAt" | "updatedAt", ExtArgs["result"]["weather"]>
   export type WeatherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
   }
@@ -9479,14 +9704,44 @@ export namespace Prisma {
       id: string
       mountainId: string
       date: Date
+      /**
+       * 🌡️ Temperature & Humidity
+       */
       temperature: number
-      windSpeed: number
+      feelsLikeTemperature: number | null
+      humidity: number | null
+      dewPoint: number | null
+      /**
+       * 🌬️ Wind & Visibility
+       */
+      windSpeed: number | null
       windDirection: string | null
+      windGust: number | null
       visibility: number | null
-      conditions: string
+      /**
+       * ❄️ Snow & Surface Conditions
+       */
+      conditions: string | null
       snowfallRecent: number | null
       snowfall24h: number | null
       snowfall7d: number | null
+      snowDepthBase: number | null
+      snowDepthSummit: number | null
+      isSnowmakingPossible: boolean | null
+      /**
+       * 🌧️ Precipitation
+       */
+      precipitationType: $Enums.PRECIPITATION_TYPE | null
+      precipitationIntensity: number | null
+      precipitationChance: number | null
+      stormWarning: boolean | null
+      /**
+       * ☁️ Sky & Sunlight
+       */
+      cloudCoverage: number | null
+      uvIndex: number | null
+      sunriseTime: Date | null
+      sunsetTime: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["weather"]>
@@ -9917,13 +10172,28 @@ export namespace Prisma {
     readonly mountainId: FieldRef<"Weather", 'String'>
     readonly date: FieldRef<"Weather", 'DateTime'>
     readonly temperature: FieldRef<"Weather", 'Float'>
+    readonly feelsLikeTemperature: FieldRef<"Weather", 'Float'>
+    readonly humidity: FieldRef<"Weather", 'Float'>
+    readonly dewPoint: FieldRef<"Weather", 'Float'>
     readonly windSpeed: FieldRef<"Weather", 'Float'>
     readonly windDirection: FieldRef<"Weather", 'String'>
+    readonly windGust: FieldRef<"Weather", 'Float'>
     readonly visibility: FieldRef<"Weather", 'Float'>
     readonly conditions: FieldRef<"Weather", 'String'>
     readonly snowfallRecent: FieldRef<"Weather", 'Float'>
     readonly snowfall24h: FieldRef<"Weather", 'Float'>
     readonly snowfall7d: FieldRef<"Weather", 'Float'>
+    readonly snowDepthBase: FieldRef<"Weather", 'Float'>
+    readonly snowDepthSummit: FieldRef<"Weather", 'Float'>
+    readonly isSnowmakingPossible: FieldRef<"Weather", 'Boolean'>
+    readonly precipitationType: FieldRef<"Weather", 'PRECIPITATION_TYPE'>
+    readonly precipitationIntensity: FieldRef<"Weather", 'Float'>
+    readonly precipitationChance: FieldRef<"Weather", 'Float'>
+    readonly stormWarning: FieldRef<"Weather", 'Boolean'>
+    readonly cloudCoverage: FieldRef<"Weather", 'Float'>
+    readonly uvIndex: FieldRef<"Weather", 'Int'>
+    readonly sunriseTime: FieldRef<"Weather", 'DateTime'>
+    readonly sunsetTime: FieldRef<"Weather", 'DateTime'>
     readonly createdAt: FieldRef<"Weather", 'DateTime'>
     readonly updatedAt: FieldRef<"Weather", 'DateTime'>
   }
@@ -28022,3345 +28292,6 @@ export namespace Prisma {
 
 
   /**
-   * Model LiftCheck
-   */
-
-  export type AggregateLiftCheck = {
-    _count: LiftCheckCountAggregateOutputType | null
-    _min: LiftCheckMinAggregateOutputType | null
-    _max: LiftCheckMaxAggregateOutputType | null
-  }
-
-  export type LiftCheckMinAggregateOutputType = {
-    id: string | null
-    recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    liftId: string | null
-    notes: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type LiftCheckMaxAggregateOutputType = {
-    id: string | null
-    recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    liftId: string | null
-    notes: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type LiftCheckCountAggregateOutputType = {
-    id: number
-    recordedAt: number
-    employeeId: number
-    mountainId: number
-    liftId: number
-    notes: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type LiftCheckMinAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    liftId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type LiftCheckMaxAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    liftId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type LiftCheckCountAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    liftId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type LiftCheckAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which LiftCheck to aggregate.
-     */
-    where?: LiftCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LiftChecks to fetch.
-     */
-    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: LiftCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LiftChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LiftChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned LiftChecks
-    **/
-    _count?: true | LiftCheckCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: LiftCheckMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: LiftCheckMaxAggregateInputType
-  }
-
-  export type GetLiftCheckAggregateType<T extends LiftCheckAggregateArgs> = {
-        [P in keyof T & keyof AggregateLiftCheck]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateLiftCheck[P]>
-      : GetScalarType<T[P], AggregateLiftCheck[P]>
-  }
-
-
-
-
-  export type LiftCheckGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LiftCheckWhereInput
-    orderBy?: LiftCheckOrderByWithAggregationInput | LiftCheckOrderByWithAggregationInput[]
-    by: LiftCheckScalarFieldEnum[] | LiftCheckScalarFieldEnum
-    having?: LiftCheckScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: LiftCheckCountAggregateInputType | true
-    _min?: LiftCheckMinAggregateInputType
-    _max?: LiftCheckMaxAggregateInputType
-  }
-
-  export type LiftCheckGroupByOutputType = {
-    id: string
-    recordedAt: Date
-    employeeId: string
-    mountainId: string
-    liftId: string
-    notes: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: LiftCheckCountAggregateOutputType | null
-    _min: LiftCheckMinAggregateOutputType | null
-    _max: LiftCheckMaxAggregateOutputType | null
-  }
-
-  type GetLiftCheckGroupByPayload<T extends LiftCheckGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<LiftCheckGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof LiftCheckGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], LiftCheckGroupByOutputType[P]>
-            : GetScalarType<T[P], LiftCheckGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type LiftCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    liftId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    lift?: boolean | LiftDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["liftCheck"]>
-
-  export type LiftCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    liftId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    lift?: boolean | LiftDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["liftCheck"]>
-
-  export type LiftCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    liftId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    lift?: boolean | LiftDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["liftCheck"]>
-
-  export type LiftCheckSelectScalar = {
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    liftId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type LiftCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "liftId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["liftCheck"]>
-  export type LiftCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    lift?: boolean | LiftDefaultArgs<ExtArgs>
-  }
-  export type LiftCheckIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    lift?: boolean | LiftDefaultArgs<ExtArgs>
-  }
-  export type LiftCheckIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    lift?: boolean | LiftDefaultArgs<ExtArgs>
-  }
-
-  export type $LiftCheckPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "LiftCheck"
-    objects: {
-      employee: Prisma.$EmployeePayload<ExtArgs>
-      mountain: Prisma.$MountainPayload<ExtArgs>
-      lift: Prisma.$LiftPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      recordedAt: Date
-      employeeId: string
-      mountainId: string
-      liftId: string
-      notes: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["liftCheck"]>
-    composites: {}
-  }
-
-  type LiftCheckGetPayload<S extends boolean | null | undefined | LiftCheckDefaultArgs> = $Result.GetResult<Prisma.$LiftCheckPayload, S>
-
-  type LiftCheckCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<LiftCheckFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: LiftCheckCountAggregateInputType | true
-    }
-
-  export interface LiftCheckDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LiftCheck'], meta: { name: 'LiftCheck' } }
-    /**
-     * Find zero or one LiftCheck that matches the filter.
-     * @param {LiftCheckFindUniqueArgs} args - Arguments to find a LiftCheck
-     * @example
-     * // Get one LiftCheck
-     * const liftCheck = await prisma.liftCheck.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends LiftCheckFindUniqueArgs>(args: SelectSubset<T, LiftCheckFindUniqueArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one LiftCheck that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {LiftCheckFindUniqueOrThrowArgs} args - Arguments to find a LiftCheck
-     * @example
-     * // Get one LiftCheck
-     * const liftCheck = await prisma.liftCheck.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends LiftCheckFindUniqueOrThrowArgs>(args: SelectSubset<T, LiftCheckFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first LiftCheck that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LiftCheckFindFirstArgs} args - Arguments to find a LiftCheck
-     * @example
-     * // Get one LiftCheck
-     * const liftCheck = await prisma.liftCheck.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends LiftCheckFindFirstArgs>(args?: SelectSubset<T, LiftCheckFindFirstArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first LiftCheck that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LiftCheckFindFirstOrThrowArgs} args - Arguments to find a LiftCheck
-     * @example
-     * // Get one LiftCheck
-     * const liftCheck = await prisma.liftCheck.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends LiftCheckFindFirstOrThrowArgs>(args?: SelectSubset<T, LiftCheckFindFirstOrThrowArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more LiftChecks that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LiftCheckFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all LiftChecks
-     * const liftChecks = await prisma.liftCheck.findMany()
-     * 
-     * // Get first 10 LiftChecks
-     * const liftChecks = await prisma.liftCheck.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const liftCheckWithIdOnly = await prisma.liftCheck.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends LiftCheckFindManyArgs>(args?: SelectSubset<T, LiftCheckFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a LiftCheck.
-     * @param {LiftCheckCreateArgs} args - Arguments to create a LiftCheck.
-     * @example
-     * // Create one LiftCheck
-     * const LiftCheck = await prisma.liftCheck.create({
-     *   data: {
-     *     // ... data to create a LiftCheck
-     *   }
-     * })
-     * 
-     */
-    create<T extends LiftCheckCreateArgs>(args: SelectSubset<T, LiftCheckCreateArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many LiftChecks.
-     * @param {LiftCheckCreateManyArgs} args - Arguments to create many LiftChecks.
-     * @example
-     * // Create many LiftChecks
-     * const liftCheck = await prisma.liftCheck.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends LiftCheckCreateManyArgs>(args?: SelectSubset<T, LiftCheckCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many LiftChecks and returns the data saved in the database.
-     * @param {LiftCheckCreateManyAndReturnArgs} args - Arguments to create many LiftChecks.
-     * @example
-     * // Create many LiftChecks
-     * const liftCheck = await prisma.liftCheck.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many LiftChecks and only return the `id`
-     * const liftCheckWithIdOnly = await prisma.liftCheck.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends LiftCheckCreateManyAndReturnArgs>(args?: SelectSubset<T, LiftCheckCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a LiftCheck.
-     * @param {LiftCheckDeleteArgs} args - Arguments to delete one LiftCheck.
-     * @example
-     * // Delete one LiftCheck
-     * const LiftCheck = await prisma.liftCheck.delete({
-     *   where: {
-     *     // ... filter to delete one LiftCheck
-     *   }
-     * })
-     * 
-     */
-    delete<T extends LiftCheckDeleteArgs>(args: SelectSubset<T, LiftCheckDeleteArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one LiftCheck.
-     * @param {LiftCheckUpdateArgs} args - Arguments to update one LiftCheck.
-     * @example
-     * // Update one LiftCheck
-     * const liftCheck = await prisma.liftCheck.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends LiftCheckUpdateArgs>(args: SelectSubset<T, LiftCheckUpdateArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more LiftChecks.
-     * @param {LiftCheckDeleteManyArgs} args - Arguments to filter LiftChecks to delete.
-     * @example
-     * // Delete a few LiftChecks
-     * const { count } = await prisma.liftCheck.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends LiftCheckDeleteManyArgs>(args?: SelectSubset<T, LiftCheckDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more LiftChecks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LiftCheckUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many LiftChecks
-     * const liftCheck = await prisma.liftCheck.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends LiftCheckUpdateManyArgs>(args: SelectSubset<T, LiftCheckUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more LiftChecks and returns the data updated in the database.
-     * @param {LiftCheckUpdateManyAndReturnArgs} args - Arguments to update many LiftChecks.
-     * @example
-     * // Update many LiftChecks
-     * const liftCheck = await prisma.liftCheck.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more LiftChecks and only return the `id`
-     * const liftCheckWithIdOnly = await prisma.liftCheck.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends LiftCheckUpdateManyAndReturnArgs>(args: SelectSubset<T, LiftCheckUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one LiftCheck.
-     * @param {LiftCheckUpsertArgs} args - Arguments to update or create a LiftCheck.
-     * @example
-     * // Update or create a LiftCheck
-     * const liftCheck = await prisma.liftCheck.upsert({
-     *   create: {
-     *     // ... data to create a LiftCheck
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the LiftCheck we want to update
-     *   }
-     * })
-     */
-    upsert<T extends LiftCheckUpsertArgs>(args: SelectSubset<T, LiftCheckUpsertArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of LiftChecks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LiftCheckCountArgs} args - Arguments to filter LiftChecks to count.
-     * @example
-     * // Count the number of LiftChecks
-     * const count = await prisma.liftCheck.count({
-     *   where: {
-     *     // ... the filter for the LiftChecks we want to count
-     *   }
-     * })
-    **/
-    count<T extends LiftCheckCountArgs>(
-      args?: Subset<T, LiftCheckCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], LiftCheckCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a LiftCheck.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LiftCheckAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends LiftCheckAggregateArgs>(args: Subset<T, LiftCheckAggregateArgs>): Prisma.PrismaPromise<GetLiftCheckAggregateType<T>>
-
-    /**
-     * Group by LiftCheck.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LiftCheckGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends LiftCheckGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: LiftCheckGroupByArgs['orderBy'] }
-        : { orderBy?: LiftCheckGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, LiftCheckGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLiftCheckGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the LiftCheck model
-   */
-  readonly fields: LiftCheckFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for LiftCheck.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__LiftCheckClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    lift<T extends LiftDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LiftDefaultArgs<ExtArgs>>): Prisma__LiftClient<$Result.GetResult<Prisma.$LiftPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the LiftCheck model
-   */
-  interface LiftCheckFieldRefs {
-    readonly id: FieldRef<"LiftCheck", 'String'>
-    readonly recordedAt: FieldRef<"LiftCheck", 'DateTime'>
-    readonly employeeId: FieldRef<"LiftCheck", 'String'>
-    readonly mountainId: FieldRef<"LiftCheck", 'String'>
-    readonly liftId: FieldRef<"LiftCheck", 'String'>
-    readonly notes: FieldRef<"LiftCheck", 'String'>
-    readonly createdAt: FieldRef<"LiftCheck", 'DateTime'>
-    readonly updatedAt: FieldRef<"LiftCheck", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * LiftCheck findUnique
-   */
-  export type LiftCheckFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which LiftCheck to fetch.
-     */
-    where: LiftCheckWhereUniqueInput
-  }
-
-  /**
-   * LiftCheck findUniqueOrThrow
-   */
-  export type LiftCheckFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which LiftCheck to fetch.
-     */
-    where: LiftCheckWhereUniqueInput
-  }
-
-  /**
-   * LiftCheck findFirst
-   */
-  export type LiftCheckFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which LiftCheck to fetch.
-     */
-    where?: LiftCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LiftChecks to fetch.
-     */
-    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for LiftChecks.
-     */
-    cursor?: LiftCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LiftChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LiftChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of LiftChecks.
-     */
-    distinct?: LiftCheckScalarFieldEnum | LiftCheckScalarFieldEnum[]
-  }
-
-  /**
-   * LiftCheck findFirstOrThrow
-   */
-  export type LiftCheckFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which LiftCheck to fetch.
-     */
-    where?: LiftCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LiftChecks to fetch.
-     */
-    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for LiftChecks.
-     */
-    cursor?: LiftCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LiftChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LiftChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of LiftChecks.
-     */
-    distinct?: LiftCheckScalarFieldEnum | LiftCheckScalarFieldEnum[]
-  }
-
-  /**
-   * LiftCheck findMany
-   */
-  export type LiftCheckFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which LiftChecks to fetch.
-     */
-    where?: LiftCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of LiftChecks to fetch.
-     */
-    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing LiftChecks.
-     */
-    cursor?: LiftCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` LiftChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` LiftChecks.
-     */
-    skip?: number
-    distinct?: LiftCheckScalarFieldEnum | LiftCheckScalarFieldEnum[]
-  }
-
-  /**
-   * LiftCheck create
-   */
-  export type LiftCheckCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * The data needed to create a LiftCheck.
-     */
-    data: XOR<LiftCheckCreateInput, LiftCheckUncheckedCreateInput>
-  }
-
-  /**
-   * LiftCheck createMany
-   */
-  export type LiftCheckCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many LiftChecks.
-     */
-    data: LiftCheckCreateManyInput | LiftCheckCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * LiftCheck createManyAndReturn
-   */
-  export type LiftCheckCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * The data used to create many LiftChecks.
-     */
-    data: LiftCheckCreateManyInput | LiftCheckCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * LiftCheck update
-   */
-  export type LiftCheckUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * The data needed to update a LiftCheck.
-     */
-    data: XOR<LiftCheckUpdateInput, LiftCheckUncheckedUpdateInput>
-    /**
-     * Choose, which LiftCheck to update.
-     */
-    where: LiftCheckWhereUniqueInput
-  }
-
-  /**
-   * LiftCheck updateMany
-   */
-  export type LiftCheckUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update LiftChecks.
-     */
-    data: XOR<LiftCheckUpdateManyMutationInput, LiftCheckUncheckedUpdateManyInput>
-    /**
-     * Filter which LiftChecks to update
-     */
-    where?: LiftCheckWhereInput
-    /**
-     * Limit how many LiftChecks to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * LiftCheck updateManyAndReturn
-   */
-  export type LiftCheckUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * The data used to update LiftChecks.
-     */
-    data: XOR<LiftCheckUpdateManyMutationInput, LiftCheckUncheckedUpdateManyInput>
-    /**
-     * Filter which LiftChecks to update
-     */
-    where?: LiftCheckWhereInput
-    /**
-     * Limit how many LiftChecks to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * LiftCheck upsert
-   */
-  export type LiftCheckUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * The filter to search for the LiftCheck to update in case it exists.
-     */
-    where: LiftCheckWhereUniqueInput
-    /**
-     * In case the LiftCheck found by the `where` argument doesn't exist, create a new LiftCheck with this data.
-     */
-    create: XOR<LiftCheckCreateInput, LiftCheckUncheckedCreateInput>
-    /**
-     * In case the LiftCheck was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<LiftCheckUpdateInput, LiftCheckUncheckedUpdateInput>
-  }
-
-  /**
-   * LiftCheck delete
-   */
-  export type LiftCheckDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-    /**
-     * Filter which LiftCheck to delete.
-     */
-    where: LiftCheckWhereUniqueInput
-  }
-
-  /**
-   * LiftCheck deleteMany
-   */
-  export type LiftCheckDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which LiftChecks to delete
-     */
-    where?: LiftCheckWhereInput
-    /**
-     * Limit how many LiftChecks to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * LiftCheck without action
-   */
-  export type LiftCheckDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the LiftCheck
-     */
-    select?: LiftCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the LiftCheck
-     */
-    omit?: LiftCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LiftCheckInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model TrailCheck
-   */
-
-  export type AggregateTrailCheck = {
-    _count: TrailCheckCountAggregateOutputType | null
-    _min: TrailCheckMinAggregateOutputType | null
-    _max: TrailCheckMaxAggregateOutputType | null
-  }
-
-  export type TrailCheckMinAggregateOutputType = {
-    id: string | null
-    recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    trailId: string | null
-    notes: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type TrailCheckMaxAggregateOutputType = {
-    id: string | null
-    recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    trailId: string | null
-    notes: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type TrailCheckCountAggregateOutputType = {
-    id: number
-    recordedAt: number
-    employeeId: number
-    mountainId: number
-    trailId: number
-    notes: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type TrailCheckMinAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    trailId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type TrailCheckMaxAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    trailId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type TrailCheckCountAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    trailId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type TrailCheckAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which TrailCheck to aggregate.
-     */
-    where?: TrailCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TrailChecks to fetch.
-     */
-    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: TrailCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TrailChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TrailChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned TrailChecks
-    **/
-    _count?: true | TrailCheckCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: TrailCheckMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: TrailCheckMaxAggregateInputType
-  }
-
-  export type GetTrailCheckAggregateType<T extends TrailCheckAggregateArgs> = {
-        [P in keyof T & keyof AggregateTrailCheck]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateTrailCheck[P]>
-      : GetScalarType<T[P], AggregateTrailCheck[P]>
-  }
-
-
-
-
-  export type TrailCheckGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TrailCheckWhereInput
-    orderBy?: TrailCheckOrderByWithAggregationInput | TrailCheckOrderByWithAggregationInput[]
-    by: TrailCheckScalarFieldEnum[] | TrailCheckScalarFieldEnum
-    having?: TrailCheckScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TrailCheckCountAggregateInputType | true
-    _min?: TrailCheckMinAggregateInputType
-    _max?: TrailCheckMaxAggregateInputType
-  }
-
-  export type TrailCheckGroupByOutputType = {
-    id: string
-    recordedAt: Date
-    employeeId: string
-    mountainId: string
-    trailId: string
-    notes: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: TrailCheckCountAggregateOutputType | null
-    _min: TrailCheckMinAggregateOutputType | null
-    _max: TrailCheckMaxAggregateOutputType | null
-  }
-
-  type GetTrailCheckGroupByPayload<T extends TrailCheckGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TrailCheckGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TrailCheckGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TrailCheckGroupByOutputType[P]>
-            : GetScalarType<T[P], TrailCheckGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type TrailCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    trailId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    trail?: boolean | TrailDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["trailCheck"]>
-
-  export type TrailCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    trailId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    trail?: boolean | TrailDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["trailCheck"]>
-
-  export type TrailCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    trailId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    trail?: boolean | TrailDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["trailCheck"]>
-
-  export type TrailCheckSelectScalar = {
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    trailId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type TrailCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "trailId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["trailCheck"]>
-  export type TrailCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    trail?: boolean | TrailDefaultArgs<ExtArgs>
-  }
-  export type TrailCheckIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    trail?: boolean | TrailDefaultArgs<ExtArgs>
-  }
-  export type TrailCheckIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    trail?: boolean | TrailDefaultArgs<ExtArgs>
-  }
-
-  export type $TrailCheckPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TrailCheck"
-    objects: {
-      employee: Prisma.$EmployeePayload<ExtArgs>
-      mountain: Prisma.$MountainPayload<ExtArgs>
-      trail: Prisma.$TrailPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      recordedAt: Date
-      employeeId: string
-      mountainId: string
-      trailId: string
-      notes: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["trailCheck"]>
-    composites: {}
-  }
-
-  type TrailCheckGetPayload<S extends boolean | null | undefined | TrailCheckDefaultArgs> = $Result.GetResult<Prisma.$TrailCheckPayload, S>
-
-  type TrailCheckCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TrailCheckFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TrailCheckCountAggregateInputType | true
-    }
-
-  export interface TrailCheckDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TrailCheck'], meta: { name: 'TrailCheck' } }
-    /**
-     * Find zero or one TrailCheck that matches the filter.
-     * @param {TrailCheckFindUniqueArgs} args - Arguments to find a TrailCheck
-     * @example
-     * // Get one TrailCheck
-     * const trailCheck = await prisma.trailCheck.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends TrailCheckFindUniqueArgs>(args: SelectSubset<T, TrailCheckFindUniqueArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one TrailCheck that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {TrailCheckFindUniqueOrThrowArgs} args - Arguments to find a TrailCheck
-     * @example
-     * // Get one TrailCheck
-     * const trailCheck = await prisma.trailCheck.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends TrailCheckFindUniqueOrThrowArgs>(args: SelectSubset<T, TrailCheckFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first TrailCheck that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TrailCheckFindFirstArgs} args - Arguments to find a TrailCheck
-     * @example
-     * // Get one TrailCheck
-     * const trailCheck = await prisma.trailCheck.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends TrailCheckFindFirstArgs>(args?: SelectSubset<T, TrailCheckFindFirstArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first TrailCheck that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TrailCheckFindFirstOrThrowArgs} args - Arguments to find a TrailCheck
-     * @example
-     * // Get one TrailCheck
-     * const trailCheck = await prisma.trailCheck.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends TrailCheckFindFirstOrThrowArgs>(args?: SelectSubset<T, TrailCheckFindFirstOrThrowArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more TrailChecks that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TrailCheckFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all TrailChecks
-     * const trailChecks = await prisma.trailCheck.findMany()
-     * 
-     * // Get first 10 TrailChecks
-     * const trailChecks = await prisma.trailCheck.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const trailCheckWithIdOnly = await prisma.trailCheck.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends TrailCheckFindManyArgs>(args?: SelectSubset<T, TrailCheckFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a TrailCheck.
-     * @param {TrailCheckCreateArgs} args - Arguments to create a TrailCheck.
-     * @example
-     * // Create one TrailCheck
-     * const TrailCheck = await prisma.trailCheck.create({
-     *   data: {
-     *     // ... data to create a TrailCheck
-     *   }
-     * })
-     * 
-     */
-    create<T extends TrailCheckCreateArgs>(args: SelectSubset<T, TrailCheckCreateArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many TrailChecks.
-     * @param {TrailCheckCreateManyArgs} args - Arguments to create many TrailChecks.
-     * @example
-     * // Create many TrailChecks
-     * const trailCheck = await prisma.trailCheck.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends TrailCheckCreateManyArgs>(args?: SelectSubset<T, TrailCheckCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many TrailChecks and returns the data saved in the database.
-     * @param {TrailCheckCreateManyAndReturnArgs} args - Arguments to create many TrailChecks.
-     * @example
-     * // Create many TrailChecks
-     * const trailCheck = await prisma.trailCheck.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many TrailChecks and only return the `id`
-     * const trailCheckWithIdOnly = await prisma.trailCheck.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends TrailCheckCreateManyAndReturnArgs>(args?: SelectSubset<T, TrailCheckCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a TrailCheck.
-     * @param {TrailCheckDeleteArgs} args - Arguments to delete one TrailCheck.
-     * @example
-     * // Delete one TrailCheck
-     * const TrailCheck = await prisma.trailCheck.delete({
-     *   where: {
-     *     // ... filter to delete one TrailCheck
-     *   }
-     * })
-     * 
-     */
-    delete<T extends TrailCheckDeleteArgs>(args: SelectSubset<T, TrailCheckDeleteArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one TrailCheck.
-     * @param {TrailCheckUpdateArgs} args - Arguments to update one TrailCheck.
-     * @example
-     * // Update one TrailCheck
-     * const trailCheck = await prisma.trailCheck.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends TrailCheckUpdateArgs>(args: SelectSubset<T, TrailCheckUpdateArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more TrailChecks.
-     * @param {TrailCheckDeleteManyArgs} args - Arguments to filter TrailChecks to delete.
-     * @example
-     * // Delete a few TrailChecks
-     * const { count } = await prisma.trailCheck.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends TrailCheckDeleteManyArgs>(args?: SelectSubset<T, TrailCheckDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more TrailChecks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TrailCheckUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many TrailChecks
-     * const trailCheck = await prisma.trailCheck.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends TrailCheckUpdateManyArgs>(args: SelectSubset<T, TrailCheckUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more TrailChecks and returns the data updated in the database.
-     * @param {TrailCheckUpdateManyAndReturnArgs} args - Arguments to update many TrailChecks.
-     * @example
-     * // Update many TrailChecks
-     * const trailCheck = await prisma.trailCheck.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more TrailChecks and only return the `id`
-     * const trailCheckWithIdOnly = await prisma.trailCheck.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends TrailCheckUpdateManyAndReturnArgs>(args: SelectSubset<T, TrailCheckUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one TrailCheck.
-     * @param {TrailCheckUpsertArgs} args - Arguments to update or create a TrailCheck.
-     * @example
-     * // Update or create a TrailCheck
-     * const trailCheck = await prisma.trailCheck.upsert({
-     *   create: {
-     *     // ... data to create a TrailCheck
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the TrailCheck we want to update
-     *   }
-     * })
-     */
-    upsert<T extends TrailCheckUpsertArgs>(args: SelectSubset<T, TrailCheckUpsertArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of TrailChecks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TrailCheckCountArgs} args - Arguments to filter TrailChecks to count.
-     * @example
-     * // Count the number of TrailChecks
-     * const count = await prisma.trailCheck.count({
-     *   where: {
-     *     // ... the filter for the TrailChecks we want to count
-     *   }
-     * })
-    **/
-    count<T extends TrailCheckCountArgs>(
-      args?: Subset<T, TrailCheckCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], TrailCheckCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a TrailCheck.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TrailCheckAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends TrailCheckAggregateArgs>(args: Subset<T, TrailCheckAggregateArgs>): Prisma.PrismaPromise<GetTrailCheckAggregateType<T>>
-
-    /**
-     * Group by TrailCheck.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TrailCheckGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends TrailCheckGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TrailCheckGroupByArgs['orderBy'] }
-        : { orderBy?: TrailCheckGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TrailCheckGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTrailCheckGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the TrailCheck model
-   */
-  readonly fields: TrailCheckFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for TrailCheck.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__TrailCheckClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    trail<T extends TrailDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TrailDefaultArgs<ExtArgs>>): Prisma__TrailClient<$Result.GetResult<Prisma.$TrailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the TrailCheck model
-   */
-  interface TrailCheckFieldRefs {
-    readonly id: FieldRef<"TrailCheck", 'String'>
-    readonly recordedAt: FieldRef<"TrailCheck", 'DateTime'>
-    readonly employeeId: FieldRef<"TrailCheck", 'String'>
-    readonly mountainId: FieldRef<"TrailCheck", 'String'>
-    readonly trailId: FieldRef<"TrailCheck", 'String'>
-    readonly notes: FieldRef<"TrailCheck", 'String'>
-    readonly createdAt: FieldRef<"TrailCheck", 'DateTime'>
-    readonly updatedAt: FieldRef<"TrailCheck", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * TrailCheck findUnique
-   */
-  export type TrailCheckFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which TrailCheck to fetch.
-     */
-    where: TrailCheckWhereUniqueInput
-  }
-
-  /**
-   * TrailCheck findUniqueOrThrow
-   */
-  export type TrailCheckFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which TrailCheck to fetch.
-     */
-    where: TrailCheckWhereUniqueInput
-  }
-
-  /**
-   * TrailCheck findFirst
-   */
-  export type TrailCheckFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which TrailCheck to fetch.
-     */
-    where?: TrailCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TrailChecks to fetch.
-     */
-    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for TrailChecks.
-     */
-    cursor?: TrailCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TrailChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TrailChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of TrailChecks.
-     */
-    distinct?: TrailCheckScalarFieldEnum | TrailCheckScalarFieldEnum[]
-  }
-
-  /**
-   * TrailCheck findFirstOrThrow
-   */
-  export type TrailCheckFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which TrailCheck to fetch.
-     */
-    where?: TrailCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TrailChecks to fetch.
-     */
-    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for TrailChecks.
-     */
-    cursor?: TrailCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TrailChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TrailChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of TrailChecks.
-     */
-    distinct?: TrailCheckScalarFieldEnum | TrailCheckScalarFieldEnum[]
-  }
-
-  /**
-   * TrailCheck findMany
-   */
-  export type TrailCheckFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which TrailChecks to fetch.
-     */
-    where?: TrailCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of TrailChecks to fetch.
-     */
-    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing TrailChecks.
-     */
-    cursor?: TrailCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` TrailChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` TrailChecks.
-     */
-    skip?: number
-    distinct?: TrailCheckScalarFieldEnum | TrailCheckScalarFieldEnum[]
-  }
-
-  /**
-   * TrailCheck create
-   */
-  export type TrailCheckCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * The data needed to create a TrailCheck.
-     */
-    data: XOR<TrailCheckCreateInput, TrailCheckUncheckedCreateInput>
-  }
-
-  /**
-   * TrailCheck createMany
-   */
-  export type TrailCheckCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many TrailChecks.
-     */
-    data: TrailCheckCreateManyInput | TrailCheckCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * TrailCheck createManyAndReturn
-   */
-  export type TrailCheckCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * The data used to create many TrailChecks.
-     */
-    data: TrailCheckCreateManyInput | TrailCheckCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * TrailCheck update
-   */
-  export type TrailCheckUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * The data needed to update a TrailCheck.
-     */
-    data: XOR<TrailCheckUpdateInput, TrailCheckUncheckedUpdateInput>
-    /**
-     * Choose, which TrailCheck to update.
-     */
-    where: TrailCheckWhereUniqueInput
-  }
-
-  /**
-   * TrailCheck updateMany
-   */
-  export type TrailCheckUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update TrailChecks.
-     */
-    data: XOR<TrailCheckUpdateManyMutationInput, TrailCheckUncheckedUpdateManyInput>
-    /**
-     * Filter which TrailChecks to update
-     */
-    where?: TrailCheckWhereInput
-    /**
-     * Limit how many TrailChecks to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * TrailCheck updateManyAndReturn
-   */
-  export type TrailCheckUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * The data used to update TrailChecks.
-     */
-    data: XOR<TrailCheckUpdateManyMutationInput, TrailCheckUncheckedUpdateManyInput>
-    /**
-     * Filter which TrailChecks to update
-     */
-    where?: TrailCheckWhereInput
-    /**
-     * Limit how many TrailChecks to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * TrailCheck upsert
-   */
-  export type TrailCheckUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * The filter to search for the TrailCheck to update in case it exists.
-     */
-    where: TrailCheckWhereUniqueInput
-    /**
-     * In case the TrailCheck found by the `where` argument doesn't exist, create a new TrailCheck with this data.
-     */
-    create: XOR<TrailCheckCreateInput, TrailCheckUncheckedCreateInput>
-    /**
-     * In case the TrailCheck was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<TrailCheckUpdateInput, TrailCheckUncheckedUpdateInput>
-  }
-
-  /**
-   * TrailCheck delete
-   */
-  export type TrailCheckDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-    /**
-     * Filter which TrailCheck to delete.
-     */
-    where: TrailCheckWhereUniqueInput
-  }
-
-  /**
-   * TrailCheck deleteMany
-   */
-  export type TrailCheckDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which TrailChecks to delete
-     */
-    where?: TrailCheckWhereInput
-    /**
-     * Limit how many TrailChecks to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * TrailCheck without action
-   */
-  export type TrailCheckDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TrailCheck
-     */
-    select?: TrailCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TrailCheck
-     */
-    omit?: TrailCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TrailCheckInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model HutCheck
-   */
-
-  export type AggregateHutCheck = {
-    _count: HutCheckCountAggregateOutputType | null
-    _min: HutCheckMinAggregateOutputType | null
-    _max: HutCheckMaxAggregateOutputType | null
-  }
-
-  export type HutCheckMinAggregateOutputType = {
-    id: string | null
-    recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    hutId: string | null
-    notes: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type HutCheckMaxAggregateOutputType = {
-    id: string | null
-    recordedAt: Date | null
-    employeeId: string | null
-    mountainId: string | null
-    hutId: string | null
-    notes: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type HutCheckCountAggregateOutputType = {
-    id: number
-    recordedAt: number
-    employeeId: number
-    mountainId: number
-    hutId: number
-    notes: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type HutCheckMinAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    hutId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type HutCheckMaxAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    hutId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type HutCheckCountAggregateInputType = {
-    id?: true
-    recordedAt?: true
-    employeeId?: true
-    mountainId?: true
-    hutId?: true
-    notes?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type HutCheckAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which HutCheck to aggregate.
-     */
-    where?: HutCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HutChecks to fetch.
-     */
-    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: HutCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HutChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HutChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned HutChecks
-    **/
-    _count?: true | HutCheckCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: HutCheckMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: HutCheckMaxAggregateInputType
-  }
-
-  export type GetHutCheckAggregateType<T extends HutCheckAggregateArgs> = {
-        [P in keyof T & keyof AggregateHutCheck]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateHutCheck[P]>
-      : GetScalarType<T[P], AggregateHutCheck[P]>
-  }
-
-
-
-
-  export type HutCheckGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HutCheckWhereInput
-    orderBy?: HutCheckOrderByWithAggregationInput | HutCheckOrderByWithAggregationInput[]
-    by: HutCheckScalarFieldEnum[] | HutCheckScalarFieldEnum
-    having?: HutCheckScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: HutCheckCountAggregateInputType | true
-    _min?: HutCheckMinAggregateInputType
-    _max?: HutCheckMaxAggregateInputType
-  }
-
-  export type HutCheckGroupByOutputType = {
-    id: string
-    recordedAt: Date
-    employeeId: string
-    mountainId: string
-    hutId: string
-    notes: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: HutCheckCountAggregateOutputType | null
-    _min: HutCheckMinAggregateOutputType | null
-    _max: HutCheckMaxAggregateOutputType | null
-  }
-
-  type GetHutCheckGroupByPayload<T extends HutCheckGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<HutCheckGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof HutCheckGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], HutCheckGroupByOutputType[P]>
-            : GetScalarType<T[P], HutCheckGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type HutCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    hutId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    hut?: boolean | HutDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hutCheck"]>
-
-  export type HutCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    hutId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    hut?: boolean | HutDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hutCheck"]>
-
-  export type HutCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    hutId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    hut?: boolean | HutDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hutCheck"]>
-
-  export type HutCheckSelectScalar = {
-    id?: boolean
-    recordedAt?: boolean
-    employeeId?: boolean
-    mountainId?: boolean
-    hutId?: boolean
-    notes?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type HutCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "hutId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["hutCheck"]>
-  export type HutCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    hut?: boolean | HutDefaultArgs<ExtArgs>
-  }
-  export type HutCheckIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    hut?: boolean | HutDefaultArgs<ExtArgs>
-  }
-  export type HutCheckIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
-    mountain?: boolean | MountainDefaultArgs<ExtArgs>
-    hut?: boolean | HutDefaultArgs<ExtArgs>
-  }
-
-  export type $HutCheckPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "HutCheck"
-    objects: {
-      employee: Prisma.$EmployeePayload<ExtArgs>
-      mountain: Prisma.$MountainPayload<ExtArgs>
-      hut: Prisma.$HutPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      recordedAt: Date
-      employeeId: string
-      mountainId: string
-      hutId: string
-      notes: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["hutCheck"]>
-    composites: {}
-  }
-
-  type HutCheckGetPayload<S extends boolean | null | undefined | HutCheckDefaultArgs> = $Result.GetResult<Prisma.$HutCheckPayload, S>
-
-  type HutCheckCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<HutCheckFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: HutCheckCountAggregateInputType | true
-    }
-
-  export interface HutCheckDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HutCheck'], meta: { name: 'HutCheck' } }
-    /**
-     * Find zero or one HutCheck that matches the filter.
-     * @param {HutCheckFindUniqueArgs} args - Arguments to find a HutCheck
-     * @example
-     * // Get one HutCheck
-     * const hutCheck = await prisma.hutCheck.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends HutCheckFindUniqueArgs>(args: SelectSubset<T, HutCheckFindUniqueArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one HutCheck that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {HutCheckFindUniqueOrThrowArgs} args - Arguments to find a HutCheck
-     * @example
-     * // Get one HutCheck
-     * const hutCheck = await prisma.hutCheck.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends HutCheckFindUniqueOrThrowArgs>(args: SelectSubset<T, HutCheckFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first HutCheck that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HutCheckFindFirstArgs} args - Arguments to find a HutCheck
-     * @example
-     * // Get one HutCheck
-     * const hutCheck = await prisma.hutCheck.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends HutCheckFindFirstArgs>(args?: SelectSubset<T, HutCheckFindFirstArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first HutCheck that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HutCheckFindFirstOrThrowArgs} args - Arguments to find a HutCheck
-     * @example
-     * // Get one HutCheck
-     * const hutCheck = await prisma.hutCheck.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends HutCheckFindFirstOrThrowArgs>(args?: SelectSubset<T, HutCheckFindFirstOrThrowArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more HutChecks that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HutCheckFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all HutChecks
-     * const hutChecks = await prisma.hutCheck.findMany()
-     * 
-     * // Get first 10 HutChecks
-     * const hutChecks = await prisma.hutCheck.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const hutCheckWithIdOnly = await prisma.hutCheck.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends HutCheckFindManyArgs>(args?: SelectSubset<T, HutCheckFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a HutCheck.
-     * @param {HutCheckCreateArgs} args - Arguments to create a HutCheck.
-     * @example
-     * // Create one HutCheck
-     * const HutCheck = await prisma.hutCheck.create({
-     *   data: {
-     *     // ... data to create a HutCheck
-     *   }
-     * })
-     * 
-     */
-    create<T extends HutCheckCreateArgs>(args: SelectSubset<T, HutCheckCreateArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many HutChecks.
-     * @param {HutCheckCreateManyArgs} args - Arguments to create many HutChecks.
-     * @example
-     * // Create many HutChecks
-     * const hutCheck = await prisma.hutCheck.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends HutCheckCreateManyArgs>(args?: SelectSubset<T, HutCheckCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many HutChecks and returns the data saved in the database.
-     * @param {HutCheckCreateManyAndReturnArgs} args - Arguments to create many HutChecks.
-     * @example
-     * // Create many HutChecks
-     * const hutCheck = await prisma.hutCheck.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many HutChecks and only return the `id`
-     * const hutCheckWithIdOnly = await prisma.hutCheck.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends HutCheckCreateManyAndReturnArgs>(args?: SelectSubset<T, HutCheckCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a HutCheck.
-     * @param {HutCheckDeleteArgs} args - Arguments to delete one HutCheck.
-     * @example
-     * // Delete one HutCheck
-     * const HutCheck = await prisma.hutCheck.delete({
-     *   where: {
-     *     // ... filter to delete one HutCheck
-     *   }
-     * })
-     * 
-     */
-    delete<T extends HutCheckDeleteArgs>(args: SelectSubset<T, HutCheckDeleteArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one HutCheck.
-     * @param {HutCheckUpdateArgs} args - Arguments to update one HutCheck.
-     * @example
-     * // Update one HutCheck
-     * const hutCheck = await prisma.hutCheck.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends HutCheckUpdateArgs>(args: SelectSubset<T, HutCheckUpdateArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more HutChecks.
-     * @param {HutCheckDeleteManyArgs} args - Arguments to filter HutChecks to delete.
-     * @example
-     * // Delete a few HutChecks
-     * const { count } = await prisma.hutCheck.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends HutCheckDeleteManyArgs>(args?: SelectSubset<T, HutCheckDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more HutChecks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HutCheckUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many HutChecks
-     * const hutCheck = await prisma.hutCheck.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends HutCheckUpdateManyArgs>(args: SelectSubset<T, HutCheckUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more HutChecks and returns the data updated in the database.
-     * @param {HutCheckUpdateManyAndReturnArgs} args - Arguments to update many HutChecks.
-     * @example
-     * // Update many HutChecks
-     * const hutCheck = await prisma.hutCheck.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more HutChecks and only return the `id`
-     * const hutCheckWithIdOnly = await prisma.hutCheck.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends HutCheckUpdateManyAndReturnArgs>(args: SelectSubset<T, HutCheckUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one HutCheck.
-     * @param {HutCheckUpsertArgs} args - Arguments to update or create a HutCheck.
-     * @example
-     * // Update or create a HutCheck
-     * const hutCheck = await prisma.hutCheck.upsert({
-     *   create: {
-     *     // ... data to create a HutCheck
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the HutCheck we want to update
-     *   }
-     * })
-     */
-    upsert<T extends HutCheckUpsertArgs>(args: SelectSubset<T, HutCheckUpsertArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of HutChecks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HutCheckCountArgs} args - Arguments to filter HutChecks to count.
-     * @example
-     * // Count the number of HutChecks
-     * const count = await prisma.hutCheck.count({
-     *   where: {
-     *     // ... the filter for the HutChecks we want to count
-     *   }
-     * })
-    **/
-    count<T extends HutCheckCountArgs>(
-      args?: Subset<T, HutCheckCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], HutCheckCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a HutCheck.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HutCheckAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends HutCheckAggregateArgs>(args: Subset<T, HutCheckAggregateArgs>): Prisma.PrismaPromise<GetHutCheckAggregateType<T>>
-
-    /**
-     * Group by HutCheck.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HutCheckGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends HutCheckGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: HutCheckGroupByArgs['orderBy'] }
-        : { orderBy?: HutCheckGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, HutCheckGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHutCheckGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the HutCheck model
-   */
-  readonly fields: HutCheckFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for HutCheck.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__HutCheckClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    hut<T extends HutDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HutDefaultArgs<ExtArgs>>): Prisma__HutClient<$Result.GetResult<Prisma.$HutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the HutCheck model
-   */
-  interface HutCheckFieldRefs {
-    readonly id: FieldRef<"HutCheck", 'String'>
-    readonly recordedAt: FieldRef<"HutCheck", 'DateTime'>
-    readonly employeeId: FieldRef<"HutCheck", 'String'>
-    readonly mountainId: FieldRef<"HutCheck", 'String'>
-    readonly hutId: FieldRef<"HutCheck", 'String'>
-    readonly notes: FieldRef<"HutCheck", 'String'>
-    readonly createdAt: FieldRef<"HutCheck", 'DateTime'>
-    readonly updatedAt: FieldRef<"HutCheck", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * HutCheck findUnique
-   */
-  export type HutCheckFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which HutCheck to fetch.
-     */
-    where: HutCheckWhereUniqueInput
-  }
-
-  /**
-   * HutCheck findUniqueOrThrow
-   */
-  export type HutCheckFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which HutCheck to fetch.
-     */
-    where: HutCheckWhereUniqueInput
-  }
-
-  /**
-   * HutCheck findFirst
-   */
-  export type HutCheckFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which HutCheck to fetch.
-     */
-    where?: HutCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HutChecks to fetch.
-     */
-    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for HutChecks.
-     */
-    cursor?: HutCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HutChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HutChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HutChecks.
-     */
-    distinct?: HutCheckScalarFieldEnum | HutCheckScalarFieldEnum[]
-  }
-
-  /**
-   * HutCheck findFirstOrThrow
-   */
-  export type HutCheckFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which HutCheck to fetch.
-     */
-    where?: HutCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HutChecks to fetch.
-     */
-    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for HutChecks.
-     */
-    cursor?: HutCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HutChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HutChecks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HutChecks.
-     */
-    distinct?: HutCheckScalarFieldEnum | HutCheckScalarFieldEnum[]
-  }
-
-  /**
-   * HutCheck findMany
-   */
-  export type HutCheckFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * Filter, which HutChecks to fetch.
-     */
-    where?: HutCheckWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HutChecks to fetch.
-     */
-    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing HutChecks.
-     */
-    cursor?: HutCheckWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HutChecks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HutChecks.
-     */
-    skip?: number
-    distinct?: HutCheckScalarFieldEnum | HutCheckScalarFieldEnum[]
-  }
-
-  /**
-   * HutCheck create
-   */
-  export type HutCheckCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * The data needed to create a HutCheck.
-     */
-    data: XOR<HutCheckCreateInput, HutCheckUncheckedCreateInput>
-  }
-
-  /**
-   * HutCheck createMany
-   */
-  export type HutCheckCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many HutChecks.
-     */
-    data: HutCheckCreateManyInput | HutCheckCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * HutCheck createManyAndReturn
-   */
-  export type HutCheckCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * The data used to create many HutChecks.
-     */
-    data: HutCheckCreateManyInput | HutCheckCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * HutCheck update
-   */
-  export type HutCheckUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * The data needed to update a HutCheck.
-     */
-    data: XOR<HutCheckUpdateInput, HutCheckUncheckedUpdateInput>
-    /**
-     * Choose, which HutCheck to update.
-     */
-    where: HutCheckWhereUniqueInput
-  }
-
-  /**
-   * HutCheck updateMany
-   */
-  export type HutCheckUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update HutChecks.
-     */
-    data: XOR<HutCheckUpdateManyMutationInput, HutCheckUncheckedUpdateManyInput>
-    /**
-     * Filter which HutChecks to update
-     */
-    where?: HutCheckWhereInput
-    /**
-     * Limit how many HutChecks to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * HutCheck updateManyAndReturn
-   */
-  export type HutCheckUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * The data used to update HutChecks.
-     */
-    data: XOR<HutCheckUpdateManyMutationInput, HutCheckUncheckedUpdateManyInput>
-    /**
-     * Filter which HutChecks to update
-     */
-    where?: HutCheckWhereInput
-    /**
-     * Limit how many HutChecks to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * HutCheck upsert
-   */
-  export type HutCheckUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * The filter to search for the HutCheck to update in case it exists.
-     */
-    where: HutCheckWhereUniqueInput
-    /**
-     * In case the HutCheck found by the `where` argument doesn't exist, create a new HutCheck with this data.
-     */
-    create: XOR<HutCheckCreateInput, HutCheckUncheckedCreateInput>
-    /**
-     * In case the HutCheck was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<HutCheckUpdateInput, HutCheckUncheckedUpdateInput>
-  }
-
-  /**
-   * HutCheck delete
-   */
-  export type HutCheckDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-    /**
-     * Filter which HutCheck to delete.
-     */
-    where: HutCheckWhereUniqueInput
-  }
-
-  /**
-   * HutCheck deleteMany
-   */
-  export type HutCheckDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which HutChecks to delete
-     */
-    where?: HutCheckWhereInput
-    /**
-     * Limit how many HutChecks to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * HutCheck without action
-   */
-  export type HutCheckDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HutCheck
-     */
-    select?: HutCheckSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HutCheck
-     */
-    omit?: HutCheckOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HutCheckInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model AidRoomCheck
    */
 
@@ -31372,10 +28303,12 @@ export namespace Prisma {
 
   export type AidRoomCheckMinAggregateOutputType = {
     id: string | null
-    recordedAt: Date | null
     employeeId: string | null
     mountainId: string | null
     aidRoomId: string | null
+    equipmentIssues: boolean | null
+    equipmentNotes: string | null
+    paperworkStocked: boolean | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -31383,10 +28316,12 @@ export namespace Prisma {
 
   export type AidRoomCheckMaxAggregateOutputType = {
     id: string | null
-    recordedAt: Date | null
     employeeId: string | null
     mountainId: string | null
     aidRoomId: string | null
+    equipmentIssues: boolean | null
+    equipmentNotes: string | null
+    paperworkStocked: boolean | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -31394,10 +28329,12 @@ export namespace Prisma {
 
   export type AidRoomCheckCountAggregateOutputType = {
     id: number
-    recordedAt: number
     employeeId: number
     mountainId: number
     aidRoomId: number
+    equipmentIssues: number
+    equipmentNotes: number
+    paperworkStocked: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -31407,10 +28344,12 @@ export namespace Prisma {
 
   export type AidRoomCheckMinAggregateInputType = {
     id?: true
-    recordedAt?: true
     employeeId?: true
     mountainId?: true
     aidRoomId?: true
+    equipmentIssues?: true
+    equipmentNotes?: true
+    paperworkStocked?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -31418,10 +28357,12 @@ export namespace Prisma {
 
   export type AidRoomCheckMaxAggregateInputType = {
     id?: true
-    recordedAt?: true
     employeeId?: true
     mountainId?: true
     aidRoomId?: true
+    equipmentIssues?: true
+    equipmentNotes?: true
+    paperworkStocked?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -31429,10 +28370,12 @@ export namespace Prisma {
 
   export type AidRoomCheckCountAggregateInputType = {
     id?: true
-    recordedAt?: true
     employeeId?: true
     mountainId?: true
     aidRoomId?: true
+    equipmentIssues?: true
+    equipmentNotes?: true
+    paperworkStocked?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -31513,10 +28456,12 @@ export namespace Prisma {
 
   export type AidRoomCheckGroupByOutputType = {
     id: string
-    recordedAt: Date
     employeeId: string
     mountainId: string
     aidRoomId: string
+    equipmentIssues: boolean
+    equipmentNotes: string | null
+    paperworkStocked: boolean
     notes: string | null
     createdAt: Date
     updatedAt: Date
@@ -31541,10 +28486,12 @@ export namespace Prisma {
 
   export type AidRoomCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    recordedAt?: boolean
     employeeId?: boolean
     mountainId?: boolean
     aidRoomId?: boolean
+    equipmentIssues?: boolean
+    equipmentNotes?: boolean
+    paperworkStocked?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -31555,10 +28502,12 @@ export namespace Prisma {
 
   export type AidRoomCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    recordedAt?: boolean
     employeeId?: boolean
     mountainId?: boolean
     aidRoomId?: boolean
+    equipmentIssues?: boolean
+    equipmentNotes?: boolean
+    paperworkStocked?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -31569,10 +28518,12 @@ export namespace Prisma {
 
   export type AidRoomCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    recordedAt?: boolean
     employeeId?: boolean
     mountainId?: boolean
     aidRoomId?: boolean
+    equipmentIssues?: boolean
+    equipmentNotes?: boolean
+    paperworkStocked?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -31583,16 +28534,18 @@ export namespace Prisma {
 
   export type AidRoomCheckSelectScalar = {
     id?: boolean
-    recordedAt?: boolean
     employeeId?: boolean
     mountainId?: boolean
     aidRoomId?: boolean
+    equipmentIssues?: boolean
+    equipmentNotes?: boolean
+    paperworkStocked?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AidRoomCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "aidRoomId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["aidRoomCheck"]>
+  export type AidRoomCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "aidRoomId" | "equipmentIssues" | "equipmentNotes" | "paperworkStocked" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["aidRoomCheck"]>
   export type AidRoomCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -31618,10 +28571,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      recordedAt: Date
       employeeId: string
       mountainId: string
       aidRoomId: string
+      equipmentIssues: boolean
+      equipmentNotes: string | null
+      paperworkStocked: boolean
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -32052,10 +29007,12 @@ export namespace Prisma {
    */
   interface AidRoomCheckFieldRefs {
     readonly id: FieldRef<"AidRoomCheck", 'String'>
-    readonly recordedAt: FieldRef<"AidRoomCheck", 'DateTime'>
     readonly employeeId: FieldRef<"AidRoomCheck", 'String'>
     readonly mountainId: FieldRef<"AidRoomCheck", 'String'>
     readonly aidRoomId: FieldRef<"AidRoomCheck", 'String'>
+    readonly equipmentIssues: FieldRef<"AidRoomCheck", 'Boolean'>
+    readonly equipmentNotes: FieldRef<"AidRoomCheck", 'String'>
+    readonly paperworkStocked: FieldRef<"AidRoomCheck", 'Boolean'>
     readonly notes: FieldRef<"AidRoomCheck", 'String'>
     readonly createdAt: FieldRef<"AidRoomCheck", 'DateTime'>
     readonly updatedAt: FieldRef<"AidRoomCheck", 'DateTime'>
@@ -32474,6 +29431,3423 @@ export namespace Prisma {
 
 
   /**
+   * Model HutCheck
+   */
+
+  export type AggregateHutCheck = {
+    _count: HutCheckCountAggregateOutputType | null
+    _min: HutCheckMinAggregateOutputType | null
+    _max: HutCheckMaxAggregateOutputType | null
+  }
+
+  export type HutCheckMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    mountainId: string | null
+    hutId: string | null
+    equipmentIssues: boolean | null
+    equipmentNotes: string | null
+    paperworkStocked: boolean | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HutCheckMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    mountainId: string | null
+    hutId: string | null
+    equipmentIssues: boolean | null
+    equipmentNotes: string | null
+    paperworkStocked: boolean | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HutCheckCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    mountainId: number
+    hutId: number
+    equipmentIssues: number
+    equipmentNotes: number
+    paperworkStocked: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HutCheckMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    hutId?: true
+    equipmentIssues?: true
+    equipmentNotes?: true
+    paperworkStocked?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HutCheckMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    hutId?: true
+    equipmentIssues?: true
+    equipmentNotes?: true
+    paperworkStocked?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HutCheckCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    hutId?: true
+    equipmentIssues?: true
+    equipmentNotes?: true
+    paperworkStocked?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HutCheckAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HutCheck to aggregate.
+     */
+    where?: HutCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HutChecks to fetch.
+     */
+    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HutCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HutChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HutChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned HutChecks
+    **/
+    _count?: true | HutCheckCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HutCheckMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HutCheckMaxAggregateInputType
+  }
+
+  export type GetHutCheckAggregateType<T extends HutCheckAggregateArgs> = {
+        [P in keyof T & keyof AggregateHutCheck]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHutCheck[P]>
+      : GetScalarType<T[P], AggregateHutCheck[P]>
+  }
+
+
+
+
+  export type HutCheckGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HutCheckWhereInput
+    orderBy?: HutCheckOrderByWithAggregationInput | HutCheckOrderByWithAggregationInput[]
+    by: HutCheckScalarFieldEnum[] | HutCheckScalarFieldEnum
+    having?: HutCheckScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HutCheckCountAggregateInputType | true
+    _min?: HutCheckMinAggregateInputType
+    _max?: HutCheckMaxAggregateInputType
+  }
+
+  export type HutCheckGroupByOutputType = {
+    id: string
+    employeeId: string
+    mountainId: string
+    hutId: string
+    equipmentIssues: boolean
+    equipmentNotes: string | null
+    paperworkStocked: boolean
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: HutCheckCountAggregateOutputType | null
+    _min: HutCheckMinAggregateOutputType | null
+    _max: HutCheckMaxAggregateOutputType | null
+  }
+
+  type GetHutCheckGroupByPayload<T extends HutCheckGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HutCheckGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HutCheckGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HutCheckGroupByOutputType[P]>
+            : GetScalarType<T[P], HutCheckGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HutCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    hutId?: boolean
+    equipmentIssues?: boolean
+    equipmentNotes?: boolean
+    paperworkStocked?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    hut?: boolean | HutDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hutCheck"]>
+
+  export type HutCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    hutId?: boolean
+    equipmentIssues?: boolean
+    equipmentNotes?: boolean
+    paperworkStocked?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    hut?: boolean | HutDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hutCheck"]>
+
+  export type HutCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    hutId?: boolean
+    equipmentIssues?: boolean
+    equipmentNotes?: boolean
+    paperworkStocked?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    hut?: boolean | HutDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hutCheck"]>
+
+  export type HutCheckSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    hutId?: boolean
+    equipmentIssues?: boolean
+    equipmentNotes?: boolean
+    paperworkStocked?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HutCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "hutId" | "equipmentIssues" | "equipmentNotes" | "paperworkStocked" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["hutCheck"]>
+  export type HutCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    hut?: boolean | HutDefaultArgs<ExtArgs>
+  }
+  export type HutCheckIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    hut?: boolean | HutDefaultArgs<ExtArgs>
+  }
+  export type HutCheckIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    hut?: boolean | HutDefaultArgs<ExtArgs>
+  }
+
+  export type $HutCheckPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "HutCheck"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      mountain: Prisma.$MountainPayload<ExtArgs>
+      hut: Prisma.$HutPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      mountainId: string
+      hutId: string
+      equipmentIssues: boolean
+      equipmentNotes: string | null
+      paperworkStocked: boolean
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["hutCheck"]>
+    composites: {}
+  }
+
+  type HutCheckGetPayload<S extends boolean | null | undefined | HutCheckDefaultArgs> = $Result.GetResult<Prisma.$HutCheckPayload, S>
+
+  type HutCheckCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HutCheckFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HutCheckCountAggregateInputType | true
+    }
+
+  export interface HutCheckDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HutCheck'], meta: { name: 'HutCheck' } }
+    /**
+     * Find zero or one HutCheck that matches the filter.
+     * @param {HutCheckFindUniqueArgs} args - Arguments to find a HutCheck
+     * @example
+     * // Get one HutCheck
+     * const hutCheck = await prisma.hutCheck.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HutCheckFindUniqueArgs>(args: SelectSubset<T, HutCheckFindUniqueArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one HutCheck that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HutCheckFindUniqueOrThrowArgs} args - Arguments to find a HutCheck
+     * @example
+     * // Get one HutCheck
+     * const hutCheck = await prisma.hutCheck.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HutCheckFindUniqueOrThrowArgs>(args: SelectSubset<T, HutCheckFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HutCheck that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HutCheckFindFirstArgs} args - Arguments to find a HutCheck
+     * @example
+     * // Get one HutCheck
+     * const hutCheck = await prisma.hutCheck.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HutCheckFindFirstArgs>(args?: SelectSubset<T, HutCheckFindFirstArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first HutCheck that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HutCheckFindFirstOrThrowArgs} args - Arguments to find a HutCheck
+     * @example
+     * // Get one HutCheck
+     * const hutCheck = await prisma.hutCheck.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HutCheckFindFirstOrThrowArgs>(args?: SelectSubset<T, HutCheckFindFirstOrThrowArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more HutChecks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HutCheckFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all HutChecks
+     * const hutChecks = await prisma.hutCheck.findMany()
+     * 
+     * // Get first 10 HutChecks
+     * const hutChecks = await prisma.hutCheck.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hutCheckWithIdOnly = await prisma.hutCheck.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HutCheckFindManyArgs>(args?: SelectSubset<T, HutCheckFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a HutCheck.
+     * @param {HutCheckCreateArgs} args - Arguments to create a HutCheck.
+     * @example
+     * // Create one HutCheck
+     * const HutCheck = await prisma.hutCheck.create({
+     *   data: {
+     *     // ... data to create a HutCheck
+     *   }
+     * })
+     * 
+     */
+    create<T extends HutCheckCreateArgs>(args: SelectSubset<T, HutCheckCreateArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many HutChecks.
+     * @param {HutCheckCreateManyArgs} args - Arguments to create many HutChecks.
+     * @example
+     * // Create many HutChecks
+     * const hutCheck = await prisma.hutCheck.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HutCheckCreateManyArgs>(args?: SelectSubset<T, HutCheckCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many HutChecks and returns the data saved in the database.
+     * @param {HutCheckCreateManyAndReturnArgs} args - Arguments to create many HutChecks.
+     * @example
+     * // Create many HutChecks
+     * const hutCheck = await prisma.hutCheck.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many HutChecks and only return the `id`
+     * const hutCheckWithIdOnly = await prisma.hutCheck.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HutCheckCreateManyAndReturnArgs>(args?: SelectSubset<T, HutCheckCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a HutCheck.
+     * @param {HutCheckDeleteArgs} args - Arguments to delete one HutCheck.
+     * @example
+     * // Delete one HutCheck
+     * const HutCheck = await prisma.hutCheck.delete({
+     *   where: {
+     *     // ... filter to delete one HutCheck
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HutCheckDeleteArgs>(args: SelectSubset<T, HutCheckDeleteArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one HutCheck.
+     * @param {HutCheckUpdateArgs} args - Arguments to update one HutCheck.
+     * @example
+     * // Update one HutCheck
+     * const hutCheck = await prisma.hutCheck.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HutCheckUpdateArgs>(args: SelectSubset<T, HutCheckUpdateArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more HutChecks.
+     * @param {HutCheckDeleteManyArgs} args - Arguments to filter HutChecks to delete.
+     * @example
+     * // Delete a few HutChecks
+     * const { count } = await prisma.hutCheck.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HutCheckDeleteManyArgs>(args?: SelectSubset<T, HutCheckDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HutChecks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HutCheckUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many HutChecks
+     * const hutCheck = await prisma.hutCheck.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HutCheckUpdateManyArgs>(args: SelectSubset<T, HutCheckUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more HutChecks and returns the data updated in the database.
+     * @param {HutCheckUpdateManyAndReturnArgs} args - Arguments to update many HutChecks.
+     * @example
+     * // Update many HutChecks
+     * const hutCheck = await prisma.hutCheck.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more HutChecks and only return the `id`
+     * const hutCheckWithIdOnly = await prisma.hutCheck.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HutCheckUpdateManyAndReturnArgs>(args: SelectSubset<T, HutCheckUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one HutCheck.
+     * @param {HutCheckUpsertArgs} args - Arguments to update or create a HutCheck.
+     * @example
+     * // Update or create a HutCheck
+     * const hutCheck = await prisma.hutCheck.upsert({
+     *   create: {
+     *     // ... data to create a HutCheck
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the HutCheck we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HutCheckUpsertArgs>(args: SelectSubset<T, HutCheckUpsertArgs<ExtArgs>>): Prisma__HutCheckClient<$Result.GetResult<Prisma.$HutCheckPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of HutChecks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HutCheckCountArgs} args - Arguments to filter HutChecks to count.
+     * @example
+     * // Count the number of HutChecks
+     * const count = await prisma.hutCheck.count({
+     *   where: {
+     *     // ... the filter for the HutChecks we want to count
+     *   }
+     * })
+    **/
+    count<T extends HutCheckCountArgs>(
+      args?: Subset<T, HutCheckCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HutCheckCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a HutCheck.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HutCheckAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HutCheckAggregateArgs>(args: Subset<T, HutCheckAggregateArgs>): Prisma.PrismaPromise<GetHutCheckAggregateType<T>>
+
+    /**
+     * Group by HutCheck.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HutCheckGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HutCheckGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HutCheckGroupByArgs['orderBy'] }
+        : { orderBy?: HutCheckGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HutCheckGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHutCheckGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the HutCheck model
+   */
+  readonly fields: HutCheckFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for HutCheck.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HutCheckClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hut<T extends HutDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HutDefaultArgs<ExtArgs>>): Prisma__HutClient<$Result.GetResult<Prisma.$HutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the HutCheck model
+   */
+  interface HutCheckFieldRefs {
+    readonly id: FieldRef<"HutCheck", 'String'>
+    readonly employeeId: FieldRef<"HutCheck", 'String'>
+    readonly mountainId: FieldRef<"HutCheck", 'String'>
+    readonly hutId: FieldRef<"HutCheck", 'String'>
+    readonly equipmentIssues: FieldRef<"HutCheck", 'Boolean'>
+    readonly equipmentNotes: FieldRef<"HutCheck", 'String'>
+    readonly paperworkStocked: FieldRef<"HutCheck", 'Boolean'>
+    readonly notes: FieldRef<"HutCheck", 'String'>
+    readonly createdAt: FieldRef<"HutCheck", 'DateTime'>
+    readonly updatedAt: FieldRef<"HutCheck", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * HutCheck findUnique
+   */
+  export type HutCheckFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which HutCheck to fetch.
+     */
+    where: HutCheckWhereUniqueInput
+  }
+
+  /**
+   * HutCheck findUniqueOrThrow
+   */
+  export type HutCheckFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which HutCheck to fetch.
+     */
+    where: HutCheckWhereUniqueInput
+  }
+
+  /**
+   * HutCheck findFirst
+   */
+  export type HutCheckFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which HutCheck to fetch.
+     */
+    where?: HutCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HutChecks to fetch.
+     */
+    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HutChecks.
+     */
+    cursor?: HutCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HutChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HutChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HutChecks.
+     */
+    distinct?: HutCheckScalarFieldEnum | HutCheckScalarFieldEnum[]
+  }
+
+  /**
+   * HutCheck findFirstOrThrow
+   */
+  export type HutCheckFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which HutCheck to fetch.
+     */
+    where?: HutCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HutChecks to fetch.
+     */
+    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for HutChecks.
+     */
+    cursor?: HutCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HutChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HutChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of HutChecks.
+     */
+    distinct?: HutCheckScalarFieldEnum | HutCheckScalarFieldEnum[]
+  }
+
+  /**
+   * HutCheck findMany
+   */
+  export type HutCheckFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which HutChecks to fetch.
+     */
+    where?: HutCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of HutChecks to fetch.
+     */
+    orderBy?: HutCheckOrderByWithRelationInput | HutCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing HutChecks.
+     */
+    cursor?: HutCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` HutChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` HutChecks.
+     */
+    skip?: number
+    distinct?: HutCheckScalarFieldEnum | HutCheckScalarFieldEnum[]
+  }
+
+  /**
+   * HutCheck create
+   */
+  export type HutCheckCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * The data needed to create a HutCheck.
+     */
+    data: XOR<HutCheckCreateInput, HutCheckUncheckedCreateInput>
+  }
+
+  /**
+   * HutCheck createMany
+   */
+  export type HutCheckCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many HutChecks.
+     */
+    data: HutCheckCreateManyInput | HutCheckCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * HutCheck createManyAndReturn
+   */
+  export type HutCheckCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * The data used to create many HutChecks.
+     */
+    data: HutCheckCreateManyInput | HutCheckCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HutCheck update
+   */
+  export type HutCheckUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * The data needed to update a HutCheck.
+     */
+    data: XOR<HutCheckUpdateInput, HutCheckUncheckedUpdateInput>
+    /**
+     * Choose, which HutCheck to update.
+     */
+    where: HutCheckWhereUniqueInput
+  }
+
+  /**
+   * HutCheck updateMany
+   */
+  export type HutCheckUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update HutChecks.
+     */
+    data: XOR<HutCheckUpdateManyMutationInput, HutCheckUncheckedUpdateManyInput>
+    /**
+     * Filter which HutChecks to update
+     */
+    where?: HutCheckWhereInput
+    /**
+     * Limit how many HutChecks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * HutCheck updateManyAndReturn
+   */
+  export type HutCheckUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * The data used to update HutChecks.
+     */
+    data: XOR<HutCheckUpdateManyMutationInput, HutCheckUncheckedUpdateManyInput>
+    /**
+     * Filter which HutChecks to update
+     */
+    where?: HutCheckWhereInput
+    /**
+     * Limit how many HutChecks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * HutCheck upsert
+   */
+  export type HutCheckUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * The filter to search for the HutCheck to update in case it exists.
+     */
+    where: HutCheckWhereUniqueInput
+    /**
+     * In case the HutCheck found by the `where` argument doesn't exist, create a new HutCheck with this data.
+     */
+    create: XOR<HutCheckCreateInput, HutCheckUncheckedCreateInput>
+    /**
+     * In case the HutCheck was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HutCheckUpdateInput, HutCheckUncheckedUpdateInput>
+  }
+
+  /**
+   * HutCheck delete
+   */
+  export type HutCheckDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+    /**
+     * Filter which HutCheck to delete.
+     */
+    where: HutCheckWhereUniqueInput
+  }
+
+  /**
+   * HutCheck deleteMany
+   */
+  export type HutCheckDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which HutChecks to delete
+     */
+    where?: HutCheckWhereInput
+    /**
+     * Limit how many HutChecks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * HutCheck without action
+   */
+  export type HutCheckDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HutCheck
+     */
+    select?: HutCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the HutCheck
+     */
+    omit?: HutCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HutCheckInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LiftCheck
+   */
+
+  export type AggregateLiftCheck = {
+    _count: LiftCheckCountAggregateOutputType | null
+    _min: LiftCheckMinAggregateOutputType | null
+    _max: LiftCheckMaxAggregateOutputType | null
+  }
+
+  export type LiftCheckMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    mountainId: string | null
+    liftId: string | null
+    hazards: boolean | null
+    status: $Enums.STATUS | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LiftCheckMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    mountainId: string | null
+    liftId: string | null
+    hazards: boolean | null
+    status: $Enums.STATUS | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LiftCheckCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    mountainId: number
+    liftId: number
+    hazards: number
+    status: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LiftCheckMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    liftId?: true
+    hazards?: true
+    status?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LiftCheckMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    liftId?: true
+    hazards?: true
+    status?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LiftCheckCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    liftId?: true
+    hazards?: true
+    status?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LiftCheckAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LiftCheck to aggregate.
+     */
+    where?: LiftCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LiftChecks to fetch.
+     */
+    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LiftCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LiftChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LiftChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LiftChecks
+    **/
+    _count?: true | LiftCheckCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LiftCheckMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LiftCheckMaxAggregateInputType
+  }
+
+  export type GetLiftCheckAggregateType<T extends LiftCheckAggregateArgs> = {
+        [P in keyof T & keyof AggregateLiftCheck]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLiftCheck[P]>
+      : GetScalarType<T[P], AggregateLiftCheck[P]>
+  }
+
+
+
+
+  export type LiftCheckGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LiftCheckWhereInput
+    orderBy?: LiftCheckOrderByWithAggregationInput | LiftCheckOrderByWithAggregationInput[]
+    by: LiftCheckScalarFieldEnum[] | LiftCheckScalarFieldEnum
+    having?: LiftCheckScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LiftCheckCountAggregateInputType | true
+    _min?: LiftCheckMinAggregateInputType
+    _max?: LiftCheckMaxAggregateInputType
+  }
+
+  export type LiftCheckGroupByOutputType = {
+    id: string
+    employeeId: string
+    mountainId: string
+    liftId: string
+    hazards: boolean
+    status: $Enums.STATUS
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: LiftCheckCountAggregateOutputType | null
+    _min: LiftCheckMinAggregateOutputType | null
+    _max: LiftCheckMaxAggregateOutputType | null
+  }
+
+  type GetLiftCheckGroupByPayload<T extends LiftCheckGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LiftCheckGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LiftCheckGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LiftCheckGroupByOutputType[P]>
+            : GetScalarType<T[P], LiftCheckGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LiftCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    liftId?: boolean
+    hazards?: boolean
+    status?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    lift?: boolean | LiftDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["liftCheck"]>
+
+  export type LiftCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    liftId?: boolean
+    hazards?: boolean
+    status?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    lift?: boolean | LiftDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["liftCheck"]>
+
+  export type LiftCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    liftId?: boolean
+    hazards?: boolean
+    status?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    lift?: boolean | LiftDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["liftCheck"]>
+
+  export type LiftCheckSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    liftId?: boolean
+    hazards?: boolean
+    status?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type LiftCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "liftId" | "hazards" | "status" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["liftCheck"]>
+  export type LiftCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    lift?: boolean | LiftDefaultArgs<ExtArgs>
+  }
+  export type LiftCheckIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    lift?: boolean | LiftDefaultArgs<ExtArgs>
+  }
+  export type LiftCheckIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    lift?: boolean | LiftDefaultArgs<ExtArgs>
+  }
+
+  export type $LiftCheckPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LiftCheck"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      mountain: Prisma.$MountainPayload<ExtArgs>
+      lift: Prisma.$LiftPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      mountainId: string
+      liftId: string
+      hazards: boolean
+      status: $Enums.STATUS
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["liftCheck"]>
+    composites: {}
+  }
+
+  type LiftCheckGetPayload<S extends boolean | null | undefined | LiftCheckDefaultArgs> = $Result.GetResult<Prisma.$LiftCheckPayload, S>
+
+  type LiftCheckCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LiftCheckFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LiftCheckCountAggregateInputType | true
+    }
+
+  export interface LiftCheckDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LiftCheck'], meta: { name: 'LiftCheck' } }
+    /**
+     * Find zero or one LiftCheck that matches the filter.
+     * @param {LiftCheckFindUniqueArgs} args - Arguments to find a LiftCheck
+     * @example
+     * // Get one LiftCheck
+     * const liftCheck = await prisma.liftCheck.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LiftCheckFindUniqueArgs>(args: SelectSubset<T, LiftCheckFindUniqueArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LiftCheck that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LiftCheckFindUniqueOrThrowArgs} args - Arguments to find a LiftCheck
+     * @example
+     * // Get one LiftCheck
+     * const liftCheck = await prisma.liftCheck.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LiftCheckFindUniqueOrThrowArgs>(args: SelectSubset<T, LiftCheckFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LiftCheck that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LiftCheckFindFirstArgs} args - Arguments to find a LiftCheck
+     * @example
+     * // Get one LiftCheck
+     * const liftCheck = await prisma.liftCheck.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LiftCheckFindFirstArgs>(args?: SelectSubset<T, LiftCheckFindFirstArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LiftCheck that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LiftCheckFindFirstOrThrowArgs} args - Arguments to find a LiftCheck
+     * @example
+     * // Get one LiftCheck
+     * const liftCheck = await prisma.liftCheck.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LiftCheckFindFirstOrThrowArgs>(args?: SelectSubset<T, LiftCheckFindFirstOrThrowArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LiftChecks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LiftCheckFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LiftChecks
+     * const liftChecks = await prisma.liftCheck.findMany()
+     * 
+     * // Get first 10 LiftChecks
+     * const liftChecks = await prisma.liftCheck.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const liftCheckWithIdOnly = await prisma.liftCheck.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LiftCheckFindManyArgs>(args?: SelectSubset<T, LiftCheckFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LiftCheck.
+     * @param {LiftCheckCreateArgs} args - Arguments to create a LiftCheck.
+     * @example
+     * // Create one LiftCheck
+     * const LiftCheck = await prisma.liftCheck.create({
+     *   data: {
+     *     // ... data to create a LiftCheck
+     *   }
+     * })
+     * 
+     */
+    create<T extends LiftCheckCreateArgs>(args: SelectSubset<T, LiftCheckCreateArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LiftChecks.
+     * @param {LiftCheckCreateManyArgs} args - Arguments to create many LiftChecks.
+     * @example
+     * // Create many LiftChecks
+     * const liftCheck = await prisma.liftCheck.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LiftCheckCreateManyArgs>(args?: SelectSubset<T, LiftCheckCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LiftChecks and returns the data saved in the database.
+     * @param {LiftCheckCreateManyAndReturnArgs} args - Arguments to create many LiftChecks.
+     * @example
+     * // Create many LiftChecks
+     * const liftCheck = await prisma.liftCheck.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LiftChecks and only return the `id`
+     * const liftCheckWithIdOnly = await prisma.liftCheck.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LiftCheckCreateManyAndReturnArgs>(args?: SelectSubset<T, LiftCheckCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LiftCheck.
+     * @param {LiftCheckDeleteArgs} args - Arguments to delete one LiftCheck.
+     * @example
+     * // Delete one LiftCheck
+     * const LiftCheck = await prisma.liftCheck.delete({
+     *   where: {
+     *     // ... filter to delete one LiftCheck
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LiftCheckDeleteArgs>(args: SelectSubset<T, LiftCheckDeleteArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LiftCheck.
+     * @param {LiftCheckUpdateArgs} args - Arguments to update one LiftCheck.
+     * @example
+     * // Update one LiftCheck
+     * const liftCheck = await prisma.liftCheck.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LiftCheckUpdateArgs>(args: SelectSubset<T, LiftCheckUpdateArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LiftChecks.
+     * @param {LiftCheckDeleteManyArgs} args - Arguments to filter LiftChecks to delete.
+     * @example
+     * // Delete a few LiftChecks
+     * const { count } = await prisma.liftCheck.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LiftCheckDeleteManyArgs>(args?: SelectSubset<T, LiftCheckDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LiftChecks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LiftCheckUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LiftChecks
+     * const liftCheck = await prisma.liftCheck.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LiftCheckUpdateManyArgs>(args: SelectSubset<T, LiftCheckUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LiftChecks and returns the data updated in the database.
+     * @param {LiftCheckUpdateManyAndReturnArgs} args - Arguments to update many LiftChecks.
+     * @example
+     * // Update many LiftChecks
+     * const liftCheck = await prisma.liftCheck.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LiftChecks and only return the `id`
+     * const liftCheckWithIdOnly = await prisma.liftCheck.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LiftCheckUpdateManyAndReturnArgs>(args: SelectSubset<T, LiftCheckUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LiftCheck.
+     * @param {LiftCheckUpsertArgs} args - Arguments to update or create a LiftCheck.
+     * @example
+     * // Update or create a LiftCheck
+     * const liftCheck = await prisma.liftCheck.upsert({
+     *   create: {
+     *     // ... data to create a LiftCheck
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LiftCheck we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LiftCheckUpsertArgs>(args: SelectSubset<T, LiftCheckUpsertArgs<ExtArgs>>): Prisma__LiftCheckClient<$Result.GetResult<Prisma.$LiftCheckPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LiftChecks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LiftCheckCountArgs} args - Arguments to filter LiftChecks to count.
+     * @example
+     * // Count the number of LiftChecks
+     * const count = await prisma.liftCheck.count({
+     *   where: {
+     *     // ... the filter for the LiftChecks we want to count
+     *   }
+     * })
+    **/
+    count<T extends LiftCheckCountArgs>(
+      args?: Subset<T, LiftCheckCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LiftCheckCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LiftCheck.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LiftCheckAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LiftCheckAggregateArgs>(args: Subset<T, LiftCheckAggregateArgs>): Prisma.PrismaPromise<GetLiftCheckAggregateType<T>>
+
+    /**
+     * Group by LiftCheck.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LiftCheckGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LiftCheckGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LiftCheckGroupByArgs['orderBy'] }
+        : { orderBy?: LiftCheckGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LiftCheckGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLiftCheckGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LiftCheck model
+   */
+  readonly fields: LiftCheckFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LiftCheck.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LiftCheckClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    lift<T extends LiftDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LiftDefaultArgs<ExtArgs>>): Prisma__LiftClient<$Result.GetResult<Prisma.$LiftPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LiftCheck model
+   */
+  interface LiftCheckFieldRefs {
+    readonly id: FieldRef<"LiftCheck", 'String'>
+    readonly employeeId: FieldRef<"LiftCheck", 'String'>
+    readonly mountainId: FieldRef<"LiftCheck", 'String'>
+    readonly liftId: FieldRef<"LiftCheck", 'String'>
+    readonly hazards: FieldRef<"LiftCheck", 'Boolean'>
+    readonly status: FieldRef<"LiftCheck", 'STATUS'>
+    readonly notes: FieldRef<"LiftCheck", 'String'>
+    readonly createdAt: FieldRef<"LiftCheck", 'DateTime'>
+    readonly updatedAt: FieldRef<"LiftCheck", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LiftCheck findUnique
+   */
+  export type LiftCheckFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which LiftCheck to fetch.
+     */
+    where: LiftCheckWhereUniqueInput
+  }
+
+  /**
+   * LiftCheck findUniqueOrThrow
+   */
+  export type LiftCheckFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which LiftCheck to fetch.
+     */
+    where: LiftCheckWhereUniqueInput
+  }
+
+  /**
+   * LiftCheck findFirst
+   */
+  export type LiftCheckFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which LiftCheck to fetch.
+     */
+    where?: LiftCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LiftChecks to fetch.
+     */
+    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LiftChecks.
+     */
+    cursor?: LiftCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LiftChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LiftChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LiftChecks.
+     */
+    distinct?: LiftCheckScalarFieldEnum | LiftCheckScalarFieldEnum[]
+  }
+
+  /**
+   * LiftCheck findFirstOrThrow
+   */
+  export type LiftCheckFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which LiftCheck to fetch.
+     */
+    where?: LiftCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LiftChecks to fetch.
+     */
+    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LiftChecks.
+     */
+    cursor?: LiftCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LiftChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LiftChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LiftChecks.
+     */
+    distinct?: LiftCheckScalarFieldEnum | LiftCheckScalarFieldEnum[]
+  }
+
+  /**
+   * LiftCheck findMany
+   */
+  export type LiftCheckFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which LiftChecks to fetch.
+     */
+    where?: LiftCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LiftChecks to fetch.
+     */
+    orderBy?: LiftCheckOrderByWithRelationInput | LiftCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LiftChecks.
+     */
+    cursor?: LiftCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LiftChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LiftChecks.
+     */
+    skip?: number
+    distinct?: LiftCheckScalarFieldEnum | LiftCheckScalarFieldEnum[]
+  }
+
+  /**
+   * LiftCheck create
+   */
+  export type LiftCheckCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LiftCheck.
+     */
+    data: XOR<LiftCheckCreateInput, LiftCheckUncheckedCreateInput>
+  }
+
+  /**
+   * LiftCheck createMany
+   */
+  export type LiftCheckCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LiftChecks.
+     */
+    data: LiftCheckCreateManyInput | LiftCheckCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LiftCheck createManyAndReturn
+   */
+  export type LiftCheckCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * The data used to create many LiftChecks.
+     */
+    data: LiftCheckCreateManyInput | LiftCheckCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LiftCheck update
+   */
+  export type LiftCheckUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LiftCheck.
+     */
+    data: XOR<LiftCheckUpdateInput, LiftCheckUncheckedUpdateInput>
+    /**
+     * Choose, which LiftCheck to update.
+     */
+    where: LiftCheckWhereUniqueInput
+  }
+
+  /**
+   * LiftCheck updateMany
+   */
+  export type LiftCheckUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LiftChecks.
+     */
+    data: XOR<LiftCheckUpdateManyMutationInput, LiftCheckUncheckedUpdateManyInput>
+    /**
+     * Filter which LiftChecks to update
+     */
+    where?: LiftCheckWhereInput
+    /**
+     * Limit how many LiftChecks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LiftCheck updateManyAndReturn
+   */
+  export type LiftCheckUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * The data used to update LiftChecks.
+     */
+    data: XOR<LiftCheckUpdateManyMutationInput, LiftCheckUncheckedUpdateManyInput>
+    /**
+     * Filter which LiftChecks to update
+     */
+    where?: LiftCheckWhereInput
+    /**
+     * Limit how many LiftChecks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LiftCheck upsert
+   */
+  export type LiftCheckUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LiftCheck to update in case it exists.
+     */
+    where: LiftCheckWhereUniqueInput
+    /**
+     * In case the LiftCheck found by the `where` argument doesn't exist, create a new LiftCheck with this data.
+     */
+    create: XOR<LiftCheckCreateInput, LiftCheckUncheckedCreateInput>
+    /**
+     * In case the LiftCheck was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LiftCheckUpdateInput, LiftCheckUncheckedUpdateInput>
+  }
+
+  /**
+   * LiftCheck delete
+   */
+  export type LiftCheckDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+    /**
+     * Filter which LiftCheck to delete.
+     */
+    where: LiftCheckWhereUniqueInput
+  }
+
+  /**
+   * LiftCheck deleteMany
+   */
+  export type LiftCheckDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LiftChecks to delete
+     */
+    where?: LiftCheckWhereInput
+    /**
+     * Limit how many LiftChecks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LiftCheck without action
+   */
+  export type LiftCheckDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiftCheck
+     */
+    select?: LiftCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LiftCheck
+     */
+    omit?: LiftCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LiftCheckInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TrailCheck
+   */
+
+  export type AggregateTrailCheck = {
+    _count: TrailCheckCountAggregateOutputType | null
+    _min: TrailCheckMinAggregateOutputType | null
+    _max: TrailCheckMaxAggregateOutputType | null
+  }
+
+  export type TrailCheckMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    mountainId: string | null
+    trailId: string | null
+    status: $Enums.STATUS | null
+    condition: $Enums.TRAIL_CONDITION | null
+    hazards: boolean | null
+    snowmaking: boolean | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TrailCheckMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    mountainId: string | null
+    trailId: string | null
+    status: $Enums.STATUS | null
+    condition: $Enums.TRAIL_CONDITION | null
+    hazards: boolean | null
+    snowmaking: boolean | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TrailCheckCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    mountainId: number
+    trailId: number
+    status: number
+    condition: number
+    hazards: number
+    snowmaking: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TrailCheckMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    trailId?: true
+    status?: true
+    condition?: true
+    hazards?: true
+    snowmaking?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TrailCheckMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    trailId?: true
+    status?: true
+    condition?: true
+    hazards?: true
+    snowmaking?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TrailCheckCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    mountainId?: true
+    trailId?: true
+    status?: true
+    condition?: true
+    hazards?: true
+    snowmaking?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TrailCheckAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TrailCheck to aggregate.
+     */
+    where?: TrailCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TrailChecks to fetch.
+     */
+    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TrailCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TrailChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TrailChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TrailChecks
+    **/
+    _count?: true | TrailCheckCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TrailCheckMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TrailCheckMaxAggregateInputType
+  }
+
+  export type GetTrailCheckAggregateType<T extends TrailCheckAggregateArgs> = {
+        [P in keyof T & keyof AggregateTrailCheck]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTrailCheck[P]>
+      : GetScalarType<T[P], AggregateTrailCheck[P]>
+  }
+
+
+
+
+  export type TrailCheckGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TrailCheckWhereInput
+    orderBy?: TrailCheckOrderByWithAggregationInput | TrailCheckOrderByWithAggregationInput[]
+    by: TrailCheckScalarFieldEnum[] | TrailCheckScalarFieldEnum
+    having?: TrailCheckScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TrailCheckCountAggregateInputType | true
+    _min?: TrailCheckMinAggregateInputType
+    _max?: TrailCheckMaxAggregateInputType
+  }
+
+  export type TrailCheckGroupByOutputType = {
+    id: string
+    employeeId: string
+    mountainId: string
+    trailId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards: boolean
+    snowmaking: boolean
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TrailCheckCountAggregateOutputType | null
+    _min: TrailCheckMinAggregateOutputType | null
+    _max: TrailCheckMaxAggregateOutputType | null
+  }
+
+  type GetTrailCheckGroupByPayload<T extends TrailCheckGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TrailCheckGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TrailCheckGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TrailCheckGroupByOutputType[P]>
+            : GetScalarType<T[P], TrailCheckGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TrailCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    trailId?: boolean
+    status?: boolean
+    condition?: boolean
+    hazards?: boolean
+    snowmaking?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    trail?: boolean | TrailDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["trailCheck"]>
+
+  export type TrailCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    trailId?: boolean
+    status?: boolean
+    condition?: boolean
+    hazards?: boolean
+    snowmaking?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    trail?: boolean | TrailDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["trailCheck"]>
+
+  export type TrailCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    trailId?: boolean
+    status?: boolean
+    condition?: boolean
+    hazards?: boolean
+    snowmaking?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    trail?: boolean | TrailDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["trailCheck"]>
+
+  export type TrailCheckSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    mountainId?: boolean
+    trailId?: boolean
+    status?: boolean
+    condition?: boolean
+    hazards?: boolean
+    snowmaking?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TrailCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "trailId" | "status" | "condition" | "hazards" | "snowmaking" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["trailCheck"]>
+  export type TrailCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    trail?: boolean | TrailDefaultArgs<ExtArgs>
+  }
+  export type TrailCheckIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    trail?: boolean | TrailDefaultArgs<ExtArgs>
+  }
+  export type TrailCheckIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    mountain?: boolean | MountainDefaultArgs<ExtArgs>
+    trail?: boolean | TrailDefaultArgs<ExtArgs>
+  }
+
+  export type $TrailCheckPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TrailCheck"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      mountain: Prisma.$MountainPayload<ExtArgs>
+      trail: Prisma.$TrailPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      mountainId: string
+      trailId: string
+      status: $Enums.STATUS
+      condition: $Enums.TRAIL_CONDITION
+      hazards: boolean
+      snowmaking: boolean
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["trailCheck"]>
+    composites: {}
+  }
+
+  type TrailCheckGetPayload<S extends boolean | null | undefined | TrailCheckDefaultArgs> = $Result.GetResult<Prisma.$TrailCheckPayload, S>
+
+  type TrailCheckCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TrailCheckFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TrailCheckCountAggregateInputType | true
+    }
+
+  export interface TrailCheckDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TrailCheck'], meta: { name: 'TrailCheck' } }
+    /**
+     * Find zero or one TrailCheck that matches the filter.
+     * @param {TrailCheckFindUniqueArgs} args - Arguments to find a TrailCheck
+     * @example
+     * // Get one TrailCheck
+     * const trailCheck = await prisma.trailCheck.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TrailCheckFindUniqueArgs>(args: SelectSubset<T, TrailCheckFindUniqueArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TrailCheck that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TrailCheckFindUniqueOrThrowArgs} args - Arguments to find a TrailCheck
+     * @example
+     * // Get one TrailCheck
+     * const trailCheck = await prisma.trailCheck.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TrailCheckFindUniqueOrThrowArgs>(args: SelectSubset<T, TrailCheckFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TrailCheck that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrailCheckFindFirstArgs} args - Arguments to find a TrailCheck
+     * @example
+     * // Get one TrailCheck
+     * const trailCheck = await prisma.trailCheck.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TrailCheckFindFirstArgs>(args?: SelectSubset<T, TrailCheckFindFirstArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TrailCheck that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrailCheckFindFirstOrThrowArgs} args - Arguments to find a TrailCheck
+     * @example
+     * // Get one TrailCheck
+     * const trailCheck = await prisma.trailCheck.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TrailCheckFindFirstOrThrowArgs>(args?: SelectSubset<T, TrailCheckFindFirstOrThrowArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TrailChecks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrailCheckFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TrailChecks
+     * const trailChecks = await prisma.trailCheck.findMany()
+     * 
+     * // Get first 10 TrailChecks
+     * const trailChecks = await prisma.trailCheck.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const trailCheckWithIdOnly = await prisma.trailCheck.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TrailCheckFindManyArgs>(args?: SelectSubset<T, TrailCheckFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TrailCheck.
+     * @param {TrailCheckCreateArgs} args - Arguments to create a TrailCheck.
+     * @example
+     * // Create one TrailCheck
+     * const TrailCheck = await prisma.trailCheck.create({
+     *   data: {
+     *     // ... data to create a TrailCheck
+     *   }
+     * })
+     * 
+     */
+    create<T extends TrailCheckCreateArgs>(args: SelectSubset<T, TrailCheckCreateArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TrailChecks.
+     * @param {TrailCheckCreateManyArgs} args - Arguments to create many TrailChecks.
+     * @example
+     * // Create many TrailChecks
+     * const trailCheck = await prisma.trailCheck.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TrailCheckCreateManyArgs>(args?: SelectSubset<T, TrailCheckCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TrailChecks and returns the data saved in the database.
+     * @param {TrailCheckCreateManyAndReturnArgs} args - Arguments to create many TrailChecks.
+     * @example
+     * // Create many TrailChecks
+     * const trailCheck = await prisma.trailCheck.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TrailChecks and only return the `id`
+     * const trailCheckWithIdOnly = await prisma.trailCheck.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TrailCheckCreateManyAndReturnArgs>(args?: SelectSubset<T, TrailCheckCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TrailCheck.
+     * @param {TrailCheckDeleteArgs} args - Arguments to delete one TrailCheck.
+     * @example
+     * // Delete one TrailCheck
+     * const TrailCheck = await prisma.trailCheck.delete({
+     *   where: {
+     *     // ... filter to delete one TrailCheck
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TrailCheckDeleteArgs>(args: SelectSubset<T, TrailCheckDeleteArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TrailCheck.
+     * @param {TrailCheckUpdateArgs} args - Arguments to update one TrailCheck.
+     * @example
+     * // Update one TrailCheck
+     * const trailCheck = await prisma.trailCheck.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TrailCheckUpdateArgs>(args: SelectSubset<T, TrailCheckUpdateArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TrailChecks.
+     * @param {TrailCheckDeleteManyArgs} args - Arguments to filter TrailChecks to delete.
+     * @example
+     * // Delete a few TrailChecks
+     * const { count } = await prisma.trailCheck.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TrailCheckDeleteManyArgs>(args?: SelectSubset<T, TrailCheckDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TrailChecks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrailCheckUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TrailChecks
+     * const trailCheck = await prisma.trailCheck.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TrailCheckUpdateManyArgs>(args: SelectSubset<T, TrailCheckUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TrailChecks and returns the data updated in the database.
+     * @param {TrailCheckUpdateManyAndReturnArgs} args - Arguments to update many TrailChecks.
+     * @example
+     * // Update many TrailChecks
+     * const trailCheck = await prisma.trailCheck.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TrailChecks and only return the `id`
+     * const trailCheckWithIdOnly = await prisma.trailCheck.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TrailCheckUpdateManyAndReturnArgs>(args: SelectSubset<T, TrailCheckUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TrailCheck.
+     * @param {TrailCheckUpsertArgs} args - Arguments to update or create a TrailCheck.
+     * @example
+     * // Update or create a TrailCheck
+     * const trailCheck = await prisma.trailCheck.upsert({
+     *   create: {
+     *     // ... data to create a TrailCheck
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TrailCheck we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TrailCheckUpsertArgs>(args: SelectSubset<T, TrailCheckUpsertArgs<ExtArgs>>): Prisma__TrailCheckClient<$Result.GetResult<Prisma.$TrailCheckPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TrailChecks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrailCheckCountArgs} args - Arguments to filter TrailChecks to count.
+     * @example
+     * // Count the number of TrailChecks
+     * const count = await prisma.trailCheck.count({
+     *   where: {
+     *     // ... the filter for the TrailChecks we want to count
+     *   }
+     * })
+    **/
+    count<T extends TrailCheckCountArgs>(
+      args?: Subset<T, TrailCheckCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TrailCheckCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TrailCheck.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrailCheckAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TrailCheckAggregateArgs>(args: Subset<T, TrailCheckAggregateArgs>): Prisma.PrismaPromise<GetTrailCheckAggregateType<T>>
+
+    /**
+     * Group by TrailCheck.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TrailCheckGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TrailCheckGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TrailCheckGroupByArgs['orderBy'] }
+        : { orderBy?: TrailCheckGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TrailCheckGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTrailCheckGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TrailCheck model
+   */
+  readonly fields: TrailCheckFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TrailCheck.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TrailCheckClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    mountain<T extends MountainDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MountainDefaultArgs<ExtArgs>>): Prisma__MountainClient<$Result.GetResult<Prisma.$MountainPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    trail<T extends TrailDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TrailDefaultArgs<ExtArgs>>): Prisma__TrailClient<$Result.GetResult<Prisma.$TrailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TrailCheck model
+   */
+  interface TrailCheckFieldRefs {
+    readonly id: FieldRef<"TrailCheck", 'String'>
+    readonly employeeId: FieldRef<"TrailCheck", 'String'>
+    readonly mountainId: FieldRef<"TrailCheck", 'String'>
+    readonly trailId: FieldRef<"TrailCheck", 'String'>
+    readonly status: FieldRef<"TrailCheck", 'STATUS'>
+    readonly condition: FieldRef<"TrailCheck", 'TRAIL_CONDITION'>
+    readonly hazards: FieldRef<"TrailCheck", 'Boolean'>
+    readonly snowmaking: FieldRef<"TrailCheck", 'Boolean'>
+    readonly notes: FieldRef<"TrailCheck", 'String'>
+    readonly createdAt: FieldRef<"TrailCheck", 'DateTime'>
+    readonly updatedAt: FieldRef<"TrailCheck", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TrailCheck findUnique
+   */
+  export type TrailCheckFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which TrailCheck to fetch.
+     */
+    where: TrailCheckWhereUniqueInput
+  }
+
+  /**
+   * TrailCheck findUniqueOrThrow
+   */
+  export type TrailCheckFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which TrailCheck to fetch.
+     */
+    where: TrailCheckWhereUniqueInput
+  }
+
+  /**
+   * TrailCheck findFirst
+   */
+  export type TrailCheckFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which TrailCheck to fetch.
+     */
+    where?: TrailCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TrailChecks to fetch.
+     */
+    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TrailChecks.
+     */
+    cursor?: TrailCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TrailChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TrailChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TrailChecks.
+     */
+    distinct?: TrailCheckScalarFieldEnum | TrailCheckScalarFieldEnum[]
+  }
+
+  /**
+   * TrailCheck findFirstOrThrow
+   */
+  export type TrailCheckFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which TrailCheck to fetch.
+     */
+    where?: TrailCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TrailChecks to fetch.
+     */
+    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TrailChecks.
+     */
+    cursor?: TrailCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TrailChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TrailChecks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TrailChecks.
+     */
+    distinct?: TrailCheckScalarFieldEnum | TrailCheckScalarFieldEnum[]
+  }
+
+  /**
+   * TrailCheck findMany
+   */
+  export type TrailCheckFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * Filter, which TrailChecks to fetch.
+     */
+    where?: TrailCheckWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TrailChecks to fetch.
+     */
+    orderBy?: TrailCheckOrderByWithRelationInput | TrailCheckOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TrailChecks.
+     */
+    cursor?: TrailCheckWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TrailChecks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TrailChecks.
+     */
+    skip?: number
+    distinct?: TrailCheckScalarFieldEnum | TrailCheckScalarFieldEnum[]
+  }
+
+  /**
+   * TrailCheck create
+   */
+  export type TrailCheckCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TrailCheck.
+     */
+    data: XOR<TrailCheckCreateInput, TrailCheckUncheckedCreateInput>
+  }
+
+  /**
+   * TrailCheck createMany
+   */
+  export type TrailCheckCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TrailChecks.
+     */
+    data: TrailCheckCreateManyInput | TrailCheckCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TrailCheck createManyAndReturn
+   */
+  export type TrailCheckCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * The data used to create many TrailChecks.
+     */
+    data: TrailCheckCreateManyInput | TrailCheckCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TrailCheck update
+   */
+  export type TrailCheckUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TrailCheck.
+     */
+    data: XOR<TrailCheckUpdateInput, TrailCheckUncheckedUpdateInput>
+    /**
+     * Choose, which TrailCheck to update.
+     */
+    where: TrailCheckWhereUniqueInput
+  }
+
+  /**
+   * TrailCheck updateMany
+   */
+  export type TrailCheckUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TrailChecks.
+     */
+    data: XOR<TrailCheckUpdateManyMutationInput, TrailCheckUncheckedUpdateManyInput>
+    /**
+     * Filter which TrailChecks to update
+     */
+    where?: TrailCheckWhereInput
+    /**
+     * Limit how many TrailChecks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TrailCheck updateManyAndReturn
+   */
+  export type TrailCheckUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * The data used to update TrailChecks.
+     */
+    data: XOR<TrailCheckUpdateManyMutationInput, TrailCheckUncheckedUpdateManyInput>
+    /**
+     * Filter which TrailChecks to update
+     */
+    where?: TrailCheckWhereInput
+    /**
+     * Limit how many TrailChecks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TrailCheck upsert
+   */
+  export type TrailCheckUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TrailCheck to update in case it exists.
+     */
+    where: TrailCheckWhereUniqueInput
+    /**
+     * In case the TrailCheck found by the `where` argument doesn't exist, create a new TrailCheck with this data.
+     */
+    create: XOR<TrailCheckCreateInput, TrailCheckUncheckedCreateInput>
+    /**
+     * In case the TrailCheck was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TrailCheckUpdateInput, TrailCheckUncheckedUpdateInput>
+  }
+
+  /**
+   * TrailCheck delete
+   */
+  export type TrailCheckDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+    /**
+     * Filter which TrailCheck to delete.
+     */
+    where: TrailCheckWhereUniqueInput
+  }
+
+  /**
+   * TrailCheck deleteMany
+   */
+  export type TrailCheckDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TrailChecks to delete
+     */
+    where?: TrailCheckWhereInput
+    /**
+     * Limit how many TrailChecks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TrailCheck without action
+   */
+  export type TrailCheckDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TrailCheck
+     */
+    select?: TrailCheckSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TrailCheck
+     */
+    omit?: TrailCheckOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TrailCheckInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model EquipmentCheck
    */
 
@@ -32485,7 +32859,6 @@ export namespace Prisma {
 
   export type EquipmentCheckMinAggregateOutputType = {
     id: string | null
-    recordedAt: Date | null
     employeeId: string | null
     mountainId: string | null
     equipmentId: string | null
@@ -32496,7 +32869,6 @@ export namespace Prisma {
 
   export type EquipmentCheckMaxAggregateOutputType = {
     id: string | null
-    recordedAt: Date | null
     employeeId: string | null
     mountainId: string | null
     equipmentId: string | null
@@ -32507,7 +32879,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCountAggregateOutputType = {
     id: number
-    recordedAt: number
     employeeId: number
     mountainId: number
     equipmentId: number
@@ -32520,7 +32891,6 @@ export namespace Prisma {
 
   export type EquipmentCheckMinAggregateInputType = {
     id?: true
-    recordedAt?: true
     employeeId?: true
     mountainId?: true
     equipmentId?: true
@@ -32531,7 +32901,6 @@ export namespace Prisma {
 
   export type EquipmentCheckMaxAggregateInputType = {
     id?: true
-    recordedAt?: true
     employeeId?: true
     mountainId?: true
     equipmentId?: true
@@ -32542,7 +32911,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCountAggregateInputType = {
     id?: true
-    recordedAt?: true
     employeeId?: true
     mountainId?: true
     equipmentId?: true
@@ -32626,7 +32994,6 @@ export namespace Prisma {
 
   export type EquipmentCheckGroupByOutputType = {
     id: string
-    recordedAt: Date
     employeeId: string
     mountainId: string
     equipmentId: string
@@ -32654,7 +33021,6 @@ export namespace Prisma {
 
   export type EquipmentCheckSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    recordedAt?: boolean
     employeeId?: boolean
     mountainId?: boolean
     equipmentId?: boolean
@@ -32668,7 +33034,6 @@ export namespace Prisma {
 
   export type EquipmentCheckSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    recordedAt?: boolean
     employeeId?: boolean
     mountainId?: boolean
     equipmentId?: boolean
@@ -32682,7 +33047,6 @@ export namespace Prisma {
 
   export type EquipmentCheckSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    recordedAt?: boolean
     employeeId?: boolean
     mountainId?: boolean
     equipmentId?: boolean
@@ -32696,7 +33060,6 @@ export namespace Prisma {
 
   export type EquipmentCheckSelectScalar = {
     id?: boolean
-    recordedAt?: boolean
     employeeId?: boolean
     mountainId?: boolean
     equipmentId?: boolean
@@ -32705,7 +33068,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type EquipmentCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "recordedAt" | "employeeId" | "mountainId" | "equipmentId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["equipmentCheck"]>
+  export type EquipmentCheckOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "mountainId" | "equipmentId" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["equipmentCheck"]>
   export type EquipmentCheckInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     mountain?: boolean | MountainDefaultArgs<ExtArgs>
@@ -32731,7 +33094,6 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      recordedAt: Date
       employeeId: string
       mountainId: string
       equipmentId: string
@@ -33165,7 +33527,6 @@ export namespace Prisma {
    */
   interface EquipmentCheckFieldRefs {
     readonly id: FieldRef<"EquipmentCheck", 'String'>
-    readonly recordedAt: FieldRef<"EquipmentCheck", 'DateTime'>
     readonly employeeId: FieldRef<"EquipmentCheck", 'String'>
     readonly mountainId: FieldRef<"EquipmentCheck", 'String'>
     readonly equipmentId: FieldRef<"EquipmentCheck", 'String'>
@@ -33661,13 +34022,28 @@ export namespace Prisma {
     mountainId: 'mountainId',
     date: 'date',
     temperature: 'temperature',
+    feelsLikeTemperature: 'feelsLikeTemperature',
+    humidity: 'humidity',
+    dewPoint: 'dewPoint',
     windSpeed: 'windSpeed',
     windDirection: 'windDirection',
+    windGust: 'windGust',
     visibility: 'visibility',
     conditions: 'conditions',
     snowfallRecent: 'snowfallRecent',
     snowfall24h: 'snowfall24h',
     snowfall7d: 'snowfall7d',
+    snowDepthBase: 'snowDepthBase',
+    snowDepthSummit: 'snowDepthSummit',
+    isSnowmakingPossible: 'isSnowmakingPossible',
+    precipitationType: 'precipitationType',
+    precipitationIntensity: 'precipitationIntensity',
+    precipitationChance: 'precipitationChance',
+    stormWarning: 'stormWarning',
+    cloudCoverage: 'cloudCoverage',
+    uvIndex: 'uvIndex',
+    sunriseTime: 'sunriseTime',
+    sunsetTime: 'sunsetTime',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -33886,12 +34262,45 @@ export namespace Prisma {
   export type IncidentEquipmentUsageLogScalarFieldEnum = (typeof IncidentEquipmentUsageLogScalarFieldEnum)[keyof typeof IncidentEquipmentUsageLogScalarFieldEnum]
 
 
+  export const AidRoomCheckScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    mountainId: 'mountainId',
+    aidRoomId: 'aidRoomId',
+    equipmentIssues: 'equipmentIssues',
+    equipmentNotes: 'equipmentNotes',
+    paperworkStocked: 'paperworkStocked',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AidRoomCheckScalarFieldEnum = (typeof AidRoomCheckScalarFieldEnum)[keyof typeof AidRoomCheckScalarFieldEnum]
+
+
+  export const HutCheckScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    mountainId: 'mountainId',
+    hutId: 'hutId',
+    equipmentIssues: 'equipmentIssues',
+    equipmentNotes: 'equipmentNotes',
+    paperworkStocked: 'paperworkStocked',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HutCheckScalarFieldEnum = (typeof HutCheckScalarFieldEnum)[keyof typeof HutCheckScalarFieldEnum]
+
+
   export const LiftCheckScalarFieldEnum: {
     id: 'id',
-    recordedAt: 'recordedAt',
     employeeId: 'employeeId',
     mountainId: 'mountainId',
     liftId: 'liftId',
+    hazards: 'hazards',
+    status: 'status',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -33902,10 +34311,13 @@ export namespace Prisma {
 
   export const TrailCheckScalarFieldEnum: {
     id: 'id',
-    recordedAt: 'recordedAt',
     employeeId: 'employeeId',
     mountainId: 'mountainId',
     trailId: 'trailId',
+    status: 'status',
+    condition: 'condition',
+    hazards: 'hazards',
+    snowmaking: 'snowmaking',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -33914,37 +34326,8 @@ export namespace Prisma {
   export type TrailCheckScalarFieldEnum = (typeof TrailCheckScalarFieldEnum)[keyof typeof TrailCheckScalarFieldEnum]
 
 
-  export const HutCheckScalarFieldEnum: {
-    id: 'id',
-    recordedAt: 'recordedAt',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
-    hutId: 'hutId',
-    notes: 'notes',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type HutCheckScalarFieldEnum = (typeof HutCheckScalarFieldEnum)[keyof typeof HutCheckScalarFieldEnum]
-
-
-  export const AidRoomCheckScalarFieldEnum: {
-    id: 'id',
-    recordedAt: 'recordedAt',
-    employeeId: 'employeeId',
-    mountainId: 'mountainId',
-    aidRoomId: 'aidRoomId',
-    notes: 'notes',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type AidRoomCheckScalarFieldEnum = (typeof AidRoomCheckScalarFieldEnum)[keyof typeof AidRoomCheckScalarFieldEnum]
-
-
   export const EquipmentCheckScalarFieldEnum: {
     id: 'id',
-    recordedAt: 'recordedAt',
     employeeId: 'employeeId',
     mountainId: 'mountainId',
     equipmentId: 'equipmentId',
@@ -34098,6 +34481,27 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'PRECIPITATION_TYPE'
+   */
+  export type EnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PRECIPITATION_TYPE'>
+    
+
+
+  /**
+   * Reference to a field of type 'PRECIPITATION_TYPE[]'
+   */
+  export type ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PRECIPITATION_TYPE[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DEPARTMENT'
    */
   export type EnumDEPARTMENTFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DEPARTMENT'>
@@ -34206,13 +34610,6 @@ export namespace Prisma {
    * Reference to a field of type 'INCIDENT_STATUS[]'
    */
   export type ListEnumINCIDENT_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'INCIDENT_STATUS[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -34597,13 +34994,28 @@ export namespace Prisma {
     mountainId?: StringFilter<"Weather"> | string
     date?: DateTimeFilter<"Weather"> | Date | string
     temperature?: FloatFilter<"Weather"> | number
-    windSpeed?: FloatFilter<"Weather"> | number
+    feelsLikeTemperature?: FloatNullableFilter<"Weather"> | number | null
+    humidity?: FloatNullableFilter<"Weather"> | number | null
+    dewPoint?: FloatNullableFilter<"Weather"> | number | null
+    windSpeed?: FloatNullableFilter<"Weather"> | number | null
     windDirection?: StringNullableFilter<"Weather"> | string | null
+    windGust?: FloatNullableFilter<"Weather"> | number | null
     visibility?: FloatNullableFilter<"Weather"> | number | null
-    conditions?: StringFilter<"Weather"> | string
+    conditions?: StringNullableFilter<"Weather"> | string | null
     snowfallRecent?: FloatNullableFilter<"Weather"> | number | null
     snowfall24h?: FloatNullableFilter<"Weather"> | number | null
     snowfall7d?: FloatNullableFilter<"Weather"> | number | null
+    snowDepthBase?: FloatNullableFilter<"Weather"> | number | null
+    snowDepthSummit?: FloatNullableFilter<"Weather"> | number | null
+    isSnowmakingPossible?: BoolNullableFilter<"Weather"> | boolean | null
+    precipitationType?: EnumPRECIPITATION_TYPENullableFilter<"Weather"> | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: FloatNullableFilter<"Weather"> | number | null
+    precipitationChance?: FloatNullableFilter<"Weather"> | number | null
+    stormWarning?: BoolNullableFilter<"Weather"> | boolean | null
+    cloudCoverage?: FloatNullableFilter<"Weather"> | number | null
+    uvIndex?: IntNullableFilter<"Weather"> | number | null
+    sunriseTime?: DateTimeNullableFilter<"Weather"> | Date | string | null
+    sunsetTime?: DateTimeNullableFilter<"Weather"> | Date | string | null
     createdAt?: DateTimeFilter<"Weather"> | Date | string
     updatedAt?: DateTimeFilter<"Weather"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -34614,13 +35026,28 @@ export namespace Prisma {
     mountainId?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
-    windSpeed?: SortOrder
+    feelsLikeTemperature?: SortOrderInput | SortOrder
+    humidity?: SortOrderInput | SortOrder
+    dewPoint?: SortOrderInput | SortOrder
+    windSpeed?: SortOrderInput | SortOrder
     windDirection?: SortOrderInput | SortOrder
+    windGust?: SortOrderInput | SortOrder
     visibility?: SortOrderInput | SortOrder
-    conditions?: SortOrder
+    conditions?: SortOrderInput | SortOrder
     snowfallRecent?: SortOrderInput | SortOrder
     snowfall24h?: SortOrderInput | SortOrder
     snowfall7d?: SortOrderInput | SortOrder
+    snowDepthBase?: SortOrderInput | SortOrder
+    snowDepthSummit?: SortOrderInput | SortOrder
+    isSnowmakingPossible?: SortOrderInput | SortOrder
+    precipitationType?: SortOrderInput | SortOrder
+    precipitationIntensity?: SortOrderInput | SortOrder
+    precipitationChance?: SortOrderInput | SortOrder
+    stormWarning?: SortOrderInput | SortOrder
+    cloudCoverage?: SortOrderInput | SortOrder
+    uvIndex?: SortOrderInput | SortOrder
+    sunriseTime?: SortOrderInput | SortOrder
+    sunsetTime?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     mountain?: MountainOrderByWithRelationInput
@@ -34634,13 +35061,28 @@ export namespace Prisma {
     mountainId?: StringFilter<"Weather"> | string
     date?: DateTimeFilter<"Weather"> | Date | string
     temperature?: FloatFilter<"Weather"> | number
-    windSpeed?: FloatFilter<"Weather"> | number
+    feelsLikeTemperature?: FloatNullableFilter<"Weather"> | number | null
+    humidity?: FloatNullableFilter<"Weather"> | number | null
+    dewPoint?: FloatNullableFilter<"Weather"> | number | null
+    windSpeed?: FloatNullableFilter<"Weather"> | number | null
     windDirection?: StringNullableFilter<"Weather"> | string | null
+    windGust?: FloatNullableFilter<"Weather"> | number | null
     visibility?: FloatNullableFilter<"Weather"> | number | null
-    conditions?: StringFilter<"Weather"> | string
+    conditions?: StringNullableFilter<"Weather"> | string | null
     snowfallRecent?: FloatNullableFilter<"Weather"> | number | null
     snowfall24h?: FloatNullableFilter<"Weather"> | number | null
     snowfall7d?: FloatNullableFilter<"Weather"> | number | null
+    snowDepthBase?: FloatNullableFilter<"Weather"> | number | null
+    snowDepthSummit?: FloatNullableFilter<"Weather"> | number | null
+    isSnowmakingPossible?: BoolNullableFilter<"Weather"> | boolean | null
+    precipitationType?: EnumPRECIPITATION_TYPENullableFilter<"Weather"> | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: FloatNullableFilter<"Weather"> | number | null
+    precipitationChance?: FloatNullableFilter<"Weather"> | number | null
+    stormWarning?: BoolNullableFilter<"Weather"> | boolean | null
+    cloudCoverage?: FloatNullableFilter<"Weather"> | number | null
+    uvIndex?: IntNullableFilter<"Weather"> | number | null
+    sunriseTime?: DateTimeNullableFilter<"Weather"> | Date | string | null
+    sunsetTime?: DateTimeNullableFilter<"Weather"> | Date | string | null
     createdAt?: DateTimeFilter<"Weather"> | Date | string
     updatedAt?: DateTimeFilter<"Weather"> | Date | string
     mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
@@ -34651,13 +35093,28 @@ export namespace Prisma {
     mountainId?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
-    windSpeed?: SortOrder
+    feelsLikeTemperature?: SortOrderInput | SortOrder
+    humidity?: SortOrderInput | SortOrder
+    dewPoint?: SortOrderInput | SortOrder
+    windSpeed?: SortOrderInput | SortOrder
     windDirection?: SortOrderInput | SortOrder
+    windGust?: SortOrderInput | SortOrder
     visibility?: SortOrderInput | SortOrder
-    conditions?: SortOrder
+    conditions?: SortOrderInput | SortOrder
     snowfallRecent?: SortOrderInput | SortOrder
     snowfall24h?: SortOrderInput | SortOrder
     snowfall7d?: SortOrderInput | SortOrder
+    snowDepthBase?: SortOrderInput | SortOrder
+    snowDepthSummit?: SortOrderInput | SortOrder
+    isSnowmakingPossible?: SortOrderInput | SortOrder
+    precipitationType?: SortOrderInput | SortOrder
+    precipitationIntensity?: SortOrderInput | SortOrder
+    precipitationChance?: SortOrderInput | SortOrder
+    stormWarning?: SortOrderInput | SortOrder
+    cloudCoverage?: SortOrderInput | SortOrder
+    uvIndex?: SortOrderInput | SortOrder
+    sunriseTime?: SortOrderInput | SortOrder
+    sunsetTime?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: WeatherCountOrderByAggregateInput
@@ -34675,13 +35132,28 @@ export namespace Prisma {
     mountainId?: StringWithAggregatesFilter<"Weather"> | string
     date?: DateTimeWithAggregatesFilter<"Weather"> | Date | string
     temperature?: FloatWithAggregatesFilter<"Weather"> | number
-    windSpeed?: FloatWithAggregatesFilter<"Weather"> | number
+    feelsLikeTemperature?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    humidity?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    dewPoint?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    windSpeed?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
     windDirection?: StringNullableWithAggregatesFilter<"Weather"> | string | null
+    windGust?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
     visibility?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
-    conditions?: StringWithAggregatesFilter<"Weather"> | string
+    conditions?: StringNullableWithAggregatesFilter<"Weather"> | string | null
     snowfallRecent?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
     snowfall24h?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
     snowfall7d?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    snowDepthBase?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    snowDepthSummit?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    isSnowmakingPossible?: BoolNullableWithAggregatesFilter<"Weather"> | boolean | null
+    precipitationType?: EnumPRECIPITATION_TYPENullableWithAggregatesFilter<"Weather"> | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    precipitationChance?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    stormWarning?: BoolNullableWithAggregatesFilter<"Weather"> | boolean | null
+    cloudCoverage?: FloatNullableWithAggregatesFilter<"Weather"> | number | null
+    uvIndex?: IntNullableWithAggregatesFilter<"Weather"> | number | null
+    sunriseTime?: DateTimeNullableWithAggregatesFilter<"Weather"> | Date | string | null
+    sunsetTime?: DateTimeNullableWithAggregatesFilter<"Weather"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Weather"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Weather"> | Date | string
   }
@@ -35872,243 +36344,17 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"IncidentEquipmentUsageLog"> | Date | string
   }
 
-  export type LiftCheckWhereInput = {
-    AND?: LiftCheckWhereInput | LiftCheckWhereInput[]
-    OR?: LiftCheckWhereInput[]
-    NOT?: LiftCheckWhereInput | LiftCheckWhereInput[]
-    id?: StringFilter<"LiftCheck"> | string
-    recordedAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    employeeId?: StringFilter<"LiftCheck"> | string
-    mountainId?: StringFilter<"LiftCheck"> | string
-    liftId?: StringFilter<"LiftCheck"> | string
-    notes?: StringNullableFilter<"LiftCheck"> | string | null
-    createdAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    updatedAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
-    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    lift?: XOR<LiftScalarRelationFilter, LiftWhereInput>
-  }
-
-  export type LiftCheckOrderByWithRelationInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    liftId?: SortOrder
-    notes?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    employee?: EmployeeOrderByWithRelationInput
-    mountain?: MountainOrderByWithRelationInput
-    lift?: LiftOrderByWithRelationInput
-  }
-
-  export type LiftCheckWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: LiftCheckWhereInput | LiftCheckWhereInput[]
-    OR?: LiftCheckWhereInput[]
-    NOT?: LiftCheckWhereInput | LiftCheckWhereInput[]
-    recordedAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    employeeId?: StringFilter<"LiftCheck"> | string
-    mountainId?: StringFilter<"LiftCheck"> | string
-    liftId?: StringFilter<"LiftCheck"> | string
-    notes?: StringNullableFilter<"LiftCheck"> | string | null
-    createdAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    updatedAt?: DateTimeFilter<"LiftCheck"> | Date | string
-    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
-    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    lift?: XOR<LiftScalarRelationFilter, LiftWhereInput>
-  }, "id">
-
-  export type LiftCheckOrderByWithAggregationInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    liftId?: SortOrder
-    notes?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: LiftCheckCountOrderByAggregateInput
-    _max?: LiftCheckMaxOrderByAggregateInput
-    _min?: LiftCheckMinOrderByAggregateInput
-  }
-
-  export type LiftCheckScalarWhereWithAggregatesInput = {
-    AND?: LiftCheckScalarWhereWithAggregatesInput | LiftCheckScalarWhereWithAggregatesInput[]
-    OR?: LiftCheckScalarWhereWithAggregatesInput[]
-    NOT?: LiftCheckScalarWhereWithAggregatesInput | LiftCheckScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"LiftCheck"> | string
-    recordedAt?: DateTimeWithAggregatesFilter<"LiftCheck"> | Date | string
-    employeeId?: StringWithAggregatesFilter<"LiftCheck"> | string
-    mountainId?: StringWithAggregatesFilter<"LiftCheck"> | string
-    liftId?: StringWithAggregatesFilter<"LiftCheck"> | string
-    notes?: StringNullableWithAggregatesFilter<"LiftCheck"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"LiftCheck"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"LiftCheck"> | Date | string
-  }
-
-  export type TrailCheckWhereInput = {
-    AND?: TrailCheckWhereInput | TrailCheckWhereInput[]
-    OR?: TrailCheckWhereInput[]
-    NOT?: TrailCheckWhereInput | TrailCheckWhereInput[]
-    id?: StringFilter<"TrailCheck"> | string
-    recordedAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    employeeId?: StringFilter<"TrailCheck"> | string
-    mountainId?: StringFilter<"TrailCheck"> | string
-    trailId?: StringFilter<"TrailCheck"> | string
-    notes?: StringNullableFilter<"TrailCheck"> | string | null
-    createdAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    updatedAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
-    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    trail?: XOR<TrailScalarRelationFilter, TrailWhereInput>
-  }
-
-  export type TrailCheckOrderByWithRelationInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
-    notes?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    employee?: EmployeeOrderByWithRelationInput
-    mountain?: MountainOrderByWithRelationInput
-    trail?: TrailOrderByWithRelationInput
-  }
-
-  export type TrailCheckWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: TrailCheckWhereInput | TrailCheckWhereInput[]
-    OR?: TrailCheckWhereInput[]
-    NOT?: TrailCheckWhereInput | TrailCheckWhereInput[]
-    recordedAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    employeeId?: StringFilter<"TrailCheck"> | string
-    mountainId?: StringFilter<"TrailCheck"> | string
-    trailId?: StringFilter<"TrailCheck"> | string
-    notes?: StringNullableFilter<"TrailCheck"> | string | null
-    createdAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    updatedAt?: DateTimeFilter<"TrailCheck"> | Date | string
-    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
-    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    trail?: XOR<TrailScalarRelationFilter, TrailWhereInput>
-  }, "id">
-
-  export type TrailCheckOrderByWithAggregationInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
-    notes?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: TrailCheckCountOrderByAggregateInput
-    _max?: TrailCheckMaxOrderByAggregateInput
-    _min?: TrailCheckMinOrderByAggregateInput
-  }
-
-  export type TrailCheckScalarWhereWithAggregatesInput = {
-    AND?: TrailCheckScalarWhereWithAggregatesInput | TrailCheckScalarWhereWithAggregatesInput[]
-    OR?: TrailCheckScalarWhereWithAggregatesInput[]
-    NOT?: TrailCheckScalarWhereWithAggregatesInput | TrailCheckScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"TrailCheck"> | string
-    recordedAt?: DateTimeWithAggregatesFilter<"TrailCheck"> | Date | string
-    employeeId?: StringWithAggregatesFilter<"TrailCheck"> | string
-    mountainId?: StringWithAggregatesFilter<"TrailCheck"> | string
-    trailId?: StringWithAggregatesFilter<"TrailCheck"> | string
-    notes?: StringNullableWithAggregatesFilter<"TrailCheck"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"TrailCheck"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"TrailCheck"> | Date | string
-  }
-
-  export type HutCheckWhereInput = {
-    AND?: HutCheckWhereInput | HutCheckWhereInput[]
-    OR?: HutCheckWhereInput[]
-    NOT?: HutCheckWhereInput | HutCheckWhereInput[]
-    id?: StringFilter<"HutCheck"> | string
-    recordedAt?: DateTimeFilter<"HutCheck"> | Date | string
-    employeeId?: StringFilter<"HutCheck"> | string
-    mountainId?: StringFilter<"HutCheck"> | string
-    hutId?: StringFilter<"HutCheck"> | string
-    notes?: StringNullableFilter<"HutCheck"> | string | null
-    createdAt?: DateTimeFilter<"HutCheck"> | Date | string
-    updatedAt?: DateTimeFilter<"HutCheck"> | Date | string
-    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
-    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    hut?: XOR<HutScalarRelationFilter, HutWhereInput>
-  }
-
-  export type HutCheckOrderByWithRelationInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    hutId?: SortOrder
-    notes?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    employee?: EmployeeOrderByWithRelationInput
-    mountain?: MountainOrderByWithRelationInput
-    hut?: HutOrderByWithRelationInput
-  }
-
-  export type HutCheckWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: HutCheckWhereInput | HutCheckWhereInput[]
-    OR?: HutCheckWhereInput[]
-    NOT?: HutCheckWhereInput | HutCheckWhereInput[]
-    recordedAt?: DateTimeFilter<"HutCheck"> | Date | string
-    employeeId?: StringFilter<"HutCheck"> | string
-    mountainId?: StringFilter<"HutCheck"> | string
-    hutId?: StringFilter<"HutCheck"> | string
-    notes?: StringNullableFilter<"HutCheck"> | string | null
-    createdAt?: DateTimeFilter<"HutCheck"> | Date | string
-    updatedAt?: DateTimeFilter<"HutCheck"> | Date | string
-    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
-    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
-    hut?: XOR<HutScalarRelationFilter, HutWhereInput>
-  }, "id">
-
-  export type HutCheckOrderByWithAggregationInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    hutId?: SortOrder
-    notes?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: HutCheckCountOrderByAggregateInput
-    _max?: HutCheckMaxOrderByAggregateInput
-    _min?: HutCheckMinOrderByAggregateInput
-  }
-
-  export type HutCheckScalarWhereWithAggregatesInput = {
-    AND?: HutCheckScalarWhereWithAggregatesInput | HutCheckScalarWhereWithAggregatesInput[]
-    OR?: HutCheckScalarWhereWithAggregatesInput[]
-    NOT?: HutCheckScalarWhereWithAggregatesInput | HutCheckScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"HutCheck"> | string
-    recordedAt?: DateTimeWithAggregatesFilter<"HutCheck"> | Date | string
-    employeeId?: StringWithAggregatesFilter<"HutCheck"> | string
-    mountainId?: StringWithAggregatesFilter<"HutCheck"> | string
-    hutId?: StringWithAggregatesFilter<"HutCheck"> | string
-    notes?: StringNullableWithAggregatesFilter<"HutCheck"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"HutCheck"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"HutCheck"> | Date | string
-  }
-
   export type AidRoomCheckWhereInput = {
     AND?: AidRoomCheckWhereInput | AidRoomCheckWhereInput[]
     OR?: AidRoomCheckWhereInput[]
     NOT?: AidRoomCheckWhereInput | AidRoomCheckWhereInput[]
     id?: StringFilter<"AidRoomCheck"> | string
-    recordedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     employeeId?: StringFilter<"AidRoomCheck"> | string
     mountainId?: StringFilter<"AidRoomCheck"> | string
     aidRoomId?: StringFilter<"AidRoomCheck"> | string
+    equipmentIssues?: BoolFilter<"AidRoomCheck"> | boolean
+    equipmentNotes?: StringNullableFilter<"AidRoomCheck"> | string | null
+    paperworkStocked?: BoolFilter<"AidRoomCheck"> | boolean
     notes?: StringNullableFilter<"AidRoomCheck"> | string | null
     createdAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     updatedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
@@ -36119,10 +36365,12 @@ export namespace Prisma {
 
   export type AidRoomCheckOrderByWithRelationInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     aidRoomId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrderInput | SortOrder
+    paperworkStocked?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36136,10 +36384,12 @@ export namespace Prisma {
     AND?: AidRoomCheckWhereInput | AidRoomCheckWhereInput[]
     OR?: AidRoomCheckWhereInput[]
     NOT?: AidRoomCheckWhereInput | AidRoomCheckWhereInput[]
-    recordedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     employeeId?: StringFilter<"AidRoomCheck"> | string
     mountainId?: StringFilter<"AidRoomCheck"> | string
     aidRoomId?: StringFilter<"AidRoomCheck"> | string
+    equipmentIssues?: BoolFilter<"AidRoomCheck"> | boolean
+    equipmentNotes?: StringNullableFilter<"AidRoomCheck"> | string | null
+    paperworkStocked?: BoolFilter<"AidRoomCheck"> | boolean
     notes?: StringNullableFilter<"AidRoomCheck"> | string | null
     createdAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     updatedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
@@ -36150,10 +36400,12 @@ export namespace Prisma {
 
   export type AidRoomCheckOrderByWithAggregationInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     aidRoomId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrderInput | SortOrder
+    paperworkStocked?: SortOrder
     notes?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -36167,13 +36419,273 @@ export namespace Prisma {
     OR?: AidRoomCheckScalarWhereWithAggregatesInput[]
     NOT?: AidRoomCheckScalarWhereWithAggregatesInput | AidRoomCheckScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"AidRoomCheck"> | string
-    recordedAt?: DateTimeWithAggregatesFilter<"AidRoomCheck"> | Date | string
     employeeId?: StringWithAggregatesFilter<"AidRoomCheck"> | string
     mountainId?: StringWithAggregatesFilter<"AidRoomCheck"> | string
     aidRoomId?: StringWithAggregatesFilter<"AidRoomCheck"> | string
+    equipmentIssues?: BoolWithAggregatesFilter<"AidRoomCheck"> | boolean
+    equipmentNotes?: StringNullableWithAggregatesFilter<"AidRoomCheck"> | string | null
+    paperworkStocked?: BoolWithAggregatesFilter<"AidRoomCheck"> | boolean
     notes?: StringNullableWithAggregatesFilter<"AidRoomCheck"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"AidRoomCheck"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AidRoomCheck"> | Date | string
+  }
+
+  export type HutCheckWhereInput = {
+    AND?: HutCheckWhereInput | HutCheckWhereInput[]
+    OR?: HutCheckWhereInput[]
+    NOT?: HutCheckWhereInput | HutCheckWhereInput[]
+    id?: StringFilter<"HutCheck"> | string
+    employeeId?: StringFilter<"HutCheck"> | string
+    mountainId?: StringFilter<"HutCheck"> | string
+    hutId?: StringFilter<"HutCheck"> | string
+    equipmentIssues?: BoolFilter<"HutCheck"> | boolean
+    equipmentNotes?: StringNullableFilter<"HutCheck"> | string | null
+    paperworkStocked?: BoolFilter<"HutCheck"> | boolean
+    notes?: StringNullableFilter<"HutCheck"> | string | null
+    createdAt?: DateTimeFilter<"HutCheck"> | Date | string
+    updatedAt?: DateTimeFilter<"HutCheck"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+    hut?: XOR<HutScalarRelationFilter, HutWhereInput>
+  }
+
+  export type HutCheckOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    hutId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrderInput | SortOrder
+    paperworkStocked?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    mountain?: MountainOrderByWithRelationInput
+    hut?: HutOrderByWithRelationInput
+  }
+
+  export type HutCheckWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: HutCheckWhereInput | HutCheckWhereInput[]
+    OR?: HutCheckWhereInput[]
+    NOT?: HutCheckWhereInput | HutCheckWhereInput[]
+    employeeId?: StringFilter<"HutCheck"> | string
+    mountainId?: StringFilter<"HutCheck"> | string
+    hutId?: StringFilter<"HutCheck"> | string
+    equipmentIssues?: BoolFilter<"HutCheck"> | boolean
+    equipmentNotes?: StringNullableFilter<"HutCheck"> | string | null
+    paperworkStocked?: BoolFilter<"HutCheck"> | boolean
+    notes?: StringNullableFilter<"HutCheck"> | string | null
+    createdAt?: DateTimeFilter<"HutCheck"> | Date | string
+    updatedAt?: DateTimeFilter<"HutCheck"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+    hut?: XOR<HutScalarRelationFilter, HutWhereInput>
+  }, "id">
+
+  export type HutCheckOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    hutId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrderInput | SortOrder
+    paperworkStocked?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HutCheckCountOrderByAggregateInput
+    _max?: HutCheckMaxOrderByAggregateInput
+    _min?: HutCheckMinOrderByAggregateInput
+  }
+
+  export type HutCheckScalarWhereWithAggregatesInput = {
+    AND?: HutCheckScalarWhereWithAggregatesInput | HutCheckScalarWhereWithAggregatesInput[]
+    OR?: HutCheckScalarWhereWithAggregatesInput[]
+    NOT?: HutCheckScalarWhereWithAggregatesInput | HutCheckScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"HutCheck"> | string
+    employeeId?: StringWithAggregatesFilter<"HutCheck"> | string
+    mountainId?: StringWithAggregatesFilter<"HutCheck"> | string
+    hutId?: StringWithAggregatesFilter<"HutCheck"> | string
+    equipmentIssues?: BoolWithAggregatesFilter<"HutCheck"> | boolean
+    equipmentNotes?: StringNullableWithAggregatesFilter<"HutCheck"> | string | null
+    paperworkStocked?: BoolWithAggregatesFilter<"HutCheck"> | boolean
+    notes?: StringNullableWithAggregatesFilter<"HutCheck"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"HutCheck"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"HutCheck"> | Date | string
+  }
+
+  export type LiftCheckWhereInput = {
+    AND?: LiftCheckWhereInput | LiftCheckWhereInput[]
+    OR?: LiftCheckWhereInput[]
+    NOT?: LiftCheckWhereInput | LiftCheckWhereInput[]
+    id?: StringFilter<"LiftCheck"> | string
+    employeeId?: StringFilter<"LiftCheck"> | string
+    mountainId?: StringFilter<"LiftCheck"> | string
+    liftId?: StringFilter<"LiftCheck"> | string
+    hazards?: BoolFilter<"LiftCheck"> | boolean
+    status?: EnumSTATUSFilter<"LiftCheck"> | $Enums.STATUS
+    notes?: StringNullableFilter<"LiftCheck"> | string | null
+    createdAt?: DateTimeFilter<"LiftCheck"> | Date | string
+    updatedAt?: DateTimeFilter<"LiftCheck"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+    lift?: XOR<LiftScalarRelationFilter, LiftWhereInput>
+  }
+
+  export type LiftCheckOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    liftId?: SortOrder
+    hazards?: SortOrder
+    status?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    mountain?: MountainOrderByWithRelationInput
+    lift?: LiftOrderByWithRelationInput
+  }
+
+  export type LiftCheckWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LiftCheckWhereInput | LiftCheckWhereInput[]
+    OR?: LiftCheckWhereInput[]
+    NOT?: LiftCheckWhereInput | LiftCheckWhereInput[]
+    employeeId?: StringFilter<"LiftCheck"> | string
+    mountainId?: StringFilter<"LiftCheck"> | string
+    liftId?: StringFilter<"LiftCheck"> | string
+    hazards?: BoolFilter<"LiftCheck"> | boolean
+    status?: EnumSTATUSFilter<"LiftCheck"> | $Enums.STATUS
+    notes?: StringNullableFilter<"LiftCheck"> | string | null
+    createdAt?: DateTimeFilter<"LiftCheck"> | Date | string
+    updatedAt?: DateTimeFilter<"LiftCheck"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+    lift?: XOR<LiftScalarRelationFilter, LiftWhereInput>
+  }, "id">
+
+  export type LiftCheckOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    liftId?: SortOrder
+    hazards?: SortOrder
+    status?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LiftCheckCountOrderByAggregateInput
+    _max?: LiftCheckMaxOrderByAggregateInput
+    _min?: LiftCheckMinOrderByAggregateInput
+  }
+
+  export type LiftCheckScalarWhereWithAggregatesInput = {
+    AND?: LiftCheckScalarWhereWithAggregatesInput | LiftCheckScalarWhereWithAggregatesInput[]
+    OR?: LiftCheckScalarWhereWithAggregatesInput[]
+    NOT?: LiftCheckScalarWhereWithAggregatesInput | LiftCheckScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LiftCheck"> | string
+    employeeId?: StringWithAggregatesFilter<"LiftCheck"> | string
+    mountainId?: StringWithAggregatesFilter<"LiftCheck"> | string
+    liftId?: StringWithAggregatesFilter<"LiftCheck"> | string
+    hazards?: BoolWithAggregatesFilter<"LiftCheck"> | boolean
+    status?: EnumSTATUSWithAggregatesFilter<"LiftCheck"> | $Enums.STATUS
+    notes?: StringNullableWithAggregatesFilter<"LiftCheck"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"LiftCheck"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LiftCheck"> | Date | string
+  }
+
+  export type TrailCheckWhereInput = {
+    AND?: TrailCheckWhereInput | TrailCheckWhereInput[]
+    OR?: TrailCheckWhereInput[]
+    NOT?: TrailCheckWhereInput | TrailCheckWhereInput[]
+    id?: StringFilter<"TrailCheck"> | string
+    employeeId?: StringFilter<"TrailCheck"> | string
+    mountainId?: StringFilter<"TrailCheck"> | string
+    trailId?: StringFilter<"TrailCheck"> | string
+    status?: EnumSTATUSFilter<"TrailCheck"> | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFilter<"TrailCheck"> | $Enums.TRAIL_CONDITION
+    hazards?: BoolFilter<"TrailCheck"> | boolean
+    snowmaking?: BoolFilter<"TrailCheck"> | boolean
+    notes?: StringNullableFilter<"TrailCheck"> | string | null
+    createdAt?: DateTimeFilter<"TrailCheck"> | Date | string
+    updatedAt?: DateTimeFilter<"TrailCheck"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+    trail?: XOR<TrailScalarRelationFilter, TrailWhereInput>
+  }
+
+  export type TrailCheckOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    trailId?: SortOrder
+    status?: SortOrder
+    condition?: SortOrder
+    hazards?: SortOrder
+    snowmaking?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    mountain?: MountainOrderByWithRelationInput
+    trail?: TrailOrderByWithRelationInput
+  }
+
+  export type TrailCheckWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TrailCheckWhereInput | TrailCheckWhereInput[]
+    OR?: TrailCheckWhereInput[]
+    NOT?: TrailCheckWhereInput | TrailCheckWhereInput[]
+    employeeId?: StringFilter<"TrailCheck"> | string
+    mountainId?: StringFilter<"TrailCheck"> | string
+    trailId?: StringFilter<"TrailCheck"> | string
+    status?: EnumSTATUSFilter<"TrailCheck"> | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFilter<"TrailCheck"> | $Enums.TRAIL_CONDITION
+    hazards?: BoolFilter<"TrailCheck"> | boolean
+    snowmaking?: BoolFilter<"TrailCheck"> | boolean
+    notes?: StringNullableFilter<"TrailCheck"> | string | null
+    createdAt?: DateTimeFilter<"TrailCheck"> | Date | string
+    updatedAt?: DateTimeFilter<"TrailCheck"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    mountain?: XOR<MountainScalarRelationFilter, MountainWhereInput>
+    trail?: XOR<TrailScalarRelationFilter, TrailWhereInput>
+  }, "id">
+
+  export type TrailCheckOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    trailId?: SortOrder
+    status?: SortOrder
+    condition?: SortOrder
+    hazards?: SortOrder
+    snowmaking?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TrailCheckCountOrderByAggregateInput
+    _max?: TrailCheckMaxOrderByAggregateInput
+    _min?: TrailCheckMinOrderByAggregateInput
+  }
+
+  export type TrailCheckScalarWhereWithAggregatesInput = {
+    AND?: TrailCheckScalarWhereWithAggregatesInput | TrailCheckScalarWhereWithAggregatesInput[]
+    OR?: TrailCheckScalarWhereWithAggregatesInput[]
+    NOT?: TrailCheckScalarWhereWithAggregatesInput | TrailCheckScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TrailCheck"> | string
+    employeeId?: StringWithAggregatesFilter<"TrailCheck"> | string
+    mountainId?: StringWithAggregatesFilter<"TrailCheck"> | string
+    trailId?: StringWithAggregatesFilter<"TrailCheck"> | string
+    status?: EnumSTATUSWithAggregatesFilter<"TrailCheck"> | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONWithAggregatesFilter<"TrailCheck"> | $Enums.TRAIL_CONDITION
+    hazards?: BoolWithAggregatesFilter<"TrailCheck"> | boolean
+    snowmaking?: BoolWithAggregatesFilter<"TrailCheck"> | boolean
+    notes?: StringNullableWithAggregatesFilter<"TrailCheck"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TrailCheck"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TrailCheck"> | Date | string
   }
 
   export type EquipmentCheckWhereInput = {
@@ -36181,7 +36693,6 @@ export namespace Prisma {
     OR?: EquipmentCheckWhereInput[]
     NOT?: EquipmentCheckWhereInput | EquipmentCheckWhereInput[]
     id?: StringFilter<"EquipmentCheck"> | string
-    recordedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
     employeeId?: StringFilter<"EquipmentCheck"> | string
     mountainId?: StringFilter<"EquipmentCheck"> | string
     equipmentId?: StringFilter<"EquipmentCheck"> | string
@@ -36195,7 +36706,6 @@ export namespace Prisma {
 
   export type EquipmentCheckOrderByWithRelationInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     equipmentId?: SortOrder
@@ -36212,7 +36722,6 @@ export namespace Prisma {
     AND?: EquipmentCheckWhereInput | EquipmentCheckWhereInput[]
     OR?: EquipmentCheckWhereInput[]
     NOT?: EquipmentCheckWhereInput | EquipmentCheckWhereInput[]
-    recordedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
     employeeId?: StringFilter<"EquipmentCheck"> | string
     mountainId?: StringFilter<"EquipmentCheck"> | string
     equipmentId?: StringFilter<"EquipmentCheck"> | string
@@ -36226,7 +36735,6 @@ export namespace Prisma {
 
   export type EquipmentCheckOrderByWithAggregationInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     equipmentId?: SortOrder
@@ -36243,7 +36751,6 @@ export namespace Prisma {
     OR?: EquipmentCheckScalarWhereWithAggregatesInput[]
     NOT?: EquipmentCheckScalarWhereWithAggregatesInput | EquipmentCheckScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EquipmentCheck"> | string
-    recordedAt?: DateTimeWithAggregatesFilter<"EquipmentCheck"> | Date | string
     employeeId?: StringWithAggregatesFilter<"EquipmentCheck"> | string
     mountainId?: StringWithAggregatesFilter<"EquipmentCheck"> | string
     equipmentId?: StringWithAggregatesFilter<"EquipmentCheck"> | string
@@ -36672,13 +37179,28 @@ export namespace Prisma {
     id?: string
     date?: Date | string
     temperature: number
-    windSpeed: number
+    feelsLikeTemperature?: number | null
+    humidity?: number | null
+    dewPoint?: number | null
+    windSpeed?: number | null
     windDirection?: string | null
+    windGust?: number | null
     visibility?: number | null
-    conditions: string
+    conditions?: string | null
     snowfallRecent?: number | null
     snowfall24h?: number | null
     snowfall7d?: number | null
+    snowDepthBase?: number | null
+    snowDepthSummit?: number | null
+    isSnowmakingPossible?: boolean | null
+    precipitationType?: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: number | null
+    precipitationChance?: number | null
+    stormWarning?: boolean | null
+    cloudCoverage?: number | null
+    uvIndex?: number | null
+    sunriseTime?: Date | string | null
+    sunsetTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     mountain: MountainCreateNestedOneWithoutWeatherInput
@@ -36689,13 +37211,28 @@ export namespace Prisma {
     mountainId: string
     date?: Date | string
     temperature: number
-    windSpeed: number
+    feelsLikeTemperature?: number | null
+    humidity?: number | null
+    dewPoint?: number | null
+    windSpeed?: number | null
     windDirection?: string | null
+    windGust?: number | null
     visibility?: number | null
-    conditions: string
+    conditions?: string | null
     snowfallRecent?: number | null
     snowfall24h?: number | null
     snowfall7d?: number | null
+    snowDepthBase?: number | null
+    snowDepthSummit?: number | null
+    isSnowmakingPossible?: boolean | null
+    precipitationType?: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: number | null
+    precipitationChance?: number | null
+    stormWarning?: boolean | null
+    cloudCoverage?: number | null
+    uvIndex?: number | null
+    sunriseTime?: Date | string | null
+    sunsetTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -36704,13 +37241,28 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
-    windSpeed?: FloatFieldUpdateOperationsInput | number
+    feelsLikeTemperature?: NullableFloatFieldUpdateOperationsInput | number | null
+    humidity?: NullableFloatFieldUpdateOperationsInput | number | null
+    dewPoint?: NullableFloatFieldUpdateOperationsInput | number | null
+    windSpeed?: NullableFloatFieldUpdateOperationsInput | number | null
     windDirection?: NullableStringFieldUpdateOperationsInput | string | null
+    windGust?: NullableFloatFieldUpdateOperationsInput | number | null
     visibility?: NullableFloatFieldUpdateOperationsInput | number | null
-    conditions?: StringFieldUpdateOperationsInput | string
+    conditions?: NullableStringFieldUpdateOperationsInput | string | null
     snowfallRecent?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall24h?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall7d?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthBase?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthSummit?: NullableFloatFieldUpdateOperationsInput | number | null
+    isSnowmakingPossible?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    precipitationType?: NullableEnumPRECIPITATION_TYPEFieldUpdateOperationsInput | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: NullableFloatFieldUpdateOperationsInput | number | null
+    precipitationChance?: NullableFloatFieldUpdateOperationsInput | number | null
+    stormWarning?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    cloudCoverage?: NullableFloatFieldUpdateOperationsInput | number | null
+    uvIndex?: NullableIntFieldUpdateOperationsInput | number | null
+    sunriseTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sunsetTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountain?: MountainUpdateOneRequiredWithoutWeatherNestedInput
@@ -36721,13 +37273,28 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
-    windSpeed?: FloatFieldUpdateOperationsInput | number
+    feelsLikeTemperature?: NullableFloatFieldUpdateOperationsInput | number | null
+    humidity?: NullableFloatFieldUpdateOperationsInput | number | null
+    dewPoint?: NullableFloatFieldUpdateOperationsInput | number | null
+    windSpeed?: NullableFloatFieldUpdateOperationsInput | number | null
     windDirection?: NullableStringFieldUpdateOperationsInput | string | null
+    windGust?: NullableFloatFieldUpdateOperationsInput | number | null
     visibility?: NullableFloatFieldUpdateOperationsInput | number | null
-    conditions?: StringFieldUpdateOperationsInput | string
+    conditions?: NullableStringFieldUpdateOperationsInput | string | null
     snowfallRecent?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall24h?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall7d?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthBase?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthSummit?: NullableFloatFieldUpdateOperationsInput | number | null
+    isSnowmakingPossible?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    precipitationType?: NullableEnumPRECIPITATION_TYPEFieldUpdateOperationsInput | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: NullableFloatFieldUpdateOperationsInput | number | null
+    precipitationChance?: NullableFloatFieldUpdateOperationsInput | number | null
+    stormWarning?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    cloudCoverage?: NullableFloatFieldUpdateOperationsInput | number | null
+    uvIndex?: NullableIntFieldUpdateOperationsInput | number | null
+    sunriseTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sunsetTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -36737,13 +37304,28 @@ export namespace Prisma {
     mountainId: string
     date?: Date | string
     temperature: number
-    windSpeed: number
+    feelsLikeTemperature?: number | null
+    humidity?: number | null
+    dewPoint?: number | null
+    windSpeed?: number | null
     windDirection?: string | null
+    windGust?: number | null
     visibility?: number | null
-    conditions: string
+    conditions?: string | null
     snowfallRecent?: number | null
     snowfall24h?: number | null
     snowfall7d?: number | null
+    snowDepthBase?: number | null
+    snowDepthSummit?: number | null
+    isSnowmakingPossible?: boolean | null
+    precipitationType?: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: number | null
+    precipitationChance?: number | null
+    stormWarning?: boolean | null
+    cloudCoverage?: number | null
+    uvIndex?: number | null
+    sunriseTime?: Date | string | null
+    sunsetTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -36752,13 +37334,28 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
-    windSpeed?: FloatFieldUpdateOperationsInput | number
+    feelsLikeTemperature?: NullableFloatFieldUpdateOperationsInput | number | null
+    humidity?: NullableFloatFieldUpdateOperationsInput | number | null
+    dewPoint?: NullableFloatFieldUpdateOperationsInput | number | null
+    windSpeed?: NullableFloatFieldUpdateOperationsInput | number | null
     windDirection?: NullableStringFieldUpdateOperationsInput | string | null
+    windGust?: NullableFloatFieldUpdateOperationsInput | number | null
     visibility?: NullableFloatFieldUpdateOperationsInput | number | null
-    conditions?: StringFieldUpdateOperationsInput | string
+    conditions?: NullableStringFieldUpdateOperationsInput | string | null
     snowfallRecent?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall24h?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall7d?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthBase?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthSummit?: NullableFloatFieldUpdateOperationsInput | number | null
+    isSnowmakingPossible?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    precipitationType?: NullableEnumPRECIPITATION_TYPEFieldUpdateOperationsInput | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: NullableFloatFieldUpdateOperationsInput | number | null
+    precipitationChance?: NullableFloatFieldUpdateOperationsInput | number | null
+    stormWarning?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    cloudCoverage?: NullableFloatFieldUpdateOperationsInput | number | null
+    uvIndex?: NullableIntFieldUpdateOperationsInput | number | null
+    sunriseTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sunsetTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -36768,13 +37365,28 @@ export namespace Prisma {
     mountainId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
-    windSpeed?: FloatFieldUpdateOperationsInput | number
+    feelsLikeTemperature?: NullableFloatFieldUpdateOperationsInput | number | null
+    humidity?: NullableFloatFieldUpdateOperationsInput | number | null
+    dewPoint?: NullableFloatFieldUpdateOperationsInput | number | null
+    windSpeed?: NullableFloatFieldUpdateOperationsInput | number | null
     windDirection?: NullableStringFieldUpdateOperationsInput | string | null
+    windGust?: NullableFloatFieldUpdateOperationsInput | number | null
     visibility?: NullableFloatFieldUpdateOperationsInput | number | null
-    conditions?: StringFieldUpdateOperationsInput | string
+    conditions?: NullableStringFieldUpdateOperationsInput | string | null
     snowfallRecent?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall24h?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall7d?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthBase?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthSummit?: NullableFloatFieldUpdateOperationsInput | number | null
+    isSnowmakingPossible?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    precipitationType?: NullableEnumPRECIPITATION_TYPEFieldUpdateOperationsInput | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: NullableFloatFieldUpdateOperationsInput | number | null
+    precipitationChance?: NullableFloatFieldUpdateOperationsInput | number | null
+    stormWarning?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    cloudCoverage?: NullableFloatFieldUpdateOperationsInput | number | null
+    uvIndex?: NullableIntFieldUpdateOperationsInput | number | null
+    sunriseTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sunsetTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -38001,231 +38613,11 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type LiftCheckCreateInput = {
-    id?: string
-    recordedAt?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    employee: EmployeeCreateNestedOneWithoutLiftChecksInput
-    mountain: MountainCreateNestedOneWithoutLiftChecksInput
-    lift: LiftCreateNestedOneWithoutLiftChecksInput
-  }
-
-  export type LiftCheckUncheckedCreateInput = {
-    id?: string
-    recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    liftId: string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type LiftCheckUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employee?: EmployeeUpdateOneRequiredWithoutLiftChecksNestedInput
-    mountain?: MountainUpdateOneRequiredWithoutLiftChecksNestedInput
-    lift?: LiftUpdateOneRequiredWithoutLiftChecksNestedInput
-  }
-
-  export type LiftCheckUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    liftId?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LiftCheckCreateManyInput = {
-    id?: string
-    recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    liftId: string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type LiftCheckUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LiftCheckUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    liftId?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TrailCheckCreateInput = {
-    id?: string
-    recordedAt?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    employee: EmployeeCreateNestedOneWithoutTrailChecksInput
-    mountain: MountainCreateNestedOneWithoutTrailChecksInput
-    trail: TrailCreateNestedOneWithoutTrailChecksInput
-  }
-
-  export type TrailCheckUncheckedCreateInput = {
-    id?: string
-    recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    trailId: string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TrailCheckUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employee?: EmployeeUpdateOneRequiredWithoutTrailChecksNestedInput
-    mountain?: MountainUpdateOneRequiredWithoutTrailChecksNestedInput
-    trail?: TrailUpdateOneRequiredWithoutTrailChecksNestedInput
-  }
-
-  export type TrailCheckUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    trailId?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TrailCheckCreateManyInput = {
-    id?: string
-    recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    trailId: string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TrailCheckUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TrailCheckUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    trailId?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HutCheckCreateInput = {
-    id?: string
-    recordedAt?: Date | string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    employee: EmployeeCreateNestedOneWithoutHutChecksInput
-    mountain: MountainCreateNestedOneWithoutHutChecksInput
-    hut: HutCreateNestedOneWithoutHutChecksInput
-  }
-
-  export type HutCheckUncheckedCreateInput = {
-    id?: string
-    recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    hutId: string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HutCheckUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employee?: EmployeeUpdateOneRequiredWithoutHutChecksNestedInput
-    mountain?: MountainUpdateOneRequiredWithoutHutChecksNestedInput
-    hut?: HutUpdateOneRequiredWithoutHutChecksNestedInput
-  }
-
-  export type HutCheckUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    hutId?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HutCheckCreateManyInput = {
-    id?: string
-    recordedAt?: Date | string
-    employeeId: string
-    mountainId: string
-    hutId: string
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HutCheckUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HutCheckUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    employeeId?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    hutId?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type AidRoomCheckCreateInput = {
     id?: string
-    recordedAt?: Date | string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38236,10 +38628,12 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedCreateInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
     aidRoomId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38247,7 +38641,9 @@ export namespace Prisma {
 
   export type AidRoomCheckUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38258,10 +38654,12 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
     aidRoomId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38269,10 +38667,12 @@ export namespace Prisma {
 
   export type AidRoomCheckCreateManyInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
     aidRoomId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38280,7 +38680,9 @@ export namespace Prisma {
 
   export type AidRoomCheckUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38288,10 +38690,276 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
     aidRoomId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HutCheckCreateInput = {
+    id?: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutHutChecksInput
+    mountain: MountainCreateNestedOneWithoutHutChecksInput
+    hut: HutCreateNestedOneWithoutHutChecksInput
+  }
+
+  export type HutCheckUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    mountainId: string
+    hutId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HutCheckUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutHutChecksNestedInput
+    mountain?: MountainUpdateOneRequiredWithoutHutChecksNestedInput
+    hut?: HutUpdateOneRequiredWithoutHutChecksNestedInput
+  }
+
+  export type HutCheckUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    hutId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HutCheckCreateManyInput = {
+    id?: string
+    employeeId: string
+    mountainId: string
+    hutId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HutCheckUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HutCheckUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    hutId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LiftCheckCreateInput = {
+    id?: string
+    hazards?: boolean
+    status: $Enums.STATUS
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutLiftChecksInput
+    mountain: MountainCreateNestedOneWithoutLiftChecksInput
+    lift: LiftCreateNestedOneWithoutLiftChecksInput
+  }
+
+  export type LiftCheckUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    mountainId: string
+    liftId: string
+    hazards?: boolean
+    status: $Enums.STATUS
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LiftCheckUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutLiftChecksNestedInput
+    mountain?: MountainUpdateOneRequiredWithoutLiftChecksNestedInput
+    lift?: LiftUpdateOneRequiredWithoutLiftChecksNestedInput
+  }
+
+  export type LiftCheckUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    liftId?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LiftCheckCreateManyInput = {
+    id?: string
+    employeeId: string
+    mountainId: string
+    liftId: string
+    hazards?: boolean
+    status: $Enums.STATUS
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LiftCheckUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LiftCheckUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    liftId?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TrailCheckCreateInput = {
+    id?: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutTrailChecksInput
+    mountain: MountainCreateNestedOneWithoutTrailChecksInput
+    trail: TrailCreateNestedOneWithoutTrailChecksInput
+  }
+
+  export type TrailCheckUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    mountainId: string
+    trailId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TrailCheckUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutTrailChecksNestedInput
+    mountain?: MountainUpdateOneRequiredWithoutTrailChecksNestedInput
+    trail?: TrailUpdateOneRequiredWithoutTrailChecksNestedInput
+  }
+
+  export type TrailCheckUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    trailId?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TrailCheckCreateManyInput = {
+    id?: string
+    employeeId: string
+    mountainId: string
+    trailId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TrailCheckUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TrailCheckUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    trailId?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38299,7 +38967,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCreateInput = {
     id?: string
-    recordedAt?: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -38310,7 +38977,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedCreateInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
     equipmentId: string
@@ -38321,7 +38987,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38332,7 +38997,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
@@ -38343,7 +39007,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCreateManyInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
     equipmentId: string
@@ -38354,7 +39017,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38362,7 +39024,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
@@ -39050,29 +39711,66 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type EnumPRECIPITATION_TYPENullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.PRECIPITATION_TYPE | EnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    in?: $Enums.PRECIPITATION_TYPE[] | ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.PRECIPITATION_TYPE[] | ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumPRECIPITATION_TYPENullableFilter<$PrismaModel> | $Enums.PRECIPITATION_TYPE | null
+  }
+
   export type WeatherCountOrderByAggregateInput = {
     id?: SortOrder
     mountainId?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
+    feelsLikeTemperature?: SortOrder
+    humidity?: SortOrder
+    dewPoint?: SortOrder
     windSpeed?: SortOrder
     windDirection?: SortOrder
+    windGust?: SortOrder
     visibility?: SortOrder
     conditions?: SortOrder
     snowfallRecent?: SortOrder
     snowfall24h?: SortOrder
     snowfall7d?: SortOrder
+    snowDepthBase?: SortOrder
+    snowDepthSummit?: SortOrder
+    isSnowmakingPossible?: SortOrder
+    precipitationType?: SortOrder
+    precipitationIntensity?: SortOrder
+    precipitationChance?: SortOrder
+    stormWarning?: SortOrder
+    cloudCoverage?: SortOrder
+    uvIndex?: SortOrder
+    sunriseTime?: SortOrder
+    sunsetTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type WeatherAvgOrderByAggregateInput = {
     temperature?: SortOrder
+    feelsLikeTemperature?: SortOrder
+    humidity?: SortOrder
+    dewPoint?: SortOrder
     windSpeed?: SortOrder
+    windGust?: SortOrder
     visibility?: SortOrder
     snowfallRecent?: SortOrder
     snowfall24h?: SortOrder
     snowfall7d?: SortOrder
+    snowDepthBase?: SortOrder
+    snowDepthSummit?: SortOrder
+    precipitationIntensity?: SortOrder
+    precipitationChance?: SortOrder
+    cloudCoverage?: SortOrder
+    uvIndex?: SortOrder
   }
 
   export type WeatherMaxOrderByAggregateInput = {
@@ -39080,13 +39778,28 @@ export namespace Prisma {
     mountainId?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
+    feelsLikeTemperature?: SortOrder
+    humidity?: SortOrder
+    dewPoint?: SortOrder
     windSpeed?: SortOrder
     windDirection?: SortOrder
+    windGust?: SortOrder
     visibility?: SortOrder
     conditions?: SortOrder
     snowfallRecent?: SortOrder
     snowfall24h?: SortOrder
     snowfall7d?: SortOrder
+    snowDepthBase?: SortOrder
+    snowDepthSummit?: SortOrder
+    isSnowmakingPossible?: SortOrder
+    precipitationType?: SortOrder
+    precipitationIntensity?: SortOrder
+    precipitationChance?: SortOrder
+    stormWarning?: SortOrder
+    cloudCoverage?: SortOrder
+    uvIndex?: SortOrder
+    sunriseTime?: SortOrder
+    sunsetTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -39096,24 +39809,49 @@ export namespace Prisma {
     mountainId?: SortOrder
     date?: SortOrder
     temperature?: SortOrder
+    feelsLikeTemperature?: SortOrder
+    humidity?: SortOrder
+    dewPoint?: SortOrder
     windSpeed?: SortOrder
     windDirection?: SortOrder
+    windGust?: SortOrder
     visibility?: SortOrder
     conditions?: SortOrder
     snowfallRecent?: SortOrder
     snowfall24h?: SortOrder
     snowfall7d?: SortOrder
+    snowDepthBase?: SortOrder
+    snowDepthSummit?: SortOrder
+    isSnowmakingPossible?: SortOrder
+    precipitationType?: SortOrder
+    precipitationIntensity?: SortOrder
+    precipitationChance?: SortOrder
+    stormWarning?: SortOrder
+    cloudCoverage?: SortOrder
+    uvIndex?: SortOrder
+    sunriseTime?: SortOrder
+    sunsetTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type WeatherSumOrderByAggregateInput = {
     temperature?: SortOrder
+    feelsLikeTemperature?: SortOrder
+    humidity?: SortOrder
+    dewPoint?: SortOrder
     windSpeed?: SortOrder
+    windGust?: SortOrder
     visibility?: SortOrder
     snowfallRecent?: SortOrder
     snowfall24h?: SortOrder
     snowfall7d?: SortOrder
+    snowDepthBase?: SortOrder
+    snowDepthSummit?: SortOrder
+    precipitationIntensity?: SortOrder
+    precipitationChance?: SortOrder
+    cloudCoverage?: SortOrder
+    uvIndex?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -39146,6 +39884,24 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type EnumPRECIPITATION_TYPENullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PRECIPITATION_TYPE | EnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    in?: $Enums.PRECIPITATION_TYPE[] | ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.PRECIPITATION_TYPE[] | ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumPRECIPITATION_TYPENullableWithAggregatesFilter<$PrismaModel> | $Enums.PRECIPITATION_TYPE | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumPRECIPITATION_TYPENullableFilter<$PrismaModel>
+    _max?: NestedEnumPRECIPITATION_TYPENullableFilter<$PrismaModel>
   }
 
   export type EmployeeScalarRelationFilter = {
@@ -40029,77 +40785,45 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type LiftScalarRelationFilter = {
-    is?: LiftWhereInput
-    isNot?: LiftWhereInput
+  export type AidRoomScalarRelationFilter = {
+    is?: AidRoomWhereInput
+    isNot?: AidRoomWhereInput
   }
 
-  export type LiftCheckCountOrderByAggregateInput = {
+  export type AidRoomCheckCountOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    liftId?: SortOrder
+    aidRoomId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrder
+    paperworkStocked?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type LiftCheckMaxOrderByAggregateInput = {
+  export type AidRoomCheckMaxOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    liftId?: SortOrder
+    aidRoomId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrder
+    paperworkStocked?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type LiftCheckMinOrderByAggregateInput = {
+  export type AidRoomCheckMinOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    liftId?: SortOrder
-    notes?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type TrailScalarRelationFilter = {
-    is?: TrailWhereInput
-    isNot?: TrailWhereInput
-  }
-
-  export type TrailCheckCountOrderByAggregateInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
-    notes?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type TrailCheckMaxOrderByAggregateInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
-    notes?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type TrailCheckMinOrderByAggregateInput = {
-    id?: SortOrder
-    recordedAt?: SortOrder
-    employeeId?: SortOrder
-    mountainId?: SortOrder
-    trailId?: SortOrder
+    aidRoomId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrder
+    paperworkStocked?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -40112,10 +40836,12 @@ export namespace Prisma {
 
   export type HutCheckCountOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     hutId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrder
+    paperworkStocked?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -40123,10 +40849,12 @@ export namespace Prisma {
 
   export type HutCheckMaxOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     hutId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrder
+    paperworkStocked?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -40134,48 +40862,100 @@ export namespace Prisma {
 
   export type HutCheckMinOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     hutId?: SortOrder
+    equipmentIssues?: SortOrder
+    equipmentNotes?: SortOrder
+    paperworkStocked?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type AidRoomScalarRelationFilter = {
-    is?: AidRoomWhereInput
-    isNot?: AidRoomWhereInput
+  export type LiftScalarRelationFilter = {
+    is?: LiftWhereInput
+    isNot?: LiftWhereInput
   }
 
-  export type AidRoomCheckCountOrderByAggregateInput = {
+  export type LiftCheckCountOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    aidRoomId?: SortOrder
+    liftId?: SortOrder
+    hazards?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type AidRoomCheckMaxOrderByAggregateInput = {
+  export type LiftCheckMaxOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    aidRoomId?: SortOrder
+    liftId?: SortOrder
+    hazards?: SortOrder
+    status?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type AidRoomCheckMinOrderByAggregateInput = {
+  export type LiftCheckMinOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
-    aidRoomId?: SortOrder
+    liftId?: SortOrder
+    hazards?: SortOrder
+    status?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TrailScalarRelationFilter = {
+    is?: TrailWhereInput
+    isNot?: TrailWhereInput
+  }
+
+  export type TrailCheckCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    trailId?: SortOrder
+    status?: SortOrder
+    condition?: SortOrder
+    hazards?: SortOrder
+    snowmaking?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TrailCheckMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    trailId?: SortOrder
+    status?: SortOrder
+    condition?: SortOrder
+    hazards?: SortOrder
+    snowmaking?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TrailCheckMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    mountainId?: SortOrder
+    trailId?: SortOrder
+    status?: SortOrder
+    condition?: SortOrder
+    hazards?: SortOrder
+    snowmaking?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -40183,7 +40963,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCountOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     equipmentId?: SortOrder
@@ -40194,7 +40973,6 @@ export namespace Prisma {
 
   export type EquipmentCheckMaxOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     equipmentId?: SortOrder
@@ -40205,7 +40983,6 @@ export namespace Prisma {
 
   export type EquipmentCheckMinOrderByAggregateInput = {
     id?: SortOrder
-    recordedAt?: SortOrder
     employeeId?: SortOrder
     mountainId?: SortOrder
     equipmentId?: SortOrder
@@ -41470,6 +42247,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type NullableEnumPRECIPITATION_TYPEFieldUpdateOperationsInput = {
+    set?: $Enums.PRECIPITATION_TYPE | null
   }
 
   export type MountainUpdateOneRequiredWithoutWeatherNestedInput = {
@@ -42855,6 +43640,90 @@ export namespace Prisma {
     update?: XOR<XOR<EquipmentUpdateToOneWithWhereWithoutIncidentEquipmentUsageLogsInput, EquipmentUpdateWithoutIncidentEquipmentUsageLogsInput>, EquipmentUncheckedUpdateWithoutIncidentEquipmentUsageLogsInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutAidRoomChecksInput = {
+    create?: XOR<EmployeeCreateWithoutAidRoomChecksInput, EmployeeUncheckedCreateWithoutAidRoomChecksInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAidRoomChecksInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type MountainCreateNestedOneWithoutAidRoomChecksInput = {
+    create?: XOR<MountainCreateWithoutAidRoomChecksInput, MountainUncheckedCreateWithoutAidRoomChecksInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutAidRoomChecksInput
+    connect?: MountainWhereUniqueInput
+  }
+
+  export type AidRoomCreateNestedOneWithoutAidRoomChecksInput = {
+    create?: XOR<AidRoomCreateWithoutAidRoomChecksInput, AidRoomUncheckedCreateWithoutAidRoomChecksInput>
+    connectOrCreate?: AidRoomCreateOrConnectWithoutAidRoomChecksInput
+    connect?: AidRoomWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutAidRoomChecksNestedInput = {
+    create?: XOR<EmployeeCreateWithoutAidRoomChecksInput, EmployeeUncheckedCreateWithoutAidRoomChecksInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutAidRoomChecksInput
+    upsert?: EmployeeUpsertWithoutAidRoomChecksInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutAidRoomChecksInput, EmployeeUpdateWithoutAidRoomChecksInput>, EmployeeUncheckedUpdateWithoutAidRoomChecksInput>
+  }
+
+  export type MountainUpdateOneRequiredWithoutAidRoomChecksNestedInput = {
+    create?: XOR<MountainCreateWithoutAidRoomChecksInput, MountainUncheckedCreateWithoutAidRoomChecksInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutAidRoomChecksInput
+    upsert?: MountainUpsertWithoutAidRoomChecksInput
+    connect?: MountainWhereUniqueInput
+    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutAidRoomChecksInput, MountainUpdateWithoutAidRoomChecksInput>, MountainUncheckedUpdateWithoutAidRoomChecksInput>
+  }
+
+  export type AidRoomUpdateOneRequiredWithoutAidRoomChecksNestedInput = {
+    create?: XOR<AidRoomCreateWithoutAidRoomChecksInput, AidRoomUncheckedCreateWithoutAidRoomChecksInput>
+    connectOrCreate?: AidRoomCreateOrConnectWithoutAidRoomChecksInput
+    upsert?: AidRoomUpsertWithoutAidRoomChecksInput
+    connect?: AidRoomWhereUniqueInput
+    update?: XOR<XOR<AidRoomUpdateToOneWithWhereWithoutAidRoomChecksInput, AidRoomUpdateWithoutAidRoomChecksInput>, AidRoomUncheckedUpdateWithoutAidRoomChecksInput>
+  }
+
+  export type EmployeeCreateNestedOneWithoutHutChecksInput = {
+    create?: XOR<EmployeeCreateWithoutHutChecksInput, EmployeeUncheckedCreateWithoutHutChecksInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutHutChecksInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type MountainCreateNestedOneWithoutHutChecksInput = {
+    create?: XOR<MountainCreateWithoutHutChecksInput, MountainUncheckedCreateWithoutHutChecksInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutHutChecksInput
+    connect?: MountainWhereUniqueInput
+  }
+
+  export type HutCreateNestedOneWithoutHutChecksInput = {
+    create?: XOR<HutCreateWithoutHutChecksInput, HutUncheckedCreateWithoutHutChecksInput>
+    connectOrCreate?: HutCreateOrConnectWithoutHutChecksInput
+    connect?: HutWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutHutChecksNestedInput = {
+    create?: XOR<EmployeeCreateWithoutHutChecksInput, EmployeeUncheckedCreateWithoutHutChecksInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutHutChecksInput
+    upsert?: EmployeeUpsertWithoutHutChecksInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutHutChecksInput, EmployeeUpdateWithoutHutChecksInput>, EmployeeUncheckedUpdateWithoutHutChecksInput>
+  }
+
+  export type MountainUpdateOneRequiredWithoutHutChecksNestedInput = {
+    create?: XOR<MountainCreateWithoutHutChecksInput, MountainUncheckedCreateWithoutHutChecksInput>
+    connectOrCreate?: MountainCreateOrConnectWithoutHutChecksInput
+    upsert?: MountainUpsertWithoutHutChecksInput
+    connect?: MountainWhereUniqueInput
+    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutHutChecksInput, MountainUpdateWithoutHutChecksInput>, MountainUncheckedUpdateWithoutHutChecksInput>
+  }
+
+  export type HutUpdateOneRequiredWithoutHutChecksNestedInput = {
+    create?: XOR<HutCreateWithoutHutChecksInput, HutUncheckedCreateWithoutHutChecksInput>
+    connectOrCreate?: HutCreateOrConnectWithoutHutChecksInput
+    upsert?: HutUpsertWithoutHutChecksInput
+    connect?: HutWhereUniqueInput
+    update?: XOR<XOR<HutUpdateToOneWithWhereWithoutHutChecksInput, HutUpdateWithoutHutChecksInput>, HutUncheckedUpdateWithoutHutChecksInput>
+  }
+
   export type EmployeeCreateNestedOneWithoutLiftChecksInput = {
     create?: XOR<EmployeeCreateWithoutLiftChecksInput, EmployeeUncheckedCreateWithoutLiftChecksInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutLiftChecksInput
@@ -42937,90 +43806,6 @@ export namespace Prisma {
     upsert?: TrailUpsertWithoutTrailChecksInput
     connect?: TrailWhereUniqueInput
     update?: XOR<XOR<TrailUpdateToOneWithWhereWithoutTrailChecksInput, TrailUpdateWithoutTrailChecksInput>, TrailUncheckedUpdateWithoutTrailChecksInput>
-  }
-
-  export type EmployeeCreateNestedOneWithoutHutChecksInput = {
-    create?: XOR<EmployeeCreateWithoutHutChecksInput, EmployeeUncheckedCreateWithoutHutChecksInput>
-    connectOrCreate?: EmployeeCreateOrConnectWithoutHutChecksInput
-    connect?: EmployeeWhereUniqueInput
-  }
-
-  export type MountainCreateNestedOneWithoutHutChecksInput = {
-    create?: XOR<MountainCreateWithoutHutChecksInput, MountainUncheckedCreateWithoutHutChecksInput>
-    connectOrCreate?: MountainCreateOrConnectWithoutHutChecksInput
-    connect?: MountainWhereUniqueInput
-  }
-
-  export type HutCreateNestedOneWithoutHutChecksInput = {
-    create?: XOR<HutCreateWithoutHutChecksInput, HutUncheckedCreateWithoutHutChecksInput>
-    connectOrCreate?: HutCreateOrConnectWithoutHutChecksInput
-    connect?: HutWhereUniqueInput
-  }
-
-  export type EmployeeUpdateOneRequiredWithoutHutChecksNestedInput = {
-    create?: XOR<EmployeeCreateWithoutHutChecksInput, EmployeeUncheckedCreateWithoutHutChecksInput>
-    connectOrCreate?: EmployeeCreateOrConnectWithoutHutChecksInput
-    upsert?: EmployeeUpsertWithoutHutChecksInput
-    connect?: EmployeeWhereUniqueInput
-    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutHutChecksInput, EmployeeUpdateWithoutHutChecksInput>, EmployeeUncheckedUpdateWithoutHutChecksInput>
-  }
-
-  export type MountainUpdateOneRequiredWithoutHutChecksNestedInput = {
-    create?: XOR<MountainCreateWithoutHutChecksInput, MountainUncheckedCreateWithoutHutChecksInput>
-    connectOrCreate?: MountainCreateOrConnectWithoutHutChecksInput
-    upsert?: MountainUpsertWithoutHutChecksInput
-    connect?: MountainWhereUniqueInput
-    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutHutChecksInput, MountainUpdateWithoutHutChecksInput>, MountainUncheckedUpdateWithoutHutChecksInput>
-  }
-
-  export type HutUpdateOneRequiredWithoutHutChecksNestedInput = {
-    create?: XOR<HutCreateWithoutHutChecksInput, HutUncheckedCreateWithoutHutChecksInput>
-    connectOrCreate?: HutCreateOrConnectWithoutHutChecksInput
-    upsert?: HutUpsertWithoutHutChecksInput
-    connect?: HutWhereUniqueInput
-    update?: XOR<XOR<HutUpdateToOneWithWhereWithoutHutChecksInput, HutUpdateWithoutHutChecksInput>, HutUncheckedUpdateWithoutHutChecksInput>
-  }
-
-  export type EmployeeCreateNestedOneWithoutAidRoomChecksInput = {
-    create?: XOR<EmployeeCreateWithoutAidRoomChecksInput, EmployeeUncheckedCreateWithoutAidRoomChecksInput>
-    connectOrCreate?: EmployeeCreateOrConnectWithoutAidRoomChecksInput
-    connect?: EmployeeWhereUniqueInput
-  }
-
-  export type MountainCreateNestedOneWithoutAidRoomChecksInput = {
-    create?: XOR<MountainCreateWithoutAidRoomChecksInput, MountainUncheckedCreateWithoutAidRoomChecksInput>
-    connectOrCreate?: MountainCreateOrConnectWithoutAidRoomChecksInput
-    connect?: MountainWhereUniqueInput
-  }
-
-  export type AidRoomCreateNestedOneWithoutAidRoomChecksInput = {
-    create?: XOR<AidRoomCreateWithoutAidRoomChecksInput, AidRoomUncheckedCreateWithoutAidRoomChecksInput>
-    connectOrCreate?: AidRoomCreateOrConnectWithoutAidRoomChecksInput
-    connect?: AidRoomWhereUniqueInput
-  }
-
-  export type EmployeeUpdateOneRequiredWithoutAidRoomChecksNestedInput = {
-    create?: XOR<EmployeeCreateWithoutAidRoomChecksInput, EmployeeUncheckedCreateWithoutAidRoomChecksInput>
-    connectOrCreate?: EmployeeCreateOrConnectWithoutAidRoomChecksInput
-    upsert?: EmployeeUpsertWithoutAidRoomChecksInput
-    connect?: EmployeeWhereUniqueInput
-    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutAidRoomChecksInput, EmployeeUpdateWithoutAidRoomChecksInput>, EmployeeUncheckedUpdateWithoutAidRoomChecksInput>
-  }
-
-  export type MountainUpdateOneRequiredWithoutAidRoomChecksNestedInput = {
-    create?: XOR<MountainCreateWithoutAidRoomChecksInput, MountainUncheckedCreateWithoutAidRoomChecksInput>
-    connectOrCreate?: MountainCreateOrConnectWithoutAidRoomChecksInput
-    upsert?: MountainUpsertWithoutAidRoomChecksInput
-    connect?: MountainWhereUniqueInput
-    update?: XOR<XOR<MountainUpdateToOneWithWhereWithoutAidRoomChecksInput, MountainUpdateWithoutAidRoomChecksInput>, MountainUncheckedUpdateWithoutAidRoomChecksInput>
-  }
-
-  export type AidRoomUpdateOneRequiredWithoutAidRoomChecksNestedInput = {
-    create?: XOR<AidRoomCreateWithoutAidRoomChecksInput, AidRoomUncheckedCreateWithoutAidRoomChecksInput>
-    connectOrCreate?: AidRoomCreateOrConnectWithoutAidRoomChecksInput
-    upsert?: AidRoomUpsertWithoutAidRoomChecksInput
-    connect?: AidRoomWhereUniqueInput
-    update?: XOR<XOR<AidRoomUpdateToOneWithWhereWithoutAidRoomChecksInput, AidRoomUpdateWithoutAidRoomChecksInput>, AidRoomUncheckedUpdateWithoutAidRoomChecksInput>
   }
 
   export type EmployeeCreateNestedOneWithoutEquipmentChecksInput = {
@@ -43331,6 +44116,18 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedEnumPRECIPITATION_TYPENullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.PRECIPITATION_TYPE | EnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    in?: $Enums.PRECIPITATION_TYPE[] | ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.PRECIPITATION_TYPE[] | ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumPRECIPITATION_TYPENullableFilter<$PrismaModel> | $Enums.PRECIPITATION_TYPE | null
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -43361,6 +44158,24 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPRECIPITATION_TYPENullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PRECIPITATION_TYPE | EnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    in?: $Enums.PRECIPITATION_TYPE[] | ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.PRECIPITATION_TYPE[] | ListEnumPRECIPITATION_TYPEFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumPRECIPITATION_TYPENullableWithAggregatesFilter<$PrismaModel> | $Enums.PRECIPITATION_TYPE | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumPRECIPITATION_TYPENullableFilter<$PrismaModel>
+    _max?: NestedEnumPRECIPITATION_TYPENullableFilter<$PrismaModel>
   }
 
   export type NestedEnumDEPARTMENTFilter<$PrismaModel = never> = {
@@ -44556,13 +45371,28 @@ export namespace Prisma {
     id?: string
     date?: Date | string
     temperature: number
-    windSpeed: number
+    feelsLikeTemperature?: number | null
+    humidity?: number | null
+    dewPoint?: number | null
+    windSpeed?: number | null
     windDirection?: string | null
+    windGust?: number | null
     visibility?: number | null
-    conditions: string
+    conditions?: string | null
     snowfallRecent?: number | null
     snowfall24h?: number | null
     snowfall7d?: number | null
+    snowDepthBase?: number | null
+    snowDepthSummit?: number | null
+    isSnowmakingPossible?: boolean | null
+    precipitationType?: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: number | null
+    precipitationChance?: number | null
+    stormWarning?: boolean | null
+    cloudCoverage?: number | null
+    uvIndex?: number | null
+    sunriseTime?: Date | string | null
+    sunsetTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -44571,13 +45401,28 @@ export namespace Prisma {
     id?: string
     date?: Date | string
     temperature: number
-    windSpeed: number
+    feelsLikeTemperature?: number | null
+    humidity?: number | null
+    dewPoint?: number | null
+    windSpeed?: number | null
     windDirection?: string | null
+    windGust?: number | null
     visibility?: number | null
-    conditions: string
+    conditions?: string | null
     snowfallRecent?: number | null
     snowfall24h?: number | null
     snowfall7d?: number | null
+    snowDepthBase?: number | null
+    snowDepthSummit?: number | null
+    isSnowmakingPossible?: boolean | null
+    precipitationType?: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: number | null
+    precipitationChance?: number | null
+    stormWarning?: boolean | null
+    cloudCoverage?: number | null
+    uvIndex?: number | null
+    sunriseTime?: Date | string | null
+    sunsetTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -44822,7 +45667,9 @@ export namespace Prisma {
 
   export type AidRoomCheckCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44832,9 +45679,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     aidRoomId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44852,7 +45701,9 @@ export namespace Prisma {
 
   export type HutCheckCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44862,9 +45713,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     hutId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44882,7 +45735,8 @@ export namespace Prisma {
 
   export type LiftCheckCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44892,9 +45746,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     liftId: string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44912,7 +45767,10 @@ export namespace Prisma {
 
   export type TrailCheckCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44922,9 +45780,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     trailId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44942,7 +45803,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -44952,7 +45812,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedCreateWithoutMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     equipmentId: string
     notes?: string | null
@@ -45196,13 +46055,28 @@ export namespace Prisma {
     mountainId?: StringFilter<"Weather"> | string
     date?: DateTimeFilter<"Weather"> | Date | string
     temperature?: FloatFilter<"Weather"> | number
-    windSpeed?: FloatFilter<"Weather"> | number
+    feelsLikeTemperature?: FloatNullableFilter<"Weather"> | number | null
+    humidity?: FloatNullableFilter<"Weather"> | number | null
+    dewPoint?: FloatNullableFilter<"Weather"> | number | null
+    windSpeed?: FloatNullableFilter<"Weather"> | number | null
     windDirection?: StringNullableFilter<"Weather"> | string | null
+    windGust?: FloatNullableFilter<"Weather"> | number | null
     visibility?: FloatNullableFilter<"Weather"> | number | null
-    conditions?: StringFilter<"Weather"> | string
+    conditions?: StringNullableFilter<"Weather"> | string | null
     snowfallRecent?: FloatNullableFilter<"Weather"> | number | null
     snowfall24h?: FloatNullableFilter<"Weather"> | number | null
     snowfall7d?: FloatNullableFilter<"Weather"> | number | null
+    snowDepthBase?: FloatNullableFilter<"Weather"> | number | null
+    snowDepthSummit?: FloatNullableFilter<"Weather"> | number | null
+    isSnowmakingPossible?: BoolNullableFilter<"Weather"> | boolean | null
+    precipitationType?: EnumPRECIPITATION_TYPENullableFilter<"Weather"> | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: FloatNullableFilter<"Weather"> | number | null
+    precipitationChance?: FloatNullableFilter<"Weather"> | number | null
+    stormWarning?: BoolNullableFilter<"Weather"> | boolean | null
+    cloudCoverage?: FloatNullableFilter<"Weather"> | number | null
+    uvIndex?: IntNullableFilter<"Weather"> | number | null
+    sunriseTime?: DateTimeNullableFilter<"Weather"> | Date | string | null
+    sunsetTime?: DateTimeNullableFilter<"Weather"> | Date | string | null
     createdAt?: DateTimeFilter<"Weather"> | Date | string
     updatedAt?: DateTimeFilter<"Weather"> | Date | string
   }
@@ -45422,10 +46296,12 @@ export namespace Prisma {
     OR?: AidRoomCheckScalarWhereInput[]
     NOT?: AidRoomCheckScalarWhereInput | AidRoomCheckScalarWhereInput[]
     id?: StringFilter<"AidRoomCheck"> | string
-    recordedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     employeeId?: StringFilter<"AidRoomCheck"> | string
     mountainId?: StringFilter<"AidRoomCheck"> | string
     aidRoomId?: StringFilter<"AidRoomCheck"> | string
+    equipmentIssues?: BoolFilter<"AidRoomCheck"> | boolean
+    equipmentNotes?: StringNullableFilter<"AidRoomCheck"> | string | null
+    paperworkStocked?: BoolFilter<"AidRoomCheck"> | boolean
     notes?: StringNullableFilter<"AidRoomCheck"> | string | null
     createdAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
     updatedAt?: DateTimeFilter<"AidRoomCheck"> | Date | string
@@ -45452,10 +46328,12 @@ export namespace Prisma {
     OR?: HutCheckScalarWhereInput[]
     NOT?: HutCheckScalarWhereInput | HutCheckScalarWhereInput[]
     id?: StringFilter<"HutCheck"> | string
-    recordedAt?: DateTimeFilter<"HutCheck"> | Date | string
     employeeId?: StringFilter<"HutCheck"> | string
     mountainId?: StringFilter<"HutCheck"> | string
     hutId?: StringFilter<"HutCheck"> | string
+    equipmentIssues?: BoolFilter<"HutCheck"> | boolean
+    equipmentNotes?: StringNullableFilter<"HutCheck"> | string | null
+    paperworkStocked?: BoolFilter<"HutCheck"> | boolean
     notes?: StringNullableFilter<"HutCheck"> | string | null
     createdAt?: DateTimeFilter<"HutCheck"> | Date | string
     updatedAt?: DateTimeFilter<"HutCheck"> | Date | string
@@ -45482,10 +46360,11 @@ export namespace Prisma {
     OR?: LiftCheckScalarWhereInput[]
     NOT?: LiftCheckScalarWhereInput | LiftCheckScalarWhereInput[]
     id?: StringFilter<"LiftCheck"> | string
-    recordedAt?: DateTimeFilter<"LiftCheck"> | Date | string
     employeeId?: StringFilter<"LiftCheck"> | string
     mountainId?: StringFilter<"LiftCheck"> | string
     liftId?: StringFilter<"LiftCheck"> | string
+    hazards?: BoolFilter<"LiftCheck"> | boolean
+    status?: EnumSTATUSFilter<"LiftCheck"> | $Enums.STATUS
     notes?: StringNullableFilter<"LiftCheck"> | string | null
     createdAt?: DateTimeFilter<"LiftCheck"> | Date | string
     updatedAt?: DateTimeFilter<"LiftCheck"> | Date | string
@@ -45512,10 +46391,13 @@ export namespace Prisma {
     OR?: TrailCheckScalarWhereInput[]
     NOT?: TrailCheckScalarWhereInput | TrailCheckScalarWhereInput[]
     id?: StringFilter<"TrailCheck"> | string
-    recordedAt?: DateTimeFilter<"TrailCheck"> | Date | string
     employeeId?: StringFilter<"TrailCheck"> | string
     mountainId?: StringFilter<"TrailCheck"> | string
     trailId?: StringFilter<"TrailCheck"> | string
+    status?: EnumSTATUSFilter<"TrailCheck"> | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFilter<"TrailCheck"> | $Enums.TRAIL_CONDITION
+    hazards?: BoolFilter<"TrailCheck"> | boolean
+    snowmaking?: BoolFilter<"TrailCheck"> | boolean
     notes?: StringNullableFilter<"TrailCheck"> | string | null
     createdAt?: DateTimeFilter<"TrailCheck"> | Date | string
     updatedAt?: DateTimeFilter<"TrailCheck"> | Date | string
@@ -45542,7 +46424,6 @@ export namespace Prisma {
     OR?: EquipmentCheckScalarWhereInput[]
     NOT?: EquipmentCheckScalarWhereInput | EquipmentCheckScalarWhereInput[]
     id?: StringFilter<"EquipmentCheck"> | string
-    recordedAt?: DateTimeFilter<"EquipmentCheck"> | Date | string
     employeeId?: StringFilter<"EquipmentCheck"> | string
     mountainId?: StringFilter<"EquipmentCheck"> | string
     equipmentId?: StringFilter<"EquipmentCheck"> | string
@@ -46943,7 +47824,9 @@ export namespace Prisma {
 
   export type AidRoomCheckCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -46953,9 +47836,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     aidRoomId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -46973,7 +47858,9 @@ export namespace Prisma {
 
   export type HutCheckCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -46983,9 +47870,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     hutId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47003,7 +47892,8 @@ export namespace Prisma {
 
   export type LiftCheckCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47013,9 +47903,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     liftId: string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47033,7 +47924,10 @@ export namespace Prisma {
 
   export type TrailCheckCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47043,9 +47937,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     trailId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47063,7 +47960,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47073,7 +47969,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedCreateWithoutEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     equipmentId: string
     notes?: string | null
@@ -47415,7 +48310,8 @@ export namespace Prisma {
 
   export type LiftCheckCreateWithoutLiftInput = {
     id?: string
-    recordedAt?: Date | string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47425,9 +48321,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedCreateWithoutLiftInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47689,7 +48586,10 @@ export namespace Prisma {
 
   export type TrailCheckCreateWithoutTrailInput = {
     id?: string
-    recordedAt?: Date | string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -47699,9 +48599,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedCreateWithoutTrailInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -48191,7 +49094,9 @@ export namespace Prisma {
 
   export type HutCheckCreateWithoutHutInput = {
     id?: string
-    recordedAt?: Date | string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -48201,9 +49106,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedCreateWithoutHutInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -48465,7 +49372,9 @@ export namespace Prisma {
 
   export type AidRoomCheckCreateWithoutAidRoomInput = {
     id?: string
-    recordedAt?: Date | string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -48475,9 +49384,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedCreateWithoutAidRoomInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -49154,7 +50065,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCreateWithoutEquipmentInput = {
     id?: string
-    recordedAt?: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -49164,7 +50074,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedCreateWithoutEquipmentInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
     notes?: string | null
@@ -50053,6 +50962,638 @@ export namespace Prisma {
     equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEquipmentNestedInput
   }
 
+  export type EmployeeCreateWithoutAidRoomChecksInput = {
+    id?: string
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    certifications?: CertificationCreateNestedManyWithoutEmployeeInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
+    mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
+    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutAidRoomChecksInput = {
+    id?: string
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
+    mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutAidRoomChecksInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutAidRoomChecksInput, EmployeeUncheckedCreateWithoutAidRoomChecksInput>
+  }
+
+  export type MountainCreateWithoutAidRoomChecksInput = {
+    id?: string
+    name: string
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    height: number
+    phoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipcode: string
+    openingDate?: Date | string | null
+    closingDate?: Date | string | null
+    weather?: WeatherCreateNestedManyWithoutMountainInput
+    locations?: LocationCreateNestedManyWithoutMountainInput
+    areas?: AreaCreateNestedManyWithoutMountainInput
+    aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
+    huts?: HutCreateNestedManyWithoutMountainInput
+    lodges?: LodgeCreateNestedManyWithoutMountainInput
+    lifts?: LiftCreateNestedManyWithoutMountainInput
+    trails?: TrailCreateNestedManyWithoutMountainInput
+    hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
+    incidents?: IncidentCreateNestedManyWithoutMountainInput
+    equipment?: EquipmentCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
+  }
+
+  export type MountainUncheckedCreateWithoutAidRoomChecksInput = {
+    id?: string
+    name: string
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    height: number
+    phoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipcode: string
+    openingDate?: Date | string | null
+    closingDate?: Date | string | null
+    weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
+    locations?: LocationUncheckedCreateNestedManyWithoutMountainInput
+    areas?: AreaUncheckedCreateNestedManyWithoutMountainInput
+    aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
+    huts?: HutUncheckedCreateNestedManyWithoutMountainInput
+    lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
+    lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
+    trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
+    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
+    equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
+  }
+
+  export type MountainCreateOrConnectWithoutAidRoomChecksInput = {
+    where: MountainWhereUniqueInput
+    create: XOR<MountainCreateWithoutAidRoomChecksInput, MountainUncheckedCreateWithoutAidRoomChecksInput>
+  }
+
+  export type AidRoomCreateWithoutAidRoomChecksInput = {
+    id?: string
+    name: string
+    status?: $Enums.STATUS
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    mountain: MountainCreateNestedOneWithoutAidRoomsInput
+    location?: LocationCreateNestedOneWithoutAidRoomInput
+  }
+
+  export type AidRoomUncheckedCreateWithoutAidRoomChecksInput = {
+    id?: string
+    mountainId: string
+    name: string
+    status?: $Enums.STATUS
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    locationId?: string | null
+  }
+
+  export type AidRoomCreateOrConnectWithoutAidRoomChecksInput = {
+    where: AidRoomWhereUniqueInput
+    create: XOR<AidRoomCreateWithoutAidRoomChecksInput, AidRoomUncheckedCreateWithoutAidRoomChecksInput>
+  }
+
+  export type EmployeeUpsertWithoutAidRoomChecksInput = {
+    update: XOR<EmployeeUpdateWithoutAidRoomChecksInput, EmployeeUncheckedUpdateWithoutAidRoomChecksInput>
+    create: XOR<EmployeeCreateWithoutAidRoomChecksInput, EmployeeUncheckedCreateWithoutAidRoomChecksInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutAidRoomChecksInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutAidRoomChecksInput, EmployeeUncheckedUpdateWithoutAidRoomChecksInput>
+  }
+
+  export type EmployeeUpdateWithoutAidRoomChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
+    mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutAidRoomChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
+    mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type MountainUpsertWithoutAidRoomChecksInput = {
+    update: XOR<MountainUpdateWithoutAidRoomChecksInput, MountainUncheckedUpdateWithoutAidRoomChecksInput>
+    create: XOR<MountainCreateWithoutAidRoomChecksInput, MountainUncheckedCreateWithoutAidRoomChecksInput>
+    where?: MountainWhereInput
+  }
+
+  export type MountainUpdateToOneWithWhereWithoutAidRoomChecksInput = {
+    where?: MountainWhereInput
+    data: XOR<MountainUpdateWithoutAidRoomChecksInput, MountainUncheckedUpdateWithoutAidRoomChecksInput>
+  }
+
+  export type MountainUpdateWithoutAidRoomChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    height?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    weather?: WeatherUpdateManyWithoutMountainNestedInput
+    locations?: LocationUpdateManyWithoutMountainNestedInput
+    areas?: AreaUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
+    huts?: HutUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUpdateManyWithoutMountainNestedInput
+    lifts?: LiftUpdateManyWithoutMountainNestedInput
+    trails?: TrailUpdateManyWithoutMountainNestedInput
+    hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
+  }
+
+  export type MountainUncheckedUpdateWithoutAidRoomChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    height?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutMountainNestedInput
+    areas?: AreaUncheckedUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
+    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
+    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
+    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
+    hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
+  }
+
+  export type AidRoomUpsertWithoutAidRoomChecksInput = {
+    update: XOR<AidRoomUpdateWithoutAidRoomChecksInput, AidRoomUncheckedUpdateWithoutAidRoomChecksInput>
+    create: XOR<AidRoomCreateWithoutAidRoomChecksInput, AidRoomUncheckedCreateWithoutAidRoomChecksInput>
+    where?: AidRoomWhereInput
+  }
+
+  export type AidRoomUpdateToOneWithWhereWithoutAidRoomChecksInput = {
+    where?: AidRoomWhereInput
+    data: XOR<AidRoomUpdateWithoutAidRoomChecksInput, AidRoomUncheckedUpdateWithoutAidRoomChecksInput>
+  }
+
+  export type AidRoomUpdateWithoutAidRoomChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mountain?: MountainUpdateOneRequiredWithoutAidRoomsNestedInput
+    location?: LocationUpdateOneWithoutAidRoomNestedInput
+  }
+
+  export type AidRoomUncheckedUpdateWithoutAidRoomChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmployeeCreateWithoutHutChecksInput = {
+    id?: string
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    role?: RoleCreateNestedOneWithoutEmployeesInput
+    certifications?: CertificationCreateNestedManyWithoutEmployeeInput
+    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
+    mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutHutChecksInput = {
+    id?: string
+    employeeIdNumber?: number | null
+    firstName: string
+    lastName: string
+    email?: string | null
+    phoneNumber?: string | null
+    status: $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: $Enums.DEPARTMENT | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
+    mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutHutChecksInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutHutChecksInput, EmployeeUncheckedCreateWithoutHutChecksInput>
+  }
+
+  export type MountainCreateWithoutHutChecksInput = {
+    id?: string
+    name: string
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    height: number
+    phoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipcode: string
+    openingDate?: Date | string | null
+    closingDate?: Date | string | null
+    weather?: WeatherCreateNestedManyWithoutMountainInput
+    locations?: LocationCreateNestedManyWithoutMountainInput
+    areas?: AreaCreateNestedManyWithoutMountainInput
+    aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
+    huts?: HutCreateNestedManyWithoutMountainInput
+    lodges?: LodgeCreateNestedManyWithoutMountainInput
+    lifts?: LiftCreateNestedManyWithoutMountainInput
+    trails?: TrailCreateNestedManyWithoutMountainInput
+    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutMountainInput
+    liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
+    trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
+    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
+    incidents?: IncidentCreateNestedManyWithoutMountainInput
+    equipment?: EquipmentCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
+    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
+  }
+
+  export type MountainUncheckedCreateWithoutHutChecksInput = {
+    id?: string
+    name: string
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    height: number
+    phoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipcode: string
+    openingDate?: Date | string | null
+    closingDate?: Date | string | null
+    weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
+    locations?: LocationUncheckedCreateNestedManyWithoutMountainInput
+    areas?: AreaUncheckedCreateNestedManyWithoutMountainInput
+    aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
+    huts?: HutUncheckedCreateNestedManyWithoutMountainInput
+    lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
+    lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
+    trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
+    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutMountainInput
+    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
+    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
+    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
+    incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
+    equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
+  }
+
+  export type MountainCreateOrConnectWithoutHutChecksInput = {
+    where: MountainWhereUniqueInput
+    create: XOR<MountainCreateWithoutHutChecksInput, MountainUncheckedCreateWithoutHutChecksInput>
+  }
+
+  export type HutCreateWithoutHutChecksInput = {
+    id?: string
+    name: string
+    status?: $Enums.STATUS
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    mountain: MountainCreateNestedOneWithoutHutsInput
+    location?: LocationCreateNestedOneWithoutHutInput
+  }
+
+  export type HutUncheckedCreateWithoutHutChecksInput = {
+    id?: string
+    mountainId: string
+    name: string
+    status?: $Enums.STATUS
+    latitude?: Decimal | DecimalJsLike | number | string | null
+    longitude?: Decimal | DecimalJsLike | number | string | null
+    locationId?: string | null
+  }
+
+  export type HutCreateOrConnectWithoutHutChecksInput = {
+    where: HutWhereUniqueInput
+    create: XOR<HutCreateWithoutHutChecksInput, HutUncheckedCreateWithoutHutChecksInput>
+  }
+
+  export type EmployeeUpsertWithoutHutChecksInput = {
+    update: XOR<EmployeeUpdateWithoutHutChecksInput, EmployeeUncheckedUpdateWithoutHutChecksInput>
+    create: XOR<EmployeeCreateWithoutHutChecksInput, EmployeeUncheckedCreateWithoutHutChecksInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutHutChecksInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutHutChecksInput, EmployeeUncheckedUpdateWithoutHutChecksInput>
+  }
+
+  export type EmployeeUpdateWithoutHutChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: RoleUpdateOneWithoutEmployeesNestedInput
+    certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
+    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
+    mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutHutChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
+    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
+    mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type MountainUpsertWithoutHutChecksInput = {
+    update: XOR<MountainUpdateWithoutHutChecksInput, MountainUncheckedUpdateWithoutHutChecksInput>
+    create: XOR<MountainCreateWithoutHutChecksInput, MountainUncheckedCreateWithoutHutChecksInput>
+    where?: MountainWhereInput
+  }
+
+  export type MountainUpdateToOneWithWhereWithoutHutChecksInput = {
+    where?: MountainWhereInput
+    data: XOR<MountainUpdateWithoutHutChecksInput, MountainUncheckedUpdateWithoutHutChecksInput>
+  }
+
+  export type MountainUpdateWithoutHutChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    height?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    weather?: WeatherUpdateManyWithoutMountainNestedInput
+    locations?: LocationUpdateManyWithoutMountainNestedInput
+    areas?: AreaUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
+    huts?: HutUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUpdateManyWithoutMountainNestedInput
+    lifts?: LiftUpdateManyWithoutMountainNestedInput
+    trails?: TrailUpdateManyWithoutMountainNestedInput
+    aidRoomChecks?: AidRoomCheckUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
+  }
+
+  export type MountainUncheckedUpdateWithoutHutChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    height?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    zipcode?: StringFieldUpdateOperationsInput | string
+    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutMountainNestedInput
+    areas?: AreaUncheckedUpdateManyWithoutMountainNestedInput
+    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
+    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
+    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
+    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
+    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
+    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutMountainNestedInput
+    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
+    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
+    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
+    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
+    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
+    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
+    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
+  }
+
+  export type HutUpsertWithoutHutChecksInput = {
+    update: XOR<HutUpdateWithoutHutChecksInput, HutUncheckedUpdateWithoutHutChecksInput>
+    create: XOR<HutCreateWithoutHutChecksInput, HutUncheckedCreateWithoutHutChecksInput>
+    where?: HutWhereInput
+  }
+
+  export type HutUpdateToOneWithWhereWithoutHutChecksInput = {
+    where?: HutWhereInput
+    data: XOR<HutUpdateWithoutHutChecksInput, HutUncheckedUpdateWithoutHutChecksInput>
+  }
+
+  export type HutUpdateWithoutHutChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    mountain?: MountainUpdateOneRequiredWithoutHutsNestedInput
+    location?: LocationUpdateOneWithoutHutNestedInput
+  }
+
+  export type HutUncheckedUpdateWithoutHutChecksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    mountainId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    locationId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type EmployeeCreateWithoutLiftChecksInput = {
     id?: string
     employeeIdNumber?: number | null
@@ -50705,638 +52246,6 @@ export namespace Prisma {
     locationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type EmployeeCreateWithoutHutChecksInput = {
-    id?: string
-    employeeIdNumber?: number | null
-    firstName: string
-    lastName: string
-    email?: string | null
-    phoneNumber?: string | null
-    status: $Enums.EMPLOYEE_STATUS
-    primaryDepartment?: $Enums.DEPARTMENT | null
-    startDate?: Date | string | null
-    endDate?: Date | string | null
-    role?: RoleCreateNestedOneWithoutEmployeesInput
-    certifications?: CertificationCreateNestedManyWithoutEmployeeInput
-    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
-    mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
-    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
-    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
-    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeUncheckedCreateWithoutHutChecksInput = {
-    id?: string
-    employeeIdNumber?: number | null
-    firstName: string
-    lastName: string
-    email?: string | null
-    phoneNumber?: string | null
-    status: $Enums.EMPLOYEE_STATUS
-    primaryDepartment?: $Enums.DEPARTMENT | null
-    roleId?: string | null
-    startDate?: Date | string | null
-    endDate?: Date | string | null
-    certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
-    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
-    mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
-    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeCreateOrConnectWithoutHutChecksInput = {
-    where: EmployeeWhereUniqueInput
-    create: XOR<EmployeeCreateWithoutHutChecksInput, EmployeeUncheckedCreateWithoutHutChecksInput>
-  }
-
-  export type MountainCreateWithoutHutChecksInput = {
-    id?: string
-    name: string
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    height: number
-    phoneNumber: string
-    address: string
-    city: string
-    state: string
-    zipcode: string
-    openingDate?: Date | string | null
-    closingDate?: Date | string | null
-    weather?: WeatherCreateNestedManyWithoutMountainInput
-    locations?: LocationCreateNestedManyWithoutMountainInput
-    areas?: AreaCreateNestedManyWithoutMountainInput
-    aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
-    huts?: HutCreateNestedManyWithoutMountainInput
-    lodges?: LodgeCreateNestedManyWithoutMountainInput
-    lifts?: LiftCreateNestedManyWithoutMountainInput
-    trails?: TrailCreateNestedManyWithoutMountainInput
-    aidRoomChecks?: AidRoomCheckCreateNestedManyWithoutMountainInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
-    incidents?: IncidentCreateNestedManyWithoutMountainInput
-    equipment?: EquipmentCreateNestedManyWithoutMountainInput
-    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
-    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
-    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
-  }
-
-  export type MountainUncheckedCreateWithoutHutChecksInput = {
-    id?: string
-    name: string
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    height: number
-    phoneNumber: string
-    address: string
-    city: string
-    state: string
-    zipcode: string
-    openingDate?: Date | string | null
-    closingDate?: Date | string | null
-    weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
-    locations?: LocationUncheckedCreateNestedManyWithoutMountainInput
-    areas?: AreaUncheckedCreateNestedManyWithoutMountainInput
-    aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
-    huts?: HutUncheckedCreateNestedManyWithoutMountainInput
-    lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
-    lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
-    trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
-    aidRoomChecks?: AidRoomCheckUncheckedCreateNestedManyWithoutMountainInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
-    equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
-    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
-  }
-
-  export type MountainCreateOrConnectWithoutHutChecksInput = {
-    where: MountainWhereUniqueInput
-    create: XOR<MountainCreateWithoutHutChecksInput, MountainUncheckedCreateWithoutHutChecksInput>
-  }
-
-  export type HutCreateWithoutHutChecksInput = {
-    id?: string
-    name: string
-    status?: $Enums.STATUS
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    mountain: MountainCreateNestedOneWithoutHutsInput
-    location?: LocationCreateNestedOneWithoutHutInput
-  }
-
-  export type HutUncheckedCreateWithoutHutChecksInput = {
-    id?: string
-    mountainId: string
-    name: string
-    status?: $Enums.STATUS
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId?: string | null
-  }
-
-  export type HutCreateOrConnectWithoutHutChecksInput = {
-    where: HutWhereUniqueInput
-    create: XOR<HutCreateWithoutHutChecksInput, HutUncheckedCreateWithoutHutChecksInput>
-  }
-
-  export type EmployeeUpsertWithoutHutChecksInput = {
-    update: XOR<EmployeeUpdateWithoutHutChecksInput, EmployeeUncheckedUpdateWithoutHutChecksInput>
-    create: XOR<EmployeeCreateWithoutHutChecksInput, EmployeeUncheckedCreateWithoutHutChecksInput>
-    where?: EmployeeWhereInput
-  }
-
-  export type EmployeeUpdateToOneWithWhereWithoutHutChecksInput = {
-    where?: EmployeeWhereInput
-    data: XOR<EmployeeUpdateWithoutHutChecksInput, EmployeeUncheckedUpdateWithoutHutChecksInput>
-  }
-
-  export type EmployeeUpdateWithoutHutChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
-    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    role?: RoleUpdateOneWithoutEmployeesNestedInput
-    certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
-    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
-    mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
-    aidRoomChecks?: AidRoomCheckUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type EmployeeUncheckedUpdateWithoutHutChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
-    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
-    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
-    mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
-    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type MountainUpsertWithoutHutChecksInput = {
-    update: XOR<MountainUpdateWithoutHutChecksInput, MountainUncheckedUpdateWithoutHutChecksInput>
-    create: XOR<MountainCreateWithoutHutChecksInput, MountainUncheckedCreateWithoutHutChecksInput>
-    where?: MountainWhereInput
-  }
-
-  export type MountainUpdateToOneWithWhereWithoutHutChecksInput = {
-    where?: MountainWhereInput
-    data: XOR<MountainUpdateWithoutHutChecksInput, MountainUncheckedUpdateWithoutHutChecksInput>
-  }
-
-  export type MountainUpdateWithoutHutChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    height?: IntFieldUpdateOperationsInput | number
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    zipcode?: StringFieldUpdateOperationsInput | string
-    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    weather?: WeatherUpdateManyWithoutMountainNestedInput
-    locations?: LocationUpdateManyWithoutMountainNestedInput
-    areas?: AreaUpdateManyWithoutMountainNestedInput
-    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
-    huts?: HutUpdateManyWithoutMountainNestedInput
-    lodges?: LodgeUpdateManyWithoutMountainNestedInput
-    lifts?: LiftUpdateManyWithoutMountainNestedInput
-    trails?: TrailUpdateManyWithoutMountainNestedInput
-    aidRoomChecks?: AidRoomCheckUpdateManyWithoutMountainNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
-    incidents?: IncidentUpdateManyWithoutMountainNestedInput
-    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
-    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
-  }
-
-  export type MountainUncheckedUpdateWithoutHutChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    height?: IntFieldUpdateOperationsInput | number
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    zipcode?: StringFieldUpdateOperationsInput | string
-    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
-    locations?: LocationUncheckedUpdateManyWithoutMountainNestedInput
-    areas?: AreaUncheckedUpdateManyWithoutMountainNestedInput
-    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
-    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
-    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
-    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
-    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
-    aidRoomChecks?: AidRoomCheckUncheckedUpdateManyWithoutMountainNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
-    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
-    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
-  }
-
-  export type HutUpsertWithoutHutChecksInput = {
-    update: XOR<HutUpdateWithoutHutChecksInput, HutUncheckedUpdateWithoutHutChecksInput>
-    create: XOR<HutCreateWithoutHutChecksInput, HutUncheckedCreateWithoutHutChecksInput>
-    where?: HutWhereInput
-  }
-
-  export type HutUpdateToOneWithWhereWithoutHutChecksInput = {
-    where?: HutWhereInput
-    data: XOR<HutUpdateWithoutHutChecksInput, HutUncheckedUpdateWithoutHutChecksInput>
-  }
-
-  export type HutUpdateWithoutHutChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountain?: MountainUpdateOneRequiredWithoutHutsNestedInput
-    location?: LocationUpdateOneWithoutHutNestedInput
-  }
-
-  export type HutUncheckedUpdateWithoutHutChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type EmployeeCreateWithoutAidRoomChecksInput = {
-    id?: string
-    employeeIdNumber?: number | null
-    firstName: string
-    lastName: string
-    email?: string | null
-    phoneNumber?: string | null
-    status: $Enums.EMPLOYEE_STATUS
-    primaryDepartment?: $Enums.DEPARTMENT | null
-    startDate?: Date | string | null
-    endDate?: Date | string | null
-    role?: RoleCreateNestedOneWithoutEmployeesInput
-    certifications?: CertificationCreateNestedManyWithoutEmployeeInput
-    additionalRoles?: EmployeeRoleCreateNestedManyWithoutEmployeeInput
-    mountainAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutEmployeeInput
-    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentCreateNestedManyWithoutEmployeesInput
-    hutChecks?: HutCheckCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutEmployeeInput
-    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeUncheckedCreateWithoutAidRoomChecksInput = {
-    id?: string
-    employeeIdNumber?: number | null
-    firstName: string
-    lastName: string
-    email?: string | null
-    phoneNumber?: string | null
-    status: $Enums.EMPLOYEE_STATUS
-    primaryDepartment?: $Enums.DEPARTMENT | null
-    roleId?: string | null
-    startDate?: Date | string | null
-    endDate?: Date | string | null
-    certifications?: CertificationUncheckedCreateNestedManyWithoutEmployeeInput
-    additionalRoles?: EmployeeRoleUncheckedCreateNestedManyWithoutEmployeeInput
-    mountainAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutEmployeeInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutEmployeesInput
-    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutEmployeeInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutEmployeeInput
-  }
-
-  export type EmployeeCreateOrConnectWithoutAidRoomChecksInput = {
-    where: EmployeeWhereUniqueInput
-    create: XOR<EmployeeCreateWithoutAidRoomChecksInput, EmployeeUncheckedCreateWithoutAidRoomChecksInput>
-  }
-
-  export type MountainCreateWithoutAidRoomChecksInput = {
-    id?: string
-    name: string
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    height: number
-    phoneNumber: string
-    address: string
-    city: string
-    state: string
-    zipcode: string
-    openingDate?: Date | string | null
-    closingDate?: Date | string | null
-    weather?: WeatherCreateNestedManyWithoutMountainInput
-    locations?: LocationCreateNestedManyWithoutMountainInput
-    areas?: AreaCreateNestedManyWithoutMountainInput
-    aidRooms?: AidRoomCreateNestedManyWithoutMountainInput
-    huts?: HutCreateNestedManyWithoutMountainInput
-    lodges?: LodgeCreateNestedManyWithoutMountainInput
-    lifts?: LiftCreateNestedManyWithoutMountainInput
-    trails?: TrailCreateNestedManyWithoutMountainInput
-    hutChecks?: HutCheckCreateNestedManyWithoutMountainInput
-    liftChecks?: LiftCheckCreateNestedManyWithoutMountainInput
-    trailChecks?: TrailCheckCreateNestedManyWithoutMountainInput
-    equipmentChecks?: EquipmentCheckCreateNestedManyWithoutMountainInput
-    incidents?: IncidentCreateNestedManyWithoutMountainInput
-    equipment?: EquipmentCreateNestedManyWithoutMountainInput
-    employeeAssignments?: EmployeeMountainAssignmentCreateNestedManyWithoutMountainInput
-    dispatcherAssignments?: DispatcherAssignmentCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogCreateNestedManyWithoutMountainInput
-    equipmentServiceLogs?: EquipmentServiceLogCreateNestedManyWithoutMountainInput
-  }
-
-  export type MountainUncheckedCreateWithoutAidRoomChecksInput = {
-    id?: string
-    name: string
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    height: number
-    phoneNumber: string
-    address: string
-    city: string
-    state: string
-    zipcode: string
-    openingDate?: Date | string | null
-    closingDate?: Date | string | null
-    weather?: WeatherUncheckedCreateNestedManyWithoutMountainInput
-    locations?: LocationUncheckedCreateNestedManyWithoutMountainInput
-    areas?: AreaUncheckedCreateNestedManyWithoutMountainInput
-    aidRooms?: AidRoomUncheckedCreateNestedManyWithoutMountainInput
-    huts?: HutUncheckedCreateNestedManyWithoutMountainInput
-    lodges?: LodgeUncheckedCreateNestedManyWithoutMountainInput
-    lifts?: LiftUncheckedCreateNestedManyWithoutMountainInput
-    trails?: TrailUncheckedCreateNestedManyWithoutMountainInput
-    hutChecks?: HutCheckUncheckedCreateNestedManyWithoutMountainInput
-    liftChecks?: LiftCheckUncheckedCreateNestedManyWithoutMountainInput
-    trailChecks?: TrailCheckUncheckedCreateNestedManyWithoutMountainInput
-    equipmentChecks?: EquipmentCheckUncheckedCreateNestedManyWithoutMountainInput
-    incidents?: IncidentUncheckedCreateNestedManyWithoutMountainInput
-    equipment?: EquipmentUncheckedCreateNestedManyWithoutMountainInput
-    employeeAssignments?: EmployeeMountainAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedCreateNestedManyWithoutMountainInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedCreateNestedManyWithoutMountainInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedCreateNestedManyWithoutMountainInput
-  }
-
-  export type MountainCreateOrConnectWithoutAidRoomChecksInput = {
-    where: MountainWhereUniqueInput
-    create: XOR<MountainCreateWithoutAidRoomChecksInput, MountainUncheckedCreateWithoutAidRoomChecksInput>
-  }
-
-  export type AidRoomCreateWithoutAidRoomChecksInput = {
-    id?: string
-    name: string
-    status?: $Enums.STATUS
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    mountain: MountainCreateNestedOneWithoutAidRoomsInput
-    location?: LocationCreateNestedOneWithoutAidRoomInput
-  }
-
-  export type AidRoomUncheckedCreateWithoutAidRoomChecksInput = {
-    id?: string
-    mountainId: string
-    name: string
-    status?: $Enums.STATUS
-    latitude?: Decimal | DecimalJsLike | number | string | null
-    longitude?: Decimal | DecimalJsLike | number | string | null
-    locationId?: string | null
-  }
-
-  export type AidRoomCreateOrConnectWithoutAidRoomChecksInput = {
-    where: AidRoomWhereUniqueInput
-    create: XOR<AidRoomCreateWithoutAidRoomChecksInput, AidRoomUncheckedCreateWithoutAidRoomChecksInput>
-  }
-
-  export type EmployeeUpsertWithoutAidRoomChecksInput = {
-    update: XOR<EmployeeUpdateWithoutAidRoomChecksInput, EmployeeUncheckedUpdateWithoutAidRoomChecksInput>
-    create: XOR<EmployeeCreateWithoutAidRoomChecksInput, EmployeeUncheckedCreateWithoutAidRoomChecksInput>
-    where?: EmployeeWhereInput
-  }
-
-  export type EmployeeUpdateToOneWithWhereWithoutAidRoomChecksInput = {
-    where?: EmployeeWhereInput
-    data: XOR<EmployeeUpdateWithoutAidRoomChecksInput, EmployeeUncheckedUpdateWithoutAidRoomChecksInput>
-  }
-
-  export type EmployeeUpdateWithoutAidRoomChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
-    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    role?: RoleUpdateOneWithoutEmployeesNestedInput
-    certifications?: CertificationUpdateManyWithoutEmployeeNestedInput
-    additionalRoles?: EmployeeRoleUpdateManyWithoutEmployeeNestedInput
-    mountainAssignments?: EmployeeMountainAssignmentUpdateManyWithoutEmployeeNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUpdateManyWithoutEmployeesNestedInput
-    hutChecks?: HutCheckUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutEmployeeNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type EmployeeUncheckedUpdateWithoutAidRoomChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    employeeIdNumber?: NullableIntFieldUpdateOperationsInput | number | null
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumEMPLOYEE_STATUSFieldUpdateOperationsInput | $Enums.EMPLOYEE_STATUS
-    primaryDepartment?: NullableEnumDEPARTMENTFieldUpdateOperationsInput | $Enums.DEPARTMENT | null
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    certifications?: CertificationUncheckedUpdateManyWithoutEmployeeNestedInput
-    additionalRoles?: EmployeeRoleUncheckedUpdateManyWithoutEmployeeNestedInput
-    mountainAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutEmployeeNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutEmployeesNestedInput
-    hutChecks?: HutCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutEmployeeNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutEmployeeNestedInput
-  }
-
-  export type MountainUpsertWithoutAidRoomChecksInput = {
-    update: XOR<MountainUpdateWithoutAidRoomChecksInput, MountainUncheckedUpdateWithoutAidRoomChecksInput>
-    create: XOR<MountainCreateWithoutAidRoomChecksInput, MountainUncheckedCreateWithoutAidRoomChecksInput>
-    where?: MountainWhereInput
-  }
-
-  export type MountainUpdateToOneWithWhereWithoutAidRoomChecksInput = {
-    where?: MountainWhereInput
-    data: XOR<MountainUpdateWithoutAidRoomChecksInput, MountainUncheckedUpdateWithoutAidRoomChecksInput>
-  }
-
-  export type MountainUpdateWithoutAidRoomChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    height?: IntFieldUpdateOperationsInput | number
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    zipcode?: StringFieldUpdateOperationsInput | string
-    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    weather?: WeatherUpdateManyWithoutMountainNestedInput
-    locations?: LocationUpdateManyWithoutMountainNestedInput
-    areas?: AreaUpdateManyWithoutMountainNestedInput
-    aidRooms?: AidRoomUpdateManyWithoutMountainNestedInput
-    huts?: HutUpdateManyWithoutMountainNestedInput
-    lodges?: LodgeUpdateManyWithoutMountainNestedInput
-    lifts?: LiftUpdateManyWithoutMountainNestedInput
-    trails?: TrailUpdateManyWithoutMountainNestedInput
-    hutChecks?: HutCheckUpdateManyWithoutMountainNestedInput
-    liftChecks?: LiftCheckUpdateManyWithoutMountainNestedInput
-    trailChecks?: TrailCheckUpdateManyWithoutMountainNestedInput
-    equipmentChecks?: EquipmentCheckUpdateManyWithoutMountainNestedInput
-    incidents?: IncidentUpdateManyWithoutMountainNestedInput
-    equipment?: EquipmentUpdateManyWithoutMountainNestedInput
-    employeeAssignments?: EmployeeMountainAssignmentUpdateManyWithoutMountainNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUpdateManyWithoutMountainNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUpdateManyWithoutMountainNestedInput
-  }
-
-  export type MountainUncheckedUpdateWithoutAidRoomChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    height?: IntFieldUpdateOperationsInput | number
-    phoneNumber?: StringFieldUpdateOperationsInput | string
-    address?: StringFieldUpdateOperationsInput | string
-    city?: StringFieldUpdateOperationsInput | string
-    state?: StringFieldUpdateOperationsInput | string
-    zipcode?: StringFieldUpdateOperationsInput | string
-    openingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    closingDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    weather?: WeatherUncheckedUpdateManyWithoutMountainNestedInput
-    locations?: LocationUncheckedUpdateManyWithoutMountainNestedInput
-    areas?: AreaUncheckedUpdateManyWithoutMountainNestedInput
-    aidRooms?: AidRoomUncheckedUpdateManyWithoutMountainNestedInput
-    huts?: HutUncheckedUpdateManyWithoutMountainNestedInput
-    lodges?: LodgeUncheckedUpdateManyWithoutMountainNestedInput
-    lifts?: LiftUncheckedUpdateManyWithoutMountainNestedInput
-    trails?: TrailUncheckedUpdateManyWithoutMountainNestedInput
-    hutChecks?: HutCheckUncheckedUpdateManyWithoutMountainNestedInput
-    liftChecks?: LiftCheckUncheckedUpdateManyWithoutMountainNestedInput
-    trailChecks?: TrailCheckUncheckedUpdateManyWithoutMountainNestedInput
-    equipmentChecks?: EquipmentCheckUncheckedUpdateManyWithoutMountainNestedInput
-    incidents?: IncidentUncheckedUpdateManyWithoutMountainNestedInput
-    equipment?: EquipmentUncheckedUpdateManyWithoutMountainNestedInput
-    employeeAssignments?: EmployeeMountainAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    dispatcherAssignments?: DispatcherAssignmentUncheckedUpdateManyWithoutMountainNestedInput
-    incidentEquipmentUsageLog?: IncidentEquipmentUsageLogUncheckedUpdateManyWithoutMountainNestedInput
-    equipmentServiceLogs?: EquipmentServiceLogUncheckedUpdateManyWithoutMountainNestedInput
-  }
-
-  export type AidRoomUpsertWithoutAidRoomChecksInput = {
-    update: XOR<AidRoomUpdateWithoutAidRoomChecksInput, AidRoomUncheckedUpdateWithoutAidRoomChecksInput>
-    create: XOR<AidRoomCreateWithoutAidRoomChecksInput, AidRoomUncheckedCreateWithoutAidRoomChecksInput>
-    where?: AidRoomWhereInput
-  }
-
-  export type AidRoomUpdateToOneWithWhereWithoutAidRoomChecksInput = {
-    where?: AidRoomWhereInput
-    data: XOR<AidRoomUpdateWithoutAidRoomChecksInput, AidRoomUncheckedUpdateWithoutAidRoomChecksInput>
-  }
-
-  export type AidRoomUpdateWithoutAidRoomChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    mountain?: MountainUpdateOneRequiredWithoutAidRoomsNestedInput
-    location?: LocationUpdateOneWithoutAidRoomNestedInput
-  }
-
-  export type AidRoomUncheckedUpdateWithoutAidRoomChecksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    mountainId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
-    latitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    longitude?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    locationId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type EmployeeCreateWithoutEquipmentChecksInput = {
     id?: string
     employeeIdNumber?: number | null
@@ -51919,13 +52828,28 @@ export namespace Prisma {
     id?: string
     date?: Date | string
     temperature: number
-    windSpeed: number
+    feelsLikeTemperature?: number | null
+    humidity?: number | null
+    dewPoint?: number | null
+    windSpeed?: number | null
     windDirection?: string | null
+    windGust?: number | null
     visibility?: number | null
-    conditions: string
+    conditions?: string | null
     snowfallRecent?: number | null
     snowfall24h?: number | null
     snowfall7d?: number | null
+    snowDepthBase?: number | null
+    snowDepthSummit?: number | null
+    isSnowmakingPossible?: boolean | null
+    precipitationType?: $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: number | null
+    precipitationChance?: number | null
+    stormWarning?: boolean | null
+    cloudCoverage?: number | null
+    uvIndex?: number | null
+    sunriseTime?: Date | string | null
+    sunsetTime?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -51998,9 +52922,11 @@ export namespace Prisma {
 
   export type AidRoomCheckCreateManyMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     aidRoomId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -52008,9 +52934,11 @@ export namespace Prisma {
 
   export type HutCheckCreateManyMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     hutId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -52018,9 +52946,10 @@ export namespace Prisma {
 
   export type LiftCheckCreateManyMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     liftId: string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -52028,9 +52957,12 @@ export namespace Prisma {
 
   export type TrailCheckCreateManyMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     trailId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -52038,7 +52970,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCreateManyMountainInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     equipmentId: string
     notes?: string | null
@@ -52116,13 +53047,28 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
-    windSpeed?: FloatFieldUpdateOperationsInput | number
+    feelsLikeTemperature?: NullableFloatFieldUpdateOperationsInput | number | null
+    humidity?: NullableFloatFieldUpdateOperationsInput | number | null
+    dewPoint?: NullableFloatFieldUpdateOperationsInput | number | null
+    windSpeed?: NullableFloatFieldUpdateOperationsInput | number | null
     windDirection?: NullableStringFieldUpdateOperationsInput | string | null
+    windGust?: NullableFloatFieldUpdateOperationsInput | number | null
     visibility?: NullableFloatFieldUpdateOperationsInput | number | null
-    conditions?: StringFieldUpdateOperationsInput | string
+    conditions?: NullableStringFieldUpdateOperationsInput | string | null
     snowfallRecent?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall24h?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall7d?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthBase?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthSummit?: NullableFloatFieldUpdateOperationsInput | number | null
+    isSnowmakingPossible?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    precipitationType?: NullableEnumPRECIPITATION_TYPEFieldUpdateOperationsInput | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: NullableFloatFieldUpdateOperationsInput | number | null
+    precipitationChance?: NullableFloatFieldUpdateOperationsInput | number | null
+    stormWarning?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    cloudCoverage?: NullableFloatFieldUpdateOperationsInput | number | null
+    uvIndex?: NullableIntFieldUpdateOperationsInput | number | null
+    sunriseTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sunsetTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -52131,13 +53077,28 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
-    windSpeed?: FloatFieldUpdateOperationsInput | number
+    feelsLikeTemperature?: NullableFloatFieldUpdateOperationsInput | number | null
+    humidity?: NullableFloatFieldUpdateOperationsInput | number | null
+    dewPoint?: NullableFloatFieldUpdateOperationsInput | number | null
+    windSpeed?: NullableFloatFieldUpdateOperationsInput | number | null
     windDirection?: NullableStringFieldUpdateOperationsInput | string | null
+    windGust?: NullableFloatFieldUpdateOperationsInput | number | null
     visibility?: NullableFloatFieldUpdateOperationsInput | number | null
-    conditions?: StringFieldUpdateOperationsInput | string
+    conditions?: NullableStringFieldUpdateOperationsInput | string | null
     snowfallRecent?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall24h?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall7d?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthBase?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthSummit?: NullableFloatFieldUpdateOperationsInput | number | null
+    isSnowmakingPossible?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    precipitationType?: NullableEnumPRECIPITATION_TYPEFieldUpdateOperationsInput | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: NullableFloatFieldUpdateOperationsInput | number | null
+    precipitationChance?: NullableFloatFieldUpdateOperationsInput | number | null
+    stormWarning?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    cloudCoverage?: NullableFloatFieldUpdateOperationsInput | number | null
+    uvIndex?: NullableIntFieldUpdateOperationsInput | number | null
+    sunriseTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sunsetTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -52146,13 +53107,28 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     temperature?: FloatFieldUpdateOperationsInput | number
-    windSpeed?: FloatFieldUpdateOperationsInput | number
+    feelsLikeTemperature?: NullableFloatFieldUpdateOperationsInput | number | null
+    humidity?: NullableFloatFieldUpdateOperationsInput | number | null
+    dewPoint?: NullableFloatFieldUpdateOperationsInput | number | null
+    windSpeed?: NullableFloatFieldUpdateOperationsInput | number | null
     windDirection?: NullableStringFieldUpdateOperationsInput | string | null
+    windGust?: NullableFloatFieldUpdateOperationsInput | number | null
     visibility?: NullableFloatFieldUpdateOperationsInput | number | null
-    conditions?: StringFieldUpdateOperationsInput | string
+    conditions?: NullableStringFieldUpdateOperationsInput | string | null
     snowfallRecent?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall24h?: NullableFloatFieldUpdateOperationsInput | number | null
     snowfall7d?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthBase?: NullableFloatFieldUpdateOperationsInput | number | null
+    snowDepthSummit?: NullableFloatFieldUpdateOperationsInput | number | null
+    isSnowmakingPossible?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    precipitationType?: NullableEnumPRECIPITATION_TYPEFieldUpdateOperationsInput | $Enums.PRECIPITATION_TYPE | null
+    precipitationIntensity?: NullableFloatFieldUpdateOperationsInput | number | null
+    precipitationChance?: NullableFloatFieldUpdateOperationsInput | number | null
+    stormWarning?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    cloudCoverage?: NullableFloatFieldUpdateOperationsInput | number | null
+    uvIndex?: NullableIntFieldUpdateOperationsInput | number | null
+    sunriseTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sunsetTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -52383,7 +53359,9 @@ export namespace Prisma {
 
   export type AidRoomCheckUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52393,9 +53371,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     aidRoomId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52403,9 +53383,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     aidRoomId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52413,7 +53395,9 @@ export namespace Prisma {
 
   export type HutCheckUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52423,9 +53407,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     hutId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52433,9 +53419,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     hutId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52443,7 +53431,8 @@ export namespace Prisma {
 
   export type LiftCheckUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52453,9 +53442,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     liftId?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52463,9 +53453,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     liftId?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52473,7 +53464,10 @@ export namespace Prisma {
 
   export type TrailCheckUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52483,9 +53477,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     trailId?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52493,9 +53490,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     trailId?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52503,7 +53503,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -52513,7 +53512,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedUpdateWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -52523,7 +53521,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedUpdateManyWithoutMountainInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -52861,9 +53858,11 @@ export namespace Prisma {
 
   export type AidRoomCheckCreateManyEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     aidRoomId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -52871,9 +53870,11 @@ export namespace Prisma {
 
   export type HutCheckCreateManyEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     hutId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -52881,9 +53882,10 @@ export namespace Prisma {
 
   export type LiftCheckCreateManyEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     liftId: string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -52891,9 +53893,12 @@ export namespace Prisma {
 
   export type TrailCheckCreateManyEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     trailId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -52901,7 +53906,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCreateManyEmployeeInput = {
     id?: string
-    recordedAt?: Date | string
     mountainId: string
     equipmentId: string
     notes?: string | null
@@ -53056,7 +54060,9 @@ export namespace Prisma {
 
   export type AidRoomCheckUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53066,9 +54072,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     aidRoomId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53076,9 +54084,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     aidRoomId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53086,7 +54096,9 @@ export namespace Prisma {
 
   export type HutCheckUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53096,9 +54108,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     hutId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53106,9 +54120,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     hutId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53116,7 +54132,8 @@ export namespace Prisma {
 
   export type LiftCheckUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53126,9 +54143,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     liftId?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53136,9 +54154,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     liftId?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53146,7 +54165,10 @@ export namespace Prisma {
 
   export type TrailCheckUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53156,9 +54178,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     trailId?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53166,9 +54191,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     trailId?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53176,7 +54204,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53186,7 +54213,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -53196,7 +54222,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mountainId?: StringFieldUpdateOperationsInput | string
     equipmentId?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -53239,9 +54264,10 @@ export namespace Prisma {
 
   export type LiftCheckCreateManyLiftInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
+    hazards?: boolean
+    status: $Enums.STATUS
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -53249,7 +54275,8 @@ export namespace Prisma {
 
   export type LiftCheckUpdateWithoutLiftInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53259,9 +54286,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedUpdateWithoutLiftInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53269,9 +54297,10 @@ export namespace Prisma {
 
   export type LiftCheckUncheckedUpdateManyWithoutLiftInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53279,9 +54308,12 @@ export namespace Prisma {
 
   export type TrailCheckCreateManyTrailInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
+    status: $Enums.STATUS
+    condition: $Enums.TRAIL_CONDITION
+    hazards?: boolean
+    snowmaking?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -53289,7 +54321,10 @@ export namespace Prisma {
 
   export type TrailCheckUpdateWithoutTrailInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53299,9 +54334,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedUpdateWithoutTrailInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53309,9 +54347,12 @@ export namespace Prisma {
 
   export type TrailCheckUncheckedUpdateManyWithoutTrailInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    status?: EnumSTATUSFieldUpdateOperationsInput | $Enums.STATUS
+    condition?: EnumTRAIL_CONDITIONFieldUpdateOperationsInput | $Enums.TRAIL_CONDITION
+    hazards?: BoolFieldUpdateOperationsInput | boolean
+    snowmaking?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53319,9 +54360,11 @@ export namespace Prisma {
 
   export type HutCheckCreateManyHutInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -53329,7 +54372,9 @@ export namespace Prisma {
 
   export type HutCheckUpdateWithoutHutInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53339,9 +54384,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedUpdateWithoutHutInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53349,9 +54396,11 @@ export namespace Prisma {
 
   export type HutCheckUncheckedUpdateManyWithoutHutInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53359,9 +54408,11 @@ export namespace Prisma {
 
   export type AidRoomCheckCreateManyAidRoomInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
+    equipmentIssues?: boolean
+    equipmentNotes?: string | null
+    paperworkStocked?: boolean
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -53369,7 +54420,9 @@ export namespace Prisma {
 
   export type AidRoomCheckUpdateWithoutAidRoomInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53379,9 +54432,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedUpdateWithoutAidRoomInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53389,9 +54444,11 @@ export namespace Prisma {
 
   export type AidRoomCheckUncheckedUpdateManyWithoutAidRoomInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
+    equipmentIssues?: BoolFieldUpdateOperationsInput | boolean
+    equipmentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    paperworkStocked?: BoolFieldUpdateOperationsInput | boolean
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53409,7 +54466,6 @@ export namespace Prisma {
 
   export type EquipmentCheckCreateManyEquipmentInput = {
     id?: string
-    recordedAt?: Date | string
     employeeId: string
     mountainId: string
     notes?: string | null
@@ -53460,7 +54516,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -53470,7 +54525,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedUpdateWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -53480,7 +54534,6 @@ export namespace Prisma {
 
   export type EquipmentCheckUncheckedUpdateManyWithoutEquipmentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeId?: StringFieldUpdateOperationsInput | string
     mountainId?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null

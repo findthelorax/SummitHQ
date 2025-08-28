@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { aidRoomApi } from '../api/AidRoomAPI';
-import type { AidRoomDTO } from '../types/index';
+import type { AidRoomDTO, AidRoomFull } from '../types/index';
 import { STATUS } from '../types/generated-enums';
 import type { AidRoomInputPayload } from '../api/AidRoomAPI';
 
@@ -10,7 +10,7 @@ function toSharedStatus(status: any): STATUS {
 }
 
 export function useAidRooms(mountainId: string | undefined) {
-	const [aidRooms, setAidRooms] = useState<AidRoomDTO[]>([]);
+	const [aidRooms, setAidRooms] = useState<AidRoomFull[]>([]);
 	const [isLoadingAidRooms, setIsLoadingAidRooms] = useState(false);
 
 	const fetchAidRooms = useCallback(async () => {
@@ -21,8 +21,12 @@ export function useAidRooms(mountainId: string | undefined) {
 		setIsLoadingAidRooms(true);
 		try {
 			let data: AidRoomDTO[];
-			data = await aidRoomApi.getAidRooms(mountainId);
-			setAidRooms(data);
+			const fullData: AidRoomFull[] = data = (await aidRoomApi.getAidRooms(mountainId)).map(dto => ({
+				...dto,
+				location: dto.location === undefined ? null : dto.location,
+				aidRoomChecks: [],
+			}));
+			setAidRooms(fullData);
 		} finally {
 			setIsLoadingAidRooms(false);
 		}
@@ -47,18 +51,18 @@ export function useAidRooms(mountainId: string | undefined) {
 	);
 
     const updateAidRoom = useCallback(
-        async (aidRoomId: string, updated: Partial<AidRoomDTO & { areaId?: string }>) => {
+        async (aidRoomId: string, updated: Partial<AidRoomFull & { areaId?: string }>) => {
             if (!mountainId) return Promise.reject('No mountainId');
             const { name, status, latitude, longitude, areaId } = updated;
             const payload: Partial<AidRoomInputPayload> = {
                 ...(name !== undefined ? { name } : {}),
                 ...(status !== undefined ? { status: toSharedStatus(status) } : {}),
-                ...(latitude !== undefined
-                    ? { latitude: latitude === null || latitude === undefined ? null : Number(latitude) }
-                    : {}),
-                ...(longitude !== undefined
-                    ? { longitude: longitude === null || longitude === undefined ? null : Number(longitude) }
-                    : {}),
+				...(latitude !== undefined
+					? { latitude: latitude === null ? undefined : Number(latitude) }
+					: {}),
+				...(longitude !== undefined
+					? { longitude: longitude === null ? undefined : Number(longitude) }
+					: {}),
                 ...(areaId !== undefined ? { areaId } : {}),
             };
             const updatedAidRoom = await aidRoomApi.updateAidRoom(mountainId, aidRoomId, payload);

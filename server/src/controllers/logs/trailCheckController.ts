@@ -46,6 +46,12 @@ class TrailCheckController {
         }
         res.status(204).send();
     });
+
+    getAllByMountain = asyncWrapper(async (req: Request, res: Response) => {
+        const { mountainId } = req.params;
+        const result = await TrailCheckModel.findAllByMountain(mountainId);
+        res.status(200).json(result);
+    });
 }
 
 export default new TrailCheckController();

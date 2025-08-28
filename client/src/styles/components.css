@@ -1,18 +1,18 @@
 :root {
 	--color-1: #000000;
-	--color-2: #365952;
-	--color-3: #6e3d3d;
-	--color-4: #7db19f;
+	--color-2: #ffffff;
+	--color-3: #365952;
+	--color-4: #6e3d3d;
+	--color-5: #7db19f;
 
-	/* --color-5: #e9d8a6; */
 	--color-6: #ee9b00;
 	--color-7: #ca6702;
-	/* --color-8: #bb3e03; */
+	--color-8: #bb3e03;
 
 	--color-9: #ae2012;
 	--color-10: #910c00;
 
-	/* --color-12: #6a4c7e; */
+	--color-12: #6a4c7e;
 
 	--color-13: #4c6fac;
 	--color-14: #395481;
@@ -21,37 +21,39 @@
 	--color-16: #4c5c68;
 	--color-17: #39aa2f;
 	--color-18: #297522;
-	--color-19: #1e293b;
+	--color-19: #0e0e0e;
+	--color-20: #242424;
 
-	--primary: var(--color-3);
-	--primary-dark: var(--color-3);
-	--primary-light: var(--color-4);
-	--primary-hover: var(--color-4);
+	--primary: var(--color-12);
+	--primary-dark: var(--color-12);
+	--primary-light: var(--color-12);
+	--primary-hover: var(--color-12);
 	--accent: var(--color-7);
 	--edit-button: var(--color-7);
 	--danger: var(--color-9);
 	--danger-dark: var(--color-10);
-	--background: var(--color-2);
-	--surface: var(--color-2);
-	--text: #000000;
-	--text-invert: #fff;
+	--background: var(--color-19);
+	--surface: var(--color-12);
+	--text: var(--color-1);
+	--text-invert: var(--color-2);
 	--success: var(--color-17);
 	--success-dark: var(--color-18);
 
 	--input-bg: var(--color-15);
-	--input-bg-dark: var(--color-2);
-	--input-border: #ccc;
-	--input-border-dark: var(--color-2);
+	--input-bg-dark: var(--color-12);
+	--input-border: var(--color-15);
+	--input-border-dark: var(--color-12);
 	--input-radius: 0.5rem;
 	--input-padding: 0.5rem 0.75rem;
 	--input-font-size: 1rem;
 
-	--shadow: 10px 12px 8px rgba(0, 0, 0, 0.08);
+	--shadow: 10px 12px 8px var(--color-1);
 	--form-bg: var(--color-16);
 	--form-radius: 1rem;
 	--form-padding: 1.5rem;
 	--form-max-width: 1000px;
 	--form-margin: 1.5rem auto 0 auto;
+	--dialog-bg: #000000a2;
 }
 
 .a {
@@ -84,7 +86,7 @@ body,
 [data-theme='dark'] {
 	--surface: var(--color-1);
 	--background: var(--color-1);
-	--text: #fff;
-	--input-bg: var(--color-2);
-	--input-border: var(--color-3);
+	--text: var(--color-12);
+	--input-bg: var(--color-4);
+	--input-border: var(--color-12);
 }

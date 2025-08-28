@@ -1,9 +1,13 @@
-const year = new Date().getFullYear();
+import React from 'react';
 
-const Footer = () => (
-    <footer className="footer">
-        © {year} Brett Ferrante
-    </footer>
-);
+interface FooterProps {
+	className?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ className = '' }) => {
+	const year = new Date().getFullYear();
+
+	return <footer className={`footer ${className}`}>© {year} Brett Ferrante</footer>;
+};
 
 export default Footer;

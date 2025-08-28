@@ -207,7 +207,7 @@ const AdminTrailsTableAgGrid: React.FC<TrailsTableAgGridProps> = ({
 				headerName: 'Length (mi)',
 				field: 'length',
 				valueFormatter: withPlaceholder((params: any) =>
-					params.value !== undefined && params.value !== null ? params.value.toString() : '-'
+					params.value !== null && params.value !== null ? params.value.toString() : '-'
 				),
 				...editableCell('length'),
 			},
@@ -215,7 +215,7 @@ const AdminTrailsTableAgGrid: React.FC<TrailsTableAgGridProps> = ({
 				headerName: 'Latitude',
 				field: 'latitude',
 				valueFormatter: withPlaceholder((params: any) =>
-					params.value !== undefined && params.value !== null ? params.value.toString() : '-'
+					params.value !== null && params.value !== null ? params.value.toString() : '-'
 				),
 				...editableCell('latitude'),
 			},
@@ -223,7 +223,7 @@ const AdminTrailsTableAgGrid: React.FC<TrailsTableAgGridProps> = ({
 				headerName: 'Longitude',
 				field: 'longitude',
 				valueFormatter: withPlaceholder((params: any) =>
-					params.value !== undefined && params.value !== null ? params.value.toString() : '-'
+					params.value !== null && params.value !== null ? params.value.toString() : '-'
 				),
 				...editableCell('longitude'),
 			},

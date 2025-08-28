@@ -586,13 +586,8 @@ export interface TrailsTableAgGridProps extends BaseTrailsTableAgGridProps {
 /** Trail Checks */
 export type TrailCheckRow = {
 	id?: string;
-	recordedAt: string;
-	employeeId: string;
-	mountainId: string;
-	trailId: string;
+	
 	notes?: string | null;
-	createdAt?: string | null;
-	updatedAt?: string | null;
 	isNew?: boolean;
 };
 
