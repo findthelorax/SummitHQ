@@ -33,6 +33,10 @@ export default defineConfig(({ mode }) => {
                         },
                     ],
                 },
+                // Add this configuration to fix the precaching issue
+                workbox: {
+                    maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3 MB
+                },
             }),
         ],
         server: {
@@ -49,12 +53,21 @@ export default defineConfig(({ mode }) => {
             },
             // Override TypeScript settings
             typescript: {
-                // Use the Railway-specific tsconfig
                 tsconfig: './tsconfig.railway.json',
-                // Don't fail the build on TypeScript errors
                 noEmit: false,
-                // Skip type checking in Railway
                 skipTypeCheck: true
+            },
+            // Add code splitting to reduce bundle size
+            build: {
+                rollupOptions: {
+                    output: {
+                        manualChunks: {
+                            'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+                            'ui-vendor': ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
+                            'grid-vendor': ['ag-grid-react', 'ag-grid-community']
+                        }
+                    }
+                }
             }
         })
     };
