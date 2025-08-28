@@ -7,7 +7,8 @@
 		"dev": "vite",
 		"build": "if [ \"$RAILWAY_ENVIRONMENT\" ]; then bash railway-prebuild.sh; else tsc -b && vite build; fi",
 		"lint": "eslint .",
-		"preview": "vite preview"
+		"preview": "vite preview",
+    "start": "serve -s dist"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.14.0",
