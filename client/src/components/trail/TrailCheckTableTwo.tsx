@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import type { ColDef, ICellEditorParams, CellValueChangedEvent } from 'ag-grid-community';
 import { themeQuartz, colorSchemeDarkBlue } from 'ag-grid-community';
-import { useTrailChecks } from '../../hooks/logs/useTrailChecks';
+import { useTrailChecks } from '../../hooks/checks/useTrailChecks';
 import { useEmployees } from '../../hooks/employee/useEmployees'; // You need to implement this hook
 import type { EmployeeDTO } from '../../types/index'; // Adjust the path if needed
 import { ChecksActionCellRenderer } from '../aggrid/ChecksActionCellRenderer';

@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { themeQuartz, colorSchemeDarkBlue } from 'ag-grid-community';
 import type { ColDef, CellValueChangedEvent } from 'ag-grid-community';
-import { useHutChecks } from '../../hooks/logs/useHutChecks';
+import { useHutChecks } from '../../hooks/checks/useHutChecks';
 import type { HutCheckFull } from '../../types';
 import { formatDate } from '../../utils/common/formatData';
 import { ChecksActionCellRenderer } from '../aggrid/ChecksActionCellRenderer';

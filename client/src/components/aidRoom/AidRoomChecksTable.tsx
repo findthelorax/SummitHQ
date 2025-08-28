@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { themeQuartz, colorSchemeDarkBlue } from 'ag-grid-community';
 import type { ColDef, CellValueChangedEvent } from 'ag-grid-community';
-import { useAidRoomChecks } from '../../hooks/logs/useAidRoomChecks';
+import { useAidRoomChecks } from '../../hooks/checks/useAidRoomChecks';
 import type { AidRoomCheckFull } from '../../types';
 import { formatDate } from '../../utils/common/formatData';
 import { ChecksActionCellRenderer } from '../aggrid/ChecksActionCellRenderer';

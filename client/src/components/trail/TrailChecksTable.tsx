@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { themeQuartz, colorSchemeDarkBlue } from 'ag-grid-community';
 import type { ColDef, CellValueChangedEvent } from 'ag-grid-community';
-import { useTrailChecks } from '../../hooks/logs/useTrailChecks';
+import { useTrailChecks } from '../../hooks/checks/useTrailChecks';
 import type { TrailCheckFull } from '../../types';
 import { ChecksActionCellRenderer } from '../aggrid/ChecksActionCellRenderer';
 import { useSnackbarContext } from '../../contexts/SnackbarContext';
