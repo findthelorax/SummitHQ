@@ -15,5 +15,5 @@
             "types/*": ["src/types/*"]
         }
     },
-    "include": ["src", "scripts"]
+    "include": ["src/**/*"]
 }
