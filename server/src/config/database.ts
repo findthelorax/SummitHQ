@@ -32,19 +32,35 @@ const prisma = new PrismaClient({
 	},
 });
 
-const connectDatabase = async () => {
-	try {
-		await prisma.$connect();
-		logger.info('Database connection has been established successfully.');
-	} catch (error) {
-		logger.error('Unable to connect to the database:', error);
-		// Log more details about the error
-		if (error instanceof Error) {
-			logger.error(`Error message: ${error.message}`);
-			logger.error(`Error stack: ${error.stack}`);
-		}
-		process.exit(1);
-	}
+const connectDatabase = async (retries = 5) => {
+    try {
+        await prisma.$connect();
+        logger.info('Database connection has been established successfully.');
+        
+        // Verify connection with a simple query
+        await prisma.$queryRaw`SELECT 1`;
+        logger.info('Database query test successful');
+    } catch (error) {
+        logger.error('Unable to connect to the database:', error);
+        
+        // Log more details about the error
+        if (error instanceof Error) {
+            logger.error(`Error message: ${error.message}`);
+            logger.error(`Error stack: ${error.stack}`);
+        }
+        
+        // Retry logic
+        if (retries > 0) {
+            logger.info(`Retrying database connection in 5 seconds... (${retries} attempts remaining)`);
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            return connectDatabase(retries - 1);
+        }
+        
+        if (process.env.NODE_ENV === 'production') {
+            logger.error('Critical database connection failure in production');
+            process.exit(1);
+        }
+    }
 };
 
 export { prisma, connectDatabase };
