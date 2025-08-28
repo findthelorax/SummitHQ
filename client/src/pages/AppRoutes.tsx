@@ -14,10 +14,10 @@ import Equipment from './Equipment';
 // import Logs from './Logs';
 import Settings from './Settings';
 
-import AidRoomChecksPage from './Logs/AidRoomChecks';
-import HutChecksPage from './Logs/HutChecksPage';
-import LiftChecksPage from './Logs/LiftChecksPage';
-import TrailChecksPage from './Logs/TrailChecksPage';
+import AidRoomChecksPage from './checks/AidRoomChecks';
+import HutChecksPage from './checks/HutChecksPage';
+import LiftChecksPage from './checks/LiftChecksPage';
+import TrailChecksPage from './checks/TrailChecksPage';
 
 import AdminLayout from './AdminLayout';
 
