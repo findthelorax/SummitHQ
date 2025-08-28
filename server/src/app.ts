@@ -38,3 +38,5 @@ app.use(errorHandler);
 app.listen(PORT, IP, () => {
 	logger.info(`Server is running on http://${IP}:${PORT}`);
 });
+
+export default app;
