@@ -63,7 +63,7 @@ const HutTable: React.FC = () => {
 	const { selectedMountain } = useMountain();
 	const { showSnackbar } = useSnackbarContext();
 
-	const { huts, isLoading, fetchHuts } = useHuts(selectedMountain?.id);
+	const { huts, isLoadingHuts, fetchHuts } = useHuts(selectedMountain?.id);
 
 	const columnDefs = useMemo(() => getColumnDefs(fetchHuts, showSnackbar), [fetchHuts, showSnackbar]);
 
@@ -141,7 +141,7 @@ const HutTable: React.FC = () => {
 					loadingOverlayComponent="agLoadingOverlay"
 					noRowsOverlayComponent="agNoRowsOverlay"
 					noRowsOverlayComponentParams={{ noRowsMessage: 'No huts found.' }}
-					loading={isLoading}
+					loading={isLoadingHuts}
 					autoSizeStrategy={{
 						type: 'fitCellContents',
 					}}
