@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "if [ \"$RAILWAY_ENVIRONMENT\" ]; then bash railway-prebuild.sh; else tsc -b && vite build; fi",
+		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
 		"start": "serve -s dist -l $PORT"
