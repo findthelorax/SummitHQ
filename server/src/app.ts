@@ -13,7 +13,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
-const IP = process.env.IP || 'localhost';
+const IP = process.env.IP || '0.0.0.0';
 
 app.use(cors());
 app.use(express.json());
