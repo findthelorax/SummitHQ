@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"build_railway": "bash railway-prebuild.sh",
 		"lint": "eslint .",
 		"preview": "vite preview",
 		"start": "serve -s dist -l $PORT"

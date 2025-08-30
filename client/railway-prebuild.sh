@@ -1,28 +1,10 @@
 #!/bin/bash
 set -e  # <-- this makes the script exit immediately if any command fails
 
-# tsconfig.json
-cat > tsconfig.json << 'EOF'
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
-  },
-  "include": ["src"]
-}
-EOF
+echo "🔹 Railway prebuild script"
+
+# Copy standalone TS config for Railway
+cp tsconfig.railway.json tsconfig.json
 
 # check VITE_API_URL
 if [ -z "$VITE_API_URL" ]; then
@@ -30,10 +12,12 @@ if [ -z "$VITE_API_URL" ]; then
   exit 1
 fi
 
-# write .env.production
-cat > .env.production <<EOF
-VITE_API_URL=$VITE_API_URL
-EOF
+# Write .env.production if VITE_API_URL exists
+if [ ! -z "$VITE_API_URL" ]; then
+  echo "VITE_API_URL=$VITE_API_URL" > .env.production
+fi
 
-# run vite build
+# Build Vite
 vite build
+
+echo "✅ Vite build completed"
